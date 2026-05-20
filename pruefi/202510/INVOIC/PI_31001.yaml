@@ -1,0 +1,322 @@
+openapi: 3.1.0
+info:
+  title: PI_31001
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_31001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_31001__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_31001__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_31001__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31001__stammdaten__MARKTLOKATION'
+        RECHNUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG'
+      required:
+        - MARKTLOKATION
+        - RECHNUNG
+    PI_31001__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        lokationsadresse:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/lokationsadresse.yaml#/components/schemas/lokationsadresse'
+          x-edifact-segment:
+            - SG2.NAD+DP
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsadresse
+        - marktlokationsId
+    PI_31001__stammdaten__RECHNUNG:
+      type: object
+      properties:
+        bearbeitungsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/bearbeitungsdatum.yaml#/components/schemas/bearbeitungsdatum'
+          x-edifact-segment:
+            - DTM+9
+        faelligkeitsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/faelligkeitsdatum.yaml#/components/schemas/faelligkeitsdatum'
+          x-edifact-segment:
+            - SG8.PYT.DTM+265
+        gesamtbrutto:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__gesamtbrutto'
+        istReverseCharge:
+          $ref: '../../../bo4e/fields/bo/Rechnung/istReverseCharge.yaml#/components/schemas/istReverseCharge'
+          x-edifact-segment:
+            - FTX+REG++RCH
+        rechnungsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungsdatum.yaml#/components/schemas/rechnungsdatum'
+          x-edifact-segment:
+            - DTM+137
+        rechnungspositionen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__rechnungspositionen'
+        rechnungsstatus:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungsstatus.yaml#/components/schemas/rechnungsstatus'
+          x-edifact-segment:
+            - BGM+380
+        rechnungstyp:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungstyp.yaml#/components/schemas/rechnungstyp'
+          x-edifact-segment:
+            - IMD
+        steuerbetraege:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__steuerbetraege'
+        vorlaeufigerAbrechnungszeitraum:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__vorlaeufigerAbrechnungszeitraum'
+        zuZahlen:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__zuZahlen'
+      required:
+        - bearbeitungsdatum
+        - faelligkeitsdatum
+        - gesamtbrutto
+        - rechnungsdatum
+        - rechnungspositionen
+        - rechnungsstatus
+        - rechnungstyp
+        - steuerbetraege
+        - vorlaeufigerAbrechnungszeitraum
+        - zuZahlen
+    PI_31001__stammdaten__RECHNUNG__gesamtbrutto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+77
+      required:
+        - wert
+    PI_31001__stammdaten__RECHNUNG__rechnungspositionen:
+      type: object
+      properties:
+        artikelnummer:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/artikelnummer.yaml#/components/schemas/artikelnummer'
+          x-edifact-segment:
+            - SG26.LIN
+        einzelpreis:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__rechnungspositionen__einzelpreis'
+        lieferungBis:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/lieferungBis.yaml#/components/schemas/lieferungBis'
+          x-edifact-segment:
+            - SG26.LIN.DTM+156
+        lieferungVon:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/lieferungVon.yaml#/components/schemas/lieferungVon'
+          x-edifact-segment:
+            - SG26.LIN.DTM+155
+        positionsMenge:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__rechnungspositionen__positionsMenge'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG26.LIN
+        teilsummeNetto:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__rechnungspositionen__teilsummeNetto'
+        teilsummeSteuer:
+          $ref: '#/components/schemas/PI_31001__stammdaten__RECHNUNG__rechnungspositionen__teilsummeSteuer'
+      required:
+        - artikelnummer
+        - einzelpreis
+        - lieferungBis
+        - lieferungVon
+        - positionsMenge
+        - positionsnummer
+        - teilsummeNetto
+        - teilsummeSteuer
+    PI_31001__stammdaten__RECHNUNG__rechnungspositionen__einzelpreis:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Preis/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.SG29.PRI+CAL
+      required:
+        - wert
+    PI_31001__stammdaten__RECHNUNG__rechnungspositionen__positionsMenge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG26.LIN.QTY+47
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.QTY+47
+      required:
+        - einheit
+        - wert
+    PI_31001__stammdaten__RECHNUNG__rechnungspositionen__teilsummeNetto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.SG27.MOA+203
+      required:
+        - wert
+    PI_31001__stammdaten__RECHNUNG__rechnungspositionen__teilsummeSteuer:
+      type: object
+      properties:
+        steuerkennzeichen:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerkennzeichen.yaml#/components/schemas/steuerkennzeichen'
+          x-edifact-segment:
+            - SG26.LIN.SG34.TAX+7+VAT
+      required:
+        - steuerkennzeichen
+    PI_31001__stammdaten__RECHNUNG__steuerbetraege:
+      type: object
+      properties:
+        basiswert:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/basiswert.yaml#/components/schemas/basiswert'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+125
+        steuerkennzeichen:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerkennzeichen.yaml#/components/schemas/steuerkennzeichen'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT
+        steuerwert:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerwert.yaml#/components/schemas/steuerwert'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+161
+      required:
+        - basiswert
+        - steuerkennzeichen
+        - steuerwert
+    PI_31001__stammdaten__RECHNUNG__vorlaeufigerAbrechnungszeitraum:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - DTM+Z43
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - DTM+Z42
+      required:
+        - enddatum
+        - startdatum
+    PI_31001__stammdaten__RECHNUNG__zuZahlen:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+9
+      required:
+        - wert
+    PI_31001__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_31001__transaktionsdaten__absender'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+380
+        empfaenger:
+          $ref: '#/components/schemas/PI_31001__transaktionsdaten__empfaenger'
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG1.RFF+Z13
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_31001__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_31001__transaktionsdaten__absender__ansprechpartner'
+        name1:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        steuernummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/steuernummer.yaml#/components/schemas/steuernummer'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.RFF
+        umsatzsteuerId:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/umsatzsteuerId.yaml#/components/schemas/umsatzsteuerId'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.RFF
+      required:
+        - ansprechpartner
+        - name1
+        - rollencodenummer
+        - rollencodetyp
+        - steuernummer
+        - umsatzsteuerId
+    PI_31001__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG5.CTA+IC
+      required:
+        - nachname
+    PI_31001__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        name1:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        steuernummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/steuernummer.yaml#/components/schemas/steuernummer'
+          x-edifact-segment:
+            - SG2.NAD+MR.SG3.RFF
+        umsatzsteuerId:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/umsatzsteuerId.yaml#/components/schemas/umsatzsteuerId'
+          x-edifact-segment:
+            - SG2.NAD+MR.SG3.RFF
+      required:
+        - name1
+        - rollencodenummer
+        - rollencodetyp
+        - steuernummer
+        - umsatzsteuerId

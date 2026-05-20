@@ -1,0 +1,959 @@
+openapi: 3.1.0
+info:
+  title: PI_55060
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55060:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55060__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_55060__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_55060__stammdaten:
+      type: object
+      properties:
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__BILANZIERUNG'
+        LOKATIONSBUENDEL:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__LOKATIONSBUENDEL'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION'
+        NETZLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__NETZLOKATION'
+        STEUERBARE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__STEUERBARE_RESSOURCE'
+        TECHNISCHE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__TECHNISCHE_RESSOURCE'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__TRANCHE'
+        ZAEHLER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__ZAEHLER'
+      required:
+        - BILANZIERUNG
+        - LOKATIONSBUENDEL
+        - MARKTLOKATION
+        - MESSLOKATION
+        - NETZLOKATION
+        - STEUERBARE_RESSOURCE
+        - TECHNISCHE_RESSOURCE
+        - TRANCHE
+        - ZAEHLER
+    PI_55060__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        detailsPrognosegrundlage:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/detailsPrognosegrundlage.yaml#/components/schemas/detailsPrognosegrundlage'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++[ZC0|ZA6].CAV+[E02|E14|Z36]'
+        jahresverbrauchsprognose:
+          $ref: '#/components/schemas/PI_55060__stammdaten__BILANZIERUNG__jahresverbrauchsprognose'
+        prognosegrundlage:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/prognosegrundlage.yaml#/components/schemas/prognosegrundlage'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++[ZC0|ZA6]'
+        temperaturarbeit:
+          $ref: '#/components/schemas/PI_55060__stammdaten__BILANZIERUNG__temperaturarbeit'
+      required:
+        - jahresverbrauchsprognose
+        - prognosegrundlage
+        - temperaturarbeit
+    PI_55060__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+31
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+31
+      required:
+        - einheit
+        - wert
+    PI_55060__stammdaten__BILANZIERUNG__temperaturarbeit:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+[265|Z08]'
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+[265|Z08]'
+      required:
+        - einheit
+        - wert
+    PI_55060__stammdaten__LOKATIONSBUENDEL:
+      type: object
+      properties:
+        lokationsbuendelNummer:
+          $ref: '../../../bo4e/fields/bo/Lokationsbuendel/lokationsbuendelNummer.yaml#/components/schemas/lokationsbuendelNummer'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD5.RFF+[Z31|Z39]'
+        lokationsbuendelstrukturId:
+          $ref: '../../../bo4e/fields/bo/Lokationsbuendel/lokationsbuendelstrukturId.yaml#/components/schemas/lokationsbuendelstrukturId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD5.RFF+[Z31|Z39]'
+        standardisierteLokationsbuendelstruktur:
+          $ref: '../../../bo4e/fields/bo/Lokationsbuendel/standardisierteLokationsbuendelstruktur.yaml#/components/schemas/standardisierteLokationsbuendelstruktur'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD5.RFF+[Z31|Z39]'
+        zuordnungObjectcode:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode'
+      required:
+        - lokationsbuendelNummer
+        - lokationsbuendelstrukturId
+        - standardisierteLokationsbuendelstruktur
+        - zuordnungObjectcode
+    PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode:
+      type: object
+      properties:
+        objectcode:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode__objectcode'
+        referenzLokationsId:
+          $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/referenzLokationsId.yaml#/components/schemas/referenzLokationsId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD6.RFF+[Z32|Z18|Z19|Z37]'
+        referenzLokationsTyp:
+          $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/referenzLokationsTyp.yaml#/components/schemas/referenzLokationsTyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD6.RFF+[Z32|Z18|Z19|Z37]'
+        referenzMarktlokationTechnischeRessource:
+          $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/referenzMarktlokationTechnischeRessource.yaml#/components/schemas/referenzMarktlokationTechnischeRessource'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD6.RFF+Z16
+        vorgelagerteLokationId:
+          $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/vorgelagerteLokationId.yaml#/components/schemas/vorgelagerteLokationId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD6.RFF+[Z34|Z35]'
+        vorgelagerteLokationTyp:
+          $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/vorgelagerteLokationTyp.yaml#/components/schemas/vorgelagerteLokationTyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZD6.RFF+[Z34|Z35]'
+      required:
+        - objectcode
+        - referenzLokationsId
+        - referenzLokationsTyp
+    PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode__objectcode:
+      type: object
+      properties:
+        lokationsbuendelNummer:
+          $ref: '../../../bo4e/fields/com/Objectcode/lokationsbuendelNummer.yaml#/components/schemas/lokationsbuendelNummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD6.RFF+Z33
+        objectcode:
+          $ref: '../../../bo4e/fields/com/Objectcode/objectcode.yaml#/components/schemas/objectcode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD6.RFF+Z33
+      required:
+        - lokationsbuendelNummer
+        - objectcode
+    PI_55060__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        energieherkunft:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION__energieherkunft'
+        konfigurationsprodukt:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE4.PIA+5
+        leistungskurvendefinition:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/leistungskurvendefinition.yaml#/components/schemas/leistungskurvendefinition'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE4.SG10.CCI+Z53
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+            - SG4.IDE+24.SG5.LOC+Z22
+            - SG4.IDE+24.SG8.SEQ+Z98.RFF+Z18
+            - SG4.IDE+24.SG8.SEQ+ZE2.RFF+Z18
+            - SG4.IDE+24.SG8.SEQ+ZE3.RFF+Z18
+            - SG4.IDE+24.SG8.SEQ+ZE4.RFF+Z18
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION__marktrollen'
+        messtechnischeEinordnung:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/messtechnischeEinordnung.yaml#/components/schemas/messtechnischeEinordnung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++Z83.CAV+[Z52|Z53]'
+        netzebene:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/netzebene.yaml#/components/schemas/netzebene'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++E03.CAV
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION__zaehlwerke'
+      required:
+        - energieherkunft
+        - konfigurationsprodukt
+        - leistungskurvendefinition
+        - marktlokationsId
+        - marktrollen
+        - messtechnischeEinordnung
+        - netzebene
+        - zaehlwerke
+    PI_55060__stammdaten__MARKTLOKATION__energieherkunft:
+      type: object
+      properties:
+        erzeugungsart:
+          $ref: '../../../bo4e/fields/com/Energieherkunft/erzeugungsart.yaml#/components/schemas/erzeugungsart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++Z34.CAV+[Z33|Z34|Z35|Z37|Z46]'
+      required:
+        - erzeugungsart
+    PI_55060__stammdaten__MARKTLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z89
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z90
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z89
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z90
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+        - weiterverpflichtet
+    PI_55060__stammdaten__MARKTLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE2.PIA+5
+        obisKennzahl:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE3.PIA+5
+        wertegranularitaet:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/wertegranularitaet.yaml#/components/schemas/wertegranularitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZE3.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]'
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten'
+      required:
+        - messprodukt
+        - obisKennzahl
+        - wertegranularitaet
+        - zaehlzeiten
+    PI_55060__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        register:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/register.yaml#/components/schemas/register'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE3.SG10.CCI+Z38
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZE2.SG10.CCI+[Z39|Z41]'
+            - SG4.IDE+24.SG8.SEQ+ZE3.SG10.CCI+Z39
+      required:
+        - register
+        - zaehlzeitDefinition
+    PI_55060__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__marktrollen'
+        messadresse:
+          $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__messadresse'
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64.RFF+Z19
+            - SG4.IDE+24.SG5.LOC+Z17
+            - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
+            - SG4.IDE+24.SG8.SEQ+ZF4.RFF+Z19
+        netzebenemessung:
+          $ref: '../../../bo4e/fields/bo/Messlokation/netzebenemessung.yaml#/components/schemas/netzebenemessung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++E04.CAV+[E03|E04|E05|E06]'
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__zaehlwerke'
+      required:
+        - marktrollen
+        - messadresse
+        - messlokationsId
+        - netzebenemessung
+        - zaehlwerke
+    PI_55060__stammdaten__MESSLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        weiterverpflichtet:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+        - weiterverpflichtet
+    PI_55060__stammdaten__MESSLOKATION__messadresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__messadresse__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_55060__stammdaten__MESSLOKATION__messadresse__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z64
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
+    PI_55060__stammdaten__MESSLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF4.PIA+5
+        notwendigkeitZweiteMessung:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/notwendigkeitZweiteMessung.yaml#/components/schemas/notwendigkeitZweiteMessung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF4.SG10.CCI+Z35.CAV+ZC9
+        werteuebermittlungVerwendungszweck:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/werteuebermittlungVerwendungszweck.yaml#/components/schemas/werteuebermittlungVerwendungszweck'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF4.SG10.CCI+Z35.CAV+Z88
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten'
+      required:
+        - messprodukt
+        - notwendigkeitZweiteMessung
+        - werteuebermittlungVerwendungszweck
+        - zaehlzeiten
+    PI_55060__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF4.SG10.CCI+[Z39|Z41]'
+      required:
+        - zaehlzeitDefinition
+    PI_55060__stammdaten__NETZLOKATION:
+      type: object
+      properties:
+        konfigurationsprodukt:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE0.PIA+5
+        leistungskurvendefinition:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/leistungskurvendefinition.yaml#/components/schemas/leistungskurvendefinition'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE0.SG10.CCI+Z53
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__NETZLOKATION__marktrollen'
+        netzlokationsId:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/netzlokationsId.yaml#/components/schemas/netzlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z18
+            - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
+            - SG4.IDE+24.SG8.SEQ+ZD9.RFF+Z32
+            - SG4.IDE+24.SG8.SEQ+ZE0.RFF+Z32
+        steuerkanal:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/steuerkanal.yaml#/components/schemas/steuerkanal'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+Z49
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__NETZLOKATION__zaehlwerke'
+      required:
+        - konfigurationsprodukt
+        - leistungskurvendefinition
+        - marktrollen
+        - netzlokationsId
+        - steuerkanal
+        - zaehlwerke
+    PI_55060__stammdaten__NETZLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+    PI_55060__stammdaten__NETZLOKATION__zaehlwerke:
+      type: object
+      properties:
+        obisKennzahl:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD9.PIA+5
+      required:
+        - obisKennzahl
+    PI_55060__stammdaten__STEUERBARE_RESSOURCE:
+      type: object
+      properties:
+        konfigurationsprodukt:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF2.PIA+5
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__STEUERBARE_RESSOURCE__marktrollen'
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z19
+            - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
+            - SG4.IDE+24.SG8.SEQ+ZF2.RFF+Z38
+        steuerkanal:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/steuerkanal.yaml#/components/schemas/steuerkanal'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+Z49.CAV+ZF2
+        zugeordneteDefinition:
+          $ref: '#/components/schemas/PI_55060__stammdaten__STEUERBARE_RESSOURCE__zugeordneteDefinition'
+      required:
+        - konfigurationsprodukt
+        - marktrollen
+        - ressourcenId
+        - steuerkanal
+        - zugeordneteDefinition
+    PI_55060__stammdaten__STEUERBARE_RESSOURCE__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+    PI_55060__stammdaten__STEUERBARE_RESSOURCE__zugeordneteDefinition:
+      type: object
+      properties:
+        leistungskurvendefinition:
+          $ref: '../../../bo4e/fields/com/ZugeordneteDefinition/leistungskurvendefinition.yaml#/components/schemas/leistungskurvendefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF2.SG10.CCI+[Z52|Z53]'
+        schaltzeitdefinition:
+          $ref: '../../../bo4e/fields/com/ZugeordneteDefinition/schaltzeitdefinition.yaml#/components/schemas/schaltzeitdefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF2.SG10.CCI+[Z52|Z53]'
+      required:
+        - leistungskurvendefinition
+        - schaltzeitdefinition
+    PI_55060__stammdaten__TECHNISCHE_RESSOURCE:
+      type: object
+      properties:
+        art:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/art.yaml#/components/schemas/art'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56]'
+        artEMobilitaet:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/artEMobilitaet.yaml#/components/schemas/artEMobilitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56].CAV+[ZE6|Z87|ZE7]'
+        enwg:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/enwg.yaml#/components/schemas/enwg'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56].CAV+[ZG8|ZG9]'
+        erzeugungsart:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/erzeugungsart.yaml#/components/schemas/erzeugungsart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF5|ZF6|ZG0|ZG1|ZG5]'
+        nennleistung:
+          $ref: '#/components/schemas/PI_55060__stammdaten__TECHNISCHE_RESSOURCE__nennleistung'
+        referenzNetzlokation:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/referenzNetzlokation.yaml#/components/schemas/referenzNetzlokation'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF0.RFF+Z32
+        referenzSteuerbareRessource:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/referenzSteuerbareRessource.yaml#/components/schemas/referenzSteuerbareRessource'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF0.RFF+Z38
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z20
+            - SG4.IDE+24.SG8.SEQ+ZF0.RFF+Z37
+        speicherart:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/speicherart.yaml#/components/schemas/speicherart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF7|ZF8|ZF9|ZG6]'
+        speicherkapazitaet:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/speicherkapazitaet.yaml#/components/schemas/speicherkapazitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF0.SG9.QTY+Z42
+        verbrauchsart:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/verbrauchsart.yaml#/components/schemas/verbrauchsart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56].CAV+[Z64|Z65|ZE5|ZA8]'
+        waermenutzung:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/waermenutzung.yaml#/components/schemas/waermenutzung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+[Z17|Z50|Z56].CAV+[Z56|Z57|Z61|ZV5|ZV6|ZV7]'
+        weitereEinrichtung:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/weitereEinrichtung.yaml#/components/schemas/weitereEinrichtung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+Z63.CAV+[ZH7|ZH8]'
+      required:
+        - art
+        - nennleistung
+        - ressourcenId
+        - speicherkapazitaet
+        - weitereEinrichtung
+    PI_55060__stammdaten__TECHNISCHE_RESSOURCE__nennleistung:
+      type: object
+      properties:
+        abgabe:
+          $ref: '../../../bo4e/fields/com/Nennleistung/abgabe.yaml#/components/schemas/abgabe'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF0.SG9.QTY+Z44
+        aufnahme:
+          $ref: '../../../bo4e/fields/com/Nennleistung/aufnahme.yaml#/components/schemas/aufnahme'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF0.SG9.QTY+Z43
+      required:
+        - abgabe
+        - aufnahme
+    PI_55060__stammdaten__TRANCHE:
+      type: object
+      properties:
+        aufteilungsmenge:
+          $ref: '#/components/schemas/PI_55060__stammdaten__TRANCHE__aufteilungsmenge'
+        bildungTranchengroesse:
+          $ref: '../../../bo4e/fields/bo/Tranche/bildungTranchengroesse.yaml#/components/schemas/bildungTranchengroesse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE7.SG10.CCI+Z37
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__TRANCHE__marktrollen'
+        referenzMarktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Tranche/referenzMarktlokationsId.yaml#/components/schemas/referenzMarktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE7.RFF+Z16
+        tranchenId:
+          $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z21
+            - SG4.IDE+24.SG8.SEQ+ZE7.RFF+Z20
+            - SG4.IDE+24.SG8.SEQ+ZE8.RFF+Z20
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__TRANCHE__zaehlwerke'
+      required:
+        - aufteilungsmenge
+        - bildungTranchengroesse
+        - marktrollen
+        - referenzMarktlokationsId
+        - tranchenId
+        - zaehlwerke
+    PI_55060__stammdaten__TRANCHE__aufteilungsmenge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE7.SG9.QTY+11
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE7.SG9.QTY+11
+      required:
+        - einheit
+        - wert
+    PI_55060__stammdaten__TRANCHE__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE7.SG10.CCI+++ZB3.CAV+Z89
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE7.SG10.CCI+++ZB3.CAV+Z89
+      required:
+        - marktrolle
+        - rollencodenummer
+    PI_55060__stammdaten__TRANCHE__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZE8.PIA+5
+      required:
+        - messprodukt
+    PI_55060__stammdaten__ZAEHLER:
+      type: object
+      properties:
+        gateway:
+          $ref: '../../../bo4e/fields/bo/Zaehler/gateway.yaml#/components/schemas/gateway'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF5.RFF+Z14
+            - 'SG4.IDE+24.SG8.SEQ+ZF6.RFF+[MG|Z14]'
+        geraete:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__ZAEHLER__geraete'
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Zaehler/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF5.RFF+Z19
+        messwerterfassung:
+          $ref: '../../../bo4e/fields/bo/Zaehler/messwerterfassung.yaml#/components/schemas/messwerterfassung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF5.SG10.CCI+++E12.CAV+[AMR|MMR]'
+        zaehlernummer:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlernummer.yaml#/components/schemas/zaehlernummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF5.SG10.CCI+++E13.CAV+Z30
+            - 'SG4.IDE+24.SG8.SEQ+ZF6.RFF+[MG|Z14]'
+            - SG4.IDE+24.SG8.SEQ+ZF7.RFF+MG
+            - SG4.IDE+24.SG8.SEQ+ZF8.RFF+MG
+            - SG4.IDE+24.SG8.SEQ+ZF9.RFF+MG
+        zaehlertyp:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlertyp.yaml#/components/schemas/zaehlertyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF5.SG10.CCI+++E13.CAV+[AHZ|WSZ|LAZ|MAZ|MME|EHZ|IVA]'
+        zaehlertypspezifikation:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlertypspezifikation.yaml#/components/schemas/zaehlertypspezifikation'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF5.SG10.CCI+++E13.CAV+[AHZ|WSZ|LAZ|MAZ|MME|EHZ|IVA]'
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__stammdaten__ZAEHLER__zaehlwerke'
+      required:
+        - gateway
+        - geraete
+        - messlokationsId
+        - messwerterfassung
+        - zaehlernummer
+        - zaehlertyp
+        - zaehlertypspezifikation
+        - zaehlwerke
+    PI_55060__stammdaten__ZAEHLER__geraete:
+      type: object
+      properties:
+        geraeteeigenschaften:
+          $ref: '#/components/schemas/PI_55060__stammdaten__ZAEHLER__geraete__geraeteeigenschaften'
+        geraetenummer:
+          $ref: '../../../bo4e/fields/com/Geraet/geraetenummer.yaml#/components/schemas/geraetenummer'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF6.RFF+[MG|Z14]'
+            - SG4.IDE+24.SG8.SEQ+ZF7.SG10.CCI+++Z25.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+ZF8.SG10.CCI+++Z26.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+ZF9.SG10.CCI+++Z27.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+ZG0.SG10.CCI+++Z75.CAV+Z30
+        geraetetyp:
+          $ref: '../../../bo4e/fields/com/Geraet/geraetetyp.yaml#/components/schemas/geraetetyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF6.RFF+[MG|Z14]'
+        weitereGeraetenummern:
+          $ref: '../../../bo4e/fields/com/Geraet/weitereGeraetenummern.yaml#/components/schemas/weitereGeraetenummern'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF7.SG10.CCI+++Z25.CAV+Z30
+      required:
+        - geraeteeigenschaften
+        - geraetenummer
+        - geraetetyp
+    PI_55060__stammdaten__ZAEHLER__geraete__geraeteeigenschaften:
+      type: object
+      properties:
+        faktor:
+          $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/faktor.yaml#/components/schemas/faktor'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF7.SG10.CCI+++Z25.CAV+[MIW|MPW|MBW|MUW]'
+        geraetemerkmal:
+          $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/geraetemerkmal.yaml#/components/schemas/geraetemerkmal'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF7.SG10.CCI+++Z25.CAV+[MIW|MPW|MBW|MUW]'
+            - 'SG4.IDE+24.SG8.SEQ+ZF8.SG10.CCI+++Z26.CAV+[GSM|ETH|PLC|PST|DSL|LTE]'
+            - 'SG4.IDE+24.SG8.SEQ+ZF9.SG10.CCI+++Z27.CAV+[RSU|TSU]'
+      required:
+        - faktor
+        - geraetemerkmal
+    PI_55060__stammdaten__ZAEHLER__zaehlwerke:
+      type: object
+      properties:
+        konfiguration:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/konfiguration.yaml#/components/schemas/konfiguration'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF6.RFF+AGK
+        obisKennzahl:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF6.PIA+5
+        wertegranularitaet:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/wertegranularitaet.yaml#/components/schemas/wertegranularitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+ZF6.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]'
+      required:
+        - obisKennzahl
+        - wertegranularitaet
+    PI_55060__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_55060__transaktionsdaten__absender'
+        anfragereferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/anfragereferenznummer.yaml#/components/schemas/anfragereferenznummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+AAV
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+E44
+        empfaenger:
+          $ref: '#/components/schemas/PI_55060__transaktionsdaten__empfaenger'
+        kategorie:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie'
+          x-edifact-segment:
+            - BGM+E44
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund'
+          x-edifact-segment:
+            - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsnummer.yaml#/components/schemas/vorgangsnummer'
+          x-edifact-segment:
+            - SG4.IDE+24
+      required:
+        - absender
+        - anfragereferenznummer
+        - dokumentennummer
+        - empfaenger
+        - kategorie
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+        - transaktionsgrund
+        - vorgangsnummer
+    PI_55060__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_55060__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_55060__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.CTA
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55060__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_55060__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_55060__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

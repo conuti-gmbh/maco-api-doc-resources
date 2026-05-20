@@ -1,0 +1,359 @@
+openapi: 3.1.0
+info:
+  title: PI_55218
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55218:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55218__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_55218__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_55218__stammdaten:
+      type: object
+      properties:
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55218__stammdaten__BILANZIERUNG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55218__stammdaten__MARKTLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55218__stammdaten__NETZNUTZUNGSVERTRAG'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55218__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - BILANZIERUNG
+        - MARKTLOKATION
+        - NETZNUTZUNGSVERTRAG
+        - VERWENDUNGSZEITRAUM
+    PI_55218__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        verbrauchsaufteilung:
+          $ref: '#/components/schemas/PI_55218__stammdaten__BILANZIERUNG__verbrauchsaufteilung'
+      required:
+        - verbrauchsaufteilung
+    PI_55218__stammdaten__BILANZIERUNG__verbrauchsaufteilung:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E17.CAV+Z22
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E17.CAV+Z22
+      required:
+        - einheit
+        - wert
+    PI_55218__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z50|Z51|Z52]'
+            - SG4.IDE+24.SG8.SEQ+Z01
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84]'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55218__stammdaten__MARKTLOKATION__gueltigkeitszeitraum'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+        netzbetreiberCodeNr:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/netzbetreiberCodeNr.yaml#/components/schemas/netzbetreiberCodeNr'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG10.CCI+++ZB3.CAV+Z88'
+        netznutzungsabrechnungsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten'
+      required:
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - marktlokationsId
+        - netzbetreiberCodeNr
+        - netznutzungsabrechnungsdaten
+    PI_55218__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z50|Z51|Z52]'
+            - SG4.IDE+24.SG8.SEQ+Z01
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84]'
+      required:
+        - zeitraumId
+    PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten:
+      type: object
+      properties:
+        abschlag:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/abschlag.yaml#/components/schemas/abschlag'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG9.QTY'
+        anzahl:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/anzahl.yaml#/components/schemas/anzahl'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG9.QTY+Z38'
+        artikelId:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/artikelId.yaml#/components/schemas/artikelId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].PIA+Z02'
+        artikelIdTyp:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/artikelIdTyp.yaml#/components/schemas/artikelIdTyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].PIA+Z02'
+        gemeinderabatt:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/gemeinderabatt.yaml#/components/schemas/gemeinderabatt'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG9.QTY'
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG9.QTY+Z16'
+        preisSingulaereBetriebsmittel:
+          $ref: '#/components/schemas/PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten__preisSingulaereBetriebsmittel'
+        singulaereBetriebsmittel:
+          $ref: '#/components/schemas/PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten__singulaereBetriebsmittel'
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten__zaehlzeiten'
+        zuschlag:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/zuschlag.yaml#/components/schemas/zuschlag'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG9.QTY'
+      required:
+        - abschlag
+        - anzahl
+        - artikelId
+        - artikelIdTyp
+        - gemeinderabatt
+        - preisSingulaereBetriebsmittel
+        - singulaereBetriebsmittel
+        - zaehlzeiten
+        - zuschlag
+    PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten__preisSingulaereBetriebsmittel:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Preis/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG10.CCI+Z44+ZD8'
+      required:
+        - wert
+    PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten__singulaereBetriebsmittel:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG9.QTY+Z33'
+      required:
+        - wert
+    PI_55218__stammdaten__MARKTLOKATION__netznutzungsabrechnungsdaten__zaehlzeiten:
+      type: object
+      properties:
+        register:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/register.yaml#/components/schemas/register'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG10.CCI+Z38'
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z45|Z84].SG10.CCI+Z39'
+      required:
+        - register
+        - zaehlzeitDefinition
+    PI_55218__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_55218__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
+      required:
+        - vertragskonditionen
+    PI_55218__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        naechstenetznutzungsabrechnung:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/naechstenetznutzungsabrechnung.yaml#/components/schemas/naechstenetznutzungsabrechnung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z50|Z51|Z52].DTM+Z09'
+        netznutzungsabrechnung:
+          $ref: '#/components/schemas/PI_55218__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen__netznutzungsabrechnung'
+        netznutzungsabrechnungIntervall:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/netznutzungsabrechnungIntervall.yaml#/components/schemas/netznutzungsabrechnungIntervall'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z50|Z51|Z52].DTM+Z22'
+        netznutzungsabrechnungsgrundlage:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/netznutzungsabrechnungsgrundlage.yaml#/components/schemas/netznutzungsabrechnungsgrundlage'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z88.CAV+ZA7
+        netznutzungsvertrag:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/netznutzungsvertrag.yaml#/components/schemas/netznutzungsvertrag'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z88.CAV+Z74
+        netznutzungszahler:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/netznutzungszahler.yaml#/components/schemas/netznutzungszahler'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z88.CAV+Z73
+      required:
+        - netznutzungsabrechnung
+        - netznutzungsabrechnungIntervall
+        - netznutzungsabrechnungsgrundlage
+        - netznutzungsvertrag
+        - netznutzungszahler
+    PI_55218__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen__netznutzungsabrechnung:
+      type: object
+      properties:
+        abrechnungsZeitraum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/abrechnungsZeitraum.yaml#/components/schemas/abrechnungsZeitraum'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z50|Z51|Z52].DTM+Z21'
+      required:
+        - abrechnungsZeitraum
+    PI_55218__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId
+    PI_55218__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_55218__transaktionsdaten__absender'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+E03
+        empfaenger:
+          $ref: '#/components/schemas/PI_55218__transaktionsdaten__empfaenger'
+        kategorie:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie'
+          x-edifact-segment:
+            - BGM+E03
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund'
+          x-edifact-segment:
+            - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsnummer.yaml#/components/schemas/vorgangsnummer'
+          x-edifact-segment:
+            - SG4.IDE+24
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - kategorie
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+        - transaktionsgrund
+        - vorgangsnummer
+    PI_55218__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_55218__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_55218__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.CTA
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55218__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_55218__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_55218__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

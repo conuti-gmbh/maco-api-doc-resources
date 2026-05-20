@@ -1,0 +1,194 @@
+openapi: 3.1.0
+info:
+  title: PI_21035
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_21035:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21035__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_21035__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_21035__stammdaten:
+      type: object
+      properties:
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__stammdaten__STATUSMITTEILUNG'
+      required:
+        - STATUSMITTEILUNG
+    PI_21035__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/bo/Statusmitteilung/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - auftragsstatus
+        - positionsdaten
+    PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+      required:
+        - positionsnummer
+    PI_21035__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_21035__transaktionsdaten__absender'
+        antwortstatus:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/antwortstatus.yaml#/components/schemas/antwortstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25
+        antwortstatusCodeliste:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/antwortstatusCodeliste.yaml#/components/schemas/antwortstatusCodeliste'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z33
+        empfaenger:
+          $ref: '#/components/schemas/PI_21035__transaktionsdaten__empfaenger'
+        leistungsperiode:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/leistungsperiode.yaml#/components/schemas/leistungsperiode'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.DTM+306
+        menge:
+          $ref: '#/components/schemas/PI_21035__transaktionsdaten__menge'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.RFF+Z13
+        tarifstufe:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/tarifstufe.yaml#/components/schemas/tarifstufe'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.QTY
+        verwendungAb:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.DTM+163
+        verwendungBis:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.DTM+164
+        vorgangsreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsreferenznummer.yaml#/components/schemas/vorgangsreferenznummer'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.RFF+ACW
+      required:
+        - absender
+        - antwortstatus
+        - antwortstatusCodeliste
+        - dokumentennummer
+        - empfaenger
+        - menge
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+        - tarifstufe
+        - vorgangsreferenznummer
+    PI_21035__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_21035__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_21035__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG1.NAD+MS.SG2.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG1.NAD+MS.SG2.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_21035__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG1.NAD+MS.SG2.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG1.NAD+MS.SG2.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_21035__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp
+    PI_21035__transaktionsdaten__menge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.QTY
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.QTY
+      required:
+        - einheit
+        - wert

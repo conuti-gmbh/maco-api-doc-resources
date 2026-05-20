@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: PI_33002
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_33002:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_33002__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_33002__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_33002__stammdaten:
+      type: object
+      properties:
+        AVIS:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33002__stammdaten__AVIS'
+      required:
+        - AVIS
+    PI_33002__stammdaten__AVIS:
+      type: object
+      properties:
+        avisNummer:
+          $ref: '../../../bo4e/fields/bo/Avis/avisNummer.yaml#/components/schemas/avisNummer'
+          x-edifact-segment:
+            - BGM+239
+        avisTyp:
+          $ref: '../../../bo4e/fields/bo/Avis/avisTyp.yaml#/components/schemas/avisTyp'
+          x-edifact-segment:
+            - BGM+239
+        positionen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33002__stammdaten__AVIS__positionen'
+        zuZahlen:
+          $ref: '#/components/schemas/PI_33002__stammdaten__AVIS__zuZahlen'
+      required:
+        - avisNummer
+        - avisTyp
+        - positionen
+        - zuZahlen
+    PI_33002__stammdaten__AVIS__positionen:
+      type: object
+      properties:
+        abweichung:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33002__stammdaten__AVIS__positionen__abweichung'
+        gesamtBrutto:
+          $ref: '#/components/schemas/PI_33002__stammdaten__AVIS__positionen__gesamtBrutto'
+        istSelbstausgestellt:
+          $ref: '../../../bo4e/fields/com/Avisposition/istSelbstausgestellt.yaml#/components/schemas/istSelbstausgestellt'
+          x-edifact-segment:
+            - SG5.DOC
+        istStorno:
+          $ref: '../../../bo4e/fields/com/Avisposition/istStorno.yaml#/components/schemas/istStorno'
+          x-edifact-segment:
+            - SG5.DOC
+        rechnungsDatum:
+          $ref: '../../../bo4e/fields/com/Avisposition/rechnungsDatum.yaml#/components/schemas/rechnungsDatum'
+          x-edifact-segment:
+            - SG5.DOC.DTM+137
+        rechnungsNummer:
+          $ref: '../../../bo4e/fields/com/Avisposition/rechnungsNummer.yaml#/components/schemas/rechnungsNummer'
+          x-edifact-segment:
+            - SG5.DOC
+        referenz:
+          $ref: '../../../bo4e/fields/com/Avisposition/referenz.yaml#/components/schemas/referenz'
+          x-edifact-segment:
+            - SG5.DOC.RFF+ACW
+        zuZahlen:
+          $ref: '#/components/schemas/PI_33002__stammdaten__AVIS__positionen__zuZahlen'
+      required:
+        - abweichung
+        - gesamtBrutto
+        - istSelbstausgestellt
+        - istStorno
+        - rechnungsDatum
+        - rechnungsNummer
+        - zuZahlen
+    PI_33002__stammdaten__AVIS__positionen__abweichung:
+      type: object
+      properties:
+        abweichungsgrundBemerkung1:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung1.yaml#/components/schemas/abweichungsgrundBemerkung1'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT.FTX+ABO
+        abweichungsgrundBemerkung2:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung2.yaml#/components/schemas/abweichungsgrundBemerkung2'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT.FTX+ABO
+        abweichungsgrundBemerkung3:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung3.yaml#/components/schemas/abweichungsgrundBemerkung3'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT.FTX+ABO
+        abweichungsgrundBemerkung4:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung4.yaml#/components/schemas/abweichungsgrundBemerkung4'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT.FTX+ABO
+        abweichungsgrundBemerkung5:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung5.yaml#/components/schemas/abweichungsgrundBemerkung5'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT.FTX+ABO
+        abweichungsgrundCode:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundCode.yaml#/components/schemas/abweichungsgrundCode'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT
+        abweichungsgrundCodeliste:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundCodeliste.yaml#/components/schemas/abweichungsgrundCodeliste'
+          x-edifact-segment:
+            - SG5.DOC.SG7.AJT
+      required:
+        - abweichungsgrundCode
+        - abweichungsgrundCodeliste
+    PI_33002__stammdaten__AVIS__positionen__gesamtBrutto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG5.DOC.MOA+12
+      required:
+        - wert
+    PI_33002__stammdaten__AVIS__positionen__zuZahlen:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG5.DOC.MOA+9
+      required:
+        - wert
+    PI_33002__stammdaten__AVIS__zuZahlen:
+      type: object
+      properties:
+        waehrung:
+          $ref: '../../../bo4e/fields/com/Betrag/waehrung.yaml#/components/schemas/waehrung'
+          x-edifact-segment:
+            - SG4.CUX+2
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - MOA+12
+      required:
+        - waehrung
+        - wert
+    PI_33002__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_33002__transaktionsdaten__absender'
+        empfaenger:
+          $ref: '#/components/schemas/PI_33002__transaktionsdaten__empfaenger'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - RFF+Z13
+      required:
+        - absender
+        - empfaenger
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_33002__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_33002__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_33002__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG1.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG1.NAD+MS.SG3.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33002__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_33002__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG1.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG1.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_33002__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

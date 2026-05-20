@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: PI_19013
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_19013:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_19013__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_19013__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_19013__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19013__stammdaten__ANFRAGE'
+      required:
+        - ANFRAGE
+    PI_19013__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragekategorie:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragekategorie.yaml#/components/schemas/anfragekategorie'
+          x-edifact-segment:
+            - BGM+Z57
+      required:
+        - anfragekategorie
+    PI_19013__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_19013__transaktionsdaten__absender'
+        antwortstatus:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/antwortstatus.yaml#/components/schemas/antwortstatus'
+          x-edifact-segment:
+            - SG2.AJT
+        antwortstatusCodeliste:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/antwortstatusCodeliste.yaml#/components/schemas/antwortstatusCodeliste'
+          x-edifact-segment:
+            - SG2.AJT
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z57
+        empfaenger:
+          $ref: '#/components/schemas/PI_19013__transaktionsdaten__empfaenger'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG1.RFF+Z13
+        vorgangsreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsreferenznummer.yaml#/components/schemas/vorgangsreferenznummer'
+          x-edifact-segment:
+            - SG1.RFF+ACW
+      required:
+        - absender
+        - antwortstatus
+        - antwortstatusCodeliste
+        - dokumentennummer
+        - empfaenger
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+        - vorgangsreferenznummer
+    PI_19013__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_19013__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG3.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG3.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_19013__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG3.NAD+MS.SG6.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG3.NAD+MS.SG6.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19013__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_19013__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG3.NAD+MS.SG6.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG3.NAD+MS.SG6.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_19013__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG3.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG3.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp
