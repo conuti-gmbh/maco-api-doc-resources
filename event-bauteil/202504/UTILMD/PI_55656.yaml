@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: PI_55656
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55656:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55656__stammdaten'
+      required:
+        - stammdaten
+    PI_55656__stammdaten:
+      type: object
+      properties:
+        STEUERBARE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55656__stammdaten__STEUERBARE_RESSOURCE'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55656__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - STEUERBARE_RESSOURCE
+        - VERWENDUNGSZEITRAUM
+    PI_55656__stammdaten__STEUERBARE_RESSOURCE:
+      type: object
+      properties:
+        auftraggebenderMarktpartner:
+          $ref: '#/components/schemas/PI_55656__stammdaten__STEUERBARE_RESSOURCE__auftraggebenderMarktpartner'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB1|ZB2]'
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4]'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55656__stammdaten__STEUERBARE_RESSOURCE__gueltigkeitszeitraum'
+        konfigurationsprodukt:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].PIA+5'
+        produktdatenRelevanteRolle:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/produktdatenRelevanteRolle.yaml#/components/schemas/produktdatenRelevanteRolle'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+++ZA7'
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z19
+        steuerkanal:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/steuerkanal.yaml#/components/schemas/steuerkanal'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB1|ZB2].SG10.CCI+Z49.CAV+ZF2'
+        zugeordneteDefinition:
+          $ref: '#/components/schemas/PI_55656__stammdaten__STEUERBARE_RESSOURCE__zugeordneteDefinition'
+      required:
+        - auftraggebenderMarktpartner
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - konfigurationsprodukt
+        - produktdatenRelevanteRolle
+        - ressourcenId
+        - steuerkanal
+        - zugeordneteDefinition
+    PI_55656__stammdaten__STEUERBARE_RESSOURCE__auftraggebenderMarktpartner:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+++ZB3.CAV+[Z88|Z89]'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+++ZB3.CAV+[Z88|Z89]'
+      required:
+        - marktrolle
+        - rollencodenummer
+    PI_55656__stammdaten__STEUERBARE_RESSOURCE__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB1|ZB2]'
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4]'
+      required:
+        - zeitraumId
+    PI_55656__stammdaten__STEUERBARE_RESSOURCE__zugeordneteDefinition:
+      type: object
+      properties:
+        leistungskurvendefinition:
+          $ref: '../../../bo4e/fields/com/ZugeordneteDefinition/leistungskurvendefinition.yaml#/components/schemas/leistungskurvendefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+[Z52|Z53]'
+        schaltzeitdefinition:
+          $ref: '../../../bo4e/fields/com/ZugeordneteDefinition/schaltzeitdefinition.yaml#/components/schemas/schaltzeitdefinition'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+[Z52|Z53]'
+      required:
+        - leistungskurvendefinition
+        - schaltzeitdefinition
+    PI_55656__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId

@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: PI_44018
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_44018:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_44018__stammdaten'
+      required:
+        - stammdaten
+    PI_44018__stammdaten:
+      type: object
+      properties:
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44018__stammdaten__ENERGIELIEFERVERTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44018__stammdaten__MARKTLOKATION'
+      required:
+        - MARKTLOKATION
+    PI_44018__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_44018__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen'
+    PI_44018__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        kuendigungsfrist:
+          $ref: '#/components/schemas/PI_44018__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen__kuendigungsfrist'
+        kuendigungstermin:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/kuendigungstermin.yaml#/components/schemas/kuendigungstermin'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+Z10
+    PI_44018__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen__kuendigungsfrist:
+      type: object
+      properties:
+        zeitraumText:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumText.yaml#/components/schemas/zeitraumText'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+Z01
+    PI_44018__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+172
+      required:
+        - marktlokationsId

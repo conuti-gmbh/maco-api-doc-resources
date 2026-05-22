@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: PI_99002
+  version: '202604'
+components:
+  schemas:
+    PI_99002:
+      type: object
+      properties:
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_99002__transaktionsdaten'
+      required:
+        - transaktionsdaten
+    PI_99002__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+      required:
+        - absender

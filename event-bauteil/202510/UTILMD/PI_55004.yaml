@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: PI_55004
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55004:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55004__stammdaten'
+      required:
+        - stammdaten
+    PI_55004__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55004__stammdaten__MARKTLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55004__stammdaten__NETZNUTZUNGSVERTRAG'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55004__stammdaten__TRANCHE'
+      required:
+        - MARKTLOKATION
+        - TRANCHE
+    PI_55004__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+            - SG4.IDE+24.SG5.LOC+Z22
+        marktlokationsTyp:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55004__stammdaten__MARKTLOKATION__marktlokationsTyp'
+      required:
+        - marktlokationsId
+        - marktlokationsTyp
+    PI_55004__stammdaten__MARKTLOKATION__marktlokationsTyp:
+      type: object
+      properties:
+        typ:
+          $ref: '../../../bo4e/fields/com/MarktlokationsTypisierung/typ.yaml#/components/schemas/typ'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+            - SG4.IDE+24.SG5.LOC+Z22
+      required:
+        - typ
+    PI_55004__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+93
+    PI_55004__stammdaten__TRANCHE:
+      type: object
+      properties:
+        tranchenId:
+          $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z21
+      required:
+        - tranchenId

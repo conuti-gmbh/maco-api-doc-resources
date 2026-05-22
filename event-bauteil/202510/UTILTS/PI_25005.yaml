@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: PI_25005
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_25005:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_25005__stammdaten'
+      required:
+        - stammdaten
+    PI_25005__stammdaten:
+      type: object
+      properties:
+        ZAEHLZEITDEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25005__stammdaten__ZAEHLZEITDEFINITION'
+      required:
+        - ZAEHLZEITDEFINITION
+    PI_25005__stammdaten__ZAEHLZEITDEFINITION:
+      type: object
+      properties:
+        beginndatum:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/beginndatum.yaml#/components/schemas/beginndatum'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+Z34
+        code:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/code.yaml#/components/schemas/code'
+          x-edifact-segment:
+            - SG5.IDE+24.LOC+Z09
+        endedatum:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/endedatum.yaml#/components/schemas/endedatum'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+Z35
+        version:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/version.yaml#/components/schemas/version'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+293
+        zaehlzeiten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25005__stammdaten__ZAEHLZEITDEFINITION__zaehlzeiten'
+      required:
+        - beginndatum
+        - code
+        - version
+        - zaehlzeiten
+    PI_25005__stammdaten__ZAEHLZEITDEFINITION__zaehlzeiten:
+      type: object
+      properties:
+        aenderungszeitpunkt:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/aenderungszeitpunkt.yaml#/components/schemas/aenderungszeitpunkt'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z43.DTM+Z33
+        haeufigkeit:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/haeufigkeit.yaml#/components/schemas/haeufigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z43.DTM+Z33
+        register:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/register.yaml#/components/schemas/register'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z43.RFF+Z28
+      required:
+        - aenderungszeitpunkt
+        - haeufigkeit
+        - register

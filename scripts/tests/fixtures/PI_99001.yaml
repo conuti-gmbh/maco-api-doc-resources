@@ -1,0 +1,58 @@
+openapi: 3.1.0
+info:
+  title: PI_99001
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: deadbeef
+  x-templater-sha: cafef00d
+components:
+  schemas:
+    PI_99001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_99001__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_99001__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_99001__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_99001__stammdaten__MARKTLOKATION'
+      required:
+        - MARKTLOKATION
+    PI_99001__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - marktlokationsId
+    PI_99001__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_99001__transaktionsdaten__absender'
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+Z13
+      required:
+        - absender
+        - pruefidentifikator
+    PI_99001__transaktionsdaten__absender:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - rollencodenummer

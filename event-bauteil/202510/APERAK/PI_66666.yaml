@@ -1,0 +1,39 @@
+openapi: 3.1.0
+info:
+  title: PI_66666
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_66666:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_66666__stammdaten'
+      required:
+        - stammdaten
+    PI_66666__stammdaten:
+      type: object
+      properties:
+        STATUSBERICHT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_66666__stammdaten__STATUSBERICHT'
+      required:
+        - STATUSBERICHT
+    PI_66666__stammdaten__STATUSBERICHT:
+      type: object
+      properties:
+        datumPruefung:
+          $ref: '../../../bo4e/fields/bo/Statusbericht/datumPruefung.yaml#/components/schemas/datumPruefung'
+          x-edifact-segment:
+            - SG2.RFF+ACE.DTM+171
+        pruefgegenstand:
+          $ref: '../../../bo4e/fields/bo/Statusbericht/pruefgegenstand.yaml#/components/schemas/pruefgegenstand'
+          x-edifact-segment:
+            - SG2.RFF+ACE
+      required:
+        - datumPruefung
+        - pruefgegenstand

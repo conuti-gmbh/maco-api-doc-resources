@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: PI_17003
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_17003:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17003__stammdaten'
+      required:
+        - stammdaten
+    PI_17003__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__AUFTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__MESSLOKATION'
+        NETZLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__NETZLOKATION'
+        STEUERBARE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__STEUERBARE_RESSOURCE'
+        TECHNISCHE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__TECHNISCHE_RESSOURCE'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - MARKTLOKATION
+        - MESSLOKATION
+        - NETZLOKATION
+        - STEUERBARE_RESSOURCE
+        - TECHNISCHE_RESSOURCE
+    PI_17003__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsId
+    PI_17003__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+      required:
+        - ausfuehrungsdatum
+    PI_17003__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.SG3.RFF+Z18
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__MARKTLOKATION__marktrollen'
+      required:
+        - marktlokationsId
+        - marktrollen
+    PI_17003__stammdaten__MARKTLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+        weiterverpflichtet:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+      required:
+        - marktrolle
+        - rollencodenummer
+        - rollencodetyp
+        - weiterverpflichtet
+    PI_17003__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__MESSLOKATION__zaehlwerke'
+      required:
+        - zaehlwerke
+    PI_17003__stammdaten__MESSLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN+Z19.PIA+5
+      required:
+        - messprodukt
+    PI_17003__stammdaten__NETZLOKATION:
+      type: object
+      properties:
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__NETZLOKATION__zaehlwerke'
+      required:
+        - zaehlwerke
+    PI_17003__stammdaten__NETZLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN+Z55.PIA+5
+      required:
+        - messprodukt
+    PI_17003__stammdaten__STEUERBARE_RESSOURCE:
+      type: object
+      properties:
+        erforderlicheProdukte:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17003__stammdaten__STEUERBARE_RESSOURCE__erforderlicheProdukte'
+      required:
+        - erforderlicheProdukte
+    PI_17003__stammdaten__STEUERBARE_RESSOURCE__erforderlicheProdukte:
+      type: object
+      properties:
+        produktCode:
+          $ref: '../../../bo4e/fields/com/Produkt/produktCode.yaml#/components/schemas/produktCode'
+          x-edifact-segment:
+            - SG29.LIN+Z56.PIA+5
+      required:
+        - produktCode
+    PI_17003__stammdaten__TECHNISCHE_RESSOURCE:
+      type: object
+      properties:
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG2.NAD+DP.SG3.RFF+Z37
+      required:
+        - ressourcenId

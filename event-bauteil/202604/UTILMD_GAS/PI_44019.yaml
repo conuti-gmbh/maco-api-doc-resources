@@ -1,0 +1,317 @@
+openapi: 3.1.0
+info:
+  title: PI_44019
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_44019:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_44019__stammdaten'
+      required:
+        - stammdaten
+    PI_44019__stammdaten:
+      type: object
+      properties:
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__BILANZIERUNG'
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__ENERGIELIEFERVERTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__MARKTLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__NETZNUTZUNGSVERTRAG'
+      required:
+        - BILANZIERUNG
+        - ENERGIELIEFERVERTRAG
+        - MARKTLOKATION
+        - NETZNUTZUNGSVERTRAG
+    PI_44019__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        bilanzierungsbeginn:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/bilanzierungsbeginn.yaml#/components/schemas/bilanzierungsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+158
+        bilanzierungsende:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/bilanzierungsende.yaml#/components/schemas/bilanzierungsende'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+159
+        bilanzkreise:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__BILANZIERUNG__bilanzkreise'
+        fallgruppenzuordnung:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/fallgruppenzuordnung.yaml#/components/schemas/fallgruppenzuordnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z17
+        jahresverbrauchsprognose:
+          $ref: '#/components/schemas/PI_44019__stammdaten__BILANZIERUNG__jahresverbrauchsprognose'
+        kundenwert:
+          $ref: '#/components/schemas/PI_44019__stammdaten__BILANZIERUNG__kundenwert'
+        lastprofile:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__BILANZIERUNG__lastprofile'
+        prognosegrundlage:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/prognosegrundlage.yaml#/components/schemas/prognosegrundlage'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
+      required:
+        - bilanzkreise
+        - fallgruppenzuordnung
+        - jahresverbrauchsprognose
+        - kundenwert
+        - lastprofile
+        - prognosegrundlage
+    PI_44019__stammdaten__BILANZIERUNG__bilanzkreise:
+      type: object
+      properties:
+        bezeichnung:
+          $ref: '../../../bo4e/fields/bo/Bilanzkreis/bezeichnung.yaml#/components/schemas/bezeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z19
+      required:
+        - bezeichnung
+    PI_44019__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+      required:
+        - einheit
+        - wert
+    PI_44019__stammdaten__BILANZIERUNG__kundenwert:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+Y02
+      required:
+        - wert
+    PI_44019__stammdaten__BILANZIERUNG__lastprofile:
+      type: object
+      properties:
+        bezeichnung:
+          $ref: '../../../bo4e/fields/com/Lastprofil/bezeichnung.yaml#/components/schemas/bezeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI+Z12.CAV
+        herausgeber:
+          $ref: '../../../bo4e/fields/com/Lastprofil/herausgeber.yaml#/components/schemas/herausgeber'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI+Z12.CAV
+        tagesparameter:
+          $ref: '#/components/schemas/PI_44019__stammdaten__BILANZIERUNG__lastprofile__tagesparameter'
+        verfahren:
+          $ref: '../../../bo4e/fields/com/Lastprofil/verfahren.yaml#/components/schemas/verfahren'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI+Z12
+      required:
+        - bezeichnung
+        - herausgeber
+        - tagesparameter
+        - verfahren
+    PI_44019__stammdaten__BILANZIERUNG__lastprofile__tagesparameter:
+      type: object
+      properties:
+        dienstanbieter:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/dienstanbieter.yaml#/components/schemas/dienstanbieter'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI
+        herausgeber:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/herausgeber.yaml#/components/schemas/herausgeber'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI
+        klimazone:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/klimazone.yaml#/components/schemas/klimazone'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI
+        temperaturmessstelle:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/temperaturmessstelle.yaml#/components/schemas/temperaturmessstelle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI
+      required:
+        - dienstanbieter
+        - herausgeber
+        - klimazone
+        - temperaturmessstelle
+    PI_44019__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44019__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
+      required:
+        - vertragspartner2
+    PI_44019__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+      required:
+        - anrede
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+    PI_44019__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        lokationsadresse:
+          $ref: '#/components/schemas/PI_44019__stammdaten__MARKTLOKATION__lokationsadresse'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+172
+      required:
+        - lokationsadresse
+        - marktlokationsId
+    PI_44019__stammdaten__MARKTLOKATION__lokationsadresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_44019__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_44019__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+DP
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
+    PI_44019__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+93
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_44019__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
+      required:
+        - vertragsbeginn
+        - vertragskonditionen
+    PI_44019__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        haushaltskunde:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/haushaltskunde.yaml#/components/schemas/haushaltskunde'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
+        netznutzungsvertrag:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/netznutzungsvertrag.yaml#/components/schemas/netznutzungsvertrag'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z88.CAV+Z74
+        netznutzungszahler:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/netznutzungszahler.yaml#/components/schemas/netznutzungszahler'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z88.CAV+Z73
+      required:
+        - haushaltskunde
+        - netznutzungsvertrag
+        - netznutzungszahler

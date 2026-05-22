@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  title: PI_44109
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_44109:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_44109__stammdaten'
+      required:
+        - stammdaten
+    PI_44109__stammdaten:
+      type: object
+      properties:
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44109__stammdaten__ENERGIELIEFERVERTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44109__stammdaten__MARKTLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44109__stammdaten__NETZNUTZUNGSVERTRAG'
+      required:
+        - ENERGIELIEFERVERTRAG
+        - MARKTLOKATION
+        - NETZNUTZUNGSVERTRAG
+    PI_44109__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        korrespondenzpartner:
+          $ref: '#/components/schemas/PI_44109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner'
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_44109__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen'
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
+      required:
+        - korrespondenzpartner
+        - vertragspartner2
+    PI_44109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        partneradresse:
+          $ref: '#/components/schemas/PI_44109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
+      required:
+        - anrede
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_44109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+    PI_44109__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        abrechnungsintervall:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/abrechnungsintervall.yaml#/components/schemas/abrechnungsintervall'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+Z18.DTM+Z20
+    PI_44109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        externeReferenzen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2__externeReferenzen'
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+      required:
+        - anrede
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+    PI_44109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2__externeReferenzen:
+      type: object
+      properties:
+        exRefName:
+          $ref: '../../../bo4e/fields/com/ExterneReferenz/exRefName.yaml#/components/schemas/exRefName'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09.RFF+AVC
+        exRefWert:
+          $ref: '../../../bo4e/fields/com/ExterneReferenz/exRefWert.yaml#/components/schemas/exRefWert'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09.RFF+AVC
+    PI_44109__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+172
+            - SG4.IDE+24.SG6.RFF+Z18
+      required:
+        - marktlokationsId
+    PI_44109__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_44109__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
+      required:
+        - vertragsbeginn
+        - vertragskonditionen
+    PI_44109__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        haushaltskunde:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/haushaltskunde.yaml#/components/schemas/haushaltskunde'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+[Z15|Z18]'
+      required:
+        - haushaltskunde

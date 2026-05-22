@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: PI_25001
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_25001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_25001__stammdaten'
+      required:
+        - stammdaten
+    PI_25001__stammdaten:
+      type: object
+      properties:
+        BERECHNUNGSFORMEL:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - BERECHNUNGSFORMEL
+        - VERWENDUNGSZEITRAUM
+    PI_25001__stammdaten__BERECHNUNGSFORMEL:
+      type: object
+      properties:
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL__gueltigkeitszeitraum'
+        notwendigkeit:
+          $ref: '../../../bo4e/fields/bo/Berechnungsformel/notwendigkeit.yaml#/components/schemas/notwendigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.STS+Z23
+        rechenschrittId:
+          $ref: '../../../bo4e/fields/bo/Berechnungsformel/rechenschrittId.yaml#/components/schemas/rechenschrittId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z23
+        rechenschritte:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL__rechenschritte'
+      required:
+        - gueltigkeitszeitraum
+        - rechenschrittId
+        - rechenschritte
+    PI_25001__stammdaten__BERECHNUNGSFORMEL__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z46
+            - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z46
+            - SG5.IDE+24.STS+Z23
+      required:
+        - zeitraumId
+    PI_25001__stammdaten__BERECHNUNGSFORMEL__rechenschritte:
+      type: object
+      properties:
+        aufteilungsfaktorEnergiemenge:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/aufteilungsfaktorEnergiemenge.yaml#/components/schemas/aufteilungsfaktorEnergiemenge'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++ZG6.CAV+ZH6
+        energieflussrichtung:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/energieflussrichtung.yaml#/components/schemas/energieflussrichtung'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z87.CAV
+        messlokationsId:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z19
+        operation:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/operation.yaml#/components/schemas/operation'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z86.CAV
+        rechenschrittBestandteilId:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/rechenschrittBestandteilId.yaml#/components/schemas/rechenschrittBestandteilId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37
+        referenzRechenschrittId:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/referenzRechenschrittId.yaml#/components/schemas/referenzRechenschrittId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z23
+        verlustfaktorLeitung:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/verlustfaktorLeitung.yaml#/components/schemas/verlustfaktorLeitung'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++ZB2.CAV+Z28
+        verlustfaktorTrafo:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/verlustfaktorTrafo.yaml#/components/schemas/verlustfaktorTrafo'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z16.CAV+Z28
+      required:
+        - aufteilungsfaktorEnergiemenge
+        - energieflussrichtung
+        - operation
+        - rechenschrittBestandteilId
+        - verlustfaktorLeitung
+        - verlustfaktorTrafo
+    PI_25001__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId

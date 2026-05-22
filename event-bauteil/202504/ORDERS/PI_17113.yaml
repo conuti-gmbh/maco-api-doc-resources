@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: PI_17113
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_17113:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17113__stammdaten'
+      required:
+        - stammdaten
+    PI_17113__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__AUFTRAG'
+        REKLAMATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__REKLAMATION'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - REKLAMATION
+    PI_17113__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - 'IMD+[Z11|Z12|Z35]'
+        gueltigAb:
+          $ref: '../../../bo4e/fields/bo/Anfrage/gueltigAb.yaml#/components/schemas/gueltigAb'
+          x-edifact-segment:
+            - SG29.LIN.DTM+7
+      required:
+        - anfragetyp
+    PI_17113__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_17113__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN
+      required:
+        - positionsnummer
+    PI_17113__stammdaten__REKLAMATION:
+      type: object
+      properties:
+        konfiguration:
+          $ref: '../../../bo4e/fields/bo/Reklamation/konfiguration.yaml#/components/schemas/konfiguration'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.RFF+AGK
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Reklamation/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+        obiskennzahl:
+          $ref: '../../../bo4e/fields/bo/Reklamation/obiskennzahl.yaml#/components/schemas/obiskennzahl'
+          x-edifact-segment:
+            - SG29.LIN.PIA+5
+        reklamationsgrund:
+          $ref: '../../../bo4e/fields/bo/Reklamation/reklamationsgrund.yaml#/components/schemas/reklamationsgrund'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        reklamationsgrundBemerkung:
+          $ref: '#/components/schemas/PI_17113__stammdaten__REKLAMATION__reklamationsgrundBemerkung'
+        zeitraumMesswertanfrage:
+          $ref: '#/components/schemas/PI_17113__stammdaten__REKLAMATION__zeitraumMesswertanfrage'
+      required:
+        - konfiguration
+        - obiskennzahl
+        - reklamationsgrund
+        - reklamationsgrundBemerkung
+    PI_17113__stammdaten__REKLAMATION__reklamationsgrundBemerkung:
+      type: object
+      properties:
+        bemerkung1:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung1.yaml#/components/schemas/bemerkung1'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung2:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung2.yaml#/components/schemas/bemerkung2'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung3:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung3.yaml#/components/schemas/bemerkung3'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung4:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung4.yaml#/components/schemas/bemerkung4'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung5:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung5.yaml#/components/schemas/bemerkung5'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+      required:
+        - bemerkung1
+        - bemerkung2
+        - bemerkung3
+        - bemerkung4
+        - bemerkung5
+    PI_17113__stammdaten__REKLAMATION__zeitraumMesswertanfrage:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - SG29.LIN.DTM+164
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - SG29.LIN.DTM+163

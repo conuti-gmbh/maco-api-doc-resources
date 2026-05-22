@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: PI_55002
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55002:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55002__stammdaten'
+      required:
+        - stammdaten
+    PI_55002__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__MESSLOKATION'
+        NETZLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__NETZLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__NETZNUTZUNGSVERTRAG'
+        STEUERBARE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__STEUERBARE_RESSOURCE'
+        TECHNISCHE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__TECHNISCHE_RESSOURCE'
+      required:
+        - MARKTLOKATION
+        - MESSLOKATION
+        - NETZLOKATION
+        - NETZNUTZUNGSVERTRAG
+        - STEUERBARE_RESSOURCE
+        - TECHNISCHE_RESSOURCE
+    PI_55002__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+            - SG4.IDE+24.SG5.LOC+Z22
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__MARKTLOKATION__marktrollen'
+      required:
+        - marktlokationsId
+        - marktrollen
+    PI_55002__stammdaten__MARKTLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+        - weiterverpflichtet
+    PI_55002__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__MESSLOKATION__marktrollen'
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z17
+            - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
+      required:
+        - marktrollen
+        - messlokationsId
+    PI_55002__stammdaten__MESSLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        weiterverpflichtet:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+        - weiterverpflichtet
+    PI_55002__stammdaten__NETZLOKATION:
+      type: object
+      properties:
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__NETZLOKATION__marktrollen'
+        netzlokationsId:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/netzlokationsId.yaml#/components/schemas/netzlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z18
+            - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
+      required:
+        - marktrollen
+        - netzlokationsId
+    PI_55002__stammdaten__NETZLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+    PI_55002__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+93
+      required:
+        - vertragsbeginn
+    PI_55002__stammdaten__STEUERBARE_RESSOURCE:
+      type: object
+      properties:
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55002__stammdaten__STEUERBARE_RESSOURCE__marktrollen'
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z19
+            - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
+      required:
+        - marktrollen
+        - ressourcenId
+    PI_55002__stammdaten__STEUERBARE_RESSOURCE__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+    PI_55002__stammdaten__TECHNISCHE_RESSOURCE:
+      type: object
+      properties:
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z20
+      required:
+        - ressourcenId

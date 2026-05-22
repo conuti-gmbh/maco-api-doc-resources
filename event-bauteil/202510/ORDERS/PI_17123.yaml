@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: PI_17123
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_17123:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17123__stammdaten'
+      required:
+        - stammdaten
+    PI_17123__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17123__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17123__stammdaten__AUFTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17123__stammdaten__MARKTLOKATION'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - MARKTLOKATION
+    PI_17123__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - IMD
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - anfragetyp
+        - lokationsId
+    PI_17123__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+      required:
+        - ausfuehrungsdatum
+    PI_17123__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17123__stammdaten__MARKTLOKATION__zaehlwerke'
+      required:
+        - zaehlwerke
+    PI_17123__stammdaten__MARKTLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN+Z54.PIA+5
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_17123__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten'
+      required:
+        - messprodukt
+        - zaehlzeiten
+    PI_17123__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - SG29.LIN+Z54.SG30.CCI
+      required:
+        - zaehlzeitDefinition
