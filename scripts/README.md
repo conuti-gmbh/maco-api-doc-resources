@@ -6,7 +6,8 @@ Generator-Skripte für die Doku-Pipeline. Konsumieren `pruefi/` (Templater-Outpu
 |---|---|---|
 | `filter_event_bauteile.py` | MACO-13040 | ✓ implementiert — strip transaktionsdaten aus pruefi/ → event-bauteil/ |
 | `parse_bpmn_events.py` | MACO-13040 | ✓ implementiert — BPMN-Parser für Event→Pruefi-Map aus T_*.bpmn |
-| `compose_event_specs.py` | MACO-13040 | offen — Event-Specs aus event-bauteil/ + event-mapping.json komponieren |
+| `extract_required_from_dmn.py` | MACO-13040 | ✓ implementiert — DMN-Parser für Event→Required-Fields aus S_EVENT_VARIABLEN.dmn |
+| `compose_event_specs.py` | MACO-13040 | offen — Event-Specs aus event-bauteil/ + event-mapping.json + event-required-fields.json komponieren |
 
 ## Setup
 
@@ -76,6 +77,33 @@ Skript konsumiert das Filesystem, nicht Git. Caller ist verantwortlich, dass die
 - `1` processes-root ist kein Verzeichnis
 - `2` keine T_*.bpmn unter processes-root gefunden
 
+## `extract_required_from_dmn.py`
+
+Walks `<processes-root>/maco-{lf,nb,msb}-processes/<format>/S_TABELLEN/S_EVENT_VARIABLEN.dmn` (jede Camunda-DMN ermittelt vor dem T_-Aufruf in `G_EVENT_EINGANG.bpmn` die Body→Variable-Mappings pro Event). Pro Rule:
+
+- Input-Spalte `eventName` → Event-Name
+- ~37 Output-Spalten mit `FN:GetDataFromInbound(jsonPath=$.xxx)`-Strings
+- JSONPath-Reads werden klassifiziert in `transaktionsdaten` / `stammdaten` / `zusatzdaten` / `other`
+- Sonderfall `pruefidentifikator`-Spalte: erkennt ob `$.transaktionsdaten.pruefidentifikator` (Body-Required, NNA-Antwort-Logik) oder `$.zusatzdaten.erpEvent.eventName` (Korrelations-Variable, nicht PI-ID)
+
+Output: deterministisches `event-required-fields.json` mit:
+- `_provenance` — Repo→Format-Versionen→SHA-Map
+- `_aggregate` — `common_core_transaktionsdaten` (Felder ≥ threshold) + Häufigkeitstabelle
+- `events.<format>.<ROLE>.<eventName>` — `required_transaktionsdaten[]`, `required_zusatzdaten[]`, `stammdaten_reads[]`, `pruefidentifikator_source`, `description`, `jsonpaths{}`
+
+```bash
+# Voller Lauf
+python -m scripts.extract_required_from_dmn --processes-root /path/to/checkouts
+
+# Nur eine Rolle
+python -m scripts.extract_required_from_dmn --processes-root /path --filter-role nb -v
+
+# Common-Core-Threshold anpassen (Default 0.80)
+python -m scripts.extract_required_from_dmn --processes-root /path --common-core-threshold 0.75
+```
+
+Working-Tree-Konvention identisch zu `parse_bpmn_events.py` (Caller stellt sicher, dass Process-Repos auf `dev` ausgecheckt sind). Exit-Codes 0/1/2.
+
 ## Tests
 
 ```bash
@@ -87,6 +115,7 @@ Fixtures unter `scripts/tests/fixtures/`:
 - `PI_99002.yaml` — Mini-PI nur mit `transaktionsdaten` (Empty-After-Filter-Fall)
 - `bpmn/T_MINI_SIMPLE.bpmn` — 2 ServiceTasks linear, keine Gateways → 2 Pruefis ohne Conditions
 - `bpmn/T_MINI_BRANCHED.bpmn` — Sparte + Energierichtung Gateways → 3 Pruefis mit AND-konjunktiven Pfaden
+- `dmn/S_MINI.dmn` — 3 Rules: Common-Core / NNA-style mit pruefi-im-Body / minimal mit erpEvent.eventName-pruefi-Source
 
 ## Determinismus
 

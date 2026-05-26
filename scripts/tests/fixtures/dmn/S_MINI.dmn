@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/"
+    xmlns:camunda="http://camunda.org/schema/1.0/dmn"
+    id="Definitions_mini"
+    name="DRD"
+    namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="MINI-S_EVENT_VARIABLEN" name="Test Steuertabelle">
+    <decisionTable id="DecisionTable_mini" hitPolicy="FIRST">
+      <input id="Input_eventName" label="eventName" camunda:inputVariable="eventName">
+        <inputExpression id="InputExpr_eventName" typeRef="string" />
+      </input>
+      <output id="Out_absender" label="absender" name="absender" typeRef="string" />
+      <output id="Out_empfaenger" label="empfaenger" name="empfaenger" typeRef="string" />
+      <output id="Out_sparte" label="sparte" name="sparte" typeRef="string" />
+      <output id="Out_kategorie" label="kategorie" name="kategorie" typeRef="string" />
+      <output id="Out_transaktionsgrund" label="transaktionsgrund" name="transaktionsgrund" typeRef="string" />
+      <output id="Out_pruefidentifikator" label="pruefidentifikator" name="pruefidentifikator" typeRef="string" />
+      <output id="Out_marktlokationsId" label="marktlokationsId" name="marktlokationsId" typeRef="string" />
+      <rule id="Rule_common_core">
+        <description>Common-Core event — alle 4 Common-Core-Felder gesetzt</description>
+        <inputEntry id="In_cc"><text>"COMMON_CORE_EVENT"</text></inputEntry>
+        <outputEntry id="Cc_abs"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.absender.rollencodenummer)"</text></outputEntry>
+        <outputEntry id="Cc_emp"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.empfaenger.rollencodenummer)"</text></outputEntry>
+        <outputEntry id="Cc_spa"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.sparte)"</text></outputEntry>
+        <outputEntry id="Cc_kat"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.kategorie)"</text></outputEntry>
+        <outputEntry id="Cc_tg"><text></text></outputEntry>
+        <outputEntry id="Cc_pr"><text></text></outputEntry>
+        <outputEntry id="Cc_ml"><text>"FN:GetDataFromInbound(jsonPath=$.stammdaten.MARKTLOKATION[0].marktlokationsId)"</text></outputEntry>
+      </rule>
+      <rule id="Rule_nna">
+        <description>REMADV 33001 33002 33003 33004 — pruefi-im-Body-Required</description>
+        <inputEntry id="In_nna"><text>"START_VERSAND_ANTWORT_NNA"</text></inputEntry>
+        <outputEntry id="Nna_abs"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.absender.rollencodenummer)"</text></outputEntry>
+        <outputEntry id="Nna_emp"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.empfaenger.rollencodenummer)"</text></outputEntry>
+        <outputEntry id="Nna_spa"><text></text></outputEntry>
+        <outputEntry id="Nna_kat"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.kategorie)"</text></outputEntry>
+        <outputEntry id="Nna_tg"><text></text></outputEntry>
+        <outputEntry id="Nna_pr"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.pruefidentifikator)"</text></outputEntry>
+        <outputEntry id="Nna_ml"><text></text></outputEntry>
+      </rule>
+      <rule id="Rule_minimal">
+        <inputEntry id="In_min"><text>"MINIMAL_EVENT"</text></inputEntry>
+        <outputEntry id="Min_abs"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.absender.rollencodenummer)"</text></outputEntry>
+        <outputEntry id="Min_emp"><text>"FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.empfaenger.rollencodenummer)"</text></outputEntry>
+        <outputEntry id="Min_spa"><text></text></outputEntry>
+        <outputEntry id="Min_kat"><text></text></outputEntry>
+        <outputEntry id="Min_tg"><text></text></outputEntry>
+        <outputEntry id="Min_pr"><text>"FN:GetDataFromInbound(jsonPath=$.zusatzdaten.erpEvent.eventName)"</text></outputEntry>
+        <outputEntry id="Min_ml"><text></text></outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
