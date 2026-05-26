@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+    xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    id="Definitions_mini_branched"
+    targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="LF-202604-T_MINI_BRANCHED" name="MINI_BRANCHED: Sparte plus Energierichtung branching" isExecutable="true">
+    <bpmn:startEvent id="Start"/>
+    <bpmn:exclusiveGateway id="GW_Sparte" name="Sparte?"/>
+    <bpmn:exclusiveGateway id="GW_Energie" name="Energierichtung?"/>
+    <bpmn:serviceTask id="Task_55001" name="Versand 55001" camunda:type="external" camunda:topic="phpCoreFunction">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="pruefidentifikator">55001</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_55077" name="Versand 55077" camunda:type="external" camunda:topic="phpCoreFunction">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="pruefidentifikator">55077</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_44001" name="Versand 44001" camunda:type="external" camunda:topic="phpCoreFunction">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="pruefidentifikator">44001</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="End"/>
+    <bpmn:sequenceFlow id="F_start" sourceRef="Start" targetRef="GW_Sparte"/>
+    <bpmn:sequenceFlow id="F_strom" sourceRef="GW_Sparte" targetRef="GW_Energie">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${sparte=="STROM"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_gas" sourceRef="GW_Sparte" targetRef="Task_44001">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${sparte=="GAS"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_aussp" sourceRef="GW_Energie" targetRef="Task_55001">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${energierichtung=="AUSSP"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_einsp" sourceRef="GW_Energie" targetRef="Task_55077">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${energierichtung=="EINSP"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="F_end1" sourceRef="Task_55001" targetRef="End"/>
+    <bpmn:sequenceFlow id="F_end2" sourceRef="Task_55077" targetRef="End"/>
+    <bpmn:sequenceFlow id="F_end3" sourceRef="Task_44001" targetRef="End"/>
+  </bpmn:process>
+</bpmn:definitions>
