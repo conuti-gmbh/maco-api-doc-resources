@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_KUENDIGUNG'
+  version: '202504'
+  x-bpmn-source-sha: '36717036'
+  x-bo4e-schema-version: 1.6.5
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    '[LF] START_KUENDIGUNG':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - kategorie
+                - transaktionsgrund
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.
+                  examples:
+                    - '44016'
+                    - '55016'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_KUENDIGUNG
+              default: START_KUENDIGUNG
+      allOf:
+        - oneOf:
+            - $ref: ../../event-bauteil/202504/UTILMD_GAS/PI_44016.yaml#/components/schemas/PI_44016
+            - $ref: ../../event-bauteil/202504/UTILMD/PI_55016.yaml#/components/schemas/PI_55016

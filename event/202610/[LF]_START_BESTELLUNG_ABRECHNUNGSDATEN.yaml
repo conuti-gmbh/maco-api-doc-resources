@@ -1,0 +1,42 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_BESTELLUNG_ABRECHNUNGSDATEN'
+  version: '202610'
+  x-bpmn-source-sha: '36717036'
+components:
+  schemas:
+    '[LF] START_BESTELLUNG_ABRECHNUNGSDATEN':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - kategorie
+                - sparte
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17133.
+                  examples:
+                    - '17133'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_BESTELLUNG_ABRECHNUNGSDATEN
+              default: START_BESTELLUNG_ABRECHNUNGSDATEN
+      x-pending-pruefis:
+        - '17133'

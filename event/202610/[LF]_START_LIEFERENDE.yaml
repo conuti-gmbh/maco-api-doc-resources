@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_LIEFERENDE'
+  version: '202610'
+  x-bpmn-source-sha: '36717036'
+components:
+  schemas:
+    '[LF] START_LIEFERENDE':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - freitext
+                - kategorie
+                - sparte
+                - transaktionsgrund
+                - transaktionsgrundergaenzung
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44004, 55004.
+                  examples:
+                    - '44004'
+                    - '55004'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_LIEFERENDE
+              default: START_LIEFERENDE
+      x-pending-pruefis:
+        - '44004'
+        - '55004'

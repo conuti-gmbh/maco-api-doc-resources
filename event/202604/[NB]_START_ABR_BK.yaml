@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_ABR_BK'
+  version: '202604'
+  x-bpmn-source-sha: 6b115946
+  x-bo4e-schema-version: 1.6.5
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    '[NB] START_ABR_BK':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - sparte
+                - transaktionsgrund
+                - transaktionsgrundergaenzung
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.
+                  examples:
+                    - '55126'
+                    - '55613'
+                    - '55672'
+                    - '55674'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_ABR_BK
+              default: START_ABR_BK
+      allOf:
+        - oneOf:
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55126.yaml#/components/schemas/PI_55126
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55613.yaml#/components/schemas/PI_55613
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55672.yaml#/components/schemas/PI_55672
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55674.yaml#/components/schemas/PI_55674

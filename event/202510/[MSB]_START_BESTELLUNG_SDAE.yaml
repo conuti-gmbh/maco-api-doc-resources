@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_BESTELLUNG_SDAE GAS'
+  version: '202510'
+  x-bpmn-source-sha: 5d34e665
+  x-bo4e-schema-version: 1.6.5
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    '[MSB] START_BESTELLUNG_SDAE GAS':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - gueltigAb
+                - kategorie
+                - sparte
+                - transaktionsgrund
+                - transaktionsgrundergaenzung
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44140.
+                  examples:
+                    - '44140'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_BESTELLUNG_SDAE
+              default: START_BESTELLUNG_SDAE
+      x-pending-pruefis:
+        - '44140'

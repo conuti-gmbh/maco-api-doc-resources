@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_N_BILA_REL_ANFR_ABR_BLINDARBEIT_AN_LF'
+  version: '202610'
+  x-bpmn-source-sha: 6b115946
+components:
+  schemas:
+    '[NB] START_N_BILA_REL_ANFR_ABR_BLINDARBEIT_AN_LF':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - gueltigAb
+                - kategorie
+                - sparte
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55232.
+                  examples:
+                    - '55232'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_N_BILA_REL_ANFR_ABR_BLINDARBEIT_AN_LF
+              default: START_N_BILA_REL_ANFR_ABR_BLINDARBEIT_AN_LF
+      x-pending-pruefis:
+        - '55232'
