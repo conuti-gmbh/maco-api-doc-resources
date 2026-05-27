@@ -3,6 +3,12 @@
 
 Extracts:
   * process id and raw process name from <bpmn:process>
+  * the topic from the process id (`<ROLE>-<format>-T_<eventName>`); the id is
+    the canonical source per Fachlichkeit (MACO-13123) — it is what Camunda
+    correlates on and what the sender's `zusatzdaten.eventname` resolves to via
+    the CallActivity `T_${eventName}`. The `<bpmn:process name>` attribute is an
+    intentionally human-readable label and may drift; it is kept only as
+    metadata. Falls back to the filename stem if the id is non-conventional.
   * every pruefidentifikator emitted by a descendant <bpmn:serviceTask>
   * the AND-conjunctive condition path(s) from start event to each
     pruefi-emitting task, via backward graph walk on <bpmn:sequenceFlow>
@@ -18,6 +24,7 @@ Story: MACO-13040.
 
 from __future__ import annotations
 
+import re
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from dataclasses import dataclass
@@ -27,6 +34,11 @@ BPMN_NS = "http://www.omg.org/spec/BPMN/20100524/MODEL"
 CAMUNDA_NS = "http://camunda.org/schema/1.0/bpmn"
 
 PRUEFI_PARAM_NAME = "pruefidentifikator"
+
+# Canonical process-id shape: <ROLE>-<format>-T_<eventName>, e.g.
+# "LF-202604-T_START_LIEFERBEGINN". The role token is left open (any alphabetic
+# string) so new market roles need no code change; the format is six digits.
+PROCESS_ID_RE = re.compile(r"^(?P<role>[A-Za-z]+)-(?P<format>\d{6})-T_(?P<event>.+)$")
 
 _PROCESS_TAG = f"{{{BPMN_NS}}}process"
 _SERVICE_TASK_TAG = f"{{{BPMN_NS}}}serviceTask"
@@ -56,6 +68,11 @@ class ProcessEntry:
     topic: str
     pruefis: tuple[PruefiEntry, ...]
     source_path: str
+    # Role + format parsed out of the canonical process id; None when the id
+    # does not follow the <ROLE>-<format>-T_<event> convention (topic then
+    # falls back to the filename stem). Used by the CLI for drift cross-checks.
+    id_role: str | None = None
+    id_format: str | None = None
 
 
 def parse_bpmn_xml(xml_bytes: bytes, source_path: str) -> ProcessEntry | None:
@@ -67,7 +84,16 @@ def parse_bpmn_xml(xml_bytes: bytes, source_path: str) -> ProcessEntry | None:
 
     process_id = proc.get("id", "")
     name_raw = proc.get("name", "") or process_id
-    topic = name_raw.split(":", 1)[0].strip()
+
+    match = PROCESS_ID_RE.match(process_id)
+    if match:
+        id_role: str | None = match.group("role")
+        id_format: str | None = match.group("format")
+        topic = match.group("event")
+    else:
+        id_role = None
+        id_format = None
+        topic = _topic_from_source(source_path)
 
     incoming = _build_incoming_index(proc)
     pruefi_tasks = _collect_pruefi_tasks(proc)
@@ -85,7 +111,23 @@ def parse_bpmn_xml(xml_bytes: bytes, source_path: str) -> ProcessEntry | None:
         topic=topic,
         pruefis=pruefi_entries,
         source_path=source_path,
+        id_role=id_role,
+        id_format=id_format,
     )
+
+
+def _topic_from_source(source_path: str) -> str:
+    """Fallback topic = filename stem without the leading T_ and .bpmn suffix.
+
+    Used only when the process id is non-conventional; the filename is the
+    secondary canonical source per Fachlichkeit (MACO-13123).
+    """
+    stem = source_path.rsplit("/", 1)[-1]
+    if stem.endswith(".bpmn"):
+        stem = stem[: -len(".bpmn")]
+    if stem.startswith("T_"):
+        stem = stem[len("T_"):]
+    return stem
 
 
 def _build_incoming_index(

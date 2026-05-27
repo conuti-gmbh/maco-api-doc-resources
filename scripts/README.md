@@ -43,7 +43,7 @@ python scripts/filter_event_bauteile.py --filter-pruefi 55001 -v
 
 Walks `<processes-root>/maco-{lf,nb,msb}-processes/<format>/T_PROZESSE/T_*.bpmn` und extrahiert pro `<bpmn:process>`:
 
-- Topic-Name aus `<bpmn:process name="…">` (Token vor Doppelpunkt — z.B. `START_LIEFERBEGINN: Anmeldung …` → `START_LIEFERBEGINN`)
+- Topic-Name aus der Prozess-**id** `<ROLE>-<format>-T_<eventName>` (z.B. `LF-202604-T_START_LIEFERBEGINN` → `START_LIEFERBEGINN`). Die id ist die kanonische Quelle (MACO-13123: Camunda korreliert darüber, `zusatzdaten.eventname` löst via `T_${eventName}` dagegen auf); Rolle-Token offen (`[A-Za-z]+`, kein `LF|NB|MSB`-Hardcode → neue Marktrollen ohne Code-Änderung). `<bpmn:process name>` ist nur ein lesbares Label (darf driften) und wird ignoriert. Fallback auf den Filename-Stamm bei non-konventioneller id. Cross-Check-Warnungen bei id-Rolle/Format ≠ Verzeichnis und id↔Filename-Drift.
 - alle `<camunda:inputParameter name="pruefidentifikator">` aus descendant ServiceTasks
 - pro Pruefi: AND-konjunktive Bedingungspfade vom Start-Event zum ServiceTask via Backward-Walk durch `<bpmn:sequenceFlow>` mit `<bpmn:conditionExpression>`
 

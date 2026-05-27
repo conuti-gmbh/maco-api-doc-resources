@@ -171,6 +171,32 @@ def build_mapping(
                 )
             continue
 
+        # MACO-13123: the process id is the canonical topic source. Cross-check
+        # it against the directory (role/format) and the filename; these drifts
+        # are runtime-relevant, unlike the now-ignored cosmetic
+        # <bpmn:process name> drift.
+        fn_stem = bpmn_path.stem
+        fn_topic = fn_stem[len("T_"):] if fn_stem.startswith("T_") else fn_stem
+        if entry.id_role is None:
+            warnings.append(
+                f"non-conventional process id {entry.process_id!r} in {source} "
+                f"— topic taken from filename"
+            )
+        else:
+            if entry.id_role.upper() != role.upper():
+                warnings.append(
+                    f"id role {entry.id_role!r} != repo {role.upper()!r} in {source}"
+                )
+            if entry.id_format != format_version:
+                warnings.append(
+                    f"id format {entry.id_format!r} != dir {format_version!r} in {source}"
+                )
+            if entry.topic != fn_topic:
+                warnings.append(
+                    f"id/filename drift in {source}: id event {entry.topic!r} "
+                    f"!= filename {fn_topic!r}"
+                )
+
         parsed += 1
         bucket = events.setdefault(format_version, {}).setdefault(
             role.upper(), {}

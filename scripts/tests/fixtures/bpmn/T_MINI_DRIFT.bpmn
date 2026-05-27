@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+    xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    id="Definitions_mini_drift"
+    targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="LF-202604-T_MINI_DRIFT" name="Eine deutsche Beschreibung ohne Topic-Form" isExecutable="true">
+    <bpmn:startEvent id="Start"/>
+    <bpmn:serviceTask id="Task_33333" name="Versand 33333" camunda:type="external" camunda:topic="phpCoreFunction">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="pruefidentifikator">33333</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="End"/>
+    <bpmn:sequenceFlow id="F1" sourceRef="Start" targetRef="Task_33333"/>
+    <bpmn:sequenceFlow id="F2" sourceRef="Task_33333" targetRef="End"/>
+  </bpmn:process>
+</bpmn:definitions>

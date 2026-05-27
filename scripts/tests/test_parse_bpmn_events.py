@@ -61,16 +61,59 @@ def test_parse_returns_none_on_xml_without_process(tmp_path: Path) -> None:
     assert parse_bpmn_xml(no_process.read_bytes(), "irrelevant") is None
 
 
-def test_topic_is_token_before_colon() -> None:
+def test_topic_from_process_id_ignores_descriptive_name() -> None:
+    """Topic comes from the process id, not the (drifting) descriptive name."""
     entry = parse_bpmn_xml(
-        (FIXTURES / "T_MINI_SIMPLE.bpmn").read_bytes(),
-        "irrelevant",
+        (FIXTURES / "T_MINI_DRIFT.bpmn").read_bytes(),
+        "maco-lf-processes/202604/T_PROZESSE/T_MINI_DRIFT.bpmn",
     )
     assert entry is not None
-    # name_raw = "MINI_SIMPLE: Test process with no branching"
-    # topic = token before colon
-    assert entry.topic == "MINI_SIMPLE"
-    assert ":" in entry.name_raw
+    # id = "LF-202604-T_MINI_DRIFT"; name = "Eine deutsche Beschreibung ..."
+    assert entry.topic == "MINI_DRIFT"
+    assert entry.name_raw == "Eine deutsche Beschreibung ohne Topic-Form"
+    assert entry.id_role == "LF"
+    assert entry.id_format == "202604"
+
+
+def _inline_process(process_id: str, *, name: str = "irrelevant") -> bytes:
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<bpmn:definitions '
+        'xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" '
+        'xmlns:camunda="http://camunda.org/schema/1.0/bpmn">'
+        f'<bpmn:process id="{process_id}" name="{name}" isExecutable="true">'
+        '<bpmn:startEvent id="Start"/>'
+        '<bpmn:serviceTask id="T1">'
+        '<bpmn:extensionElements><camunda:inputOutput>'
+        '<camunda:inputParameter name="pruefidentifikator">55001</camunda:inputParameter>'
+        '</camunda:inputOutput></bpmn:extensionElements></bpmn:serviceTask>'
+        '<bpmn:sequenceFlow id="F1" sourceRef="Start" targetRef="T1"/>'
+        '</bpmn:process></bpmn:definitions>'
+    ).encode("utf-8")
+
+
+def test_process_id_role_token_is_open_not_hardcoded() -> None:
+    """Any alphabetic role token parses — no LF|NB|MSB restriction."""
+    entry = parse_bpmn_xml(
+        _inline_process("ENERGYX-202604-T_SOME_NEW_EVENT"),
+        "maco-energyx-processes/202604/T_PROZESSE/T_SOME_NEW_EVENT.bpmn",
+    )
+    assert entry is not None
+    assert entry.id_role == "ENERGYX"
+    assert entry.id_format == "202604"
+    assert entry.topic == "SOME_NEW_EVENT"
+
+
+def test_topic_falls_back_to_filename_for_nonconventional_id() -> None:
+    """A process id that does not match the convention → topic from filename."""
+    entry = parse_bpmn_xml(
+        _inline_process("Process_legacy_no_convention"),
+        "maco-lf-processes/202604/T_PROZESSE/T_BAR_BAZ.bpmn",
+    )
+    assert entry is not None
+    assert entry.id_role is None
+    assert entry.id_format is None
+    assert entry.topic == "BAR_BAZ"
 
 
 # ----------------------------- CLI integration tests -----------------------------
@@ -212,3 +255,33 @@ def test_cli_warns_and_skips_duplicate_topic(tmp_path: Path, capsys) -> None:
     assert exit_code == cli.EXIT_OK
     captured = capsys.readouterr()
     assert "duplicate topic" in captured.err
+
+
+def test_cli_warns_on_id_filename_drift(tmp_path: Path, capsys) -> None:
+    """File renamed away from its process id → id/filename drift warning,
+    and the topic still comes from the id."""
+    target = tmp_path / "maco-lf-processes" / "202604" / "T_PROZESSE"
+    target.mkdir(parents=True)
+    # id is LF-202604-T_MINI_SIMPLE but the file is named differently.
+    shutil.copy(FIXTURES / "T_MINI_SIMPLE.bpmn", target / "T_RENAMED.bpmn")
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(["--processes-root", str(tmp_path), "--output", str(output)])
+
+    assert exit_code == cli.EXIT_OK
+    assert "id/filename drift" in capsys.readouterr().err
+    topics = _load_output(output)["events"]["202604"]["LF"]
+    assert "MINI_SIMPLE" in topics  # topic from id, not the filename "RENAMED"
+
+
+def test_cli_warns_on_id_role_dir_mismatch(tmp_path: Path, capsys) -> None:
+    """An LF-id file placed under maco-nb-processes → id role != repo warning."""
+    target = tmp_path / "maco-nb-processes" / "202604" / "T_PROZESSE"
+    target.mkdir(parents=True)
+    shutil.copy(FIXTURES / "T_MINI_SIMPLE.bpmn", target / "T_MINI_SIMPLE.bpmn")
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(["--processes-root", str(tmp_path), "--output", str(output)])
+
+    assert exit_code == cli.EXIT_OK
+    assert "id role" in capsys.readouterr().err
