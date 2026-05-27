@@ -7,7 +7,7 @@ Generator-Skripte für die Doku-Pipeline. Konsumieren `pruefi/` (Templater-Outpu
 | `filter_event_bauteile.py` | MACO-13040 | ✓ implementiert — strip transaktionsdaten aus pruefi/ → event-bauteil/ |
 | `parse_bpmn_events.py` | MACO-13040 | ✓ implementiert — BPMN-Parser für Event→Pruefi-Map aus T_*.bpmn |
 | `extract_required_from_dmn.py` | MACO-13040 | ✓ implementiert — DMN-Parser für Event→Required-Fields aus S_EVENT_VARIABLEN.dmn |
-| `compose_event_specs.py` | MACO-13040 | offen — Event-Specs aus event-bauteil/ + event-mapping.json + event-required-fields.json komponieren |
+| `compose_event_specs.py` | MACO-13040 | ✓ implementiert — Event-Specs aus event-bauteil/ + event-mapping.json + event-required-fields.json komponieren |
 
 ## Setup
 
@@ -17,7 +17,7 @@ source .venv/bin/activate
 pip install -r scripts/requirements.txt
 ```
 
-Erfordert Python 3.11+.
+Erfordert Python 3.9+ (Skripte nutzen `from __future__ import annotations`; getestet gegen 3.9.6).
 
 ## `filter_event_bauteile.py`
 
@@ -104,6 +104,34 @@ python -m scripts.extract_required_from_dmn --processes-root /path --common-core
 
 Working-Tree-Konvention identisch zu `parse_bpmn_events.py` (Caller stellt sicher, dass Process-Repos auf `dev` ausgecheckt sind). Exit-Codes 0/1/2.
 
+## `compose_event_specs.py`
+
+Komponiert pro `(format, ROLE, topic)` eine OpenAPI-3.1-Event-Spec aus drei Inputs: `event-bauteil/` (Skript 1), `event-mapping.json` (Skript 2), `event-required-fields.json` (Skript 4). Schreibt nach `event/<format>/[<ROLE>]_<TOPIC>.yaml`.
+
+Modell (Stand 2026-05-27):
+
+- Event-Wrapper `required: [stammdaten, transaktionsdaten, zusatzdaten]`.
+- `transaktionsdaten` als `allOf`: `$ref` auf das volle CDOC-`Transaktionsdaten`-Schema + lokaler Override, dessen `required`-Liste aus Skript 4 stammt (Schicht 1, DMN-abgeleitet); Fallback ist der Aggregat-Common-Core, wenn kein DMN-Entry existiert.
+- `transaktionsdaten.pruefidentifikator` regulär **optional, kein `enum`**: Beauskunftung über `description` (listet die im Topic möglichen Prüfis) + `examples`-Array. Der Prüfi wird in Camunda über Sparte + Transaktionsgrund + Empfänger-Marktrolle ermittelt; ein Sender-Wert wird ignoriert.
+- **NNA-Sonderfall** (`pruefidentifikator_source == "transaktionsdaten"`, z.B. `[LF] START_VERSAND_ANTWORT_NNA`): stattdessen **required + `enum`**, weil der Body-Wert das T_-Gateway routet.
+- `oneOf` über die Prüfi-Bauteile = Union-of-Required-Coverage (Sender muss die Stammdaten liefern, die irgendein Pool-Mitglied braucht), **kein** Discriminator, **kein** `x-condition`, **kein** leeres `{}`.
+- Schema-Name bekommt `` GAS``-Suffix, wenn alle Prüfis im Pool im 44xxx-Bereich liegen.
+- Scope (UTILMD/UTILMD_GAS/…) wird aus dem `event-bauteil/`-Baum per Prüfi-Id aufgelöst; Prüfis ohne Bauteil werden mit Warnung verworfen.
+- Provenance-Header: `info.x-bpmn-source-sha` (aus `event-mapping.json`), `info.x-bo4e-schema-version` + `info.x-templater-sha` (aus einem repräsentativen Bauteil).
+
+```bash
+# Voller Lauf
+python -m scripts.compose_event_specs
+
+# Subset für Dev-Loop
+python -m scripts.compose_event_specs --filter-format 202604 --filter-role lf --filter-topic START_LIEFERBEGINN -v
+```
+
+**Exit-Codes:**
+- `0` clean
+- `1` `--bauteil-dir` ist kein Verzeichnis
+- `2` ein Input-File fehlt, oder keine Events verarbeitet
+
 ## Tests
 
 ```bash
@@ -119,4 +147,4 @@ Fixtures unter `scripts/tests/fixtures/`:
 
 ## Determinismus
 
-Output ist deterministisch: zwei aufeinanderfolgende Läufe mit identischen Inputs produzieren byte-identische Files. Verifiziert per `test_output_is_deterministic_across_runs` (Filter) + `test_cli_output_is_deterministic_across_runs` (BPMN-Parser) und im Sync-Workflow als CI-Check.
+Output ist deterministisch: zwei aufeinanderfolgende Läufe mit identischen Inputs produzieren byte-identische Files. Verifiziert per `test_output_is_deterministic_across_runs` (Filter) + `test_cli_output_is_deterministic_across_runs` (BPMN-Parser) + `test_output_is_deterministic` (Composer) und im Sync-Workflow als CI-Check.
