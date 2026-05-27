@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: PI_17118
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_17118:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17118__stammdaten'
+      required:
+        - stammdaten
+    PI_17118__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__stammdaten__AUFTRAG'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__stammdaten__MESSLOKATION'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - MESSLOKATION
+    PI_17118__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - IMD
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsId
+    PI_17118__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - ausfuehrungsdatum
+        - positionsdaten
+    PI_17118__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN++Z19
+      required:
+        - positionsnummer
+    PI_17118__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__stammdaten__MESSLOKATION__zaehlwerke'
+      required:
+        - zaehlwerke
+    PI_17118__stammdaten__MESSLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN++Z19.PIA+5
+        notwendigkeitZweiteMessung:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/notwendigkeitZweiteMessung.yaml#/components/schemas/notwendigkeitZweiteMessung'
+          x-edifact-segment:
+            - SG29.LIN++Z19.SG30.CCI+Z35.CAV+ZC9
+        werteuebermittlungVerwendungszweck:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/werteuebermittlungVerwendungszweck.yaml#/components/schemas/werteuebermittlungVerwendungszweck'
+          x-edifact-segment:
+            - SG29.LIN++Z19.SG30.CCI+Z35.CAV+Z88
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_17118__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten'
+      required:
+        - messprodukt
+        - notwendigkeitZweiteMessung
+        - werteuebermittlungVerwendungszweck
+        - zaehlzeiten
+    PI_17118__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - SG29.LIN++Z19.SG30.CCI
+      required:
+        - zaehlzeitDefinition

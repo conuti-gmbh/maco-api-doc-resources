@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: PI_25008
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_25008:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_25008__stammdaten'
+      required:
+        - stammdaten
+    PI_25008__stammdaten:
+      type: object
+      properties:
+        SCHALTZEITDEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25008__stammdaten__SCHALTZEITDEFINITION'
+      required:
+        - SCHALTZEITDEFINITION
+    PI_25008__stammdaten__SCHALTZEITDEFINITION:
+      type: object
+      properties:
+        beginndatum:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/beginndatum.yaml#/components/schemas/beginndatum'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+Z34
+        code:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/code.yaml#/components/schemas/code'
+          x-edifact-segment:
+            - SG5.IDE+24.LOC+Z09
+        endedatum:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/endedatum.yaml#/components/schemas/endedatum'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+Z35
+        schaltzeiten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25008__stammdaten__SCHALTZEITDEFINITION__schaltzeiten'
+        version:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/version.yaml#/components/schemas/version'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+293
+      required:
+        - beginndatum
+        - code
+        - schaltzeiten
+        - version
+    PI_25008__stammdaten__SCHALTZEITDEFINITION__schaltzeiten:
+      type: object
+      properties:
+        aenderungszeitpunkt:
+          $ref: '../../../bo4e/fields/com/Schaltzeit/aenderungszeitpunkt.yaml#/components/schemas/aenderungszeitpunkt'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z73.DTM+Z44
+        haeufigkeit:
+          $ref: '../../../bo4e/fields/com/Schaltzeit/haeufigkeit.yaml#/components/schemas/haeufigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z73.DTM+Z44
+        schalthandlung:
+          $ref: '../../../bo4e/fields/com/Schaltzeit/schalthandlung.yaml#/components/schemas/schalthandlung'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z73.SG9.CCI+Z58
+      required:
+        - aenderungszeitpunkt
+        - haeufigkeit
+        - schalthandlung

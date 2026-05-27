@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: PI_33004
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_33004:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_33004__stammdaten'
+      required:
+        - stammdaten
+    PI_33004__stammdaten:
+      type: object
+      properties:
+        AVIS:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__stammdaten__AVIS'
+      required:
+        - AVIS
+    PI_33004__stammdaten__AVIS:
+      type: object
+      properties:
+        avisNummer:
+          $ref: '../../../bo4e/fields/bo/Avis/avisNummer.yaml#/components/schemas/avisNummer'
+          x-edifact-segment:
+            - BGM+239
+        avisTyp:
+          $ref: '../../../bo4e/fields/bo/Avis/avisTyp.yaml#/components/schemas/avisTyp'
+          x-edifact-segment:
+            - BGM+239
+        positionen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__stammdaten__AVIS__positionen'
+        zuZahlen:
+          $ref: '#/components/schemas/PI_33004__stammdaten__AVIS__zuZahlen'
+      required:
+        - avisNummer
+        - avisTyp
+        - positionen
+        - zuZahlen
+    PI_33004__stammdaten__AVIS__positionen:
+      type: object
+      properties:
+        gesamtBrutto:
+          $ref: '#/components/schemas/PI_33004__stammdaten__AVIS__positionen__gesamtBrutto'
+        istSelbstausgestellt:
+          $ref: '../../../bo4e/fields/com/Avisposition/istSelbstausgestellt.yaml#/components/schemas/istSelbstausgestellt'
+          x-edifact-segment:
+            - SG5.DOC
+        istStorno:
+          $ref: '../../../bo4e/fields/com/Avisposition/istStorno.yaml#/components/schemas/istStorno'
+          x-edifact-segment:
+            - SG5.DOC
+        positionen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__stammdaten__AVIS__positionen__positionen'
+        rechnungsDatum:
+          $ref: '../../../bo4e/fields/com/Avisposition/rechnungsDatum.yaml#/components/schemas/rechnungsDatum'
+          x-edifact-segment:
+            - SG5.DOC.DTM+137
+        rechnungsNummer:
+          $ref: '../../../bo4e/fields/com/Avisposition/rechnungsNummer.yaml#/components/schemas/rechnungsNummer'
+          x-edifact-segment:
+            - SG5.DOC
+        referenz:
+          $ref: '../../../bo4e/fields/com/Avisposition/referenz.yaml#/components/schemas/referenz'
+          x-edifact-segment:
+            - SG5.DOC.RFF+ACW
+        zuZahlen:
+          $ref: '#/components/schemas/PI_33004__stammdaten__AVIS__positionen__zuZahlen'
+      required:
+        - gesamtBrutto
+        - istSelbstausgestellt
+        - istStorno
+        - positionen
+        - rechnungsDatum
+        - rechnungsNummer
+        - zuZahlen
+    PI_33004__stammdaten__AVIS__positionen__gesamtBrutto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG5.DOC.MOA+12
+      required:
+        - wert
+    PI_33004__stammdaten__AVIS__positionen__positionen:
+      type: object
+      properties:
+        abweichung:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__stammdaten__AVIS__positionen__positionen__abweichung'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/Rueckmeldungsposition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1
+      required:
+        - abweichung
+        - positionsnummer
+    PI_33004__stammdaten__AVIS__positionen__positionen__abweichung:
+      type: object
+      properties:
+        abweichungsgrundBemerkung1:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung1.yaml#/components/schemas/abweichungsgrundBemerkung1'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        abweichungsgrundBemerkung2:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung2.yaml#/components/schemas/abweichungsgrundBemerkung2'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        abweichungsgrundBemerkung3:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung3.yaml#/components/schemas/abweichungsgrundBemerkung3'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        abweichungsgrundBemerkung4:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung4.yaml#/components/schemas/abweichungsgrundBemerkung4'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        abweichungsgrundBemerkung5:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundBemerkung5.yaml#/components/schemas/abweichungsgrundBemerkung5'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        abweichungsgrundCode:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundCode.yaml#/components/schemas/abweichungsgrundCode'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT
+        abweichungsgrundCodeliste:
+          $ref: '../../../bo4e/fields/com/Abweichung/abweichungsgrundCodeliste.yaml#/components/schemas/abweichungsgrundCodeliste'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT
+        referenz:
+          $ref: '../../../bo4e/fields/com/Abweichung/referenz.yaml#/components/schemas/referenz'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.RFF+AFL
+        zugehoerigeRechnung:
+          $ref: '../../../bo4e/fields/com/Abweichung/zugehoerigeRechnung.yaml#/components/schemas/zugehoerigeRechnung'
+          x-edifact-segment:
+            - SG5.DOC.SG10.DLI+1.SG12.AJT.RFF+AFL
+      required:
+        - abweichungsgrundCode
+        - abweichungsgrundCodeliste
+    PI_33004__stammdaten__AVIS__positionen__zuZahlen:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG5.DOC.MOA+9
+      required:
+        - wert
+    PI_33004__stammdaten__AVIS__zuZahlen:
+      type: object
+      properties:
+        waehrung:
+          $ref: '../../../bo4e/fields/com/Betrag/waehrung.yaml#/components/schemas/waehrung'
+          x-edifact-segment:
+            - SG4.CUX+2
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - MOA+12
+      required:
+        - waehrung
+        - wert

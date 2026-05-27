@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: PI_19301
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_19301:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_19301__stammdaten'
+      required:
+        - stammdaten
+    PI_19301__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19301__stammdaten__ANFRAGE'
+      required:
+        - ANFRAGE
+    PI_19301__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        abonnement:
+          $ref: '../../../bo4e/fields/bo/Anfrage/abonnement.yaml#/components/schemas/abonnement'
+          x-edifact-segment:
+            - 'IMD++[Z01|Z02]'
+        anfragekategorie:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragekategorie.yaml#/components/schemas/anfragekategorie'
+          x-edifact-segment:
+            - 'BGM+[7|Z14]'
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - 'IMD++[Z11|Z12]'
+      required:
+        - abonnement
+        - anfragekategorie

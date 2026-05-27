@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_EOG'
+  version: '202510'
+  x-bpmn-source-sha: 6b115946
+  x-bo4e-schema-version: 1.6.5
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    '[NB] START_EOG':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - kategorie
+                - sparte
+                - transaktionsgrund
+                - transaktionsgrundergaenzung
+                - transaktionsgrundergaenzungBefristeteAnmeldung
+                - vertragsbeginn
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44013, 55013.
+                  examples:
+                    - '44013'
+                    - '55013'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_EOG
+              default: START_EOG
+      x-pending-pruefis:
+        - '44013'
+      allOf:
+        - oneOf:
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55013.yaml#/components/schemas/PI_55013

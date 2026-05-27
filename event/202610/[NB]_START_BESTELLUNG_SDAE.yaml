@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_BESTELLUNG_SDAE'
+  version: '202610'
+  x-bpmn-source-sha: 6b115946
+components:
+  schemas:
+    '[NB] START_BESTELLUNG_SDAE':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - sparte
+                - transaktionsgrund
+                - transaktionsgrundergaenzung
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+                  examples:
+                    - '55137'
+                    - '55232'
+                    - '55555'
+                    - '55559'
+                    - '55644'
+                    - '55645'
+                    - '55646'
+                    - '55647'
+                    - '55648'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_BESTELLUNG_SDAE
+              default: START_BESTELLUNG_SDAE
+      x-pending-pruefis:
+        - '55137'
+        - '55232'
+        - '55555'
+        - '55559'
+        - '55644'
+        - '55645'
+        - '55646'
+        - '55647'
+        - '55648'

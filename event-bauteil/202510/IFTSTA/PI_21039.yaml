@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: PI_21039
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_21039:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21039__stammdaten'
+      required:
+        - stammdaten
+    PI_21039__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21039__stammdaten__MARKTLOKATION'
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21039__stammdaten__STATUSMITTEILUNG'
+      required:
+        - MARKTLOKATION
+        - STATUSMITTEILUNG
+    PI_21039__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG14.CNI.LOC+172
+      required:
+        - marktlokationsId
+    PI_21039__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/bo/Statusmitteilung/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37
+            - SG14.CNI.SG15.STS+Z38
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21039__stammdaten__STATUSMITTEILUNG__positionsdaten'
+        statusObjekt:
+          $ref: '../../../bo4e/fields/bo/Statusmitteilung/statusObjekt.yaml#/components/schemas/statusObjekt'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37
+            - SG14.CNI.SG15.STS+Z38
+      required:
+        - auftragsstatus
+        - positionsdaten
+        - statusObjekt
+    PI_21039__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        allgemeineInformationen:
+          $ref: '#/components/schemas/PI_21039__stammdaten__STATUSMITTEILUNG__positionsdaten__allgemeineInformationen'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+      required:
+        - allgemeineInformationen
+        - positionsnummer
+    PI_21039__stammdaten__STATUSMITTEILUNG__positionsdaten__allgemeineInformationen:
+      type: object
+      properties:
+        info1:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info1.yaml#/components/schemas/info1'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37.SG25.GID.FTX+ACB
+            - SG14.CNI.SG15.STS+Z38.SG25.GID.FTX+ACB
+        info2:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info2.yaml#/components/schemas/info2'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37.SG25.GID.FTX+ACB
+            - SG14.CNI.SG15.STS+Z38.SG25.GID.FTX+ACB
+        info3:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info3.yaml#/components/schemas/info3'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37.SG25.GID.FTX+ACB
+            - SG14.CNI.SG15.STS+Z38.SG25.GID.FTX+ACB
+        info4:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info4.yaml#/components/schemas/info4'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37.SG25.GID.FTX+ACB
+            - SG14.CNI.SG15.STS+Z38.SG25.GID.FTX+ACB
+        info5:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info5.yaml#/components/schemas/info5'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z37.SG25.GID.FTX+ACB
+            - SG14.CNI.SG15.STS+Z38.SG25.GID.FTX+ACB
+      required:
+        - info1
+        - info2
+        - info3
+        - info4
+        - info5

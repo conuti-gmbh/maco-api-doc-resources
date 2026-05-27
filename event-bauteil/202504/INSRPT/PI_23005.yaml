@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: PI_23005
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_23005:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_23005__stammdaten'
+      required:
+        - stammdaten
+    PI_23005__stammdaten:
+      type: object
+      properties:
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_23005__stammdaten__STATUSMITTEILUNG'
+      required:
+        - STATUSMITTEILUNG
+    PI_23005__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_23005__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_23005__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.STS+Z06
+        enddatum:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.DTM+292
+        fehlerbeschreibung:
+          $ref: '#/components/schemas/PI_23005__stammdaten__STATUSMITTEILUNG__positionsdaten__fehlerbeschreibung'
+        lokationsId:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.SG8.NAD+DP.LOC+172
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN
+        verwendungAb:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.DTM+163
+      required:
+        - auftragsstatus
+        - enddatum
+        - lokationsId
+        - positionsnummer
+    PI_23005__stammdaten__STATUSMITTEILUNG__positionsdaten__fehlerbeschreibung:
+      type: object
+      properties:
+        beschreibung1:
+          $ref: '../../../bo4e/fields/com/Fehlerbeschreibung/beschreibung1.yaml#/components/schemas/beschreibung1'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.FTX+AAO
+        beschreibung2:
+          $ref: '../../../bo4e/fields/com/Fehlerbeschreibung/beschreibung2.yaml#/components/schemas/beschreibung2'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.FTX+AAO
+        beschreibung3:
+          $ref: '../../../bo4e/fields/com/Fehlerbeschreibung/beschreibung3.yaml#/components/schemas/beschreibung3'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.FTX+AAO
+        beschreibung4:
+          $ref: '../../../bo4e/fields/com/Fehlerbeschreibung/beschreibung4.yaml#/components/schemas/beschreibung4'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.FTX+AAO
+        beschreibung5:
+          $ref: '../../../bo4e/fields/com/Fehlerbeschreibung/beschreibung5.yaml#/components/schemas/beschreibung5'
+          x-edifact-segment:
+            - SG3.DOC+23.SG7.LIN.FTX+AAO

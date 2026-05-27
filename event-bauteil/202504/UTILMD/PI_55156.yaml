@@ -1,0 +1,259 @@
+openapi: 3.1.0
+info:
+  title: PI_55156
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55156:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55156__stammdaten'
+      required:
+        - stammdaten
+    PI_55156__stammdaten:
+      type: object
+      properties:
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55156__stammdaten__BILANZIERUNG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55156__stammdaten__MARKTLOKATION'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55156__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - BILANZIERUNG
+        - MARKTLOKATION
+        - VERWENDUNGSZEITRAUM
+    PI_55156__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        aggregationsverantwortung:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/aggregationsverantwortung.yaml#/components/schemas/aggregationsverantwortung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+6'
+        bilanzkreis:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/bilanzkreis.yaml#/components/schemas/bilanzkreis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+Z19'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86]'
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88]'
+        detailsPrognosegrundlage:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/detailsPrognosegrundlage.yaml#/components/schemas/detailsPrognosegrundlage'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI.CAV+[E02|E14]'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55156__stammdaten__BILANZIERUNG__gueltigkeitszeitraum'
+        jahresverbrauchsprognose:
+          $ref: '#/components/schemas/PI_55156__stammdaten__BILANZIERUNG__jahresverbrauchsprognose'
+        lastprofile:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55156__stammdaten__BILANZIERUNG__lastprofile'
+        prognosegrundlage:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/prognosegrundlage.yaml#/components/schemas/prognosegrundlage'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI'
+        temperaturarbeit:
+          $ref: '#/components/schemas/PI_55156__stammdaten__BILANZIERUNG__temperaturarbeit'
+        zeitreihentyp:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/zeitreihentyp.yaml#/components/schemas/zeitreihentyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+15++Z21.CAV'
+      required:
+        - aggregationsverantwortung
+        - bilanzkreis
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - jahresverbrauchsprognose
+        - lastprofile
+        - prognosegrundlage
+        - temperaturarbeit
+        - zeitreihentyp
+    PI_55156__stammdaten__BILANZIERUNG__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86]'
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88]'
+      required:
+        - zeitraumId
+    PI_55156__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+31'
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+31'
+      required:
+        - einheit
+        - wert
+    PI_55156__stammdaten__BILANZIERUNG__lastprofile:
+      type: object
+      properties:
+        bezeichnung:
+          $ref: '../../../bo4e/fields/com/Lastprofil/bezeichnung.yaml#/components/schemas/bezeichnung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+Z02.CAV'
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+Z03.CAV'
+        einspeisung:
+          $ref: '../../../bo4e/fields/com/Lastprofil/einspeisung.yaml#/components/schemas/einspeisung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+Z02'
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+Z03'
+        profilart:
+          $ref: '../../../bo4e/fields/com/Lastprofil/profilart.yaml#/components/schemas/profilart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+Z02'
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+Z03'
+        profilschar:
+          $ref: '../../../bo4e/fields/com/Lastprofil/profilschar.yaml#/components/schemas/profilschar'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+++Z12.CAV'
+        tagesparameter:
+          $ref: '#/components/schemas/PI_55156__stammdaten__BILANZIERUNG__lastprofile__tagesparameter'
+        verfahren:
+          $ref: '../../../bo4e/fields/com/Lastprofil/verfahren.yaml#/components/schemas/verfahren'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+Z02'
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+Z03'
+      required:
+        - bezeichnung
+        - einspeisung
+        - profilart
+        - profilschar
+        - tagesparameter
+        - verfahren
+    PI_55156__stammdaten__BILANZIERUNG__lastprofile__tagesparameter:
+      type: object
+      properties:
+        dienstanbieter:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/dienstanbieter.yaml#/components/schemas/dienstanbieter'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[ZA0|Z99]'
+        herausgeber:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/herausgeber.yaml#/components/schemas/herausgeber'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[ZA0|Z99]'
+        klimazone:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/klimazone.yaml#/components/schemas/klimazone'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[ZA0|Z99]'
+        temperaturmessstelle:
+          $ref: '../../../bo4e/fields/com/Tagesparameter/temperaturmessstelle.yaml#/components/schemas/temperaturmessstelle'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[ZA0|Z99]'
+      required:
+        - dienstanbieter
+        - herausgeber
+        - klimazone
+        - temperaturmessstelle
+    PI_55156__stammdaten__BILANZIERUNG__temperaturarbeit:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+[265|Z08]'
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+[265|Z08]'
+      required:
+        - einheit
+        - wert
+    PI_55156__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        bilanzierungsgebiet:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/bilanzierungsgebiet.yaml#/components/schemas/bilanzierungsgebiet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+Z20'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81]'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55156__stammdaten__MARKTLOKATION__gueltigkeitszeitraum'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55156__stammdaten__MARKTLOKATION__marktrollen'
+        regelzone:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/regelzone.yaml#/components/schemas/regelzone'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+Z18'
+      required:
+        - bilanzierungsgebiet
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - marktlokationsId
+        - marktrollen
+        - regelzone
+    PI_55156__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81]'
+      required:
+        - zeitraumId
+    PI_55156__stammdaten__MARKTLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z90'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z90'
+      required:
+        - marktrolle
+        - rollencodenummer
+    PI_55156__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId

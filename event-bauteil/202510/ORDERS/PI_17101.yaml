@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: PI_17101
+  version: '202510'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_17101:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17101__stammdaten'
+      required:
+        - stammdaten
+    PI_17101__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__AUFTRAG'
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__ENERGIELIEFERVERTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__MARKTLOKATION'
+        ZAEHLER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__ZAEHLER'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - ENERGIELIEFERVERTRAG
+        - MARKTLOKATION
+        - ZAEHLER
+    PI_17101__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsId
+    PI_17101__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_17101__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        allgemeineInformationen:
+          $ref: '#/components/schemas/PI_17101__stammdaten__AUFTRAG__positionsdaten__allgemeineInformationen'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN
+      required:
+        - positionsnummer
+    PI_17101__stammdaten__AUFTRAG__positionsdaten__allgemeineInformationen:
+      type: object
+      properties:
+        info1:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info1.yaml#/components/schemas/info1'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info2:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info2.yaml#/components/schemas/info2'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info3:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info3.yaml#/components/schemas/info3'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info4:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info4.yaml#/components/schemas/info4'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info5:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info5.yaml#/components/schemas/info5'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+    PI_17101__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
+      required:
+        - vertragspartner2
+    PI_17101__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+        externeReferenzen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2__externeReferenzen'
+        geschaeftspartnerrolle:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/geschaeftspartnerrolle.yaml#/components/schemas/geschaeftspartnerrolle'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG2.NAD+Z09
+      required:
+        - anrede
+        - externeReferenzen
+        - geschaeftspartnerrolle
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+    PI_17101__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2__externeReferenzen:
+      type: object
+      properties:
+        exRefName:
+          $ref: '../../../bo4e/fields/com/ExterneReferenz/exRefName.yaml#/components/schemas/exRefName'
+          x-edifact-segment:
+            - SG2.NAD+Z09.SG3.RFF+AVC
+        exRefWert:
+          $ref: '../../../bo4e/fields/com/ExterneReferenz/exRefWert.yaml#/components/schemas/exRefWert'
+          x-edifact-segment:
+            - SG2.NAD+Z09.SG3.RFF+AVC
+      required:
+        - exRefName
+        - exRefWert
+    PI_17101__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        lokationsadresse:
+          $ref: '#/components/schemas/PI_17101__stammdaten__MARKTLOKATION__lokationsadresse'
+      required:
+        - lokationsadresse
+    PI_17101__stammdaten__MARKTLOKATION__lokationsadresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_17101__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_17101__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG2.NAD+Z23
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
+    PI_17101__stammdaten__ZAEHLER:
+      type: object
+      properties:
+        geraete:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17101__stammdaten__ZAEHLER__geraete'
+      required:
+        - geraete
+    PI_17101__stammdaten__ZAEHLER__geraete:
+      type: object
+      properties:
+        geraetenummer:
+          $ref: '../../../bo4e/fields/com/Geraet/geraetenummer.yaml#/components/schemas/geraetenummer'
+          x-edifact-segment:
+            - SG29.LIN.SG34.RFF+Z09
+      required:
+        - geraetenummer

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+    xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    id="Definitions_mini_simple"
+    targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="LF-202604-T_MINI_SIMPLE" name="MINI_SIMPLE: Test process with no branching" isExecutable="true">
+    <bpmn:startEvent id="Start"/>
+    <bpmn:serviceTask id="Task_11111" name="Versand 11111" camunda:type="external" camunda:topic="phpCoreFunction">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="pruefidentifikator">11111</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_22222" name="Versand 22222" camunda:type="external" camunda:topic="phpCoreFunction">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="pruefidentifikator">22222</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="End"/>
+    <bpmn:sequenceFlow id="F1" sourceRef="Start" targetRef="Task_11111"/>
+    <bpmn:sequenceFlow id="F2" sourceRef="Task_11111" targetRef="Task_22222"/>
+    <bpmn:sequenceFlow id="F3" sourceRef="Task_22222" targetRef="End"/>
+  </bpmn:process>
+</bpmn:definitions>

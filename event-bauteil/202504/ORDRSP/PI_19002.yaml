@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: PI_19002
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_19002:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_19002__stammdaten'
+      required:
+        - stammdaten
+    PI_19002__stammdaten:
+      type: object
+      properties:
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19002__stammdaten__AUFTRAG'
+      required:
+        - AUFTRAG
+    PI_19002__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+      required:
+        - ausfuehrungsdatum

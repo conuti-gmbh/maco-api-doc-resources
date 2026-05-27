@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_VERSAND_SDAE'
+  version: '202510'
+  x-bpmn-source-sha: 6b115946
+  x-bo4e-schema-version: 1.6.5
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    '[NB] START_VERSAND_SDAE':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          allOf:
+            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+            - type: object
+              required:
+                - absender
+                - empfaenger
+                - gueltigAb
+                - kategorie
+                - sparte
+                - transaktionsgrund
+                - transaktionsgrundergaenzung
+              properties:
+                pruefidentifikator:
+                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44112, 44113, 44123, 44175, 55173, 55175, 55225, 55615, 55616, 55617, 55618, 55619, 55620, 55627, 55628, 55629, 55630, 55632, 55670, 55688, 55691.
+                  examples:
+                    - '44112'
+                    - '44113'
+                    - '44123'
+                    - '44175'
+                    - '55173'
+                    - '55175'
+                    - '55225'
+                    - '55615'
+                    - '55616'
+                    - '55617'
+                    - '55618'
+                    - '55619'
+                    - '55620'
+                    - '55627'
+                    - '55628'
+                    - '55629'
+                    - '55630'
+                    - '55632'
+                    - '55670'
+                    - '55688'
+                    - '55691'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_SDAE
+              default: START_VERSAND_SDAE
+      x-pending-pruefis:
+        - '44112'
+        - '44113'
+        - '44123'
+        - '44175'
+      allOf:
+        - oneOf:
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55173.yaml#/components/schemas/PI_55173
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55175.yaml#/components/schemas/PI_55175
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55225.yaml#/components/schemas/PI_55225
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55615.yaml#/components/schemas/PI_55615
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55616.yaml#/components/schemas/PI_55616
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55617.yaml#/components/schemas/PI_55617
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55618.yaml#/components/schemas/PI_55618
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55619.yaml#/components/schemas/PI_55619
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55620.yaml#/components/schemas/PI_55620
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55627.yaml#/components/schemas/PI_55627
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55628.yaml#/components/schemas/PI_55628
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55629.yaml#/components/schemas/PI_55629
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55630.yaml#/components/schemas/PI_55630
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55632.yaml#/components/schemas/PI_55632
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55670.yaml#/components/schemas/PI_55670
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55688.yaml#/components/schemas/PI_55688
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55691.yaml#/components/schemas/PI_55691

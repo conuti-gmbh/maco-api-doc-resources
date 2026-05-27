@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: PI_29001
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_29001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_29001__stammdaten'
+      required:
+        - stammdaten
+    PI_29001__stammdaten:
+      type: object
+      properties:
+        HANDELSUNSTIMMIGKEIT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_29001__stammdaten__HANDELSUNSTIMMIGKEIT'
+      required:
+        - HANDELSUNSTIMMIGKEIT
+    PI_29001__stammdaten__HANDELSUNSTIMMIGKEIT:
+      type: object
+      properties:
+        begruendung:
+          $ref: '#/components/schemas/PI_29001__stammdaten__HANDELSUNSTIMMIGKEIT__begruendung'
+        nummer:
+          $ref: '../../../bo4e/fields/bo/Handelsunstimmigkeit/nummer.yaml#/components/schemas/nummer'
+          x-edifact-segment:
+            - SG2.DOC+380
+        typ:
+          $ref: '../../../bo4e/fields/bo/Handelsunstimmigkeit/typ.yaml#/components/schemas/typ'
+          x-edifact-segment:
+            - SG2.DOC+380
+        zuZahlen:
+          $ref: '#/components/schemas/PI_29001__stammdaten__HANDELSUNSTIMMIGKEIT__zuZahlen'
+      required:
+        - begruendung
+        - nummer
+        - typ
+        - zuZahlen
+    PI_29001__stammdaten__HANDELSUNSTIMMIGKEIT__begruendung:
+      type: object
+      properties:
+        anerkennungsmeldung:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/anerkennungsmeldung.yaml#/components/schemas/anerkennungsmeldung'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT.FTX+ACD
+        bestaetigungDar:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/bestaetigungDar.yaml#/components/schemas/bestaetigungDar'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT.FTX+ACD
+        grund:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/grund.yaml#/components/schemas/grund'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT
+        hinweis:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/hinweis.yaml#/components/schemas/hinweis'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT.FTX+ACB
+        referenzDar:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/referenzDar.yaml#/components/schemas/referenzDar'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT.FTX+ACD
+        referenznummer:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/referenznummer.yaml#/components/schemas/referenznummer'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT.FTX+ACD
+        richtigkeit:
+          $ref: '../../../bo4e/fields/com/Handelsunstimmigkeitsbegruendung/richtigkeit.yaml#/components/schemas/richtigkeit'
+          x-edifact-segment:
+            - SG2.DOC+380.SG3.AJT.FTX+ACD
+      required:
+        - grund
+    PI_29001__stammdaten__HANDELSUNSTIMMIGKEIT__zuZahlen:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG2.DOC+380.MOA+9
+      required:
+        - wert

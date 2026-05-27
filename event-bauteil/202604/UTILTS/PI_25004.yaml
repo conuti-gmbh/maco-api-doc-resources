@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: PI_25004
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_25004:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_25004__stammdaten'
+      required:
+        - stammdaten
+    PI_25004__stammdaten:
+      type: object
+      properties:
+        ZAEHLZEITDEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25004__stammdaten__ZAEHLZEITDEFINITION'
+      required:
+        - ZAEHLZEITDEFINITION
+    PI_25004__stammdaten__ZAEHLZEITDEFINITION:
+      type: object
+      properties:
+        beginndatum:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/beginndatum.yaml#/components/schemas/beginndatum'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+157
+        notwendigkeit:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/notwendigkeit.yaml#/components/schemas/notwendigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.STS+Z36
+        version:
+          $ref: '../../../bo4e/fields/bo/Zaehlzeitdefinition/version.yaml#/components/schemas/version'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+293
+        zaehlzeiten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25004__stammdaten__ZAEHLZEITDEFINITION__zaehlzeiten'
+        zaehlzeitregister:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25004__stammdaten__ZAEHLZEITDEFINITION__zaehlzeitregister'
+      required:
+        - beginndatum
+        - notwendigkeit
+        - version
+        - zaehlzeiten
+        - zaehlzeitregister
+    PI_25004__stammdaten__ZAEHLZEITDEFINITION__zaehlzeiten:
+      type: object
+      properties:
+        beschreibungTyp:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/beschreibungTyp.yaml#/components/schemas/beschreibungTyp'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39.CAV+ZD3
+        code:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/code.yaml#/components/schemas/code'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39
+        ermittlungLeistungsmaximum:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/ermittlungLeistungsmaximum.yaml#/components/schemas/ermittlungLeistungsmaximum'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39.CAV+ZD4
+        haeufigkeit:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/haeufigkeit.yaml#/components/schemas/haeufigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39.CAV+ZE0
+        istBestellbar:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/istBestellbar.yaml#/components/schemas/istBestellbar'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39.CAV+ZD7
+        typ:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/typ.yaml#/components/schemas/typ'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39.CAV+ZD3
+        uebermittelbarkeit:
+          $ref: '../../../bo4e/fields/com/Zaehlzeit/uebermittelbarkeit.yaml#/components/schemas/uebermittelbarkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z42.SG9.CCI+Z39.CAV+ZD5
+      required:
+        - code
+        - haeufigkeit
+        - uebermittelbarkeit
+    PI_25004__stammdaten__ZAEHLZEITDEFINITION__zaehlzeitregister:
+      type: object
+      properties:
+        register:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/register.yaml#/components/schemas/register'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z41.SG9.CCI+Z38
+        schwachlastfaehig:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/schwachlastfaehig.yaml#/components/schemas/schwachlastfaehig'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z41.SG9.CCI+Z10
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z41.RFF+Z27
+      required:
+        - register
+        - schwachlastfaehig
+        - zaehlzeitDefinition

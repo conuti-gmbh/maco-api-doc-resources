@@ -1,0 +1,287 @@
+"""Tests for parse_bpmn_events.py and scripts.bpmn.parser."""
+
+from __future__ import annotations
+
+import json
+import shutil
+from pathlib import Path
+
+from scripts import parse_bpmn_events as cli
+from scripts.bpmn.parser import parse_bpmn_xml
+
+
+FIXTURES = Path(__file__).parent / "fixtures" / "bpmn"
+
+
+# ----------------------------- parser unit tests -----------------------------
+
+
+def test_parse_simple_extracts_topic_and_pruefis_with_empty_paths() -> None:
+    entry = parse_bpmn_xml(
+        (FIXTURES / "T_MINI_SIMPLE.bpmn").read_bytes(),
+        "maco-lf-processes/202604/T_PROZESSE/T_MINI_SIMPLE.bpmn",
+    )
+    assert entry is not None
+    assert entry.process_id == "LF-202604-T_MINI_SIMPLE"
+    assert entry.topic == "MINI_SIMPLE"
+    assert entry.name_raw.startswith("MINI_SIMPLE:")
+    assert [p.id for p in entry.pruefis] == [11111, 22222]
+    # No gateways → single empty AND-path each.
+    for p in entry.pruefis:
+        assert p.paths == ((),)
+
+
+def test_parse_branched_extracts_and_conjunctive_condition_paths() -> None:
+    entry = parse_bpmn_xml(
+        (FIXTURES / "T_MINI_BRANCHED.bpmn").read_bytes(),
+        "maco-lf-processes/202604/T_PROZESSE/T_MINI_BRANCHED.bpmn",
+    )
+    assert entry is not None
+    by_id = {p.id: p for p in entry.pruefis}
+
+    assert by_id[44001].paths == ((
+        '${sparte=="GAS"}',
+    ),)
+    assert by_id[55001].paths == ((
+        '${sparte=="STROM"}',
+        '${energierichtung=="AUSSP"}',
+    ),)
+    assert by_id[55077].paths == ((
+        '${sparte=="STROM"}',
+        '${energierichtung=="EINSP"}',
+    ),)
+
+
+def test_parse_returns_none_on_xml_without_process(tmp_path: Path) -> None:
+    no_process = tmp_path / "T_EMPTY.bpmn"
+    no_process.write_bytes(
+        b'<?xml version="1.0" encoding="UTF-8"?>'
+        b'<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"/>'
+    )
+    assert parse_bpmn_xml(no_process.read_bytes(), "irrelevant") is None
+
+
+def test_topic_from_process_id_ignores_descriptive_name() -> None:
+    """Topic comes from the process id, not the (drifting) descriptive name."""
+    entry = parse_bpmn_xml(
+        (FIXTURES / "T_MINI_DRIFT.bpmn").read_bytes(),
+        "maco-lf-processes/202604/T_PROZESSE/T_MINI_DRIFT.bpmn",
+    )
+    assert entry is not None
+    # id = "LF-202604-T_MINI_DRIFT"; name = "Eine deutsche Beschreibung ..."
+    assert entry.topic == "MINI_DRIFT"
+    assert entry.name_raw == "Eine deutsche Beschreibung ohne Topic-Form"
+    assert entry.id_role == "LF"
+    assert entry.id_format == "202604"
+
+
+def _inline_process(process_id: str, *, name: str = "irrelevant") -> bytes:
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<bpmn:definitions '
+        'xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" '
+        'xmlns:camunda="http://camunda.org/schema/1.0/bpmn">'
+        f'<bpmn:process id="{process_id}" name="{name}" isExecutable="true">'
+        '<bpmn:startEvent id="Start"/>'
+        '<bpmn:serviceTask id="T1">'
+        '<bpmn:extensionElements><camunda:inputOutput>'
+        '<camunda:inputParameter name="pruefidentifikator">55001</camunda:inputParameter>'
+        '</camunda:inputOutput></bpmn:extensionElements></bpmn:serviceTask>'
+        '<bpmn:sequenceFlow id="F1" sourceRef="Start" targetRef="T1"/>'
+        '</bpmn:process></bpmn:definitions>'
+    ).encode("utf-8")
+
+
+def test_process_id_role_token_is_open_not_hardcoded() -> None:
+    """Any alphabetic role token parses — no LF|NB|MSB restriction."""
+    entry = parse_bpmn_xml(
+        _inline_process("ENERGYX-202604-T_SOME_NEW_EVENT"),
+        "maco-energyx-processes/202604/T_PROZESSE/T_SOME_NEW_EVENT.bpmn",
+    )
+    assert entry is not None
+    assert entry.id_role == "ENERGYX"
+    assert entry.id_format == "202604"
+    assert entry.topic == "SOME_NEW_EVENT"
+
+
+def test_topic_falls_back_to_filename_for_nonconventional_id() -> None:
+    """A process id that does not match the convention → topic from filename."""
+    entry = parse_bpmn_xml(
+        _inline_process("Process_legacy_no_convention"),
+        "maco-lf-processes/202604/T_PROZESSE/T_BAR_BAZ.bpmn",
+    )
+    assert entry is not None
+    assert entry.id_role is None
+    assert entry.id_format is None
+    assert entry.topic == "BAR_BAZ"
+
+
+# ----------------------------- CLI integration tests -----------------------------
+
+
+def _populate_corpus(
+    root: Path,
+    *,
+    role: str = "lf",
+    format_version: str = "202604",
+    fixtures: list[str] | None = None,
+) -> Path:
+    """Build a maco-<role>-processes/<format>/T_PROZESSE/ layout under root."""
+    fixtures = fixtures or ["T_MINI_SIMPLE.bpmn", "T_MINI_BRANCHED.bpmn"]
+    target = root / f"maco-{role}-processes" / format_version / "T_PROZESSE"
+    target.mkdir(parents=True)
+    for name in fixtures:
+        shutil.copy(FIXTURES / name, target / name)
+    return root
+
+
+def _load_output(out_path: Path) -> dict:
+    return json.loads(out_path.read_text(encoding="utf-8"))
+
+
+def test_cli_emits_event_mapping_with_expected_structure(tmp_path: Path) -> None:
+    processes_root = _populate_corpus(tmp_path)
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(
+        ["--processes-root", str(processes_root), "--output", str(output)]
+    )
+
+    assert exit_code == cli.EXIT_OK
+    document = _load_output(output)
+    assert set(document.keys()) == {"_provenance", "events"}
+    events = document["events"]
+    assert list(events.keys()) == ["202604"]
+    assert list(events["202604"].keys()) == ["LF"]
+    topics = events["202604"]["LF"]
+    assert set(topics.keys()) == {"MINI_SIMPLE", "MINI_BRANCHED"}
+    branched = topics["MINI_BRANCHED"]
+    assert branched["process_id"] == "LF-202604-T_MINI_BRANCHED"
+    assert branched["source"].endswith("T_MINI_BRANCHED.bpmn")
+    by_id = {p["id"]: p for p in branched["pruefis"]}
+    assert by_id[44001]["paths"] == [['${sparte=="GAS"}']]
+    assert by_id[55001]["paths"] == [[
+        '${sparte=="STROM"}',
+        '${energierichtung=="AUSSP"}',
+    ]]
+
+
+def test_cli_output_is_deterministic_across_runs(tmp_path: Path) -> None:
+    processes_root = _populate_corpus(tmp_path)
+    first = tmp_path / "first.json"
+    second = tmp_path / "second.json"
+
+    assert cli.main(["--processes-root", str(processes_root), "--output", str(first)]) == cli.EXIT_OK
+    assert cli.main(["--processes-root", str(processes_root), "--output", str(second)]) == cli.EXIT_OK
+
+    assert first.read_bytes() == second.read_bytes()
+
+
+def test_cli_filter_format_drops_other_formats(tmp_path: Path) -> None:
+    _populate_corpus(tmp_path, format_version="202604")
+    _populate_corpus(tmp_path, format_version="202610", fixtures=["T_MINI_SIMPLE.bpmn"])
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(
+        [
+            "--processes-root", str(tmp_path),
+            "--filter-format", "202610",
+            "--output", str(output),
+        ]
+    )
+
+    assert exit_code == cli.EXIT_OK
+    events = _load_output(output)["events"]
+    assert list(events.keys()) == ["202610"]
+
+
+def test_cli_filter_role_drops_other_roles(tmp_path: Path) -> None:
+    _populate_corpus(tmp_path, role="lf")
+    _populate_corpus(tmp_path, role="nb", fixtures=["T_MINI_SIMPLE.bpmn"])
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(
+        [
+            "--processes-root", str(tmp_path),
+            "--filter-role", "nb",
+            "--output", str(output),
+        ]
+    )
+
+    assert exit_code == cli.EXIT_OK
+    events = _load_output(output)["events"]
+    assert list(events["202604"].keys()) == ["NB"]
+
+
+def test_cli_exits_with_error_when_root_missing(tmp_path: Path) -> None:
+    missing = tmp_path / "does-not-exist"
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(
+        ["--processes-root", str(missing), "--output", str(output)]
+    )
+
+    assert exit_code == cli.EXIT_ERROR
+    assert not output.exists()
+
+
+def test_cli_exits_with_no_files_when_corpus_empty(tmp_path: Path) -> None:
+    # Empty repo dir with no T_PROZESSE/ inside
+    (tmp_path / "maco-lf-processes" / "202604").mkdir(parents=True)
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(
+        ["--processes-root", str(tmp_path), "--output", str(output)]
+    )
+
+    assert exit_code == cli.EXIT_NO_FILES
+    assert not output.exists()
+
+
+def test_cli_warns_and_skips_duplicate_topic(tmp_path: Path, capsys) -> None:
+    target = tmp_path / "maco-lf-processes" / "202604" / "T_PROZESSE"
+    target.mkdir(parents=True)
+    # Two distinct files with the *same* topic name → second should warn + skip.
+    shutil.copy(FIXTURES / "T_MINI_SIMPLE.bpmn", target / "T_MINI_SIMPLE.bpmn")
+    shutil.copy(
+        FIXTURES / "T_MINI_SIMPLE.bpmn", target / "T_MINI_SIMPLE_DUPLICATE.bpmn"
+    )
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(
+        ["--processes-root", str(tmp_path), "--output", str(output)]
+    )
+
+    assert exit_code == cli.EXIT_OK
+    captured = capsys.readouterr()
+    assert "duplicate topic" in captured.err
+
+
+def test_cli_warns_on_id_filename_drift(tmp_path: Path, capsys) -> None:
+    """File renamed away from its process id → id/filename drift warning,
+    and the topic still comes from the id."""
+    target = tmp_path / "maco-lf-processes" / "202604" / "T_PROZESSE"
+    target.mkdir(parents=True)
+    # id is LF-202604-T_MINI_SIMPLE but the file is named differently.
+    shutil.copy(FIXTURES / "T_MINI_SIMPLE.bpmn", target / "T_RENAMED.bpmn")
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(["--processes-root", str(tmp_path), "--output", str(output)])
+
+    assert exit_code == cli.EXIT_OK
+    assert "id/filename drift" in capsys.readouterr().err
+    topics = _load_output(output)["events"]["202604"]["LF"]
+    assert "MINI_SIMPLE" in topics  # topic from id, not the filename "RENAMED"
+
+
+def test_cli_warns_on_id_role_dir_mismatch(tmp_path: Path, capsys) -> None:
+    """An LF-id file placed under maco-nb-processes → id role != repo warning."""
+    target = tmp_path / "maco-nb-processes" / "202604" / "T_PROZESSE"
+    target.mkdir(parents=True)
+    shutil.copy(FIXTURES / "T_MINI_SIMPLE.bpmn", target / "T_MINI_SIMPLE.bpmn")
+    output = tmp_path / "event-mapping.json"
+
+    exit_code = cli.main(["--processes-root", str(tmp_path), "--output", str(output)])
+
+    assert exit_code == cli.EXIT_OK
+    assert "id role" in capsys.readouterr().err

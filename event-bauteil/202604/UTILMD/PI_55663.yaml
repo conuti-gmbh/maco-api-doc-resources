@@ -1,0 +1,579 @@
+openapi: 3.1.0
+info:
+  title: PI_55663
+  version: '202604'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_55663:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55663__stammdaten'
+      required:
+        - stammdaten
+    PI_55663__stammdaten:
+      type: object
+      properties:
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__MESSLOKATION'
+        MESSSTELLENBETRIEBSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__VERWENDUNGSZEITRAUM'
+        ZAEHLER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__ZAEHLER'
+      required:
+        - MESSLOKATION
+        - MESSSTELLENBETRIEBSVERTRAG
+        - VERWENDUNGSZEITRAUM
+        - ZAEHLER
+    PI_55663__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        ablesekartenempfaenger:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSLOKATION__ablesekartenempfaenger'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Messlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+            - SG4.IDE+24.SG12.NAD+Z05
+            - SG4.IDE+24.SG8.SEQ+Z18
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSLOKATION__gueltigkeitszeitraum'
+        messadresse:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSLOKATION__messadresse'
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z17
+        netzebenemessung:
+          $ref: '../../../bo4e/fields/bo/Messlokation/netzebenemessung.yaml#/components/schemas/netzebenemessung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++E04.CAV
+      required:
+        - ablesekartenempfaenger
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - messadresse
+        - messlokationsId
+        - netzebenemessung
+    PI_55663__stammdaten__MESSLOKATION__ablesekartenempfaenger:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        partneradresse:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse'
+      required:
+        - anrede
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_55663__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+    PI_55663__stammdaten__MESSLOKATION__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03.RFF+Z46
+            - SG4.IDE+24.SG12.NAD+Z05.RFF+Z46
+            - SG4.IDE+24.SG8.SEQ+Z18
+      required:
+        - zeitraumId
+    PI_55663__stammdaten__MESSLOKATION__messadresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSLOKATION__messadresse__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_55663__stammdaten__MESSLOKATION__messadresse__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
+    PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Vertrag/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+            - SG4.IDE+24.SG12.NAD+Z08
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__gueltigkeitszeitraum'
+        korrespondenzpartner:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner'
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragspartner2'
+      required:
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - korrespondenzpartner
+        - vertragspartner2
+    PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07.RFF+Z46
+            - SG4.IDE+24.SG12.NAD+Z08.RFF+Z46
+      required:
+        - zeitraumId
+    PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        partneradresse:
+          $ref: '#/components/schemas/PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__partneradresse'
+      required:
+        - anrede
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+    PI_55663__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        geschaeftspartnerrolle:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/geschaeftspartnerrolle.yaml#/components/schemas/geschaeftspartnerrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+      required:
+        - anrede
+        - geschaeftspartnerrolle
+        - name1
+        - name2
+        - name3
+        - name4
+    PI_55663__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId
+    PI_55663__stammdaten__ZAEHLER:
+      type: object
+      properties:
+        befestigungsart:
+          $ref: '../../../bo4e/fields/bo/Zaehler/befestigungsart.yaml#/components/schemas/befestigungsart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++Z28.CAV+[BKE|DPA|HUT]'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Zaehler/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z03
+            - SG4.IDE+24.SG8.SEQ+Z04
+            - SG4.IDE+24.SG8.SEQ+Z05
+            - SG4.IDE+24.SG8.SEQ+Z06
+            - SG4.IDE+24.SG8.SEQ+Z13
+            - SG4.IDE+24.SG8.SEQ+Z14
+            - SG4.IDE+24.SG8.SEQ+Z20
+        fernschaltung:
+          $ref: '../../../bo4e/fields/bo/Zaehler/fernschaltung.yaml#/components/schemas/fernschaltung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z58
+        gateway:
+          $ref: '../../../bo4e/fields/bo/Zaehler/gateway.yaml#/components/schemas/gateway'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z03.RFF+Z14
+            - 'SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]'
+        geraete:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__ZAEHLER__geraete'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55663__stammdaten__ZAEHLER__gueltigkeitszeitraum'
+        messwerterfassung:
+          $ref: '../../../bo4e/fields/bo/Zaehler/messwerterfassung.yaml#/components/schemas/messwerterfassung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E12.CAV+[AMR|MMR]'
+        tarifart:
+          $ref: '../../../bo4e/fields/bo/Zaehler/tarifart.yaml#/components/schemas/tarifart'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+[ETZ|ZTZ|NTZ'
+        zaehlerauspraegung:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlerauspraegung.yaml#/components/schemas/zaehlerauspraegung'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+[ERZ|ZRZ]'
+        zaehlernummer:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlernummer.yaml#/components/schemas/zaehlernummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+Z04.RFF+MG
+            - SG4.IDE+24.SG8.SEQ+Z05.RFF+MG
+            - SG4.IDE+24.SG8.SEQ+Z06.RFF+MG
+            - 'SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]'
+        zaehlertyp:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlertyp.yaml#/components/schemas/zaehlertyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+[AHZ|WSZ|LAZ|MAZ|MME|EHZ|IVA]'
+        zaehlertypspezifikation:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlertypspezifikation.yaml#/components/schemas/zaehlertypspezifikation'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+[AHZ|WSZ|LAZ|MAZ|MME|EHZ|IVA]'
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55663__stammdaten__ZAEHLER__zaehlwerke'
+      required:
+        - befestigungsart
+        - datenqualitaet
+        - fernschaltung
+        - gateway
+        - geraete
+        - gueltigkeitszeitraum
+        - messwerterfassung
+        - zaehlerauspraegung
+        - zaehlernummer
+        - zaehlertyp
+        - zaehlertypspezifikation
+        - zaehlwerke
+    PI_55663__stammdaten__ZAEHLER__geraete:
+      type: object
+      properties:
+        geraeteeigenschaften:
+          $ref: '#/components/schemas/PI_55663__stammdaten__ZAEHLER__geraete__geraeteeigenschaften'
+        geraetenummer:
+          $ref: '../../../bo4e/fields/com/Geraet/geraetenummer.yaml#/components/schemas/geraetenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+Z06.SG10.CCI+++Z27.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+Z13.SG10.CCI+++Z75.CAV+Z30
+            - SG4.IDE+24.SG8.SEQ+Z14.RFF+Z14
+            - SG4.IDE+24.SG8.SEQ+Z14.SG10.CCI+++Z76.CAV+Z30
+            - 'SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]'
+        geraetetyp:
+          $ref: '../../../bo4e/fields/com/Geraet/geraetetyp.yaml#/components/schemas/geraetetyp'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z14.RFF+Z14
+            - SG4.IDE+24.SG8.SEQ+Z14.SG10.CCI+++Z76.CAV+Z30
+            - 'SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]'
+        weitereGeraetenummern:
+          $ref: '../../../bo4e/fields/com/Geraet/weitereGeraetenummern.yaml#/components/schemas/weitereGeraetenummern'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV+Z30
+      required:
+        - geraeteeigenschaften
+        - geraetenummer
+        - geraetetyp
+    PI_55663__stammdaten__ZAEHLER__geraete__geraeteeigenschaften:
+      type: object
+      properties:
+        faktor:
+          $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/faktor.yaml#/components/schemas/faktor'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV
+        geraetemerkmal:
+          $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/geraetemerkmal.yaml#/components/schemas/geraetemerkmal'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV
+            - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV
+            - SG4.IDE+24.SG8.SEQ+Z06.SG10.CCI+++Z27.CAV
+      required:
+        - faktor
+        - geraetemerkmal
+    PI_55663__stammdaten__ZAEHLER__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z03
+            - SG4.IDE+24.SG8.SEQ+Z04
+            - SG4.IDE+24.SG8.SEQ+Z05
+            - SG4.IDE+24.SG8.SEQ+Z06
+            - SG4.IDE+24.SG8.SEQ+Z13
+            - SG4.IDE+24.SG8.SEQ+Z14
+            - SG4.IDE+24.SG8.SEQ+Z20
+      required:
+        - zeitraumId
+    PI_55663__stammdaten__ZAEHLER__zaehlwerke:
+      type: object
+      properties:
+        bezeichnung:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/bezeichnung.yaml#/components/schemas/bezeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++Z63
+        konfiguration:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/konfiguration.yaml#/components/schemas/konfiguration'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.RFF+AGK
+        nachkommastelle:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/nachkommastelle.yaml#/components/schemas/nachkommastelle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+11++Z33.CAV
+        obisKennzahl:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.PIA+5
+        schwachlastfaehig:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/schwachlastfaehig.yaml#/components/schemas/schwachlastfaehig'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+Z10
+        vorkommastelle:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/vorkommastelle.yaml#/components/schemas/vorkommastelle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+11++Z33.CAV
+        wertegranularitaet:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/wertegranularitaet.yaml#/components/schemas/wertegranularitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_55663__stammdaten__ZAEHLER__zaehlwerke__zaehlzeiten'
+      required:
+        - bezeichnung
+        - nachkommastelle
+        - obisKennzahl
+        - schwachlastfaehig
+        - vorkommastelle
+        - wertegranularitaet
+        - zaehlzeiten
+    PI_55663__stammdaten__ZAEHLER__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        register:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/register.yaml#/components/schemas/register'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+Z38
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+Z39
+      required:
+        - register
+        - zaehlzeitDefinition

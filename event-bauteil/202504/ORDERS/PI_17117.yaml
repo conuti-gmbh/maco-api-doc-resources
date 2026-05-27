@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: PI_17117
+  version: '202504'
+  x-bo4e-schema-version: 1.6.5
+  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
+  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+components:
+  schemas:
+    PI_17117:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17117__stammdaten'
+      required:
+        - stammdaten
+    PI_17117__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__stammdaten__AUFTRAG'
+        SPERRAUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__stammdaten__SPERRAUFTRAG'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - SPERRAUFTRAG
+    PI_17117__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - 'IMD+[Z53|Z54]'
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - anfragetyp
+        - lokationsId
+    PI_17117__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_17117__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        allgemeineInformationen:
+          $ref: '#/components/schemas/PI_17117__stammdaten__AUFTRAG__positionsdaten__allgemeineInformationen'
+      required:
+        - allgemeineInformationen
+    PI_17117__stammdaten__AUFTRAG__positionsdaten__allgemeineInformationen:
+      type: object
+      properties:
+        info1:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info1.yaml#/components/schemas/info1'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info2:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info2.yaml#/components/schemas/info2'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info3:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info3.yaml#/components/schemas/info3'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info4:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info4.yaml#/components/schemas/info4'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+        info5:
+          $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info5.yaml#/components/schemas/info5'
+          x-edifact-segment:
+            - SG29.LIN.FTX+ACB
+      required:
+        - info1
+        - info2
+        - info3
+        - info4
+        - info5
+    PI_17117__stammdaten__SPERRAUFTRAG:
+      type: object
+      properties:
+        treffpunkt:
+          $ref: '#/components/schemas/PI_17117__stammdaten__SPERRAUFTRAG__treffpunkt'
+      required:
+        - treffpunkt
+    PI_17117__stammdaten__SPERRAUFTRAG__treffpunkt:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_17117__stammdaten__SPERRAUFTRAG__treffpunkt__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_17117__stammdaten__SPERRAUFTRAG__treffpunkt__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG2.NAD+Z24
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
