@@ -152,31 +152,40 @@ def read_bauteil_provenance(path: Path, yaml: YAML) -> dict[str, str]:
 def resolve_pool(
     pruefis: list[dict],
     scope_by_pid: dict[int, str],
-    *,
-    source: str,
-    warnings: list[str],
-) -> list[tuple[int, str]]:
-    """Map a mapping-entry's pruefi list to sorted (id, scope) pairs.
+) -> tuple[list[tuple[int, str]], list[str]]:
+    """Split a topic's pruefi list into (pool, pending).
 
-    Prüfis without a matching event-bauteil file are dropped with a warning
-    (e.g. filtered out as empty-after-transaktionsdaten-strip, or absent from
-    the POC snapshot).
+    pool = sorted (id, scope) pairs for pruefis that have an event-bauteil.
+    pending = sorted string ids for pruefis whose body-validation spec is not
+    in the snapshot yet (Prüfi im Templater noch nicht implementiert, oder als
+    transaktionsdaten-only von Skript 1 verworfen). The caller records these in
+    ``x-pending-pruefis`` so the gap is visible in the artifact and a later
+    regeneration closes it automatically.
     """
     pool: list[tuple[int, str]] = []
+    pending: list[str] = []
+    seen_ids: set[int] = set()
     for pruefi in pruefis:
         pid = pruefi["id"]
+        # A pruefi can appear on several service tasks / condition paths of the
+        # same topic (distinct `paths` in event-mapping). For the oneOf / pending
+        # we only care about the unique id, so de-duplicate here.
+        if pid in seen_ids:
+            continue
+        seen_ids.add(pid)
         scope = scope_by_pid.get(pid)
         if scope is None:
-            warnings.append(f"no event-bauteil for pruefi {pid} ({source}) — dropped")
+            pending.append(str(pid))
             continue
         pool.append((pid, scope))
     pool.sort()
-    return pool
+    pending.sort()
+    return pool, pending
 
 
-def schema_name(role: str, topic: str, pool: list[tuple[int, str]]) -> str:
+def schema_name(role: str, topic: str, pruefi_ids: list[int]) -> str:
     name = f"[{role}] {topic}"
-    if pool and all(pid in GAS_RANGE for pid, _ in pool):
+    if pruefi_ids and all(pid in GAS_RANGE for pid in pruefi_ids):
         name += " GAS"
     return name
 
@@ -184,11 +193,15 @@ def schema_name(role: str, topic: str, pool: list[tuple[int, str]]) -> str:
 def build_transaktionsdaten(
     required_fields: list[str],
     pruefi_source: str | None,
-    pool: list[tuple[int, str]],
+    all_pruefi_ids: list[int],
 ) -> dict:
-    """transaktionsdaten as allOf(Transaktionsdaten $ref + local required-override)."""
+    """transaktionsdaten as allOf(Transaktionsdaten $ref + local required-override).
+
+    The pruefidentifikator Beauskunftung lists the full topic pool (resolved +
+    pending), independent of whether each Prüfi already has an event-bauteil.
+    """
     required = set(required_fields)
-    pruefi_ids = [str(pid) for pid, _ in pool]
+    pruefi_ids = [str(pid) for pid in all_pruefi_ids]
 
     if pruefi_source == "transaktionsdaten":
         # NNA outlier: the body value routes the gateway → required + enum.
@@ -217,6 +230,8 @@ def build_schema(
     role: str,
     topic: str,
     pool: list[tuple[int, str]],
+    pending: list[str],
+    all_pruefi_ids: list[int],
     required_fields: list[str],
     pruefi_source: str | None,
 ) -> dict:
@@ -229,12 +244,12 @@ def build_schema(
         }
         for pid, scope in pool
     ]
-    return {
+    schema: dict = {
         "type": "object",
         "required": ["stammdaten", "transaktionsdaten", "zusatzdaten"],
         "properties": {
             "transaktionsdaten": build_transaktionsdaten(
-                required_fields, pruefi_source, pool
+                required_fields, pruefi_source, all_pruefi_ids
             ),
             "zusatzdaten": {
                 "type": "object",
@@ -245,8 +260,16 @@ def build_schema(
                 },
             },
         },
-        "allOf": [{"oneOf": one_of}],
     }
+    if pending:
+        # Prüfis im BPMN-Pool ohne event-bauteil (Templater-Spec fehlt noch).
+        # Sichtbar gemacht, damit die Teil-Abdeckung im Artefakt steht; ein
+        # Re-Run nach dem Templater-Nachzug entfernt den Marker.
+        schema["x-pending-pruefis"] = pending
+    if one_of:
+        schema["allOf"] = [{"oneOf": one_of}]
+    # else: Stub — nur Envelope, alle Prüfis pending (keine oneOf-Body-Validierung).
+    return schema
 
 
 def build_document(
@@ -330,6 +353,8 @@ def compose(
 
     seen = 0
     written = 0
+    stub_count = 0
+    partial_count = 0
     fallback_count = 0
 
     for fmt, role, topic, entry in iter_events(
@@ -339,14 +364,14 @@ def compose(
         filter_topic=filter_topic,
     ):
         seen += 1
-        source = entry.get("source", f"{role}/{fmt}/{topic}")
+        # No format-level skip: a WIP FUM version (e.g. 202610) whose pruefis
+        # the Templater has not produced yet still gets a spec per event — a
+        # stub listing all its pruefis in x-pending-pruefis. scope_by_pid is
+        # then empty, so every pruefi is pending.
         scope_by_pid = scope_index.get(fmt, {})
-        pool = resolve_pool(
-            entry.get("pruefis", []), scope_by_pid, source=source, warnings=warnings
-        )
-        if not pool:
-            warnings.append(f"no resolvable bauteile for {role}/{fmt}/{topic} — skipped")
-            continue
+        pruefis = entry.get("pruefis", [])
+        all_ids = sorted({p["id"] for p in pruefis})
+        pool, pending = resolve_pool(pruefis, scope_by_pid)
 
         required_entry = lookup_required(required_doc, fmt, role, topic)
         if required_entry is not None:
@@ -363,8 +388,10 @@ def compose(
                     file=sys.stderr,
                 )
 
-        name = schema_name(role, topic, pool)
-        schema = build_schema(fmt, role, topic, pool, required_fields, pruefi_source)
+        name = schema_name(role, topic, all_ids)
+        schema = build_schema(
+            fmt, role, topic, pool, pending, all_ids, required_fields, pruefi_source
+        )
 
         if fmt not in provenance_cache and fmt in representative:
             provenance_cache[fmt] = read_bauteil_provenance(representative[fmt], yaml)
@@ -384,9 +411,22 @@ def compose(
         yaml.dump(document, buffer)
         out_path.write_text(buffer.getvalue(), encoding="utf-8")
         written += 1
+        if not pool:
+            stub_count += 1
+        elif pending:
+            partial_count += 1
         if verbose:
-            print(f"wrote: {out_path.relative_to(target.parent)}", file=sys.stderr)
+            kind = "stub" if not pool else ("partial" if pending else "full")
+            print(
+                f"wrote ({kind}): {out_path.relative_to(target.parent)}",
+                file=sys.stderr,
+            )
 
+    if partial_count or stub_count:
+        warnings.append(
+            f"{partial_count} event(s) with pending pruefis + {stub_count} stub(s) "
+            f"(all pruefis pending) — recorded in x-pending-pruefis"
+        )
     if fallback_count:
         warnings.append(
             f"{fallback_count} event(s) had no DMN required-fields entry — "

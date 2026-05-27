@@ -176,6 +176,25 @@ def test_agnostic_event_optional_pruefi_with_description_and_examples(
 # ----------------------------- GAS suffix heuristic -----------------------------
 
 
+def test_duplicate_pruefi_id_is_deduplicated(tmp_path: Path) -> None:
+    """Same pruefi on multiple tasks/paths → one oneOf ref, one pending entry."""
+    bauteil = tmp_path / "event-bauteil"
+    _write_bauteil(bauteil, "202604", "UTILMD", 55001)
+    # 55001 twice (resolved), 55077 twice (pending).
+    mapping = _mapping("LF", "TOPIC", [55001, 55001, 55077, 55077])
+    required = _required("LF", "TOPIC", ["absender"])
+    _run(tmp_path, mapping, required)
+
+    schema = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
+        "[LF] TOPIC"
+    ]
+    one_of = schema["allOf"][0]["oneOf"]
+    assert [r["$ref"] for r in one_of] == [
+        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001"
+    ]
+    assert schema["x-pending-pruefis"] == ["55077"]  # deduped
+
+
 def test_gas_only_pool_gets_gas_suffix(tmp_path: Path) -> None:
     bauteil = tmp_path / "event-bauteil"
     _write_bauteil(bauteil, "202604", "UTILMD_GAS", 44112)
@@ -245,32 +264,71 @@ def test_missing_required_entry_falls_back_to_common_core(tmp_path: Path) -> Non
 # ----------------------------- missing bauteile -----------------------------
 
 
-def test_missing_bauteil_drops_pruefi_with_warning(tmp_path: Path) -> None:
+def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
     bauteil = tmp_path / "event-bauteil"
     _write_bauteil(bauteil, "202604", "UTILMD", 55001)
-    # 55077 has no bauteil → dropped.
+    # 55077 has no bauteil → recorded as pending, not in oneOf.
 
     mapping = _mapping("LF", "TOPIC", [55001, 55077])
     required = _required("LF", "TOPIC", ["absender"])
-    seen, written, warnings = _run(tmp_path, mapping, required)
+    seen, written, _ = _run(tmp_path, mapping, required)
     assert (seen, written) == (1, 1)
-    assert any("55077" in w for w in warnings)
 
-    one_of = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
+    schema = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
         "[LF] TOPIC"
-    ]["allOf"][0]["oneOf"]
+    ]
+    assert schema["x-pending-pruefis"] == ["55077"]
+    one_of = schema["allOf"][0]["oneOf"]
     assert [r["$ref"] for r in one_of] == [
         "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001"
     ]
+    # The pending pruefi still appears in the Beauskunftung (full topic pool).
+    pruefi = schema["properties"]["transaktionsdaten"]["allOf"][1]["properties"][
+        "pruefidentifikator"
+    ]
+    assert pruefi["examples"] == ["55001", "55077"]
 
 
-def test_event_skipped_when_no_bauteile_resolve(tmp_path: Path) -> None:
+def test_all_missing_emits_stub(tmp_path: Path) -> None:
+    # Format 202604 is in the snapshot (dir exists) but the pruefi has no
+    # bauteil → stub: envelope + x-pending, no oneOf body validation.
     (tmp_path / "event-bauteil" / "202604" / "UTILMD").mkdir(parents=True)
     mapping = _mapping("LF", "TOPIC", [99999])
     required = _required("LF", "TOPIC", ["absender"])
-    seen, written, warnings = _run(tmp_path, mapping, required)
-    assert (seen, written) == (1, 0)
-    assert any("no resolvable bauteile" in w for w in warnings)
+    seen, written, _ = _run(tmp_path, mapping, required)
+    assert (seen, written) == (1, 1)
+
+    schema = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
+        "[LF] TOPIC"
+    ]
+    assert schema["x-pending-pruefis"] == ["99999"]
+    assert "allOf" not in schema  # stub: no oneOf
+    assert schema["required"] == ["stammdaten", "transaktionsdaten", "zusatzdaten"]
+    assert (
+        schema["properties"]["zusatzdaten"]["properties"]["eventname"]["const"]
+        == "TOPIC"
+    )
+
+
+def test_uncovered_wip_format_emits_stub(tmp_path: Path) -> None:
+    # event-bauteil only has 202604. A 202610 event (WIP FUM, Templater pruefis
+    # not produced yet) still gets a spec: a stub listing all its pruefis as
+    # pending — no format-level skip.
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping("LF", "TOPIC", [55001, 44001], fmt="202610")
+    required = _required("LF", "TOPIC", ["absender"], fmt="202610")
+    seen, written, _ = _run(tmp_path, mapping, required)
+    assert (seen, written) == (1, 1)
+
+    schema = _load_out(tmp_path, "202610", "LF", "TOPIC")["components"]["schemas"][
+        "[LF] TOPIC"
+    ]
+    assert schema["x-pending-pruefis"] == ["44001", "55001"]  # all pruefis TBD
+    assert "allOf" not in schema  # stub — no oneOf yet
+    assert (
+        schema["properties"]["zusatzdaten"]["properties"]["eventname"]["const"]
+        == "TOPIC"
+    )
 
 
 # ----------------------------- determinism -----------------------------
