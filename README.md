@@ -4,7 +4,7 @@ Source of Truth für die in Apidog gerenderten API-Doku-Ressourcen rund um das B
 
 ## Status: POC-Befüllung (vollständig)
 
-Dieser Snapshot ist der **erste vollständige POC**: Atom-Tree (`bo4e/`), Prüfi-Specs (`pruefi/`), Event-Bauteile (`event-bauteil/`), Event-Specs (`event/`) und die Generator-Pipeline (`scripts/`) sind alle drin. Coverage- und Lücken-Übersicht visualisiert: **[`docs/event-spec-coverage-gaps.pdf`](docs/event-spec-coverage-gaps.pdf)** (8 Seiten).
+Dieser Snapshot ist der **erste vollständige POC**: Atom-Tree (`bo4e/`), Prüfi-Specs (`pruefi/`), Event-Bauteile (`event-bauteil/`), Event-Specs (`event/`) und die Generator-Pipeline (`scripts/`) sind alle drin.
 
 Folge-Pfade (nicht Teil dieses POC):
 - GitHub-Workflow zum automatisierten Refresh — Story [MACO-13087](https://conuti.atlassian.net/browse/MACO-13087).
@@ -48,8 +48,6 @@ scripts/               Generator-Pipeline (Python 3.9+, ruamel.yaml + pytest, 53
   parse_bpmn_events.py            (Skript 2: T_*.bpmn → event-mapping.json)
   extract_required_from_dmn.py    (Skript 4: S_EVENT_VARIABLEN.dmn → event-required-fields.json)
   compose_event_specs.py          (Skript 3: event-bauteil + JSONs → event/)
-
-docs/event-spec-coverage-gaps.pdf  Visueller Coverage- + Lücken-Bericht (8 Seiten)
 ```
 
 **Inventar:** 1497 + 1010 + 943 + 555 = **4 005 yaml-Specs**, 28 598 externe `$ref`-Auflösungen aus `pruefi/` gegen `bo4e/` (vollständig, 0 missing).
@@ -89,7 +87,7 @@ Wenn Prüfis im Event-BPMN sind, aber (noch) kein event-bauteil dazu existiert:
 - **Partial:** `x-pending-pruefis: [<ids>]`-Extension + reduzierter `oneOf` (nur Prüfis mit Bauteil)
 - **Stub:** kein `oneOf` (alle Prüfis pending) — nur Envelope + `x-pending-pruefis`
 
-Macht die Coverage-Lücke im Artefakt sichtbar; ein Re-Run nach Templater-Nachzug entfernt den Marker automatisch. Aktueller POC-Stand: **354 voll / 15 partial / 186 Stub** (davon 136 in 202610, FUM noch nicht produziert; Rest in aktiven Formaten). Details + Cluster-Übersicht: [`docs/event-spec-coverage-gaps.pdf`](docs/event-spec-coverage-gaps.pdf).
+Macht die Coverage-Lücke im Artefakt sichtbar; ein Re-Run nach Templater-Nachzug entfernt den Marker automatisch. Aktueller POC-Stand: **354 voll / 15 partial / 186 Stub** (davon 136 in 202610, FUM noch nicht produziert; Rest in aktiven Formaten).
 
 ## Hinweise für Apidog-Owner-Review
 
