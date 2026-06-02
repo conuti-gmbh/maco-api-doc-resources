@@ -10,30 +10,34 @@ components:
     '[LF] START_KUENDIGUNG':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44016.yaml#/components/schemas/PI_44016__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55016.yaml#/components/schemas/PI_55016__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - transaktionsgrund
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.
-                  examples:
-                    - '44016'
-                    - '55016'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - kategorie
+            - transaktionsgrund
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.
+                examples:
+                - '44016'
+                - '55016'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -41,7 +45,3 @@ components:
               type: string
               const: START_KUENDIGUNG
               default: START_KUENDIGUNG
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44016.yaml#/components/schemas/PI_44016
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55016.yaml#/components/schemas/PI_55016

@@ -10,30 +10,34 @@ components:
     '[LF] START_GESCHAEFTSDATENANFRAGE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/ORDERS/PI_17102.yaml#/components/schemas/PI_17102__stammdaten
+          - $ref: ../../event-bauteil/202604/ORDERS/PI_17132.yaml#/components/schemas/PI_17132__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102, 17132.
-                  examples:
-                    - '17102'
-                    - '17132'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102, 17132.
+                examples:
+                - '17102'
+                - '17132'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -41,7 +45,3 @@ components:
               type: string
               const: START_GESCHAEFTSDATENANFRAGE
               default: START_GESCHAEFTSDATENANFRAGE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/ORDERS/PI_17102.yaml#/components/schemas/PI_17102
-            - $ref: ../../event-bauteil/202604/ORDERS/PI_17132.yaml#/components/schemas/PI_17132

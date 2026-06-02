@@ -10,28 +10,31 @@ components:
     '[NB] START_VERSAND_STDA_BK_TREUE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55670.yaml#/components/schemas/PI_55670__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55670.
-                  examples:
-                    - '55670'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55670.
+                examples:
+                - '55670'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -39,6 +42,3 @@ components:
               type: string
               const: START_VERSAND_STDA_BK_TREUE
               default: START_VERSAND_STDA_BK_TREUE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55670.yaml#/components/schemas/PI_55670

@@ -10,27 +10,30 @@ components:
     '[LF] START_PARTIN':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/PARTIN/PI_37000.yaml#/components/schemas/PI_37000__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - empfaenger
-                - kategorie
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37000.
-                  examples:
-                    - '37000'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - empfaenger
+            - kategorie
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37000.
+                examples:
+                - '37000'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -38,6 +41,3 @@ components:
               type: string
               const: START_PARTIN
               default: START_PARTIN
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/PARTIN/PI_37000.yaml#/components/schemas/PI_37000

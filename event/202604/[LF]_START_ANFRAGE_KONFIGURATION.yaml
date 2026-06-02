@@ -10,30 +10,33 @@ components:
     '[LF] START_ANFRAGE_KONFIGURATION':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/REQOTE/PI_35004.yaml#/components/schemas/PI_35004__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - lieferdatum
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 35004.
-                  examples:
-                    - '35004'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - kategorie
+            - lieferdatum
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 35004.
+                examples:
+                - '35004'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -41,6 +44,3 @@ components:
               type: string
               const: START_ANFRAGE_KONFIGURATION
               default: START_ANFRAGE_KONFIGURATION
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/REQOTE/PI_35004.yaml#/components/schemas/PI_35004

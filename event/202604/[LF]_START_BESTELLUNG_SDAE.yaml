@@ -10,50 +10,70 @@ components:
     '[LF] START_BESTELLUNG_SDAE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55156.yaml#/components/schemas/PI_55156__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55180.yaml#/components/schemas/PI_55180__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55220.yaml#/components/schemas/PI_55220__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55227.yaml#/components/schemas/PI_55227__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55555.yaml#/components/schemas/PI_55555__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55621.yaml#/components/schemas/PI_55621__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55622.yaml#/components/schemas/PI_55622__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55623.yaml#/components/schemas/PI_55623__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55624.yaml#/components/schemas/PI_55624__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55625.yaml#/components/schemas/PI_55625__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55626.yaml#/components/schemas/PI_55626__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55654.yaml#/components/schemas/PI_55654__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55655.yaml#/components/schemas/PI_55655__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55656.yaml#/components/schemas/PI_55656__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55657.yaml#/components/schemas/PI_55657__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55658.yaml#/components/schemas/PI_55658__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55673.yaml#/components/schemas/PI_55673__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55692.yaml#/components/schemas/PI_55692__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - gueltigAb
-                - kategorie
-                - sparte
-                - transaktionsgrund
-                - transaktionsgrundergaenzung
-                - vertragsbeginn
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55156, 55180, 55220, 55227, 55555, 55621, 55622, 55623, 55624, 55625, 55626, 55654, 55655, 55656, 55657, 55658, 55673, 55692.
-                  examples:
-                    - '55156'
-                    - '55180'
-                    - '55220'
-                    - '55227'
-                    - '55555'
-                    - '55621'
-                    - '55622'
-                    - '55623'
-                    - '55624'
-                    - '55625'
-                    - '55626'
-                    - '55654'
-                    - '55655'
-                    - '55656'
-                    - '55657'
-                    - '55658'
-                    - '55673'
-                    - '55692'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - gueltigAb
+            - kategorie
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+            - vertragsbeginn
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55156, 55180, 55220, 55227, 55555, 55621, 55622, 55623, 55624, 55625, 55626, 55654, 55655, 55656, 55657, 55658, 55673, 55692.
+                examples:
+                - '55156'
+                - '55180'
+                - '55220'
+                - '55227'
+                - '55555'
+                - '55621'
+                - '55622'
+                - '55623'
+                - '55624'
+                - '55625'
+                - '55626'
+                - '55654'
+                - '55655'
+                - '55656'
+                - '55657'
+                - '55658'
+                - '55673'
+                - '55692'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -61,23 +81,3 @@ components:
               type: string
               const: START_BESTELLUNG_SDAE
               default: START_BESTELLUNG_SDAE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55156.yaml#/components/schemas/PI_55156
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55180.yaml#/components/schemas/PI_55180
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55220.yaml#/components/schemas/PI_55220
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55227.yaml#/components/schemas/PI_55227
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55555.yaml#/components/schemas/PI_55555
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55621.yaml#/components/schemas/PI_55621
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55622.yaml#/components/schemas/PI_55622
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55623.yaml#/components/schemas/PI_55623
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55624.yaml#/components/schemas/PI_55624
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55625.yaml#/components/schemas/PI_55625
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55626.yaml#/components/schemas/PI_55626
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55654.yaml#/components/schemas/PI_55654
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55655.yaml#/components/schemas/PI_55655
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55656.yaml#/components/schemas/PI_55656
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55657.yaml#/components/schemas/PI_55657
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55658.yaml#/components/schemas/PI_55658
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55673.yaml#/components/schemas/PI_55673
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55692.yaml#/components/schemas/PI_55692

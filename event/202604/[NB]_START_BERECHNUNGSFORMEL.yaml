@@ -10,31 +10,34 @@ components:
     '[NB] START_BERECHNUNGSFORMEL':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILTS/PI_25001.yaml#/components/schemas/PI_25001__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - lokationsId
-                - lokationsTyp
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25001.
-                  examples:
-                    - '25001'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - kategorie
+            - lokationsId
+            - lokationsTyp
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25001.
+                examples:
+                - '25001'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -42,6 +45,3 @@ components:
               type: string
               const: START_BERECHNUNGSFORMEL
               default: START_BERECHNUNGSFORMEL
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILTS/PI_25001.yaml#/components/schemas/PI_25001

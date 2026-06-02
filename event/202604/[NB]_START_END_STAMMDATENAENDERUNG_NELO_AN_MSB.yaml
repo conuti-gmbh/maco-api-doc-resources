@@ -10,28 +10,31 @@ components:
     '[NB] START_END_STAMMDATENAENDERUNG_NELO_AN_MSB':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55227.yaml#/components/schemas/PI_55227__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55227.
-                  examples:
-                    - '55227'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55227.
+                examples:
+                - '55227'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -39,6 +42,3 @@ components:
               type: string
               const: START_END_STAMMDATENAENDERUNG_NELO_AN_MSB
               default: START_END_STAMMDATENAENDERUNG_NELO_AN_MSB
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55227.yaml#/components/schemas/PI_55227

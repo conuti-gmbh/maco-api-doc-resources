@@ -10,37 +10,44 @@ components:
     '[LF] START_VERSAND_SDAE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44109.yaml#/components/schemas/PI_44109__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44120.yaml#/components/schemas/PI_44120__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55109.yaml#/components/schemas/PI_55109__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55110.yaml#/components/schemas/PI_55110__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55230.yaml#/components/schemas/PI_55230__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - gueltigAb
-                - kategorie
-                - sparte
-                - transaktionsgrund
-                - transaktionsgrundergaenzung
-                - vertragsbeginn
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44109, 44120, 55109, 55110, 55230.
-                  examples:
-                    - '44109'
-                    - '44120'
-                    - '55109'
-                    - '55110'
-                    - '55230'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - gueltigAb
+            - kategorie
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+            - vertragsbeginn
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44109, 44120, 55109, 55110, 55230.
+                examples:
+                - '44109'
+                - '44120'
+                - '55109'
+                - '55110'
+                - '55230'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -48,10 +55,3 @@ components:
               type: string
               const: START_VERSAND_SDAE
               default: START_VERSAND_SDAE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44109.yaml#/components/schemas/PI_44109
-            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44120.yaml#/components/schemas/PI_44120
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55109.yaml#/components/schemas/PI_55109
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55110.yaml#/components/schemas/PI_55110
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55230.yaml#/components/schemas/PI_55230

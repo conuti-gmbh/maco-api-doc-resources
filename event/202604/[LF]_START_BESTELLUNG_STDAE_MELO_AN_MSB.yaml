@@ -10,30 +10,33 @@ components:
     '[LF] START_BESTELLUNG_STDAE_MELO_AN_MSB':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55658.yaml#/components/schemas/PI_55658__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - sparte
-                - transaktionsgrund
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55658.
-                  examples:
-                    - '55658'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+            - transaktionsgrund
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55658.
+                examples:
+                - '55658'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -41,6 +44,3 @@ components:
               type: string
               const: START_BESTELLUNG_STDAE_MELO_AN_MSB
               default: START_BESTELLUNG_STDAE_MELO_AN_MSB
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55658.yaml#/components/schemas/PI_55658

@@ -10,38 +10,49 @@ components:
     '[NB] START_BESTELLUNG_SDAE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55137.yaml#/components/schemas/PI_55137__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55232.yaml#/components/schemas/PI_55232__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55555.yaml#/components/schemas/PI_55555__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55559.yaml#/components/schemas/PI_55559__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55644.yaml#/components/schemas/PI_55644__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55645.yaml#/components/schemas/PI_55645__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55646.yaml#/components/schemas/PI_55646__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55647.yaml#/components/schemas/PI_55647__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55648.yaml#/components/schemas/PI_55648__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - sparte
-                - transaktionsgrund
-                - transaktionsgrundergaenzung
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
-                  examples:
-                    - '55137'
-                    - '55232'
-                    - '55555'
-                    - '55559'
-                    - '55644'
-                    - '55645'
-                    - '55646'
-                    - '55647'
-                    - '55648'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+                examples:
+                - '55137'
+                - '55232'
+                - '55555'
+                - '55559'
+                - '55644'
+                - '55645'
+                - '55646'
+                - '55647'
+                - '55648'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -49,14 +60,3 @@ components:
               type: string
               const: START_BESTELLUNG_SDAE
               default: START_BESTELLUNG_SDAE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55137.yaml#/components/schemas/PI_55137
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55232.yaml#/components/schemas/PI_55232
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55555.yaml#/components/schemas/PI_55555
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55559.yaml#/components/schemas/PI_55559
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55644.yaml#/components/schemas/PI_55644
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55645.yaml#/components/schemas/PI_55645
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55646.yaml#/components/schemas/PI_55646
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55647.yaml#/components/schemas/PI_55647
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55648.yaml#/components/schemas/PI_55648

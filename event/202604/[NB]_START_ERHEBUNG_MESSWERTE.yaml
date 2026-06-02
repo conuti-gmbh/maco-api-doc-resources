@@ -10,40 +10,51 @@ components:
     '[NB] START_ERHEBUNG_MESSWERTE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13002.yaml#/components/schemas/PI_13002__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13008.yaml#/components/schemas/PI_13008__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13009.yaml#/components/schemas/PI_13009__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13016.yaml#/components/schemas/PI_13016__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13017.yaml#/components/schemas/PI_13017__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13018.yaml#/components/schemas/PI_13018__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13019.yaml#/components/schemas/PI_13019__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13025.yaml#/components/schemas/PI_13025__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13027.yaml#/components/schemas/PI_13027__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - anfrageReferenz
-                - empfaenger
-                - kategorie
-                - lokationsTyp
-                - sparte
-                - typ
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.
-                  examples:
-                    - '13002'
-                    - '13008'
-                    - '13009'
-                    - '13016'
-                    - '13017'
-                    - '13018'
-                    - '13019'
-                    - '13025'
-                    - '13027'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - anfrageReferenz
+            - empfaenger
+            - kategorie
+            - lokationsTyp
+            - sparte
+            - typ
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.
+                examples:
+                - '13002'
+                - '13008'
+                - '13009'
+                - '13016'
+                - '13017'
+                - '13018'
+                - '13019'
+                - '13025'
+                - '13027'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -51,14 +62,3 @@ components:
               type: string
               const: START_ERHEBUNG_MESSWERTE
               default: START_ERHEBUNG_MESSWERTE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13002.yaml#/components/schemas/PI_13002
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13008.yaml#/components/schemas/PI_13008
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13009.yaml#/components/schemas/PI_13009
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13016.yaml#/components/schemas/PI_13016
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13017.yaml#/components/schemas/PI_13017
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13018.yaml#/components/schemas/PI_13018
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13019.yaml#/components/schemas/PI_13019
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13025.yaml#/components/schemas/PI_13025
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13027.yaml#/components/schemas/PI_13027

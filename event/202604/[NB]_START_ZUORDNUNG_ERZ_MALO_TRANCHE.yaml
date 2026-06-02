@@ -10,32 +10,35 @@ components:
     '[NB] START_ZUORDNUNG_ERZ_MALO_TRANCHE':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55607.yaml#/components/schemas/PI_55607__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - sparte
-                - transaktionsgrund
-                - transaktionsgrundergaenzung
-                - transaktionsgrundergaenzungBefristeteAnmeldung
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55607.
-                  examples:
-                    - '55607'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+            - transaktionsgrundergaenzungBefristeteAnmeldung
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55607.
+                examples:
+                - '55607'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -43,6 +46,3 @@ components:
               type: string
               const: START_ZUORDNUNG_ERZ_MALO_TRANCHE
               default: START_ZUORDNUNG_ERZ_MALO_TRANCHE
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55607.yaml#/components/schemas/PI_55607

@@ -10,31 +10,35 @@ components:
     '[NB] START_VERSAND_LIEFERSCHEIN':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13016.yaml#/components/schemas/PI_13016__stammdaten
+          - $ref: ../../event-bauteil/202604/MSCONS/PI_13019.yaml#/components/schemas/PI_13019__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - anfrageReferenz
-                - empfaenger
-                - kategorie
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13016, 13019.
-                  examples:
-                    - '13016'
-                    - '13019'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - anfrageReferenz
+            - empfaenger
+            - kategorie
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13016, 13019.
+                examples:
+                - '13016'
+                - '13019'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -42,7 +46,3 @@ components:
               type: string
               const: START_VERSAND_LIEFERSCHEIN
               default: START_VERSAND_LIEFERSCHEIN
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13016.yaml#/components/schemas/PI_13016
-            - $ref: ../../event-bauteil/202604/MSCONS/PI_13019.yaml#/components/schemas/PI_13019

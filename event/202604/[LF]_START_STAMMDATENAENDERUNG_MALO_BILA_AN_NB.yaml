@@ -10,30 +10,33 @@ components:
     '[LF] START_STAMMDATENAENDERUNG_MALO_BILA_AN_NB GAS':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44120.yaml#/components/schemas/PI_44120__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - gueltigAb
-                - kategorie
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44120.
-                  examples:
-                    - '44120'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - gueltigAb
+            - kategorie
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44120.
+                examples:
+                - '44120'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -41,6 +44,3 @@ components:
               type: string
               const: START_STAMMDATENAENDERUNG_MALO_BILA_AN_NB
               default: START_STAMMDATENAENDERUNG_MALO_BILA_AN_NB
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44120.yaml#/components/schemas/PI_44120

@@ -10,30 +10,35 @@ components:
     '[NB] START_UEBERM_DEFINITION':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILTS/PI_25005.yaml#/components/schemas/PI_25005__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILTS/PI_25008.yaml#/components/schemas/PI_25008__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILTS/PI_25009.yaml#/components/schemas/PI_25009__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
-                  examples:
-                    - '25005'
-                    - '25008'
-                    - '25009'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
+                examples:
+                - '25005'
+                - '25008'
+                - '25009'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -41,8 +46,3 @@ components:
               type: string
               const: START_UEBERM_DEFINITION
               default: START_UEBERM_DEFINITION
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILTS/PI_25005.yaml#/components/schemas/PI_25005
-            - $ref: ../../event-bauteil/202604/UTILTS/PI_25008.yaml#/components/schemas/PI_25008
-            - $ref: ../../event-bauteil/202604/UTILTS/PI_25009.yaml#/components/schemas/PI_25009

@@ -10,32 +10,36 @@ components:
     '[NB] START_AUFTRAGSSTATUS':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/IFTSTA/PI_21039.yaml#/components/schemas/PI_21039__stammdaten
+          - $ref: ../../event-bauteil/202604/IFTSTA/PI_21040.yaml#/components/schemas/PI_21040__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - antwortstatus
-                - antwortstatusCodeliste
-                - empfaenger
-                - fertigstellungsdatum
-                - sparte
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
-                  examples:
-                    - '21039'
-                    - '21040'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - antwortstatus
+            - antwortstatusCodeliste
+            - empfaenger
+            - fertigstellungsdatum
+            - sparte
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
+                examples:
+                - '21039'
+                - '21040'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -43,7 +47,3 @@ components:
               type: string
               const: START_AUFTRAGSSTATUS
               default: START_AUFTRAGSSTATUS
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/IFTSTA/PI_21039.yaml#/components/schemas/PI_21039
-            - $ref: ../../event-bauteil/202604/IFTSTA/PI_21040.yaml#/components/schemas/PI_21040

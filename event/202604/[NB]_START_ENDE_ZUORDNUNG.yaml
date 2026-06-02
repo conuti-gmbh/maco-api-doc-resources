@@ -10,31 +10,35 @@ components:
     '[NB] START_ENDE_ZUORDNUNG':
       type: object
       required:
-        - stammdaten
-        - transaktionsdaten
-        - zusatzdaten
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55037.yaml#/components/schemas/PI_55037__stammdaten
+          - $ref: ../../event-bauteil/202604/UTILMD/PI_55611.yaml#/components/schemas/PI_55611__stammdaten
         transaktionsdaten:
           allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - sparte
-                - transaktionsgrund
-                - transaktionsgrundergaenzung
-              properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55037, 55611.
-                  examples:
-                    - '55037'
-                    - '55611'
+          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
+          - type: object
+            required:
+            - absender
+            - empfaenger
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+            properties:
+              pruefidentifikator:
+                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55037, 55611.
+                examples:
+                - '55037'
+                - '55611'
         zusatzdaten:
           type: object
           required:
-            - prozessId
-            - eventname
+          - prozessId
+          - eventname
           properties:
             prozessId:
               type: string
@@ -42,7 +46,3 @@ components:
               type: string
               const: START_ENDE_ZUORDNUNG
               default: START_ENDE_ZUORDNUNG
-      allOf:
-        - oneOf:
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55037.yaml#/components/schemas/PI_55037
-            - $ref: ../../event-bauteil/202604/UTILMD/PI_55611.yaml#/components/schemas/PI_55611
