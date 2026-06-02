@@ -53,10 +53,72 @@ def slug(rel: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]", "_", rel)
 
 
-def key_for(repo_root: Path, file: Path, name: str) -> str:
+def verbose_key(repo_root: Path, file: Path, name: str) -> str:
+    """Path-qualified key: <repo/rel/path>__<name>. Long but collision-free by
+    construction — used as the deterministic fallback when a readable key clashes."""
     rel = file.resolve().relative_to(repo_root.resolve())
     rel_noext = rel.with_suffix("")
     return slug(str(rel_noext).replace("/", "__") + "__" + name)
+
+
+def readable_key(repo_root: Path, file: Path, name: str) -> str:
+    """Short, human-readable component key for Apidog's display (it shows the key
+    verbatim). Drops the format version, the scope (UTILMD…) and the file-vs-name
+    doubling; uses '.' as the separator (valid in OpenAPI component keys).
+
+        bo4e/bo/Marktlokation                -> bo.Marktlokation
+        bo4e/enum/MarktlokationsTyp          -> enum.MarktlokationsTyp
+        bo4e/fields/bo/Marktlokation/x (x)   -> field.Marktlokation.x
+        pruefi/<fmt>/<scope>/PI_5#PI_5__a__b -> pruefi.PI_5.a.b
+        event-bauteil/<fmt>/<scope>/…#PI_5…  -> bauteil.PI_5…
+        event/<fmt>/[NB]_X  ([NB] X)         -> event.NB.X
+
+    NOT guaranteed unique on its own — collisions fall back to verbose_key (see
+    build_keymap). Empirically 0 collisions for 202604."""
+    rel = file.resolve().relative_to(repo_root.resolve()).with_suffix("")
+    parts = str(rel).split("/")
+    ns = parts[0]
+    if ns == "bo4e":
+        tier = parts[1]  # bo / com / cdoc / enum / fields
+        if tier == "fields":
+            # bo4e/fields/<tier2>/<Owner>/<field-file> ; name == field
+            return f"field.{parts[3]}.{slug(name)}"
+        return f"{tier}.{slug(name)}"
+    if ns == "pruefi":
+        return "pruefi." + slug(name).replace("__", ".")
+    if ns == "event-bauteil":
+        return "bauteil." + slug(name).replace("__", ".")
+    if ns == "event":
+        m = re.match(r"^\[(\w+)\]\s*(.+)$", name)  # "[NB] START_X" -> NB . START_X
+        body = f"{m.group(1)}.{slug(m.group(2))}" if m else slug(name)
+        return "event." + body
+    return slug(str(rel).replace("/", ".") + "." + name)
+
+
+def build_keymap(repo_root: Path, pairs: list) -> dict:
+    """(file, name) -> final bundle key. Readable by default; any readable-key
+    collision drops *all* its members to verbose_key (collision-free). Asserts the
+    final mapping is injective."""
+    from collections import defaultdict
+
+    by_readable: dict = defaultdict(list)
+    for f, n in pairs:
+        by_readable[readable_key(repo_root, f, n)].append((f, n))
+
+    keymap: dict = {}
+    fallbacks = 0
+    for rk, members in by_readable.items():
+        if len(members) == 1:
+            keymap[members[0]] = rk
+        else:
+            for f, n in members:
+                keymap[(f, n)] = verbose_key(repo_root, f, n)
+                fallbacks += 1
+
+    final = set(keymap.values())
+    if len(final) != len(keymap):
+        raise RuntimeError("BUG: key map not injective even after verbose fallback")
+    return keymap, fallbacks
 
 
 def split_ref(ref: str):
@@ -76,22 +138,32 @@ def resolve(owner_file: Path, ref: str) -> tuple[Path, str]:
     return target, name
 
 
-def transform(node, owner_file: Path, repo_root: Path, targets: list):
-    """Deep-copy ``node``; rewrite every $ref to a local bundled key and record
-    the (file, name) it points to in ``targets``."""
+def collect_targets(node, owner_file: Path, targets: list):
+    """Walk ``node`` and record every (file, name) a schema-$ref points to."""
     if isinstance(node, dict):
         ref = node.get("$ref")
         if isinstance(ref, str) and _FRAG in ref:
-            tfile, tname = resolve(owner_file, ref)
-            targets.append((tfile, tname))
+            targets.append(resolve(owner_file, ref))
+        for k, v in node.items():
+            if k != "$ref":
+                collect_targets(v, owner_file, targets)
+    elif isinstance(node, list):
+        for v in node:
+            collect_targets(v, owner_file, targets)
+
+
+def rewrite(node, owner_file: Path, keymap: dict):
+    """Deep-copy ``node``; rewrite every schema-$ref to its local bundled key via
+    ``keymap``. Non-schema $refs (external example URLs) pass through untouched."""
+    if isinstance(node, dict):
+        ref = node.get("$ref")
+        if isinstance(ref, str) and _FRAG in ref:
             out = {k: v for k, v in node.items() if k != "$ref"}
-            out["$ref"] = _FRAG + key_for(repo_root, tfile, tname)
-            # keep any sibling keys (rare) after rewriting
+            out["$ref"] = _FRAG + keymap[resolve(owner_file, ref)]
             return out
-        # Non-schema $refs (e.g. external example URLs) pass through untouched.
-        return {k: transform(v, owner_file, repo_root, targets) for k, v in node.items()}
+        return {k: rewrite(v, owner_file, keymap) for k, v in node.items()}
     if isinstance(node, list):
-        return [transform(v, owner_file, repo_root, targets) for v in node]
+        return [rewrite(v, owner_file, keymap) for v in node]
     return node
 
 
@@ -157,10 +229,11 @@ def main() -> int:
         print("ERROR: no root schemas found", file=sys.stderr)
         return 2
 
-    # BFS over (file, name)
-    out_schemas: dict[str, object] = {}
+    # Phase 1 — BFS to discover the full reachable (file, name) set (no rewriting
+    # yet: keys depend on the global set, so we can't assign them per-node here).
     missing: list[str] = []
     seen: set[tuple[Path, str]] = set()
+    discovered: list[tuple[Path, str]] = []  # insertion order = stable
     queue: deque[tuple[Path, str]] = deque(roots)
 
     while queue:
@@ -172,12 +245,20 @@ def main() -> int:
         if body is None:
             missing.append(f"{f.relative_to(repo_root) if f.is_relative_to(repo_root) else f}#{n}")
             continue
+        discovered.append((f, n))
         targets: list[tuple[Path, str]] = []
-        new_body = transform(body, f, repo_root, targets)
-        out_schemas[key_for(repo_root, f, n)] = new_body
+        collect_targets(body, f, targets)
         for t in targets:
             if t not in seen:
                 queue.append(t)
+
+    # Phase 2 — assign readable keys (verbose fallback on collision).
+    keymap, fallbacks = build_keymap(repo_root, discovered)
+
+    # Phase 3 — emit each schema with its refs rewritten via the key map.
+    out_schemas: dict[str, object] = {}
+    for f, n in discovered:
+        out_schemas[keymap[(f, n)]] = rewrite(schemas_of(f).get(n), f, keymap)
 
     spec = {
         "openapi": "3.1.0",
@@ -202,7 +283,8 @@ def main() -> int:
 
     size = args.out.stat().st_size
     print(f"roots={len(roots)} schemas={len(out_schemas)} "
-          f"missing={len(missing)} bytes={size} -> {args.out}")
+          f"missing={len(missing)} verbose-fallback-keys={fallbacks} "
+          f"bytes={size} -> {args.out}")
     if missing and args.verbose:
         for m in missing[:50]:
             print(f"  MISSING {m}", file=sys.stderr)
