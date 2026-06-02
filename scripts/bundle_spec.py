@@ -101,6 +101,13 @@ def main() -> int:
     ap.add_argument("--format", required=True, help="format version, e.g. 202604")
     ap.add_argument("--roots", default="event,pruefi",
                     help="comma-separated top-level dirs used as bundle roots")
+    ap.add_argument("--catalog-roots", default="",
+                    help="comma-separated NON-format-scoped dirs whose every schema "
+                         "is additionally seeded as a root, e.g. "
+                         "'bo4e/bo,bo4e/com,bo4e/cdoc,bo4e/enum'. Use to surface the "
+                         "whole BO4E objects (Marktlokation, Messlokation, …) as a "
+                         "browsable catalog — by default they are unreachable because "
+                         "specs only $ref field-level atoms.")
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
@@ -128,6 +135,19 @@ def main() -> int:
         base = repo_root / root / fmt
         if not base.is_dir():
             print(f"WARN: root dir not found: {base}", file=sys.stderr)
+            continue
+        for f in sorted(base.rglob("*.yaml")):
+            for name in schemas_of(f):
+                roots.append((f.resolve(), name))
+
+    # Catalog roots: non-format-scoped dirs (e.g. bo4e/bo) — seed every schema so
+    # the whole BO4E objects show up as top-level browsable entries even when no
+    # spec references them directly (specs only ref field-level atoms).
+    catalog_roots = [r.strip() for r in args.catalog_roots.split(",") if r.strip()]
+    for root in catalog_roots:
+        base = repo_root / root
+        if not base.is_dir():
+            print(f"WARN: catalog-root dir not found: {base}", file=sys.stderr)
             continue
         for f in sorted(base.rglob("*.yaml")):
             for name in schemas_of(f):

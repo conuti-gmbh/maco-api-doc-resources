@@ -239,36 +239,41 @@ def build_schema(
         {
             "$ref": (
                 f"../../event-bauteil/{format_version}/{scope}/"
-                f"PI_{pid}.yaml#/components/schemas/PI_{pid}"
+                f"PI_{pid}.yaml#/components/schemas/PI_{pid}__stammdaten"
             )
         }
         for pid, scope in pool
     ]
+    properties: dict = {}
+    if one_of:
+        # stammdaten as a *visible* property: oneOf over the topic's Prüfi-Bauteile
+        # = Stammdaten-Union-Coverage (the sender must satisfy the stammdaten any
+        # pool member needs). Surfaced here rather than as a top-level allOf[oneOf]
+        # sibling so it renders in Apidog's model view; the $ref targets the named
+        # PI_<id>__stammdaten sub-schema (one wrapper level less, no double nesting).
+        properties["stammdaten"] = {"oneOf": one_of}
+    # else: Stub — alle Prüfis pending, stammdaten bleibt required-aber-undefiniert.
+    properties["transaktionsdaten"] = build_transaktionsdaten(
+        required_fields, pruefi_source, all_pruefi_ids
+    )
+    properties["zusatzdaten"] = {
+        "type": "object",
+        "required": ["prozessId", "eventname"],
+        "properties": {
+            "prozessId": {"type": "string"},
+            "eventname": {"type": "string", "const": topic, "default": topic},
+        },
+    }
     schema: dict = {
         "type": "object",
         "required": ["stammdaten", "transaktionsdaten", "zusatzdaten"],
-        "properties": {
-            "transaktionsdaten": build_transaktionsdaten(
-                required_fields, pruefi_source, all_pruefi_ids
-            ),
-            "zusatzdaten": {
-                "type": "object",
-                "required": ["prozessId", "eventname"],
-                "properties": {
-                    "prozessId": {"type": "string"},
-                    "eventname": {"type": "string", "const": topic, "default": topic},
-                },
-            },
-        },
+        "properties": properties,
     }
     if pending:
         # Prüfis im BPMN-Pool ohne event-bauteil (Templater-Spec fehlt noch).
         # Sichtbar gemacht, damit die Teil-Abdeckung im Artefakt steht; ein
         # Re-Run nach dem Templater-Nachzug entfernt den Marker.
         schema["x-pending-pruefis"] = pending
-    if one_of:
-        schema["allOf"] = [{"oneOf": one_of}]
-    # else: Stub — nur Envelope, alle Prüfis pending (keine oneOf-Body-Validierung).
     return schema
 
 

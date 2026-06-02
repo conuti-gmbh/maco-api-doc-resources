@@ -159,10 +159,10 @@ def test_agnostic_event_optional_pruefi_with_description_and_examples(
     assert zus["properties"]["eventname"]["const"] == "START_LIEFERBEGINN"
     assert zus["properties"]["eventname"]["default"] == "START_LIEFERBEGINN"
 
-    one_of = schema["allOf"][0]["oneOf"]
+    one_of = schema["properties"]["stammdaten"]["oneOf"]
     assert [r["$ref"] for r in one_of] == [
-        "../../event-bauteil/202604/UTILMD_GAS/PI_44001.yaml#/components/schemas/PI_44001",
-        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001",
+        "../../event-bauteil/202604/UTILMD_GAS/PI_44001.yaml#/components/schemas/PI_44001__stammdaten",
+        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten",
     ]
 
     info = doc["info"]
@@ -188,9 +188,9 @@ def test_duplicate_pruefi_id_is_deduplicated(tmp_path: Path) -> None:
     schema = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
         "[LF] TOPIC"
     ]
-    one_of = schema["allOf"][0]["oneOf"]
+    one_of = schema["properties"]["stammdaten"]["oneOf"]
     assert [r["$ref"] for r in one_of] == [
-        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001"
+        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten"
     ]
     assert schema["x-pending-pruefis"] == ["55077"]  # deduped
 
@@ -278,9 +278,9 @@ def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
         "[LF] TOPIC"
     ]
     assert schema["x-pending-pruefis"] == ["55077"]
-    one_of = schema["allOf"][0]["oneOf"]
+    one_of = schema["properties"]["stammdaten"]["oneOf"]
     assert [r["$ref"] for r in one_of] == [
-        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001"
+        "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten"
     ]
     # The pending pruefi still appears in the Beauskunftung (full topic pool).
     pruefi = schema["properties"]["transaktionsdaten"]["allOf"][1]["properties"][
