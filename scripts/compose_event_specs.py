@@ -11,9 +11,14 @@ Emits one OpenAPI 3.1 spec per (format, role, topic) at
 
 Modelling (Stand 2026-05-27, MACO-13040):
   * Event-Wrapper requires stammdaten / transaktionsdaten / zusatzdaten.
-  * ``transaktionsdaten`` = ``allOf`` of the full CDOC Transaktionsdaten schema
-    plus a local override whose ``required`` list comes from Skript 4
-    (Schicht 1, DMN-derived); falls back to the aggregate Common-Core.
+  * ``transaktionsdaten`` = a single object listing only the fields the event
+    actually uses (Schicht 1, DMN-derived; falls back to aggregate Common-Core).
+    Scalar reads $ref the cdoc/Transaktionsdaten field atom; nested reads (e.g.
+    absender.rollencodenummer) become a focused sub-object over the read sub-
+    fields. This replaces the former ``allOf``(full Transaktionsdaten + required-
+    override), which Apidog rendered as two unmergeable 0/1 branches. Fields the
+    DMN reads but the BO4E model lacks (e.g. lokationsTyp) go to
+    ``x-unresolved-transaktionsdaten`` instead of required-but-undefined.
   * ``transaktionsdaten.pruefidentifikator`` is regularly **optional, no enum**:
     Camunda determines the Prüfi dynamically (Sparte + Transaktionsgrund +
     Empfänger-Marktrolle). Beauskunftung is carried by a ``description`` listing
@@ -37,6 +42,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import re
 import sys
 from collections.abc import Iterator
 from pathlib import Path
@@ -53,6 +59,22 @@ GAS_RANGE = range(44000, 45000)
 TRANSAKTIONSDATEN_REF = (
     "../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten"
 )
+
+# Variante B: transaktionsdaten shows only the fields the event actually uses
+# (DMN reads), each as a $ref to its atom — not the whole CDOC object wrapped in
+# allOf (which Apidog renders as unmergeable 0/1 branches). Scalar reads point at
+# the cdoc/Transaktionsdaten field atom; nested reads (e.g. absender.rollencode-
+# nummer) become a focused sub-object whose properties are the read sub-fields,
+# resolved to the referenced BO's field atoms.
+CDOC_TD_FIELD_REF = (
+    "../../bo4e/fields/cdoc/Transaktionsdaten/{field}.yaml#/components/schemas/{field}"
+)
+BO_SUBFIELD_REF = (
+    "../../bo4e/fields/{tier}/{bo}/{seg}.yaml#/components/schemas/{seg}"
+)
+# Matches the BO target inside a cdoc field atom's $ref, e.g.
+# "../../../bo/Marktteilnehmer.yaml#/..." → ("bo", "Marktteilnehmer").
+_BO_REF_RE = re.compile(r"([a-z]+)/([A-Za-z0-9_]+)\.yaml")
 
 PRUEFI_DESC_DYNAMIC = (
     "Wird dynamisch im Event-Prozess ermittelt "
@@ -190,39 +212,187 @@ def schema_name(role: str, topic: str, pruefi_ids: list[int]) -> str:
     return name
 
 
+def _cdoc_field_atom(bo4e_dir: Path | None, field: str) -> Path | None:
+    if bo4e_dir is None:
+        return None
+    path = bo4e_dir / "fields" / "cdoc" / "Transaktionsdaten" / f"{field}.yaml"
+    return path if path.is_file() else None
+
+
+def schema_names(path: Path, yaml: YAML, cache: dict[Path, set]) -> set:
+    """Case-sensitive set of schema names a file defines (cached; empty if absent
+    or unparseable). The filesystem may be case-insensitive (macOS), so this is
+    the authoritative check for whether an atom actually defines a given name."""
+    rp = path.resolve()
+    if rp not in cache:
+        names: set = set()
+        if path.is_file():
+            try:
+                with path.open("r", encoding="utf-8") as fh:
+                    spec = yaml.load(fh)
+                names = set((spec.get("components", {}) or {}).get("schemas", {}) or {})
+            except (OSError, AttributeError):
+                names = set()
+        cache[rp] = names
+    return cache[rp]
+
+
+def cdoc_field_ref(
+    bo4e_dir: Path | None, field: str, yaml: YAML, schema_cache: dict[Path, set]
+) -> str | None:
+    """Ref to the cdoc/Transaktionsdaten field atom IFF it defines a schema named
+    exactly ``field`` (case-sensitive). Guards against DMN casing drift such as
+    ``angebotsReferenz`` (atom defines ``angebotsreferenz``) which on a
+    case-insensitive FS would otherwise emit a dangling pointer."""
+    if bo4e_dir is None:
+        return None
+    atom = bo4e_dir / "fields" / "cdoc" / "Transaktionsdaten" / f"{field}.yaml"
+    if field in schema_names(atom, yaml, schema_cache):
+        return CDOC_TD_FIELD_REF.format(field=field)
+    return None
+
+
+def resolve_bo_target(
+    bo4e_dir: Path | None,
+    field: str,
+    yaml: YAML,
+    cache: dict[str, tuple[str, str] | None],
+) -> tuple[str, str] | None:
+    """(tier, bo) the cdoc Transaktionsdaten <field> atom $refs to, or None.
+
+    A nested-read field (absender, empfaenger, …) is a $ref to a BO (e.g.
+    bo/Marktteilnehmer). We need that BO to locate its sub-field atoms.
+    """
+    if field in cache:
+        return cache[field]
+    target: tuple[str, str] | None = None
+    atom = _cdoc_field_atom(bo4e_dir, field)
+    if atom is not None:
+        try:
+            with atom.open("r", encoding="utf-8") as fh:
+                spec = yaml.load(fh)
+            schemas = spec.get("components", {}).get("schemas", {})
+            node = schemas.get(field) or next(iter(schemas.values()), None)
+            ref = node.get("$ref") if isinstance(node, dict) else None
+            if ref:
+                m = _BO_REF_RE.search(ref)
+                if m:
+                    target = (m.group(1), m.group(2))
+        except (OSError, AttributeError):
+            target = None
+    cache[field] = target
+    return target
+
+
+def build_nested_field(
+    bo4e_dir: Path | None,
+    field: str,
+    segs: list[str],
+    yaml: YAML,
+    cache: dict[str, tuple[str, str] | None],
+    schema_cache: dict[Path, set],
+    warnings: set[str],
+) -> dict | None:
+    """Focused sub-object: only the DMN-read sub-fields, as $ref atoms.
+
+    Returns None if the field's BO target cannot be resolved (caller falls back
+    to the whole-field ref).
+    """
+    target = resolve_bo_target(bo4e_dir, field, yaml, cache)
+    if target is None:
+        return None
+    tier, bo = target
+    properties: dict = {}
+    for seg in segs:
+        atom = bo4e_dir / "fields" / tier / bo / f"{seg}.yaml"
+        if seg in schema_names(atom, yaml, schema_cache):
+            properties[seg] = {"$ref": BO_SUBFIELD_REF.format(tier=tier, bo=bo, seg=seg)}
+        else:
+            warnings.add(
+                f"no atom for {field}.{seg} ({tier}/{bo}) — sub-field omitted"
+            )
+    if not properties:
+        return None
+    return {"type": "object", "properties": properties}
+
+
 def build_transaktionsdaten(
     required_fields: list[str],
+    td_reads: dict[str, list[str]],
     pruefi_source: str | None,
     all_pruefi_ids: list[int],
+    bo4e_dir: Path | None,
+    yaml: YAML,
+    bo_cache: dict[str, tuple[str, str] | None],
+    schema_cache: dict[Path, set],
+    warnings: set[str],
 ) -> dict:
-    """transaktionsdaten as allOf(Transaktionsdaten $ref + local required-override).
+    """transaktionsdaten as a single object listing only the fields the event uses.
+
+    Each used field (Schicht 1, DMN-derived) becomes a visible property: scalar
+    reads $ref the cdoc/Transaktionsdaten field atom, nested reads become a
+    focused sub-object over the read sub-fields. Fields that do not resolve to an
+    atom defining a schema of exactly that name — the field is absent from the
+    BO4E model (e.g. lokationsTyp) or the DMN mis-cased it (e.g. angebotsReferenz
+    vs angebotsreferenz) — are surfaced in ``x-unresolved-transaktionsdaten``
+    instead of emitting a dangling/required-but-undefined reference.
 
     The pruefidentifikator Beauskunftung lists the full topic pool (resolved +
     pending), independent of whether each Prüfi already has an event-bauteil.
     """
-    required = set(required_fields)
-    pruefi_ids = [str(pid) for pid in all_pruefi_ids]
+    properties: dict = {}
+    resolved: list[str] = []
+    unresolved: list[str] = []
 
+    for field in sorted(required_fields):
+        segs = td_reads.get(field, [])
+        node: dict | None = None
+        if segs:
+            node = build_nested_field(
+                bo4e_dir, field, segs, yaml, bo_cache, schema_cache, warnings
+            )
+            if node is None:
+                # BO target unresolved → whole-field ref, but only if the atom
+                # actually defines a schema named exactly <field> (case-sensitive).
+                ref = cdoc_field_ref(bo4e_dir, field, yaml, schema_cache)
+                if ref is not None:
+                    node = {"$ref": ref}
+        else:
+            ref = cdoc_field_ref(bo4e_dir, field, yaml, schema_cache)
+            if ref is not None:
+                node = {"$ref": ref}
+        if node is not None:
+            properties[field] = node
+            resolved.append(field)
+        else:
+            unresolved.append(field)
+
+    required = set(resolved)
+    pruefi_ids = [str(pid) for pid in all_pruefi_ids]
     if pruefi_source == "transaktionsdaten":
         # NNA outlier: the body value routes the gateway → required + enum.
         required.add("pruefidentifikator")
-        pruefi_prop = {
-            "enum": pruefi_ids,
-            "description": PRUEFI_DESC_NNA,
-        }
+        pruefi_prop = {"enum": pruefi_ids, "description": PRUEFI_DESC_NNA}
     else:
         # Regular case: optional, no constraint; Beauskunftung via description + examples.
         pruefi_prop = {
             "description": PRUEFI_DESC_DYNAMIC.format(pruefis=", ".join(pruefi_ids)),
             "examples": pruefi_ids,
         }
+    properties["pruefidentifikator"] = pruefi_prop
 
-    override = {
+    td: dict = {
         "type": "object",
         "required": sorted(required),
-        "properties": {"pruefidentifikator": pruefi_prop},
+        "properties": properties,
     }
-    return {"allOf": [{"$ref": TRANSAKTIONSDATEN_REF}, override]}
+    if unresolved:
+        td["x-unresolved-transaktionsdaten"] = sorted(unresolved)
+        warnings.add(
+            "transaktionsdaten fields read by DMN with no matching BO4E atom "
+            f"(absent from model or DMN casing drift): {sorted(unresolved)}"
+        )
+    return td
 
 
 def build_schema(
@@ -233,7 +403,13 @@ def build_schema(
     pending: list[str],
     all_pruefi_ids: list[int],
     required_fields: list[str],
+    td_reads: dict[str, list[str]],
     pruefi_source: str | None,
+    bo4e_dir: Path | None,
+    yaml: YAML,
+    bo_cache: dict[str, tuple[str, str] | None],
+    schema_cache: dict[Path, set],
+    warnings: set[str],
 ) -> dict:
     one_of = [
         {
@@ -254,7 +430,8 @@ def build_schema(
         properties["stammdaten"] = {"oneOf": one_of}
     # else: Stub — alle Prüfis pending, stammdaten bleibt required-aber-undefiniert.
     properties["transaktionsdaten"] = build_transaktionsdaten(
-        required_fields, pruefi_source, all_pruefi_ids
+        required_fields, td_reads, pruefi_source, all_pruefi_ids,
+        bo4e_dir, yaml, bo_cache, schema_cache, warnings,
     )
     properties["zusatzdaten"] = {
         "type": "object",
@@ -342,6 +519,7 @@ def compose(
     mapping: dict,
     required_doc: dict,
     target: Path,
+    bo4e_dir: Path | None,
     filter_format: str | None,
     filter_role: str | None,
     filter_topic: str | None,
@@ -351,6 +529,9 @@ def compose(
     yaml = make_yaml()
     scope_index, representative, warnings = build_scope_index(bauteil_dir)
     provenance_cache: dict[str, dict[str, str]] = {}
+    bo_cache: dict[str, tuple[str, str] | None] = {}
+    schema_cache: dict[Path, set] = {}
+    td_warnings: set[str] = set()
     common_core = required_doc.get("_aggregate", {}).get(
         "common_core_transaktionsdaten", []
     )
@@ -381,9 +562,11 @@ def compose(
         required_entry = lookup_required(required_doc, fmt, role, topic)
         if required_entry is not None:
             required_fields = required_entry.get("required_transaktionsdaten", [])
+            td_reads = required_entry.get("transaktionsdaten_reads", {})
             pruefi_source = required_entry.get("pruefidentifikator_source")
         else:
             required_fields = common_core
+            td_reads = {}
             pruefi_source = None
             fallback_count += 1
             if verbose:
@@ -395,7 +578,9 @@ def compose(
 
         name = schema_name(role, topic, all_ids)
         schema = build_schema(
-            fmt, role, topic, pool, pending, all_ids, required_fields, pruefi_source
+            fmt, role, topic, pool, pending, all_ids, required_fields,
+            td_reads, pruefi_source, bo4e_dir, yaml, bo_cache, schema_cache,
+            td_warnings,
         )
 
         if fmt not in provenance_cache and fmt in representative:
@@ -437,6 +622,7 @@ def compose(
             f"{fallback_count} event(s) had no DMN required-fields entry — "
             f"used aggregate Common-Core"
         )
+    warnings.extend(sorted(td_warnings))
     return seen, written, warnings
 
 
@@ -472,6 +658,13 @@ def main(argv: list[str] | None = None) -> int:
         default=Path("event"),
         help="Target directory for event specs (default: event)",
     )
+    parser.add_argument(
+        "--bo4e-dir",
+        type=Path,
+        default=Path("bo4e"),
+        help="BO4E atom mirror, used to resolve transaktionsdaten field atoms "
+        "(default: bo4e)",
+    )
     parser.add_argument("--filter-format", help="Only process this format version")
     parser.add_argument("--filter-role", help="Only process this market role (LF/NB/MSB)")
     parser.add_argument("--filter-topic", help="Only process this topic/eventName")
@@ -494,11 +687,20 @@ def main(argv: list[str] | None = None) -> int:
 
     filter_role = args.filter_role.upper() if args.filter_role else None
 
+    bo4e_dir = args.bo4e_dir if args.bo4e_dir.is_dir() else None
+    if bo4e_dir is None:
+        print(
+            f"warn: bo4e-dir {args.bo4e_dir} not found — transaktionsdaten "
+            f"fields cannot be resolved to atoms",
+            file=sys.stderr,
+        )
+
     seen, written, warnings = compose(
         bauteil_dir=args.bauteil_dir,
         mapping=mapping,
         required_doc=required_doc,
         target=args.target,
+        bo4e_dir=bo4e_dir,
         filter_format=args.filter_format,
         filter_role=filter_role,
         filter_topic=args.filter_topic,

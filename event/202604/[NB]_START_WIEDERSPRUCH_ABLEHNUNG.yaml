@@ -10,32 +10,44 @@ components:
     '[NB] START_WIEDERSPRUCH_ABLEHNUNG':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/COMDIS/PI_29002.yaml#/components/schemas/PI_29002__stammdaten
+            - $ref: ../../event-bauteil/202604/COMDIS/PI_29002.yaml#/components/schemas/PI_29002__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - kategorie
             - sparte
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 29002.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 29002.
+              examples:
                 - '29002'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

@@ -10,22 +10,20 @@ components:
     '[LF] START_ANFRAGE_STAMMDATENAENDERUNG GAS':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44139.yaml#/components/schemas/PI_44139__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44143.yaml#/components/schemas/PI_44143__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44156.yaml#/components/schemas/PI_44156__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44162.yaml#/components/schemas/PI_44162__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44180.yaml#/components/schemas/PI_44180__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44139.yaml#/components/schemas/PI_44139__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44143.yaml#/components/schemas/PI_44143__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44156.yaml#/components/schemas/PI_44156__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44162.yaml#/components/schemas/PI_44162__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44180.yaml#/components/schemas/PI_44180__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - gueltigAb
@@ -33,10 +31,32 @@ components:
             - sparte
             - transaktionsgrund
             - vertragsende
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            gueltigAb:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/gueltigAb.yaml#/components/schemas/gueltigAb
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            vertragsende:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vertragsende.yaml#/components/schemas/vertragsende
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.
+              examples:
                 - '44139'
                 - '44143'
                 - '44156'
@@ -45,8 +65,8 @@ components:
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

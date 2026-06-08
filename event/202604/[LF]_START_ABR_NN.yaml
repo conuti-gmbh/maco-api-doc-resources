@@ -10,31 +10,41 @@ components:
     '[LF] START_ABR_NN':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55218.yaml#/components/schemas/PI_55218__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55218.yaml#/components/schemas/PI_55218__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - kategorie
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
+              examples:
                 - '55218'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

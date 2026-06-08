@@ -10,35 +10,51 @@ components:
     '[NB] START_BESTELLUNG_SDAE':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55137.yaml#/components/schemas/PI_55137__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55232.yaml#/components/schemas/PI_55232__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55555.yaml#/components/schemas/PI_55555__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55559.yaml#/components/schemas/PI_55559__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55644.yaml#/components/schemas/PI_55644__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55645.yaml#/components/schemas/PI_55645__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55646.yaml#/components/schemas/PI_55646__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55647.yaml#/components/schemas/PI_55647__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55648.yaml#/components/schemas/PI_55648__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55137.yaml#/components/schemas/PI_55137__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55232.yaml#/components/schemas/PI_55232__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55555.yaml#/components/schemas/PI_55555__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55559.yaml#/components/schemas/PI_55559__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55644.yaml#/components/schemas/PI_55644__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55645.yaml#/components/schemas/PI_55645__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55646.yaml#/components/schemas/PI_55646__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55647.yaml#/components/schemas/PI_55647__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55648.yaml#/components/schemas/PI_55648__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - sparte
             - transaktionsgrund
             - transaktionsgrundergaenzung
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            transaktionsgrundergaenzung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+              examples:
                 - '55137'
                 - '55232'
                 - '55555'
@@ -51,8 +67,8 @@ components:
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

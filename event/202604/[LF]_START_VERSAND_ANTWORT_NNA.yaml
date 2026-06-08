@@ -10,40 +10,56 @@ components:
     '[LF] START_VERSAND_ANTWORT_NNA':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/REMADV/PI_33001.yaml#/components/schemas/PI_33001__stammdaten
-          - $ref: ../../event-bauteil/202604/REMADV/PI_33002.yaml#/components/schemas/PI_33002__stammdaten
-          - $ref: ../../event-bauteil/202604/REMADV/PI_33003.yaml#/components/schemas/PI_33003__stammdaten
-          - $ref: ../../event-bauteil/202604/REMADV/PI_33004.yaml#/components/schemas/PI_33004__stammdaten
+            - $ref: ../../event-bauteil/202604/REMADV/PI_33001.yaml#/components/schemas/PI_33001__stammdaten
+            - $ref: ../../event-bauteil/202604/REMADV/PI_33002.yaml#/components/schemas/PI_33002__stammdaten
+            - $ref: ../../event-bauteil/202604/REMADV/PI_33003.yaml#/components/schemas/PI_33003__stammdaten
+            - $ref: ../../event-bauteil/202604/REMADV/PI_33004.yaml#/components/schemas/PI_33004__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - kategorie
             - nachrichtendatum
             - pruefidentifikator
             - sparte
-            properties:
-              pruefidentifikator:
-                enum:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            nachrichtendatum:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum
+            pruefidentifikator:
+              enum:
                 - '33001'
                 - '33002'
                 - '33003'
                 - '33004'
-                description: Pflichtfeld — bestimmt direkt die Antwort-Variante. Der Body-Wert routet den Versand-Prozess (T_-Gateway über ${pruefidentifikator}).
+              description: Pflichtfeld — bestimmt direkt die Antwort-Variante. Der Body-Wert routet den Versand-Prozess (T_-Gateway über ${pruefidentifikator}).
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

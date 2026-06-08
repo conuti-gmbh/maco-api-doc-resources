@@ -15,20 +15,34 @@ components:
         - zusatzdaten
       properties:
         transaktionsdaten:
-          allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - gueltigAb
-                - kategorie
-                - sparte
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - gueltigAb
+            - kategorie
+            - sparte
+          properties:
+            absender:
+              type: object
               properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55150.
-                  examples:
-                    - '55150'
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            gueltigAb:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/gueltigAb.yaml#/components/schemas/gueltigAb
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55150.
+              examples:
+                - '55150'
         zusatzdaten:
           type: object
           required:

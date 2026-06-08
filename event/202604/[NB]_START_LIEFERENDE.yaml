@@ -10,19 +10,17 @@ components:
     '[NB] START_LIEFERENDE':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44007.yaml#/components/schemas/PI_44007__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55007.yaml#/components/schemas/PI_55007__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44007.yaml#/components/schemas/PI_44007__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55007.yaml#/components/schemas/PI_55007__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - freitext
@@ -30,17 +28,37 @@ components:
             - sparte
             - transaktionsgrund
             - transaktionsgrundergaenzung
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44007, 55007.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            freitext:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/freitext.yaml#/components/schemas/freitext
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            transaktionsgrundergaenzung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44007, 55007.
+              examples:
                 - '44007'
                 - '55007'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

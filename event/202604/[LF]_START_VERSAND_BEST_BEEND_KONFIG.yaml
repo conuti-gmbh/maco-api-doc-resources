@@ -10,34 +10,50 @@ components:
     '[LF] START_VERSAND_BEST_BEEND_KONFIG':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/ORDERS/PI_17129.yaml#/components/schemas/PI_17129__stammdaten
+            - $ref: ../../event-bauteil/202604/ORDERS/PI_17129.yaml#/components/schemas/PI_17129__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - kategorie
             - nachrichtenReferenzBestellbestaetigung
             - sparte
             - vorgangsReferenzBestellbestaetigung
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17129.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            nachrichtenReferenzBestellbestaetigung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenReferenzBestellbestaetigung.yaml#/components/schemas/nachrichtenReferenzBestellbestaetigung
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            vorgangsReferenzBestellbestaetigung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsReferenzBestellbestaetigung.yaml#/components/schemas/vorgangsReferenzBestellbestaetigung
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17129.
+              examples:
                 - '17129'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

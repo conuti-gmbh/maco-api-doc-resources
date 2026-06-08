@@ -10,30 +10,46 @@ components:
     '[NB] START_ABR_BK':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55126.yaml#/components/schemas/PI_55126__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55613.yaml#/components/schemas/PI_55613__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55672.yaml#/components/schemas/PI_55672__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55674.yaml#/components/schemas/PI_55674__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55126.yaml#/components/schemas/PI_55126__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55613.yaml#/components/schemas/PI_55613__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55672.yaml#/components/schemas/PI_55672__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55674.yaml#/components/schemas/PI_55674__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - sparte
             - transaktionsgrund
             - transaktionsgrundergaenzung
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            transaktionsgrundergaenzung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.
+              examples:
                 - '55126'
                 - '55613'
                 - '55672'
@@ -41,8 +57,8 @@ components:
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

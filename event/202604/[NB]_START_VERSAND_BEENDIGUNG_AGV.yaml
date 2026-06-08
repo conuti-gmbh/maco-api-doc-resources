@@ -15,20 +15,34 @@ components:
         - zusatzdaten
       properties:
         transaktionsdaten:
-          allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - sparte
-                - transaktionsgrund
-                - verwendungBis
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - sparte
+            - transaktionsgrund
+            - verwendungBis
+          properties:
+            absender:
+              type: object
               properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55188.
-                  examples:
-                    - '55188'
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            verwendungBis:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/verwendungBis.yaml#/components/schemas/verwendungBis
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55188.
+              examples:
+                - '55188'
         zusatzdaten:
           type: object
           required:

@@ -10,34 +10,46 @@ components:
     '[NB] START_WIEDERHERST_LB':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/IFTSTA/PI_21039.yaml#/components/schemas/PI_21039__stammdaten
-          - $ref: ../../event-bauteil/202604/IFTSTA/PI_21040.yaml#/components/schemas/PI_21040__stammdaten
+            - $ref: ../../event-bauteil/202604/IFTSTA/PI_21039.yaml#/components/schemas/PI_21039__stammdaten
+            - $ref: ../../event-bauteil/202604/IFTSTA/PI_21040.yaml#/components/schemas/PI_21040__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - fertigstellungsdatum
             - sparte
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            fertigstellungsdatum:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/fertigstellungsdatum.yaml#/components/schemas/fertigstellungsdatum
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
+              examples:
                 - '21039'
                 - '21040'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

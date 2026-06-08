@@ -72,6 +72,7 @@ def _required(
     *,
     common_core: list[str] | None = None,
     include_event: bool = True,
+    td_reads: dict[str, list[str]] | None = None,
 ) -> dict:
     events: dict = {}
     if include_event:
@@ -80,6 +81,7 @@ def _required(
                 role: {
                     topic: {
                         "required_transaktionsdaten": required_td,
+                        "transaktionsdaten_reads": td_reads or {},
                         "required_zusatzdaten": ["erpEvent"],
                         "stammdaten_reads": ["MARKTLOKATION"],
                         "pruefidentifikator_source": pruefi_source,
@@ -99,12 +101,74 @@ def _required(
     }
 
 
+def _write_td_atom(bo4e: Path, field: str, *, bo: str | None = None) -> None:
+    """Write bo4e/fields/cdoc/Transaktionsdaten/<field>.yaml.
+
+    With ``bo`` (e.g. "bo/Marktteilnehmer") the atom is a $ref to that BO so the
+    resolver can locate sub-field atoms; otherwise a scalar leaf.
+    """
+    path = bo4e / "fields" / "cdoc" / "Transaktionsdaten" / f"{field}.yaml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if bo:
+        leaf = bo.split("/")[-1]
+        body = f"      $ref: ../../../{bo}.yaml#/components/schemas/{leaf}"
+    else:
+        body = "      type: string"
+    path.write_text(
+        f"components:\n  schemas:\n    {field}:\n{body}\n", encoding="utf-8"
+    )
+
+
+def _write_bo_subfield(bo4e: Path, tier: str, bo: str, seg: str) -> None:
+    path = bo4e / "fields" / tier / bo / f"{seg}.yaml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        f"components:\n  schemas:\n    {seg}:\n      type: string\n", encoding="utf-8"
+    )
+
+
+def _provision_atoms(bo4e: Path, required: dict, skip: set[str]) -> None:
+    """Create the cdoc/Transaktionsdaten field atoms the required doc references.
+
+    Nested-read fields get a $ref to bo/Marktteilnehmer plus the read sub-field
+    atoms (matches the real model: absender/empfaenger → Marktteilnehmer). Fields
+    in ``skip`` are intentionally left without an atom (unresolved-case test).
+    """
+    done: set[str] = set()
+
+    def provide(field: str, reads: dict[str, list[str]]) -> None:
+        if field in skip or field in done:
+            return
+        done.add(field)
+        segs = reads.get(field)
+        if segs:
+            _write_td_atom(bo4e, field, bo="bo/Marktteilnehmer")
+            for seg in segs:
+                _write_bo_subfield(bo4e, "bo", "Marktteilnehmer", seg)
+        else:
+            _write_td_atom(bo4e, field)
+
+    for by_role in required.get("events", {}).values():
+        for by_event in by_role.values():
+            for entry in by_event.values():
+                reads = entry.get("transaktionsdaten_reads", {})
+                for field in entry.get("required_transaktionsdaten", []):
+                    provide(field, reads)
+    for field in required.get("_aggregate", {}).get(
+        "common_core_transaktionsdaten", []
+    ):
+        provide(field, {})
+
+
 def _run(tmp_path: Path, mapping: dict, required: dict, **kw) -> tuple[int, int, list[str]]:
+    bo4e = tmp_path / "bo4e"
+    _provision_atoms(bo4e, required, kw.get("skip_atoms", set()))
     return comp.compose(
         bauteil_dir=tmp_path / "event-bauteil",
         mapping=mapping,
         required_doc=required,
         target=tmp_path / "event",
+        bo4e_dir=bo4e,
         filter_format=kw.get("filter_format"),
         filter_role=kw.get("filter_role"),
         filter_topic=kw.get("filter_topic"),
@@ -145,11 +209,16 @@ def test_agnostic_event_optional_pruefi_with_description_and_examples(
     assert schema["required"] == ["stammdaten", "transaktionsdaten", "zusatzdaten"]
 
     td = schema["properties"]["transaktionsdaten"]
-    assert td["allOf"][0]["$ref"] == comp.TRANSAKTIONSDATEN_REF
-    override = td["allOf"][1]
-    assert override["required"] == ["absender", "empfaenger", "sparte", "transaktionsgrund"]
-    assert "pruefidentifikator" not in override["required"]
-    pruefi = override["properties"]["pruefidentifikator"]
+    # Variante B: single object, no allOf — only the used fields as visible props.
+    assert "allOf" not in td
+    assert td["type"] == "object"
+    assert td["required"] == ["absender", "empfaenger", "sparte", "transaktionsgrund"]
+    assert "pruefidentifikator" not in td["required"]
+    # Scalar reads → $ref to the cdoc/Transaktionsdaten field atom.
+    assert td["properties"]["sparte"]["$ref"] == (
+        "../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte"
+    )
+    pruefi = td["properties"]["pruefidentifikator"]
     assert "enum" not in pruefi
     assert pruefi["examples"] == ["44001", "55001"]
     assert "dynamisch" in pruefi["description"]
@@ -226,14 +295,103 @@ def test_nna_pruefi_required_and_enum(tmp_path: Path) -> None:
     _run(tmp_path, mapping, required)
 
     doc = _load_out(tmp_path, "202604", "LF", "START_VERSAND_ANTWORT_NNA")
-    override = doc["components"]["schemas"]["[LF] START_VERSAND_ANTWORT_NNA"][
+    td = doc["components"]["schemas"]["[LF] START_VERSAND_ANTWORT_NNA"][
         "properties"
-    ]["transaktionsdaten"]["allOf"][1]
-    assert "pruefidentifikator" in override["required"]
-    pruefi = override["properties"]["pruefidentifikator"]
+    ]["transaktionsdaten"]
+    assert "allOf" not in td
+    assert "pruefidentifikator" in td["required"]
+    pruefi = td["properties"]["pruefidentifikator"]
     assert pruefi["enum"] == ["33001", "33002", "33003", "33004"]
     assert "examples" not in pruefi
     assert "Pflichtfeld" in pruefi["description"]
+
+
+# ----------------------------- Variante B: nested + unresolved -----------------------------
+
+
+def test_nested_read_becomes_focused_subobject(tmp_path: Path) -> None:
+    bauteil = tmp_path / "event-bauteil"
+    _write_bauteil(bauteil, "202604", "UTILMD", 55001)
+    mapping = _mapping("LF", "TOPIC", [55001])
+    required = _required(
+        "LF",
+        "TOPIC",
+        ["absender", "sparte"],
+        td_reads={"absender": ["rollencodenummer", "ansprechpartner"]},
+    )
+    seen, written, warnings = _run(tmp_path, mapping, required)
+    assert (seen, written) == (1, 1)
+    assert warnings == []
+
+    td = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
+        "[LF] TOPIC"
+    ]["properties"]["transaktionsdaten"]
+    # nested field → focused object over only the read sub-fields, as bo atoms
+    absender = td["properties"]["absender"]
+    assert absender["type"] == "object"
+    assert set(absender["properties"]) == {"rollencodenummer", "ansprechpartner"}
+    assert absender["properties"]["rollencodenummer"]["$ref"] == (
+        "../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml"
+        "#/components/schemas/rollencodenummer"
+    )
+    # scalar field stays a whole-field $ref to the cdoc atom
+    assert td["properties"]["sparte"]["$ref"].endswith(
+        "cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte"
+    )
+    assert td["required"] == ["absender", "sparte"]
+
+
+def test_field_without_atom_goes_to_x_unresolved(tmp_path: Path) -> None:
+    bauteil = tmp_path / "event-bauteil"
+    _write_bauteil(bauteil, "202604", "UTILMD", 55001)
+    mapping = _mapping("NB", "START_BERECHNUNGSFORMEL", [55001])
+    # lokationsTyp is read by the DMN but has no cdoc/Transaktionsdaten atom.
+    required = _required("NB", "START_BERECHNUNGSFORMEL", ["absender", "lokationsTyp"])
+    seen, written, warnings = _run(
+        tmp_path, mapping, required, skip_atoms={"lokationsTyp"}
+    )
+    assert (seen, written) == (1, 1)
+
+    td = _load_out(tmp_path, "202604", "NB", "START_BERECHNUNGSFORMEL")["components"][
+        "schemas"
+    ]["[NB] START_BERECHNUNGSFORMEL"]["properties"]["transaktionsdaten"]
+    assert "lokationsTyp" not in td["properties"]
+    assert "lokationsTyp" not in td["required"]
+    assert td["required"] == ["absender"]
+    assert td["x-unresolved-transaktionsdaten"] == ["lokationsTyp"]
+    assert any("lokationsTyp" in w for w in warnings)
+
+
+def test_field_with_miscased_atom_schema_is_unresolved(tmp_path: Path) -> None:
+    # DMN reads 'angebotsReferenz' (capital R) but the atom defines the schema
+    # 'angebotsreferenz' (lowercase). On a case-insensitive FS the file "exists",
+    # so resolution must hinge on the exact-case schema name, not file presence.
+    bauteil = tmp_path / "event-bauteil"
+    _write_bauteil(bauteil, "202604", "UTILMD", 55001)
+    bo4e = tmp_path / "bo4e"
+    _write_td_atom(bo4e, "absender")  # resolves normally
+    miscased = bo4e / "fields" / "cdoc" / "Transaktionsdaten" / "angebotsReferenz.yaml"
+    miscased.parent.mkdir(parents=True, exist_ok=True)
+    miscased.write_text(
+        "components:\n  schemas:\n    angebotsreferenz:\n      type: string\n",
+        encoding="utf-8",
+    )
+
+    mapping = _mapping("NB", "START_REKLAMATION_WERTE", [55001])
+    required = _required("NB", "START_REKLAMATION_WERTE", ["absender", "angebotsReferenz"])
+    seen, written, warnings = comp.compose(
+        bauteil_dir=bauteil, mapping=mapping, required_doc=required,
+        target=tmp_path / "event", bo4e_dir=bo4e, filter_format=None,
+        filter_role=None, filter_topic=None, verbose=False,
+    )
+    assert (seen, written) == (1, 1)
+
+    td = _load_out(tmp_path, "202604", "NB", "START_REKLAMATION_WERTE")["components"][
+        "schemas"
+    ]["[NB] START_REKLAMATION_WERTE"]["properties"]["transaktionsdaten"]
+    assert "angebotsReferenz" not in td["properties"]
+    assert td["required"] == ["absender"]
+    assert td["x-unresolved-transaktionsdaten"] == ["angebotsReferenz"]
 
 
 # ----------------------------- fallback to aggregate -----------------------------
@@ -255,10 +413,11 @@ def test_missing_required_entry_falls_back_to_common_core(tmp_path: Path) -> Non
     assert (seen, written) == (1, 1)
     assert any("Common-Core" in w for w in warnings)
 
-    override = _load_out(tmp_path, "202604", "LF", "SOME_TOPIC")["components"][
+    td = _load_out(tmp_path, "202604", "LF", "SOME_TOPIC")["components"][
         "schemas"
-    ]["[LF] SOME_TOPIC"]["properties"]["transaktionsdaten"]["allOf"][1]
-    assert override["required"] == ["absender", "empfaenger"]
+    ]["[LF] SOME_TOPIC"]["properties"]["transaktionsdaten"]
+    assert "allOf" not in td
+    assert td["required"] == ["absender", "empfaenger"]
 
 
 # ----------------------------- missing bauteile -----------------------------
@@ -283,7 +442,7 @@ def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
         "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten"
     ]
     # The pending pruefi still appears in the Beauskunftung (full topic pool).
-    pruefi = schema["properties"]["transaktionsdaten"]["allOf"][1]["properties"][
+    pruefi = schema["properties"]["transaktionsdaten"]["properties"][
         "pruefidentifikator"
     ]
     assert pruefi["examples"] == ["55001", "55077"]
@@ -340,16 +499,18 @@ def test_output_is_deterministic(tmp_path: Path) -> None:
     _write_bauteil(bauteil, "202604", "UTILMD_GAS", 44001)
     mapping = _mapping("LF", "START_LIEFERBEGINN", [55001, 44001])
     required = _required("LF", "START_LIEFERBEGINN", ["absender", "sparte"])
+    bo4e = tmp_path / "bo4e"
+    _provision_atoms(bo4e, required, set())
 
     comp.compose(
         bauteil_dir=bauteil, mapping=mapping, required_doc=required,
-        target=tmp_path / "out_a", filter_format=None, filter_role=None,
-        filter_topic=None, verbose=False,
+        target=tmp_path / "out_a", bo4e_dir=bo4e, filter_format=None,
+        filter_role=None, filter_topic=None, verbose=False,
     )
     comp.compose(
         bauteil_dir=bauteil, mapping=mapping, required_doc=required,
-        target=tmp_path / "out_b", filter_format=None, filter_role=None,
-        filter_topic=None, verbose=False,
+        target=tmp_path / "out_b", bo4e_dir=bo4e, filter_format=None,
+        filter_role=None, filter_topic=None, verbose=False,
     )
     a = (tmp_path / "out_a" / "202604" / "[LF]_START_LIEFERBEGINN.yaml").read_bytes()
     b = (tmp_path / "out_b" / "202604" / "[LF]_START_LIEFERBEGINN.yaml").read_bytes()

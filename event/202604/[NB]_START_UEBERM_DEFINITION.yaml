@@ -10,35 +10,42 @@ components:
     '[NB] START_UEBERM_DEFINITION':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILTS/PI_25005.yaml#/components/schemas/PI_25005__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILTS/PI_25008.yaml#/components/schemas/PI_25008__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILTS/PI_25009.yaml#/components/schemas/PI_25009__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILTS/PI_25005.yaml#/components/schemas/PI_25005__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILTS/PI_25008.yaml#/components/schemas/PI_25008__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILTS/PI_25009.yaml#/components/schemas/PI_25009__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
+            - kategorie
             - sparte
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
-                examples:
+          properties:
+            absender:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/absender.yaml#/components/schemas/absender
+            empfaenger:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/empfaenger.yaml#/components/schemas/empfaenger
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
+              examples:
                 - '25005'
                 - '25008'
                 - '25009'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

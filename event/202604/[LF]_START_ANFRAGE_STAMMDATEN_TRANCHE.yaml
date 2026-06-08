@@ -15,19 +15,31 @@ components:
         - zusatzdaten
       properties:
         transaktionsdaten:
-          allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - sparte
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+          properties:
+            absender:
+              type: object
               properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17127.
-                  examples:
-                    - '17127'
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17127.
+              examples:
+                - '17127'
         zusatzdaten:
           type: object
           required:

@@ -15,21 +15,37 @@ components:
         - zusatzdaten
       properties:
         transaktionsdaten:
-          allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - kategorie
-                - sparte
-                - typ
-                - vorgangsreferenznummer
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+            - typ
+            - vorgangsreferenznummer
+          properties:
+            absender:
+              type: object
               properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
-                  examples:
-                    - '13006'
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            typ:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/typ.yaml#/components/schemas/typ
+            vorgangsreferenznummer:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsreferenznummer.yaml#/components/schemas/vorgangsreferenznummer
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
+              examples:
+                - '13006'
         zusatzdaten:
           type: object
           required:

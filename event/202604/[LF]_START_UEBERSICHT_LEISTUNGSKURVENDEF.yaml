@@ -10,31 +10,38 @@ components:
     '[LF] START_UEBERSICHT_LEISTUNGSKURVENDEF':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILTS/PI_25007.yaml#/components/schemas/PI_25007__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILTS/PI_25007.yaml#/components/schemas/PI_25007__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
+            - kategorie
             - sparte
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
-                examples:
+          properties:
+            absender:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/absender.yaml#/components/schemas/absender
+            empfaenger:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/empfaenger.yaml#/components/schemas/empfaenger
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
+              examples:
                 - '25007'
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string

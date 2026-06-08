@@ -15,22 +15,38 @@ components:
         - zusatzdaten
       properties:
         transaktionsdaten:
-          allOf:
-            - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-            - type: object
-              required:
-                - absender
-                - empfaenger
-                - freitext
-                - kategorie
-                - sparte
-                - vorgangsreferenznummer
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - freitext
+            - kategorie
+            - sparte
+            - vorgangsreferenznummer
+          properties:
+            absender:
+              type: object
               properties:
-                pruefidentifikator:
-                  description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44022, 55022.
-                  examples:
-                    - '44022'
-                    - '55022'
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            freitext:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/freitext.yaml#/components/schemas/freitext
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            vorgangsreferenznummer:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsreferenznummer.yaml#/components/schemas/vorgangsreferenznummer
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44022, 55022.
+              examples:
+                - '44022'
+                - '55022'
         zusatzdaten:
           type: object
           required:

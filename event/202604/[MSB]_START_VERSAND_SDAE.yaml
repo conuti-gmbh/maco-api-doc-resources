@@ -10,38 +10,36 @@ components:
     '[MSB] START_VERSAND_SDAE':
       type: object
       required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
       properties:
         stammdaten:
           oneOf:
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44116.yaml#/components/schemas/PI_44116__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44159.yaml#/components/schemas/PI_44159__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55553.yaml#/components/schemas/PI_55553__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55557.yaml#/components/schemas/PI_55557__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55639.yaml#/components/schemas/PI_55639__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55640.yaml#/components/schemas/PI_55640__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55641.yaml#/components/schemas/PI_55641__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55642.yaml#/components/schemas/PI_55642__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55643.yaml#/components/schemas/PI_55643__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55649.yaml#/components/schemas/PI_55649__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55650.yaml#/components/schemas/PI_55650__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55651.yaml#/components/schemas/PI_55651__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55652.yaml#/components/schemas/PI_55652__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55653.yaml#/components/schemas/PI_55653__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55659.yaml#/components/schemas/PI_55659__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55660.yaml#/components/schemas/PI_55660__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55661.yaml#/components/schemas/PI_55661__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55662.yaml#/components/schemas/PI_55662__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55663.yaml#/components/schemas/PI_55663__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55684.yaml#/components/schemas/PI_55684__stammdaten
-          - $ref: ../../event-bauteil/202604/UTILMD/PI_55686.yaml#/components/schemas/PI_55686__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44116.yaml#/components/schemas/PI_44116__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD_GAS/PI_44159.yaml#/components/schemas/PI_44159__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55553.yaml#/components/schemas/PI_55553__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55557.yaml#/components/schemas/PI_55557__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55639.yaml#/components/schemas/PI_55639__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55640.yaml#/components/schemas/PI_55640__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55641.yaml#/components/schemas/PI_55641__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55642.yaml#/components/schemas/PI_55642__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55643.yaml#/components/schemas/PI_55643__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55649.yaml#/components/schemas/PI_55649__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55650.yaml#/components/schemas/PI_55650__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55651.yaml#/components/schemas/PI_55651__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55652.yaml#/components/schemas/PI_55652__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55653.yaml#/components/schemas/PI_55653__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55659.yaml#/components/schemas/PI_55659__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55660.yaml#/components/schemas/PI_55660__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55661.yaml#/components/schemas/PI_55661__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55662.yaml#/components/schemas/PI_55662__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55663.yaml#/components/schemas/PI_55663__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55684.yaml#/components/schemas/PI_55684__stammdaten
+            - $ref: ../../event-bauteil/202604/UTILMD/PI_55686.yaml#/components/schemas/PI_55686__stammdaten
         transaktionsdaten:
-          allOf:
-          - $ref: ../../bo4e/cdoc/Transaktionsdaten.yaml#/components/schemas/Transaktionsdaten
-          - type: object
-            required:
+          type: object
+          required:
             - absender
             - empfaenger
             - gueltigAb
@@ -49,10 +47,34 @@ components:
             - sparte
             - transaktionsgrund
             - transaktionsgrundergaenzung
-            properties:
-              pruefidentifikator:
-                description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44116, 44159, 55553, 55557, 55639, 55640, 55641, 55642, 55643, 55649, 55650, 55651, 55652, 55653, 55659, 55660, 55661, 55662, 55663, 55684, 55686.
-                examples:
+          properties:
+            absender:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            gueltigAb:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/gueltigAb.yaml#/components/schemas/gueltigAb
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            transaktionsgrundergaenzung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44116, 44159, 55553, 55557, 55639, 55640, 55641, 55642, 55643, 55649, 55650, 55651, 55652, 55653, 55659, 55660, 55661, 55662, 55663, 55684, 55686.
+              examples:
                 - '44116'
                 - '44159'
                 - '55553'
@@ -77,8 +99,8 @@ components:
         zusatzdaten:
           type: object
           required:
-          - prozessId
-          - eventname
+            - prozessId
+            - eventname
           properties:
             prozessId:
               type: string
