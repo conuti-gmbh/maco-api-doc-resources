@@ -3,8 +3,8 @@ info:
   title: '[NB] START_BERECHNUNGSFORMEL'
   version: '202604'
   x-bpmn-source-sha: 6b115946
-  x-bo4e-schema-version: 1.6.5
-  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+  x-bo4e-schema-version: 1.6.8
+  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
 components:
   schemas:
     '[NB] START_BERECHNUNGSFORMEL':
@@ -24,6 +24,7 @@ components:
             - empfaenger
             - kategorie
             - lokationsId
+            - lokationsTyp
             - sparte
           properties:
             absender:
@@ -40,14 +41,14 @@ components:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
             lokationsId:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/lokationsId.yaml#/components/schemas/lokationsId
+            lokationsTyp:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/lokationsTyp.yaml#/components/schemas/lokationsTyp
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25001.
               examples:
                 - '25001'
-          x-unresolved-transaktionsdaten:
-            - lokationsTyp
         zusatzdaten:
           type: object
           required:

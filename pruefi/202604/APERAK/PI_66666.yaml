@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_66666
   version: '202604'
-  x-bo4e-schema-version: 1.6.5
-  x-bo4e-schema-sha: 95f07d974cf2dc738ca248b258d6589025614cb0
-  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+  x-bo4e-schema-version: 1.6.8
+  x-bo4e-schema-sha: b84d59c01638e348fe912e388cf7b7a25ab9937f
+  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
 components:
   schemas:
     PI_66666:

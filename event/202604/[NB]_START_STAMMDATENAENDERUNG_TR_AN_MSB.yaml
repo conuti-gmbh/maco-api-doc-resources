@@ -3,8 +3,8 @@ info:
   title: '[NB] START_STAMMDATENAENDERUNG_TR_AN_MSB'
   version: '202604'
   x-bpmn-source-sha: 6b115946
-  x-bo4e-schema-version: 1.6.5
-  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+  x-bo4e-schema-version: 1.6.8
+  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
 components:
   schemas:
     '[NB] START_STAMMDATENAENDERUNG_TR_AN_MSB':

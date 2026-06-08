@@ -3,8 +3,8 @@ info:
   title: '[MSB] START_ERHEBUNG_MESSWERTE'
   version: '202604'
   x-bpmn-source-sha: 5d34e665
-  x-bo4e-schema-version: 1.6.5
-  x-templater-sha: 6e98aaa8818d7b01b16786b130d743ea57fa960a
+  x-bo4e-schema-version: 1.6.8
+  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
 components:
   schemas:
     '[MSB] START_ERHEBUNG_MESSWERTE':
@@ -33,6 +33,7 @@ components:
             - anfrageReferenz
             - empfaenger
             - kategorie
+            - lokationsTyp
             - sparte
             - typ
           properties:
@@ -50,6 +51,8 @@ components:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
             kategorie:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            lokationsTyp:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/lokationsTyp.yaml#/components/schemas/lokationsTyp
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             typ:
@@ -67,8 +70,6 @@ components:
                 - '13019'
                 - '13025'
                 - '13027'
-          x-unresolved-transaktionsdaten:
-            - lokationsTyp
         zusatzdaten:
           type: object
           required:
