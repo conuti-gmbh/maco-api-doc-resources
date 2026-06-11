@@ -13,6 +13,24 @@ Source of Truth für die in Apidog gerenderte **BO4E-API-Doku** (Prüfi- und Eve
 
 Templater (`create-openapi-spec`) liefert `pruefi/` + den `bo4e/`-Atom-Mirror; danach die vier Python-Skripte und der Bundler:
 
+```mermaid
+flowchart LR
+    TPL[Templater<br/>create-openapi-spec] --> PRU[pruefi/]
+    SCH[bo4e-schema] --> BO4E[bo4e/ Atom-Mirror]
+    PROC[lf/nb/msb-processes<br/>BPMN + DMN] --> S2 & S4
+
+    PRU --> S1[filter_event_bauteile] --> BAU[event-bauteil/]
+    S2[parse_bpmn_events] --> MAP[event-mapping.json]
+    S4[extract_required_from_dmn] --> REQ[event-required-fields.json]
+
+    BAU --> S3[compose_event_specs]
+    MAP --> S3
+    REQ --> S3
+    S3 --> EVT[event/]
+
+    PRU & BAU & EVT & BO4E --> BND[bundle_spec] --> SPEC[Single-Spec je Format] --> APIDOG[(Apidog)]
+```
+
 1. `filter_event_bauteile.py` → `event-bauteil/` (Prüfi-Spec minus `transaktionsdaten`)
 2. `parse_bpmn_events.py` → `event-mapping.json` (Topic↔Prüfi aus Camunda-BPMN)
 3. `extract_required_from_dmn.py` → `event-required-fields.json` (Required-Felder aus DMN)
