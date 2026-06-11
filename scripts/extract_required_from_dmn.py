@@ -27,12 +27,19 @@ Output schema:
           "<ROLE>": {
             "<eventName>": {
               "required_transaktionsdaten": ["absender", ...],
+              "transaktionsdaten_reads": {"absender": ["rollencodenummer", ...]},
               "required_zusatzdaten": ["erpEvent", ...],
               "stammdaten_reads": ["MARKTLOKATION", "BILANZIERUNG"],
               "pruefidentifikator_source": "transaktionsdaten" | "erpEvent.eventName" | null,
               "description": "..." | null,
               "jsonpaths": {"<output_col>": ["$.path1", "$.path2"]}
             }
+
+``transaktionsdaten_reads`` records, per top-level transaktionsdaten field, the
+first sub-segments the DMN reads (e.g. ``absender.rollencodenummer`` →
+``{"absender": ["rollencodenummer"]}``). Only nested reads are listed; a field
+read at top level (scalar value) is omitted, signalling "use the whole field
+atom". Skript 3 uses this to emit a focused sub-object instead of the entire BO.
           }
         }
       }
@@ -150,6 +157,18 @@ def classify_path(jsonpath: str) -> tuple[str, str | None]:
     return BLOCK_OTHER, None
 
 
+def td_subpath(jsonpath: str, top: str) -> str:
+    """Return the remainder after ``$.transaktionsdaten.<top>`` ('' if scalar).
+
+    Array indices are stripped, so ``$.transaktionsdaten.absender[0].x`` and
+    ``$.transaktionsdaten.absender.x`` both yield ``x``.
+    """
+    prefix = f"$.{BLOCK_TRANSAKTIONSDATEN}.{top}"
+    rest = jsonpath[len(prefix):]
+    rest = re.sub(r"\[\d+\]", "", rest)
+    return rest.lstrip(".")
+
+
 def extract_jsonpaths(value: str) -> list[str]:
     """Pull all JSONPath strings from a Tasker-FN cell value.
 
@@ -162,6 +181,8 @@ def extract_jsonpaths(value: str) -> list[str]:
 def analyze_rule(rule: Rule) -> dict:
     """Turn a parsed DMN rule into the on-disk event entry."""
     td_fields: set[str] = set()
+    td_nested: dict[str, set[str]] = defaultdict(set)
+    td_scalar: set[str] = set()
     sd_fields: set[str] = set()
     zd_fields: set[str] = set()
     jsonpaths_per_column: dict[str, list[str]] = {}
@@ -179,6 +200,11 @@ def analyze_rule(rule: Rule) -> dict:
             block, top = classify_path(path)
             if block == BLOCK_TRANSAKTIONSDATEN and top:
                 td_fields.add(top)
+                sub = td_subpath(path, top)
+                if sub:
+                    td_nested[top].add(sub.split(".", 1)[0])
+                else:
+                    td_scalar.add(top)
             elif block == BLOCK_STAMMDATEN and top:
                 sd_fields.add(top)
             elif block == BLOCK_ZUSATZDATEN and top:
@@ -193,8 +219,17 @@ def analyze_rule(rule: Rule) -> dict:
                 if path.startswith("$.zusatzdaten.erpEvent."):
                     pruefi_source = "erpEvent.eventName"
 
+    # Only nested reads are recorded; a field also read at top level (scalar)
+    # is treated as whole-field and dropped from the nested map.
+    transaktionsdaten_reads = {
+        field: sorted(segs)
+        for field, segs in sorted(td_nested.items())
+        if field not in td_scalar
+    }
+
     return {
         "required_transaktionsdaten": sorted(td_fields),
+        "transaktionsdaten_reads": transaktionsdaten_reads,
         "required_zusatzdaten": sorted(zd_fields),
         "stammdaten_reads": sorted(sd_fields),
         "pruefidentifikator_source": pruefi_source,

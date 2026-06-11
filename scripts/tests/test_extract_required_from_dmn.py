@@ -7,7 +7,7 @@ import shutil
 from pathlib import Path
 
 from scripts import extract_required_from_dmn as cli
-from scripts.dmn.parser import parse_dmn_xml
+from scripts.dmn.parser import Rule, parse_dmn_xml
 
 
 FIXTURES = Path(__file__).parent / "fixtures" / "dmn"
@@ -129,6 +129,41 @@ def test_analyze_rule_nna_marks_pruefi_source_transaktionsdaten() -> None:
     entry = cli.analyze_rule(nna)
     assert entry["pruefidentifikator_source"] == "transaktionsdaten"
     assert "pruefidentifikator" in entry["required_transaktionsdaten"]
+
+
+def test_analyze_rule_records_nested_transaktionsdaten_reads() -> None:
+    rule = Rule(
+        event_name="X",
+        outputs=(
+            ("absender", "FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.absender.rollencodenummer)"),
+            ("marktrolle", "FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.empfaenger.marktrolle)"),
+            ("sparte", "FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.sparte)"),
+            ("verbrauch", "FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.absender[0].ansprechpartner.nachname)"),
+        ),
+        description=None,
+    )
+    entry = cli.analyze_rule(rule)
+    assert entry["required_transaktionsdaten"] == ["absender", "empfaenger", "sparte"]
+    # nested reads recorded per field (first sub-segment, indices stripped);
+    # scalar 'sparte' is omitted → signals "use the whole field atom".
+    assert entry["transaktionsdaten_reads"] == {
+        "absender": ["ansprechpartner", "rollencodenummer"],
+        "empfaenger": ["marktrolle"],
+    }
+
+
+def test_analyze_rule_common_core_records_nested_reads() -> None:
+    table = parse_dmn_xml((FIXTURES / "S_MINI.dmn").read_bytes(), "x")
+    assert table is not None
+    cc = next(r for r in table.rules if r.event_name == "COMMON_CORE_EVENT")
+    entry = cli.analyze_rule(cc)
+    # absender/empfaenger are read as .rollencodenummer in the fixture; kategorie
+    # and sparte are scalar and therefore absent from the nested map.
+    assert entry["transaktionsdaten_reads"] == {
+        "absender": ["rollencodenummer"],
+        "empfaenger": ["rollencodenummer"],
+    }
+    assert "sparte" not in entry["transaktionsdaten_reads"]
 
 
 def test_analyze_rule_minimal_marks_pruefi_source_erp_event() -> None:
