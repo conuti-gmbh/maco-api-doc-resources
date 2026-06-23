@@ -30,6 +30,10 @@ on:
         description: 'Branch/tag/SHA in the three maco-*-processes repos (event mapping + required fields)'
         default: 'dev'
         required: false
+      translator_tag:
+        description: 'maco-bo4e-translator image tag used to produce the EN bundles (ECR). Skipped if ECR_PULL_ROLE_ARN is unset.'
+        default: 'main'
+        required: false
   # W-3: post-merge auto-trigger from the templater is prepared but unused for now.
   # repository_dispatch:
   #   types: [templater-merged]
@@ -215,9 +219,75 @@ jobs:
         working-directory: gen
         run: bash scripts/lint-openapi.sh bundle
 
+      # --- EN path (Story 11 / MACO-13088): translate each DE bundle to EN via
+      # the bo4e-translator's OpenAPI endpoint, run ephemerally as a container
+      # (the map is baked into the image). Gated on ECR_PULL_ROLE_ARN so the DE
+      # pipeline still publishes when the EN infra isn't wired up yet.
+      - name: Check EN prerequisites
+        id: en
+        env:
+          ROLE: ${{ secrets.ECR_PULL_ROLE_ARN }}
+        run: |
+          if [ -n "$ROLE" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::ECR_PULL_ROLE_ARN not set — skipping EN bundle generation"
+          fi
+
+      - name: Configure AWS credentials (ECR pull)
+        if: steps.en.outputs.enabled == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ECR_PULL_ROLE_ARN }}
+          aws-region: eu-central-1
+
+      - name: Translate bundles to EN
+        id: translate
+        if: steps.en.outputs.enabled == 'true'
+        working-directory: gen
+        env:
+          ECR: 058264281162.dkr.ecr.eu-central-1.amazonaws.com
+          IMAGE: maco-bo4e-translator
+          TAG: ${{ inputs.translator_tag }}
+        run: |
+          aws ecr get-login-password --region eu-central-1 \
+            | docker login --username AWS --password-stdin "$ECR"
+          docker run -d --name translator -p 8080:8080 "$ECR/$IMAGE:$TAG"
+          ok=0
+          for _ in $(seq 1 30); do
+            if curl -fsS http://localhost:8080/api/health >/dev/null 2>&1; then ok=1; break; fi
+            sleep 1
+          done
+          [ "$ok" = 1 ] || { echo "::error::translator not healthy"; docker logs translator; exit 1; }
+          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' "$ECR/$IMAGE:$TAG" 2>/dev/null || echo "$ECR/$IMAGE:$TAG")
+          echo "image=$DIGEST" >> "$GITHUB_OUTPUT"
+          for F in ${{ steps.formats.outputs.list }}; do
+            echo "::group::translate $F"
+            # OpenAPI route: YAML in, JSON out (Story 04). Schema/component names
+            # stay DE by design; property names/descriptions/enums become EN.
+            curl -fsS -X POST --data-binary "@bundle/maco-bo4e-$F.openapi.yaml" \
+              -H 'Content-Type: application/yaml' \
+              http://localhost:8080/api/translate/openapi/de/en/ \
+              -o "bundle/maco-bo4e-$F-en.openapi.json"
+            echo "::endgroup::"
+          done
+          docker stop translator
+
+      - name: Lint EN bundles
+        if: steps.en.outputs.enabled == 'true'
+        working-directory: gen
+        run: |
+          for f in bundle/*-en.openapi.json; do
+            vacuum lint --ruleset vacuum-ruleset.yaml --no-banner --no-style --silent "$f" \
+              || { echo "::error::EN bundle lint failed: $f"; exit 1; }
+            echo "EN bundle OK: $f"
+          done
+
       - name: Publish per-format branches
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TRANSLATOR: ${{ steps.translate.outputs.image }}
           TRAILER: >-
             Generated from maco-templater-app@${{ steps.prov.outputs.templater }},
             maco-lf-processes@${{ steps.prov.outputs.lf }},
@@ -246,11 +316,14 @@ jobs:
               [ -d "../gen/event-bauteil/$F" ] && cp -r "../gen/event-bauteil/$F" "./event-bauteil/$F" || echo "note: no event-bauteil/ for $F"
               [ -d "../gen/event/$F" ]         && cp -r "../gen/event/$F"         "./event/$F"         || echo "note: no event/ for $F"
               cp "../gen/bundle/maco-bo4e-$F.openapi.yaml" "./bundle/"
+              [ -f "../gen/bundle/maco-bo4e-$F-en.openapi.json" ] && cp "../gen/bundle/maco-bo4e-$F-en.openapi.json" "./bundle/" || echo "note: no EN bundle for $F"
               git add -A
               if git diff --cached --quiet; then
                 echo "v$F: no changes"
               else
-                git commit -m "Sync v$F" -m "$TRAILER"
+                msg="$TRAILER"
+                [ -n "${TRANSLATOR:-}" ] && msg="$msg, bo4e-translator@$TRANSLATOR"
+                git commit -m "Sync v$F" -m "$msg"
                 git push -u origin "v$F"
               fi
             )
