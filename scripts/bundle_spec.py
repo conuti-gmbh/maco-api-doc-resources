@@ -38,6 +38,9 @@ from pathlib import Path
 from ruamel.yaml import YAML
 
 _FRAG = "#/components/schemas/"
+# Host of JSON-Schema dialect/meta-schema URIs ($ref targets that can't be
+# bundled and that strict OpenAPI 3.1 builders reject — see rewrite()).
+_META_SCHEMA_HOST = "json-schema.org"
 
 
 def _yaml() -> YAML:
@@ -154,13 +157,22 @@ def collect_targets(node, owner_file: Path, targets: list):
 
 def rewrite(node, owner_file: Path, keymap: dict):
     """Deep-copy ``node``; rewrite every schema-$ref to its local bundled key via
-    ``keymap``. Non-schema $refs (external example URLs) pass through untouched."""
+    ``keymap``. Non-schema $refs (external example URLs) pass through untouched.
+
+    Exception: a $ref to a JSON-Schema dialect/meta-schema (e.g. the BO4E
+    ``object.meta`` schema's ``allOf: [{$ref: https://json-schema.org/draft/...}]``)
+    is dropped to a permissive empty schema. Such a ref is unresolvable in a
+    self-contained bundle and a strict OpenAPI 3.1 schema builder (vacuum)
+    rejects it as a missing component. Sibling keywords are preserved."""
     if isinstance(node, dict):
         ref = node.get("$ref")
         if isinstance(ref, str) and _FRAG in ref:
             out = {k: v for k, v in node.items() if k != "$ref"}
             out["$ref"] = _FRAG + keymap[resolve(owner_file, ref)]
             return out
+        if isinstance(ref, str) and _META_SCHEMA_HOST in ref:
+            return {k: rewrite(v, owner_file, keymap)
+                    for k, v in node.items() if k != "$ref"}
         return {k: rewrite(v, owner_file, keymap) for k, v in node.items()}
     if isinstance(node, list):
         return [rewrite(v, owner_file, keymap) for v in node]

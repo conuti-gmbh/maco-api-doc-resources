@@ -67,3 +67,25 @@ def test_keymap_collision_falls_back_to_verbose():
     assert keymap[b] == bs.verbose_key(ROOT, *b)
     assert keymap[a] != keymap[b]
     assert len(set(keymap.values())) == 2
+
+
+def test_rewrite_neutralizes_json_schema_meta_ref():
+    """A $ref to a JSON-Schema meta-schema (BO4E object.meta's allOf) is dropped
+    to a permissive empty schema; sibling keywords survive. Localizable component
+    $refs and external example URLs are untouched."""
+    node = {
+        "allOf": [{"$ref": "https://json-schema.org/draft/2020-12/schema"}],
+        "properties": {
+            "x-descriptions": {"$ref": bs._FRAG + "field.foo"},
+            "example": {"$ref": "https://raw.githubusercontent.com/x/y/bo/Foo.json"},
+        },
+    }
+    keymap = {bs.resolve(ROOT / "bo4e/enum/object.meta.yaml",
+                          bs._FRAG + "field.foo"): "field.foo"}
+    out = bs.rewrite(node, ROOT / "bo4e/enum/object.meta.yaml", keymap)
+    # meta-schema ref gone -> empty schema in the allOf branch
+    assert out["allOf"] == [{}]
+    # localizable component ref preserved (already a local key here)
+    assert out["properties"]["x-descriptions"] == {"$ref": bs._FRAG + "field.foo"}
+    # external example URL untouched
+    assert out["properties"]["example"]["$ref"].startswith("https://raw.githubusercontent.com")
