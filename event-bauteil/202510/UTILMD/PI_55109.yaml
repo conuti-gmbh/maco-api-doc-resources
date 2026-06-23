@@ -4,7 +4,7 @@ info:
   version: '202510'
   x-bo4e-schema-version: 1.7.0
   x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
-  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+  x-templater-sha: 39ae45d481e5cc3d4d7aae328a23a9751236156a
 components:
   schemas:
     PI_55109:
