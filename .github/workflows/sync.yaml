@@ -185,11 +185,15 @@ jobs:
         id: formats
         working-directory: gen
         run: |
-          # Union of 6-digit format dirs under pruefi/ and event/.
-          FORMATS=$( { ls -1 pruefi 2>/dev/null; ls -1 event 2>/dev/null; } \
-            | grep -E '^[0-9]{6}$' | sort -u | tr '\n' ' ' )
-          echo "Discovered formats: $FORMATS"
-          [ -n "$FORMATS" ] || { echo "::error::no formats discovered"; exit 1; }
+          # The templater is the authoritative format source: it emits prüfi
+          # specs only for the supported versions (current + previous, plus the
+          # in-build one once ready). Discover from pruefi/ ALONE — formats that
+          # exist only in the process repos (e.g. a retired 202504 still carried
+          # as a folder there) are NOT generated and their v<format> branches are
+          # left untouched.
+          FORMATS=$( ls -1 pruefi 2>/dev/null | grep -E '^[0-9]{6}$' | sort -u | tr '\n' ' ' )
+          echo "Discovered formats (from pruefi/): $FORMATS"
+          [ -n "$FORMATS" ] || { echo "::error::no formats discovered under pruefi/"; exit 1; }
           echo "list=$FORMATS" >> "$GITHUB_OUTPUT"
 
       - name: Bundle per format
