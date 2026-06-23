@@ -39,6 +39,32 @@ flowchart LR
 
 Skript-Details, Flags und Reproduzier-Befehle: **[`scripts/README.md`](scripts/README.md)**. Output ist deterministisch (byte-identisch bei gleichen Eingaben); Tests via `pytest scripts/tests`.
 
+## Sync-Workflow (GHA)
+
+Die Pipeline läuft automatisiert als GitHub-Actions-Workflow [`​.github/workflows/sync.yaml`](.github/workflows/sync.yaml) ([MACO-13087](https://conuti.atlassian.net/browse/MACO-13087)).
+
+**Auslösen (UI):** Actions → *Sync BO4E API Doc Resources* → *Run workflow*. Zwei Inputs:
+
+| Input | Default | Quelle |
+|---|---|---|
+| `templater_ref` | `main` | Ref in `maco-templater-app` — liefert `pruefi/` + den `bo4e/`-Atom-Mirror (`vendor/conuti/bo4e-schema`) |
+| `processes_ref` | `dev` | Ref in den drei `maco-{lf,nb,msb}-processes` — liefert Event-Mapping (BPMN) + Required-Felder (DMN) |
+
+**Was der Workflow tut:**
+
+1. Templater auschecken, `composer install --no-dev`, `bin/console create-openapi-spec --strict`
+2. `pruefi/` ← Templater-Output, `bo4e/` ← Templater-`vendor`-Mirror (rsync `--delete`)
+3. Drei Process-Repos auschecken, die vier Generator-Skripte fahren (`1 → 2 ∥ 4 → 3`)
+4. `$ref`-Konsistenz ([`scripts/check_refs.py`](scripts/check_refs.py)) + OpenAPI-3.1-Lint (`vacuum`, [`scripts/lint-openapi.sh`](scripts/lint-openapi.sh) + [`vacuum-ruleset.yaml`](vacuum-ruleset.yaml))
+5. `bundle_spec.py` je entdecktem Format → eine Single-Spec pro Format (Apidog-Artefakt)
+6. **Push je Format auf den eigenen `v<format>`-Branch** (basiert auf `main`, trägt nur die Specs dieses Formats + den vollen `bo4e/`-Mirror + das Bundle). Commit-Trailer hält die Quell-SHAs (Templater + 3 Process-Repos + `bo4e-schema`-Version). Kein Diff → kein Commit.
+
+**Auth:** Org-Secret `ORG_PAT` (Checkouts + Push + composer-VCS via `git config insteadOf`). Kein `ID_RSA`.
+
+**Format-Discovery ist dynamisch:** die Formate ergeben sich aus dem generierten Output (= aus den date-versionierten Ordnern der Process-Repos). Ein Format, das dort verschwindet, wird nie regeneriert → sein `v<format>`-Branch bleibt eingefroren.
+
+**PR-Gate** [`​.github/workflows/openapi_lint.yaml`](.github/workflows/openapi_lint.yaml): PRs gegen `main` → `pytest scripts/tests`; PRs gegen `v*` → `$ref`-Check + vacuum-Lint.
+
 ## Spec-Formate (kurz)
 
 - **Prüfi** (`pruefi/<format>/<scope>/PI_<id>.yaml`): OpenAPI 3.1, Container-Subset-Schemas pro Tiefenebene; skalare Leaves als `$ref` auf atomare `bo4e/fields/<cdoc|bo|com>/...`-Files (Single-Source); `x-edifact-segment`-Extension; `required` pro Container. Kein `paths` — reine Schema-Library für Composition.

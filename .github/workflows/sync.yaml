@@ -1,0 +1,229 @@
+name: Sync BO4E API Doc Resources
+
+# Orchestrates the full doc-generation pipeline (MACO-13087):
+#   templater create-openapi-spec  ->  pruefi/ + bo4e/ mirror
+#   4 generator scripts            ->  event-bauteil/ + event/
+#   bundle_spec.py per format      ->  one Apidog import artifact per format
+# and publishes the output per format version onto its own `v<format>` branch.
+#
+# `main` carries only the tooling (scripts/ + bundler + this workflow). The
+# generated specs live exclusively on `v<format>` branches. Formats are
+# discovered dynamically from the generated output (which in turn is driven by
+# the date-versioned folders in the Camunda process repos): a format that no
+# longer appears is simply never regenerated, so its branch stays frozen.
+
+on:
+  workflow_dispatch:
+    inputs:
+      templater_ref:
+        description: 'Branch/tag/SHA in maco-templater-app (source of pruefi/ + bo4e/)'
+        default: 'main'
+        required: false
+      processes_ref:
+        description: 'Branch/tag/SHA in the three maco-*-processes repos (source of event mapping + required fields)'
+        default: 'dev'
+        required: false
+  # W-3: post-merge auto-trigger from the templater is prepared but unused for now.
+  # repository_dispatch:
+  #   types: [templater-merged]
+
+permissions:
+  contents: read
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      APP_ENV: prod
+      APP_DEBUG: '0'
+    steps:
+      - name: Resolve refs
+        id: refs
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "templater=${{ github.event.client_payload.templater_ref || 'main' }}" >> "$GITHUB_OUTPUT"
+            echo "processes=${{ github.event.client_payload.processes_ref || 'dev' }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "templater=${{ inputs.templater_ref }}" >> "$GITHUB_OUTPUT"
+            echo "processes=${{ inputs.processes_ref }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configure git (user + ORG_PAT auth)
+        env:
+          ORG_PAT: ${{ secrets.ORG_PAT }}
+        run: |
+          git config --global user.name "Github Actions Auto Sync"
+          git config --global user.email "devops+github@conuti.de"
+          # conuti/bo4e-schema resolves via https in composer.lock; the three
+          # conuti *-lib packages declare git@github.com: VCS URLs. ORG_PAT covers
+          # both (no ID_RSA, MACO-13087 pre-planning).
+          git config --global url."https://x-access-token:${ORG_PAT}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${ORG_PAT}@github.com/".insteadOf "https://github.com/"
+
+      - name: Checkout tooling (this repo)
+        uses: actions/checkout@v4
+        with:
+          path: gen
+
+      - name: Setup PHP 8.5
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          tools: composer
+          coverage: none
+
+      - name: Checkout maco-templater-app
+        uses: actions/checkout@v4
+        with:
+          repository: conuti-gmbh/maco-templater-app
+          ref: ${{ steps.refs.outputs.templater }}
+          token: ${{ secrets.ORG_PAT }}
+          path: templater
+
+      - name: composer install (templater)
+        working-directory: templater
+        env:
+          COMPOSER_AUTH: '{"github-oauth":{"github.com":"${{ secrets.ORG_PAT }}"}}'
+        run: composer install --no-dev --no-interaction --no-progress --prefer-dist
+
+      - name: Capture templater SHA
+        id: tpl
+        run: echo "sha=$(git -C templater rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Capture bo4e-schema version (composer.lock)
+        id: schema
+        run: |
+          VER=$(jq -r '.packages[] | select(.name=="conuti/bo4e-schema") | .version + "@" + (.source.reference // "?")' templater/composer.lock)
+          echo "version=${VER:-unknown}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate prüfi specs (templater)
+        working-directory: templater
+        run: php bin/console create-openapi-spec --strict
+
+      - name: Checkout process repos
+        uses: actions/checkout@v4
+        with:
+          repository: conuti-gmbh/maco-lf-processes
+          ref: ${{ steps.refs.outputs.processes }}
+          token: ${{ secrets.ORG_PAT }}
+          path: repos/maco-lf-processes
+      - uses: actions/checkout@v4
+        with:
+          repository: conuti-gmbh/maco-nb-processes
+          ref: ${{ steps.refs.outputs.processes }}
+          token: ${{ secrets.ORG_PAT }}
+          path: repos/maco-nb-processes
+      - uses: actions/checkout@v4
+        with:
+          repository: conuti-gmbh/maco-msb-processes
+          ref: ${{ steps.refs.outputs.processes }}
+          token: ${{ secrets.ORG_PAT }}
+          path: repos/maco-msb-processes
+
+      - name: Capture process repo SHAs
+        id: proc
+        run: |
+          echo "lf=$(git -C repos/maco-lf-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "nb=$(git -C repos/maco-nb-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "msb=$(git -C repos/maco-msb-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python deps
+        run: pip install -r gen/scripts/requirements.txt
+
+      - name: Mirror pruefi/ and bo4e/ from templater
+        run: |
+          rsync -a --delete templater/docs/api/openapi-pruefi/ gen/pruefi/
+          rsync -a --delete templater/vendor/conuti/bo4e-schema/docs/openapi-model/ gen/bo4e/
+
+      - name: Run generator pipeline (1 -> 2 || 4 -> 3)
+        working-directory: gen
+        run: |
+          python -m scripts.filter_event_bauteile
+          python -m scripts.parse_bpmn_events --processes-root "$GITHUB_WORKSPACE/repos"
+          python -m scripts.extract_required_from_dmn --processes-root "$GITHUB_WORKSPACE/repos"
+          python -m scripts.compose_event_specs
+
+      - name: Check $ref consistency
+        working-directory: gen
+        run: python -m scripts.check_refs
+
+      - name: Install vacuum
+        run: |
+          curl -fsSL https://quobix.com/scripts/install_vacuum.sh | sh
+          vacuum version
+
+      - name: Lint specs (OpenAPI 3.1)
+        working-directory: gen
+        run: bash scripts/lint-openapi.sh pruefi event-bauteil event
+
+      - name: Discover formats
+        id: formats
+        working-directory: gen
+        run: |
+          # Union of 6-digit format dirs under pruefi/ and event/.
+          FORMATS=$( { ls -1 pruefi 2>/dev/null; ls -1 event 2>/dev/null; } \
+            | grep -E '^[0-9]{6}$' | sort -u | tr '\n' ' ' )
+          echo "Discovered formats: $FORMATS"
+          [ -n "$FORMATS" ] || { echo "::error::no formats discovered"; exit 1; }
+          echo "list=$FORMATS" >> "$GITHUB_OUTPUT"
+
+      - name: Bundle per format
+        working-directory: gen
+        run: |
+          mkdir -p bundle
+          for F in ${{ steps.formats.outputs.list }}; do
+            echo "::group::bundle $F"
+            python -m scripts.bundle_spec \
+              --repo-root . \
+              --format "$F" \
+              --roots event,pruefi \
+              --catalog-roots bo4e/bo,bo4e/com,bo4e/cdoc,bo4e/enum \
+              --out "bundle/maco-bo4e-$F.openapi.yaml"
+            echo "::endgroup::"
+          done
+
+      - name: Lint bundles
+        working-directory: gen
+        run: bash scripts/lint-openapi.sh bundle
+
+      - name: Publish per-format branches
+        env:
+          ORG_PAT: ${{ secrets.ORG_PAT }}
+          TRAILER: >-
+            Generated from maco-templater-app@${{ steps.tpl.outputs.sha }},
+            maco-lf-processes@${{ steps.proc.outputs.lf }},
+            maco-nb-processes@${{ steps.proc.outputs.nb }},
+            maco-msb-processes@${{ steps.proc.outputs.msb }},
+            conuti/bo4e-schema@${{ steps.schema.outputs.version }}
+        run: |
+          set -euo pipefail
+          git clone "https://x-access-token:${ORG_PAT}@github.com/${{ github.repository }}.git" publish
+          for F in ${{ steps.formats.outputs.list }}; do
+            echo "::group::publish v$F"
+            (
+              cd publish
+              # Base each format branch off main so it carries the tooling.
+              git checkout -B "v$F" origin/main
+              # Wipe any prior output; a v<format> branch holds exactly one format.
+              rm -rf bo4e pruefi event-bauteil event bundle
+              mkdir -p pruefi event-bauteil event bundle
+              cp -r "../gen/bo4e" "./bo4e"
+              cp -r "../gen/pruefi/$F" "./pruefi/$F"
+              [ -d "../gen/event-bauteil/$F" ] && cp -r "../gen/event-bauteil/$F" "./event-bauteil/$F" || true
+              [ -d "../gen/event/$F" ] && cp -r "../gen/event/$F" "./event/$F" || true
+              cp "../gen/bundle/maco-bo4e-$F.openapi.yaml" "./bundle/"
+              git add -A
+              if git diff --cached --quiet; then
+                echo "v$F: no changes"
+              else
+                git commit -m "Sync v$F" -m "$TRAILER"
+                git push -u origin "v$F"
+              fi
+            )
+            echo "::endgroup::"
+          done
