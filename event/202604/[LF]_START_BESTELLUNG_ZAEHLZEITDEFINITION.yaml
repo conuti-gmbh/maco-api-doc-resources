@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_BESTELLUNG_ZAEHLZEITDEFINITION'
   version: '202604'
-  x-bpmn-source-sha: 4f5b2ff0
+  x-bpmn-source-sha: 3a7c8fc1
   x-bo4e-schema-version: 1.7.0
-  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+  x-templater-sha: 39ae45d481e5cc3d4d7aae328a23a9751236156a
 components:
   schemas:
     '[LF] START_BESTELLUNG_ZAEHLZEITDEFINITION':
