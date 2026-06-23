@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: PI_55227
+  version: '202610'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55227:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55227__stammdaten'
+      required:
+        - stammdaten
+    PI_55227__stammdaten:
+      type: object
+      properties:
+        NETZLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55227__stammdaten__NETZLOKATION'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55227__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - NETZLOKATION
+        - VERWENDUNGSZEITRAUM
+    PI_55227__stammdaten__NETZLOKATION:
+      type: object
+      properties:
+        abrechnungsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55227__stammdaten__NETZLOKATION__abrechnungsdaten'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2]'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55227__stammdaten__NETZLOKATION__gueltigkeitszeitraum'
+        netzlokationsId:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/netzlokationsId.yaml#/components/schemas/netzlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z18
+      required:
+        - abrechnungsdaten
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - netzlokationsId
+    PI_55227__stammdaten__NETZLOKATION__abrechnungsdaten:
+      type: object
+      properties:
+        abrechnungBlindarbeit:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/abrechnungBlindarbeit.yaml#/components/schemas/abrechnungBlindarbeit'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2].SG10.CCI+Z45'
+        artikelId:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/artikelId.yaml#/components/schemas/artikelId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2].PIA+Z02'
+        artikelIdTyp:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/artikelIdTyp.yaml#/components/schemas/artikelIdTyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2].PIA+Z02'
+        zahlerBlindarbeit:
+          $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/zahlerBlindarbeit.yaml#/components/schemas/zahlerBlindarbeit'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2].SG10.CCI+Z45.CAV+ZE4'
+      required:
+        - abrechnungBlindarbeit
+        - artikelId
+        - artikelIdTyp
+    PI_55227__stammdaten__NETZLOKATION__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2]'
+      required:
+        - zeitraumId
+    PI_55227__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId

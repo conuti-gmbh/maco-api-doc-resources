@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_VERSAND_STORNO_MSCONS'
+  version: '202610'
+  x-bpmn-source-sha: 4f5b2ff0
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[LF] START_VERSAND_STORNO_MSCONS':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+            - typ
+            - vorgangsreferenznummer
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            typ:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/typ.yaml#/components/schemas/typ
+            vorgangsreferenznummer:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsreferenznummer.yaml#/components/schemas/vorgangsreferenznummer
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
+              examples:
+                - '13006'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_STORNO_MSCONS
+              default: START_VERSAND_STORNO_MSCONS
+      x-pending-pruefis:
+        - '13006'

@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_GESCHAEFTSDATENANFRAGE'
+  version: '202610'
+  x-bpmn-source-sha: aa74db2c
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[MSB] START_GESCHAEFTSDATENANFRAGE':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17104, 17126, 17132.
+              examples:
+                - '17104'
+                - '17126'
+                - '17132'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_GESCHAEFTSDATENANFRAGE
+              default: START_GESCHAEFTSDATENANFRAGE
+      x-pending-pruefis:
+        - '17104'
+        - '17126'
+        - '17132'

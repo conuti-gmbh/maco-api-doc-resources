@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: PI_55038
+  version: '202610'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55038:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55038__stammdaten'
+      required:
+        - stammdaten
+    PI_55038__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55038__stammdaten__MARKTLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55038__stammdaten__NETZNUTZUNGSVERTRAG'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55038__stammdaten__TRANCHE'
+      required:
+        - MARKTLOKATION
+        - NETZNUTZUNGSVERTRAG
+        - TRANCHE
+    PI_55038__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - marktlokationsId
+    PI_55038__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+      required:
+        - vertragsbeginn
+    PI_55038__stammdaten__TRANCHE:
+      type: object
+      properties:
+        tranchenId:
+          $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z21
+      required:
+        - tranchenId

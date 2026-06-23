@@ -1,0 +1,383 @@
+openapi: 3.1.0
+info:
+  title: PI_55042
+  version: '202610'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55042:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55042__stammdaten'
+      required:
+        - stammdaten
+    PI_55042__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55042__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55042__stammdaten__MESSLOKATION'
+        MESSSTELLENBETRIEBSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG'
+        ZAEHLER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55042__stammdaten__ZAEHLER'
+      required:
+        - MARKTLOKATION
+        - MESSLOKATION
+        - MESSSTELLENBETRIEBSVERTRAG
+        - ZAEHLER
+    PI_55042__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - marktlokationsId
+    PI_55042__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        ablesekartenempfaenger:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSLOKATION__ablesekartenempfaenger'
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Messlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        messadresse:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSLOKATION__messadresse'
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05.RFF+Z19
+            - SG4.IDE+24.SG5.LOC+Z17
+      required:
+        - ablesekartenempfaenger
+        - datenqualitaet
+        - messadresse
+        - messlokationsId
+    PI_55042__stammdaten__MESSLOKATION__ablesekartenempfaenger:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        partneradresse:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse'
+      required:
+        - anrede
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_55042__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z05
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+    PI_55042__stammdaten__MESSLOKATION__messadresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSLOKATION__messadresse__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_55042__stammdaten__MESSLOKATION__messadresse__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z03
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG:
+      type: object
+      properties:
+        korrespondenzpartner:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner'
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragskonditionen'
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragspartner2'
+      required:
+        - korrespondenzpartner
+        - vertragspartner2
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__ansprechpartner'
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        partneradresse:
+          $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__partneradresse'
+      required:
+        - anrede
+        - ansprechpartner
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG12.NAD+Z08.SG13.CTA.COM+[TE|EM]'
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - rufnummern
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG12.NAD+Z08.SG13.CTA.COM+[TE|EM]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG12.NAD+Z08.SG13.CTA.COM+[TE|EM]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z08
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        beauftragungMsb:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/beauftragungMsb.yaml#/components/schemas/beauftragungMsb'
+          x-edifact-segment:
+            - SG4.IDE+24.AGR+9
+    PI_55042__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        geschaeftspartnerrolle:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/geschaeftspartnerrolle.yaml#/components/schemas/geschaeftspartnerrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z07
+      required:
+        - anrede
+        - geschaeftspartnerrolle
+        - name1
+        - name2
+        - name3
+        - name4
+    PI_55042__stammdaten__ZAEHLER:
+      type: object
+      properties:
+        zaehlernummer:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlernummer.yaml#/components/schemas/zaehlernummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z30
+      required:
+        - zaehlernummer

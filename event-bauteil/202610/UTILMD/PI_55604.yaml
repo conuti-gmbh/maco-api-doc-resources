@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: PI_55604
+  version: '202610'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55604:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55604__stammdaten'
+      required:
+        - stammdaten
+    PI_55604__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55604__stammdaten__MARKTLOKATION'
+      required:
+        - MARKTLOKATION
+    PI_55604__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        erforderlichesProduktpaket:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55604__stammdaten__MARKTLOKATION__erforderlichesProduktpaket'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - erforderlichesProduktpaket
+        - marktlokationsId
+    PI_55604__stammdaten__MARKTLOKATION__erforderlichesProduktpaket:
+      type: object
+      properties:
+        produkt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55604__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt'
+        produktpaketId:
+          $ref: '../../../bo4e/fields/com/Produktpaket/produktpaketId.yaml#/components/schemas/produktpaketId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z79
+      required:
+        - produkt
+        - produktpaketId
+    PI_55604__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
+      type: object
+      properties:
+        produktCode:
+          $ref: '../../../bo4e/fields/com/Produkt/produktCode.yaml#/components/schemas/produktCode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z79.PIA+5
+      required:
+        - produktCode

@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: PI_55688
+  version: '202610'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55688:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55688__stammdaten'
+      required:
+        - stammdaten
+    PI_55688__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55688__stammdaten__MARKTLOKATION'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55688__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - MARKTLOKATION
+        - VERWENDUNGSZEITRAUM
+    PI_55688__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55688__stammdaten__MARKTLOKATION__gueltigkeitszeitraum'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55688__stammdaten__MARKTLOKATION__marktrollen'
+      required:
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - marktlokationsId
+        - marktrollen
+    PI_55688__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01
+      required:
+        - zeitraumId
+    PI_55688__stammdaten__MARKTLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+      required:
+        - marktrolle
+        - rollencodenummer
+    PI_55688__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z49|Z53]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId

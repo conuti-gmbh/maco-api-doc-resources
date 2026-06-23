@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_ABR_BK'
+  version: '202610'
+  x-bpmn-source-sha: 33b20645
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[NB] START_ABR_BK':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202610/UTILMD/PI_55126.yaml#/components/schemas/PI_55126__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD/PI_55672.yaml#/components/schemas/PI_55672__stammdaten
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            transaktionsgrundergaenzung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.
+              examples:
+                - '55126'
+                - '55613'
+                - '55672'
+                - '55674'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_ABR_BK
+              default: START_ABR_BK
+      x-pending-pruefis:
+        - '55613'
+        - '55674'
