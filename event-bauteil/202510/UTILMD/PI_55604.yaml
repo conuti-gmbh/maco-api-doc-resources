@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: PI_55604
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55604:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55604__stammdaten'
+      required:
+        - stammdaten
+    PI_55604__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55604__stammdaten__MARKTLOKATION'
+      required:
+        - MARKTLOKATION
+    PI_55604__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - marktlokationsId

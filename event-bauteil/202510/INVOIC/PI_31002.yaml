@@ -1,0 +1,363 @@
+openapi: 3.1.0
+info:
+  title: PI_31002
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_31002:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_31002__stammdaten'
+      required:
+        - stammdaten
+    PI_31002__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31002__stammdaten__MARKTLOKATION'
+        RECHNUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG'
+      required:
+        - MARKTLOKATION
+        - RECHNUNG
+    PI_31002__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        lokationsadresse:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/lokationsadresse.yaml#/components/schemas/lokationsadresse'
+          x-edifact-segment:
+            - SG2.NAD+DP
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsadresse
+        - marktlokationsId
+    PI_31002__stammdaten__RECHNUNG:
+      type: object
+      properties:
+        bearbeitungsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/bearbeitungsdatum.yaml#/components/schemas/bearbeitungsdatum'
+          x-edifact-segment:
+            - DTM+9
+        datumVorgaengerrechnung:
+          $ref: '../../../bo4e/fields/bo/Rechnung/datumVorgaengerrechnung.yaml#/components/schemas/datumVorgaengerrechnung'
+          x-edifact-segment:
+            - SG50.MOA+113.SG51.RFF+AFL.DTM+3
+        faelligkeitsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/faelligkeitsdatum.yaml#/components/schemas/faelligkeitsdatum'
+          x-edifact-segment:
+            - SG8.PYT.DTM+265
+        gemeinderabatt:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__gemeinderabatt'
+        gesamtbrutto:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__gesamtbrutto'
+        istReverseCharge:
+          $ref: '../../../bo4e/fields/bo/Rechnung/istReverseCharge.yaml#/components/schemas/istReverseCharge'
+          x-edifact-segment:
+            - FTX+REG++RCH
+        originalRechnungsnummer:
+          $ref: '../../../bo4e/fields/bo/Rechnung/originalRechnungsnummer.yaml#/components/schemas/originalRechnungsnummer'
+          x-edifact-segment:
+            - SG1.RFF+OI
+        preisNetzbetreiberCodenummer:
+          $ref: '../../../bo4e/fields/bo/Rechnung/preisNetzbetreiberCodenummer.yaml#/components/schemas/preisNetzbetreiberCodenummer'
+          x-edifact-segment:
+            - SG1.RFF+Z56
+        rechnungsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungsdatum.yaml#/components/schemas/rechnungsdatum'
+          x-edifact-segment:
+            - DTM+137
+        rechnungsperiode:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungsperiode'
+        rechnungspositionen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen'
+        rechnungsstatus:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungsstatus.yaml#/components/schemas/rechnungsstatus'
+          x-edifact-segment:
+            - BGM+380
+        rechnungstyp:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungstyp.yaml#/components/schemas/rechnungstyp'
+          x-edifact-segment:
+            - IMD
+        referenzDokumentennummer:
+          $ref: '../../../bo4e/fields/bo/Rechnung/referenzDokumentennummer.yaml#/components/schemas/referenzDokumentennummer'
+          x-edifact-segment:
+            - SG1.RFF+ACE
+        referenzNachrichtendatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/referenzNachrichtendatum.yaml#/components/schemas/referenzNachrichtendatum'
+          x-edifact-segment:
+            - SG1.RFF+OI.DTM+171
+        referenzVorgaengerrechnung:
+          $ref: '../../../bo4e/fields/bo/Rechnung/referenzVorgaengerrechnung.yaml#/components/schemas/referenzVorgaengerrechnung'
+          x-edifact-segment:
+            - SG50.MOA+113.SG51.RFF+AFL
+        sonderrechnungsarten:
+          $ref: '../../../bo4e/fields/bo/Rechnung/sonderrechnungsarten.yaml#/components/schemas/sonderrechnungsarten'
+          x-edifact-segment:
+            - GEI+Z01
+        steuerbetraege:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__steuerbetraege'
+        vorausgezahlt:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__vorausgezahlt'
+        zuZahlen:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__zuZahlen'
+      required:
+        - bearbeitungsdatum
+        - datumVorgaengerrechnung
+        - faelligkeitsdatum
+        - gemeinderabatt
+        - gesamtbrutto
+        - originalRechnungsnummer
+        - rechnungsdatum
+        - rechnungsperiode
+        - rechnungspositionen
+        - rechnungsstatus
+        - rechnungstyp
+        - referenzDokumentennummer
+        - referenzNachrichtendatum
+        - referenzVorgaengerrechnung
+        - steuerbetraege
+        - vorausgezahlt
+        - zuZahlen
+    PI_31002__stammdaten__RECHNUNG__gemeinderabatt:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Gemeinderabatt/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+Z01
+      required:
+        - wert
+    PI_31002__stammdaten__RECHNUNG__gesamtbrutto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+77
+      required:
+        - wert
+    PI_31002__stammdaten__RECHNUNG__rechnungsperiode:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - DTM+156
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - DTM+155
+      required:
+        - enddatum
+        - startdatum
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen:
+      type: object
+      properties:
+        abschlag:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__abschlag'
+        artikelnummer:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/artikelnummer.yaml#/components/schemas/artikelnummer'
+          x-edifact-segment:
+            - SG26.LIN
+        einzelpreis:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__einzelpreis'
+        gemeinderabatt:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__gemeinderabatt'
+        gesamtZuAbschlagsbetrag:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/gesamtZuAbschlagsbetrag.yaml#/components/schemas/gesamtZuAbschlagsbetrag'
+          x-edifact-segment:
+            - SG26.LIN.SG27.MOA+131
+        lieferungBis:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/lieferungBis.yaml#/components/schemas/lieferungBis'
+          x-edifact-segment:
+            - SG26.LIN.DTM+156
+        lieferungVon:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/lieferungVon.yaml#/components/schemas/lieferungVon'
+          x-edifact-segment:
+            - SG26.LIN.DTM+155
+        positionsMenge:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__positionsMenge'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG26.LIN
+        teilsummeNetto:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__teilsummeNetto'
+        teilsummeSteuer:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__teilsummeSteuer'
+        zeitbezogeneMenge:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__zeitbezogeneMenge'
+        zuschlag:
+          $ref: '#/components/schemas/PI_31002__stammdaten__RECHNUNG__rechnungspositionen__zuschlag'
+      required:
+        - abschlag
+        - artikelnummer
+        - einzelpreis
+        - gemeinderabatt
+        - gesamtZuAbschlagsbetrag
+        - lieferungBis
+        - lieferungVon
+        - positionsMenge
+        - positionsnummer
+        - teilsummeNetto
+        - teilsummeSteuer
+        - zuschlag
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__abschlag:
+      type: object
+      properties:
+        prozent:
+          $ref: '../../../bo4e/fields/com/Abschlag/prozent.yaml#/components/schemas/prozent'
+          x-edifact-segment:
+            - SG26.LIN.SG39.ALC+A.SG41.PCD+3
+        typ:
+          $ref: '../../../bo4e/fields/com/Abschlag/typ.yaml#/components/schemas/typ'
+          x-edifact-segment:
+            - SG26.LIN.SG39.ALC+A
+      required:
+        - prozent
+        - typ
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__einzelpreis:
+      type: object
+      properties:
+        bezugswert:
+          $ref: '../../../bo4e/fields/com/Preis/bezugswert.yaml#/components/schemas/bezugswert'
+          x-edifact-segment:
+            - SG26.LIN.SG29.PRI+CAL
+        wert:
+          $ref: '../../../bo4e/fields/com/Preis/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.SG29.PRI+CAL
+      required:
+        - bezugswert
+        - wert
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__gemeinderabatt:
+      type: object
+      properties:
+        bemessungsgrundlage:
+          $ref: '../../../bo4e/fields/com/Gemeinderabatt/bemessungsgrundlage.yaml#/components/schemas/bemessungsgrundlage'
+          x-edifact-segment:
+            - SG26.LIN.SG39.ALC+A.SG42.MOA+25
+        wert:
+          $ref: '../../../bo4e/fields/com/Gemeinderabatt/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.SG39.ALC+A.SG42.MOA+Z01
+      required:
+        - bemessungsgrundlage
+        - wert
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__positionsMenge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG26.LIN.QTY+47
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.QTY+47
+      required:
+        - einheit
+        - wert
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__teilsummeNetto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.SG27.MOA+203
+      required:
+        - wert
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__teilsummeSteuer:
+      type: object
+      properties:
+        steuerkennzeichen:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerkennzeichen.yaml#/components/schemas/steuerkennzeichen'
+          x-edifact-segment:
+            - SG26.LIN.SG34.TAX+7+VAT
+      required:
+        - steuerkennzeichen
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__zeitbezogeneMenge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG26.LIN.QTY+136
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.QTY+136
+    PI_31002__stammdaten__RECHNUNG__rechnungspositionen__zuschlag:
+      type: object
+      properties:
+        prozent:
+          $ref: '../../../bo4e/fields/com/Zuschlag/prozent.yaml#/components/schemas/prozent'
+          x-edifact-segment:
+            - SG26.LIN.SG39.ALC+C.SG41.PCD+3
+        typ:
+          $ref: '../../../bo4e/fields/com/Zuschlag/typ.yaml#/components/schemas/typ'
+          x-edifact-segment:
+            - SG26.LIN.SG39.ALC+C
+      required:
+        - prozent
+        - typ
+    PI_31002__stammdaten__RECHNUNG__steuerbetraege:
+      type: object
+      properties:
+        basiswert:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/basiswert.yaml#/components/schemas/basiswert'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+125
+        basiswertVorausbezahlt:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/basiswertVorausbezahlt.yaml#/components/schemas/basiswertVorausbezahlt'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+113
+        steuerkennzeichen:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerkennzeichen.yaml#/components/schemas/steuerkennzeichen'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT
+        steuerwert:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerwert.yaml#/components/schemas/steuerwert'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+161
+        steuerwertVorausbezahlt:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerwertVorausbezahlt.yaml#/components/schemas/steuerwertVorausbezahlt'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+115
+      required:
+        - basiswert
+        - steuerkennzeichen
+        - steuerwert
+    PI_31002__stammdaten__RECHNUNG__vorausgezahlt:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+113
+      required:
+        - wert
+    PI_31002__stammdaten__RECHNUNG__zuZahlen:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+9
+      required:
+        - wert

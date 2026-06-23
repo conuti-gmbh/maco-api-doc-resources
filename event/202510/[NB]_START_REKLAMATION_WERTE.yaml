@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_REKLAMATION_WERTE'
+  version: '202510'
+  x-bpmn-source-sha: 33b20645
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[NB] START_REKLAMATION_WERTE':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202510/ORDERS/PI_17113.yaml#/components/schemas/PI_17113__stammdaten
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - angebotsreferenz
+            - empfaenger
+            - sparte
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            angebotsreferenz:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/angebotsreferenz.yaml#/components/schemas/angebotsreferenz
+            empfaenger:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17113.
+              examples:
+                - '17113'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_REKLAMATION_WERTE
+              default: START_REKLAMATION_WERTE

@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_STORNO_SE_AUFTRAG'
+  version: '202510'
+  x-bpmn-source-sha: 4f5b2ff0
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[LF] START_STORNO_SE_AUFTRAG':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202510/ORDCHG/PI_39000.yaml#/components/schemas/PI_39000__stammdaten
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - auftragsReferenz
+            - empfaenger
+            - kategorie
+            - sparte
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            auftragsReferenz:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/auftragsReferenz.yaml#/components/schemas/auftragsReferenz
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 39000.
+              examples:
+                - '39000'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_STORNO_SE_AUFTRAG
+              default: START_STORNO_SE_AUFTRAG

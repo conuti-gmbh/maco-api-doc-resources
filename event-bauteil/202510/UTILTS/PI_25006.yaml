@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: PI_25006
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_25006:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_25006__stammdaten'
+      required:
+        - stammdaten
+    PI_25006__stammdaten:
+      type: object
+      properties:
+        SCHALTZEITDEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25006__stammdaten__SCHALTZEITDEFINITION'
+      required:
+        - SCHALTZEITDEFINITION
+    PI_25006__stammdaten__SCHALTZEITDEFINITION:
+      type: object
+      properties:
+        beginndatum:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/beginndatum.yaml#/components/schemas/beginndatum'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+157
+        notwendigkeit:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/notwendigkeit.yaml#/components/schemas/notwendigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.STS+Z36
+        schaltzeiten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25006__stammdaten__SCHALTZEITDEFINITION__schaltzeiten'
+        version:
+          $ref: '../../../bo4e/fields/bo/Schaltzeitdefinition/version.yaml#/components/schemas/version'
+          x-edifact-segment:
+            - SG5.IDE+24.DTM+293
+      required:
+        - beginndatum
+        - notwendigkeit
+        - schaltzeiten
+        - version
+    PI_25006__stammdaten__SCHALTZEITDEFINITION__schaltzeiten:
+      type: object
+      properties:
+        code:
+          $ref: '../../../bo4e/fields/com/Schaltzeit/code.yaml#/components/schemas/code'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z69.SG9.CCI+Z52
+        haeufigkeit:
+          $ref: '../../../bo4e/fields/com/Schaltzeit/haeufigkeit.yaml#/components/schemas/haeufigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z69.SG9.CCI+Z52.CAV+ZE0
+        uebermittelbarkeit:
+          $ref: '../../../bo4e/fields/com/Schaltzeit/uebermittelbarkeit.yaml#/components/schemas/uebermittelbarkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z69.SG9.CCI+Z52.CAV+ZD5
+      required:
+        - code
+        - haeufigkeit
+        - uebermittelbarkeit

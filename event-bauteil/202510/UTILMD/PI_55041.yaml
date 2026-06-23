@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: PI_55041
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55041:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55041__stammdaten'
+      required:
+        - stammdaten
+    PI_55041__stammdaten:
+      type: object
+      properties:
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55041__stammdaten__ENERGIELIEFERVERTRAG'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55041__stammdaten__MESSLOKATION'
+      required:
+        - MESSLOKATION
+    PI_55041__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_55041__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen'
+    PI_55041__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        kuendigungsfrist:
+          $ref: '#/components/schemas/PI_55041__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen__kuendigungsfrist'
+        kuendigungstermin:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/kuendigungstermin.yaml#/components/schemas/kuendigungstermin'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+Z10
+    PI_55041__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen__kuendigungsfrist:
+      type: object
+      properties:
+        zeitraumText:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumText.yaml#/components/schemas/zeitraumText'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+Z01
+    PI_55041__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z17
+      required:
+        - messlokationsId

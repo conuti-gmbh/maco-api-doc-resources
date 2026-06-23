@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: PI_55036
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55036:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55036__stammdaten'
+      required:
+        - stammdaten
+    PI_55036__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55036__stammdaten__MARKTLOKATION'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55036__stammdaten__TRANCHE'
+      required:
+        - MARKTLOKATION
+        - TRANCHE
+    PI_55036__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - marktlokationsId
+    PI_55036__stammdaten__TRANCHE:
+      type: object
+      properties:
+        tranchenId:
+          $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z21
+      required:
+        - tranchenId

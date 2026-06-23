@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: PI_39000
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_39000:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_39000__stammdaten'
+      required:
+        - stammdaten
+    PI_39000__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_39000__stammdaten__ANFRAGE'
+      required:
+        - ANFRAGE
+    PI_39000__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragekategorie:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragekategorie.yaml#/components/schemas/anfragekategorie'
+          x-edifact-segment:
+            - BGM
+      required:
+        - anfragekategorie

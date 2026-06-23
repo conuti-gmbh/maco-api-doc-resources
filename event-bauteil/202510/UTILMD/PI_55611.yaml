@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: PI_55611
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55611:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55611__stammdaten'
+      required:
+        - stammdaten
+    PI_55611__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55611__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55611__stammdaten__MESSLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55611__stammdaten__NETZNUTZUNGSVERTRAG'
+      required:
+        - MARKTLOKATION
+        - MESSLOKATION
+    PI_55611__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - marktlokationsId
+    PI_55611__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z17
+      required:
+        - messlokationsId
+    PI_55611__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+93

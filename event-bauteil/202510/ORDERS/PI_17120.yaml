@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: PI_17120
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_17120:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17120__stammdaten'
+      required:
+        - stammdaten
+    PI_17120__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17120__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17120__stammdaten__AUFTRAG'
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17120__stammdaten__BILANZIERUNG'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - BILANZIERUNG
+    PI_17120__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsId
+    PI_17120__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+      required:
+        - ausfuehrungsdatum
+    PI_17120__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        prognosegrundlage:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/prognosegrundlage.yaml#/components/schemas/prognosegrundlage'
+          x-edifact-segment:
+            - 'SG29.LIN.SG30.CCI+Z77.CAV+[Z38|Z39]'
+      required:
+        - prognosegrundlage

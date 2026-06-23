@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: PI_19015
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_19015:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_19015__stammdaten'
+      required:
+        - stammdaten
+    PI_19015__stammdaten:
+      type: object
+      properties:
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19015__stammdaten__AUFTRAG'
+      required:
+        - AUFTRAG
+    PI_19015__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        lieferadresseAltgeraete:
+          $ref: '#/components/schemas/PI_19015__stammdaten__AUFTRAG__lieferadresseAltgeraete'
+      required:
+        - lieferadresseAltgeraete
+    PI_19015__stammdaten__AUFTRAG__lieferadresseAltgeraete:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        partneradresse:
+          $ref: '#/components/schemas/PI_19015__stammdaten__AUFTRAG__lieferadresseAltgeraete__partneradresse'
+      required:
+        - anrede
+        - gewerbekennzeichnung
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_19015__stammdaten__AUFTRAG__lieferadresseAltgeraete__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG3.NAD+Z22
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse

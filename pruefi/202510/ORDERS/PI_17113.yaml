@@ -1,0 +1,236 @@
+openapi: 3.1.0
+info:
+  title: PI_17113
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_17113:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17113__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_17113__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_17113__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__AUFTRAG'
+        REKLAMATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__REKLAMATION'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - REKLAMATION
+    PI_17113__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - 'IMD++[Z11|Z12|Z35]'
+        gueltigAb:
+          $ref: '../../../bo4e/fields/bo/Anfrage/gueltigAb.yaml#/components/schemas/gueltigAb'
+          x-edifact-segment:
+            - SG29.LIN.DTM+7
+      required:
+        - anfragetyp
+    PI_17113__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_17113__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN
+      required:
+        - positionsnummer
+    PI_17113__stammdaten__REKLAMATION:
+      type: object
+      properties:
+        konfiguration:
+          $ref: '../../../bo4e/fields/bo/Reklamation/konfiguration.yaml#/components/schemas/konfiguration'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.RFF+AGK
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Reklamation/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+        obiskennzahl:
+          $ref: '../../../bo4e/fields/bo/Reklamation/obiskennzahl.yaml#/components/schemas/obiskennzahl'
+          x-edifact-segment:
+            - SG29.LIN.PIA+5
+        reklamationsgrund:
+          $ref: '../../../bo4e/fields/bo/Reklamation/reklamationsgrund.yaml#/components/schemas/reklamationsgrund'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        reklamationsgrundBemerkung:
+          $ref: '#/components/schemas/PI_17113__stammdaten__REKLAMATION__reklamationsgrundBemerkung'
+        zeitraumMesswertanfrage:
+          $ref: '#/components/schemas/PI_17113__stammdaten__REKLAMATION__zeitraumMesswertanfrage'
+      required:
+        - konfiguration
+        - obiskennzahl
+        - reklamationsgrund
+        - reklamationsgrundBemerkung
+    PI_17113__stammdaten__REKLAMATION__reklamationsgrundBemerkung:
+      type: object
+      properties:
+        bemerkung1:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung1.yaml#/components/schemas/bemerkung1'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung2:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung2.yaml#/components/schemas/bemerkung2'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung3:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung3.yaml#/components/schemas/bemerkung3'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung4:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung4.yaml#/components/schemas/bemerkung4'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+        bemerkung5:
+          $ref: '../../../bo4e/fields/com/ReklamationsgrundBemerkung/bemerkung5.yaml#/components/schemas/bemerkung5'
+          x-edifact-segment:
+            - 'SG29.LIN.FTX+[Z04|Z05|Z06]'
+      required:
+        - bemerkung1
+        - bemerkung2
+        - bemerkung3
+        - bemerkung4
+        - bemerkung5
+    PI_17113__stammdaten__REKLAMATION__zeitraumMesswertanfrage:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - SG29.LIN.DTM+164
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - SG29.LIN.DTM+163
+    PI_17113__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_17113__transaktionsdaten__absender'
+        angebotsreferenz:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/angebotsreferenz.yaml#/components/schemas/angebotsreferenz'
+          x-edifact-segment:
+            - SG1.RFF+ACW
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z34
+        empfaenger:
+          $ref: '#/components/schemas/PI_17113__transaktionsdaten__empfaenger'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG1.RFF+Z13
+      required:
+        - absender
+        - angebotsreferenz
+        - dokumentennummer
+        - empfaenger
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_17113__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_17113__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_17113__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG5.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17113__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_17113__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_17113__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

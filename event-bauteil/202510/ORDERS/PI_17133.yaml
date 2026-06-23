@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: PI_17133
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_17133:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17133__stammdaten'
+      required:
+        - stammdaten
+    PI_17133__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__AUFTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__MARKTLOKATION'
+      required:
+        - ANFRAGE
+        - MARKTLOKATION
+    PI_17133__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsId
+    PI_17133__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        startdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - DTM+469
+    PI_17133__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        erforderlichesProduktpaket:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket'
+      required:
+        - erforderlichesProduktpaket
+    PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket:
+      type: object
+      properties:
+        produkt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt'
+      required:
+        - produkt
+    PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
+      type: object
+      properties:
+        codeProdukteigenschaft:
+          $ref: '../../../bo4e/fields/com/Produkt/codeProdukteigenschaft.yaml#/components/schemas/codeProdukteigenschaft'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.SG30.CCI+Z66.CAV+ZH9
+        produktCode:
+          $ref: '../../../bo4e/fields/com/Produkt/produktCode.yaml#/components/schemas/produktCode'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.PIA+5
+        wertedetails:
+          $ref: '../../../bo4e/fields/com/Produkt/wertedetails.yaml#/components/schemas/wertedetails'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.SG30.CCI+Z66.CAV+ZV4
+      required:
+        - produktCode

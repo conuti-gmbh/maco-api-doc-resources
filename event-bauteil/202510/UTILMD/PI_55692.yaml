@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: PI_55692
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55692:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55692__stammdaten'
+      required:
+        - stammdaten
+    PI_55692__stammdaten:
+      type: object
+      properties:
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55692__stammdaten__MARKTLOKATION'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55692__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - MARKTLOKATION
+        - VERWENDUNGSZEITRAUM
+    PI_55692__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81]'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+        paketId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/paketId.yaml#/components/schemas/paketId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+Z67'
+      required:
+        - datenqualitaet
+        - marktlokationsId
+        - paketId
+    PI_55692__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25'
+      required:
+        - datenqualitaet
+        - verwendungAb

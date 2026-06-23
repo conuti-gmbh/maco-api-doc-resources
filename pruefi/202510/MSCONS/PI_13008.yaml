@@ -1,0 +1,217 @@
+openapi: 3.1.0
+info:
+  title: PI_13008
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_13008:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_13008__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_13008__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_13008__stammdaten:
+      type: object
+      properties:
+        ENERGIEMENGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13008__stammdaten__ENERGIEMENGE'
+      required:
+        - ENERGIEMENGE
+    PI_13008__stammdaten__ENERGIEMENGE:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/bo/Energiemenge/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.DTM+164
+        energieverbrauch:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13008__stammdaten__ENERGIEMENGE__energieverbrauch'
+        konfiguration:
+          $ref: '../../../bo4e/fields/bo/Energiemenge/konfiguration.yaml#/components/schemas/konfiguration'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Energiemenge/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172
+        startdatum:
+          $ref: '../../../bo4e/fields/bo/Energiemenge/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.DTM+163
+      required:
+        - enddatum
+        - energieverbrauch
+        - konfiguration
+        - lokationsId
+        - startdatum
+    PI_13008__stammdaten__ENERGIEMENGE__energieverbrauch:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Verbrauch/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+164
+        messwertstatus:
+          $ref: '../../../bo4e/fields/com/Verbrauch/messwertstatus.yaml#/components/schemas/messwertstatus'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
+        obiskennzahl:
+          $ref: '../../../bo4e/fields/com/Verbrauch/obiskennzahl.yaml#/components/schemas/obiskennzahl'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.PIA+5
+        position:
+          $ref: '../../../bo4e/fields/com/Verbrauch/position.yaml#/components/schemas/position'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Verbrauch/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+163
+        statuszusatzinformationen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13008__stammdaten__ENERGIEMENGE__energieverbrauch__statuszusatzinformationen'
+        wert:
+          $ref: '../../../bo4e/fields/com/Verbrauch/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
+      required:
+        - enddatum
+        - messwertstatus
+        - obiskennzahl
+        - position
+        - startdatum
+        - wert
+    PI_13008__stammdaten__ENERGIEMENGE__energieverbrauch__statuszusatzinformationen:
+      type: object
+      properties:
+        art:
+          $ref: '../../../bo4e/fields/com/StatusZusatzInformation/art.yaml#/components/schemas/art'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z31
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z32
+        status:
+          $ref: '../../../bo4e/fields/com/StatusZusatzInformation/status.yaml#/components/schemas/status'
+          x-edifact-segment:
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z31
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z32
+    PI_13008__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_13008__transaktionsdaten__absender'
+        anfrageReferenz:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/anfrageReferenz.yaml#/components/schemas/anfrageReferenz'
+          x-edifact-segment:
+            - SG1.RFF+AGI
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+7
+        empfaenger:
+          $ref: '#/components/schemas/PI_13008__transaktionsdaten__empfaenger'
+        kategorie:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie'
+          x-edifact-segment:
+            - BGM+7
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenfunktion:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenfunktion.yaml#/components/schemas/nachrichtenfunktion'
+          x-edifact-segment:
+            - BGM+7
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG1.RFF+Z13
+      required:
+        - absender
+        - anfrageReferenz
+        - dokumentennummer
+        - empfaenger
+        - kategorie
+        - nachrichtendatum
+        - nachrichtenfunktion
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_13008__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_13008__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_13008__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG4.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13008__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_13008__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_13008__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

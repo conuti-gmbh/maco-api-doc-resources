@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  title: PI_55621
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55621:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55621__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_55621__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_55621__stammdaten:
+      type: object
+      properties:
+        NETZLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__stammdaten__NETZLOKATION'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - NETZLOKATION
+        - VERWENDUNGSZEITRAUM
+    PI_55621__stammdaten__NETZLOKATION:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZA9|ZB0]'
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_55621__stammdaten__NETZLOKATION__gueltigkeitszeitraum'
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__stammdaten__NETZLOKATION__marktrollen'
+        netzlokationsId:
+          $ref: '../../../bo4e/fields/bo/Netzlokation/netzlokationsId.yaml#/components/schemas/netzlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z18
+      required:
+        - datenqualitaet
+        - gueltigkeitszeitraum
+        - marktrollen
+        - netzlokationsId
+    PI_55621__stammdaten__NETZLOKATION__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZA9|ZB0]'
+      required:
+        - zeitraumId
+    PI_55621__stammdaten__NETZLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZA9|ZB0].SG10.CCI+++ZB3.CAV+Z91'
+        messstellenbetreiberEigenschaft:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/messstellenbetreiberEigenschaft.yaml#/components/schemas/messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZA9|ZB0].SG10.CCI+++ZB3.CAV+Z91'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG8.SEQ+[ZA9|ZB0].SG10.CCI+++ZB3.CAV+Z91'
+      required:
+        - marktrolle
+        - messstellenbetreiberEigenschaft
+        - rollencodenummer
+    PI_55621__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId
+    PI_55621__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_55621__transaktionsdaten__absender'
+        anfragereferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/anfragereferenznummer.yaml#/components/schemas/anfragereferenznummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+TN
+        antwortStatusZeitraum:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__transaktionsdaten__antwortStatusZeitraum'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - 'BGM+[E03|Z88]'
+        empfaenger:
+          $ref: '#/components/schemas/PI_55621__transaktionsdaten__empfaenger'
+        kategorie:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie'
+          x-edifact-segment:
+            - 'BGM+[E03|Z88]'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund'
+          x-edifact-segment:
+            - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsnummer.yaml#/components/schemas/vorgangsnummer'
+          x-edifact-segment:
+            - SG4.IDE+24
+      required:
+        - absender
+        - anfragereferenznummer
+        - dokumentennummer
+        - empfaenger
+        - kategorie
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+        - transaktionsgrund
+        - vorgangsnummer
+    PI_55621__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_55621__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_55621__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.CTA
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_55621__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_55621__transaktionsdaten__antwortStatusZeitraum:
+      type: object
+      properties:
+        code:
+          $ref: '../../../bo4e/fields/com/AntwortStatusZeitraum/code.yaml#/components/schemas/code'
+          x-edifact-segment:
+            - SG4.IDE+24.STS+E01
+        liste:
+          $ref: '../../../bo4e/fields/com/AntwortStatusZeitraum/liste.yaml#/components/schemas/liste'
+          x-edifact-segment:
+            - SG4.IDE+24.STS+E01
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/AntwortStatusZeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG4.IDE+24.STS+E01
+    PI_55621__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

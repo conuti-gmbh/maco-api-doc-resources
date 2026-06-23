@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: PI_21009
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_21009:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21009__stammdaten'
+      required:
+        - stammdaten
+    PI_21009__stammdaten:
+      type: object
+      properties:
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21009__stammdaten__MESSLOKATION'
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21009__stammdaten__STATUSMITTEILUNG'
+      required:
+        - MESSLOKATION
+        - STATUSMITTEILUNG
+    PI_21009__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG14.CNI.LOC+172
+      required:
+        - messlokationsId
+    PI_21009__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/bo/Statusmitteilung/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z10
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21009__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - auftragsstatus
+        - positionsdaten
+    PI_21009__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+      required:
+        - positionsnummer

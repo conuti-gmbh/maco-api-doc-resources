@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: PI_25001
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_25001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_25001__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_25001__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_25001__stammdaten:
+      type: object
+      properties:
+        BERECHNUNGSFORMEL:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL'
+        VERWENDUNGSZEITRAUM:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__stammdaten__VERWENDUNGSZEITRAUM'
+      required:
+        - BERECHNUNGSFORMEL
+        - VERWENDUNGSZEITRAUM
+    PI_25001__stammdaten__BERECHNUNGSFORMEL:
+      type: object
+      properties:
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL__gueltigkeitszeitraum'
+        notwendigkeit:
+          $ref: '../../../bo4e/fields/bo/Berechnungsformel/notwendigkeit.yaml#/components/schemas/notwendigkeit'
+          x-edifact-segment:
+            - SG5.IDE+24.STS+Z23
+        rechenschrittId:
+          $ref: '../../../bo4e/fields/bo/Berechnungsformel/rechenschrittId.yaml#/components/schemas/rechenschrittId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z23
+        rechenschritte:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL__rechenschritte'
+      required:
+        - gueltigkeitszeitraum
+        - rechenschrittId
+        - rechenschritte
+    PI_25001__stammdaten__BERECHNUNGSFORMEL__gueltigkeitszeitraum:
+      type: object
+      properties:
+        zeitraumId:
+          $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z46
+            - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z46
+            - SG5.IDE+24.STS+Z23
+      required:
+        - zeitraumId
+    PI_25001__stammdaten__BERECHNUNGSFORMEL__rechenschritte:
+      type: object
+      properties:
+        aufteilungsfaktorEnergiemenge:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/aufteilungsfaktorEnergiemenge.yaml#/components/schemas/aufteilungsfaktorEnergiemenge'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++ZG6.CAV+ZH6
+        energieflussrichtung:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/energieflussrichtung.yaml#/components/schemas/energieflussrichtung'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z87.CAV
+        messlokationsId:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z19
+        operation:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/operation.yaml#/components/schemas/operation'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z86.CAV
+        rechenschrittBestandteilId:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/rechenschrittBestandteilId.yaml#/components/schemas/rechenschrittBestandteilId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37
+        referenzRechenschrittId:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/referenzRechenschrittId.yaml#/components/schemas/referenzRechenschrittId'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z23
+        verlustfaktorLeitung:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/verlustfaktorLeitung.yaml#/components/schemas/verlustfaktorLeitung'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++ZB2.CAV+Z28
+        verlustfaktorTrafo:
+          $ref: '../../../bo4e/fields/com/Rechenschritt/verlustfaktorTrafo.yaml#/components/schemas/verlustfaktorTrafo'
+          x-edifact-segment:
+            - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z16.CAV+Z28
+      required:
+        - aufteilungsfaktorEnergiemenge
+        - energieflussrichtung
+        - operation
+        - rechenschrittBestandteilId
+        - verlustfaktorLeitung
+        - verlustfaktorTrafo
+    PI_25001__stammdaten__VERWENDUNGSZEITRAUM:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53]'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25'
+        verwendungBis:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26'
+        zeitraumId:
+          $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
+          x-edifact-segment:
+            - 'SG5.IDE+24.SG6.RFF+[Z49|Z53]'
+      required:
+        - datenqualitaet
+        - verwendungAb
+        - zeitraumId
+    PI_25001__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_25001__transaktionsdaten__absender'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z36
+        empfaenger:
+          $ref: '#/components/schemas/PI_25001__transaktionsdaten__empfaenger'
+        lokationsId:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG5.IDE+24.LOC+172
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG5.IDE+24.SG6.RFF+Z13
+        vorgangsnummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/vorgangsnummer.yaml#/components/schemas/vorgangsnummer'
+          x-edifact-segment:
+            - SG5.IDE+24
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - lokationsId
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+        - vorgangsnummer
+    PI_25001__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_25001__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_25001__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG3.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_25001__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_25001__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

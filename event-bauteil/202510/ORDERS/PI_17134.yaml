@@ -1,0 +1,316 @@
+openapi: 3.1.0
+info:
+  title: PI_17134
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_17134:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17134__stammdaten'
+      required:
+        - stammdaten
+    PI_17134__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__AUFTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__MESSLOKATION'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__TRANCHE'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - MARKTLOKATION
+        - MESSLOKATION
+        - TRANCHE
+    PI_17134__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - 'IMD++[Z66|Z67]'
+        energierichtung:
+          $ref: '../../../bo4e/fields/bo/Anfrage/energierichtung.yaml#/components/schemas/energierichtung'
+          x-edifact-segment:
+            - IMD++Z14
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - energierichtung
+        - lokationsId
+    PI_17134__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - ausfuehrungsdatum
+        - positionsdaten
+    PI_17134__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        anfragegrund:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/anfragegrund.yaml#/components/schemas/anfragegrund'
+          x-edifact-segment:
+            - 'SG29.LIN++Z16.IMD++[Z64|Z65]'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN++Z16
+            - SG29.LIN++Z19
+            - SG29.LIN++Z54
+      required:
+        - anfragegrund
+        - positionsnummer
+    PI_17134__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DEB.SG3.RFF+Z59
+            - SG2.NAD+DP.SG3.RFF+Z59
+            - SG2.NAD+SU.SG3.RFF+Z18
+            - SG2.NAD+SU.SG3.RFF+Z59
+            - SG2.NAD+Z31.SG3.RFF+Z18
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__MARKTLOKATION__marktrollen'
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__MARKTLOKATION__zaehlwerke'
+      required:
+        - marktlokationsId
+        - marktrollen
+        - zaehlwerke
+    PI_17134__stammdaten__MARKTLOKATION__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+            - SG2.NAD+SU
+            - SG2.NAD+Z31
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+            - SG2.NAD+SU
+            - SG2.NAD+Z31
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+            - SG2.NAD+SU
+            - SG2.NAD+Z31
+        weiterverpflichtet:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
+          x-edifact-segment:
+            - SG2.NAD+DEB
+            - SG2.NAD+SU
+            - SG2.NAD+Z31
+      required:
+        - marktrolle
+        - rollencodenummer
+        - rollencodetyp
+        - weiterverpflichtet
+    PI_17134__stammdaten__MARKTLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN++Z54.PIA+5
+        verwendungszwecke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__MARKTLOKATION__zaehlwerke__verwendungszwecke'
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_17134__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten'
+      required:
+        - messprodukt
+        - verwendungszwecke
+        - zaehlzeiten
+    PI_17134__stammdaten__MARKTLOKATION__zaehlwerke__verwendungszwecke:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/com/Verwendungszweck/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG29.LIN++Z54.SG30.CCI+ZA7.CAV
+            - SG29.LIN++Z54.SG30.CCI+ZA8.CAV
+            - SG29.LIN++Z54.SG30.CCI+ZA9.CAV
+        zweck:
+          $ref: '../../../bo4e/fields/com/Verwendungszweck/zweck.yaml#/components/schemas/zweck'
+          x-edifact-segment:
+            - SG29.LIN++Z54.SG30.CCI+ZA7.CAV
+            - SG29.LIN++Z54.SG30.CCI+ZA8.CAV
+            - SG29.LIN++Z54.SG30.CCI+ZA9.CAV
+      required:
+        - marktrolle
+        - zweck
+    PI_17134__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - 'SG29.LIN++Z54.SG30.CCI+[Z39|Z41]'
+      required:
+        - zaehlzeitDefinition
+    PI_17134__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG29.LIN++Z19.SG34.RFF+Z19
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__MESSLOKATION__zaehlwerke'
+      required:
+        - messlokationsId
+        - zaehlwerke
+    PI_17134__stammdaten__MESSLOKATION__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN++Z19.PIA+5
+        zaehlzeiten:
+          $ref: '#/components/schemas/PI_17134__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten'
+      required:
+        - messprodukt
+        - zaehlzeiten
+    PI_17134__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten:
+      type: object
+      properties:
+        zaehlzeitDefinition:
+          $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
+          x-edifact-segment:
+            - 'SG29.LIN++Z19.SG30.CCI+[Z39|Z41]'
+      required:
+        - zaehlzeitDefinition
+    PI_17134__stammdaten__TRANCHE:
+      type: object
+      properties:
+        aufteilungsmenge:
+          $ref: '#/components/schemas/PI_17134__stammdaten__TRANCHE__aufteilungsmenge'
+        bildungTranchengroesse:
+          $ref: '../../../bo4e/fields/bo/Tranche/bildungTranchengroesse.yaml#/components/schemas/bildungTranchengroesse'
+          x-edifact-segment:
+            - SG29.LIN++Z16.SG30.CCI+Z37
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__TRANCHE__marktrollen'
+        tranchenId:
+          $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
+          x-edifact-segment:
+            - SG2.NAD+DP.SG3.RFF+Z20
+            - SG2.NAD+SU.SG3.RFF+Z20
+            - SG29.LIN++Z16.SG34.RFF+Z20
+        zaehlwerke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__TRANCHE__zaehlwerke'
+      required:
+        - bildungTranchengroesse
+        - marktrollen
+        - tranchenId
+        - zaehlwerke
+    PI_17134__stammdaten__TRANCHE__aufteilungsmenge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG29.LIN++Z16.QTY+11
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG29.LIN++Z16.QTY+11
+    PI_17134__stammdaten__TRANCHE__marktrollen:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG2.NAD+SU
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+SU
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+SU
+      required:
+        - marktrolle
+        - rollencodenummer
+        - rollencodetyp
+    PI_17134__stammdaten__TRANCHE__zaehlwerke:
+      type: object
+      properties:
+        messprodukt:
+          $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
+          x-edifact-segment:
+            - SG29.LIN++Z16.PIA+5
+        verwendungszwecke:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17134__stammdaten__TRANCHE__zaehlwerke__verwendungszwecke'
+      required:
+        - verwendungszwecke
+    PI_17134__stammdaten__TRANCHE__zaehlwerke__verwendungszwecke:
+      type: object
+      properties:
+        marktrolle:
+          $ref: '../../../bo4e/fields/com/Verwendungszweck/marktrolle.yaml#/components/schemas/marktrolle'
+          x-edifact-segment:
+            - SG29.LIN++Z16.SG30.CCI+ZA7.CAV
+            - SG29.LIN++Z16.SG30.CCI+ZA8.CAV
+            - SG29.LIN++Z16.SG30.CCI+ZA9.CAV
+        zweck:
+          $ref: '../../../bo4e/fields/com/Verwendungszweck/zweck.yaml#/components/schemas/zweck'
+          x-edifact-segment:
+            - SG29.LIN++Z16.SG30.CCI+ZA7.CAV
+            - SG29.LIN++Z16.SG30.CCI+ZA8.CAV
+            - SG29.LIN++Z16.SG30.CCI+ZA9.CAV
+      required:
+        - marktrolle
+        - zweck

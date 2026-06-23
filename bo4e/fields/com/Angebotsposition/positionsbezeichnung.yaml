@@ -1,0 +1,5 @@
+components:
+  schemas:
+    positionsbezeichnung:
+      type: string
+      description: Bezeichnung der Position

@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: PI_17133
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_17133:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17133__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_17133__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_17133__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__AUFTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__MARKTLOKATION'
+      required:
+        - ANFRAGE
+        - MARKTLOKATION
+    PI_17133__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        lokationsId:
+          $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG2.NAD+DP.LOC+172
+      required:
+        - lokationsId
+    PI_17133__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        startdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - DTM+469
+    PI_17133__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        erforderlichesProduktpaket:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket'
+      required:
+        - erforderlichesProduktpaket
+    PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket:
+      type: object
+      properties:
+        produkt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt'
+      required:
+        - produkt
+    PI_17133__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
+      type: object
+      properties:
+        codeProdukteigenschaft:
+          $ref: '../../../bo4e/fields/com/Produkt/codeProdukteigenschaft.yaml#/components/schemas/codeProdukteigenschaft'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.SG30.CCI+Z66.CAV+ZH9
+        produktCode:
+          $ref: '../../../bo4e/fields/com/Produkt/produktCode.yaml#/components/schemas/produktCode'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.PIA+5
+        wertedetails:
+          $ref: '../../../bo4e/fields/com/Produkt/wertedetails.yaml#/components/schemas/wertedetails'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.SG30.CCI+Z66.CAV+ZV4
+      required:
+        - produktCode
+    PI_17133__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_17133__transaktionsdaten__absender'
+        abtretungserklaerung:
+          $ref: '#/components/schemas/PI_17133__transaktionsdaten__abtretungserklaerung'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z91
+        empfaenger:
+          $ref: '#/components/schemas/PI_17133__transaktionsdaten__empfaenger'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG1.RFF+Z13
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_17133__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_17133__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_17133__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG2.NAD+MS.SG5.CTA+IC
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_17133__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_17133__transaktionsdaten__abtretungserklaerung:
+      type: object
+      properties:
+        link1:
+          $ref: '../../../bo4e/fields/com/Abtretungserklaerung/link1.yaml#/components/schemas/link1'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.FTX+Z13
+        link2:
+          $ref: '../../../bo4e/fields/com/Abtretungserklaerung/link2.yaml#/components/schemas/link2'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.FTX+Z13
+        link3:
+          $ref: '../../../bo4e/fields/com/Abtretungserklaerung/link3.yaml#/components/schemas/link3'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.FTX+Z13
+        link4:
+          $ref: '../../../bo4e/fields/com/Abtretungserklaerung/link4.yaml#/components/schemas/link4'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.FTX+Z13
+        link5:
+          $ref: '../../../bo4e/fields/com/Abtretungserklaerung/link5.yaml#/components/schemas/link5'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.FTX+Z13
+        passwort:
+          $ref: '../../../bo4e/fields/com/Abtretungserklaerung/passwort.yaml#/components/schemas/passwort'
+          x-edifact-segment:
+            - SG29.LIN+1+Z79.FTX+Z13
+    PI_17133__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG2.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

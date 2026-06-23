@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_LIEFERBEGINN'
+  version: '202510'
+  x-bpmn-source-sha: 4f5b2ff0
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[LF] START_LIEFERBEGINN':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55077.yaml#/components/schemas/PI_55077__stammdaten
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55600.yaml#/components/schemas/PI_55600__stammdaten
+            - $ref: ../../event-bauteil/202510/UTILMD/PI_55601.yaml#/components/schemas/PI_55601__stammdaten
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
+            - transaktionsgrund
+            - transaktionsgrundergaenzung
+            - vertragsbeginn
+          properties:
+            absender:
+              type: object
+              properties:
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            transaktionsgrund:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrund.yaml#/components/schemas/transaktionsgrund
+            transaktionsgrundergaenzung:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
+            vertragsbeginn:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vertragsbeginn.yaml#/components/schemas/vertragsbeginn
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44001, 55001, 55077, 55600, 55601.
+              examples:
+                - '44001'
+                - '55001'
+                - '55077'
+                - '55600'
+                - '55601'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_LIEFERBEGINN
+              default: START_LIEFERBEGINN
+      x-pending-pruefis:
+        - '44001'

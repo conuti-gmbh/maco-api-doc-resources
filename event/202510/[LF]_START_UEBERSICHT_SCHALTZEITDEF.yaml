@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_UEBERSICHT_SCHALTZEITDEF'
+  version: '202510'
+  x-bpmn-source-sha: 4f5b2ff0
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    '[LF] START_UEBERSICHT_SCHALTZEITDEF':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202510/UTILTS/PI_25006.yaml#/components/schemas/PI_25006__stammdaten
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+            - empfaenger
+            - sparte
+          properties:
+            absender:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/absender.yaml#/components/schemas/absender
+            empfaenger:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/empfaenger.yaml#/components/schemas/empfaenger
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              examples:
+                - '25006'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_UEBERSICHT_SCHALTZEITDEF
+              default: START_UEBERSICHT_SCHALTZEITDEF

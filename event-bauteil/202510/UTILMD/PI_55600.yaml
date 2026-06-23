@@ -1,0 +1,367 @@
+openapi: 3.1.0
+info:
+  title: PI_55600
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_55600:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_55600__stammdaten'
+      required:
+        - stammdaten
+    PI_55600__stammdaten:
+      type: object
+      properties:
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__ENERGIELIEFERVERTRAG'
+        MARKTLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__MARKTLOKATION'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__MESSLOKATION'
+        NETZNUTZUNGSVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__NETZNUTZUNGSVERTRAG'
+        STEUERBARE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__STEUERBARE_RESSOURCE'
+        TECHNISCHE_RESSOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__TECHNISCHE_RESSOURCE'
+        ZAEHLER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__ZAEHLER'
+      required:
+        - ENERGIELIEFERVERTRAG
+        - MARKTLOKATION
+        - MESSLOKATION
+        - NETZNUTZUNGSVERTRAG
+        - STEUERBARE_RESSOURCE
+        - TECHNISCHE_RESSOURCE
+        - ZAEHLER
+    PI_55600__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        korrespondenzpartner:
+          $ref: '#/components/schemas/PI_55600__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner'
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
+      required:
+        - korrespondenzpartner
+        - vertragspartner2
+    PI_55600__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        partneradresse:
+          $ref: '#/components/schemas/PI_55600__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
+      required:
+        - anrede
+        - name1
+        - name2
+        - name3
+        - name4
+        - partneradresse
+    PI_55600__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z04
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+    PI_55600__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        geschaeftspartnerrolle:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/geschaeftspartnerrolle.yaml#/components/schemas/geschaeftspartnerrolle'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z09
+      required:
+        - anrede
+        - geschaeftspartnerrolle
+        - name1
+        - name2
+        - name3
+        - name4
+    PI_55600__stammdaten__MARKTLOKATION:
+      type: object
+      properties:
+        datenqualitaet:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/datenqualitaet.yaml#/components/schemas/datenqualitaet'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        erforderlichesProduktpaket:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__MARKTLOKATION__erforderlichesProduktpaket'
+        lokationsadresse:
+          $ref: '#/components/schemas/PI_55600__stammdaten__MARKTLOKATION__lokationsadresse'
+        marktlokationsId:
+          $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z16
+      required:
+        - datenqualitaet
+        - erforderlichesProduktpaket
+        - lokationsadresse
+        - marktlokationsId
+    PI_55600__stammdaten__MARKTLOKATION__erforderlichesProduktpaket:
+      type: object
+      properties:
+        priorisierung:
+          $ref: '../../../bo4e/fields/com/Produktpaket/priorisierung.yaml#/components/schemas/priorisierung'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZH0.SG10.CCI+Z65.CAV
+        produkt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55600__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt'
+        produktpaketId:
+          $ref: '../../../bo4e/fields/com/Produktpaket/produktpaketId.yaml#/components/schemas/produktpaketId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z79
+            - SG4.IDE+24.SG8.SEQ+ZH0
+        umsetzungsgradvorgabe:
+          $ref: '../../../bo4e/fields/com/Produktpaket/umsetzungsgradvorgabe.yaml#/components/schemas/umsetzungsgradvorgabe'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZH0.SG10.CCI+Z65
+      required:
+        - produkt
+        - produktpaketId
+        - umsetzungsgradvorgabe
+    PI_55600__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
+      type: object
+      properties:
+        codeProdukteigenschaft:
+          $ref: '../../../bo4e/fields/com/Produkt/codeProdukteigenschaft.yaml#/components/schemas/codeProdukteigenschaft'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z79.SG10.CCI+Z66.CAV+ZH9
+        produktCode:
+          $ref: '../../../bo4e/fields/com/Produkt/produktCode.yaml#/components/schemas/produktCode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z79.PIA+5
+        wertedetails:
+          $ref: '../../../bo4e/fields/com/Produkt/wertedetails.yaml#/components/schemas/wertedetails'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z79.SG10.CCI+Z66.CAV+ZV4
+      required:
+        - produktCode
+    PI_55600__stammdaten__MARKTLOKATION__lokationsadresse:
+      type: object
+      properties:
+        hausnummer:
+          $ref: '../../../bo4e/fields/com/Adresse/hausnummer.yaml#/components/schemas/hausnummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        landescode:
+          $ref: '../../../bo4e/fields/com/Adresse/landescode.yaml#/components/schemas/landescode'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        ort:
+          $ref: '../../../bo4e/fields/com/Adresse/ort.yaml#/components/schemas/ort'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        ortsteil:
+          $ref: '../../../bo4e/fields/com/Adresse/ortsteil.yaml#/components/schemas/ortsteil'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        postfach:
+          $ref: '../../../bo4e/fields/com/Adresse/postfach.yaml#/components/schemas/postfach'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        postleitzahl:
+          $ref: '../../../bo4e/fields/com/Adresse/postleitzahl.yaml#/components/schemas/postleitzahl'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        strasse:
+          $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        zusatzInformation:
+          $ref: '#/components/schemas/PI_55600__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
+      required:
+        - hausnummer
+        - landescode
+        - ort
+        - ortsteil
+        - postfach
+        - postleitzahl
+        - strasse
+        - zusatzInformation
+    PI_55600__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
+      type: object
+      properties:
+        zusatz1:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz1.yaml#/components/schemas/zusatz1'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        zusatz2:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz2.yaml#/components/schemas/zusatz2'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        zusatz3:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz3.yaml#/components/schemas/zusatz3'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        zusatz4:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz4.yaml#/components/schemas/zusatz4'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+        zusatz5:
+          $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
+          x-edifact-segment:
+            - SG4.IDE+24.SG12.NAD+Z60
+      required:
+        - zusatz1
+        - zusatz2
+        - zusatz3
+        - zusatz4
+        - zusatz5
+    PI_55600__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z17
+      required:
+        - messlokationsId
+    PI_55600__stammdaten__NETZNUTZUNGSVERTRAG:
+      type: object
+      properties:
+        vertragsbeginn:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
+          x-edifact-segment:
+            - SG4.IDE+24.DTM+93
+        vertragskonditionen:
+          $ref: '#/components/schemas/PI_55600__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
+      required:
+        - vertragsbeginn
+        - vertragskonditionen
+    PI_55600__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
+      type: object
+      properties:
+        haushaltskunde:
+          $ref: '../../../bo4e/fields/com/Vertragskonditionen/haushaltskunde.yaml#/components/schemas/haushaltskunde'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
+      required:
+        - haushaltskunde
+    PI_55600__stammdaten__STEUERBARE_RESSOURCE:
+      type: object
+      properties:
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z19
+      required:
+        - ressourcenId
+    PI_55600__stammdaten__TECHNISCHE_RESSOURCE:
+      type: object
+      properties:
+        ressourcenId:
+          $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
+          x-edifact-segment:
+            - SG4.IDE+24.SG5.LOC+Z20
+      required:
+        - ressourcenId
+    PI_55600__stammdaten__ZAEHLER:
+      type: object
+      properties:
+        zaehlernummer:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlernummer.yaml#/components/schemas/zaehlernummer'
+          x-edifact-segment:
+            - SG4.IDE+24.SG8.SEQ+ZA4.SG10.CCI+++E13.CAV+Z30
+      required:
+        - zaehlernummer

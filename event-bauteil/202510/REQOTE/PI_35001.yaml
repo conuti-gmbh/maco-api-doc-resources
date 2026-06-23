@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: PI_35001
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_35001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_35001__stammdaten'
+      required:
+        - stammdaten
+    PI_35001__stammdaten:
+      type: object
+      properties:
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35001__stammdaten__MESSLOKATION'
+      required:
+        - MESSLOKATION
+    PI_35001__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG11.NAD+DP.LOC+172
+      required:
+        - messlokationsId

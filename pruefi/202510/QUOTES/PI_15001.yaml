@@ -1,0 +1,336 @@
+openapi: 3.1.0
+info:
+  title: PI_15001
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_15001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_15001__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_15001__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_15001__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__ANFRAGE'
+        ANGEBOT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__ANGEBOT'
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__MESSLOKATION'
+        ZAEHLER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__ZAEHLER'
+      required:
+        - ANFRAGE
+        - ANGEBOT
+        - MESSLOKATION
+        - ZAEHLER
+    PI_15001__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        anfragetyp:
+          $ref: '../../../bo4e/fields/bo/Anfrage/anfragetyp.yaml#/components/schemas/anfragetyp'
+          x-edifact-segment:
+            - 'IMD++[Z07|Z08]'
+      required:
+        - anfragetyp
+    PI_15001__stammdaten__ANGEBOT:
+      type: object
+      properties:
+        anfragereferenz:
+          $ref: '../../../bo4e/fields/bo/Angebot/anfragereferenz.yaml#/components/schemas/anfragereferenz'
+          x-edifact-segment:
+            - SG1.RFF+AAV
+        angebotsdatum:
+          $ref: '../../../bo4e/fields/bo/Angebot/angebotsdatum.yaml#/components/schemas/angebotsdatum'
+          x-edifact-segment:
+            - DTM+76
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__ANGEBOT__positionsdaten'
+      required:
+        - anfragereferenz
+        - angebotsdatum
+        - positionsdaten
+    PI_15001__stammdaten__ANGEBOT__positionsdaten:
+      type: object
+      properties:
+        anbietbar:
+          $ref: '../../../bo4e/fields/com/Angebotsposition/anbietbar.yaml#/components/schemas/anbietbar'
+          x-edifact-segment:
+            - SG27.LIN.IMD++Z09
+        artikelnummer:
+          $ref: '../../../bo4e/fields/com/Angebotsposition/artikelnummer.yaml#/components/schemas/artikelnummer'
+          x-edifact-segment:
+            - SG27.LIN
+            - 'SG27.LIN.DTM+[94|Z03]'
+            - SG27.LIN.GIN+BN
+            - SG27.LIN.SG32.RFF+Z09
+        beteiligterMarktpartner:
+          $ref: '#/components/schemas/PI_15001__stammdaten__ANGEBOT__positionsdaten__beteiligterMarktpartner'
+        freitext:
+          $ref: '../../../bo4e/fields/com/Angebotsposition/freitext.yaml#/components/schemas/freitext'
+          x-edifact-segment:
+            - SG27.LIN.FTX+ACB
+        positionsbezeichnung:
+          $ref: '../../../bo4e/fields/com/Angebotsposition/positionsbezeichnung.yaml#/components/schemas/positionsbezeichnung'
+          x-edifact-segment:
+            - SG27.LIN
+        positionspreis:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__ANGEBOT__positionsdaten__positionspreis'
+        verweisKatalognummer:
+          $ref: '#/components/schemas/PI_15001__stammdaten__ANGEBOT__positionsdaten__verweisKatalognummer'
+      required:
+        - artikelnummer
+        - beteiligterMarktpartner
+        - positionsbezeichnung
+        - positionspreis
+        - verweisKatalognummer
+    PI_15001__stammdaten__ANGEBOT__positionsdaten__beteiligterMarktpartner:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG27.LIN.SG42.NAD+VY
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG27.LIN.SG42.NAD+VY
+      required:
+        - rollencodenummer
+        - rollencodetyp
+    PI_15001__stammdaten__ANGEBOT__positionsdaten__positionspreis:
+      type: object
+      properties:
+        bezugswert:
+          $ref: '../../../bo4e/fields/com/Preis/bezugswert.yaml#/components/schemas/bezugswert'
+          x-edifact-segment:
+            - SG27.LIN.SG31.PRI+CAL
+        menge:
+          $ref: '../../../bo4e/fields/com/Preis/menge.yaml#/components/schemas/menge'
+          x-edifact-segment:
+            - SG27.LIN.SG31.PRI+CAL
+        wert:
+          $ref: '../../../bo4e/fields/com/Preis/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG27.LIN.SG31.PRI+CAL
+      required:
+        - bezugswert
+        - menge
+        - wert
+    PI_15001__stammdaten__ANGEBOT__positionsdaten__verweisKatalognummer:
+      type: object
+      properties:
+        katalognummer:
+          $ref: '../../../bo4e/fields/com/Katalogverweis/katalognummer.yaml#/components/schemas/katalognummer'
+          x-edifact-segment:
+            - SG27.LIN.SG32.RFF+APF
+        versionsnummer:
+          $ref: '../../../bo4e/fields/com/Katalogverweis/versionsnummer.yaml#/components/schemas/versionsnummer'
+          x-edifact-segment:
+            - SG27.LIN.SG32.RFF+APF
+        zeilennummer:
+          $ref: '../../../bo4e/fields/com/Katalogverweis/zeilennummer.yaml#/components/schemas/zeilennummer'
+          x-edifact-segment:
+            - SG27.LIN.SG32.RFF+APF
+      required:
+        - katalognummer
+        - versionsnummer
+        - zeilennummer
+    PI_15001__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        messlokationsId:
+          $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
+          x-edifact-segment:
+            - SG11.NAD+DP.LOC+172
+      required:
+        - messlokationsId
+    PI_15001__stammdaten__ZAEHLER:
+      type: object
+      properties:
+        befestigungsart:
+          $ref: '../../../bo4e/fields/bo/Zaehler/befestigungsart.yaml#/components/schemas/befestigungsart'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+Z28.CAV
+        eichungBis:
+          $ref: '../../../bo4e/fields/bo/Zaehler/eichungBis.yaml#/components/schemas/eichungBis'
+          x-edifact-segment:
+            - SG27.LIN.DTM+Z04
+        geraete:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__stammdaten__ZAEHLER__geraete'
+        messwerterfassung:
+          $ref: '../../../bo4e/fields/bo/Zaehler/messwerterfassung.yaml#/components/schemas/messwerterfassung'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+E12.CAV
+        tarifart:
+          $ref: '../../../bo4e/fields/bo/Zaehler/tarifart.yaml#/components/schemas/tarifart'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlerauspraegung:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlerauspraegung.yaml#/components/schemas/zaehlerauspraegung'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlergroesse:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlergroesse.yaml#/components/schemas/zaehlergroesse'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlertyp:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlertyp.yaml#/components/schemas/zaehlertyp'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlertypspezifikation:
+          $ref: '../../../bo4e/fields/bo/Zaehler/zaehlertypspezifikation.yaml#/components/schemas/zaehlertypspezifikation'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+E13.CAV
+      required:
+        - befestigungsart
+        - geraete
+        - messwerterfassung
+        - zaehlertyp
+        - zaehlertypspezifikation
+    PI_15001__stammdaten__ZAEHLER__geraete:
+      type: object
+      properties:
+        geraeteeigenschaften:
+          $ref: '#/components/schemas/PI_15001__stammdaten__ZAEHLER__geraete__geraeteeigenschaften'
+      required:
+        - geraeteeigenschaften
+    PI_15001__stammdaten__ZAEHLER__geraete__geraeteeigenschaften:
+      type: object
+      properties:
+        faktor:
+          $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/faktor.yaml#/components/schemas/faktor'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+Z25.CAV
+        geraetemerkmal:
+          $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/geraetemerkmal.yaml#/components/schemas/geraetemerkmal'
+          x-edifact-segment:
+            - SG27.LIN.SG28.CCI+Z25.CAV
+            - SG27.LIN.SG28.CCI+Z26.CAV
+            - SG27.LIN.SG28.CCI+Z27.CAV
+            - SG27.LIN.SG28.CCI+Z64.CAV
+      required:
+        - faktor
+        - geraetemerkmal
+    PI_15001__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_15001__transaktionsdaten__absender'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+310
+        empfaenger:
+          $ref: '#/components/schemas/PI_15001__transaktionsdaten__empfaenger'
+        kategorie:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie'
+          x-edifact-segment:
+            - BGM+310
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG1.RFF+Z13
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - kategorie
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_15001__transaktionsdaten__absender:
+      type: object
+      properties:
+        ansprechpartner:
+          $ref: '#/components/schemas/PI_15001__transaktionsdaten__absender__ansprechpartner'
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG11.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG11.NAD+MS
+      required:
+        - ansprechpartner
+        - rollencodenummer
+        - rollencodetyp
+    PI_15001__transaktionsdaten__absender__ansprechpartner:
+      type: object
+      properties:
+        eMailAdresse:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/eMailAdresse.yaml#/components/schemas/eMailAdresse'
+          x-edifact-segment:
+            - 'SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]'
+        nachname:
+          $ref: '../../../bo4e/fields/bo/Ansprechpartner/nachname.yaml#/components/schemas/nachname'
+          x-edifact-segment:
+            - SG11.NAD+MS.SG14.CTA
+        rufnummern:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__transaktionsdaten__absender__ansprechpartner__rufnummern'
+      required:
+        - eMailAdresse
+        - nachname
+        - rufnummern
+    PI_15001__transaktionsdaten__absender__ansprechpartner__rufnummern:
+      type: object
+      properties:
+        nummerntyp:
+          $ref: '../../../bo4e/fields/com/Rufnummer/nummerntyp.yaml#/components/schemas/nummerntyp'
+          x-edifact-segment:
+            - 'SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]'
+        rufnummer:
+          $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
+          x-edifact-segment:
+            - 'SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]'
+      required:
+        - nummerntyp
+        - rufnummer
+    PI_15001__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG11.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG11.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

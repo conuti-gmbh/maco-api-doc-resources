@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  title: PI_31010
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_31010:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_31010__stammdaten'
+      required:
+        - stammdaten
+    PI_31010__stammdaten:
+      type: object
+      properties:
+        RECHNUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG'
+      required:
+        - RECHNUNG
+    PI_31010__stammdaten__RECHNUNG:
+      type: object
+      properties:
+        bearbeitungsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/bearbeitungsdatum.yaml#/components/schemas/bearbeitungsdatum'
+          x-edifact-segment:
+            - DTM+9
+        datumVorgaengerrechnung:
+          $ref: '../../../bo4e/fields/bo/Rechnung/datumVorgaengerrechnung.yaml#/components/schemas/datumVorgaengerrechnung'
+          x-edifact-segment:
+            - SG50.MOA+113.SG51.RFF+AFL.DTM+3
+        faelligkeitsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/faelligkeitsdatum.yaml#/components/schemas/faelligkeitsdatum'
+          x-edifact-segment:
+            - SG8.PYT+3.DTM+265
+        gesamtbrutto:
+          $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__gesamtbrutto'
+        istReverseCharge:
+          $ref: '../../../bo4e/fields/bo/Rechnung/istReverseCharge.yaml#/components/schemas/istReverseCharge'
+          x-edifact-segment:
+            - FTX+REG++RCH
+        rechnungsdatum:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungsdatum.yaml#/components/schemas/rechnungsdatum'
+          x-edifact-segment:
+            - DTM+137
+        rechnungsperiode:
+          $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__rechnungsperiode'
+        rechnungspositionen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__rechnungspositionen'
+        rechnungsstatus:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungsstatus.yaml#/components/schemas/rechnungsstatus'
+          x-edifact-segment:
+            - BGM+380
+        rechnungstyp:
+          $ref: '../../../bo4e/fields/bo/Rechnung/rechnungstyp.yaml#/components/schemas/rechnungstyp'
+          x-edifact-segment:
+            - IMD++NAP
+        referenzVorgaengerrechnung:
+          $ref: '../../../bo4e/fields/bo/Rechnung/referenzVorgaengerrechnung.yaml#/components/schemas/referenzVorgaengerrechnung'
+          x-edifact-segment:
+            - SG50.MOA+113.SG51.RFF+AFL
+        steuerbetraege:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__steuerbetraege'
+        vorausgezahlt:
+          $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__vorausgezahlt'
+        zuZahlen:
+          $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__zuZahlen'
+      required:
+        - bearbeitungsdatum
+        - datumVorgaengerrechnung
+        - faelligkeitsdatum
+        - gesamtbrutto
+        - rechnungsdatum
+        - rechnungsperiode
+        - rechnungspositionen
+        - rechnungsstatus
+        - rechnungstyp
+        - referenzVorgaengerrechnung
+        - steuerbetraege
+        - vorausgezahlt
+        - zuZahlen
+    PI_31010__stammdaten__RECHNUNG__gesamtbrutto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+77
+      required:
+        - wert
+    PI_31010__stammdaten__RECHNUNG__rechnungsperiode:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - DTM+156
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Zeitraum/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - DTM+155
+      required:
+        - enddatum
+        - startdatum
+    PI_31010__stammdaten__RECHNUNG__rechnungspositionen:
+      type: object
+      properties:
+        artikelnummer:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/artikelnummer.yaml#/components/schemas/artikelnummer'
+          x-edifact-segment:
+            - SG26.LIN
+        lieferungBis:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/lieferungBis.yaml#/components/schemas/lieferungBis'
+          x-edifact-segment:
+            - SG26.LIN.DTM+156
+        lieferungVon:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/lieferungVon.yaml#/components/schemas/lieferungVon'
+          x-edifact-segment:
+            - SG26.LIN.DTM+155
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/Rechnungsposition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG26.LIN
+        teilsummeNetto:
+          $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__rechnungspositionen__teilsummeNetto'
+        teilsummeSteuer:
+          $ref: '#/components/schemas/PI_31010__stammdaten__RECHNUNG__rechnungspositionen__teilsummeSteuer'
+      required:
+        - artikelnummer
+        - lieferungBis
+        - lieferungVon
+        - positionsnummer
+        - teilsummeNetto
+        - teilsummeSteuer
+    PI_31010__stammdaten__RECHNUNG__rechnungspositionen__teilsummeNetto:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG26.LIN.SG27.MOA+203
+      required:
+        - wert
+    PI_31010__stammdaten__RECHNUNG__rechnungspositionen__teilsummeSteuer:
+      type: object
+      properties:
+        steuerkennzeichen:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerkennzeichen.yaml#/components/schemas/steuerkennzeichen'
+          x-edifact-segment:
+            - SG26.LIN.SG34.TAX+7+VAT
+      required:
+        - steuerkennzeichen
+    PI_31010__stammdaten__RECHNUNG__steuerbetraege:
+      type: object
+      properties:
+        basiswert:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/basiswert.yaml#/components/schemas/basiswert'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+125
+        basiswertVorausbezahlt:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/basiswertVorausbezahlt.yaml#/components/schemas/basiswertVorausbezahlt'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+113
+        steuerkennzeichen:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerkennzeichen.yaml#/components/schemas/steuerkennzeichen'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT
+        steuerwert:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerwert.yaml#/components/schemas/steuerwert'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+161
+        steuerwertVorausbezahlt:
+          $ref: '../../../bo4e/fields/com/Steuerbetrag/steuerwertVorausbezahlt.yaml#/components/schemas/steuerwertVorausbezahlt'
+          x-edifact-segment:
+            - SG52.TAX+7+VAT.MOA+115
+      required:
+        - basiswert
+        - steuerkennzeichen
+        - steuerwert
+    PI_31010__stammdaten__RECHNUNG__vorausgezahlt:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+113
+      required:
+        - wert
+    PI_31010__stammdaten__RECHNUNG__zuZahlen:
+      type: object
+      properties:
+        wert:
+          $ref: '../../../bo4e/fields/com/Betrag/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG50.MOA+9
+      required:
+        - wert

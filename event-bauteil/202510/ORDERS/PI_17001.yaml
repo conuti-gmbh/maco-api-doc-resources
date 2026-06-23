@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: PI_17001
+  version: '202510'
+  x-bo4e-schema-version: 1.7.0
+  x-bo4e-schema-sha: 142c432f893bfc68216d5491b012102c2b879bc5
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+components:
+  schemas:
+    PI_17001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17001__stammdaten'
+      required:
+        - stammdaten
+    PI_17001__stammdaten:
+      type: object
+      properties:
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17001__stammdaten__AUFTRAG'
+      required:
+        - AUFTRAG
+    PI_17001__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17001__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - ausfuehrungsdatum
+        - positionsdaten
+    PI_17001__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN
+        positionsnummerAngebot:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummerAngebot.yaml#/components/schemas/positionsnummerAngebot'
+          x-edifact-segment:
+            - SG29.LIN.SG34.RFF+Z03
+      required:
+        - positionsnummer
+        - positionsnummerAngebot
