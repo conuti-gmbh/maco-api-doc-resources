@@ -99,7 +99,14 @@ jobs:
 
       - name: Generate prüfi specs (templater)
         working-directory: templater
-        run: php bin/console create-openapi-spec --strict
+        run: |
+          # Boots DB-less: templater has no Doctrine/DATABASE_URL; APP_SECRET +
+          # PROJECT_NAME + CORS come from the committed .env. --strict fails on
+          # any leaf that does not resolve against the vendored bo4e-schema.
+          php bin/console create-openapi-spec --strict
+          count=$(find docs/api/openapi-pruefi -name '*.yaml' 2>/dev/null | wc -l)
+          echo "generated $count prüfi specs"
+          [ "$count" -gt 0 ] || { echo "::error::create-openapi-spec produced no specs"; exit 1; }
 
       - name: Checkout process repos
         uses: actions/checkout@v4
@@ -137,8 +144,12 @@ jobs:
 
       - name: Mirror pruefi/ and bo4e/ from templater
         run: |
-          rsync -a --delete templater/docs/api/openapi-pruefi/ gen/pruefi/
-          rsync -a --delete templater/vendor/conuti/bo4e-schema/docs/openapi-model/ gen/bo4e/
+          PRUEFI_SRC=templater/docs/api/openapi-pruefi
+          BO4E_SRC=templater/vendor/conuti/bo4e-schema/docs/openapi-model
+          [ -d "$PRUEFI_SRC" ] || { echo "::error::missing $PRUEFI_SRC"; exit 1; }
+          [ -d "$BO4E_SRC" ]   || { echo "::error::missing $BO4E_SRC (bo4e-schema not installed?)"; exit 1; }
+          rsync -a --delete "$PRUEFI_SRC/" gen/pruefi/
+          rsync -a --delete "$BO4E_SRC/" gen/bo4e/
 
       - name: Run generator pipeline (1 -> 2 || 4 -> 3)
         working-directory: gen
