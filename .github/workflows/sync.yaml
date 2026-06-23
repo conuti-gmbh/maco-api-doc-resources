@@ -233,9 +233,12 @@ jobs:
               rm -rf bo4e pruefi event-bauteil event bundle
               mkdir -p pruefi event-bauteil event bundle
               cp -r "../gen/bo4e" "./bo4e"
-              cp -r "../gen/pruefi/$F" "./pruefi/$F"
-              [ -d "../gen/event-bauteil/$F" ] && cp -r "../gen/event-bauteil/$F" "./event-bauteil/$F" || true
-              [ -d "../gen/event/$F" ] && cp -r "../gen/event/$F" "./event/$F" || true
+              # A format may exist in only one dimension (e.g. retired from the
+              # templater registry but still carried in the process repos as
+              # stub events, or vice versa) — copy each part only if present.
+              [ -d "../gen/pruefi/$F" ]        && cp -r "../gen/pruefi/$F"        "./pruefi/$F"        || echo "note: no pruefi/ for $F"
+              [ -d "../gen/event-bauteil/$F" ] && cp -r "../gen/event-bauteil/$F" "./event-bauteil/$F" || echo "note: no event-bauteil/ for $F"
+              [ -d "../gen/event/$F" ]         && cp -r "../gen/event/$F"         "./event/$F"         || echo "note: no event/ for $F"
               cp "../gen/bundle/maco-bo4e-$F.openapi.yaml" "./bundle/"
               git add -A
               if git diff --cached --quiet; then
