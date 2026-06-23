@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_BESTELLUNG_SDAE'
   version: '202604'
-  x-bpmn-source-sha: 6b115946
-  x-bo4e-schema-version: 1.6.8
-  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
+  x-bpmn-source-sha: 33b20645
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
 components:
   schemas:
     '[NB] START_BESTELLUNG_SDAE':

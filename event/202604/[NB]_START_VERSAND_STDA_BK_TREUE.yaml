@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_VERSAND_STDA_BK_TREUE'
   version: '202604'
-  x-bpmn-source-sha: 6b115946
-  x-bo4e-schema-version: 1.6.8
-  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
+  x-bpmn-source-sha: 33b20645
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
 components:
   schemas:
     '[NB] START_VERSAND_STDA_BK_TREUE':
@@ -25,15 +25,9 @@ components:
             - sparte
           properties:
             absender:
-              type: object
-              properties:
-                rollencodenummer:
-                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/absender.yaml#/components/schemas/absender
             empfaenger:
-              type: object
-              properties:
-                rollencodenummer:
-                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/empfaenger.yaml#/components/schemas/empfaenger
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:

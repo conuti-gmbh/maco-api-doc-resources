@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_VERSAND_ANTWORT_NNA'
   version: '202604'
-  x-bpmn-source-sha: '36717036'
-  x-bo4e-schema-version: 1.6.8
-  x-templater-sha: ce089a840512efbac03c3b3e949ad6e8b7215947
+  x-bpmn-source-sha: 4f5b2ff0
+  x-bo4e-schema-version: 1.7.0
+  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
 components:
   schemas:
     '[LF] START_VERSAND_ANTWORT_NNA':
@@ -47,12 +47,12 @@ components:
             nachrichtendatum:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum
             pruefidentifikator:
-              enum:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 33001, 33002, 33003, 33004.
+              examples:
                 - '33001'
                 - '33002'
                 - '33003'
                 - '33004'
-              description: Pflichtfeld — bestimmt direkt die Antwort-Variante. Der Body-Wert routet den Versand-Prozess (T_-Gateway über ${pruefidentifikator}).
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
         zusatzdaten:
