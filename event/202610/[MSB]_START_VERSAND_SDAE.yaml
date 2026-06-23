@@ -4,7 +4,7 @@ info:
   version: '202610'
   x-bpmn-source-sha: aa74db2c
   x-bo4e-schema-version: 1.7.0
-  x-templater-sha: c7b88c733e93fe4ee423d52cffa2cd8f312574ea
+  x-templater-sha: 39ae45d481e5cc3d4d7aae328a23a9751236156a
 components:
   schemas:
     '[MSB] START_VERSAND_SDAE':
@@ -18,6 +18,8 @@ components:
           oneOf:
             - $ref: ../../event-bauteil/202610/UTILMD/PI_55553.yaml#/components/schemas/PI_55553__stammdaten
             - $ref: ../../event-bauteil/202610/UTILMD/PI_55557.yaml#/components/schemas/PI_55557__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD/PI_55639.yaml#/components/schemas/PI_55639__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD/PI_55640.yaml#/components/schemas/PI_55640__stammdaten
         transaktionsdaten:
           type: object
           required:
@@ -92,8 +94,6 @@ components:
       x-pending-pruefis:
         - '44116'
         - '44159'
-        - '55639'
-        - '55640'
         - '55641'
         - '55642'
         - '55643'

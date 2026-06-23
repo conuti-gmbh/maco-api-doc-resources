@@ -5448,6 +5448,264 @@ components:
       required:
       - zaehlernummer
       type: object
+    bauteil.PI_55607.stammdaten:
+      properties:
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.MARKTLOKATION'
+          type: array
+        MESSLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.MESSLOKATION'
+          type: array
+        NETZLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.NETZLOKATION'
+          type: array
+        NETZNUTZUNGSVERTRAG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.NETZNUTZUNGSVERTRAG'
+          type: array
+        STEUERBARE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.STEUERBARE_RESSOURCE'
+          type: array
+        TECHNISCHE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.TECHNISCHE_RESSOURCE'
+          type: array
+        TRANCHE:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.TRANCHE'
+          type: array
+      required:
+      - MARKTLOKATION
+      - MESSLOKATION
+      - NETZLOKATION
+      - NETZNUTZUNGSVERTRAG
+      - STEUERBARE_RESSOURCE
+      - TECHNISCHE_RESSOURCE
+      - TRANCHE
+      type: object
+    bauteil.PI_55607.stammdaten.MARKTLOKATION:
+      properties:
+        energieherkunft:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.MARKTLOKATION.energieherkunft'
+          type: array
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.MARKTLOKATION.marktrollen'
+          type: array
+        statusErzeugendeMalo:
+          $ref: '#/components/schemas/field.Marktlokation.statusErzeugendeMalo'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+Z22
+      required:
+      - energieherkunft
+      - marktlokationsId
+      - marktrollen
+      - statusErzeugendeMalo
+      type: object
+    bauteil.PI_55607.stammdaten.MARKTLOKATION.energieherkunft:
+      properties:
+        erzeugungsart:
+          $ref: '#/components/schemas/field.Energieherkunft.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++Z34.CAV
+      required:
+      - erzeugungsart
+      type: object
+    bauteil.PI_55607.stammdaten.MARKTLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    bauteil.PI_55607.stammdaten.MESSLOKATION:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.MESSLOKATION.marktrollen'
+          type: array
+        messlokationsId:
+          $ref: '#/components/schemas/field.Messlokation.messlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z17
+          - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
+      required:
+      - marktrollen
+      - messlokationsId
+      type: object
+    bauteil.PI_55607.stammdaten.MESSLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    bauteil.PI_55607.stammdaten.NETZLOKATION:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.NETZLOKATION.marktrollen'
+          type: array
+        netzlokationsId:
+          $ref: '#/components/schemas/field.Netzlokation.netzlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+          - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
+      required:
+      - marktrollen
+      - netzlokationsId
+      type: object
+    bauteil.PI_55607.stammdaten.NETZLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      type: object
+    bauteil.PI_55607.stammdaten.NETZNUTZUNGSVERTRAG:
+      properties:
+        vertragsbeginn:
+          $ref: '#/components/schemas/field.Vertrag.vertragsbeginn'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '#/components/schemas/field.Vertrag.vertragsende'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93
+      required:
+      - vertragsbeginn
+      type: object
+    bauteil.PI_55607.stammdaten.STEUERBARE_RESSOURCE:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.STEUERBARE_RESSOURCE.marktrollen'
+          type: array
+        ressourcenId:
+          $ref: '#/components/schemas/field.SteuerbareRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z19
+          - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
+      required:
+      - marktrollen
+      - ressourcenId
+      type: object
+    bauteil.PI_55607.stammdaten.STEUERBARE_RESSOURCE.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      type: object
+    bauteil.PI_55607.stammdaten.TECHNISCHE_RESSOURCE:
+      properties:
+        ressourcenId:
+          $ref: '#/components/schemas/field.TechnischeRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+      required:
+      - ressourcenId
+      type: object
+    bauteil.PI_55607.stammdaten.TRANCHE:
+      properties:
+        aufteilungsmenge:
+          $ref: '#/components/schemas/bauteil.PI_55607.stammdaten.TRANCHE.aufteilungsmenge'
+        bildungTranchengroesse:
+          $ref: '#/components/schemas/field.Tranche.bildungTranchengroesse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+Z37
+        tranchenId:
+          $ref: '#/components/schemas/field.Tranche.tranchenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+      required:
+      - aufteilungsmenge
+      - bildungTranchengroesse
+      - tranchenId
+      type: object
+    bauteil.PI_55607.stammdaten.TRANCHE.aufteilungsmenge:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+      required:
+      - einheit
+      - wert
+      type: object
     bauteil.PI_55611.stammdaten:
       properties:
         MARKTLOKATION:
@@ -7637,6 +7895,702 @@ components:
       - verwendungAb
       - zeitraumId
       type: object
+    bauteil.PI_55628.stammdaten:
+      properties:
+        BILANZIERUNG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.BILANZIERUNG'
+          type: array
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION'
+          type: array
+        NETZNUTZUNGSVERTRAG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - BILANZIERUNG
+      - MARKTLOKATION
+      - NETZNUTZUNGSVERTRAG
+      - VERWENDUNGSZEITRAUM
+      type: object
+    bauteil.PI_55628.stammdaten.BILANZIERUNG:
+      properties:
+        abwicklungsmodell:
+          $ref: '#/components/schemas/field.Bilanzierung.abwicklungsmodell'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+ZA2++[ZE9|ZF0]
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Bilanzierung.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08
+          - SG4.IDE+24.SG8.SEQ+Z21
+          - SG4.IDE+24.SG8.SEQ+Z38
+        detailsPrognosegrundlage:
+          $ref: '#/components/schemas/field.Bilanzierung.detailsPrognosegrundlage'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI.CAV+[E02|E14|Z36]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.BILANZIERUNG.gueltigkeitszeitraum'
+        jahresverbrauchsprognose:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.BILANZIERUNG.jahresverbrauchsprognose'
+        lastprofile:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.BILANZIERUNG.lastprofile'
+          type: array
+        prognosegrundlage:
+          $ref: '#/components/schemas/field.Bilanzierung.prognosegrundlage'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
+        temperaturarbeit:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.BILANZIERUNG.temperaturarbeit'
+      required:
+      - abwicklungsmodell
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - jahresverbrauchsprognose
+      - lastprofile
+      - prognosegrundlage
+      - temperaturarbeit
+      type: object
+    bauteil.PI_55628.stammdaten.BILANZIERUNG.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08
+          - SG4.IDE+24.SG8.SEQ+Z21
+          - SG4.IDE+24.SG8.SEQ+Z38
+      required:
+      - zeitraumId
+      type: object
+    bauteil.PI_55628.stammdaten.BILANZIERUNG.jahresverbrauchsprognose:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+      required:
+      - einheit
+      - wert
+      type: object
+    bauteil.PI_55628.stammdaten.BILANZIERUNG.lastprofile:
+      properties:
+        bezeichnung:
+          $ref: '#/components/schemas/field.Lastprofil.bezeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05].CAV
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04].CAV
+        einspeisung:
+          $ref: '#/components/schemas/field.Lastprofil.einspeisung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+        profilart:
+          $ref: '#/components/schemas/field.Lastprofil.profilart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+        referenzprofilbezeichnung:
+          $ref: '#/components/schemas/field.Lastprofil.referenzprofilbezeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z38.SG10.CCI+Z05.CAV
+        verfahren:
+          $ref: '#/components/schemas/field.Lastprofil.verfahren'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+      required:
+      - bezeichnung
+      - einspeisung
+      - profilart
+      - referenzprofilbezeichnung
+      - verfahren
+      type: object
+    bauteil.PI_55628.stammdaten.BILANZIERUNG.temperaturarbeit:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265|Z08]
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265|Z08]
+      required:
+      - einheit
+      - wert
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Marktlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+          - SG4.IDE+24.SG12.NAD+EO.RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58].RFF+Z46
+          - SG4.IDE+24.SG8.SEQ+Z01
+        eigentuemer:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.eigentuemer'
+        energieherkunft:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.energieherkunft'
+          type: array
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.gueltigkeitszeitraum'
+        hausverwalter:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.hausverwalter'
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.marktrollen'
+          type: array
+        messtechnischeEinordnung:
+          $ref: '#/components/schemas/field.Marktlokation.messtechnischeEinordnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z83.CAV
+        netzebene:
+          $ref: '#/components/schemas/field.Marktlokation.netzebene'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
+        umspannung:
+          $ref: '#/components/schemas/field.Marktlokation.umspannung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
+      required:
+      - datenqualitaet
+      - eigentuemer
+      - energieherkunft
+      - gueltigkeitszeitraum
+      - hausverwalter
+      - marktlokationsId
+      - marktrollen
+      - messtechnischeEinordnung
+      - netzebene
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.eigentuemer:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Geschaeftspartner.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.eigentuemer.partneradresse'
+      required:
+      - anrede
+      - gewerbekennzeichnung
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.eigentuemer.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.energieherkunft:
+      properties:
+        erzeugungsart:
+          $ref: '#/components/schemas/field.Energieherkunft.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z34.CAV
+      required:
+      - erzeugungsart
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO.RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58].RFF+Z46
+          - SG4.IDE+24.SG8.SEQ+Z01
+      required:
+      - zeitraumId
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.hausverwalter:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Geschaeftspartner.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.MARKTLOKATION.hausverwalter.partneradresse'
+      required:
+      - anrede
+      - gewerbekennzeichnung
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.hausverwalter.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_55628.stammdaten.MARKTLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Vertrag.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+          - SG4.IDE+24.SG12.NAD+Z26
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.gueltigkeitszeitraum'
+        korrespondenzpartner:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner'
+        vertragspartner2:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.vertragspartner2'
+          type: array
+      required:
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - korrespondenzpartner
+      - vertragspartner2
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25.RFF+Z46
+          - SG4.IDE+24.SG12.NAD+Z26.RFF+Z46
+      required:
+      - zeitraumId
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        ansprechpartner:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner'
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.partneradresse'
+      required:
+      - anrede
+      - ansprechpartner
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner:
+      properties:
+        eMailAdresse:
+          $ref: '#/components/schemas/field.Ansprechpartner.eMailAdresse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26.SG13.CTA.COM+[TE|EM]
+        rufnummern:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner.rufnummern'
+          type: array
+      required:
+      - eMailAdresse
+      - rufnummern
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner.rufnummern:
+      properties:
+        nummerntyp:
+          $ref: '#/components/schemas/field.Rufnummer.nummerntyp'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26.SG13.CTA.COM+[TE|EM]
+        rufnummer:
+          $ref: '#/components/schemas/field.Rufnummer.rufnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26.SG13.CTA.COM+[TE|EM]
+      required:
+      - nummerntyp
+      - rufnummer
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.vertragspartner2:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        geschaeftspartnerrolle:
+          $ref: '#/components/schemas/field.Geschaeftspartner.geschaeftspartnerrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+      required:
+      - anrede
+      - geschaeftspartnerrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      type: object
+    bauteil.PI_55628.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    bauteil.PI_55629.stammdaten:
+      properties:
+        TECHNISCHE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55629.stammdaten.TECHNISCHE_RESSOURCE'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55629.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - TECHNISCHE_RESSOURCE
+      - VERWENDUNGSZEITRAUM
+      type: object
+    bauteil.PI_55629.stammdaten.TECHNISCHE_RESSOURCE:
+      properties:
+        art:
+          $ref: '#/components/schemas/field.TechnischeRessource.art'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56]
+        artEMobilitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.artEMobilitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV
+        datenqualitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+        enwg:
+          $ref: '#/components/schemas/field.TechnischeRessource.enwg'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZG8|ZG9]
+        erzeugungsart:
+          $ref: '#/components/schemas/field.TechnischeRessource.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF5|ZF6|ZG0|ZG1|ZG5]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/bauteil.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.gueltigkeitszeitraum'
+        nennleistung:
+          $ref: '#/components/schemas/bauteil.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.nennleistung'
+        referenzNetzlokation:
+          $ref: '#/components/schemas/field.TechnischeRessource.referenzNetzlokation'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z32
+        referenzSteuerbareRessource:
+          $ref: '#/components/schemas/field.TechnischeRessource.referenzSteuerbareRessource'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z38
+        ressourcenId:
+          $ref: '#/components/schemas/field.TechnischeRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+        speicherart:
+          $ref: '#/components/schemas/field.TechnischeRessource.speicherart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF7|ZF8|ZF9|ZG6]
+        speicherkapazitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.speicherkapazitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z42
+        verbrauchsart:
+          $ref: '#/components/schemas/field.TechnischeRessource.verbrauchsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[Z64|Z65|ZE5|ZA8]
+        waermenutzung:
+          $ref: '#/components/schemas/field.TechnischeRessource.waermenutzung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV
+      required:
+      - art
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - nennleistung
+      - ressourcenId
+      - speicherkapazitaet
+      type: object
+    bauteil.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+      required:
+      - zeitraumId
+      type: object
+    bauteil.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.nennleistung:
+      properties:
+        abgabe:
+          $ref: '#/components/schemas/field.Nennleistung.abgabe'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z44
+        aufnahme:
+          $ref: '#/components/schemas/field.Nennleistung.aufnahme'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z43
+      required:
+      - abgabe
+      - aufnahme
+      type: object
+    bauteil.PI_55629.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
     bauteil.PI_55630.stammdaten:
       properties:
         STEUERBARE_RESSOURCE:
@@ -7801,6 +8755,284 @@ components:
       - weiterverpflichtet
       type: object
     bauteil.PI_55632.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    bauteil.PI_55639.stammdaten:
+      properties:
+        NETZLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55639.stammdaten.NETZLOKATION'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55639.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - NETZLOKATION
+      - VERWENDUNGSZEITRAUM
+      type: object
+    bauteil.PI_55639.stammdaten.NETZLOKATION:
+      properties:
+        auftraggebenderMarktpartner:
+          $ref: '#/components/schemas/bauteil.PI_55639.stammdaten.NETZLOKATION.auftraggebenderMarktpartner'
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Netzlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51
+          - SG4.IDE+24.SG8.SEQ+Z57
+          - SG4.IDE+24.SG8.SEQ+Z60
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/bauteil.PI_55639.stammdaten.NETZLOKATION.gueltigkeitszeitraum'
+        keinKonfigurationsprodukt:
+          $ref: '#/components/schemas/field.Netzlokation.keinKonfigurationsprodukt'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+11
+        konfigurationsprodukt:
+          $ref: '#/components/schemas/field.Netzlokation.konfigurationsprodukt'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.PIA+5
+        leistungskurvendefinition:
+          $ref: '#/components/schemas/field.Netzlokation.leistungskurvendefinition'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+Z53
+        netzlokationsId:
+          $ref: '#/components/schemas/field.Netzlokation.netzlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+        produktdatenRelevanteRolle:
+          $ref: '#/components/schemas/field.Netzlokation.produktdatenRelevanteRolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZA8
+        steuerkanal:
+          $ref: '#/components/schemas/field.Netzlokation.steuerkanal'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+Z49
+        zaehlwerke:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55639.stammdaten.NETZLOKATION.zaehlwerke'
+          type: array
+      required:
+      - auftraggebenderMarktpartner
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - keinKonfigurationsprodukt
+      - leistungskurvendefinition
+      - netzlokationsId
+      - produktdatenRelevanteRolle
+      - steuerkanal
+      - zaehlwerke
+      type: object
+    bauteil.PI_55639.stammdaten.NETZLOKATION.auftraggebenderMarktpartner:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+      required:
+      - marktrolle
+      - rollencodenummer
+      type: object
+    bauteil.PI_55639.stammdaten.NETZLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51
+          - SG4.IDE+24.SG8.SEQ+Z57
+          - SG4.IDE+24.SG8.SEQ+Z60
+      required:
+      - zeitraumId
+      type: object
+    bauteil.PI_55639.stammdaten.NETZLOKATION.zaehlwerke:
+      properties:
+        keinProdukt:
+          $ref: '#/components/schemas/field.Zaehlwerk.keinProdukt'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+11
+        obisKennzahl:
+          $ref: '#/components/schemas/field.Zaehlwerk.obisKennzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+        verwendungszweckLF:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckLF'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+        verwendungszweckNB:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckNB'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+      required:
+      - keinProdukt
+      type: object
+    bauteil.PI_55639.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    bauteil.PI_55640.stammdaten:
+      properties:
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MARKTLOKATION'
+          type: array
+        MESSSTELLENBETRIEBSVERTRAG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - MARKTLOKATION
+      - MESSSTELLENBETRIEBSVERTRAG
+      - VERWENDUNGSZEITRAUM
+      type: object
+    bauteil.PI_55640.stammdaten.MARKTLOKATION:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Marktlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50
+          - SG4.IDE+24.SG8.SEQ+Z02
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MARKTLOKATION.gueltigkeitszeitraum'
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        zaehlwerke:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke'
+          type: array
+      required:
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - marktlokationsId
+      - zaehlwerke
+      type: object
+    bauteil.PI_55640.stammdaten.MARKTLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50
+          - SG4.IDE+24.SG8.SEQ+Z02
+      required:
+      - zeitraumId
+      type: object
+    bauteil.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke:
+      properties:
+        obisKennzahl:
+          $ref: '#/components/schemas/field.Zaehlwerk.obisKennzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        verwendungszweckLF:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckLF'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        verwendungszweckNB:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckNB'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        verwendungszweckUENB:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckUENB'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        wertegranularitaet:
+          $ref: '#/components/schemas/field.Zaehlwerk.wertegranularitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
+        zaehlzeiten:
+          $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke.zaehlzeiten'
+      required:
+      - obisKennzahl
+      - verwendungszweckLF
+      - verwendungszweckNB
+      - verwendungszweckUENB
+      - wertegranularitaet
+      - zaehlzeiten
+      type: object
+    bauteil.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke.zaehlzeiten:
+      properties:
+        register:
+          $ref: '#/components/schemas/field.Zaehlzeitregister.register'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z38
+        zaehlzeitDefinition:
+          $ref: '#/components/schemas/field.Zaehlzeitregister.zaehlzeitDefinition'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z39
+      required:
+      - register
+      - zaehlzeitDefinition
+      type: object
+    bauteil.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG:
+      properties:
+        vertragskonditionen:
+          $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen'
+      required:
+      - vertragskonditionen
+      type: object
+    bauteil.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen:
+      properties:
+        geplanteTurnusablesung:
+          $ref: '#/components/schemas/bauteil.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen.geplanteTurnusablesung'
+      required:
+      - geplanteTurnusablesung
+      type: object
+    bauteil.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen.geplanteTurnusablesung:
+      properties:
+        ableseZeitraum:
+          $ref: '#/components/schemas/field.Zeitraum.ableseZeitraum'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50.DTM+752
+      required:
+      - ableseZeitraum
+      type: object
+    bauteil.PI_55640.stammdaten.VERWENDUNGSZEITRAUM:
       properties:
         datenqualitaet:
           $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
@@ -16519,6 +17751,8 @@ components:
           oneOf:
           - $ref: '#/components/schemas/bauteil.PI_55553.stammdaten'
           - $ref: '#/components/schemas/bauteil.PI_55557.stammdaten'
+          - $ref: '#/components/schemas/bauteil.PI_55639.stammdaten'
+          - $ref: '#/components/schemas/bauteil.PI_55640.stammdaten'
         transaktionsdaten:
           properties:
             absender:
@@ -16598,8 +17832,6 @@ components:
       x-pending-pruefis:
       - '44116'
       - '44159'
-      - '55639'
-      - '55640'
       - '55641'
       - '55642'
       - '55643'
@@ -18253,6 +19485,8 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_55619.stammdaten'
           - $ref: '#/components/schemas/bauteil.PI_55620.stammdaten'
           - $ref: '#/components/schemas/bauteil.PI_55627.stammdaten'
+          - $ref: '#/components/schemas/bauteil.PI_55628.stammdaten'
+          - $ref: '#/components/schemas/bauteil.PI_55629.stammdaten'
           - $ref: '#/components/schemas/bauteil.PI_55630.stammdaten'
           - $ref: '#/components/schemas/bauteil.PI_55632.stammdaten'
           - $ref: '#/components/schemas/bauteil.PI_55688.stammdaten'
@@ -18336,8 +19570,6 @@ components:
       - '44113'
       - '44123'
       - '44175'
-      - '55628'
-      - '55629'
       - '55670'
     event.NB.START_VERSAND_STATUSMELDUNG:
       properties:
@@ -18581,6 +19813,9 @@ components:
       - '29002'
     event.NB.START_ZUORDNUNG_ERZ_MALO_TRANCHE:
       properties:
+        stammdaten:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_55607.stammdaten'
         transaktionsdaten:
           properties:
             absender:
@@ -18633,8 +19868,6 @@ components:
       - transaktionsdaten
       - zusatzdaten
       type: object
-      x-pending-pruefis:
-      - '55607'
     field.Abschlag.prozent:
       description: Prozentuale Angabe zum Auf-/Abschlag
       format: float
@@ -32063,6 +33296,354 @@ components:
       - rollencodenummer
       - rollencodetyp
       type: object
+    pruefi.PI_55078:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55078.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55078.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55078.stammdaten:
+      properties:
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.MARKTLOKATION'
+          type: array
+        MESSLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.MESSLOKATION'
+          type: array
+        NETZLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.NETZLOKATION'
+          type: array
+        NETZNUTZUNGSVERTRAG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.NETZNUTZUNGSVERTRAG'
+          type: array
+        STEUERBARE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.STEUERBARE_RESSOURCE'
+          type: array
+        TECHNISCHE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.TECHNISCHE_RESSOURCE'
+          type: array
+        TRANCHE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.TRANCHE'
+          type: array
+      required:
+      - MARKTLOKATION
+      - MESSLOKATION
+      - NETZLOKATION
+      - NETZNUTZUNGSVERTRAG
+      - STEUERBARE_RESSOURCE
+      - TECHNISCHE_RESSOURCE
+      - TRANCHE
+      type: object
+    pruefi.PI_55078.stammdaten.MARKTLOKATION:
+      properties:
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.MARKTLOKATION.marktrollen'
+          type: array
+      required:
+      - marktlokationsId
+      - marktrollen
+      type: object
+    pruefi.PI_55078.stammdaten.MARKTLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    pruefi.PI_55078.stammdaten.MESSLOKATION:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.MESSLOKATION.marktrollen'
+          type: array
+        messlokationsId:
+          $ref: '#/components/schemas/field.Messlokation.messlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z17
+          - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
+      required:
+      - marktrollen
+      - messlokationsId
+      type: object
+    pruefi.PI_55078.stammdaten.MESSLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    pruefi.PI_55078.stammdaten.NETZLOKATION:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.NETZLOKATION.marktrollen'
+          type: array
+        netzlokationsId:
+          $ref: '#/components/schemas/field.Netzlokation.netzlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+          - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
+      required:
+      - marktrollen
+      - netzlokationsId
+      type: object
+    pruefi.PI_55078.stammdaten.NETZLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      type: object
+    pruefi.PI_55078.stammdaten.NETZNUTZUNGSVERTRAG:
+      properties:
+        vertragsbeginn:
+          $ref: '#/components/schemas/field.Vertrag.vertragsbeginn'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+      required:
+      - vertragsbeginn
+      type: object
+    pruefi.PI_55078.stammdaten.STEUERBARE_RESSOURCE:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.STEUERBARE_RESSOURCE.marktrollen'
+          type: array
+        ressourcenId:
+          $ref: '#/components/schemas/field.SteuerbareRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z19
+          - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
+      required:
+      - marktrollen
+      - ressourcenId
+      type: object
+    pruefi.PI_55078.stammdaten.STEUERBARE_RESSOURCE.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      type: object
+    pruefi.PI_55078.stammdaten.TECHNISCHE_RESSOURCE:
+      properties:
+        ressourcenId:
+          $ref: '#/components/schemas/field.TechnischeRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+      required:
+      - ressourcenId
+      type: object
+    pruefi.PI_55078.stammdaten.TRANCHE:
+      properties:
+        aufteilungsmenge:
+          $ref: '#/components/schemas/pruefi.PI_55078.stammdaten.TRANCHE.aufteilungsmenge'
+        bildungTranchengroesse:
+          $ref: '#/components/schemas/field.Tranche.bildungTranchengroesse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+Z37
+        tranchenId:
+          $ref: '#/components/schemas/field.Tranche.tranchenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+      required:
+      - aufteilungsmenge
+      - bildungTranchengroesse
+      - tranchenId
+      type: object
+    pruefi.PI_55078.stammdaten.TRANCHE.aufteilungsmenge:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+      required:
+      - einheit
+      - wert
+      type: object
+    pruefi.PI_55078.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55078.transaktionsdaten.absender'
+        anfragereferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.anfragereferenznummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+TN
+        antwortstatus:
+          $ref: '#/components/schemas/field.Transaktionsdaten.antwortstatus'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        antwortstatusCodeliste:
+          $ref: '#/components/schemas/field.Transaktionsdaten.antwortstatusCodeliste'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+E01
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55078.transaktionsdaten.empfaenger'
+        geplantesProduktpaket:
+          $ref: '#/components/schemas/field.Transaktionsdaten.geplantesProduktpaket'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z60
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+E01
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transaktionsgrundergaenzung:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrundergaenzung'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vertragsbeginn:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vertragsbeginn'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - anfragereferenznummer
+      - antwortstatus
+      - antwortstatusCodeliste
+      - dokumentennummer
+      - empfaenger
+      - geplantesProduktpaket
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - transaktionsgrundergaenzung
+      - vertragsbeginn
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55078.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55078.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
     pruefi.PI_55095:
       properties:
         stammdaten:
@@ -40681,6 +42262,371 @@ components:
       - rollencodenummer
       - rollencodetyp
       type: object
+    pruefi.PI_55607:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55607.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55607.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55607.stammdaten:
+      properties:
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.MARKTLOKATION'
+          type: array
+        MESSLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.MESSLOKATION'
+          type: array
+        NETZLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.NETZLOKATION'
+          type: array
+        NETZNUTZUNGSVERTRAG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.NETZNUTZUNGSVERTRAG'
+          type: array
+        STEUERBARE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.STEUERBARE_RESSOURCE'
+          type: array
+        TECHNISCHE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.TECHNISCHE_RESSOURCE'
+          type: array
+        TRANCHE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.TRANCHE'
+          type: array
+      required:
+      - MARKTLOKATION
+      - MESSLOKATION
+      - NETZLOKATION
+      - NETZNUTZUNGSVERTRAG
+      - STEUERBARE_RESSOURCE
+      - TECHNISCHE_RESSOURCE
+      - TRANCHE
+      type: object
+    pruefi.PI_55607.stammdaten.MARKTLOKATION:
+      properties:
+        energieherkunft:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.MARKTLOKATION.energieherkunft'
+          type: array
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.MARKTLOKATION.marktrollen'
+          type: array
+        statusErzeugendeMalo:
+          $ref: '#/components/schemas/field.Marktlokation.statusErzeugendeMalo'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+Z22
+      required:
+      - energieherkunft
+      - marktlokationsId
+      - marktrollen
+      - statusErzeugendeMalo
+      type: object
+    pruefi.PI_55607.stammdaten.MARKTLOKATION.energieherkunft:
+      properties:
+        erzeugungsart:
+          $ref: '#/components/schemas/field.Energieherkunft.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++Z34.CAV
+      required:
+      - erzeugungsart
+      type: object
+    pruefi.PI_55607.stammdaten.MARKTLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    pruefi.PI_55607.stammdaten.MESSLOKATION:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.MESSLOKATION.marktrollen'
+          type: array
+        messlokationsId:
+          $ref: '#/components/schemas/field.Messlokation.messlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z17
+          - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
+      required:
+      - marktrollen
+      - messlokationsId
+      type: object
+    pruefi.PI_55607.stammdaten.MESSLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    pruefi.PI_55607.stammdaten.NETZLOKATION:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.NETZLOKATION.marktrollen'
+          type: array
+        netzlokationsId:
+          $ref: '#/components/schemas/field.Netzlokation.netzlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+          - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
+      required:
+      - marktrollen
+      - netzlokationsId
+      type: object
+    pruefi.PI_55607.stammdaten.NETZLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      type: object
+    pruefi.PI_55607.stammdaten.NETZNUTZUNGSVERTRAG:
+      properties:
+        vertragsbeginn:
+          $ref: '#/components/schemas/field.Vertrag.vertragsbeginn'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '#/components/schemas/field.Vertrag.vertragsende'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93
+      required:
+      - vertragsbeginn
+      type: object
+    pruefi.PI_55607.stammdaten.STEUERBARE_RESSOURCE:
+      properties:
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.STEUERBARE_RESSOURCE.marktrollen'
+          type: array
+        ressourcenId:
+          $ref: '#/components/schemas/field.SteuerbareRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z19
+          - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
+      required:
+      - marktrollen
+      - ressourcenId
+      type: object
+    pruefi.PI_55607.stammdaten.STEUERBARE_RESSOURCE.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      type: object
+    pruefi.PI_55607.stammdaten.TECHNISCHE_RESSOURCE:
+      properties:
+        ressourcenId:
+          $ref: '#/components/schemas/field.TechnischeRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+      required:
+      - ressourcenId
+      type: object
+    pruefi.PI_55607.stammdaten.TRANCHE:
+      properties:
+        aufteilungsmenge:
+          $ref: '#/components/schemas/pruefi.PI_55607.stammdaten.TRANCHE.aufteilungsmenge'
+        bildungTranchengroesse:
+          $ref: '#/components/schemas/field.Tranche.bildungTranchengroesse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+Z37
+        tranchenId:
+          $ref: '#/components/schemas/field.Tranche.tranchenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+      required:
+      - aufteilungsmenge
+      - bildungTranchengroesse
+      - tranchenId
+      type: object
+    pruefi.PI_55607.stammdaten.TRANCHE.aufteilungsmenge:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+      required:
+      - einheit
+      - wert
+      type: object
+    pruefi.PI_55607.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55607.transaktionsdaten.absender'
+        anfragereferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.anfragereferenznummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+TN
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+[E01|Z89]
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55607.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+[E01|Z89]
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transaktionsgrundergaenzung:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrundergaenzung'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transaktionsgrundergaenzungBefristeteAnmeldung:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrundergaenzungBefristeteAnmeldung'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vertragsbeginn:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vertragsbeginn'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        vertragsende:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vertragsende'
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - anfragereferenznummer
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - transaktionsgrundergaenzung
+      - transaktionsgrundergaenzungBefristeteAnmeldung
+      - vertragsbeginn
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55607.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55607.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
     pruefi.PI_55608:
       properties:
         stammdaten:
@@ -44712,6 +46658,873 @@ components:
       - rollencodenummer
       - rollencodetyp
       type: object
+    pruefi.PI_55628:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55628.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55628.stammdaten:
+      properties:
+        BILANZIERUNG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.BILANZIERUNG'
+          type: array
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION'
+          type: array
+        NETZNUTZUNGSVERTRAG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - BILANZIERUNG
+      - MARKTLOKATION
+      - NETZNUTZUNGSVERTRAG
+      - VERWENDUNGSZEITRAUM
+      type: object
+    pruefi.PI_55628.stammdaten.BILANZIERUNG:
+      properties:
+        abwicklungsmodell:
+          $ref: '#/components/schemas/field.Bilanzierung.abwicklungsmodell'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+ZA2++[ZE9|ZF0]
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Bilanzierung.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08
+          - SG4.IDE+24.SG8.SEQ+Z21
+          - SG4.IDE+24.SG8.SEQ+Z38
+        detailsPrognosegrundlage:
+          $ref: '#/components/schemas/field.Bilanzierung.detailsPrognosegrundlage'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI.CAV+[E02|E14|Z36]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.BILANZIERUNG.gueltigkeitszeitraum'
+        jahresverbrauchsprognose:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.BILANZIERUNG.jahresverbrauchsprognose'
+        lastprofile:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.BILANZIERUNG.lastprofile'
+          type: array
+        prognosegrundlage:
+          $ref: '#/components/schemas/field.Bilanzierung.prognosegrundlage'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
+        temperaturarbeit:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.BILANZIERUNG.temperaturarbeit'
+      required:
+      - abwicklungsmodell
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - jahresverbrauchsprognose
+      - lastprofile
+      - prognosegrundlage
+      - temperaturarbeit
+      type: object
+    pruefi.PI_55628.stammdaten.BILANZIERUNG.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08
+          - SG4.IDE+24.SG8.SEQ+Z21
+          - SG4.IDE+24.SG8.SEQ+Z38
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55628.stammdaten.BILANZIERUNG.jahresverbrauchsprognose:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+      required:
+      - einheit
+      - wert
+      type: object
+    pruefi.PI_55628.stammdaten.BILANZIERUNG.lastprofile:
+      properties:
+        bezeichnung:
+          $ref: '#/components/schemas/field.Lastprofil.bezeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05].CAV
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04].CAV
+        einspeisung:
+          $ref: '#/components/schemas/field.Lastprofil.einspeisung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+        profilart:
+          $ref: '#/components/schemas/field.Lastprofil.profilart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+        referenzprofilbezeichnung:
+          $ref: '#/components/schemas/field.Lastprofil.referenzprofilbezeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z38.SG10.CCI+Z05.CAV
+        verfahren:
+          $ref: '#/components/schemas/field.Lastprofil.verfahren'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+      required:
+      - bezeichnung
+      - einspeisung
+      - profilart
+      - referenzprofilbezeichnung
+      - verfahren
+      type: object
+    pruefi.PI_55628.stammdaten.BILANZIERUNG.temperaturarbeit:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265|Z08]
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265|Z08]
+      required:
+      - einheit
+      - wert
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Marktlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+          - SG4.IDE+24.SG12.NAD+EO.RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58].RFF+Z46
+          - SG4.IDE+24.SG8.SEQ+Z01
+        eigentuemer:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.eigentuemer'
+        energieherkunft:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.energieherkunft'
+          type: array
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.gueltigkeitszeitraum'
+        hausverwalter:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.hausverwalter'
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.marktrollen'
+          type: array
+        messtechnischeEinordnung:
+          $ref: '#/components/schemas/field.Marktlokation.messtechnischeEinordnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z83.CAV
+        netzebene:
+          $ref: '#/components/schemas/field.Marktlokation.netzebene'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
+        umspannung:
+          $ref: '#/components/schemas/field.Marktlokation.umspannung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
+      required:
+      - datenqualitaet
+      - eigentuemer
+      - energieherkunft
+      - gueltigkeitszeitraum
+      - hausverwalter
+      - marktlokationsId
+      - marktrollen
+      - messtechnischeEinordnung
+      - netzebene
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.eigentuemer:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Geschaeftspartner.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        partneradresse:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.eigentuemer.partneradresse'
+      required:
+      - anrede
+      - gewerbekennzeichnung
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.eigentuemer.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.energieherkunft:
+      properties:
+        erzeugungsart:
+          $ref: '#/components/schemas/field.Energieherkunft.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z34.CAV
+      required:
+      - erzeugungsart
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+EO.RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58].RFF+Z46
+          - SG4.IDE+24.SG8.SEQ+Z01
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.hausverwalter:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Geschaeftspartner.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        partneradresse:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.MARKTLOKATION.hausverwalter.partneradresse'
+      required:
+      - anrede
+      - gewerbekennzeichnung
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.hausverwalter.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    pruefi.PI_55628.stammdaten.MARKTLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Vertrag.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+          - SG4.IDE+24.SG12.NAD+Z26
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.gueltigkeitszeitraum'
+        korrespondenzpartner:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner'
+        vertragspartner2:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.vertragspartner2'
+          type: array
+      required:
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - korrespondenzpartner
+      - vertragspartner2
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25.RFF+Z46
+          - SG4.IDE+24.SG12.NAD+Z26.RFF+Z46
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        ansprechpartner:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner'
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        partneradresse:
+          $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.partneradresse'
+      required:
+      - anrede
+      - ansprechpartner
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner:
+      properties:
+        eMailAdresse:
+          $ref: '#/components/schemas/field.Ansprechpartner.eMailAdresse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26.SG13.CTA.COM+[TE|EM]
+        rufnummern:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner.rufnummern'
+          type: array
+      required:
+      - eMailAdresse
+      - rufnummern
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner.rufnummern:
+      properties:
+        nummerntyp:
+          $ref: '#/components/schemas/field.Rufnummer.nummerntyp'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26.SG13.CTA.COM+[TE|EM]
+        rufnummer:
+          $ref: '#/components/schemas/field.Rufnummer.rufnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26.SG13.CTA.COM+[TE|EM]
+      required:
+      - nummerntyp
+      - rufnummer
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    pruefi.PI_55628.stammdaten.NETZNUTZUNGSVERTRAG.vertragspartner2:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        geschaeftspartnerrolle:
+          $ref: '#/components/schemas/field.Geschaeftspartner.geschaeftspartnerrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+      required:
+      - anrede
+      - geschaeftspartnerrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      type: object
+    pruefi.PI_55628.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    pruefi.PI_55628.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55628.transaktionsdaten.absender'
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+E03
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55628.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+E03
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transaktionsgrundergaenzung:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrundergaenzung'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - transaktionsgrundergaenzung
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55628.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55628.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55629:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55629.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55629.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55629.stammdaten:
+      properties:
+        TECHNISCHE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55629.stammdaten.TECHNISCHE_RESSOURCE'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55629.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - TECHNISCHE_RESSOURCE
+      - VERWENDUNGSZEITRAUM
+      type: object
+    pruefi.PI_55629.stammdaten.TECHNISCHE_RESSOURCE:
+      properties:
+        art:
+          $ref: '#/components/schemas/field.TechnischeRessource.art'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56]
+        artEMobilitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.artEMobilitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV
+        datenqualitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+        enwg:
+          $ref: '#/components/schemas/field.TechnischeRessource.enwg'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZG8|ZG9]
+        erzeugungsart:
+          $ref: '#/components/schemas/field.TechnischeRessource.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF5|ZF6|ZG0|ZG1|ZG5]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.gueltigkeitszeitraum'
+        nennleistung:
+          $ref: '#/components/schemas/pruefi.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.nennleistung'
+        referenzNetzlokation:
+          $ref: '#/components/schemas/field.TechnischeRessource.referenzNetzlokation'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z32
+        referenzSteuerbareRessource:
+          $ref: '#/components/schemas/field.TechnischeRessource.referenzSteuerbareRessource'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z38
+        ressourcenId:
+          $ref: '#/components/schemas/field.TechnischeRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+        speicherart:
+          $ref: '#/components/schemas/field.TechnischeRessource.speicherart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF7|ZF8|ZF9|ZG6]
+        speicherkapazitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.speicherkapazitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z42
+        verbrauchsart:
+          $ref: '#/components/schemas/field.TechnischeRessource.verbrauchsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[Z64|Z65|ZE5|ZA8]
+        waermenutzung:
+          $ref: '#/components/schemas/field.TechnischeRessource.waermenutzung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV
+      required:
+      - art
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - nennleistung
+      - ressourcenId
+      - speicherkapazitaet
+      type: object
+    pruefi.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55629.stammdaten.TECHNISCHE_RESSOURCE.nennleistung:
+      properties:
+        abgabe:
+          $ref: '#/components/schemas/field.Nennleistung.abgabe'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z44
+        aufnahme:
+          $ref: '#/components/schemas/field.Nennleistung.aufnahme'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z43
+      required:
+      - abgabe
+      - aufnahme
+      type: object
+    pruefi.PI_55629.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    pruefi.PI_55629.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55629.transaktionsdaten.absender'
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+E03
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55629.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+E03
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55629.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55629.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
     pruefi.PI_55630:
       properties:
         stammdaten:
@@ -45258,6 +48071,921 @@ components:
       - rollencodenummer
       - rollencodetyp
       type: object
+    pruefi.PI_55634:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55634.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55634.stammdaten:
+      properties:
+        BILANZIERUNG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.BILANZIERUNG'
+          type: array
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION'
+          type: array
+        NETZNUTZUNGSVERTRAG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - BILANZIERUNG
+      - MARKTLOKATION
+      - NETZNUTZUNGSVERTRAG
+      - VERWENDUNGSZEITRAUM
+      type: object
+    pruefi.PI_55634.stammdaten.BILANZIERUNG:
+      properties:
+        abwicklungsmodell:
+          $ref: '#/components/schemas/field.Bilanzierung.abwicklungsmodell'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+ZA2++[ZE9|ZF0]
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Bilanzierung.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z85|Z86]
+          - SG4.IDE+24.SG8.SEQ+[Z87|Z88]
+          - SG4.IDE+24.SG8.SEQ+[Z89|Z90]
+        detailsPrognosegrundlage:
+          $ref: '#/components/schemas/field.Bilanzierung.detailsPrognosegrundlage'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI.CAV+[E02|E14|Z36]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.BILANZIERUNG.gueltigkeitszeitraum'
+        jahresverbrauchsprognose:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.BILANZIERUNG.jahresverbrauchsprognose'
+        lastprofile:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.BILANZIERUNG.lastprofile'
+          type: array
+        prognosegrundlage:
+          $ref: '#/components/schemas/field.Bilanzierung.prognosegrundlage'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI
+        temperaturarbeit:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.BILANZIERUNG.temperaturarbeit'
+      required:
+      - abwicklungsmodell
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - jahresverbrauchsprognose
+      - lastprofile
+      - prognosegrundlage
+      - temperaturarbeit
+      type: object
+    pruefi.PI_55634.stammdaten.BILANZIERUNG.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z85|Z86]
+          - SG4.IDE+24.SG8.SEQ+[Z87|Z88]
+          - SG4.IDE+24.SG8.SEQ+[Z89|Z90]
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55634.stammdaten.BILANZIERUNG.jahresverbrauchsprognose:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+31
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+31
+      required:
+      - einheit
+      - wert
+      type: object
+    pruefi.PI_55634.stammdaten.BILANZIERUNG.lastprofile:
+      properties:
+        bezeichnung:
+          $ref: '#/components/schemas/field.Lastprofil.bezeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+[Z02|Z04].CAV
+          - SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[Z03|Z05].CAV
+        einspeisung:
+          $ref: '#/components/schemas/field.Lastprofil.einspeisung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+[Z02|Z04]
+          - SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[Z03|Z05]
+        profilart:
+          $ref: '#/components/schemas/field.Lastprofil.profilart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+[Z02|Z04]
+          - SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[Z03|Z05]
+        referenzprofilbezeichnung:
+          $ref: '#/components/schemas/field.Lastprofil.referenzprofilbezeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z89|Z90].SG10.CCI+Z05.CAV
+        verfahren:
+          $ref: '#/components/schemas/field.Lastprofil.verfahren'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+[Z02|Z04]
+          - SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[Z03|Z05]
+      required:
+      - bezeichnung
+      - einspeisung
+      - profilart
+      - referenzprofilbezeichnung
+      - verfahren
+      type: object
+    pruefi.PI_55634.stammdaten.BILANZIERUNG.temperaturarbeit:
+      properties:
+        einheit:
+          $ref: '#/components/schemas/field.Menge.einheit'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+[Z10|265|Z08]
+        wert:
+          $ref: '#/components/schemas/field.Menge.wert'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+[Z10|265|Z08]
+      required:
+      - einheit
+      - wert
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Marktlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56].RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58].RFF+Z46
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81]
+        eigentuemer:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.eigentuemer'
+        energieherkunft:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.energieherkunft'
+          type: array
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.gueltigkeitszeitraum'
+        hausverwalter:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.hausverwalter'
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marktrollen:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.marktrollen'
+          type: array
+        messtechnischeEinordnung:
+          $ref: '#/components/schemas/field.Marktlokation.messtechnischeEinordnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++Z83.CAV
+        netzebene:
+          $ref: '#/components/schemas/field.Marktlokation.netzebene'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++E03.CAV
+        umspannung:
+          $ref: '#/components/schemas/field.Marktlokation.umspannung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++E03.CAV
+      required:
+      - datenqualitaet
+      - eigentuemer
+      - energieherkunft
+      - gueltigkeitszeitraum
+      - hausverwalter
+      - marktlokationsId
+      - marktrollen
+      - messtechnischeEinordnung
+      - netzebene
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.eigentuemer:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Geschaeftspartner.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        partneradresse:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.eigentuemer.partneradresse'
+      required:
+      - anrede
+      - gewerbekennzeichnung
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.eigentuemer.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56]
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.energieherkunft:
+      properties:
+        erzeugungsart:
+          $ref: '#/components/schemas/field.Energieherkunft.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++Z34.CAV
+      required:
+      - erzeugungsart
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z55|Z56].RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58].RFF+Z46
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81]
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.hausverwalter:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Geschaeftspartner.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        partneradresse:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.MARKTLOKATION.hausverwalter.partneradresse'
+      required:
+      - anrede
+      - gewerbekennzeichnung
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.hausverwalter.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z57|Z58]
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    pruefi.PI_55634.stammdaten.MARKTLOKATION.marktrollen:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z91
+        messstellenbetreiberEigenschaft:
+          $ref: '#/components/schemas/field.Marktteilnehmer.messstellenbetreiberEigenschaft'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z91
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z91
+        weiterverpflichtet:
+          $ref: '#/components/schemas/field.Marktteilnehmer.weiterverpflichtet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marktrolle
+      - messstellenbetreiberEigenschaft
+      - rollencodenummer
+      - weiterverpflichtet
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Vertrag.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.gueltigkeitszeitraum'
+        korrespondenzpartner:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner'
+        vertragspartner2:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.vertragspartner2'
+          type: array
+      required:
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - korrespondenzpartner
+      - vertragspartner2
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52].RFF+Z46
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54].RFF+Z46
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        ansprechpartner:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner'
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        partneradresse:
+          $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.partneradresse'
+      required:
+      - anrede
+      - ansprechpartner
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner:
+      properties:
+        eMailAdresse:
+          $ref: '#/components/schemas/field.Ansprechpartner.eMailAdresse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54].SG13.CTA.COM+[TE|EM]
+        rufnummern:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner.rufnummern'
+          type: array
+      required:
+      - eMailAdresse
+      - rufnummern
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.ansprechpartner.rufnummern:
+      properties:
+        nummerntyp:
+          $ref: '#/components/schemas/field.Rufnummer.nummerntyp'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54].SG13.CTA.COM+[TE|EM]
+        rufnummer:
+          $ref: '#/components/schemas/field.Rufnummer.rufnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54].SG13.CTA.COM+[TE|EM]
+      required:
+      - nummerntyp
+      - rufnummer
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.korrespondenzpartner.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z53|Z54]
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    pruefi.PI_55634.stammdaten.NETZNUTZUNGSVERTRAG.vertragspartner2:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Geschaeftspartner.anrede'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+        geschaeftspartnerrolle:
+          $ref: '#/components/schemas/field.Geschaeftspartner.geschaeftspartnerrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+        name1:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name1'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+        name2:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name2'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+        name3:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name3'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+        name4:
+          $ref: '#/components/schemas/field.Geschaeftspartner.name4'
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+[Z51|Z52]
+      required:
+      - anrede
+      - geschaeftspartnerrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      type: object
+    pruefi.PI_55634.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    pruefi.PI_55634.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55634.transaktionsdaten.absender'
+        anfragereferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.anfragereferenznummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+TN
+        antwortStatusZeitraum:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55634.transaktionsdaten.antwortStatusZeitraum'
+          type: array
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+[E03|Z88]
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55634.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+[E03|Z88]
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transaktionsgrundergaenzung:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrundergaenzung'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - anfragereferenznummer
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - transaktionsgrundergaenzung
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55634.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55634.transaktionsdaten.antwortStatusZeitraum:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.AntwortStatusZeitraum.code'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        liste:
+          $ref: '#/components/schemas/field.AntwortStatusZeitraum.liste'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        zeitraumId:
+          $ref: '#/components/schemas/field.AntwortStatusZeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+      type: object
+    pruefi.PI_55634.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55635:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55635.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55635.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55635.stammdaten:
+      properties:
+        TECHNISCHE_RESSOURCE:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55635.stammdaten.TECHNISCHE_RESSOURCE'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55635.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - TECHNISCHE_RESSOURCE
+      - VERWENDUNGSZEITRAUM
+      type: object
+    pruefi.PI_55635.stammdaten.TECHNISCHE_RESSOURCE:
+      properties:
+        art:
+          $ref: '#/components/schemas/field.TechnischeRessource.art'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56]
+        artEMobilitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.artEMobilitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56].CAV
+        datenqualitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5]
+        enwg:
+          $ref: '#/components/schemas/field.TechnischeRessource.enwg'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56].CAV+[ZG8|ZG9]
+        erzeugungsart:
+          $ref: '#/components/schemas/field.TechnischeRessource.erzeugungsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56].CAV+[ZF5|ZF6|ZG0|ZG1|ZG5]
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55635.stammdaten.TECHNISCHE_RESSOURCE.gueltigkeitszeitraum'
+        nennleistung:
+          $ref: '#/components/schemas/pruefi.PI_55635.stammdaten.TECHNISCHE_RESSOURCE.nennleistung'
+        referenzNetzlokation:
+          $ref: '#/components/schemas/field.TechnischeRessource.referenzNetzlokation'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].RFF+Z32
+        referenzSteuerbareRessource:
+          $ref: '#/components/schemas/field.TechnischeRessource.referenzSteuerbareRessource'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].RFF+Z38
+        ressourcenId:
+          $ref: '#/components/schemas/field.TechnischeRessource.ressourcenId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+        speicherart:
+          $ref: '#/components/schemas/field.TechnischeRessource.speicherart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56].CAV+[ZF7|ZF8|ZF9|ZG6]
+        speicherkapazitaet:
+          $ref: '#/components/schemas/field.TechnischeRessource.speicherkapazitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG9.QTY+Z42
+        verbrauchsart:
+          $ref: '#/components/schemas/field.TechnischeRessource.verbrauchsart'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56].CAV+[Z64|Z65|ZE5|ZA8]
+        waermenutzung:
+          $ref: '#/components/schemas/field.TechnischeRessource.waermenutzung'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+[Z17|Z50|Z56].CAV
+      required:
+      - art
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - nennleistung
+      - ressourcenId
+      - speicherkapazitaet
+      type: object
+    pruefi.PI_55635.stammdaten.TECHNISCHE_RESSOURCE.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5]
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55635.stammdaten.TECHNISCHE_RESSOURCE.nennleistung:
+      properties:
+        abgabe:
+          $ref: '#/components/schemas/field.Nennleistung.abgabe'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG9.QTY+Z44
+        aufnahme:
+          $ref: '#/components/schemas/field.Nennleistung.aufnahme'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG9.QTY+Z43
+      required:
+      - abgabe
+      - aufnahme
+      type: object
+    pruefi.PI_55635.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    pruefi.PI_55635.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55635.transaktionsdaten.absender'
+        anfragereferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.anfragereferenznummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+TN
+        antwortStatusZeitraum:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55635.transaktionsdaten.antwortStatusZeitraum'
+          type: array
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+[E03|Z88]
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55635.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+[E03|Z88]
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - anfragereferenznummer
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55635.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55635.transaktionsdaten.antwortStatusZeitraum:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.AntwortStatusZeitraum.code'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        liste:
+          $ref: '#/components/schemas/field.AntwortStatusZeitraum.liste'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        zeitraumId:
+          $ref: '#/components/schemas/field.AntwortStatusZeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+      type: object
+    pruefi.PI_55635.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
     pruefi.PI_55636:
       properties:
         stammdaten:
@@ -45645,6 +49373,455 @@ components:
           - SG4.IDE+24.STS+E01
       type: object
     pruefi.PI_55638.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55639:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55639.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55639.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55639.stammdaten:
+      properties:
+        NETZLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55639.stammdaten.NETZLOKATION'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55639.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - NETZLOKATION
+      - VERWENDUNGSZEITRAUM
+      type: object
+    pruefi.PI_55639.stammdaten.NETZLOKATION:
+      properties:
+        auftraggebenderMarktpartner:
+          $ref: '#/components/schemas/pruefi.PI_55639.stammdaten.NETZLOKATION.auftraggebenderMarktpartner'
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Netzlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51
+          - SG4.IDE+24.SG8.SEQ+Z57
+          - SG4.IDE+24.SG8.SEQ+Z60
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55639.stammdaten.NETZLOKATION.gueltigkeitszeitraum'
+        keinKonfigurationsprodukt:
+          $ref: '#/components/schemas/field.Netzlokation.keinKonfigurationsprodukt'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+11
+        konfigurationsprodukt:
+          $ref: '#/components/schemas/field.Netzlokation.konfigurationsprodukt'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.PIA+5
+        leistungskurvendefinition:
+          $ref: '#/components/schemas/field.Netzlokation.leistungskurvendefinition'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+Z53
+        netzlokationsId:
+          $ref: '#/components/schemas/field.Netzlokation.netzlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+        produktdatenRelevanteRolle:
+          $ref: '#/components/schemas/field.Netzlokation.produktdatenRelevanteRolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZA8
+        steuerkanal:
+          $ref: '#/components/schemas/field.Netzlokation.steuerkanal'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+Z49
+        zaehlwerke:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55639.stammdaten.NETZLOKATION.zaehlwerke'
+          type: array
+      required:
+      - auftraggebenderMarktpartner
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - keinKonfigurationsprodukt
+      - leistungskurvendefinition
+      - netzlokationsId
+      - produktdatenRelevanteRolle
+      - steuerkanal
+      - zaehlwerke
+      type: object
+    pruefi.PI_55639.stammdaten.NETZLOKATION.auftraggebenderMarktpartner:
+      properties:
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+      required:
+      - marktrolle
+      - rollencodenummer
+      type: object
+    pruefi.PI_55639.stammdaten.NETZLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51
+          - SG4.IDE+24.SG8.SEQ+Z57
+          - SG4.IDE+24.SG8.SEQ+Z60
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55639.stammdaten.NETZLOKATION.zaehlwerke:
+      properties:
+        keinProdukt:
+          $ref: '#/components/schemas/field.Zaehlwerk.keinProdukt'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+11
+        obisKennzahl:
+          $ref: '#/components/schemas/field.Zaehlwerk.obisKennzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+        verwendungszweckLF:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckLF'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+        verwendungszweckNB:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckNB'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+      required:
+      - keinProdukt
+      type: object
+    pruefi.PI_55639.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    pruefi.PI_55639.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55639.transaktionsdaten.absender'
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+E03
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55639.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+E03
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55639.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55639.transaktionsdaten.empfaenger:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MR
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55640:
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/pruefi.PI_55640.stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/pruefi.PI_55640.transaktionsdaten'
+      required:
+      - stammdaten
+      - transaktionsdaten
+      type: object
+    pruefi.PI_55640.stammdaten:
+      properties:
+        MARKTLOKATION:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MARKTLOKATION'
+          type: array
+        MESSSTELLENBETRIEBSVERTRAG:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG'
+          type: array
+        VERWENDUNGSZEITRAUM:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.VERWENDUNGSZEITRAUM'
+          type: array
+      required:
+      - MARKTLOKATION
+      - MESSSTELLENBETRIEBSVERTRAG
+      - VERWENDUNGSZEITRAUM
+      type: object
+    pruefi.PI_55640.stammdaten.MARKTLOKATION:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Marktlokation.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50
+          - SG4.IDE+24.SG8.SEQ+Z02
+        gueltigkeitszeitraum:
+          $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MARKTLOKATION.gueltigkeitszeitraum'
+        marktlokationsId:
+          $ref: '#/components/schemas/field.Marktlokation.marktlokationsId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        zaehlwerke:
+          items:
+            $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke'
+          type: array
+      required:
+      - datenqualitaet
+      - gueltigkeitszeitraum
+      - marktlokationsId
+      - zaehlwerke
+      type: object
+    pruefi.PI_55640.stammdaten.MARKTLOKATION.gueltigkeitszeitraum:
+      properties:
+        zeitraumId:
+          $ref: '#/components/schemas/field.Zeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50
+          - SG4.IDE+24.SG8.SEQ+Z02
+      required:
+      - zeitraumId
+      type: object
+    pruefi.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke:
+      properties:
+        obisKennzahl:
+          $ref: '#/components/schemas/field.Zaehlwerk.obisKennzahl'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        verwendungszweckLF:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckLF'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        verwendungszweckNB:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckNB'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        verwendungszweckUENB:
+          $ref: '#/components/schemas/field.Zaehlwerk.verwendungszweckUENB'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        wertegranularitaet:
+          $ref: '#/components/schemas/field.Zaehlwerk.wertegranularitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
+        zaehlzeiten:
+          $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke.zaehlzeiten'
+      required:
+      - obisKennzahl
+      - verwendungszweckLF
+      - verwendungszweckNB
+      - verwendungszweckUENB
+      - wertegranularitaet
+      - zaehlzeiten
+      type: object
+    pruefi.PI_55640.stammdaten.MARKTLOKATION.zaehlwerke.zaehlzeiten:
+      properties:
+        register:
+          $ref: '#/components/schemas/field.Zaehlzeitregister.register'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z38
+        zaehlzeitDefinition:
+          $ref: '#/components/schemas/field.Zaehlzeitregister.zaehlzeitDefinition'
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z39
+      required:
+      - register
+      - zaehlzeitDefinition
+      type: object
+    pruefi.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG:
+      properties:
+        vertragskonditionen:
+          $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen'
+      required:
+      - vertragskonditionen
+      type: object
+    pruefi.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen:
+      properties:
+        geplanteTurnusablesung:
+          $ref: '#/components/schemas/pruefi.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen.geplanteTurnusablesung'
+      required:
+      - geplanteTurnusablesung
+      type: object
+    pruefi.PI_55640.stammdaten.MESSSTELLENBETRIEBSVERTRAG.vertragskonditionen.geplanteTurnusablesung:
+      properties:
+        ableseZeitraum:
+          $ref: '#/components/schemas/field.Zeitraum.ableseZeitraum'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50.DTM+752
+      required:
+      - ableseZeitraum
+      type: object
+    pruefi.PI_55640.stammdaten.VERWENDUNGSZEITRAUM:
+      properties:
+        datenqualitaet:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.datenqualitaet'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        verwendungAb:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungAb'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        verwendungBis:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.verwendungBis'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        zeitraumId:
+          $ref: '#/components/schemas/field.Verwendungszeitraum.zeitraumId'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - datenqualitaet
+      - verwendungAb
+      - zeitraumId
+      type: object
+    pruefi.PI_55640.transaktionsdaten:
+      properties:
+        absender:
+          $ref: '#/components/schemas/pruefi.PI_55640.transaktionsdaten.absender'
+        dokumentennummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.dokumentennummer'
+          x-edifact-segment:
+          - BGM+E03
+        empfaenger:
+          $ref: '#/components/schemas/pruefi.PI_55640.transaktionsdaten.empfaenger'
+        kategorie:
+          $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+          x-edifact-segment:
+          - BGM+E03
+        nachrichtendatum:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtendatum'
+          x-edifact-segment:
+          - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.nachrichtenreferenznummer'
+          x-edifact-segment:
+          - UNH
+        pruefidentifikator:
+          $ref: '#/components/schemas/field.Transaktionsdaten.pruefidentifikator'
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transaktionsgrund:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrund'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transaktionsgrundergaenzung:
+          $ref: '#/components/schemas/field.Transaktionsdaten.transaktionsgrundergaenzung'
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        vorgangsnummer:
+          $ref: '#/components/schemas/field.Transaktionsdaten.vorgangsnummer'
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - absender
+      - dokumentennummer
+      - empfaenger
+      - kategorie
+      - nachrichtendatum
+      - nachrichtenreferenznummer
+      - pruefidentifikator
+      - transaktionsgrund
+      - transaktionsgrundergaenzung
+      - vorgangsnummer
+      type: object
+    pruefi.PI_55640.transaktionsdaten.absender:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG2.NAD+MS
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    pruefi.PI_55640.transaktionsdaten.empfaenger:
       properties:
         rollencodenummer:
           $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
