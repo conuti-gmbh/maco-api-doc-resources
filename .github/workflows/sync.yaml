@@ -231,8 +231,10 @@ jobs:
             echo "::group::publish v$F"
             (
               cd publish
-              # Base each format branch off main so it carries the tooling.
-              git checkout -B "v$F" origin/main
+              # Continue an existing v<format> branch (commit on top => the push
+              # fast-forwards) — fresh branch off main only if it doesn't exist
+              # yet. Avoids the non-fast-forward rejection of rebuilding from main.
+              git checkout -B "v$F" "origin/v$F" 2>/dev/null || git checkout -B "v$F" origin/main
               # Wipe any prior output; a v<format> branch holds exactly one format.
               rm -rf bo4e pruefi event-bauteil event bundle
               mkdir -p pruefi event-bauteil event bundle
