@@ -41,8 +41,18 @@ jobs:
       - name: Check $ref consistency
         run: python -m scripts.check_refs
       - name: Install vacuum
+        env:
+          VACUUM_VERSION: "0.29.4"   # matches the templater webserver image
         run: |
-          curl -fsSL https://quobix.com/scripts/install_vacuum.sh | sh
+          arch=$(dpkg --print-architecture)
+          case "$arch" in
+            amd64) va=linux_x86_64 ;;
+            arm64) va=linux_arm64 ;;
+            *) echo "::error::unsupported arch $arch"; exit 1 ;;
+          esac
+          curl -fsSL "https://github.com/daveshanley/vacuum/releases/download/v${VACUUM_VERSION}/vacuum_${VACUUM_VERSION}_${va}.tar.gz" \
+            | sudo tar -xz -C /usr/local/bin vacuum
+          sudo chmod +x /usr/local/bin/vacuum
           vacuum version
       - name: Lint specs (OpenAPI 3.1)
         run: bash scripts/lint-openapi.sh

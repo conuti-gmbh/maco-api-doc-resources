@@ -8,9 +8,16 @@ name: Sync BO4E API Doc Resources
 #
 # `main` carries only the tooling (scripts/ + bundler + this workflow). The
 # generated specs live exclusively on `v<format>` branches. Formats are
-# discovered dynamically from the generated output (which in turn is driven by
-# the date-versioned folders in the Camunda process repos): a format that no
-# longer appears is simply never regenerated, so its branch stays frozen.
+# discovered dynamically from the generated output (driven by the date-versioned
+# folders in the Camunda process repos): a format that no longer appears is never
+# regenerated, so its branch stays frozen.
+#
+# PHP runs inside the templater's own `webserver` dev image (PHP 8.5 + every
+# extension + composer + vacuum, bind-mounting the repo to the host) — the same
+# org-approved pattern the templater CI uses. `shivammathur/setup-php` is NOT on
+# the org action allow-list, so building that image is the supported route.
+# Auth = ID_RSA (SSH deploy key) for private checkouts + the image build arg;
+# GITHUB_TOKEN for the self-push to v<format> branches.
 
 on:
   workflow_dispatch:
@@ -20,7 +27,7 @@ on:
         default: 'main'
         required: false
       processes_ref:
-        description: 'Branch/tag/SHA in the three maco-*-processes repos (source of event mapping + required fields)'
+        description: 'Branch/tag/SHA in the three maco-*-processes repos (event mapping + required fields)'
         default: 'dev'
         required: false
   # W-3: post-merge auto-trigger from the templater is prepared but unused for now.
@@ -28,15 +35,15 @@ on:
   #   types: [templater-merged]
 
 permissions:
-  contents: read
+  contents: write  # push generated output to v<format> branches via GITHUB_TOKEN
 
 jobs:
   generate-and-publish:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
-      APP_ENV: prod
-      APP_DEBUG: '0'
+      DOCKER_COMPOSE: "docker compose"
+      VACUUM_VERSION: "0.29.4"   # matches the templater webserver image
     steps:
       - name: Resolve refs
         id: refs
@@ -49,91 +56,85 @@ jobs:
             echo "processes=${{ inputs.processes_ref }}" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Configure git (user + ORG_PAT auth)
+      - name: Make ID_RSA available (image build arg)
         env:
-          ORG_PAT: ${{ secrets.ORG_PAT }}
+          ID_RSA: ${{ secrets.ID_RSA }}
+        run: |
+          if [ -z "${ID_RSA}" ]; then
+            echo "::error::ID_RSA secret is empty — templater image build + private checkouts will fail." >&2
+            exit 1
+          fi
+          {
+            echo "ID_RSA<<__EOF__"
+            echo "${ID_RSA}"
+            echo "__EOF__"
+          } >> "$GITHUB_ENV"
+
+      - name: Configure git
         run: |
           git config --global user.name "Github Actions Auto Sync"
           git config --global user.email "devops+github@conuti.de"
-          # conuti/bo4e-schema resolves via https in composer.lock; the three
-          # conuti *-lib packages declare git@github.com: VCS URLs. ORG_PAT covers
-          # both (no ID_RSA, MACO-13087 pre-planning).
-          git config --global url."https://x-access-token:${ORG_PAT}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://x-access-token:${ORG_PAT}@github.com/".insteadOf "https://github.com/"
 
       - name: Checkout tooling (this repo)
         uses: actions/checkout@v4
         with:
           path: gen
 
-      - name: Setup PHP 8.5
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.5'
-          tools: composer
-          coverage: none
-
       - name: Checkout maco-templater-app
         uses: actions/checkout@v4
         with:
           repository: conuti-gmbh/maco-templater-app
           ref: ${{ steps.refs.outputs.templater }}
-          token: ${{ secrets.ORG_PAT }}
+          ssh-key: ${{ secrets.ID_RSA }}
           path: templater
-
-      - name: composer install (templater)
-        working-directory: templater
-        env:
-          COMPOSER_AUTH: '{"github-oauth":{"github.com":"${{ secrets.ORG_PAT }}"}}'
-        run: composer install --no-dev --no-interaction --no-progress --prefer-dist
-
-      - name: Capture templater SHA
-        id: tpl
-        run: echo "sha=$(git -C templater rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-
-      - name: Capture bo4e-schema version (composer.lock)
-        id: schema
-        run: |
-          VER=$(jq -r '.packages[] | select(.name=="conuti/bo4e-schema") | .version + "@" + (.source.reference // "?")' templater/composer.lock)
-          echo "version=${VER:-unknown}" >> "$GITHUB_OUTPUT"
-
-      - name: Generate prüfi specs (templater)
-        working-directory: templater
-        run: |
-          # Boots DB-less: templater has no Doctrine/DATABASE_URL; APP_SECRET +
-          # PROJECT_NAME + CORS come from the committed .env. --strict fails on
-          # any leaf that does not resolve against the vendored bo4e-schema.
-          php bin/console create-openapi-spec --strict
-          count=$(find docs/api/openapi-pruefi -name '*.yaml' 2>/dev/null | wc -l)
-          echo "generated $count prüfi specs"
-          [ "$count" -gt 0 ] || { echo "::error::create-openapi-spec produced no specs"; exit 1; }
 
       - name: Checkout process repos
         uses: actions/checkout@v4
         with:
           repository: conuti-gmbh/maco-lf-processes
           ref: ${{ steps.refs.outputs.processes }}
-          token: ${{ secrets.ORG_PAT }}
+          ssh-key: ${{ secrets.ID_RSA }}
           path: repos/maco-lf-processes
       - uses: actions/checkout@v4
         with:
           repository: conuti-gmbh/maco-nb-processes
           ref: ${{ steps.refs.outputs.processes }}
-          token: ${{ secrets.ORG_PAT }}
+          ssh-key: ${{ secrets.ID_RSA }}
           path: repos/maco-nb-processes
       - uses: actions/checkout@v4
         with:
           repository: conuti-gmbh/maco-msb-processes
           ref: ${{ steps.refs.outputs.processes }}
-          token: ${{ secrets.ORG_PAT }}
+          ssh-key: ${{ secrets.ID_RSA }}
           path: repos/maco-msb-processes
 
-      - name: Capture process repo SHAs
-        id: proc
+      - name: Provision external docker network
+        run: docker network create gridmako_network || true
+
+      - name: Generate prüfi specs (templater webserver image)
+        working-directory: templater
         run: |
+          set -e
+          # Same flow as the templater openapi_validate CI: build + up the dev
+          # image (bind-mounts ./ to the container), composer install into it,
+          # then run the generator. Output + vendor land on the host via the mount.
+          docker compose build webserver
+          docker compose up -d webserver
+          make install
+          docker compose exec -T webserver sh -c 'php bin/console create-openapi-spec --strict'
+          count=$(find docs/api/openapi-pruefi -name '*.yaml' 2>/dev/null | wc -l)
+          echo "generated $count prüfi specs"
+          [ "$count" -gt 0 ] || { echo "::error::create-openapi-spec produced no specs"; exit 1; }
+
+      - name: Capture source SHAs
+        id: prov
+        run: |
+          echo "templater=$(git -C templater rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "lf=$(git -C repos/maco-lf-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "nb=$(git -C repos/maco-nb-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "msb=$(git -C repos/maco-msb-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          VER=$(jq -r '.packages[] | select(.name=="conuti/bo4e-schema") | .version + "@" + (.source.reference // "?")' templater/composer.lock)
+          echo "schema=${VER:-unknown}" >> "$GITHUB_OUTPUT"
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -165,7 +166,15 @@ jobs:
 
       - name: Install vacuum
         run: |
-          curl -fsSL https://quobix.com/scripts/install_vacuum.sh | sh
+          arch=$(dpkg --print-architecture)
+          case "$arch" in
+            amd64) va=linux_x86_64 ;;
+            arm64) va=linux_arm64 ;;
+            *) echo "::error::unsupported arch $arch"; exit 1 ;;
+          esac
+          curl -fsSL "https://github.com/daveshanley/vacuum/releases/download/v${VACUUM_VERSION}/vacuum_${VACUUM_VERSION}_${va}.tar.gz" \
+            | sudo tar -xz -C /usr/local/bin vacuum
+          sudo chmod +x /usr/local/bin/vacuum
           vacuum version
 
       - name: Lint specs (OpenAPI 3.1)
@@ -204,16 +213,16 @@ jobs:
 
       - name: Publish per-format branches
         env:
-          ORG_PAT: ${{ secrets.ORG_PAT }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TRAILER: >-
-            Generated from maco-templater-app@${{ steps.tpl.outputs.sha }},
-            maco-lf-processes@${{ steps.proc.outputs.lf }},
-            maco-nb-processes@${{ steps.proc.outputs.nb }},
-            maco-msb-processes@${{ steps.proc.outputs.msb }},
-            conuti/bo4e-schema@${{ steps.schema.outputs.version }}
+            Generated from maco-templater-app@${{ steps.prov.outputs.templater }},
+            maco-lf-processes@${{ steps.prov.outputs.lf }},
+            maco-nb-processes@${{ steps.prov.outputs.nb }},
+            maco-msb-processes@${{ steps.prov.outputs.msb }},
+            conuti/bo4e-schema@${{ steps.prov.outputs.schema }}
         run: |
           set -euo pipefail
-          git clone "https://x-access-token:${ORG_PAT}@github.com/${{ github.repository }}.git" publish
+          git clone "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" publish
           for F in ${{ steps.formats.outputs.list }}; do
             echo "::group::publish v$F"
             (

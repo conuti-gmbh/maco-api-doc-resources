@@ -60,7 +60,7 @@ if [ $failed -gt 0 ]; then
     echo "Failing specs:"
     for spec in "${failed_files[@]}"; do
         echo "  - $spec"
-        # NOTE: sed pattern is coupled to vacuum 0.26.5 output format; revisit on vacuum upgrades
+        # NOTE: sed pattern is coupled to vacuum 0.29.4 output format (templater image); revisit on vacuum upgrades
         vacuum lint --ruleset "$RULESET" --no-banner --no-style --errors --details "$spec" 2>&1 \
             | sed -n '/Location/,/total /p' \
             | sed 's/^/      /'
