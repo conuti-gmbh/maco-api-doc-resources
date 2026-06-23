@@ -30,8 +30,8 @@ on:
         description: 'Branch/tag/SHA in the three maco-*-processes repos (event mapping + required fields)'
         default: 'dev'
         required: false
-      translator_tag:
-        description: 'maco-bo4e-translator image tag used to produce the EN bundles (ECR). Skipped if ECR_PULL_ROLE_ARN is unset.'
+      translator_ref:
+        description: 'maco-bo4e-translator-app ref to build for the EN bundles (built from source, run locally — no ECR).'
         default: 'main'
         required: false
   # W-3: post-merge auto-trigger from the templater is prepared but unused for now.
@@ -219,49 +219,49 @@ jobs:
         working-directory: gen
         run: bash scripts/lint-openapi.sh bundle
 
-      # --- EN path (Story 11 / MACO-13088): translate each DE bundle to EN via
-      # the bo4e-translator's OpenAPI endpoint, run ephemerally as a container
-      # (the map is baked into the image). Gated on ECR_PULL_ROLE_ARN so the DE
-      # pipeline still publishes when the EN infra isn't wired up yet.
-      - name: Check EN prerequisites
-        id: en
-        env:
-          ROLE: ${{ secrets.ECR_PULL_ROLE_ARN }}
-        run: |
-          if [ -n "$ROLE" ]; then
-            echo "enabled=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::ECR_PULL_ROLE_ARN not set — skipping EN bundle generation"
-          fi
-
-      - name: Configure AWS credentials (ECR pull)
-        if: steps.en.outputs.enabled == 'true'
-        uses: aws-actions/configure-aws-credentials@v4
+      # --- EN path (Story 11 / MACO-13088): build the bo4e-translator from
+      # source (Rust is preinstalled on the runner) and run it locally to
+      # translate each DE bundle to EN. No ECR/IAM — only the ID_RSA checkout.
+      # The translation map is taken from the templater's vendored bo4e-schema,
+      # so it matches the exact version that produced the DE specs.
+      - name: Checkout bo4e-translator (source)
+        uses: actions/checkout@v4
         with:
-          role-to-assume: ${{ secrets.ECR_PULL_ROLE_ARN }}
-          aws-region: eu-central-1
+          repository: conuti-gmbh/maco-bo4e-translator-app
+          ref: ${{ inputs.translator_ref }}
+          ssh-key: ${{ secrets.ID_RSA }}
+          path: translator-src
 
-      - name: Translate bundles to EN
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            translator-src/target
+          key: cargo-${{ runner.os }}-${{ hashFiles('translator-src/Cargo.lock') }}
+          restore-keys: cargo-${{ runner.os }}-
+
+      - name: Build translator + translate bundles to EN
         id: translate
-        if: steps.en.outputs.enabled == 'true'
         working-directory: gen
         env:
-          ECR: 058264281162.dkr.ecr.eu-central-1.amazonaws.com
-          IMAGE: maco-bo4e-translator
-          TAG: ${{ inputs.translator_tag }}
+          MAP: ${{ github.workspace }}/templater/vendor/conuti/bo4e-schema/translation/v1/DE_to_EN.yaml
         run: |
-          aws ecr get-login-password --region eu-central-1 \
-            | docker login --username AWS --password-stdin "$ECR"
-          docker run -d --name translator -p 8080:8080 "$ECR/$IMAGE:$TAG"
+          [ -f "$MAP" ] || { echo "::error::translation map not found at $MAP"; exit 1; }
+          # Build needs no build-args (build_info uses option_env! fallbacks) and
+          # no submodule (the map is loaded at runtime, not compiled in).
+          cargo build --release --manifest-path "$GITHUB_WORKSPACE/translator-src/Cargo.toml"
+          TRANSLATION_MAP_PATH="$MAP" PORT=8080 \
+            "$GITHUB_WORKSPACE/translator-src/target/release/bo4e-translator" &
+          TPID=$!
           ok=0
           for _ in $(seq 1 30); do
             if curl -fsS http://localhost:8080/api/health >/dev/null 2>&1; then ok=1; break; fi
             sleep 1
           done
-          [ "$ok" = 1 ] || { echo "::error::translator not healthy"; docker logs translator; exit 1; }
-          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' "$ECR/$IMAGE:$TAG" 2>/dev/null || echo "$ECR/$IMAGE:$TAG")
-          echo "image=$DIGEST" >> "$GITHUB_OUTPUT"
+          [ "$ok" = 1 ] || { echo "::error::translator not healthy"; kill "$TPID" 2>/dev/null || true; exit 1; }
+          echo "image=maco-bo4e-translator-app@$(git -C "$GITHUB_WORKSPACE/translator-src" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           for F in ${{ steps.formats.outputs.list }}; do
             echo "::group::translate $F"
             # OpenAPI route: YAML in, JSON out (Story 04). Schema/component names
@@ -272,10 +272,9 @@ jobs:
               -o "bundle/maco-bo4e-$F-en.openapi.json"
             echo "::endgroup::"
           done
-          docker stop translator
+          kill "$TPID" 2>/dev/null || true
 
       - name: Lint EN bundles
-        if: steps.en.outputs.enabled == 'true'
         working-directory: gen
         run: |
           for f in bundle/*-en.openapi.json; do
@@ -322,7 +321,7 @@ jobs:
                 echo "v$F: no changes"
               else
                 msg="$TRAILER"
-                [ -n "${TRANSLATOR:-}" ] && msg="$msg, bo4e-translator@$TRANSLATOR"
+                [ -n "${TRANSLATOR:-}" ] && msg="$msg, $TRANSLATOR"
                 git commit -m "Sync v$F" -m "$msg"
                 git push -u origin "v$F"
               fi
