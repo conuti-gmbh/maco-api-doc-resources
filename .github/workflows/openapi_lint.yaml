@@ -22,10 +22,10 @@ jobs:
     if: github.base_ref == 'main'
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
+          python-version: '3.13'
       - run: pip install -r scripts/requirements.txt
       - run: pytest scripts/tests
 
@@ -33,10 +33,10 @@ jobs:
     if: startsWith(github.base_ref, 'v')
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
+          python-version: '3.13'
       - run: pip install -r scripts/requirements.txt
       - name: Check $ref consistency
         run: python -m scripts.check_refs

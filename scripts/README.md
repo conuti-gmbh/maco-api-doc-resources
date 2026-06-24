@@ -20,7 +20,7 @@ source .venv/bin/activate
 pip install -r scripts/requirements.txt
 ```
 
-Die Skripte selbst laufen auf Python 3.9+ (`from __future__ import annotations`). **Die Test-Suite braucht 3.10+** (pytest 9.0.3, GHSA-6w46-j5rx-g56g-Fix); CI nutzt 3.11.
+Die Skripte selbst laufen auf Python 3.9+ (`from __future__ import annotations`). **Die Test-Suite braucht 3.10+** (pytest 9.1.1); CI nutzt 3.13. Am einfachsten via `make test` (containerisierte Tools, siehe Repo-`Makefile`).
 
 ## `filter_event_bauteile.py`
 

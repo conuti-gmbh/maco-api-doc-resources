@@ -80,12 +80,12 @@ jobs:
           git config --global user.email "devops+github@conuti.de"
 
       - name: Checkout tooling (this repo)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: gen
 
       - name: Checkout maco-templater-app
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: conuti-gmbh/maco-templater-app
           ref: ${{ steps.refs.outputs.templater }}
@@ -93,19 +93,19 @@ jobs:
           path: templater
 
       - name: Checkout process repos
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: conuti-gmbh/maco-lf-processes
           ref: ${{ steps.refs.outputs.processes }}
           ssh-key: ${{ secrets.ID_RSA }}
           path: repos/maco-lf-processes
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: conuti-gmbh/maco-nb-processes
           ref: ${{ steps.refs.outputs.processes }}
           ssh-key: ${{ secrets.ID_RSA }}
           path: repos/maco-nb-processes
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: conuti-gmbh/maco-msb-processes
           ref: ${{ steps.refs.outputs.processes }}
@@ -145,9 +145,9 @@ jobs:
           echo "schema_version=${SV:-main}" >> "$GITHUB_OUTPUT"
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
+          python-version: '3.13'
       - name: Install Python deps
         run: pip install -r gen/scripts/requirements.txt
 
@@ -230,7 +230,7 @@ jobs:
       # locally (no ECR/IAM, only the ID_RSA checkout); the map comes from the
       # templater's vendored bo4e-schema (version-consistent with the DE specs).
       - name: Checkout bo4e-translator (source)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: conuti-gmbh/maco-bo4e-translator-app
           ref: ${{ inputs.translator_ref }}
@@ -238,7 +238,7 @@ jobs:
           path: translator-src
 
       - name: Checkout bo4e-schema-en (matching version)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: conuti-gmbh/bo4e-schema-en
           ref: ${{ steps.prov.outputs.schema_version }}
@@ -246,7 +246,7 @@ jobs:
           path: bo4e-schema-en-src
 
       - name: Cache cargo
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cargo/registry
