@@ -1,0 +1,5 @@
+components:
+  schemas:
+    nuclearWaste:
+      type: number
+      format: float

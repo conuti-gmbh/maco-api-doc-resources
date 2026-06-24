@@ -1,0 +1,4 @@
+components:
+  schemas:
+    countryCode:
+      $ref: ../../../enum/CountryCode.yaml#/components/schemas/CountryCode

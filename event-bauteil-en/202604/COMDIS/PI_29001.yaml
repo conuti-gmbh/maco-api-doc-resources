@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: PI_29001
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_29001:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_29001__masterData'
+      required:
+      - masterData
+    PI_29001__masterData:
+      type: object
+      properties:
+        TRADE_DISCREPANCY:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_29001__masterData__TRADE_DISCREPANCY'
+      required:
+      - TRADE_DISCREPANCY
+    PI_29001__masterData__TRADE_DISCREPANCY:
+      type: object
+      properties:
+        justification:
+          $ref: '#/components/schemas/PI_29001__masterData__TRADE_DISCREPANCY__justification'
+        number:
+          $ref: ../../../bo4e-en/fields/bo/TradeDiscrepancy/number.yaml#/components/schemas/number
+          x-edifact-segment:
+          - SG2.DOC+380
+        typeValue:
+          $ref: ../../../bo4e-en/fields/bo/TradeDiscrepancy/typeValue.yaml#/components/schemas/typeValue
+          x-edifact-segment:
+          - SG2.DOC+380
+        toPay:
+          $ref: '#/components/schemas/PI_29001__masterData__TRADE_DISCREPANCY__toPay'
+      required:
+      - justification
+      - number
+      - typeValue
+      - toPay
+    PI_29001__masterData__TRADE_DISCREPANCY__justification:
+      type: object
+      properties:
+        acknowledgmentNotification:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/acknowledgmentNotification.yaml#/components/schemas/acknowledgmentNotification
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT.FTX+ACD
+        confirmationDar:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/confirmationDar.yaml#/components/schemas/confirmationDar
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT.FTX+ACD
+        reason:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/reason.yaml#/components/schemas/reason
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT
+        hint:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/hint.yaml#/components/schemas/hint
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT.FTX+ACB
+        referenceDar:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/referenceDar.yaml#/components/schemas/referenceDar
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT.FTX+ACD
+        referenceNumber:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/referenceNumber.yaml#/components/schemas/referenceNumber
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT.FTX+ACD
+        correctness:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/correctness.yaml#/components/schemas/correctness
+          x-edifact-segment:
+          - SG2.DOC+380.SG3.AJT.FTX+ACD
+      required:
+      - reason
+    PI_29001__masterData__TRADE_DISCREPANCY__toPay:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG2.DOC+380.MOA+9
+      required:
+      - value

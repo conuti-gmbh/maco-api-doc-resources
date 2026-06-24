@@ -1,0 +1,7 @@
+components:
+  schemas:
+    energyConsumption:
+      type: array
+      items:
+        $ref: ../../../com/Consumption.yaml#/components/schemas/Consumption
+      nullable: true

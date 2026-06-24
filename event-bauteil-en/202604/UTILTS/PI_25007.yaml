@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: PI_25007
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_25007:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_25007__masterData'
+      required:
+      - masterData
+    PI_25007__masterData:
+      type: object
+      properties:
+        LOAD_CURVE_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25007__masterData__LOAD_CURVE_DEFINITION'
+      required:
+      - LOAD_CURVE_DEFINITION
+    PI_25007__masterData__LOAD_CURVE_DEFINITION:
+      type: object
+      properties:
+        beginDate:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/beginDate.yaml#/components/schemas/beginDate
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+157
+        loadCurves:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25007__masterData__LOAD_CURVE_DEFINITION__loadCurves'
+        necessity:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/necessity.yaml#/components/schemas/necessity
+          x-edifact-segment:
+          - SG5.IDE+24.STS+Z36
+        version:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/version.yaml#/components/schemas/version
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+293
+      required:
+      - beginDate
+      - loadCurves
+      - necessity
+      - version
+    PI_25007__masterData__LOAD_CURVE_DEFINITION__loadCurves:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z70.SG9.CCI+Z53
+        frequency:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/frequency.yaml#/components/schemas/frequency
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z70.SG9.CCI+Z53.CAV+ZE0
+        transmissibility:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/transmissibility.yaml#/components/schemas/transmissibility
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z70.SG9.CCI+Z53.CAV+ZD5
+      required:
+      - code
+      - frequency
+      - transmissibility

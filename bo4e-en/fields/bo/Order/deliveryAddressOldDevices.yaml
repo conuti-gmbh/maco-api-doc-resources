@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deliveryAddressOldDevices:
+      $ref: ../../../bo/BusinessPartner.yaml#/components/schemas/BusinessPartner

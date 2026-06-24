@@ -1,0 +1,5 @@
+components:
+  schemas:
+    typeElectricMobility:
+      $ref: >-
+        ../../../enum/TypeElectricMobility.yaml#/components/schemas/TypeElectricMobility

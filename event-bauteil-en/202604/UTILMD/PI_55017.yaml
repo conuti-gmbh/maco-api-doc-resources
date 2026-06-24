@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: PI_55017
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55017:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55017__masterData'
+      required:
+      - masterData
+    PI_55017__masterData:
+      type: object
+      properties:
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55017__masterData__BALANCING'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55017__masterData__GRID_ACCESS_CONTRACT'
+      required:
+      - BALANCING
+    PI_55017__masterData__BALANCING:
+      type: object
+      properties:
+        priorYearConsumption:
+          $ref: '#/components/schemas/PI_55017__masterData__BALANCING__priorYearConsumption'
+      required:
+      - priorYearConsumption
+    PI_55017__masterData__BALANCING__priorYearConsumption:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+Z09
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+Z09
+      required:
+      - unit
+      - value
+    PI_55017__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractEnd:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractEnd.yaml#/components/schemas/contractEnd
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93

@@ -1,0 +1,10 @@
+components:
+  schemas:
+    Group:
+      title: Group
+      type: object
+      properties:
+        group1:
+          $ref: ../fields/com/Group/group1.yaml#/components/schemas/group1
+        group2:
+          $ref: ../fields/com/Group/group2.yaml#/components/schemas/group2

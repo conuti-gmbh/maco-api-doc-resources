@@ -1,0 +1,8 @@
+components:
+  schemas:
+    associatedMeteringLocations:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/MeteringLocationAssignment.yaml#/components/schemas/MeteringLocationAssignment
+      nullable: true

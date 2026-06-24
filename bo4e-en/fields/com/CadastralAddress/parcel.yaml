@@ -1,0 +1,4 @@
+components:
+  schemas:
+    parcel:
+      type: string

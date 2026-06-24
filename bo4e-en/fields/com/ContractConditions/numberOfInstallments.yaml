@@ -1,0 +1,5 @@
+components:
+  schemas:
+    numberOfInstallments:
+      type: number
+      format: float

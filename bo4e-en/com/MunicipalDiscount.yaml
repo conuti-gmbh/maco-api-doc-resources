@@ -1,0 +1,16 @@
+components:
+  schemas:
+    MunicipalDiscount:
+      title: MunicipalDiscount
+      type: object
+      properties:
+        value:
+          $ref: ../fields/com/MunicipalDiscount/value.yaml#/components/schemas/value
+        unit:
+          $ref: ../fields/com/MunicipalDiscount/unit.yaml#/components/schemas/unit
+        typeValue:
+          $ref: >-
+            ../fields/com/MunicipalDiscount/typeValue.yaml#/components/schemas/typeValue
+        assessmentBase:
+          $ref: >-
+            ../fields/com/MunicipalDiscount/assessmentBase.yaml#/components/schemas/assessmentBase

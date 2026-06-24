@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: PI_55666
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55666:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55666__masterData'
+      required:
+      - masterData
+    PI_55666__masterData:
+      type: object
+      properties:
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55666__masterData__CONTROLLABLE_RESOURCE'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55666__masterData__USAGE_PERIOD'
+      required:
+      - CONTROLLABLE_RESOURCE
+      - USAGE_PERIOD
+    PI_55666__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        orderingMarketPartner:
+          $ref: '#/components/schemas/PI_55666__masterData__CONTROLLABLE_RESOURCE__orderingMarketPartner'
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB1|ZB2]
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55666__masterData__CONTROLLABLE_RESOURCE__validityPeriod'
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].PIA+5
+        productDataRelevantRole:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+++[ZA7|ZA8]
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z19
+        controlChannel:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/controlChannel.yaml#/components/schemas/controlChannel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB1|ZB2].SG10.CCI+Z49.CAV+ZF2
+        assignedDefinition:
+          $ref: '#/components/schemas/PI_55666__masterData__CONTROLLABLE_RESOURCE__assignedDefinition'
+      required:
+      - orderingMarketPartner
+      - dataQuality
+      - validityPeriod
+      - configurationProduct
+      - productDataRelevantRole
+      - resourceId
+      - controlChannel
+      - assignedDefinition
+    PI_55666__masterData__CONTROLLABLE_RESOURCE__orderingMarketPartner:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+++ZB3.CAV+[Z88|Z89]
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+++ZB3.CAV+[Z88|Z89]
+      required:
+      - marketRole
+      - roleCodeNumber
+    PI_55666__masterData__CONTROLLABLE_RESOURCE__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB1|ZB2]
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4]
+      required:
+      - periodId
+    PI_55666__masterData__CONTROLLABLE_RESOURCE__assignedDefinition:
+      type: object
+      properties:
+        loadCurveDefinition:
+          $ref: ../../../bo4e-en/fields/com/AssignedDefinition/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+[Z52|Z53]
+        switchingTimeDefinition:
+          $ref: ../../../bo4e-en/fields/com/AssignedDefinition/switchingTimeDefinition.yaml#/components/schemas/switchingTimeDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZB3|ZB4].SG10.CCI+[Z52|Z53]
+      required:
+      - loadCurveDefinition
+      - switchingTimeDefinition
+    PI_55666__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

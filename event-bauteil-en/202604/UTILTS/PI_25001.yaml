@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: PI_25001
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_25001:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_25001__masterData'
+      required:
+      - masterData
+    PI_25001__masterData:
+      type: object
+      properties:
+        CALCULATION_FORMULA:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__masterData__CALCULATION_FORMULA'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__masterData__USAGE_PERIOD'
+      required:
+      - CALCULATION_FORMULA
+      - USAGE_PERIOD
+    PI_25001__masterData__CALCULATION_FORMULA:
+      type: object
+      properties:
+        validityPeriod:
+          $ref: '#/components/schemas/PI_25001__masterData__CALCULATION_FORMULA__validityPeriod'
+        necessity:
+          $ref: ../../../bo4e-en/fields/bo/CalculationFormula/necessity.yaml#/components/schemas/necessity
+          x-edifact-segment:
+          - SG5.IDE+24.STS+Z23
+        calculationStepId:
+          $ref: ../../../bo4e-en/fields/bo/CalculationFormula/calculationStepId.yaml#/components/schemas/calculationStepId
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z23
+        calculationSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25001__masterData__CALCULATION_FORMULA__calculationSteps'
+      required:
+      - validityPeriod
+      - calculationStepId
+      - calculationSteps
+    PI_25001__masterData__CALCULATION_FORMULA__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z46
+          - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z46
+          - SG5.IDE+24.STS+Z23
+      required:
+      - periodId
+    PI_25001__masterData__CALCULATION_FORMULA__calculationSteps:
+      type: object
+      properties:
+        allocationFactorEnergyQuantity:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/allocationFactorEnergyQuantity.yaml#/components/schemas/allocationFactorEnergyQuantity
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++ZG6.CAV+ZH6
+        energyFlowDirection:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/energyFlowDirection.yaml#/components/schemas/energyFlowDirection
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z87.CAV
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z19
+        operation:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/operation.yaml#/components/schemas/operation
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z86.CAV
+        calculationStepComponentId:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/calculationStepComponentId.yaml#/components/schemas/calculationStepComponentId
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37
+        referenceCalculationStepId:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/referenceCalculationStepId.yaml#/components/schemas/referenceCalculationStepId
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z23
+        lossFactorLine:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/lossFactorLine.yaml#/components/schemas/lossFactorLine
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++ZB2.CAV+Z28
+        lossFactorTransformer:
+          $ref: ../../../bo4e-en/fields/com/CalculationStep/lossFactorTransformer.yaml#/components/schemas/lossFactorTransformer
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z16.CAV+Z28
+      required:
+      - allocationFactorEnergyQuantity
+      - energyFlowDirection
+      - operation
+      - calculationStepComponentId
+      - lossFactorLine
+      - lossFactorTransformer
+    PI_25001__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG5.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG5.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG5.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG5.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

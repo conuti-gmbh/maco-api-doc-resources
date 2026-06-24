@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: PI_17133
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17133:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17133__masterData'
+      required:
+      - masterData
+    PI_17133__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__masterData__ORDER'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__masterData__MARKET_LOCATION'
+      required:
+      - REQUEST
+      - MARKET_LOCATION
+    PI_17133__masterData__REQUEST:
+      type: object
+      properties:
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - locationId
+    PI_17133__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+        startDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - DTM+469
+    PI_17133__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        requiredProductPackage:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__masterData__MARKET_LOCATION__requiredProductPackage'
+      required:
+      - requiredProductPackage
+    PI_17133__masterData__MARKET_LOCATION__requiredProductPackage:
+      type: object
+      properties:
+        product:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17133__masterData__MARKET_LOCATION__requiredProductPackage__product'
+      required:
+      - product
+    PI_17133__masterData__MARKET_LOCATION__requiredProductPackage__product:
+      type: object
+      properties:
+        productAttributeCode:
+          $ref: ../../../bo4e-en/fields/com/Product/productAttributeCode.yaml#/components/schemas/productAttributeCode
+          x-edifact-segment:
+          - SG29.LIN+1+Z79.SG30.CCI+Z66.CAV+ZH9
+        productCode:
+          $ref: ../../../bo4e-en/fields/com/Product/productCode.yaml#/components/schemas/productCode
+          x-edifact-segment:
+          - SG29.LIN+1+Z79.PIA+5
+        valueDetails:
+          $ref: ../../../bo4e-en/fields/com/Product/valueDetails.yaml#/components/schemas/valueDetails
+          x-edifact-segment:
+          - SG29.LIN+1+Z79.SG30.CCI+Z66.CAV+ZV4
+      required:
+      - productCode

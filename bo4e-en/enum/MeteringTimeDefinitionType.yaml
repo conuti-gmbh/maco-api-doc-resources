@@ -1,0 +1,11 @@
+components:
+  schemas:
+    MeteringTimeDefinitionType:
+      title: MeteringTimeDefinitionType
+      type: string
+      enum:
+        - HEAT_PUMP
+        - NIGHT_STORAGE_HEATING
+        - OFF_PEAK_TIME_WINDOW
+        - OTHER
+        - PEAK_LOAD_TIME_WINDOW

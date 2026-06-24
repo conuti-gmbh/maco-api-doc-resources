@@ -1,0 +1,9 @@
+components:
+  schemas:
+    DefinitionType:
+      title: DefinitionType
+      type: string
+      enum:
+        - METERING_TIME
+        - SWITCHING_TIME
+        - LOAD_CURVES

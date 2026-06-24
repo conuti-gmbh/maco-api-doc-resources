@@ -1,0 +1,91 @@
+components:
+  schemas:
+    TechnicalResource:
+      title: TechnicalResource
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/TechnicalResource.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/TechnicalResource/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/TechnicalResource/structureVersion.yaml#/components/schemas/structureVersion
+        resourceId:
+          $ref: >-
+            ../fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+        sector:
+          $ref: >-
+            ../fields/bo/TechnicalResource/sector.yaml#/components/schemas/sector
+        locationAssignment:
+          $ref: >-
+            ../fields/bo/TechnicalResource/locationAssignment.yaml#/components/schemas/locationAssignment
+        referenceMeteringLocation:
+          $ref: >-
+            ../fields/bo/TechnicalResource/referenceMeteringLocation.yaml#/components/schemas/referenceMeteringLocation
+        referenceMarketLocation:
+          $ref: >-
+            ../fields/bo/TechnicalResource/referenceMarketLocation.yaml#/components/schemas/referenceMarketLocation
+        referenceGridLocation:
+          $ref: >-
+            ../fields/bo/TechnicalResource/referenceGridLocation.yaml#/components/schemas/referenceGridLocation
+        referenceControllableResource:
+          $ref: >-
+            ../fields/bo/TechnicalResource/referenceControllableResource.yaml#/components/schemas/referenceControllableResource
+        referenceTranche:
+          $ref: >-
+            ../fields/bo/TechnicalResource/referenceTranche.yaml#/components/schemas/referenceTranche
+        ratedPower:
+          $ref: >-
+            ../fields/bo/TechnicalResource/ratedPower.yaml#/components/schemas/ratedPower
+        storageCapacity:
+          $ref: >-
+            ../fields/bo/TechnicalResource/storageCapacity.yaml#/components/schemas/storageCapacity
+        consumptionType:
+          $ref: >-
+            ../fields/bo/TechnicalResource/consumptionType.yaml#/components/schemas/consumptionType
+        heatUsage:
+          $ref: >-
+            ../fields/bo/TechnicalResource/heatUsage.yaml#/components/schemas/heatUsage
+        typeElectricMobility:
+          $ref: >-
+            ../fields/bo/TechnicalResource/typeElectricMobility.yaml#/components/schemas/typeElectricMobility
+        generationType:
+          $ref: >-
+            ../fields/bo/TechnicalResource/generationType.yaml#/components/schemas/generationType
+        storageType:
+          $ref: >-
+            ../fields/bo/TechnicalResource/storageType.yaml#/components/schemas/storageType
+        enwg:
+          $ref: ../fields/bo/TechnicalResource/enwg.yaml#/components/schemas/enwg
+        commissioningDate:
+          $ref: >-
+            ../fields/bo/TechnicalResource/commissioningDate.yaml#/components/schemas/commissioningDate
+        classification:
+          $ref: >-
+            ../fields/bo/TechnicalResource/classification.yaml#/components/schemas/classification
+        additionalFacility:
+          $ref: >-
+            ../fields/bo/TechnicalResource/additionalFacility.yaml#/components/schemas/additionalFacility
+        kind:
+          $ref: ../fields/bo/TechnicalResource/kind.yaml#/components/schemas/kind
+        dataQuality:
+          $ref: >-
+            ../fields/bo/TechnicalResource/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/TechnicalResource/validityPeriod.yaml#/components/schemas/validityPeriod
+        requiredProducts:
+          $ref: >-
+            ../fields/bo/TechnicalResource/requiredProducts.yaml#/components/schemas/requiredProducts
+        remoteControllability:
+          $ref: >-
+            ../fields/bo/TechnicalResource/remoteControllability.yaml#/components/schemas/remoteControllability
+        remunerationObligation:
+          $ref: >-
+            ../fields/bo/TechnicalResource/remunerationObligation.yaml#/components/schemas/remunerationObligation

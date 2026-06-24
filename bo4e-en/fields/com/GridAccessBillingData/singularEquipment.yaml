@@ -1,0 +1,4 @@
+components:
+  schemas:
+    singularEquipment:
+      $ref: ../../../com/Quantity.yaml#/components/schemas/Quantity

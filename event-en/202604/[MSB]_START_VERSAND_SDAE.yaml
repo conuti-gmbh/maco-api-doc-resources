@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_VERSAND_SDAE'
+  version: '202604'
+  x-bpmn-source-sha: aa74db2c
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[MSB] START_VERSAND_SDAE':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44116.yaml#/components/schemas/PI_44116__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44159.yaml#/components/schemas/PI_44159__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55553.yaml#/components/schemas/PI_55553__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55557.yaml#/components/schemas/PI_55557__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55639.yaml#/components/schemas/PI_55639__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55640.yaml#/components/schemas/PI_55640__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55641.yaml#/components/schemas/PI_55641__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55642.yaml#/components/schemas/PI_55642__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55643.yaml#/components/schemas/PI_55643__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55649.yaml#/components/schemas/PI_55649__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55650.yaml#/components/schemas/PI_55650__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55651.yaml#/components/schemas/PI_55651__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55652.yaml#/components/schemas/PI_55652__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55653.yaml#/components/schemas/PI_55653__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55659.yaml#/components/schemas/PI_55659__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55660.yaml#/components/schemas/PI_55660__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55661.yaml#/components/schemas/PI_55661__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55662.yaml#/components/schemas/PI_55662__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55663.yaml#/components/schemas/PI_55663__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55684.yaml#/components/schemas/PI_55684__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55686.yaml#/components/schemas/PI_55686__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - validFrom
+          - category
+          - sector
+          - transactionReason
+          - transactionReasonSupplement
+          properties:
+            sender:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            validFrom:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/validFrom.yaml#/components/schemas/validFrom
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            transactionReasonSupplement:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44116, 44159, 55553, 55557, 55639, 55640, 55641, 55642, 55643, 55649, 55650, 55651, 55652, 55653, 55659, 55660, 55661, 55662, 55663, 55684, 55686.
+              examples:
+              - '44116'
+              - '44159'
+              - '55553'
+              - '55557'
+              - '55639'
+              - '55640'
+              - '55641'
+              - '55642'
+              - '55643'
+              - '55649'
+              - '55650'
+              - '55651'
+              - '55652'
+              - '55653'
+              - '55659'
+              - '55660'
+              - '55661'
+              - '55662'
+              - '55663'
+              - '55684'
+              - '55686'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_SDAE
+              default: START_DISPATCH_SDAE

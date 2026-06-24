@@ -1,0 +1,8 @@
+components:
+  schemas:
+    ControlChannel:
+      title: ControlChannel
+      type: string
+      enum:
+        - ON_OFF
+        - STEPPED

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    gridAccessPayer:
+      $ref: ../../../enum/GridAccessPayer.yaml#/components/schemas/GridAccessPayer

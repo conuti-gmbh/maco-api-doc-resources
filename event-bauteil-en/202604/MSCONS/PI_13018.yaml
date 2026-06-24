@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: PI_13018
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_13018:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_13018__masterData'
+      required:
+      - masterData
+    PI_13018__masterData:
+      type: object
+      properties:
+        ENERGY_QUANTITY:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13018__masterData__ENERGY_QUANTITY'
+      required:
+      - ENERGY_QUANTITY
+    PI_13018__masterData__ENERGY_QUANTITY:
+      type: object
+      properties:
+        endDate:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.DTM+164
+        energyConsumption:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13018__masterData__ENERGY_QUANTITY__energyConsumption'
+        configuration:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/configuration.yaml#/components/schemas/configuration
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172
+        startDate:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.DTM+163
+      required:
+      - endDate
+      - energyConsumption
+      - configuration
+      - locationId
+      - startDate
+    PI_13018__masterData__ENERGY_QUANTITY__energyConsumption:
+      type: object
+      properties:
+        endDate:
+          $ref: ../../../bo4e-en/fields/com/Consumption/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+164
+        measurementValueStatus:
+          $ref: ../../../bo4e-en/fields/com/Consumption/measurementValueStatus.yaml#/components/schemas/measurementValueStatus
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
+        obisNumber:
+          $ref: ../../../bo4e-en/fields/com/Consumption/obisNumber.yaml#/components/schemas/obisNumber
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.PIA+5
+        position:
+          $ref: ../../../bo4e-en/fields/com/Consumption/position.yaml#/components/schemas/position
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/Consumption/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+163
+        statusAdditionalInformation:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13018__masterData__ENERGY_QUANTITY__energyConsumption__statusAdditionalInformation'
+        value:
+          $ref: ../../../bo4e-en/fields/com/Consumption/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
+      required:
+      - endDate
+      - measurementValueStatus
+      - obisNumber
+      - position
+      - startDate
+      - value
+    PI_13018__masterData__ENERGY_QUANTITY__energyConsumption__statusAdditionalInformation:
+      type: object
+      properties:
+        kind:
+          $ref: ../../../bo4e-en/fields/com/StatusAdditionalInformation/kind.yaml#/components/schemas/kind
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z32
+        status:
+          $ref: ../../../bo4e-en/fields/com/StatusAdditionalInformation/status.yaml#/components/schemas/status
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z32

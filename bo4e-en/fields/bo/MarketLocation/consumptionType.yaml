@@ -1,0 +1,7 @@
+components:
+  schemas:
+    consumptionType:
+      type: array
+      items:
+        $ref: ../../../enum/ConsumptionType.yaml#/components/schemas/ConsumptionType
+      nullable: true

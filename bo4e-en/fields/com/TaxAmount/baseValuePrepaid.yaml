@@ -1,0 +1,5 @@
+components:
+  schemas:
+    baseValuePrepaid:
+      type: number
+      format: float

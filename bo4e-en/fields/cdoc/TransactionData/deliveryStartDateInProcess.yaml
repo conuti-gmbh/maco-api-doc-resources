@@ -1,0 +1,5 @@
+components:
+  schemas:
+    deliveryStartDateInProcess:
+      type: string
+      format: date-time

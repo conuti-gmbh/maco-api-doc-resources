@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: PI_19003
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_19003:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_19003__masterData'
+      required:
+      - masterData
+    PI_19003__masterData:
+      type: object
+      properties:
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19003__masterData__ORDER'
+      required:
+      - ORDER
+    PI_19003__masterData__ORDER:
+      type: object
+      properties:
+        postponedDeregistrationDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/postponedDeregistrationDate.yaml#/components/schemas/postponedDeregistrationDate
+          x-edifact-segment:
+          - DTM+Z02
+      required:
+      - postponedDeregistrationDate

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deviceProperties:
+      $ref: ../../../com/DeviceProperties.yaml#/components/schemas/DeviceProperties

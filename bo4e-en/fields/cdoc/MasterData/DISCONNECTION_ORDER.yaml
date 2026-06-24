@@ -1,0 +1,7 @@
+components:
+  schemas:
+    DISCONNECTION_ORDER:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/DisconnectionOrder.yaml#/components/schemas/DisconnectionOrder

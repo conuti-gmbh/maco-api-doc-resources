@@ -1,0 +1,6 @@
+components:
+  schemas:
+    BALANCING:
+      type: array
+      items:
+        $ref: ../../../bo/Balancing.yaml#/components/schemas/Balancing

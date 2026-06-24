@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: PI_21035
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_21035:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_21035__masterData'
+      required:
+      - masterData
+    PI_21035__masterData:
+      type: object
+      properties:
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__masterData__STATUS_NOTIFICATION'
+      required:
+      - STATUS_NOTIFICATION
+    PI_21035__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        orderStatus:
+          $ref: ../../../bo4e-en/fields/bo/StatusNotification/orderStatus.yaml#/components/schemas/orderStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z25
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - orderStatus
+      - positionData
+    PI_21035__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG14.CNI
+      required:
+      - positionNumber

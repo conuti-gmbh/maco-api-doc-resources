@@ -1,0 +1,4 @@
+components:
+  schemas:
+    referenceCatalogNumber:
+      $ref: ../../../com/CatalogReference.yaml#/components/schemas/CatalogReference

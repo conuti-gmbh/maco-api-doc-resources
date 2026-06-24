@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Description:
+      title: Description
+      type: object
+      properties:
+        description1:
+          $ref: >-
+            ../fields/com/Description/description1.yaml#/components/schemas/description1
+        description2:
+          $ref: >-
+            ../fields/com/Description/description2.yaml#/components/schemas/description2

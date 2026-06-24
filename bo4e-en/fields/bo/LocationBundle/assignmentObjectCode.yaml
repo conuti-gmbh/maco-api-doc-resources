@@ -1,0 +1,8 @@
+components:
+  schemas:
+    assignmentObjectCode:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/AssignmentObjectCode.yaml#/components/schemas/AssignmentObjectCode
+      nullable: true

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    link5:
+      type: string

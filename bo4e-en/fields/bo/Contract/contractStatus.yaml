@@ -1,0 +1,4 @@
+components:
+  schemas:
+    contractStatus:
+      $ref: ../../../enum/ContractStatus.yaml#/components/schemas/ContractStatus

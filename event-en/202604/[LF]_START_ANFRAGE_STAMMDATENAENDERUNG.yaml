@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_ANFRAGE_STAMMDATENAENDERUNG GAS'
+  version: '202604'
+  x-bpmn-source-sha: 3a7c8fc1
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[LF] START_ANFRAGE_STAMMDATENAENDERUNG GAS':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44139.yaml#/components/schemas/PI_44139__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44143.yaml#/components/schemas/PI_44143__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44156.yaml#/components/schemas/PI_44156__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44162.yaml#/components/schemas/PI_44162__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44180.yaml#/components/schemas/PI_44180__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - validFrom
+          - category
+          - sector
+          - transactionReason
+          - contractEnd
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            validFrom:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/validFrom.yaml#/components/schemas/validFrom
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            contractEnd:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/contractEnd.yaml#/components/schemas/contractEnd
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.
+              examples:
+              - '44139'
+              - '44143'
+              - '44156'
+              - '44162'
+              - '44180'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_ANFRAGE_STAMMDATENAENDERUNG
+              default: START_ANFRAGE_STAMMDATENAENDERUNG

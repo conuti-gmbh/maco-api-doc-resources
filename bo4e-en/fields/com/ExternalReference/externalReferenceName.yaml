@@ -1,0 +1,7 @@
+components:
+  schemas:
+    externalReferenceName:
+      type: string
+      enum:
+        - Kundennummer beim Lieferanten
+        - Kundennummer beim Altlieferanten

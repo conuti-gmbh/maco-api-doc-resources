@@ -1,0 +1,4 @@
+components:
+  schemas:
+    remoteControllability:
+      type: boolean

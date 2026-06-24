@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_LIEFERBEGINN'
+  version: '202604'
+  x-bpmn-source-sha: 3a7c8fc1
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[LF] START_LIEFERBEGINN':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44001.yaml#/components/schemas/PI_44001__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55077.yaml#/components/schemas/PI_55077__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55600.yaml#/components/schemas/PI_55600__masterData
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55601.yaml#/components/schemas/PI_55601__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - category
+          - sector
+          - transactionReason
+          - transactionReasonSupplement
+          - contractStart
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            transactionReasonSupplement:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
+            contractStart:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/contractStart.yaml#/components/schemas/contractStart
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44001, 55001, 55077, 55600, 55601.
+              examples:
+              - '44001'
+              - '55001'
+              - '55077'
+              - '55600'
+              - '55601'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_LIEFERBEGINN
+              default: START_DELIVERY_START

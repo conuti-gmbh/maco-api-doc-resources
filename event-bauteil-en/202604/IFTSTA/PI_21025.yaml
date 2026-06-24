@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: PI_21025
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_21025:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_21025__masterData'
+      required:
+      - masterData
+    PI_21025__masterData:
+      type: object
+      properties:
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21025__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21025__masterData__METERING_LOCATION'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21025__masterData__GRID_LOCATION'
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21025__masterData__STATUS_NOTIFICATION'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21025__masterData__CONTROLLABLE_RESOURCE'
+      required:
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - GRID_LOCATION
+      - STATUS_NOTIFICATION
+      - CONTROLLABLE_RESOURCE
+    PI_21025__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+      required:
+      - marketLocationId
+    PI_21025__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+      required:
+      - meteringLocationId
+    PI_21025__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+      required:
+      - gridLocationId
+    PI_21025__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        orderStatus:
+          $ref: ../../../bo4e-en/fields/bo/StatusNotification/orderStatus.yaml#/components/schemas/orderStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z15
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21025__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - orderStatus
+      - positionData
+    PI_21025__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        generalInformation:
+          $ref: '#/components/schemas/PI_21025__masterData__STATUS_NOTIFICATION__positionData__generalInformation'
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG14.CNI
+      required:
+      - generalInformation
+      - positionNumber
+    PI_21025__masterData__STATUS_NOTIFICATION__positionData__generalInformation:
+      type: object
+      properties:
+        info1:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info1.yaml#/components/schemas/info1
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z15.SG25.GID.FTX+ACB
+        info2:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info2.yaml#/components/schemas/info2
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z15.SG25.GID.FTX+ACB
+        info3:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info3.yaml#/components/schemas/info3
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z15.SG25.GID.FTX+ACB
+        info4:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info4.yaml#/components/schemas/info4
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z15.SG25.GID.FTX+ACB
+        info5:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info5.yaml#/components/schemas/info5
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z15.SG25.GID.FTX+ACB
+      required:
+      - info1
+      - info2
+      - info3
+      - info4
+      - info5
+    PI_21025__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+      required:
+      - resourceId

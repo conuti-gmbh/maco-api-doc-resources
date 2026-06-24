@@ -1,0 +1,7 @@
+components:
+  schemas:
+    reachability:
+      type: array
+      items:
+        $ref: ../../../com/Reachability.yaml#/components/schemas/Reachability
+      nullable: true

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    contractPartner1:
+      type: array
+      items:
+        $ref: ../../../bo/BusinessPartner.yaml#/components/schemas/BusinessPartner
+      nullable: true

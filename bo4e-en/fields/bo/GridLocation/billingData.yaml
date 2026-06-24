@@ -1,0 +1,8 @@
+components:
+  schemas:
+    billingData:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/GridAccessBillingData.yaml#/components/schemas/GridAccessBillingData
+      nullable: true

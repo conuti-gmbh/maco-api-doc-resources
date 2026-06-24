@@ -1,0 +1,7 @@
+components:
+  schemas:
+    enfg:
+      type: array
+      items:
+        $ref: ../../../com/EnFG.yaml#/components/schemas/EnFG
+      nullable: true

@@ -1,0 +1,112 @@
+components:
+  schemas:
+    MarketParticipant:
+      title: MarketParticipant
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/MarketParticipant.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/MarketParticipant/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/MarketParticipant/structureVersion.yaml#/components/schemas/structureVersion
+        businessPartnerRole:
+          $ref: >-
+            ../fields/bo/MarketParticipant/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+        salutation:
+          $ref: >-
+            ../fields/bo/MarketParticipant/salutation.yaml#/components/schemas/salutation
+        name1:
+          $ref: ../fields/bo/MarketParticipant/name1.yaml#/components/schemas/name1
+        name2:
+          $ref: ../fields/bo/MarketParticipant/name2.yaml#/components/schemas/name2
+        name3:
+          $ref: ../fields/bo/MarketParticipant/name3.yaml#/components/schemas/name3
+        name4:
+          $ref: ../fields/bo/MarketParticipant/name4.yaml#/components/schemas/name4
+        partnerAddress:
+          $ref: >-
+            ../fields/bo/MarketParticipant/partnerAddress.yaml#/components/schemas/partnerAddress
+        commercialClassification:
+          $ref: >-
+            ../fields/bo/MarketParticipant/commercialClassification.yaml#/components/schemas/commercialClassification
+        externalCustomerNumberSupplier:
+          $ref: >-
+            ../fields/bo/MarketParticipant/externalCustomerNumberSupplier.yaml#/components/schemas/externalCustomerNumberSupplier
+        marketRole:
+          $ref: >-
+            ../fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+        roleCodeNumber:
+          $ref: >-
+            ../fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+        roleCodeType:
+          $ref: >-
+            ../fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+        vatId:
+          $ref: ../fields/bo/MarketParticipant/vatId.yaml#/components/schemas/vatId
+        taxNumber:
+          $ref: >-
+            ../fields/bo/MarketParticipant/taxNumber.yaml#/components/schemas/taxNumber
+        contactPerson:
+          $ref: >-
+            ../fields/bo/MarketParticipant/contactPerson.yaml#/components/schemas/contactPerson
+        makoAddress:
+          $ref: >-
+            ../fields/bo/MarketParticipant/makoAddress.yaml#/components/schemas/makoAddress
+        certificateDownloadLink:
+          $ref: >-
+            ../fields/bo/MarketParticipant/certificateDownloadLink.yaml#/components/schemas/certificateDownloadLink
+        courtOfRegistration:
+          $ref: >-
+            ../fields/bo/MarketParticipant/courtOfRegistration.yaml#/components/schemas/courtOfRegistration
+        commercialRegisterNumber:
+          $ref: >-
+            ../fields/bo/MarketParticipant/commercialRegisterNumber.yaml#/components/schemas/commercialRegisterNumber
+        website:
+          $ref: >-
+            ../fields/bo/MarketParticipant/website.yaml#/components/schemas/website
+        faxNumber:
+          $ref: >-
+            ../fields/bo/MarketParticipant/faxNumber.yaml#/components/schemas/faxNumber
+        communicationRole:
+          $ref: >-
+            ../fields/bo/MarketParticipant/communicationRole.yaml#/components/schemas/communicationRole
+        subContracted:
+          $ref: >-
+            ../fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
+        communicationParameters:
+          $ref: >-
+            ../fields/bo/MarketParticipant/communicationParameters.yaml#/components/schemas/communicationParameters
+        meteringPointOperatorAttribute:
+          $ref: >-
+            ../fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+        bankAccount:
+          $ref: >-
+            ../fields/bo/MarketParticipant/bankAccount.yaml#/components/schemas/bankAccount
+        reachability:
+          $ref: >-
+            ../fields/bo/MarketParticipant/reachability.yaml#/components/schemas/reachability
+        ipAddress:
+          $ref: >-
+            ../fields/bo/MarketParticipant/ipAddress.yaml#/components/schemas/ipAddress
+        ipRange:
+          $ref: >-
+            ../fields/bo/MarketParticipant/ipRange.yaml#/components/schemas/ipRange
+        assignmentFrom:
+          $ref: >-
+            ../fields/bo/MarketParticipant/assignmentFrom.yaml#/components/schemas/assignmentFrom
+        assignmentTo:
+          $ref: >-
+            ../fields/bo/MarketParticipant/assignmentTo.yaml#/components/schemas/assignmentTo
+        balancingGroup:
+          $ref: >-
+            ../fields/bo/MarketParticipant/balancingGroup.yaml#/components/schemas/balancingGroup
+        balancingGroupPurpose:
+          $ref: >-
+            ../fields/bo/MarketParticipant/balancingGroupPurpose.yaml#/components/schemas/balancingGroupPurpose

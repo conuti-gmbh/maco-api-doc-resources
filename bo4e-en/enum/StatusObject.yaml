@@ -1,0 +1,19 @@
+components:
+  schemas:
+    StatusObject:
+      title: StatusObject
+      type: string
+      enum:
+        - MSB_CHANGE
+        - CONVERSION_METERING_LOCATION
+        - FIRST_INSTALLATION_IMS
+        - FIRST_INSTALLATION_MME
+        - DEVICE
+        - OFFER_REQUEST
+        - STATUS_ORDER
+        - DELIVERY_NOTE
+        - LOCK
+        - UNLOCK
+        - PRIVILEGE_UNDER_ENFG
+        - CHANGE_STATUS_OF_DATA
+        - PERIODIC_READOUT

@@ -1,0 +1,21 @@
+components:
+  schemas:
+    TargetAddress:
+      title: TargetAddress
+      type: object
+      properties:
+        targetAddress1:
+          $ref: >-
+            ../fields/com/TargetAddress/targetAddress1.yaml#/components/schemas/targetAddress1
+        targetAddress2:
+          $ref: >-
+            ../fields/com/TargetAddress/targetAddress2.yaml#/components/schemas/targetAddress2
+        targetAddress3:
+          $ref: >-
+            ../fields/com/TargetAddress/targetAddress3.yaml#/components/schemas/targetAddress3
+        targetAddress4:
+          $ref: >-
+            ../fields/com/TargetAddress/targetAddress4.yaml#/components/schemas/targetAddress4
+        targetAddress5:
+          $ref: >-
+            ../fields/com/TargetAddress/targetAddress5.yaml#/components/schemas/targetAddress5

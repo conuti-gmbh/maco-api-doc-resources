@@ -1,0 +1,9 @@
+components:
+  schemas:
+    MSBAttribute:
+      title: MSBAttribute
+      type: string
+      enum:
+        - DEFAULT_METERING_POINT_OPERATOR
+        - COMPETITIVE_METERING_POINT_OPERATOR
+        - FALLBACK_METERING_POINT_OPERATOR

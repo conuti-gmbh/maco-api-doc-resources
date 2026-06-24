@@ -1,0 +1,7 @@
+components:
+  schemas:
+    orderStatusList:
+      type: array
+      items:
+        $ref: ../../../enum/OrderStatus.yaml#/components/schemas/OrderStatus
+      nullable: true

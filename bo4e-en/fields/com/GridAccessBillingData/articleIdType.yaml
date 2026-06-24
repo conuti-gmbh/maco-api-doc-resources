@@ -1,0 +1,4 @@
+components:
+  schemas:
+    articleIdType:
+      $ref: ../../../enum/ArticleIdType.yaml#/components/schemas/ArticleIdType

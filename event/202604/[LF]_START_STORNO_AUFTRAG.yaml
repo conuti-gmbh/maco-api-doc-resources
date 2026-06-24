@@ -3,8 +3,8 @@ info:
   title: '[LF] START_STORNO_AUFTRAG'
   version: '202604'
   x-bpmn-source-sha: 3a7c8fc1
-  x-bo4e-schema-version: 1.7.0
-  x-templater-sha: 39ae45d481e5cc3d4d7aae328a23a9751236156a
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
 components:
   schemas:
     '[LF] START_STORNO_AUFTRAG':

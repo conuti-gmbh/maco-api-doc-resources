@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offerBindingPeriod:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

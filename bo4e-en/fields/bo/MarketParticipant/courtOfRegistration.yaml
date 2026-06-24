@@ -1,0 +1,4 @@
+components:
+  schemas:
+    courtOfRegistration:
+      type: string

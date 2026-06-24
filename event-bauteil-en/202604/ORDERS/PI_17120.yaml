@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: PI_17120
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17120:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17120__masterData'
+      required:
+      - masterData
+    PI_17120__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17120__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17120__masterData__ORDER'
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17120__masterData__BALANCING'
+      required:
+      - REQUEST
+      - ORDER
+      - BALANCING
+    PI_17120__masterData__REQUEST:
+      type: object
+      properties:
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - locationId
+    PI_17120__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+      required:
+      - executionDate
+    PI_17120__masterData__BALANCING:
+      type: object
+      properties:
+        forecastBasis:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/forecastBasis.yaml#/components/schemas/forecastBasis
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z77.CAV+[Z38|Z39]
+      required:
+      - forecastBasis

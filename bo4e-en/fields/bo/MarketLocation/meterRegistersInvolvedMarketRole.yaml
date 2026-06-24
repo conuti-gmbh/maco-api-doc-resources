@@ -1,0 +1,7 @@
+components:
+  schemas:
+    meterRegistersInvolvedMarketRole:
+      type: array
+      items:
+        $ref: ../../../enum/MarketRole.yaml#/components/schemas/MarketRole
+      nullable: true

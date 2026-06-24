@@ -1,0 +1,24 @@
+components:
+  schemas:
+    MeteringPointOperationBillingData:
+      title: MeteringPointOperationBillingData
+      type: object
+      properties:
+        meteringPointOperationBilling:
+          $ref: >-
+            ../fields/com/MeteringPointOperationBillingData/meteringPointOperationBilling.yaml#/components/schemas/meteringPointOperationBilling
+        articleId:
+          $ref: >-
+            ../fields/com/MeteringPointOperationBillingData/articleId.yaml#/components/schemas/articleId
+        articleIdType:
+          $ref: >-
+            ../fields/com/MeteringPointOperationBillingData/articleIdType.yaml#/components/schemas/articleIdType
+        quantity:
+          $ref: >-
+            ../fields/com/MeteringPointOperationBillingData/quantity.yaml#/components/schemas/quantity
+        surcharge:
+          $ref: >-
+            ../fields/com/MeteringPointOperationBillingData/surcharge.yaml#/components/schemas/surcharge
+        installment:
+          $ref: >-
+            ../fields/com/MeteringPointOperationBillingData/installment.yaml#/components/schemas/installment

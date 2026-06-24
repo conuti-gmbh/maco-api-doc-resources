@@ -1,0 +1,7 @@
+components:
+  schemas:
+    pricePositions:
+      type: array
+      items:
+        $ref: ../../../com/PricePosition.yaml#/components/schemas/PricePosition
+      nullable: true

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    rate:
+      $ref: ../../../enum/LevyType.yaml#/components/schemas/LevyType

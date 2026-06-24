@@ -1,0 +1,269 @@
+openapi: 3.1.0
+info:
+  title: PI_17117
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17117:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17117__masterData'
+        transactionData:
+          $ref: '#/components/schemas/PI_17117__transactionData'
+      required:
+      - masterData
+      - transactionData
+    PI_17117__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__masterData__ORDER'
+        DISCONNECTION_ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__masterData__DISCONNECTION_ORDER'
+      required:
+      - REQUEST
+      - ORDER
+      - DISCONNECTION_ORDER
+    PI_17117__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++[Z53|Z54]
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - requestType
+      - locationId
+    PI_17117__masterData__ORDER:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__masterData__ORDER__positionData'
+      required:
+      - positionData
+    PI_17117__masterData__ORDER__positionData:
+      type: object
+      properties:
+        generalInformation:
+          $ref: '#/components/schemas/PI_17117__masterData__ORDER__positionData__generalInformation'
+      required:
+      - generalInformation
+    PI_17117__masterData__ORDER__positionData__generalInformation:
+      type: object
+      properties:
+        info1:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info1.yaml#/components/schemas/info1
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info2:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info2.yaml#/components/schemas/info2
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info3:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info3.yaml#/components/schemas/info3
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info4:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info4.yaml#/components/schemas/info4
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info5:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info5.yaml#/components/schemas/info5
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+      required:
+      - info1
+      - info2
+      - info3
+      - info4
+      - info5
+    PI_17117__masterData__DISCONNECTION_ORDER:
+      type: object
+      properties:
+        meetingPoint:
+          $ref: '#/components/schemas/PI_17117__masterData__DISCONNECTION_ORDER__meetingPoint'
+      required:
+      - meetingPoint
+    PI_17117__masterData__DISCONNECTION_ORDER__meetingPoint:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        additionalInformation:
+          $ref: '#/components/schemas/PI_17117__masterData__DISCONNECTION_ORDER__meetingPoint__additionalInformation'
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      - additionalInformation
+    PI_17117__masterData__DISCONNECTION_ORDER__meetingPoint__additionalInformation:
+      type: object
+      properties:
+        supplement1:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement1.yaml#/components/schemas/supplement1
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement2:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement2.yaml#/components/schemas/supplement2
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement3:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement3.yaml#/components/schemas/supplement3
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement4:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement4.yaml#/components/schemas/supplement4
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement5:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
+          x-edifact-segment:
+          - SG2.NAD+Z24
+      required:
+      - supplement1
+      - supplement2
+      - supplement3
+      - supplement4
+      - supplement5
+    PI_17117__transactionData:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/PI_17117__transactionData__sender'
+        documentNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+          x-edifact-segment:
+          - BGM+Z52
+        receiver:
+          $ref: '#/components/schemas/PI_17117__transactionData__receiver'
+        messageDate:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
+          x-edifact-segment:
+          - DTM+137
+        messageReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+          x-edifact-segment:
+          - UNH
+        verificationIdentifier:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+          x-edifact-segment:
+          - SG1.RFF+Z13
+      required:
+      - sender
+      - documentNumber
+      - receiver
+      - messageDate
+      - messageReferenceNumber
+      - verificationIdentifier
+    PI_17117__transactionData__sender:
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/PI_17117__transactionData__sender__contactPerson'
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MS
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - contactPerson
+      - roleCodeNumber
+      - roleCodeType
+    PI_17117__transactionData__sender__contactPerson:
+      type: object
+      properties:
+        eMailAddress:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/eMailAddress.yaml#/components/schemas/eMailAddress
+          x-edifact-segment:
+          - SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+        lastName:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+          x-edifact-segment:
+          - SG2.NAD+MS.SG5.CTA+IC
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17117__transactionData__sender__contactPerson__phoneNumbers'
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+    PI_17117__transactionData__sender__contactPerson__phoneNumbers:
+      type: object
+      properties:
+        numberType:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/numberType.yaml#/components/schemas/numberType
+          x-edifact-segment:
+          - SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+        phoneNumber:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
+          x-edifact-segment:
+          - SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+      required:
+      - numberType
+      - phoneNumber
+    PI_17117__transactionData__receiver:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MR
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - roleCodeNumber
+      - roleCodeType

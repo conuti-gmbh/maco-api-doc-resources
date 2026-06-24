@@ -1,0 +1,4 @@
+components:
+  schemas:
+    justification:
+      $ref: ../../../com/Justification.yaml#/components/schemas/Justification

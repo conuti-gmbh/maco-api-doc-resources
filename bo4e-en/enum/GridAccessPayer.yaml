@@ -1,0 +1,8 @@
+components:
+  schemas:
+    GridAccessPayer:
+      title: GridAccessPayer
+      type: string
+      enum:
+        - CUSTOMER
+        - SUPPLIER

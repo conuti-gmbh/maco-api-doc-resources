@@ -1,0 +1,21 @@
+components:
+  schemas:
+    PositionSurchargeDiscount:
+      title: PositionSurchargeDiscount
+      type: object
+      properties:
+        designation:
+          $ref: >-
+            ../fields/com/PositionSurchargeDiscount/designation.yaml#/components/schemas/designation
+        description:
+          $ref: >-
+            ../fields/com/PositionSurchargeDiscount/description.yaml#/components/schemas/description
+        surchargeDiscountType:
+          $ref: >-
+            ../fields/com/PositionSurchargeDiscount/surchargeDiscountType.yaml#/components/schemas/surchargeDiscountType
+        surchargeDiscountValue:
+          $ref: >-
+            ../fields/com/PositionSurchargeDiscount/surchargeDiscountValue.yaml#/components/schemas/surchargeDiscountValue
+        surchargeDiscountCurrency:
+          $ref: >-
+            ../fields/com/PositionSurchargeDiscount/surchargeDiscountCurrency.yaml#/components/schemas/surchargeDiscountCurrency

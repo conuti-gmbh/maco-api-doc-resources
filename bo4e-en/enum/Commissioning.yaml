@@ -1,0 +1,8 @@
+components:
+  schemas:
+    Commissioning:
+      title: Commissioning
+      type: string
+      enum:
+        - COMMISSIONING_AFTER_2023
+        - COMMISSIONING_BEFORE_2024

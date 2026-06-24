@@ -1,0 +1,8 @@
+components:
+  schemas:
+    ValueDeterminationMethod:
+      title: ValueDeterminationMethod
+      type: string
+      enum:
+        - FORECAST
+        - MEASUREMENT

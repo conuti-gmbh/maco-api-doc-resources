@@ -1,0 +1,6 @@
+components:
+  schemas:
+    ORDER:
+      type: array
+      items:
+        $ref: ../../../bo/Order.yaml#/components/schemas/Order

@@ -1,0 +1,27 @@
+components:
+  schemas:
+    TradeDiscrepancy:
+      title: TradeDiscrepancy
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/TradeDiscrepancy.json
+      properties:
+        boType:
+          $ref: ../fields/bo/TradeDiscrepancy/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/TradeDiscrepancy/structureVersion.yaml#/components/schemas/structureVersion
+        number:
+          $ref: ../fields/bo/TradeDiscrepancy/number.yaml#/components/schemas/number
+        typeValue:
+          $ref: >-
+            ../fields/bo/TradeDiscrepancy/typeValue.yaml#/components/schemas/typeValue
+        justification:
+          $ref: >-
+            ../fields/bo/TradeDiscrepancy/justification.yaml#/components/schemas/justification
+        toPay:
+          $ref: ../fields/bo/TradeDiscrepancy/toPay.yaml#/components/schemas/toPay

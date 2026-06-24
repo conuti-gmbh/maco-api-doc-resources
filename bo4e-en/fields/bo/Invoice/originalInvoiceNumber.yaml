@@ -1,0 +1,4 @@
+components:
+  schemas:
+    originalInvoiceNumber:
+      type: string

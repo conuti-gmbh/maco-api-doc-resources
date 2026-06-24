@@ -1,0 +1,4 @@
+components:
+  schemas:
+    yearOfConstruction:
+      type: string

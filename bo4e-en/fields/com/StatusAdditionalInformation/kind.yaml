@@ -1,0 +1,4 @@
+components:
+  schemas:
+    kind:
+      $ref: ../../../enum/StatusType.yaml#/components/schemas/StatusType

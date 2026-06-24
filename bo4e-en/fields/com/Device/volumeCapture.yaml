@@ -1,0 +1,4 @@
+components:
+  schemas:
+    volumeCapture:
+      $ref: ../../../enum/VolumeCapture.yaml#/components/schemas/VolumeCapture

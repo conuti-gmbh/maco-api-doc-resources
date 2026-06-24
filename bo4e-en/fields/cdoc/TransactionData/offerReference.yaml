@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offerReference:
+      type: string

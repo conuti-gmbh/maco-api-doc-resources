@@ -1,0 +1,1604 @@
+openapi: 3.1.0
+info:
+  title: PI_55168
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55168:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55168__masterData'
+      required:
+      - masterData
+    PI_55168__masterData:
+      type: object
+      properties:
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__BALANCING'
+        ENERGY_SUPPLY_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__ENERGY_SUPPLY_CONTRACT'
+        LOCATION_BUNDLE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__LOCATION_BUNDLE'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION'
+        METERING_POINT_OPERATION_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__GRID_LOCATION'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__GRID_ACCESS_CONTRACT'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__CONTROLLABLE_RESOURCE'
+        TECHNICAL_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__TECHNICAL_RESOURCE'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__TRANCHE'
+        METER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METER'
+      required:
+      - BALANCING
+      - ENERGY_SUPPLY_CONTRACT
+      - LOCATION_BUNDLE
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - METERING_POINT_OPERATION_CONTRACT
+      - GRID_LOCATION
+      - GRID_ACCESS_CONTRACT
+      - CONTROLLABLE_RESOURCE
+      - TECHNICAL_RESOURCE
+      - TRANCHE
+      - METER
+    PI_55168__masterData__BALANCING:
+      type: object
+      properties:
+        settlementModel:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/settlementModel.yaml#/components/schemas/settlementModel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+ZA2++[ZE9|ZF0]
+        aggregationResponsibility:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/aggregationResponsibility.yaml#/components/schemas/aggregationResponsibility
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+6
+        forecastBasisDetails:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/forecastBasisDetails.yaml#/components/schemas/forecastBasisDetails
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++[ZC0|ZA6].CAV+CAV+[E02|E14|Z36]
+        annualConsumptionForecast:
+          $ref: '#/components/schemas/PI_55168__masterData__BALANCING__annualConsumptionForecast'
+        loadProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__BALANCING__loadProfiles'
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.RFF+Z18
+          - SG4.IDE+24.SG8.SEQ+Z08.RFF+Z18
+          - SG4.IDE+24.SG8.SEQ+Z21.RFF+Z18
+          - SG4.IDE+24.SG8.SEQ+Z38.RFF+Z18
+        forecastBasis:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/forecastBasis.yaml#/components/schemas/forecastBasis
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++[ZC0|ZA6]
+        temperatureWork:
+          $ref: '#/components/schemas/PI_55168__masterData__BALANCING__temperatureWork'
+      required:
+      - settlementModel
+      - aggregationResponsibility
+      - annualConsumptionForecast
+      - loadProfiles
+      - marketLocationId
+      - forecastBasis
+      - temperatureWork
+    PI_55168__masterData__BALANCING__annualConsumptionForecast:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+      required:
+      - unit
+      - value
+    PI_55168__masterData__BALANCING__loadProfiles:
+      type: object
+      properties:
+        designation:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/designation.yaml#/components/schemas/designation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05].CAV
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04].CAV
+        feedIn:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/feedIn.yaml#/components/schemas/feedIn
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+        profileType:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/profileType.yaml#/components/schemas/profileType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+        referenceProfileDesignation:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/referenceProfileDesignation.yaml#/components/schemas/referenceProfileDesignation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z38.SG10.CCI+Z05.CAV
+        dailyParameters:
+          $ref: '#/components/schemas/PI_55168__masterData__BALANCING__loadProfiles__dailyParameters'
+        procedure:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/procedure.yaml#/components/schemas/procedure
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]
+      required:
+      - designation
+      - feedIn
+      - profileType
+      - referenceProfileDesignation
+      - dailyParameters
+      - procedure
+    PI_55168__masterData__BALANCING__loadProfiles__dailyParameters:
+      type: object
+      properties:
+        serviceProvider:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/serviceProvider.yaml#/components/schemas/serviceProvider
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI
+        publisher:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/publisher.yaml#/components/schemas/publisher
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI
+        climateZone:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/climateZone.yaml#/components/schemas/climateZone
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI
+        temperatureMeasuringPoint:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI
+      required:
+      - serviceProvider
+      - publisher
+      - climateZone
+      - temperatureMeasuringPoint
+    PI_55168__masterData__BALANCING__temperatureWork:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[265|Z08]
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[265|Z08]
+      required:
+      - unit
+      - value
+    PI_55168__masterData__ENERGY_SUPPLY_CONTRACT:
+      type: object
+      properties:
+        correspondencePartner:
+          $ref: '#/components/schemas/PI_55168__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner'
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Contract/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04.RFF+Z18
+          - SG4.IDE+24.SG12.NAD+Z09.RFF+Z18
+        contractPartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2'
+      required:
+      - correspondencePartner
+      - locationId
+      - contractPartner2
+    PI_55168__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        partnerAddress:
+          $ref: '#/components/schemas/PI_55168__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress'
+      required:
+      - salutation
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+    PI_55168__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z04
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+    PI_55168__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        businessPartnerRole:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+      required:
+      - salutation
+      - businessPartnerRole
+      - name1
+      - name2
+      - name3
+      - name4
+    PI_55168__masterData__LOCATION_BUNDLE:
+      type: object
+      properties:
+        locationBundleNumber:
+          $ref: ../../../bo4e-en/fields/bo/LocationBundle/locationBundleNumber.yaml#/components/schemas/locationBundleNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z78.RFF+[Z31|Z39]
+        locationBundleStructureId:
+          $ref: ../../../bo4e-en/fields/bo/LocationBundle/locationBundleStructureId.yaml#/components/schemas/locationBundleStructureId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z78.RFF+[Z31|Z39]
+        standardizedLocationBundleStructure:
+          $ref: ../../../bo4e-en/fields/bo/LocationBundle/standardizedLocationBundleStructure.yaml#/components/schemas/standardizedLocationBundleStructure
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z78.RFF+[Z31|Z39]
+        assignmentObjectCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__LOCATION_BUNDLE__assignmentObjectCode'
+      required:
+      - locationBundleNumber
+      - locationBundleStructureId
+      - standardizedLocationBundleStructure
+      - assignmentObjectCode
+    PI_55168__masterData__LOCATION_BUNDLE__assignmentObjectCode:
+      type: object
+      properties:
+        objectCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__LOCATION_BUNDLE__assignmentObjectCode__objectCode'
+        referenceLocationId:
+          $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/referenceLocationId.yaml#/components/schemas/referenceLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+[Z32|Z18|Z19|Z37]
+        referenceLocationType:
+          $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/referenceLocationType.yaml#/components/schemas/referenceLocationType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+[Z32|Z18|Z19|Z37]
+        referenceMarketLocationTechnicalResource:
+          $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/referenceMarketLocationTechnicalResource.yaml#/components/schemas/referenceMarketLocationTechnicalResource
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+Z16
+        upstreamLocationId:
+          $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/upstreamLocationId.yaml#/components/schemas/upstreamLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+[Z34|Z35]
+        upstreamLocationType:
+          $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/upstreamLocationType.yaml#/components/schemas/upstreamLocationType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+[Z34|Z35]
+      required:
+      - objectCode
+      - referenceLocationId
+      - referenceLocationType
+    PI_55168__masterData__LOCATION_BUNDLE__assignmentObjectCode__objectCode:
+      type: object
+      properties:
+        locationBundleNumber:
+          $ref: ../../../bo4e-en/fields/com/ObjectCode/locationBundleNumber.yaml#/components/schemas/locationBundleNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+Z33
+        objectCode:
+          $ref: ../../../bo4e-en/fields/com/ObjectCode/objectCode.yaml#/components/schemas/objectCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z58.RFF+Z33
+      required:
+      - locationBundleNumber
+      - objectCode
+    PI_55168__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        energyOrigin:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__MARKET_LOCATION__energyOrigin'
+        energyDirection:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/energyDirection.yaml#/components/schemas/energyDirection
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z30
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z59.PIA+5
+        loadCurveDefinition:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z59.SG10.CCI+Z53
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+          - SG4.IDE+24.SG5.LOC+Z22
+          - SG4.IDE+24.SG6.RFF+Z50
+          - SG4.IDE+24.SG8.SEQ+Z02.RFF+Z18
+          - SG4.IDE+24.SG8.SEQ+Z27.RFF+Z18
+          - SG4.IDE+24.SG8.SEQ+Z59.RFF+Z18
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__MARKET_LOCATION__marketRoles'
+        meteringTechnicalClassification:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/meteringTechnicalClassification.yaml#/components/schemas/meteringTechnicalClassification
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z83.CAV
+        gridLevel:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/gridLevel.yaml#/components/schemas/gridLevel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
+        productDataRelevantRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z59.SG10.CCI+++[ZA8|ZA7]
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__MARKET_LOCATION__meterRegisters'
+      required:
+      - energyOrigin
+      - energyDirection
+      - configurationProduct
+      - loadCurveDefinition
+      - marketLocationId
+      - marketRoles
+      - meteringTechnicalClassification
+      - gridLevel
+      - productDataRelevantRole
+      - meterRegisters
+    PI_55168__masterData__MARKET_LOCATION__energyOrigin:
+      type: object
+      properties:
+        generationType:
+          $ref: ../../../bo4e-en/fields/com/EnergyOrigin/generationType.yaml#/components/schemas/generationType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z34.CAV
+      required:
+      - generationType
+    PI_55168__masterData__MARKET_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z89
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z89
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+        subContracted:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+      - subContracted
+    PI_55168__masterData__MARKET_LOCATION__meterRegisters:
+      type: object
+      properties:
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z27.PIA+5
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
+        purposesOfUse:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__MARKET_LOCATION__meterRegisters__purposesOfUse'
+        valueGranularity:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/valueGranularity.yaml#/components/schemas/valueGranularity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZE4.CAV
+        meteringTimes:
+          $ref: '#/components/schemas/PI_55168__masterData__MARKET_LOCATION__meterRegisters__meteringTimes'
+      required:
+      - meteringProduct
+      - obisCode
+      - purposesOfUse
+      - valueGranularity
+      - meteringTimes
+    PI_55168__masterData__MARKET_LOCATION__meterRegisters__purposesOfUse:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZA8.CAV
+          - SG4.IDE+24.SG8.SEQ+Z27.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z27.SG10.CCI+++ZA8.CAV
+        purpose:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZA8.CAV
+          - SG4.IDE+24.SG8.SEQ+Z27.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z27.SG10.CCI+++ZA8.CAV
+      required:
+      - marketRole
+      - purpose
+    PI_55168__masterData__MARKET_LOCATION__meterRegisters__meteringTimes:
+      type: object
+      properties:
+        register:
+          $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/register.yaml#/components/schemas/register
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z38
+        meteringTimeDefinition:
+          $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z39
+          - SG4.IDE+24.SG8.SEQ+Z27.SG10.CCI+[Z39|Z41]
+      required:
+      - register
+      - meteringTimeDefinition
+    PI_55168__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        readingCardRecipient:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__readingCardRecipient'
+        operationalState:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/operationalState.yaml#/components/schemas/operationalState
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+Z32
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__marketRoles'
+        meteringAddress:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__meteringAddress'
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03.RFF+Z19
+          - SG4.IDE+24.SG12.NAD+Z05.RFF+Z19
+          - SG4.IDE+24.SG5.LOC+Z17
+          - SG4.IDE+24.SG8.SEQ+Z18.RFF+Z19
+          - SG4.IDE+24.SG8.SEQ+Z19.RFF+Z19
+        meteringGridLevel:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringGridLevel.yaml#/components/schemas/meteringGridLevel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++E04.CAV
+        referenceMarketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/referenceMarketLocationId.yaml#/components/schemas/referenceMarketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.RFF+Z16
+          - SG4.IDE+24.SG8.SEQ+Z19.RFF+Z18
+        usageScope:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/usageScope.yaml#/components/schemas/usageScope
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+Z01
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__meterRegisters'
+      required:
+      - readingCardRecipient
+      - operationalState
+      - dataQuality
+      - marketRoles
+      - meteringAddress
+      - meteringLocationId
+      - meteringGridLevel
+      - referenceMarketLocationId
+      - usageScope
+      - meterRegisters
+    PI_55168__masterData__METERING_LOCATION__readingCardRecipient:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        commercialClassification:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/commercialClassification.yaml#/components/schemas/commercialClassification
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        partnerAddress:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress'
+      required:
+      - salutation
+      - commercialClassification
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+    PI_55168__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z05
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+    PI_55168__masterData__METERING_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+ZB4
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+ZF0
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+ZB4
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+ZF0
+        subContracted:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+      - subContracted
+    PI_55168__masterData__METERING_LOCATION__meteringAddress:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        additionalInformation:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__meteringAddress__additionalInformation'
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      - additionalInformation
+    PI_55168__masterData__METERING_LOCATION__meteringAddress__additionalInformation:
+      type: object
+      properties:
+        supplement1:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement1.yaml#/components/schemas/supplement1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        supplement2:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement2.yaml#/components/schemas/supplement2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        supplement3:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement3.yaml#/components/schemas/supplement3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        supplement4:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement4.yaml#/components/schemas/supplement4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+        supplement5:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z03
+      required:
+      - supplement1
+      - supplement2
+      - supplement3
+      - supplement4
+      - supplement5
+    PI_55168__masterData__METERING_LOCATION__meterRegisters:
+      type: object
+      properties:
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z19.PIA+5
+        necessitySecondMeasurement:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/necessitySecondMeasurement.yaml#/components/schemas/necessitySecondMeasurement
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z19.SG10.CCI+Z35.CAV+ZC9
+        valueTransmissionPurpose:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/valueTransmissionPurpose.yaml#/components/schemas/valueTransmissionPurpose
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z19.SG10.CCI+Z35.CAV+Z88
+        meteringTimes:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_LOCATION__meterRegisters__meteringTimes'
+      required:
+      - meteringProduct
+      - necessitySecondMeasurement
+      - valueTransmissionPurpose
+      - meteringTimes
+    PI_55168__masterData__METERING_LOCATION__meterRegisters__meteringTimes:
+      type: object
+      properties:
+        meteringTimeDefinition:
+          $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z19.SG10.CCI+[Z39|Z41]
+      required:
+      - meteringTimeDefinition
+    PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT:
+      type: object
+      properties:
+        correspondencePartner:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner'
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Contract/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07.RFF+Z19
+        locationType:
+          $ref: ../../../bo4e-en/fields/bo/Contract/locationType.yaml#/components/schemas/locationType
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07.RFF+Z19
+        contractConditions:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions'
+        contractPartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__contractPartner2'
+      required:
+      - correspondencePartner
+      - locationId
+      - locationType
+      - contractPartner2
+    PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        partnerAddress:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__partnerAddress'
+      required:
+      - salutation
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+    PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__partnerAddress:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z08
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+    PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions:
+      type: object
+      properties:
+        plannedScheduledReading:
+          $ref: '#/components/schemas/PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions__plannedScheduledReading'
+    PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions__plannedScheduledReading:
+      type: object
+      properties:
+        readingPeriod:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/readingPeriod.yaml#/components/schemas/readingPeriod
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z50.DTM+752
+    PI_55168__masterData__METERING_POINT_OPERATION_CONTRACT__contractPartner2:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07
+        businessPartnerRole:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z07
+      required:
+      - salutation
+      - businessPartnerRole
+      - name1
+      - name2
+      - name3
+      - name4
+    PI_55168__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        orderingMarketPartner:
+          $ref: '#/components/schemas/PI_55168__masterData__GRID_LOCATION__orderingMarketPartner'
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.PIA+5
+        loadCurveDefinition:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+Z53
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__GRID_LOCATION__marketRoles'
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+          - SG4.IDE+24.SG8.SEQ+Z51.RFF+Z32
+          - SG4.IDE+24.SG8.SEQ+Z57.RFF+Z32
+          - SG4.IDE+24.SG8.SEQ+Z60.RFF+Z32
+        productDataRelevantRole:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++[ZA7|ZA8]
+        controlChannel:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/controlChannel.yaml#/components/schemas/controlChannel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+Z49
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__GRID_LOCATION__meterRegisters'
+      required:
+      - orderingMarketPartner
+      - configurationProduct
+      - loadCurveDefinition
+      - marketRoles
+      - gridLocationId
+      - productDataRelevantRole
+      - controlChannel
+      - meterRegisters
+    PI_55168__masterData__GRID_LOCATION__orderingMarketPartner:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+      required:
+      - marketRole
+      - roleCodeNumber
+    PI_55168__masterData__GRID_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+    PI_55168__masterData__GRID_LOCATION__meterRegisters:
+      type: object
+      properties:
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+        purposesOfUse:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__GRID_LOCATION__meterRegisters__purposesOfUse'
+      required:
+      - obisCode
+      - purposesOfUse
+    PI_55168__masterData__GRID_LOCATION__meterRegisters__purposesOfUse:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+++ZA8.CAV
+        purpose:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+++ZA8.CAV
+      required:
+      - marketRole
+      - purpose
+    PI_55168__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        correspondencePartner:
+          $ref: '#/components/schemas/PI_55168__masterData__GRID_ACCESS_CONTRACT__correspondencePartner'
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Contract/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25.RFF+Z18
+          - SG4.IDE+24.SG12.NAD+Z26.RFF+Z18
+        contractPartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__GRID_ACCESS_CONTRACT__contractPartner2'
+      required:
+      - correspondencePartner
+      - locationId
+      - contractPartner2
+    PI_55168__masterData__GRID_ACCESS_CONTRACT__correspondencePartner:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        partnerAddress:
+          $ref: '#/components/schemas/PI_55168__masterData__GRID_ACCESS_CONTRACT__correspondencePartner__partnerAddress'
+      required:
+      - salutation
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+    PI_55168__masterData__GRID_ACCESS_CONTRACT__correspondencePartner__partnerAddress:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z26
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+    PI_55168__masterData__GRID_ACCESS_CONTRACT__contractPartner2:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        businessPartnerRole:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z25
+      required:
+      - salutation
+      - businessPartnerRole
+      - name1
+      - name2
+      - name3
+      - name4
+    PI_55168__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        orderingMarketPartner:
+          $ref: '#/components/schemas/PI_55168__masterData__CONTROLLABLE_RESOURCE__orderingMarketPartner'
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z61.PIA+5
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__CONTROLLABLE_RESOURCE__marketRoles'
+        productDataRelevantRole:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z61.SG10.CCI+++[ZA8|ZA7]
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z19
+          - SG4.IDE+24.SG8.SEQ+Z61.RFF+Z38
+          - SG4.IDE+24.SG8.SEQ+Z62.RFF+Z38
+        controlChannel:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/controlChannel.yaml#/components/schemas/controlChannel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z62.SG10.CCI+Z49.CAV+ZF2
+        assignedDefinition:
+          $ref: '#/components/schemas/PI_55168__masterData__CONTROLLABLE_RESOURCE__assignedDefinition'
+      required:
+      - orderingMarketPartner
+      - configurationProduct
+      - marketRoles
+      - productDataRelevantRole
+      - resourceId
+      - controlChannel
+      - assignedDefinition
+    PI_55168__masterData__CONTROLLABLE_RESOURCE__orderingMarketPartner:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z61.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z61.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+      required:
+      - marketRole
+      - roleCodeNumber
+    PI_55168__masterData__CONTROLLABLE_RESOURCE__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z62.SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z62.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z62.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+    PI_55168__masterData__CONTROLLABLE_RESOURCE__assignedDefinition:
+      type: object
+      properties:
+        loadCurveDefinition:
+          $ref: ../../../bo4e-en/fields/com/AssignedDefinition/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z61.SG10.CCI+[Z52|Z53]
+        switchingTimeDefinition:
+          $ref: ../../../bo4e-en/fields/com/AssignedDefinition/switchingTimeDefinition.yaml#/components/schemas/switchingTimeDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z61.SG10.CCI+[Z52|Z53]
+      required:
+      - loadCurveDefinition
+      - switchingTimeDefinition
+    PI_55168__masterData__TECHNICAL_RESOURCE:
+      type: object
+      properties:
+        kind:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/kind.yaml#/components/schemas/kind
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56]
+        typeElectricMobility:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/typeElectricMobility.yaml#/components/schemas/typeElectricMobility
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZE6|Z87|ZE7]
+        enwg:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/enwg.yaml#/components/schemas/enwg
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZG8|ZG9]
+        generationType:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/generationType.yaml#/components/schemas/generationType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF5|ZF6|ZG0|ZG1|ZG5]
+        ratedPower:
+          $ref: '#/components/schemas/PI_55168__masterData__TECHNICAL_RESOURCE__ratedPower'
+        referenceMarketLocation:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/referenceMarketLocation.yaml#/components/schemas/referenceMarketLocation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z16
+        referenceMeteringLocation:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/referenceMeteringLocation.yaml#/components/schemas/referenceMeteringLocation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z34
+        referenceGridLocation:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/referenceGridLocation.yaml#/components/schemas/referenceGridLocation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z32
+        referenceControllableResource:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/referenceControllableResource.yaml#/components/schemas/referenceControllableResource
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z38
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z37
+        storageType:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/storageType.yaml#/components/schemas/storageType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF7|ZF8|ZF9|ZG6]
+        storageCapacity:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/storageCapacity.yaml#/components/schemas/storageCapacity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z42
+        consumptionType:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/consumptionType.yaml#/components/schemas/consumptionType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[Z64|Z65|ZE5|ZA8]
+        heatUsage:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/heatUsage.yaml#/components/schemas/heatUsage
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[Z56|Z57|Z61|ZV5|ZV6|ZV7]
+        additionalFacility:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/additionalFacility.yaml#/components/schemas/additionalFacility
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+Z63.CAV+[ZH7|ZH8]
+      required:
+      - kind
+      - ratedPower
+      - referenceMarketLocation
+      - resourceId
+      - storageCapacity
+      - additionalFacility
+    PI_55168__masterData__TECHNICAL_RESOURCE__ratedPower:
+      type: object
+      properties:
+        levy:
+          $ref: ../../../bo4e-en/fields/com/RatedPower/levy.yaml#/components/schemas/levy
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z44
+        intake:
+          $ref: ../../../bo4e-en/fields/com/RatedPower/intake.yaml#/components/schemas/intake
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z43
+      required:
+      - levy
+      - intake
+    PI_55168__masterData__TRANCHE:
+      type: object
+      properties:
+        allocationQuantity:
+          $ref: '#/components/schemas/PI_55168__masterData__TRANCHE__allocationQuantity'
+        trancheFormationSize:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheFormationSize.yaml#/components/schemas/trancheFormationSize
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+Z37
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__TRANCHE__marketRoles'
+        referenceMarketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/referenceMarketLocationId.yaml#/components/schemas/referenceMarketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.RFF+Z16
+        trancheId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+          - SG4.IDE+24.SG8.SEQ+Z15.RFF+Z20
+          - SG4.IDE+24.SG8.SEQ+Z16.RFF+Z20
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__TRANCHE__meterRegisters'
+      required:
+      - allocationQuantity
+      - trancheFormationSize
+      - marketRoles
+      - referenceMarketLocationId
+      - trancheId
+      - meterRegisters
+    PI_55168__masterData__TRANCHE__allocationQuantity:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
+      required:
+      - unit
+      - value
+    PI_55168__masterData__TRANCHE__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+++ZB3.CAV+Z89
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+++ZB3.CAV+Z89
+      required:
+      - marketRole
+      - roleCodeNumber
+    PI_55168__masterData__TRANCHE__meterRegisters:
+      type: object
+      properties:
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z16.PIA+5
+        purposesOfUse:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__TRANCHE__meterRegisters__purposesOfUse'
+      required:
+      - meteringProduct
+      - purposesOfUse
+    PI_55168__masterData__TRANCHE__meterRegisters__purposesOfUse:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z16.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z16.SG10.CCI+++ZA8.CAV
+        purpose:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z16.SG10.CCI+++ZA7.CAV
+          - SG4.IDE+24.SG8.SEQ+Z16.SG10.CCI+++ZA8.CAV
+      required:
+      - marketRole
+      - purpose
+    PI_55168__masterData__METER:
+      type: object
+      properties:
+        mountingType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/mountingType.yaml#/components/schemas/mountingType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++Z28.CAV
+        remoteSwitch:
+          $ref: ../../../bo4e-en/fields/bo/Meter/remoteSwitch.yaml#/components/schemas/remoteSwitch
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z58
+        gateway:
+          $ref: ../../../bo4e-en/fields/bo/Meter/gateway.yaml#/components/schemas/gateway
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.RFF+Z14
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METER__devices'
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/Meter/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z14.RFF+Z18
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+Z18
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.RFF+Z19
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+Z19
+        measurementValueCapture:
+          $ref: ../../../bo4e-en/fields/bo/Meter/measurementValueCapture.yaml#/components/schemas/measurementValueCapture
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E12.CAV
+        tariffType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/tariffType.yaml#/components/schemas/tariffType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterCharacteristic:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterCharacteristic.yaml#/components/schemas/meterCharacteristic
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterNumber:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterNumber.yaml#/components/schemas/meterNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z04.RFF+MG
+          - SG4.IDE+24.SG8.SEQ+Z05.RFF+MG
+          - SG4.IDE+24.SG8.SEQ+Z06.RFF+MG
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]
+        meterType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterType.yaml#/components/schemas/meterType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterTypeSpecification:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterTypeSpecification.yaml#/components/schemas/meterTypeSpecification
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55168__masterData__METER__meterRegisters'
+      required:
+      - mountingType
+      - remoteSwitch
+      - devices
+      - marketLocationId
+      - meteringLocationId
+      - measurementValueCapture
+      - meterCharacteristic
+      - meterNumber
+      - meterType
+      - meterTypeSpecification
+      - meterRegisters
+    PI_55168__masterData__METER__devices:
+      type: object
+      properties:
+        deviceProperties:
+          $ref: '#/components/schemas/PI_55168__masterData__METER__devices__deviceProperties'
+        deviceNumber:
+          $ref: ../../../bo4e-en/fields/com/Device/deviceNumber.yaml#/components/schemas/deviceNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z06.SG10.CCI+++Z27.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z13.SG10.CCI+++Z75.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z14.RFF+Z14
+          - SG4.IDE+24.SG8.SEQ+Z14.SG10.CCI+++Z76.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]
+        deviceType:
+          $ref: ../../../bo4e-en/fields/com/Device/deviceType.yaml#/components/schemas/deviceType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z14.RFF+Z14
+          - SG4.IDE+24.SG8.SEQ+Z14.SG10.CCI+++Z76.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z14]
+        additionalDeviceNumbers:
+          $ref: ../../../bo4e-en/fields/com/Device/additionalDeviceNumbers.yaml#/components/schemas/additionalDeviceNumbers
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV+Z30
+      required:
+      - deviceProperties
+      - deviceNumber
+      - deviceType
+    PI_55168__masterData__METER__devices__deviceProperties:
+      type: object
+      properties:
+        factor:
+          $ref: ../../../bo4e-en/fields/com/DeviceProperties/factor.yaml#/components/schemas/factor
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV
+        deviceAttribute:
+          $ref: ../../../bo4e-en/fields/com/DeviceProperties/deviceAttribute.yaml#/components/schemas/deviceAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV
+          - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV
+          - SG4.IDE+24.SG8.SEQ+Z06.SG10.CCI+++Z27.CAV
+      required:
+      - factor
+      - deviceAttribute
+    PI_55168__masterData__METER__meterRegisters:
+      type: object
+      properties:
+        designation:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/designation.yaml#/components/schemas/designation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++Z63
+        configuration:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/configuration.yaml#/components/schemas/configuration
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+AGK
+        decimalPlaces:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/decimalPlaces.yaml#/components/schemas/decimalPlaces
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+11++Z33.CAV
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.PIA+5
+        integerDigits:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/integerDigits.yaml#/components/schemas/integerDigits
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+11++Z33.CAV
+        valueGranularity:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/valueGranularity.yaml#/components/schemas/valueGranularity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV
+      required:
+      - designation
+      - decimalPlaces
+      - obisCode
+      - integerDigits
+      - valueGranularity

@@ -1,0 +1,21 @@
+components:
+  schemas:
+    PriceTier:
+      title: PriceTier
+      type: object
+      properties:
+        unitPrice:
+          $ref: ../fields/com/PriceTier/unitPrice.yaml#/components/schemas/unitPrice
+        timeBasis:
+          $ref: ../fields/com/PriceTier/timeBasis.yaml#/components/schemas/timeBasis
+        tierLimitFrom:
+          $ref: >-
+            ../fields/com/PriceTier/tierLimitFrom.yaml#/components/schemas/tierLimitFrom
+        tierLimitTo:
+          $ref: >-
+            ../fields/com/PriceTier/tierLimitTo.yaml#/components/schemas/tierLimitTo
+        sigmoidParameter:
+          $ref: >-
+            ../fields/com/PriceTier/sigmoidParameter.yaml#/components/schemas/sigmoidParameter
+        unit:
+          $ref: ../fields/com/PriceTier/unit.yaml#/components/schemas/unit

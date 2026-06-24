@@ -1,0 +1,4 @@
+components:
+  schemas:
+    link3:
+      type: string

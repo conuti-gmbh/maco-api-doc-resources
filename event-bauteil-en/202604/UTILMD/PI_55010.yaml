@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: PI_55010
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55010:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55010__masterData'
+      required:
+      - masterData
+    PI_55010__masterData:
+      type: object
+      properties:
+        ENERGY_SUPPLY_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55010__masterData__ENERGY_SUPPLY_CONTRACT'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55010__masterData__MARKET_LOCATION'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55010__masterData__GRID_ACCESS_CONTRACT'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55010__masterData__TRANCHE'
+      required:
+      - ENERGY_SUPPLY_CONTRACT
+      - MARKET_LOCATION
+      - GRID_ACCESS_CONTRACT
+      - TRANCHE
+    PI_55010__masterData__ENERGY_SUPPLY_CONTRACT:
+      type: object
+      properties:
+        contractPartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55010__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2'
+      required:
+      - contractPartner2
+    PI_55010__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        businessPartnerRole:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG4.IDE+24.SG12.NAD+Z09
+      required:
+      - salutation
+      - businessPartnerRole
+      - name1
+      - name2
+      - name3
+      - name4
+    PI_55010__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+          - SG4.IDE+24.SG5.LOC+Z22
+        marketLocationType:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55010__masterData__MARKET_LOCATION__marketLocationType'
+      required:
+      - marketLocationId
+      - marketLocationType
+    PI_55010__masterData__MARKET_LOCATION__marketLocationType:
+      type: object
+      properties:
+        typeValue:
+          $ref: ../../../bo4e-en/fields/com/MarketLocationTyping/typeValue.yaml#/components/schemas/typeValue
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+          - SG4.IDE+24.SG5.LOC+Z22
+      required:
+      - typeValue
+    PI_55010__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractEnd:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractEnd.yaml#/components/schemas/contractEnd
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93
+      required:
+      - contractEnd
+    PI_55010__masterData__TRANCHE:
+      type: object
+      properties:
+        trancheId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+      required:
+      - trancheId

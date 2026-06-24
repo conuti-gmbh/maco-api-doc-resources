@@ -1,0 +1,24 @@
+components:
+  schemas:
+    AssignmentObjectCode:
+      title: AssignmentObjectCode
+      type: object
+      properties:
+        referenceLocationType:
+          $ref: >-
+            ../fields/com/AssignmentObjectCode/referenceLocationType.yaml#/components/schemas/referenceLocationType
+        referenceLocationId:
+          $ref: >-
+            ../fields/com/AssignmentObjectCode/referenceLocationId.yaml#/components/schemas/referenceLocationId
+        upstreamLocationType:
+          $ref: >-
+            ../fields/com/AssignmentObjectCode/upstreamLocationType.yaml#/components/schemas/upstreamLocationType
+        upstreamLocationId:
+          $ref: >-
+            ../fields/com/AssignmentObjectCode/upstreamLocationId.yaml#/components/schemas/upstreamLocationId
+        objectCode:
+          $ref: >-
+            ../fields/com/AssignmentObjectCode/objectCode.yaml#/components/schemas/objectCode
+        referenceMarketLocationTechnicalResource:
+          $ref: >-
+            ../fields/com/AssignmentObjectCode/referenceMarketLocationTechnicalResource.yaml#/components/schemas/referenceMarketLocationTechnicalResource

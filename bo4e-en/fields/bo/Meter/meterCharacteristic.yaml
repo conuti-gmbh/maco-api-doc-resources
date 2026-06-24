@@ -1,0 +1,5 @@
+components:
+  schemas:
+    meterCharacteristic:
+      $ref: >-
+        ../../../enum/MeterCharacteristic.yaml#/components/schemas/MeterCharacteristic

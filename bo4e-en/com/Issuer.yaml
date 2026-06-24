@@ -1,0 +1,16 @@
+components:
+  schemas:
+    Issuer:
+      title: Issuer
+      type: object
+      properties:
+        issuer1:
+          $ref: ../fields/com/Issuer/issuer1.yaml#/components/schemas/issuer1
+        issuer2:
+          $ref: ../fields/com/Issuer/issuer2.yaml#/components/schemas/issuer2
+        issuer3:
+          $ref: ../fields/com/Issuer/issuer3.yaml#/components/schemas/issuer3
+        issuer4:
+          $ref: ../fields/com/Issuer/issuer4.yaml#/components/schemas/issuer4
+        issuer5:
+          $ref: ../fields/com/Issuer/issuer5.yaml#/components/schemas/issuer5

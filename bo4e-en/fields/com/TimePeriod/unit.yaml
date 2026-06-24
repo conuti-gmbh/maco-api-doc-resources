@@ -1,0 +1,4 @@
+components:
+  schemas:
+    unit:
+      $ref: ../../../enum/TimeUnit.yaml#/components/schemas/TimeUnit

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    AdviceNoteType:
+      title: AdviceNoteType
+      type: string
+      enum:
+        - REJECTED_CLAIM
+        - PAYMENT_ADVICE

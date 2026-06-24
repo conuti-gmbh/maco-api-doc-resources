@@ -1,0 +1,21 @@
+components:
+  schemas:
+    MeterType:
+      title: MeterType
+      type: string
+      enum:
+        - THREE_PHASE_METER
+        - DIAPHRAGM_GAS_METER
+        - ROTARY_PISTON_METER
+        - SMARTMETER
+        - DEMAND_METER
+        - MAXIMUM_METER
+        - TURBINE_WHEEL_GAS_METER
+        - ULTRASONIC_GAS_METER
+        - SINGLE_PHASE_METER
+        - VORTEX_GAS_METER
+        - MEASUREMENT_DATA_RECORDING_DEVICE
+        - ELECTRONIC_HOUSEHOLD_METER_TYPE
+        - SPECIAL_EQUIPMENT
+        - WATER_METER
+        - MODERN_METERING_DEVICE_TYPE

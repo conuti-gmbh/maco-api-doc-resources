@@ -1,0 +1,8 @@
+components:
+  schemas:
+    MeteringTimeTransmissibility:
+      title: MeteringTimeTransmissibility
+      type: string
+      enum:
+        - ELECTRONIC
+        - NON_ELECTRONIC

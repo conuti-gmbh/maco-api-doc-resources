@@ -1,0 +1,4 @@
+components:
+  schemas:
+    typeValue:
+      $ref: ../../../enum/SurchargeType.yaml#/components/schemas/SurchargeType

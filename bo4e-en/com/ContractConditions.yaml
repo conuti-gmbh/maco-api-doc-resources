@@ -1,0 +1,72 @@
+components:
+  schemas:
+    ContractConditions:
+      title: ContractConditions
+      type: object
+      properties:
+        gridAccessPayer:
+          $ref: >-
+            ../fields/com/ContractConditions/gridAccessPayer.yaml#/components/schemas/gridAccessPayer
+        gridAccessContract:
+          $ref: >-
+            ../fields/com/ContractConditions/gridAccessContract.yaml#/components/schemas/gridAccessContract
+        gridAccessBilling:
+          $ref: >-
+            ../fields/com/ContractConditions/gridAccessBilling.yaml#/components/schemas/gridAccessBilling
+        includesSingularlyUsedEquipment:
+          $ref: >-
+            ../fields/com/ContractConditions/includesSingularlyUsedEquipment.yaml#/components/schemas/includesSingularlyUsedEquipment
+        gridAccessBillingBasis:
+          $ref: >-
+            ../fields/com/ContractConditions/gridAccessBillingBasis.yaml#/components/schemas/gridAccessBillingBasis
+        gridAccessBillingVariant:
+          $ref: >-
+            ../fields/com/ContractConditions/gridAccessBillingVariant.yaml#/components/schemas/gridAccessBillingVariant
+        householdCustomer:
+          $ref: >-
+            ../fields/com/ContractConditions/householdCustomer.yaml#/components/schemas/householdCustomer
+        billingViaNna:
+          $ref: >-
+            ../fields/com/ContractConditions/billingViaNna.yaml#/components/schemas/billingViaNna
+        municipalDiscount:
+          $ref: >-
+            ../fields/com/ContractConditions/municipalDiscount.yaml#/components/schemas/municipalDiscount
+        billingYearStart:
+          $ref: >-
+            ../fields/com/ContractConditions/billingYearStart.yaml#/components/schemas/billingYearStart
+        nextGridAccessBilling:
+          $ref: >-
+            ../fields/com/ContractConditions/nextGridAccessBilling.yaml#/components/schemas/nextGridAccessBilling
+        billingInterval:
+          $ref: >-
+            ../fields/com/ContractConditions/billingInterval.yaml#/components/schemas/billingInterval
+        gridAccessBillingInterval:
+          $ref: >-
+            ../fields/com/ContractConditions/gridAccessBillingInterval.yaml#/components/schemas/gridAccessBillingInterval
+        plannedScheduledReading:
+          $ref: >-
+            ../fields/com/ContractConditions/plannedScheduledReading.yaml#/components/schemas/plannedScheduledReading
+        msbCommissioning:
+          $ref: >-
+            ../fields/com/ContractConditions/msbCommissioning.yaml#/components/schemas/msbCommissioning
+        terminationNotice:
+          $ref: >-
+            ../fields/com/ContractConditions/terminationNotice.yaml#/components/schemas/terminationNotice
+        contractDuration:
+          $ref: >-
+            ../fields/com/ContractConditions/contractDuration.yaml#/components/schemas/contractDuration
+        terminationDate:
+          $ref: >-
+            ../fields/com/ContractConditions/terminationDate.yaml#/components/schemas/terminationDate
+        installmentCycle:
+          $ref: >-
+            ../fields/com/ContractConditions/installmentCycle.yaml#/components/schemas/installmentCycle
+        numberOfInstallments:
+          $ref: >-
+            ../fields/com/ContractConditions/numberOfInstallments.yaml#/components/schemas/numberOfInstallments
+        description:
+          $ref: >-
+            ../fields/com/ContractConditions/description.yaml#/components/schemas/description
+        contractExtension:
+          $ref: >-
+            ../fields/com/ContractConditions/contractExtension.yaml#/components/schemas/contractExtension

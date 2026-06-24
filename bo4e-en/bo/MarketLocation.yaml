@@ -1,0 +1,177 @@
+components:
+  schemas:
+    MarketLocation:
+      title: MarketLocation
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/MarketLocation.json
+      properties:
+        boType:
+          $ref: ../fields/bo/MarketLocation/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/MarketLocation/structureVersion.yaml#/components/schemas/structureVersion
+        marketLocationId:
+          $ref: >-
+            ../fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+        sector:
+          $ref: ../fields/bo/MarketLocation/sector.yaml#/components/schemas/sector
+        energyDirection:
+          $ref: >-
+            ../fields/bo/MarketLocation/energyDirection.yaml#/components/schemas/energyDirection
+        balancingMethod:
+          $ref: >-
+            ../fields/bo/MarketLocation/balancingMethod.yaml#/components/schemas/balancingMethod
+        consumptionType:
+          $ref: >-
+            ../fields/bo/MarketLocation/consumptionType.yaml#/components/schemas/consumptionType
+        interruptible:
+          $ref: >-
+            ../fields/bo/MarketLocation/interruptible.yaml#/components/schemas/interruptible
+        gridLevel:
+          $ref: >-
+            ../fields/bo/MarketLocation/gridLevel.yaml#/components/schemas/gridLevel
+        transformation:
+          $ref: >-
+            ../fields/bo/MarketLocation/transformation.yaml#/components/schemas/transformation
+        gridOperatorCodeNumber:
+          $ref: >-
+            ../fields/bo/MarketLocation/gridOperatorCodeNumber.yaml#/components/schemas/gridOperatorCodeNumber
+        areaType:
+          $ref: >-
+            ../fields/bo/MarketLocation/areaType.yaml#/components/schemas/areaType
+        gridAreaNumber:
+          $ref: >-
+            ../fields/bo/MarketLocation/gridAreaNumber.yaml#/components/schemas/gridAreaNumber
+        balancingArea:
+          $ref: >-
+            ../fields/bo/MarketLocation/balancingArea.yaml#/components/schemas/balancingArea
+        defaultSupplierCodeNumber:
+          $ref: >-
+            ../fields/bo/MarketLocation/defaultSupplierCodeNumber.yaml#/components/schemas/defaultSupplierCodeNumber
+        gasQuality:
+          $ref: >-
+            ../fields/bo/MarketLocation/gasQuality.yaml#/components/schemas/gasQuality
+        endCustomer:
+          $ref: >-
+            ../fields/bo/MarketLocation/endCustomer.yaml#/components/schemas/endCustomer
+        locationAddress:
+          $ref: >-
+            ../fields/bo/MarketLocation/locationAddress.yaml#/components/schemas/locationAddress
+        cadastralInformation:
+          $ref: >-
+            ../fields/bo/MarketLocation/cadastralInformation.yaml#/components/schemas/cadastralInformation
+        controlZone:
+          $ref: >-
+            ../fields/bo/MarketLocation/controlZone.yaml#/components/schemas/controlZone
+        marketArea:
+          $ref: >-
+            ../fields/bo/MarketLocation/marketArea.yaml#/components/schemas/marketArea
+        timeSeriesType:
+          $ref: >-
+            ../fields/bo/MarketLocation/timeSeriesType.yaml#/components/schemas/timeSeriesType
+        meteringTechnicalClassification:
+          $ref: >-
+            ../fields/bo/MarketLocation/meteringTechnicalClassification.yaml#/components/schemas/meteringTechnicalClassification
+        lockStatus:
+          $ref: >-
+            ../fields/bo/MarketLocation/lockStatus.yaml#/components/schemas/lockStatus
+        referenceMarketLocationId:
+          $ref: >-
+            ../fields/bo/MarketLocation/referenceMarketLocationId.yaml#/components/schemas/referenceMarketLocationId
+        supplyType:
+          $ref: >-
+            ../fields/bo/MarketLocation/supplyType.yaml#/components/schemas/supplyType
+        owner:
+          $ref: ../fields/bo/MarketLocation/owner.yaml#/components/schemas/owner
+        propertyManager:
+          $ref: >-
+            ../fields/bo/MarketLocation/propertyManager.yaml#/components/schemas/propertyManager
+        compensationRecipient:
+          $ref: >-
+            ../fields/bo/MarketLocation/compensationRecipient.yaml#/components/schemas/compensationRecipient
+        statusGeneratingMalo:
+          $ref: >-
+            ../fields/bo/MarketLocation/statusGeneratingMalo.yaml#/components/schemas/statusGeneratingMalo
+        remoteControllability:
+          $ref: >-
+            ../fields/bo/MarketLocation/remoteControllability.yaml#/components/schemas/remoteControllability
+        promotionCountry:
+          $ref: >-
+            ../fields/bo/MarketLocation/promotionCountry.yaml#/components/schemas/promotionCountry
+        redispatch:
+          $ref: >-
+            ../fields/bo/MarketLocation/redispatch.yaml#/components/schemas/redispatch
+        futureReportingPoint:
+          $ref: >-
+            ../fields/bo/MarketLocation/futureReportingPoint.yaml#/components/schemas/futureReportingPoint
+        locationAssignment:
+          $ref: >-
+            ../fields/bo/MarketLocation/locationAssignment.yaml#/components/schemas/locationAssignment
+        configurationProduct:
+          $ref: >-
+            ../fields/bo/MarketLocation/configurationProduct.yaml#/components/schemas/configurationProduct
+        loadCurveDefinition:
+          $ref: >-
+            ../fields/bo/MarketLocation/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+        productDataRelevantRole:
+          $ref: >-
+            ../fields/bo/MarketLocation/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+        involvedMarketPartner:
+          $ref: >-
+            ../fields/bo/MarketLocation/involvedMarketPartner.yaml#/components/schemas/involvedMarketPartner
+        gridFeeModule:
+          $ref: >-
+            ../fields/bo/MarketLocation/gridFeeModule.yaml#/components/schemas/gridFeeModule
+        dataQuality:
+          $ref: >-
+            ../fields/bo/MarketLocation/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/MarketLocation/validityPeriod.yaml#/components/schemas/validityPeriod
+        marketRoles:
+          $ref: >-
+            ../fields/bo/MarketLocation/marketRoles.yaml#/components/schemas/marketRoles
+        meterRegisters:
+          $ref: >-
+            ../fields/bo/MarketLocation/meterRegisters.yaml#/components/schemas/meterRegisters
+        meterRegistersInvolvedMarketRole:
+          $ref: >-
+            ../fields/bo/MarketLocation/meterRegistersInvolvedMarketRole.yaml#/components/schemas/meterRegistersInvolvedMarketRole
+        consumptionQuantity:
+          $ref: >-
+            ../fields/bo/MarketLocation/consumptionQuantity.yaml#/components/schemas/consumptionQuantity
+        associatedMeteringLocations:
+          $ref: >-
+            ../fields/bo/MarketLocation/associatedMeteringLocations.yaml#/components/schemas/associatedMeteringLocations
+        gridAccessBillingData:
+          $ref: >-
+            ../fields/bo/MarketLocation/gridAccessBillingData.yaml#/components/schemas/gridAccessBillingData
+        meteringPointOperationBillingData:
+          $ref: >-
+            ../fields/bo/MarketLocation/meteringPointOperationBillingData.yaml#/components/schemas/meteringPointOperationBillingData
+        energyOrigin:
+          $ref: >-
+            ../fields/bo/MarketLocation/energyOrigin.yaml#/components/schemas/energyOrigin
+        requiredProductPackage:
+          $ref: >-
+            ../fields/bo/MarketLocation/requiredProductPackage.yaml#/components/schemas/requiredProductPackage
+        geoCoordinates:
+          $ref: >-
+            ../fields/bo/MarketLocation/geoCoordinates.yaml#/components/schemas/geoCoordinates
+        packageId:
+          $ref: >-
+            ../fields/bo/MarketLocation/packageId.yaml#/components/schemas/packageId
+        marketLocationType:
+          $ref: >-
+            ../fields/bo/MarketLocation/marketLocationType.yaml#/components/schemas/marketLocationType
+        associatedMarketLocations:
+          $ref: >-
+            ../fields/bo/MarketLocation/associatedMarketLocations.yaml#/components/schemas/associatedMarketLocations
+        technicalInstallations:
+          $ref: >-
+            ../fields/bo/MarketLocation/technicalInstallations.yaml#/components/schemas/technicalInstallations

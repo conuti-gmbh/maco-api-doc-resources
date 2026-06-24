@@ -1,0 +1,12 @@
+components:
+  schemas:
+    PhoneNumber:
+      title: PhoneNumber
+      type: object
+      properties:
+        numberType:
+          $ref: >-
+            ../fields/com/PhoneNumber/numberType.yaml#/components/schemas/numberType
+        phoneNumber:
+          $ref: >-
+            ../fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber

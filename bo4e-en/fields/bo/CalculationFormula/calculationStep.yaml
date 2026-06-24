@@ -1,0 +1,4 @@
+components:
+  schemas:
+    calculationStep:
+      $ref: ../../../com/CalculationStep.yaml#/components/schemas/CalculationStep

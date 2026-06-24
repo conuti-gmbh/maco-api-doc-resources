@@ -1,0 +1,8 @@
+components:
+  schemas:
+    meteringPointOperationBillingData:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/MeteringPointOperationBillingData.yaml#/components/schemas/MeteringPointOperationBillingData
+      nullable: true

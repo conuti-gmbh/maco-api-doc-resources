@@ -1,0 +1,5 @@
+components:
+  schemas:
+    implementationLevelRequirement:
+      $ref: >-
+        ../../../enum/ImplementationLevelRequirement.yaml#/components/schemas/ImplementationLevelRequirement

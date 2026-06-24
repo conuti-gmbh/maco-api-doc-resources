@@ -1,0 +1,18 @@
+components:
+  schemas:
+    ProductPackage:
+      title: ProductPackage
+      type: object
+      properties:
+        productPackageId:
+          $ref: >-
+            ../fields/com/ProductPackage/productPackageId.yaml#/components/schemas/productPackageId
+        product:
+          $ref: >-
+            ../fields/com/ProductPackage/product.yaml#/components/schemas/product
+        implementationLevelRequirement:
+          $ref: >-
+            ../fields/com/ProductPackage/implementationLevelRequirement.yaml#/components/schemas/implementationLevelRequirement
+        prioritization:
+          $ref: >-
+            ../fields/com/ProductPackage/prioritization.yaml#/components/schemas/prioritization

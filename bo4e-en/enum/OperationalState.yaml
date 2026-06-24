@@ -1,0 +1,9 @@
+components:
+  schemas:
+    OperationalState:
+      title: OperationalState
+      type: string
+      enum:
+        - LOCKED_NO_UNLOCK
+        - LOCKED
+        - NORMAL_OPERATION

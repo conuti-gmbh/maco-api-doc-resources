@@ -1,0 +1,4 @@
+components:
+  schemas:
+    meteringAddress:
+      $ref: ../../../com/Address.yaml#/components/schemas/Address

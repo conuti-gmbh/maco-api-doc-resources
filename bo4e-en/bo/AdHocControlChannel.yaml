@@ -1,0 +1,33 @@
+components:
+  schemas:
+    AdHocControlChannel:
+      title: AdHocControlChannel
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/AdHocControlChannel.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/structureVersion.yaml#/components/schemas/structureVersion
+        configurationProduct:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/configurationProduct.yaml#/components/schemas/configurationProduct
+        targetAddress:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/targetAddress.yaml#/components/schemas/targetAddress
+        issuer:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/issuer.yaml#/components/schemas/issuer
+        certificateUser:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/certificateUser.yaml#/components/schemas/certificateUser
+        IpAddressClsDevice:
+          $ref: >-
+            ../fields/bo/AdHocControlChannel/IpAddressClsDevice.yaml#/components/schemas/IpAddressClsDevice

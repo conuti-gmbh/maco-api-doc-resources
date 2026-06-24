@@ -1,0 +1,8 @@
+components:
+  schemas:
+    PeakLoadDetermination:
+      title: PeakLoadDetermination
+      type: string
+      enum:
+        - USE_OF_PEAK_LOAD_WINDOW
+        - NO_USE_OF_PEAK_LOAD_WINDOW

@@ -1,0 +1,20 @@
+components:
+  schemas:
+    TaxAmount:
+      title: TaxAmount
+      type: object
+      properties:
+        taxCode:
+          $ref: ../fields/com/TaxAmount/taxCode.yaml#/components/schemas/taxCode
+        baseValue:
+          $ref: ../fields/com/TaxAmount/baseValue.yaml#/components/schemas/baseValue
+        taxValue:
+          $ref: ../fields/com/TaxAmount/taxValue.yaml#/components/schemas/taxValue
+        currency:
+          $ref: ../fields/com/TaxAmount/currency.yaml#/components/schemas/currency
+        baseValuePrepaid:
+          $ref: >-
+            ../fields/com/TaxAmount/baseValuePrepaid.yaml#/components/schemas/baseValuePrepaid
+        taxValuePrepaid:
+          $ref: >-
+            ../fields/com/TaxAmount/taxValuePrepaid.yaml#/components/schemas/taxValuePrepaid

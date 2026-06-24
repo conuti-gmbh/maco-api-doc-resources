@@ -1,0 +1,12 @@
+components:
+  schemas:
+    AssignedDefinition:
+      title: AssignedDefinition
+      type: object
+      properties:
+        switchingTimeDefinition:
+          $ref: >-
+            ../fields/com/AssignedDefinition/switchingTimeDefinition.yaml#/components/schemas/switchingTimeDefinition
+        loadCurveDefinition:
+          $ref: >-
+            ../fields/com/AssignedDefinition/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition

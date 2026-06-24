@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: PI_17122
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17122:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17122__masterData'
+      required:
+      - masterData
+    PI_17122__masterData:
+      type: object
+      properties:
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__ORDER'
+        LOAD_CURVE_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__LOAD_CURVE_DEFINITION'
+        COMPLAINT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__COMPLAINT'
+        SWITCHING_TIME_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__SWITCHING_TIME_DEFINITION'
+        METERING_TIME_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__METERING_TIME_DEFINITION'
+      required:
+      - ORDER
+      - LOAD_CURVE_DEFINITION
+      - COMPLAINT
+      - SWITCHING_TIME_DEFINITION
+      - METERING_TIME_DEFINITION
+    PI_17122__masterData__ORDER:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__ORDER__positionData'
+      required:
+      - positionData
+    PI_17122__masterData__ORDER__positionData:
+      type: object
+      properties:
+        definitionType:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/definitionType.yaml#/components/schemas/definitionType
+          x-edifact-segment:
+          - SG29.LIN
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG29.LIN
+      required:
+      - definitionType
+      - positionNumber
+    PI_17122__masterData__LOAD_CURVE_DEFINITION:
+      type: object
+      properties:
+        loadCurves:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__LOAD_CURVE_DEFINITION__loadCurves'
+      required:
+      - loadCurves
+    PI_17122__masterData__LOAD_CURVE_DEFINITION__loadCurves:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z52
+      required:
+      - code
+    PI_17122__masterData__COMPLAINT:
+      type: object
+      properties:
+        complaintReason:
+          $ref: ../../../bo4e-en/fields/bo/Complaint/complaintReason.yaml#/components/schemas/complaintReason
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        complaintReasonNote:
+          $ref: '#/components/schemas/PI_17122__masterData__COMPLAINT__complaintReasonNote'
+      required:
+      - complaintReason
+      - complaintReasonNote
+    PI_17122__masterData__COMPLAINT__complaintReasonNote:
+      type: object
+      properties:
+        remark1:
+          $ref: ../../../bo4e-en/fields/com/ComplaintReasonNote/remark1.yaml#/components/schemas/remark1
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark2:
+          $ref: ../../../bo4e-en/fields/com/ComplaintReasonNote/remark2.yaml#/components/schemas/remark2
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark3:
+          $ref: ../../../bo4e-en/fields/com/ComplaintReasonNote/remark3.yaml#/components/schemas/remark3
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark4:
+          $ref: ../../../bo4e-en/fields/com/ComplaintReasonNote/remark4.yaml#/components/schemas/remark4
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark5:
+          $ref: ../../../bo4e-en/fields/com/ComplaintReasonNote/remark5.yaml#/components/schemas/remark5
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+      required:
+      - remark1
+      - remark2
+      - remark3
+      - remark4
+      - remark5
+    PI_17122__masterData__SWITCHING_TIME_DEFINITION:
+      type: object
+      properties:
+        switchingTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__SWITCHING_TIME_DEFINITION__switchingTimes'
+      required:
+      - switchingTimes
+    PI_17122__masterData__SWITCHING_TIME_DEFINITION__switchingTimes:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/SwitchingTime/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z52
+      required:
+      - code
+    PI_17122__masterData__METERING_TIME_DEFINITION:
+      type: object
+      properties:
+        meteringTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17122__masterData__METERING_TIME_DEFINITION__meteringTimes'
+      required:
+      - meteringTimes
+    PI_17122__masterData__METERING_TIME_DEFINITION__meteringTimes:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/MeteringTime/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI
+      required:
+      - code

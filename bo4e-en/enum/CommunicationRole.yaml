@@ -1,0 +1,18 @@
+components:
+  schemas:
+    CommunicationRole:
+      title: CommunicationRole
+      type: string
+      enum:
+        - DATA_EXCHANGE
+        - FRAMEWORK_CONTRACTS
+        - TERMINATION_PROCESSES
+        - CHANGE_PROCESSES
+        - MASTER_DATA_PROCESSES
+        - FEED_IN_PROCESSES
+        - BILLING_PROCESSES
+        - MMMA_PROCESSES
+        - TRANSACTION_DATA
+        - UNLOCK_LOCK_PROCESSES
+        - BALANCING_PROCESSES
+        - GRID_CONNECTION_FACILITIES

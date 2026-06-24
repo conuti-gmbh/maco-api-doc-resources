@@ -1,0 +1,8 @@
+components:
+  schemas:
+    ForecastBasis:
+      title: ForecastBasis
+      type: string
+      enum:
+        - VALUES
+        - PROFILES

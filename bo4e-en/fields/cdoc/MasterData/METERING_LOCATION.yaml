@@ -1,0 +1,6 @@
+components:
+  schemas:
+    METERING_LOCATION:
+      type: array
+      items:
+        $ref: ../../../bo/MeteringLocation.yaml#/components/schemas/MeteringLocation

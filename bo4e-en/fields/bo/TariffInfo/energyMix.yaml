@@ -1,0 +1,4 @@
+components:
+  schemas:
+    energyMix:
+      $ref: ../../../com/EnergyMix.yaml#/components/schemas/EnergyMix

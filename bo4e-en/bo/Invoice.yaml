@@ -1,0 +1,97 @@
+components:
+  schemas:
+    Invoice:
+      title: Invoice
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Invoice.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Invoice/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Invoice/structureVersion.yaml#/components/schemas/structureVersion
+        isSelfIssued:
+          $ref: >-
+            ../fields/bo/Invoice/isSelfIssued.yaml#/components/schemas/isSelfIssued
+        processingDate:
+          $ref: >-
+            ../fields/bo/Invoice/processingDate.yaml#/components/schemas/processingDate
+        invoiceDate:
+          $ref: >-
+            ../fields/bo/Invoice/invoiceDate.yaml#/components/schemas/invoiceDate
+        dueDate:
+          $ref: ../fields/bo/Invoice/dueDate.yaml#/components/schemas/dueDate
+        invoiceStatus:
+          $ref: >-
+            ../fields/bo/Invoice/invoiceStatus.yaml#/components/schemas/invoiceStatus
+        provisionalBillingPeriod:
+          $ref: >-
+            ../fields/bo/Invoice/provisionalBillingPeriod.yaml#/components/schemas/provisionalBillingPeriod
+        invoicePeriod:
+          $ref: >-
+            ../fields/bo/Invoice/invoicePeriod.yaml#/components/schemas/invoicePeriod
+        invoiceType:
+          $ref: >-
+            ../fields/bo/Invoice/invoiceType.yaml#/components/schemas/invoiceType
+        isReverseCharge:
+          $ref: >-
+            ../fields/bo/Invoice/isReverseCharge.yaml#/components/schemas/isReverseCharge
+        totalGrossAmount:
+          $ref: >-
+            ../fields/bo/Invoice/totalGrossAmount.yaml#/components/schemas/totalGrossAmount
+        toPay:
+          $ref: ../fields/bo/Invoice/toPay.yaml#/components/schemas/toPay
+        originalInvoiceNumber:
+          $ref: >-
+            ../fields/bo/Invoice/originalInvoiceNumber.yaml#/components/schemas/originalInvoiceNumber
+        referenceMessageDate:
+          $ref: >-
+            ../fields/bo/Invoice/referenceMessageDate.yaml#/components/schemas/referenceMessageDate
+        referenceDocumentNumber:
+          $ref: >-
+            ../fields/bo/Invoice/referenceDocumentNumber.yaml#/components/schemas/referenceDocumentNumber
+        referencePredecessorInvoice:
+          $ref: >-
+            ../fields/bo/Invoice/referencePredecessorInvoice.yaml#/components/schemas/referencePredecessorInvoice
+        predecessorInvoiceDate:
+          $ref: >-
+            ../fields/bo/Invoice/predecessorInvoiceDate.yaml#/components/schemas/predecessorInvoiceDate
+        priceGridOperatorCodeNumber:
+          $ref: >-
+            ../fields/bo/Invoice/priceGridOperatorCodeNumber.yaml#/components/schemas/priceGridOperatorCodeNumber
+        gridAccount:
+          $ref: >-
+            ../fields/bo/Invoice/gridAccount.yaml#/components/schemas/gridAccount
+        prepaid:
+          $ref: ../fields/bo/Invoice/prepaid.yaml#/components/schemas/prepaid
+        municipalDiscount:
+          $ref: >-
+            ../fields/bo/Invoice/municipalDiscount.yaml#/components/schemas/municipalDiscount
+        executionDate:
+          $ref: >-
+            ../fields/bo/Invoice/executionDate.yaml#/components/schemas/executionDate
+        specialBillingType:
+          $ref: >-
+            ../fields/bo/Invoice/specialBillingType.yaml#/components/schemas/specialBillingType
+        specialBillingTypes:
+          $ref: >-
+            ../fields/bo/Invoice/specialBillingTypes.yaml#/components/schemas/specialBillingTypes
+        energyDirection:
+          $ref: >-
+            ../fields/bo/Invoice/energyDirection.yaml#/components/schemas/energyDirection
+        balancingPeriodStart:
+          $ref: >-
+            ../fields/bo/Invoice/balancingPeriodStart.yaml#/components/schemas/balancingPeriodStart
+        gridAccessPeriodEnd:
+          $ref: >-
+            ../fields/bo/Invoice/gridAccessPeriodEnd.yaml#/components/schemas/gridAccessPeriodEnd
+        taxAmounts:
+          $ref: ../fields/bo/Invoice/taxAmounts.yaml#/components/schemas/taxAmounts
+        invoicePositions:
+          $ref: >-
+            ../fields/bo/Invoice/invoicePositions.yaml#/components/schemas/invoicePositions

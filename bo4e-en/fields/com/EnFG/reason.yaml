@@ -1,0 +1,8 @@
+components:
+  schemas:
+    reason:
+      type: array
+      items:
+        $ref: >-
+          ../../../enum/BasisForLevyReductionReason.yaml#/components/schemas/BasisForLevyReductionReason
+      nullable: true

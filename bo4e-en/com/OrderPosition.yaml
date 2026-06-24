@@ -1,0 +1,62 @@
+components:
+  schemas:
+    OrderPosition:
+      title: OrderPosition
+      type: object
+      properties:
+        positionNumber:
+          $ref: >-
+            ../fields/com/OrderPosition/positionNumber.yaml#/components/schemas/positionNumber
+        offerPositionNumber:
+          $ref: >-
+            ../fields/com/OrderPosition/offerPositionNumber.yaml#/components/schemas/offerPositionNumber
+        energyCapture:
+          $ref: >-
+            ../fields/com/OrderPosition/energyCapture.yaml#/components/schemas/energyCapture
+        articleNumber:
+          $ref: >-
+            ../fields/com/OrderPosition/articleNumber.yaml#/components/schemas/articleNumber
+        positionAmount:
+          $ref: >-
+            ../fields/com/OrderPosition/positionAmount.yaml#/components/schemas/positionAmount
+        startDate:
+          $ref: >-
+            ../fields/com/OrderPosition/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: ../fields/com/OrderPosition/endDate.yaml#/components/schemas/endDate
+        isExisting:
+          $ref: >-
+            ../fields/com/OrderPosition/isExisting.yaml#/components/schemas/isExisting
+        obisNumber:
+          $ref: >-
+            ../fields/com/OrderPosition/obisNumber.yaml#/components/schemas/obisNumber
+        requestReason:
+          $ref: >-
+            ../fields/com/OrderPosition/requestReason.yaml#/components/schemas/requestReason
+        generalInformation:
+          $ref: >-
+            ../fields/com/OrderPosition/generalInformation.yaml#/components/schemas/generalInformation
+        discrepancyInfo:
+          $ref: >-
+            ../fields/com/OrderPosition/discrepancyInfo.yaml#/components/schemas/discrepancyInfo
+        definitionType:
+          $ref: >-
+            ../fields/com/OrderPosition/definitionType.yaml#/components/schemas/definitionType
+        locationId:
+          $ref: >-
+            ../fields/com/OrderPosition/locationId.yaml#/components/schemas/locationId
+        meterRegister:
+          $ref: >-
+            ../fields/com/OrderPosition/meterRegister.yaml#/components/schemas/meterRegister
+        endpointAddress:
+          $ref: >-
+            ../fields/com/OrderPosition/endpointAddress.yaml#/components/schemas/endpointAddress
+        certificateInformation:
+          $ref: >-
+            ../fields/com/OrderPosition/certificateInformation.yaml#/components/schemas/certificateInformation
+        wakeUpPort:
+          $ref: >-
+            ../fields/com/OrderPosition/wakeUpPort.yaml#/components/schemas/wakeUpPort
+        apnCommunicationData:
+          $ref: >-
+            ../fields/com/OrderPosition/apnCommunicationData.yaml#/components/schemas/apnCommunicationData

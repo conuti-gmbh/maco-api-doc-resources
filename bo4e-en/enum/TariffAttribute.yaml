@@ -1,0 +1,15 @@
+components:
+  schemas:
+    TariffAttribute:
+      title: TariffAttribute
+      type: string
+      enum:
+        - CONSTRUCTION_ELECTRICITY
+        - FIXED_PRICE
+        - HOUSE_LIGHT
+        - HEATING_ELECTRICITY
+        - COMBINATION
+        - ONLINE
+        - PACKAGE
+        - STANDARD
+        - PREPAYMENT

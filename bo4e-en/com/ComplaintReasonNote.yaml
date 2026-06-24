@@ -1,0 +1,21 @@
+components:
+  schemas:
+    ComplaintReasonNote:
+      title: ComplaintReasonNote
+      type: object
+      properties:
+        remark1:
+          $ref: >-
+            ../fields/com/ComplaintReasonNote/remark1.yaml#/components/schemas/remark1
+        remark2:
+          $ref: >-
+            ../fields/com/ComplaintReasonNote/remark2.yaml#/components/schemas/remark2
+        remark3:
+          $ref: >-
+            ../fields/com/ComplaintReasonNote/remark3.yaml#/components/schemas/remark3
+        remark4:
+          $ref: >-
+            ../fields/com/ComplaintReasonNote/remark4.yaml#/components/schemas/remark4
+        remark5:
+          $ref: >-
+            ../fields/com/ComplaintReasonNote/remark5.yaml#/components/schemas/remark5

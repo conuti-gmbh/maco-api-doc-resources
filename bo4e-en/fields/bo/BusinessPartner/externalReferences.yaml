@@ -1,0 +1,8 @@
+components:
+  schemas:
+    externalReferences:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/ExternalReference.yaml#/components/schemas/ExternalReference
+      nullable: true

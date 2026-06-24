@@ -1,0 +1,6 @@
+components:
+  schemas:
+    USAGE_PERIOD:
+      type: array
+      items:
+        $ref: ../../../bo/UsagePeriod.yaml#/components/schemas/UsagePeriod

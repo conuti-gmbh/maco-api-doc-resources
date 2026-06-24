@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: PI_55005
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55005:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55005__masterData'
+    PI_55005__masterData:
+      type: object
+      properties:
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55005__masterData__GRID_ACCESS_CONTRACT'
+    PI_55005__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractStart:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractStart.yaml#/components/schemas/contractStart
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        contractEnd:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractEnd.yaml#/components/schemas/contractEnd
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93

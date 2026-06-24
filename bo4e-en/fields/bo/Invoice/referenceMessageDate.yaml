@@ -1,0 +1,4 @@
+components:
+  schemas:
+    referenceMessageDate:
+      type: string

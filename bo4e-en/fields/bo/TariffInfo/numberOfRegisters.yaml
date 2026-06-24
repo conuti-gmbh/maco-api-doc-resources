@@ -1,0 +1,5 @@
+components:
+  schemas:
+    numberOfRegisters:
+      $ref: >-
+        ../../../enum/NumberOfRegisters.yaml#/components/schemas/NumberOfRegisters

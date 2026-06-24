@@ -1,0 +1,8 @@
+components:
+  schemas:
+    ProfileProcedure:
+      title: ProfileProcedure
+      type: string
+      enum:
+        - SYNTHETIC
+        - ANALYTICAL

@@ -1,0 +1,48 @@
+components:
+  schemas:
+    DeviceProperties:
+      title: DeviceProperties
+      type: object
+      properties:
+        deviceType:
+          $ref: >-
+            ../fields/com/DeviceProperties/deviceType.yaml#/components/schemas/deviceType
+        deviceAttribute:
+          $ref: >-
+            ../fields/com/DeviceProperties/deviceAttribute.yaml#/components/schemas/deviceAttribute
+        volumeCapture:
+          $ref: >-
+            ../fields/com/DeviceProperties/volumeCapture.yaml#/components/schemas/volumeCapture
+        serialNumber:
+          $ref: >-
+            ../fields/com/DeviceProperties/serialNumber.yaml#/components/schemas/serialNumber
+        manufacturingDate:
+          $ref: >-
+            ../fields/com/DeviceProperties/manufacturingDate.yaml#/components/schemas/manufacturingDate
+        yearOfConstruction:
+          $ref: >-
+            ../fields/com/DeviceProperties/yearOfConstruction.yaml#/components/schemas/yearOfConstruction
+        calibrationUntil:
+          $ref: >-
+            ../fields/com/DeviceProperties/calibrationUntil.yaml#/components/schemas/calibrationUntil
+        factor:
+          $ref: >-
+            ../fields/com/DeviceProperties/factor.yaml#/components/schemas/factor
+        firmwareVersion:
+          $ref: >-
+            ../fields/com/DeviceProperties/firmwareVersion.yaml#/components/schemas/firmwareVersion
+        manufacturerTypeDesignation:
+          $ref: >-
+            ../fields/com/DeviceProperties/manufacturerTypeDesignation.yaml#/components/schemas/manufacturerTypeDesignation
+        simCardNumber:
+          $ref: >-
+            ../fields/com/DeviceProperties/simCardNumber.yaml#/components/schemas/simCardNumber
+        modemIdentifierIMSI:
+          $ref: >-
+            ../fields/com/DeviceProperties/modemIdentifierIMSI.yaml#/components/schemas/modemIdentifierIMSI
+        telecommunicationsProvider:
+          $ref: >-
+            ../fields/com/DeviceProperties/telecommunicationsProvider.yaml#/components/schemas/telecommunicationsProvider
+        ipVersion:
+          $ref: >-
+            ../fields/com/DeviceProperties/ipVersion.yaml#/components/schemas/ipVersion

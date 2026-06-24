@@ -1,0 +1,44 @@
+components:
+  schemas:
+    PriceSheet:
+      title: PriceSheet
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/PriceSheet.json
+      properties:
+        boType:
+          $ref: ../fields/bo/PriceSheet/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/PriceSheet/structureVersion.yaml#/components/schemas/structureVersion
+        designation:
+          $ref: >-
+            ../fields/bo/PriceSheet/designation.yaml#/components/schemas/designation
+        validity:
+          $ref: ../fields/bo/PriceSheet/validity.yaml#/components/schemas/validity
+        priceStatus:
+          $ref: >-
+            ../fields/bo/PriceSheet/priceStatus.yaml#/components/schemas/priceStatus
+        sector:
+          $ref: ../fields/bo/PriceSheet/sector.yaml#/components/schemas/sector
+        priceGridOperatorCodeNumber:
+          $ref: >-
+            ../fields/bo/PriceSheet/priceGridOperatorCodeNumber.yaml#/components/schemas/priceGridOperatorCodeNumber
+        balancingDate:
+          $ref: >-
+            ../fields/bo/PriceSheet/balancingDate.yaml#/components/schemas/balancingDate
+        controlZone:
+          $ref: >-
+            ../fields/bo/PriceSheet/controlZone.yaml#/components/schemas/controlZone
+        performanceType:
+          $ref: >-
+            ../fields/bo/PriceSheet/performanceType.yaml#/components/schemas/performanceType
+        notUsed:
+          $ref: ../fields/bo/PriceSheet/notUsed.yaml#/components/schemas/notUsed
+        pricePositions:
+          $ref: >-
+            ../fields/bo/PriceSheet/pricePositions.yaml#/components/schemas/pricePositions

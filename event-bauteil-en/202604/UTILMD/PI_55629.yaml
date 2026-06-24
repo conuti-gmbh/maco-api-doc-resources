@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: PI_55629
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55629:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55629__masterData'
+      required:
+      - masterData
+    PI_55629__masterData:
+      type: object
+      properties:
+        TECHNICAL_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55629__masterData__TECHNICAL_RESOURCE'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55629__masterData__USAGE_PERIOD'
+      required:
+      - TECHNICAL_RESOURCE
+      - USAGE_PERIOD
+    PI_55629__masterData__TECHNICAL_RESOURCE:
+      type: object
+      properties:
+        kind:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/kind.yaml#/components/schemas/kind
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56]
+        typeElectricMobility:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/typeElectricMobility.yaml#/components/schemas/typeElectricMobility
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+        enwg:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/enwg.yaml#/components/schemas/enwg
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZG8|ZG9]
+        generationType:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/generationType.yaml#/components/schemas/generationType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF5|ZF6|ZG0|ZG1|ZG5]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55629__masterData__TECHNICAL_RESOURCE__validityPeriod'
+        ratedPower:
+          $ref: '#/components/schemas/PI_55629__masterData__TECHNICAL_RESOURCE__ratedPower'
+        referenceGridLocation:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/referenceGridLocation.yaml#/components/schemas/referenceGridLocation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z32
+        referenceControllableResource:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/referenceControllableResource.yaml#/components/schemas/referenceControllableResource
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.RFF+Z38
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+        storageType:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/storageType.yaml#/components/schemas/storageType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[ZF7|ZF8|ZF9|ZG6]
+        storageCapacity:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/storageCapacity.yaml#/components/schemas/storageCapacity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z42
+        consumptionType:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/consumptionType.yaml#/components/schemas/consumptionType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV+[Z64|Z65|ZE5|ZA8]
+        heatUsage:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/heatUsage.yaml#/components/schemas/heatUsage
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+[Z17|Z50|Z56].CAV
+        additionalFacility:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/additionalFacility.yaml#/components/schemas/additionalFacility
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+Z63.CAV+[ZH7|ZH8]
+      required:
+      - kind
+      - dataQuality
+      - validityPeriod
+      - ratedPower
+      - resourceId
+      - storageCapacity
+      - additionalFacility
+    PI_55629__masterData__TECHNICAL_RESOURCE__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+      required:
+      - periodId
+    PI_55629__masterData__TECHNICAL_RESOURCE__ratedPower:
+      type: object
+      properties:
+        levy:
+          $ref: ../../../bo4e-en/fields/com/RatedPower/levy.yaml#/components/schemas/levy
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z44
+        intake:
+          $ref: ../../../bo4e-en/fields/com/RatedPower/intake.yaml#/components/schemas/intake
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG9.QTY+Z43
+      required:
+      - levy
+      - intake
+    PI_55629__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

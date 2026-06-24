@@ -1,0 +1,4 @@
+components:
+  schemas:
+    certificateUser4:
+      type: string

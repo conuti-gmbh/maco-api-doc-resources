@@ -1,0 +1,12 @@
+components:
+  schemas:
+    UsagePeriodQuality:
+      title: UsagePeriodQuality
+      type: string
+      enum:
+        - DATA_PRESENT_IN_SYSTEM
+        - EXPECTED_DATA
+        - VALID_DATA
+        - NO_DATA
+        - NO_DATA_PRESENT_IN_SYSTEM
+        - NO_DATA_EXPECTED

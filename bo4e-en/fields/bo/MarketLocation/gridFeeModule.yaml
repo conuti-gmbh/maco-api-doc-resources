@@ -1,0 +1,4 @@
+components:
+  schemas:
+    gridFeeModule:
+      $ref: ../../../enum/GridFeeModule.yaml#/components/schemas/GridFeeModule

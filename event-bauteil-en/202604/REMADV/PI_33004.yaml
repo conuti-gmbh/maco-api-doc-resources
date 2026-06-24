@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: PI_33004
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_33004:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_33004__masterData'
+      required:
+      - masterData
+    PI_33004__masterData:
+      type: object
+      properties:
+        ADVICE_NOTE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE'
+      required:
+      - ADVICE_NOTE
+    PI_33004__masterData__ADVICE_NOTE:
+      type: object
+      properties:
+        adviceNoteNumber:
+          $ref: ../../../bo4e-en/fields/bo/AdviceNote/adviceNoteNumber.yaml#/components/schemas/adviceNoteNumber
+          x-edifact-segment:
+          - BGM+239
+        adviceNoteType:
+          $ref: ../../../bo4e-en/fields/bo/AdviceNote/adviceNoteType.yaml#/components/schemas/adviceNoteType
+          x-edifact-segment:
+          - BGM+239
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE__positions'
+        toPay:
+          $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE__toPay'
+      required:
+      - adviceNoteNumber
+      - adviceNoteType
+      - positions
+      - toPay
+    PI_33004__masterData__ADVICE_NOTE__positions:
+      type: object
+      properties:
+        totalGross:
+          $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE__positions__totalGross'
+        isSelfIssued:
+          $ref: ../../../bo4e-en/fields/com/AdviceNotePosition/isSelfIssued.yaml#/components/schemas/isSelfIssued
+          x-edifact-segment:
+          - SG5.DOC
+        isCancellation:
+          $ref: ../../../bo4e-en/fields/com/AdviceNotePosition/isCancellation.yaml#/components/schemas/isCancellation
+          x-edifact-segment:
+          - SG5.DOC
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE__positions__positions'
+        billingDate:
+          $ref: ../../../bo4e-en/fields/com/AdviceNotePosition/billingDate.yaml#/components/schemas/billingDate
+          x-edifact-segment:
+          - SG5.DOC.DTM+137
+        invoiceNumber:
+          $ref: ../../../bo4e-en/fields/com/AdviceNotePosition/invoiceNumber.yaml#/components/schemas/invoiceNumber
+          x-edifact-segment:
+          - SG5.DOC
+        reference:
+          $ref: ../../../bo4e-en/fields/com/AdviceNotePosition/reference.yaml#/components/schemas/reference
+          x-edifact-segment:
+          - SG5.DOC.RFF+ACW
+        toPay:
+          $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE__positions__toPay'
+      required:
+      - totalGross
+      - isSelfIssued
+      - isCancellation
+      - positions
+      - billingDate
+      - invoiceNumber
+      - toPay
+    PI_33004__masterData__ADVICE_NOTE__positions__totalGross:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG5.DOC.MOA+12
+      required:
+      - value
+    PI_33004__masterData__ADVICE_NOTE__positions__positions:
+      type: object
+      properties:
+        discrepancy:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_33004__masterData__ADVICE_NOTE__positions__positions__discrepancy'
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/FeedbackPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1
+      required:
+      - discrepancy
+      - positionNumber
+    PI_33004__masterData__ADVICE_NOTE__positions__positions__discrepancy:
+      type: object
+      properties:
+        discrepancyReasonNote1:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonNote1.yaml#/components/schemas/discrepancyReasonNote1
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        discrepancyReasonNote2:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonNote2.yaml#/components/schemas/discrepancyReasonNote2
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        discrepancyReasonNote3:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonNote3.yaml#/components/schemas/discrepancyReasonNote3
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        discrepancyReasonNote4:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonNote4.yaml#/components/schemas/discrepancyReasonNote4
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        discrepancyReasonNote5:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonNote5.yaml#/components/schemas/discrepancyReasonNote5
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.FTX+ABO
+        discrepancyReasonCode:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonCode.yaml#/components/schemas/discrepancyReasonCode
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT
+        discrepancyReasonCodeList:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/discrepancyReasonCodeList.yaml#/components/schemas/discrepancyReasonCodeList
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT
+        reference:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/reference.yaml#/components/schemas/reference
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.RFF+AFL
+        associatedInvoice:
+          $ref: ../../../bo4e-en/fields/com/Discrepancy/associatedInvoice.yaml#/components/schemas/associatedInvoice
+          x-edifact-segment:
+          - SG5.DOC.SG10.DLI+1.SG12.AJT.RFF+AFL
+      required:
+      - discrepancyReasonCode
+      - discrepancyReasonCodeList
+    PI_33004__masterData__ADVICE_NOTE__positions__toPay:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG5.DOC.MOA+9
+      required:
+      - value
+    PI_33004__masterData__ADVICE_NOTE__toPay:
+      type: object
+      properties:
+        currency:
+          $ref: ../../../bo4e-en/fields/com/Amount/currency.yaml#/components/schemas/currency
+          x-edifact-segment:
+          - SG4.CUX+2
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - MOA+12
+      required:
+      - currency
+      - value

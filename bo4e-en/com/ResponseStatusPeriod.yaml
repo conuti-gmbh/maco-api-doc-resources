@@ -1,0 +1,18 @@
+components:
+  schemas:
+    ResponseStatusPeriod:
+      title: ResponseStatusPeriod
+      type: object
+      properties:
+        code:
+          $ref: >-
+            ../fields/com/ResponseStatusPeriod/code.yaml#/components/schemas/code
+        list:
+          $ref: >-
+            ../fields/com/ResponseStatusPeriod/list.yaml#/components/schemas/list
+        periodId:
+          $ref: >-
+            ../fields/com/ResponseStatusPeriod/periodId.yaml#/components/schemas/periodId
+        freeText:
+          $ref: >-
+            ../fields/com/ResponseStatusPeriod/freeText.yaml#/components/schemas/freeText

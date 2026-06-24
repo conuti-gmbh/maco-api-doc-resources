@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: PI_55647
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55647:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55647__masterData'
+      required:
+      - masterData
+    PI_55647__masterData:
+      type: object
+      properties:
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55647__masterData__TRANCHE'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55647__masterData__USAGE_PERIOD'
+      required:
+      - TRANCHE
+      - USAGE_PERIOD
+    PI_55647__masterData__TRANCHE:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z99|ZA0]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55647__masterData__TRANCHE__validityPeriod'
+        trancheId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55647__masterData__TRANCHE__meterRegisters'
+      required:
+      - dataQuality
+      - validityPeriod
+      - trancheId
+      - meterRegisters
+    PI_55647__masterData__TRANCHE__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z99|ZA0]
+      required:
+      - periodId
+    PI_55647__masterData__TRANCHE__meterRegisters:
+      type: object
+      properties:
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z99|ZA0].PIA+5
+        purposesOfUse:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55647__masterData__TRANCHE__meterRegisters__purposesOfUse'
+      required:
+      - obisCode
+      - purposesOfUse
+    PI_55647__masterData__TRANCHE__meterRegisters__purposesOfUse:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z99|ZA0].SG10.CCI+++ZA8.CAV
+        purpose:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z99|ZA0].SG10.CCI+++ZA8.CAV
+      required:
+      - marketRole
+      - purpose
+    PI_55647__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

@@ -1,0 +1,38 @@
+components:
+  schemas:
+    EnergyMix:
+      title: EnergyMix
+      type: object
+      properties:
+        share:
+          $ref: ../fields/com/EnergyMix/share.yaml#/components/schemas/share
+        nuclearWaste:
+          $ref: >-
+            ../fields/com/EnergyMix/nuclearWaste.yaml#/components/schemas/nuclearWaste
+        remark:
+          $ref: ../fields/com/EnergyMix/remark.yaml#/components/schemas/remark
+        designation:
+          $ref: >-
+            ../fields/com/EnergyMix/designation.yaml#/components/schemas/designation
+        co2Emission:
+          $ref: >-
+            ../fields/com/EnergyMix/co2Emission.yaml#/components/schemas/co2Emission
+        energyType:
+          $ref: >-
+            ../fields/com/EnergyMix/energyType.yaml#/components/schemas/energyType
+        energyMixNumber:
+          $ref: >-
+            ../fields/com/EnergyMix/energyMixNumber.yaml#/components/schemas/energyMixNumber
+        validityYear:
+          $ref: >-
+            ../fields/com/EnergyMix/validityYear.yaml#/components/schemas/validityYear
+        isInEcoTopTen:
+          $ref: >-
+            ../fields/com/EnergyMix/isInEcoTopTen.yaml#/components/schemas/isInEcoTopTen
+        ecoLabel:
+          $ref: ../fields/com/EnergyMix/ecoLabel.yaml#/components/schemas/ecoLabel
+        ecoCertificates:
+          $ref: >-
+            ../fields/com/EnergyMix/ecoCertificates.yaml#/components/schemas/ecoCertificates
+        website:
+          $ref: ../fields/com/EnergyMix/website.yaml#/components/schemas/website

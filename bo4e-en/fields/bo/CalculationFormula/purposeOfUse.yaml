@@ -1,0 +1,7 @@
+components:
+  schemas:
+    purposeOfUse:
+      type: array
+      items:
+        $ref: ../../../com/PurposeOfUse.yaml#/components/schemas/PurposeOfUse
+      nullable: true

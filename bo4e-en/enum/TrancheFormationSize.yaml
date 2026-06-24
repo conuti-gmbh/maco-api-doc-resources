@@ -1,0 +1,10 @@
+components:
+  schemas:
+    TrancheFormationSize:
+      title: TrancheFormationSize
+      type: string
+      enum:
+        - PERCENTAGE
+        - ALLOCATION_FACTOR
+        - ALLOCATION_TECHNICAL_RESOURCES
+        - CALCULATION_FORMULA

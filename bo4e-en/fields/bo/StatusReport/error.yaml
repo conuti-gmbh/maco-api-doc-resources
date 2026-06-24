@@ -1,0 +1,4 @@
+components:
+  schemas:
+    error:
+      $ref: ../../../com/Error.yaml#/components/schemas/Error

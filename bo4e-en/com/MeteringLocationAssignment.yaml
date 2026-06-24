@@ -1,0 +1,18 @@
+components:
+  schemas:
+    MeteringLocationAssignment:
+      title: MeteringLocationAssignment
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: >-
+            ../fields/com/MeteringLocationAssignment/meteringLocationId.yaml#/components/schemas/meteringLocationId
+        arithmetic:
+          $ref: >-
+            ../fields/com/MeteringLocationAssignment/arithmetic.yaml#/components/schemas/arithmetic
+        validSince:
+          $ref: >-
+            ../fields/com/MeteringLocationAssignment/validSince.yaml#/components/schemas/validSince
+        validTo:
+          $ref: >-
+            ../fields/com/MeteringLocationAssignment/validTo.yaml#/components/schemas/validTo

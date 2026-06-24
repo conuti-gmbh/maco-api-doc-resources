@@ -1,0 +1,29 @@
+components:
+  schemas:
+    PerformanceType:
+      title: PerformanceType
+      type: string
+      enum:
+        - ENERGY_PRICE_ACTIVE_ENERGY
+        - POWER_PRICE_ACTIVE_POWER
+        - ENERGY_PRICE_REACTIVE_ENERGY_INDUCTIVE
+        - ENERGY_PRICE_REACTIVE_ENERGY_CAPACITIVE
+        - BASE_PRICE
+        - MORE_LESS_QUANTITY
+        - METERING_POINT_OPERATION
+        - METERING_SERVICE
+        - METERING_SERVICE_INCLUDING_MEASUREMENT
+        - BILLING
+        - CONCESSION_LEVY
+        - CHP_LEVY
+        - OFFSHORE_LEVY
+        - ABLAV_LEVY
+        - BALANCING_ENERGY_LEVY
+        - BALANCING_LEVY
+        - READOUT_ADDITIONAL
+        - READING_ADDITIONAL
+        - BILLING_ADDITIONAL
+        - LOCKING
+        - UNLOCKING
+        - REMINDER_COSTS
+        - COLLECTION_COSTS

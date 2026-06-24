@@ -1,0 +1,4 @@
+components:
+  schemas:
+    partnerAddress:
+      $ref: ../../../com/Address.yaml#/components/schemas/Address

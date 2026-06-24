@@ -1,0 +1,4 @@
+components:
+  schemas:
+    supplyType:
+      $ref: ../../../enum/SupplyType.yaml#/components/schemas/SupplyType

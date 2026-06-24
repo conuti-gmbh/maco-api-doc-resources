@@ -1,0 +1,5 @@
+components:
+  schemas:
+    necessitySecondMeasurement:
+      $ref: >-
+        ../../../enum/NecessitySecondMeasurement.yaml#/components/schemas/NecessitySecondMeasurement

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    ratedPower:
+      $ref: ../../../com/RatedPower.yaml#/components/schemas/RatedPower

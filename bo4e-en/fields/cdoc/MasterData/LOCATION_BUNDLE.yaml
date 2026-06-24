@@ -1,0 +1,6 @@
+components:
+  schemas:
+    LOCATION_BUNDLE:
+      type: array
+      items:
+        $ref: ../../../bo/LocationBundle.yaml#/components/schemas/LocationBundle

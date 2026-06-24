@@ -1,0 +1,5 @@
+components:
+  schemas:
+    ediReceiptDate:
+      type: string
+      format: date-time

@@ -1,0 +1,66 @@
+components:
+  schemas:
+    BusinessPartner:
+      title: BusinessPartner
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/BusinessPartner.json
+      properties:
+        boType:
+          $ref: ../fields/bo/BusinessPartner/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/BusinessPartner/structureVersion.yaml#/components/schemas/structureVersion
+        salutation:
+          $ref: >-
+            ../fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+        name1:
+          $ref: ../fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+        name2:
+          $ref: ../fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+        name3:
+          $ref: ../fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+        name4:
+          $ref: ../fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+        vatId:
+          $ref: ../fields/bo/BusinessPartner/vatId.yaml#/components/schemas/vatId
+        creditorId:
+          $ref: >-
+            ../fields/bo/BusinessPartner/creditorId.yaml#/components/schemas/creditorId
+        emailAddress:
+          $ref: >-
+            ../fields/bo/BusinessPartner/emailAddress.yaml#/components/schemas/emailAddress
+        website:
+          $ref: >-
+            ../fields/bo/BusinessPartner/website.yaml#/components/schemas/website
+        commercialClassification:
+          $ref: >-
+            ../fields/bo/BusinessPartner/commercialClassification.yaml#/components/schemas/commercialClassification
+        commercialRegisterNumber:
+          $ref: >-
+            ../fields/bo/BusinessPartner/commercialRegisterNumber.yaml#/components/schemas/commercialRegisterNumber
+        courtOfRegistration:
+          $ref: >-
+            ../fields/bo/BusinessPartner/courtOfRegistration.yaml#/components/schemas/courtOfRegistration
+        partnerAddress:
+          $ref: >-
+            ../fields/bo/BusinessPartner/partnerAddress.yaml#/components/schemas/partnerAddress
+        externalCustomerNumberSupplier:
+          $ref: >-
+            ../fields/bo/BusinessPartner/externalCustomerNumberSupplier.yaml#/components/schemas/externalCustomerNumberSupplier
+        externalReferences:
+          $ref: >-
+            ../fields/bo/BusinessPartner/externalReferences.yaml#/components/schemas/externalReferences
+        businessPartnerRole:
+          $ref: >-
+            ../fields/bo/BusinessPartner/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+        contactChannel:
+          $ref: >-
+            ../fields/bo/BusinessPartner/contactChannel.yaml#/components/schemas/contactChannel
+        contactPerson:
+          $ref: >-
+            ../fields/bo/BusinessPartner/contactPerson.yaml#/components/schemas/contactPerson

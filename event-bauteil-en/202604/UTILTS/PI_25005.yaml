@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: PI_25005
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_25005:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_25005__masterData'
+      required:
+      - masterData
+    PI_25005__masterData:
+      type: object
+      properties:
+        METERING_TIME_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25005__masterData__METERING_TIME_DEFINITION'
+      required:
+      - METERING_TIME_DEFINITION
+    PI_25005__masterData__METERING_TIME_DEFINITION:
+      type: object
+      properties:
+        beginDate:
+          $ref: ../../../bo4e-en/fields/bo/MeteringTimeDefinition/beginDate.yaml#/components/schemas/beginDate
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+Z34
+        code:
+          $ref: ../../../bo4e-en/fields/bo/MeteringTimeDefinition/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG5.IDE+24.LOC+Z09
+        closingDate:
+          $ref: ../../../bo4e-en/fields/bo/MeteringTimeDefinition/closingDate.yaml#/components/schemas/closingDate
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+Z35
+        version:
+          $ref: ../../../bo4e-en/fields/bo/MeteringTimeDefinition/version.yaml#/components/schemas/version
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+293
+        meteringTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25005__masterData__METERING_TIME_DEFINITION__meteringTimes'
+      required:
+      - beginDate
+      - code
+      - version
+      - meteringTimes
+    PI_25005__masterData__METERING_TIME_DEFINITION__meteringTimes:
+      type: object
+      properties:
+        changeTimestamp:
+          $ref: ../../../bo4e-en/fields/com/MeteringTime/changeTimestamp.yaml#/components/schemas/changeTimestamp
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z43.DTM+Z33
+        frequency:
+          $ref: ../../../bo4e-en/fields/com/MeteringTime/frequency.yaml#/components/schemas/frequency
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z43.DTM+Z33
+        register:
+          $ref: ../../../bo4e-en/fields/com/MeteringTime/register.yaml#/components/schemas/register
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z43.RFF+Z28
+      required:
+      - changeTimestamp
+      - frequency
+      - register

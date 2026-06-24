@@ -1,0 +1,71 @@
+openapi: 3.1.0
+info:
+  title: PI_44151
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_44151:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_44151__masterData'
+      required:
+      - masterData
+    PI_44151__masterData:
+      type: object
+      properties:
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44151__masterData__BALANCING'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44151__masterData__MARKET_LOCATION'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44151__masterData__GRID_ACCESS_CONTRACT'
+      required:
+      - BALANCING
+      - MARKET_LOCATION
+      - GRID_ACCESS_CONTRACT
+    PI_44151__masterData__BALANCING:
+      type: object
+      properties:
+        balancingGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44151__masterData__BALANCING__balancingGroups'
+      required:
+      - balancingGroups
+    PI_44151__masterData__BALANCING__balancingGroups:
+      type: object
+      properties:
+        designation:
+          $ref: ../../../bo4e-en/fields/bo/BalancingGroup/designation.yaml#/components/schemas/designation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z19
+      required:
+      - designation
+    PI_44151__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+172
+      required:
+      - marketLocationId
+    PI_44151__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractStart:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractStart.yaml#/components/schemas/contractStart
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+      required:
+      - contractStart

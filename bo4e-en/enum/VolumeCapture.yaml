@@ -1,0 +1,9 @@
+components:
+  schemas:
+    VolumeCapture:
+      title: VolumeCapture
+      type: string
+      enum:
+        - HIGH_FREQUENCY_PROBE
+        - CHARACTERISTIC_CURVE_CORRECTION
+        - CREEP_QUANTITY_SUPPRESSION

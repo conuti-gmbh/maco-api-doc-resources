@@ -1,0 +1,4 @@
+components:
+  schemas:
+    isReverseCharge:
+      type: boolean

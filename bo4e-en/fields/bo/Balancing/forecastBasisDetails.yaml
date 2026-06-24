@@ -1,0 +1,7 @@
+components:
+  schemas:
+    forecastBasisDetails:
+      type: array
+      items:
+        $ref: ../../../enum/ProfileSubtype.yaml#/components/schemas/ProfileSubtype
+      nullable: true

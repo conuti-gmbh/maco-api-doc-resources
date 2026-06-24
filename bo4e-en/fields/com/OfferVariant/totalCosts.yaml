@@ -1,0 +1,4 @@
+components:
+  schemas:
+    totalCosts:
+      $ref: ../../../com/Amount.yaml#/components/schemas/Amount

@@ -1,0 +1,10 @@
+components:
+  schemas:
+    StorageType:
+      title: StorageType
+      type: string
+      enum:
+        - HYDROGEN_STORAGE
+        - PUMPED_STORAGE
+        - BATTERY_STORAGE
+        - OTHER_STORAGE_TYPE

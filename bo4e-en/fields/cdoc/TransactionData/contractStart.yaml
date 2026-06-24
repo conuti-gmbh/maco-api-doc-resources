@@ -1,0 +1,5 @@
+components:
+  schemas:
+    contractStart:
+      type: string
+      format: date-time

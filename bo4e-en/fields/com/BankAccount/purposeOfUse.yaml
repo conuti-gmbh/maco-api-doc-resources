@@ -1,0 +1,5 @@
+components:
+  schemas:
+    purposeOfUse:
+      $ref: >-
+        ../../../enum/BankAccountPurposeOfUse.yaml#/components/schemas/BankAccountPurposeOfUse

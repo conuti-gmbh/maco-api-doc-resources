@@ -1,0 +1,5 @@
+components:
+  schemas:
+    descriptionFormat:
+      $ref: >-
+        ../../../enum/DescriptionFormat.yaml#/components/schemas/DescriptionFormat

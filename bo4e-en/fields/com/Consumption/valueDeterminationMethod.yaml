@@ -1,0 +1,5 @@
+components:
+  schemas:
+    valueDeterminationMethod:
+      $ref: >-
+        ../../../enum/ValueDeterminationMethod.yaml#/components/schemas/ValueDeterminationMethod

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    basisForLevyReduction:
+      $ref: >-
+        ../../../enum/BasisForLevyReduction.yaml#/components/schemas/BasisForLevyReduction

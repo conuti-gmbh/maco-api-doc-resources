@@ -1,0 +1,15 @@
+components:
+  schemas:
+    MarketLocationTyping:
+      title: MarketLocationTyping
+      type: object
+      properties:
+        typeValue:
+          $ref: >-
+            ../fields/com/MarketLocationTyping/typeValue.yaml#/components/schemas/typeValue
+        validFrom:
+          $ref: >-
+            ../fields/com/MarketLocationTyping/validFrom.yaml#/components/schemas/validFrom
+        validTo:
+          $ref: >-
+            ../fields/com/MarketLocationTyping/validTo.yaml#/components/schemas/validTo

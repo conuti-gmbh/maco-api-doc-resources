@@ -1,0 +1,7 @@
+components:
+  schemas:
+    customerTypes:
+      type: array
+      items:
+        $ref: ../../../enum/CustomerType.yaml#/components/schemas/CustomerType
+      nullable: true

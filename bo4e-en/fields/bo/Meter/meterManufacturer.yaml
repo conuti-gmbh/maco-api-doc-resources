@@ -1,0 +1,4 @@
+components:
+  schemas:
+    meterManufacturer:
+      $ref: ../../../bo/BusinessPartner.yaml#/components/schemas/BusinessPartner

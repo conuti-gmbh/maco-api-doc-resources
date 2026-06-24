@@ -1,0 +1,8 @@
+components:
+  schemas:
+    OffPeakCapable:
+      title: OffPeakCapable
+      type: string
+      enum:
+        - OFF_PEAK_CAPABLE
+        - NOT_OFF_PEAK_CAPABLE

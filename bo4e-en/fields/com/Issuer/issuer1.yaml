@@ -1,0 +1,4 @@
+components:
+  schemas:
+    issuer1:
+      type: string

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offerGiver:
+      $ref: ../../../bo/BusinessPartner.yaml#/components/schemas/BusinessPartner

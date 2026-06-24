@@ -1,0 +1,5 @@
+components:
+  schemas:
+    certificateInformation:
+      $ref: >-
+        ../../../com/CertificateInformation.yaml#/components/schemas/CertificateInformation

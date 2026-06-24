@@ -1,0 +1,27 @@
+components:
+  schemas:
+    QuantityUnit:
+      title: QuantityUnit
+      type: string
+      enum:
+        - W
+        - WH
+        - KW
+        - KWH
+        - KVARH
+        - MW
+        - MWH
+        - PIECE
+        - CUBIC_METER
+        - HOUR
+        - DAY
+        - MONTH
+        - YEAR
+        - PERCENT
+        - COUNT
+        - VAR
+        - KVAR
+        - VARH
+        - KWHK
+        - Z16
+        - KWT

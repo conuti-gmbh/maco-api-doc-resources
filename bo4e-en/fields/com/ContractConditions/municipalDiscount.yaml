@@ -1,0 +1,5 @@
+components:
+  schemas:
+    municipalDiscount:
+      $ref: >-
+        ../../../com/MunicipalDiscount.yaml#/components/schemas/MunicipalDiscount

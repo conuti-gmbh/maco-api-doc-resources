@@ -1,0 +1,15 @@
+components:
+  schemas:
+    TimeIntervalQuantity:
+      title: TimeIntervalQuantity
+      type: object
+      properties:
+        usageFrom:
+          $ref: >-
+            ../fields/com/TimeIntervalQuantity/usageFrom.yaml#/components/schemas/usageFrom
+        usageTo:
+          $ref: >-
+            ../fields/com/TimeIntervalQuantity/usageTo.yaml#/components/schemas/usageTo
+        amount:
+          $ref: >-
+            ../fields/com/TimeIntervalQuantity/amount.yaml#/components/schemas/amount

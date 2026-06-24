@@ -1,0 +1,9 @@
+components:
+  schemas:
+    TechnicalResourceType:
+      title: TechnicalResourceType
+      type: string
+      enum:
+        - ELECTRICITY_GENERATION
+        - ELECTRICITY_CONSUMPTION
+        - STORAGE

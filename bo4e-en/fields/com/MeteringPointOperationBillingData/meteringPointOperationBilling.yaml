@@ -1,0 +1,4 @@
+components:
+  schemas:
+    meteringPointOperationBilling:
+      type: boolean

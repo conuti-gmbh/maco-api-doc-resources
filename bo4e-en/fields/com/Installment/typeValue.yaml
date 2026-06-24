@@ -1,0 +1,4 @@
+components:
+  schemas:
+    typeValue:
+      $ref: ../../../enum/InstallmentType.yaml#/components/schemas/InstallmentType

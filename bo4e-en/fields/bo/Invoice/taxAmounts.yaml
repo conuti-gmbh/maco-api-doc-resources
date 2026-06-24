@@ -1,0 +1,7 @@
+components:
+  schemas:
+    taxAmounts:
+      type: array
+      items:
+        $ref: ../../../com/TaxAmount.yaml#/components/schemas/TaxAmount
+      nullable: true

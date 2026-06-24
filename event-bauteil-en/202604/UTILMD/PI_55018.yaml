@@ -1,0 +1,42 @@
+openapi: 3.1.0
+info:
+  title: PI_55018
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55018:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55018__masterData'
+    PI_55018__masterData:
+      type: object
+      properties:
+        ENERGY_SUPPLY_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55018__masterData__ENERGY_SUPPLY_CONTRACT'
+    PI_55018__masterData__ENERGY_SUPPLY_CONTRACT:
+      type: object
+      properties:
+        contractConditions:
+          $ref: '#/components/schemas/PI_55018__masterData__ENERGY_SUPPLY_CONTRACT__contractConditions'
+    PI_55018__masterData__ENERGY_SUPPLY_CONTRACT__contractConditions:
+      type: object
+      properties:
+        terminationNotice:
+          $ref: '#/components/schemas/PI_55018__masterData__ENERGY_SUPPLY_CONTRACT__contractConditions__terminationNotice'
+        terminationDate:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/terminationDate.yaml#/components/schemas/terminationDate
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+Z10
+    PI_55018__masterData__ENERGY_SUPPLY_CONTRACT__contractConditions__terminationNotice:
+      type: object
+      properties:
+        periodText:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodText.yaml#/components/schemas/periodText
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+Z01

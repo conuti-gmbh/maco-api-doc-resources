@@ -1,0 +1,21 @@
+components:
+  schemas:
+    GeneralInformation:
+      title: GeneralInformation
+      type: object
+      properties:
+        info1:
+          $ref: >-
+            ../fields/com/GeneralInformation/info1.yaml#/components/schemas/info1
+        info2:
+          $ref: >-
+            ../fields/com/GeneralInformation/info2.yaml#/components/schemas/info2
+        info3:
+          $ref: >-
+            ../fields/com/GeneralInformation/info3.yaml#/components/schemas/info3
+        info4:
+          $ref: >-
+            ../fields/com/GeneralInformation/info4.yaml#/components/schemas/info4
+        info5:
+          $ref: >-
+            ../fields/com/GeneralInformation/info5.yaml#/components/schemas/info5

@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: PI_15001
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_15001:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_15001__masterData'
+      required:
+      - masterData
+    PI_15001__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__REQUEST'
+        OFFER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__OFFER'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__METERING_LOCATION'
+        METER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__METER'
+      required:
+      - REQUEST
+      - OFFER
+      - METERING_LOCATION
+      - METER
+    PI_15001__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++[Z07|Z08]
+      required:
+      - requestType
+    PI_15001__masterData__OFFER:
+      type: object
+      properties:
+        requestReference:
+          $ref: ../../../bo4e-en/fields/bo/Offer/requestReference.yaml#/components/schemas/requestReference
+          x-edifact-segment:
+          - SG1.RFF+AAV
+        offerDate:
+          $ref: ../../../bo4e-en/fields/bo/Offer/offerDate.yaml#/components/schemas/offerDate
+          x-edifact-segment:
+          - DTM+76
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__OFFER__positionData'
+      required:
+      - requestReference
+      - offerDate
+      - positionData
+    PI_15001__masterData__OFFER__positionData:
+      type: object
+      properties:
+        offerable:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/offerable.yaml#/components/schemas/offerable
+          x-edifact-segment:
+          - SG27.LIN.IMD++Z09
+        articleNumber:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/articleNumber.yaml#/components/schemas/articleNumber
+          x-edifact-segment:
+          - SG27.LIN
+          - SG27.LIN.DTM+[94|Z03]
+          - SG27.LIN.GIN+BN
+          - SG27.LIN.SG32.RFF+Z09
+        involvedMarketPartner:
+          $ref: '#/components/schemas/PI_15001__masterData__OFFER__positionData__involvedMarketPartner'
+        freeText:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/freeText.yaml#/components/schemas/freeText
+          x-edifact-segment:
+          - SG27.LIN.FTX+ACB
+        positionDesignation:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/positionDesignation.yaml#/components/schemas/positionDesignation
+          x-edifact-segment:
+          - SG27.LIN
+        positionPrice:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__OFFER__positionData__positionPrice'
+        referenceCatalogNumber:
+          $ref: '#/components/schemas/PI_15001__masterData__OFFER__positionData__referenceCatalogNumber'
+      required:
+      - articleNumber
+      - involvedMarketPartner
+      - positionDesignation
+      - positionPrice
+      - referenceCatalogNumber
+    PI_15001__masterData__OFFER__positionData__involvedMarketPartner:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG27.LIN.SG42.NAD+VY
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG27.LIN.SG42.NAD+VY
+      required:
+      - roleCodeNumber
+      - roleCodeType
+    PI_15001__masterData__OFFER__positionData__positionPrice:
+      type: object
+      properties:
+        referenceValue:
+          $ref: ../../../bo4e-en/fields/com/Price/referenceValue.yaml#/components/schemas/referenceValue
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+        amount:
+          $ref: ../../../bo4e-en/fields/com/Price/amount.yaml#/components/schemas/amount
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+        value:
+          $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+      required:
+      - referenceValue
+      - amount
+      - value
+    PI_15001__masterData__OFFER__positionData__referenceCatalogNumber:
+      type: object
+      properties:
+        catalogNumber:
+          $ref: ../../../bo4e-en/fields/com/CatalogReference/catalogNumber.yaml#/components/schemas/catalogNumber
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+        versionNumber:
+          $ref: ../../../bo4e-en/fields/com/CatalogReference/versionNumber.yaml#/components/schemas/versionNumber
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+        lineNumber:
+          $ref: ../../../bo4e-en/fields/com/CatalogReference/lineNumber.yaml#/components/schemas/lineNumber
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+      required:
+      - catalogNumber
+      - versionNumber
+      - lineNumber
+    PI_15001__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - meteringLocationId
+    PI_15001__masterData__METER:
+      type: object
+      properties:
+        mountingType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/mountingType.yaml#/components/schemas/mountingType
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z28.CAV
+        calibrationUntil:
+          $ref: ../../../bo4e-en/fields/bo/Meter/calibrationUntil.yaml#/components/schemas/calibrationUntil
+          x-edifact-segment:
+          - SG27.LIN.DTM+Z04
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15001__masterData__METER__devices'
+        measurementValueCapture:
+          $ref: ../../../bo4e-en/fields/bo/Meter/measurementValueCapture.yaml#/components/schemas/measurementValueCapture
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E12.CAV
+        tariffType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/tariffType.yaml#/components/schemas/tariffType
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterCharacteristic:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterCharacteristic.yaml#/components/schemas/meterCharacteristic
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterSize:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterSize.yaml#/components/schemas/meterSize
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterType.yaml#/components/schemas/meterType
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterTypeSpecification:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterTypeSpecification.yaml#/components/schemas/meterTypeSpecification
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+      required:
+      - mountingType
+      - devices
+      - measurementValueCapture
+      - meterType
+      - meterTypeSpecification
+    PI_15001__masterData__METER__devices:
+      type: object
+      properties:
+        deviceProperties:
+          $ref: '#/components/schemas/PI_15001__masterData__METER__devices__deviceProperties'
+      required:
+      - deviceProperties
+    PI_15001__masterData__METER__devices__deviceProperties:
+      type: object
+      properties:
+        factor:
+          $ref: ../../../bo4e-en/fields/com/DeviceProperties/factor.yaml#/components/schemas/factor
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z25.CAV
+        deviceAttribute:
+          $ref: ../../../bo4e-en/fields/com/DeviceProperties/deviceAttribute.yaml#/components/schemas/deviceAttribute
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z25.CAV
+          - SG27.LIN.SG28.CCI+Z26.CAV
+          - SG27.LIN.SG28.CCI+Z27.CAV
+          - SG27.LIN.SG28.CCI+Z64.CAV
+      required:
+      - factor
+      - deviceAttribute

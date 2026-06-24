@@ -1,0 +1,4 @@
+components:
+  schemas:
+    billingReactivePower:
+      type: boolean

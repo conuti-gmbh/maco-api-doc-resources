@@ -1,0 +1,4 @@
+components:
+  schemas:
+    numberType:
+      $ref: ../../../enum/PhoneNumberType.yaml#/components/schemas/PhoneNumberType

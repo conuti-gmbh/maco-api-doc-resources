@@ -1,0 +1,5 @@
+components:
+  schemas:
+    privilegedEnergyQuantity:
+      $ref: >-
+        ../../../com/TimeIntervalQuantity.yaml#/components/schemas/TimeIntervalQuantity

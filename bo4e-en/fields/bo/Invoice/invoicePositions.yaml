@@ -1,0 +1,7 @@
+components:
+  schemas:
+    invoicePositions:
+      type: array
+      items:
+        $ref: ../../../com/InvoicePosition.yaml#/components/schemas/InvoicePosition
+      nullable: true

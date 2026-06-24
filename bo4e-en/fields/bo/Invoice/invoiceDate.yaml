@@ -1,0 +1,5 @@
+components:
+  schemas:
+    invoiceDate:
+      type: string
+      format: date-time

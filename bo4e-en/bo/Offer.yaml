@@ -1,0 +1,51 @@
+components:
+  schemas:
+    Offer:
+      title: Offer
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Offer.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Offer/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Offer/structureVersion.yaml#/components/schemas/structureVersion
+        offerNumber:
+          $ref: ../fields/bo/Offer/offerNumber.yaml#/components/schemas/offerNumber
+        requestReference:
+          $ref: >-
+            ../fields/bo/Offer/requestReference.yaml#/components/schemas/requestReference
+        offerDate:
+          $ref: ../fields/bo/Offer/offerDate.yaml#/components/schemas/offerDate
+        sector:
+          $ref: ../fields/bo/Offer/sector.yaml#/components/schemas/sector
+        bindingPeriod:
+          $ref: >-
+            ../fields/bo/Offer/bindingPeriod.yaml#/components/schemas/bindingPeriod
+        offerGiver:
+          $ref: ../fields/bo/Offer/offerGiver.yaml#/components/schemas/offerGiver
+        offerRecipient:
+          $ref: >-
+            ../fields/bo/Offer/offerRecipient.yaml#/components/schemas/offerRecipient
+        signatoryOfferRecipient:
+          $ref: >-
+            ../fields/bo/Offer/signatoryOfferRecipient.yaml#/components/schemas/signatoryOfferRecipient
+        signatoryOfferGiver:
+          $ref: >-
+            ../fields/bo/Offer/signatoryOfferGiver.yaml#/components/schemas/signatoryOfferGiver
+        setupTransmissionPeriod:
+          $ref: >-
+            ../fields/bo/Offer/setupTransmissionPeriod.yaml#/components/schemas/setupTransmissionPeriod
+        offerBindingPeriod:
+          $ref: >-
+            ../fields/bo/Offer/offerBindingPeriod.yaml#/components/schemas/offerBindingPeriod
+        variants:
+          $ref: ../fields/bo/Offer/variants.yaml#/components/schemas/variants
+        positionData:
+          $ref: >-
+            ../fields/bo/Offer/positionData.yaml#/components/schemas/positionData

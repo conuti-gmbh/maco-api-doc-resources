@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: PI_44117
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_44117:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_44117__masterData'
+      required:
+      - masterData
+    PI_44117__masterData:
+      type: object
+      properties:
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44117__masterData__METERING_LOCATION'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44117__masterData__GRID_ACCESS_CONTRACT'
+        METER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44117__masterData__METER'
+      required:
+      - METERING_LOCATION
+      - GRID_ACCESS_CONTRACT
+      - METER
+    PI_44117__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+172
+      required:
+      - meteringLocationId
+    PI_44117__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractStart:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractStart.yaml#/components/schemas/contractStart
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+      required:
+      - contractStart
+    PI_44117__masterData__METER:
+      type: object
+      properties:
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44117__masterData__METER__devices'
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.RFF+Z19
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+Z19
+        measurementValueCapture:
+          $ref: ../../../bo4e-en/fields/bo/Meter/measurementValueCapture.yaml#/components/schemas/measurementValueCapture
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E12.CAV
+        meterSize:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterSize.yaml#/components/schemas/meterSize
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterNumber:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterNumber.yaml#/components/schemas/meterNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z05.RFF+MG
+          - SG4.IDE+24.SG8.SEQ+Z09.RFF+MG
+          - SG4.IDE+24.SG8.SEQ+Z20.RFF+[MG|Z11]
+        meterType:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterType.yaml#/components/schemas/meterType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterTypeSpecification:
+          $ref: ../../../bo4e-en/fields/bo/Meter/meterTypeSpecification.yaml#/components/schemas/meterTypeSpecification
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_44117__masterData__METER__meterRegisters'
+      required:
+      - devices
+      - meteringLocationId
+      - measurementValueCapture
+      - meterSize
+      - meterNumber
+      - meterType
+      - meterTypeSpecification
+      - meterRegisters
+    PI_44117__masterData__METER__devices:
+      type: object
+      properties:
+        deviceProperties:
+          $ref: '#/components/schemas/PI_44117__masterData__METER__devices__deviceProperties'
+        deviceNumber:
+          $ref: ../../../bo4e-en/fields/com/Device/deviceNumber.yaml#/components/schemas/deviceNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z09.SG10.CCI+++Z64.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z13.SG10.CCI+++Z75.CAV+Z30
+          - SG4.IDE+24.SG8.SEQ+Z50.SG10.CCI+++E13.CAV+Z30
+      required:
+      - deviceProperties
+      - deviceNumber
+    PI_44117__masterData__METER__devices__deviceProperties:
+      type: object
+      properties:
+        deviceAttribute:
+          $ref: ../../../bo4e-en/fields/com/DeviceProperties/deviceAttribute.yaml#/components/schemas/deviceAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV
+          - SG4.IDE+24.SG8.SEQ+Z09.SG10.CCI+++Z64.CAV
+      required:
+      - deviceAttribute
+    PI_44117__masterData__METER__meterRegisters:
+      type: object
+      properties:
+        designation:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/designation.yaml#/components/schemas/designation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++Z63
+        decimalPlaces:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/decimalPlaces.yaml#/components/schemas/decimalPlaces
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+11++Z33.CAV
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.PIA+5
+        integerDigits:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/integerDigits.yaml#/components/schemas/integerDigits
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+11++Z33.CAV
+        valueGranularity:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/valueGranularity.yaml#/components/schemas/valueGranularity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV
+      required:
+      - designation
+      - decimalPlaces
+      - obisCode
+      - integerDigits
+      - valueGranularity

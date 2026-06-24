@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: PI_55559
+  version: '202604'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55559:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55559__masterData'
+      required:
+      - masterData
+    PI_55559__masterData:
+      type: object
+      properties:
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55559__masterData__MARKET_LOCATION'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55559__masterData__USAGE_PERIOD'
+      required:
+      - MARKET_LOCATION
+      - USAGE_PERIOD
+    PI_55559__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZC5|ZC6]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55559__masterData__MARKET_LOCATION__validityPeriod'
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        meteringPointOperationBillingData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55559__masterData__MARKET_LOCATION__meteringPointOperationBillingData'
+      required:
+      - dataQuality
+      - validityPeriod
+      - marketLocationId
+      - meteringPointOperationBillingData
+    PI_55559__masterData__MARKET_LOCATION__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZC5|ZC6]
+      required:
+      - periodId
+    PI_55559__masterData__MARKET_LOCATION__meteringPointOperationBillingData:
+      type: object
+      properties:
+        installment:
+          $ref: ../../../bo4e-en/fields/com/MeteringPointOperationBillingData/installment.yaml#/components/schemas/installment
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZC5|ZC6].SG9.QTY+[Z35|Z46]
+        quantity:
+          $ref: ../../../bo4e-en/fields/com/MeteringPointOperationBillingData/quantity.yaml#/components/schemas/quantity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZC5|ZC6].SG9.QTY+Z38
+        articleId:
+          $ref: ../../../bo4e-en/fields/com/MeteringPointOperationBillingData/articleId.yaml#/components/schemas/articleId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZC5|ZC6].PIA+[Z02|Z03]
+        meteringPointOperationBilling:
+          $ref: ../../../bo4e-en/fields/com/MeteringPointOperationBillingData/meteringPointOperationBilling.yaml#/components/schemas/meteringPointOperationBilling
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZC5|ZC6].PIA+[Z02|Z03]
+      required:
+      - installment
+      - quantity
+      - articleId
+      - meteringPointOperationBilling
+    PI_55559__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

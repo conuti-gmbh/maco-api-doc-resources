@@ -1,0 +1,4 @@
+components:
+  schemas:
+    priceType:
+      $ref: ../../../enum/PriceType.yaml#/components/schemas/PriceType

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    ecoCertificates:
+      type: array
+      items:
+        $ref: ../../../enum/EcoCertificate.yaml#/components/schemas/EcoCertificate
+      nullable: true

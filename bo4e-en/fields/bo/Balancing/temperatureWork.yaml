@@ -1,0 +1,4 @@
+components:
+  schemas:
+    temperatureWork:
+      $ref: ../../../com/Quantity.yaml#/components/schemas/Quantity

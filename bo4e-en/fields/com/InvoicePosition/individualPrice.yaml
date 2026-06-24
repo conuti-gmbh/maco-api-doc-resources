@@ -1,0 +1,4 @@
+components:
+  schemas:
+    individualPrice:
+      $ref: ../../../com/Price.yaml#/components/schemas/Price

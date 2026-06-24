@@ -1,0 +1,15 @@
+components:
+  schemas:
+    CadastralAddress:
+      title: CadastralAddress
+      type: object
+      properties:
+        cadastralDistrict:
+          $ref: >-
+            ../fields/com/CadastralAddress/cadastralDistrict.yaml#/components/schemas/cadastralDistrict
+        parcel:
+          $ref: >-
+            ../fields/com/CadastralAddress/parcel.yaml#/components/schemas/parcel
+        parcelNumber:
+          $ref: >-
+            ../fields/com/CadastralAddress/parcelNumber.yaml#/components/schemas/parcelNumber

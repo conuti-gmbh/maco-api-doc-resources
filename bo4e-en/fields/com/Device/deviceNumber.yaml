@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deviceNumber:
+      type: string

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    addressSupplement:
+      type: string

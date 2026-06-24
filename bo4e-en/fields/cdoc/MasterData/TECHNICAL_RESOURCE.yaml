@@ -1,0 +1,7 @@
+components:
+  schemas:
+    TECHNICAL_RESOURCE:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/TechnicalResource.yaml#/components/schemas/TechnicalResource

@@ -1,0 +1,6 @@
+components:
+  schemas:
+    REQUEST:
+      type: array
+      items:
+        $ref: ../../../bo/Request.yaml#/components/schemas/Request

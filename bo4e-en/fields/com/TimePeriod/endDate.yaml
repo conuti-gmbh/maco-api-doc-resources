@@ -1,0 +1,5 @@
+components:
+  schemas:
+    endDate:
+      type: string
+      format: date-time

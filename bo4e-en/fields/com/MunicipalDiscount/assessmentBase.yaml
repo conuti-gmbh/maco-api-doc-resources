@@ -1,0 +1,5 @@
+components:
+  schemas:
+    assessmentBase:
+      type: number
+      format: float

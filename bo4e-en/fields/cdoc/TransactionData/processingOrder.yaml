@@ -1,0 +1,4 @@
+components:
+  schemas:
+    processingOrder:
+      type: string

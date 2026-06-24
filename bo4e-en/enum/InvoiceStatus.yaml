@@ -1,0 +1,9 @@
+components:
+  schemas:
+    InvoiceStatus:
+      title: InvoiceStatus
+      type: string
+      enum:
+        - DUPLICATE
+        - ORIGINAL
+        - CANCELLED

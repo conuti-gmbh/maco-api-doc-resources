@@ -1,0 +1,5 @@
+components:
+  schemas:
+    businessPartnerRole:
+      $ref: >-
+        ../../../enum/BusinessPartnerRole.yaml#/components/schemas/BusinessPartnerRole

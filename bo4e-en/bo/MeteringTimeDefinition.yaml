@@ -1,0 +1,42 @@
+components:
+  schemas:
+    MeteringTimeDefinition:
+      title: MeteringTimeDefinition
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/MeteringTimeDefinition.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/structureVersion.yaml#/components/schemas/structureVersion
+        beginDate:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/beginDate.yaml#/components/schemas/beginDate
+        closingDate:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/closingDate.yaml#/components/schemas/closingDate
+        version:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/version.yaml#/components/schemas/version
+        necessity:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/necessity.yaml#/components/schemas/necessity
+        versionSpecification:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/versionSpecification.yaml#/components/schemas/versionSpecification
+        code:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/code.yaml#/components/schemas/code
+        meteringTimes:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/meteringTimes.yaml#/components/schemas/meteringTimes
+        meteringTimeRegister:
+          $ref: >-
+            ../fields/bo/MeteringTimeDefinition/meteringTimeRegister.yaml#/components/schemas/meteringTimeRegister

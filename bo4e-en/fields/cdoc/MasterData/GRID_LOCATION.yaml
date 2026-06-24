@@ -1,0 +1,6 @@
+components:
+  schemas:
+    GRID_LOCATION:
+      type: array
+      items:
+        $ref: ../../../bo/GridLocation.yaml#/components/schemas/GridLocation

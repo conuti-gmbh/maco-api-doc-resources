@@ -1,0 +1,4 @@
+components:
+  schemas:
+    tariffType:
+      $ref: ../../../enum/TariffType.yaml#/components/schemas/TariffType

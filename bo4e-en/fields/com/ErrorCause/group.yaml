@@ -1,0 +1,4 @@
+components:
+  schemas:
+    group:
+      $ref: ../../../com/Group.yaml#/components/schemas/Group

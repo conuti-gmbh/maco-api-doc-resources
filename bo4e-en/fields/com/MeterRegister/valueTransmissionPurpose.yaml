@@ -1,0 +1,5 @@
+components:
+  schemas:
+    valueTransmissionPurpose:
+      $ref: >-
+        ../../../enum/ValueTransmissionPurpose.yaml#/components/schemas/ValueTransmissionPurpose

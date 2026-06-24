@@ -1,0 +1,16 @@
+components:
+  schemas:
+    TimeUnit:
+      title: TimeUnit
+      type: string
+      enum:
+        - SECOND
+        - MINUTE
+        - HOUR
+        - QUARTER_HOUR
+        - DAY
+        - WEEK
+        - MONTH
+        - QUARTER
+        - HALF_YEAR
+        - YEAR

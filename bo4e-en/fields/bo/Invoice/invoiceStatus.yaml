@@ -1,0 +1,4 @@
+components:
+  schemas:
+    invoiceStatus:
+      $ref: ../../../enum/InvoiceStatus.yaml#/components/schemas/InvoiceStatus
