@@ -255,7 +255,7 @@ jobs:
           key: cargo-${{ runner.os }}-${{ hashFiles('translator-src/Cargo.lock') }}
           restore-keys: cargo-${{ runner.os }}-
 
-      - name: Build EN side (mirror + translate + derive)
+      - name: Build EN side (mirror + translate DE trees)
         id: translate
         working-directory: gen
         env:
@@ -277,16 +277,18 @@ jobs:
             sleep 1
           done
           [ "$ok" = 1 ] || { echo "::error::translator not healthy"; kill "$TPID" 2>/dev/null || true; exit 1; }
-          # 3) per-file translate pruefi/ -> pruefi-en/ (refs -> bo4e-en/, JSON->YAML)
-          python -m scripts.translate_specs --source pruefi --target pruefi-en \
-            --endpoint http://localhost:8080/api/translate/openapi/de/en/
+          # 3) translate the DE trees -> EN. The translator rewrites $refs
+          #    (bo4e/->bo4e-en/, event-bauteil/->event-bauteil-en/) and schema
+          #    keys/names, JSON->YAML. filter/compose are NOT re-run on EN —
+          #    translating the already-correct DE specs keeps names + refs
+          #    consistent with bo4e-schema-en (MACO-13088). DE event-bauteil/ +
+          #    event/ exist from the DE generator step above.
+          for d in pruefi event-bauteil event; do
+            python -m scripts.translate_specs --source "$d" --target "$d-en" \
+              --endpoint http://localhost:8080/api/translate/openapi/de/en/
+          done
           kill "$TPID" 2>/dev/null || true
           echo "translator=maco-bo4e-translator-app@$(git -C "$GITHUB_WORKSPACE/translator-src" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          # 4) derive EN event-bauteil + event (mapping is language-neutral; atoms
-          #    resolve against the EN mirror)
-          python -m scripts.filter_event_bauteile --source pruefi-en --target event-bauteil-en
-          python -m scripts.compose_event_specs \
-            --bauteil-dir event-bauteil-en --bo4e-dir bo4e-en --target event-en
 
       - name: Check EN $ref consistency
         working-directory: gen
