@@ -1,0 +1,4 @@
+components:
+  schemas:
+    missingPositions4:
+      type: string

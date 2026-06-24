@@ -1,0 +1,4 @@
+components:
+  schemas:
+    surcharge:
+      $ref: ../../../com/Surcharge.yaml#/components/schemas/Surcharge

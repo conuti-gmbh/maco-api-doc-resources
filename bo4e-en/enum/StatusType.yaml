@@ -1,0 +1,12 @@
+components:
+  schemas:
+    StatusType:
+      title: StatusType
+      type: string
+      enum:
+        - PLAUSIBILITY_HINT
+        - SUBSTITUTE_VALUE_FORMATION_METHOD
+        - CORRECTION_REASON
+        - REASON_SUBSTITUTE_VALUE_FORMATION_METHOD
+        - GAS_QUALITY
+        - MEASUREMENT_CLASSIFICATION

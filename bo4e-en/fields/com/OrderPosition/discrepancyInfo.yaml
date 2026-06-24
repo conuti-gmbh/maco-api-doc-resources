@@ -1,0 +1,4 @@
+components:
+  schemas:
+    discrepancyInfo:
+      $ref: ../../../com/DiscrepancyInfo.yaml#/components/schemas/DiscrepancyInfo

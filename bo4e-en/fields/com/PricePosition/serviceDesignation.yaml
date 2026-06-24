@@ -1,0 +1,5 @@
+components:
+  schemas:
+    serviceDesignation:
+      $ref: >-
+        ../../../enum/ServiceDesignation.yaml#/components/schemas/ServiceDesignation

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    AreaType:
+      title: AreaType
+      type: string
+      enum:
+        - CONTROL_ZONE
+        - MARKET_AREA
+        - BALANCING_AREA
+        - DISTRIBUTION_GRID
+        - TRANSMISSION_GRID
+        - REGIONAL_GRID
+        - AREA_GRID
+        - DEFAULT_SUPPLY_AREA
+        - SUPPLY_AREA

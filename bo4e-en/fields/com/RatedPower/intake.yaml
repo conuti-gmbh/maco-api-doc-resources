@@ -1,0 +1,5 @@
+components:
+  schemas:
+    intake:
+      type: number
+      format: float

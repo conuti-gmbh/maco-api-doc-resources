@@ -1,0 +1,21 @@
+components:
+  schemas:
+    AddressSupplementInformation:
+      title: AddressSupplementInformation
+      type: object
+      properties:
+        supplement1:
+          $ref: >-
+            ../fields/com/AddressSupplementInformation/supplement1.yaml#/components/schemas/supplement1
+        supplement2:
+          $ref: >-
+            ../fields/com/AddressSupplementInformation/supplement2.yaml#/components/schemas/supplement2
+        supplement3:
+          $ref: >-
+            ../fields/com/AddressSupplementInformation/supplement3.yaml#/components/schemas/supplement3
+        supplement4:
+          $ref: >-
+            ../fields/com/AddressSupplementInformation/supplement4.yaml#/components/schemas/supplement4
+        supplement5:
+          $ref: >-
+            ../fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5

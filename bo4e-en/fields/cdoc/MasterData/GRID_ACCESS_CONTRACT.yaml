@@ -1,0 +1,6 @@
+components:
+  schemas:
+    GRID_ACCESS_CONTRACT:
+      type: array
+      items:
+        $ref: ../../../bo/Contract.yaml#/components/schemas/Contract

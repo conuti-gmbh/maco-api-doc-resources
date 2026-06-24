@@ -1,0 +1,6 @@
+components:
+  schemas:
+    INVOICE:
+      type: array
+      items:
+        $ref: ../../../bo/Invoice.yaml#/components/schemas/Invoice

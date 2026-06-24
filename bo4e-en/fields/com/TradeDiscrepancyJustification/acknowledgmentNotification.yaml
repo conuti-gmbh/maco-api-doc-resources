@@ -1,0 +1,4 @@
+components:
+  schemas:
+    acknowledgmentNotification:
+      type: string

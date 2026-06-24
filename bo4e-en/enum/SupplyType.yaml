@@ -1,0 +1,9 @@
+components:
+  schemas:
+    SupplyType:
+      title: SupplyType
+      type: string
+      enum:
+        - EMERGENCY_SUPPLY
+        - DEFAULT_SUPPLY
+        - EMERGENCY_DELIVERY

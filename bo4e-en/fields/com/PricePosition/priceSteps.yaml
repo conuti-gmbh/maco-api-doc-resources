@@ -1,0 +1,7 @@
+components:
+  schemas:
+    priceSteps:
+      type: array
+      items:
+        $ref: ../../../com/PriceTier.yaml#/components/schemas/PriceTier
+      nullable: true

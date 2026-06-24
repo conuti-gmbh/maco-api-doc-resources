@@ -1,0 +1,15 @@
+components:
+  schemas:
+    CatalogReference:
+      title: CatalogReference
+      type: object
+      properties:
+        catalogNumber:
+          $ref: >-
+            ../fields/com/CatalogReference/catalogNumber.yaml#/components/schemas/catalogNumber
+        lineNumber:
+          $ref: >-
+            ../fields/com/CatalogReference/lineNumber.yaml#/components/schemas/lineNumber
+        versionNumber:
+          $ref: >-
+            ../fields/com/CatalogReference/versionNumber.yaml#/components/schemas/versionNumber

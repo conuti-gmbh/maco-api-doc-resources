@@ -1,0 +1,5 @@
+components:
+  schemas:
+    measurementValueCapture:
+      $ref: >-
+        ../../../enum/MeasurementValueCapture.yaml#/components/schemas/MeasurementValueCapture

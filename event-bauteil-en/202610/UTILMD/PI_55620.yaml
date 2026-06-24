@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: PI_55620
+  version: '202610'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55620:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55620__masterData'
+      required:
+      - masterData
+    PI_55620__masterData:
+      type: object
+      properties:
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55620__masterData__METERING_LOCATION'
+        METERING_POINT_OPERATION_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55620__masterData__USAGE_PERIOD'
+      required:
+      - METERING_LOCATION
+      - METERING_POINT_OPERATION_CONTRACT
+      - USAGE_PERIOD
+    PI_55620__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55620__masterData__METERING_LOCATION__validityPeriod'
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55620__masterData__METERING_LOCATION__marketRoles'
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z17
+      required:
+      - dataQuality
+      - validityPeriod
+      - marketRoles
+      - meteringLocationId
+    PI_55620__masterData__METERING_LOCATION__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18
+      required:
+      - periodId
+    PI_55620__masterData__METERING_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+ZF0
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+ZF0
+        subContracted:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+      - subContracted
+    PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT:
+      type: object
+      properties:
+        contractConditions:
+          $ref: '#/components/schemas/PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions'
+      required:
+      - contractConditions
+    PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions:
+      type: object
+      properties:
+        billingViaNna:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/billingViaNna.yaml#/components/schemas/billingViaNna
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z18.RFF+Z05
+      required:
+      - billingViaNna
+    PI_55620__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

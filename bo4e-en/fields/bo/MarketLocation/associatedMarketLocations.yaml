@@ -1,0 +1,8 @@
+components:
+  schemas:
+    associatedMarketLocations:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/MarketLocationReference.yaml#/components/schemas/MarketLocationReference
+      nullable: true

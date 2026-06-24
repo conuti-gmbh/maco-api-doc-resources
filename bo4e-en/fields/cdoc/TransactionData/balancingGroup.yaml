@@ -1,0 +1,7 @@
+components:
+  schemas:
+    balancingGroup:
+      type: array
+      items:
+        $ref: ../../../bo/BalancingGroup.yaml#/components/schemas/BalancingGroup
+      nullable: true

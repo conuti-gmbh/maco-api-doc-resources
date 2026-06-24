@@ -1,0 +1,12 @@
+components:
+  schemas:
+    FeedbackPosition:
+      title: FeedbackPosition
+      type: object
+      properties:
+        positionNumber:
+          $ref: >-
+            ../fields/com/FeedbackPosition/positionNumber.yaml#/components/schemas/positionNumber
+        discrepancy:
+          $ref: >-
+            ../fields/com/FeedbackPosition/discrepancy.yaml#/components/schemas/discrepancy

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    info3:
+      type: string

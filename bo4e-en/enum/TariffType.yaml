@@ -1,0 +1,11 @@
+components:
+  schemas:
+    TariffType:
+      title: TariffType
+      type: string
+      enum:
+        - SINGLE_TARIFF
+        - TWO_TARIFF
+        - MULTI_TARIFF
+        - SMART_METER
+        - DEMAND_METERED

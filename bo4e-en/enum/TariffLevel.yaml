@@ -1,0 +1,16 @@
+components:
+  schemas:
+    TariffLevel:
+      title: TariffLevel
+      type: string
+      enum:
+        - TARIFF_LEVEL_0
+        - TARIFF_LEVEL_1
+        - TARIFF_LEVEL_2
+        - TARIFF_LEVEL_3
+        - TARIFF_LEVEL_4
+        - TARIFF_LEVEL_5
+        - TARIFF_LEVEL_6
+        - TARIFF_LEVEL_7
+        - TARIFF_LEVEL_8
+        - TARIFF_LEVEL_9

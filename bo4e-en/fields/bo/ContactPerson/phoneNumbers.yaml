@@ -1,0 +1,7 @@
+components:
+  schemas:
+    phoneNumbers:
+      type: array
+      items:
+        $ref: ../../../com/PhoneNumber.yaml#/components/schemas/PhoneNumber
+      nullable: true

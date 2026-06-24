@@ -1,0 +1,4 @@
+components:
+  schemas:
+    remark2:
+      type: string

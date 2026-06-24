@@ -1,0 +1,83 @@
+components:
+  schemas:
+    Balancing:
+      title: Balancing
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Balancing.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Balancing/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Balancing/structureVersion.yaml#/components/schemas/structureVersion
+        marketLocationId:
+          $ref: >-
+            ../fields/bo/Balancing/marketLocationId.yaml#/components/schemas/marketLocationId
+        aggregationResponsibility:
+          $ref: >-
+            ../fields/bo/Balancing/aggregationResponsibility.yaml#/components/schemas/aggregationResponsibility
+        timeSeriesType:
+          $ref: >-
+            ../fields/bo/Balancing/timeSeriesType.yaml#/components/schemas/timeSeriesType
+        forecastBasis:
+          $ref: >-
+            ../fields/bo/Balancing/forecastBasis.yaml#/components/schemas/forecastBasis
+        balancingStart:
+          $ref: >-
+            ../fields/bo/Balancing/balancingStart.yaml#/components/schemas/balancingStart
+        balancingEnd:
+          $ref: >-
+            ../fields/bo/Balancing/balancingEnd.yaml#/components/schemas/balancingEnd
+        balancingGroup:
+          $ref: >-
+            ../fields/bo/Balancing/balancingGroup.yaml#/components/schemas/balancingGroup
+        balancingGroups:
+          $ref: >-
+            ../fields/bo/Balancing/balancingGroups.yaml#/components/schemas/balancingGroups
+        caseGroupAssignment:
+          $ref: >-
+            ../fields/bo/Balancing/caseGroupAssignment.yaml#/components/schemas/caseGroupAssignment
+        temperatureWork:
+          $ref: >-
+            ../fields/bo/Balancing/temperatureWork.yaml#/components/schemas/temperatureWork
+        annualConsumptionForecast:
+          $ref: >-
+            ../fields/bo/Balancing/annualConsumptionForecast.yaml#/components/schemas/annualConsumptionForecast
+        customerValue:
+          $ref: >-
+            ../fields/bo/Balancing/customerValue.yaml#/components/schemas/customerValue
+        consumptionAllocation:
+          $ref: >-
+            ../fields/bo/Balancing/consumptionAllocation.yaml#/components/schemas/consumptionAllocation
+        forecastBasisChoiceRight:
+          $ref: >-
+            ../fields/bo/Balancing/forecastBasisChoiceRight.yaml#/components/schemas/forecastBasisChoiceRight
+        forecastBasisChoiceRightReason:
+          $ref: >-
+            ../fields/bo/Balancing/forecastBasisChoiceRightReason.yaml#/components/schemas/forecastBasisChoiceRightReason
+        settlementModel:
+          $ref: >-
+            ../fields/bo/Balancing/settlementModel.yaml#/components/schemas/settlementModel
+        priorYearConsumption:
+          $ref: >-
+            ../fields/bo/Balancing/priorYearConsumption.yaml#/components/schemas/priorYearConsumption
+        dataQuality:
+          $ref: >-
+            ../fields/bo/Balancing/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/Balancing/validityPeriod.yaml#/components/schemas/validityPeriod
+        loadProfiles:
+          $ref: >-
+            ../fields/bo/Balancing/loadProfiles.yaml#/components/schemas/loadProfiles
+        loadProfilesBalancingParty:
+          $ref: >-
+            ../fields/bo/Balancing/loadProfilesBalancingParty.yaml#/components/schemas/loadProfilesBalancingParty
+        forecastBasisDetails:
+          $ref: >-
+            ../fields/bo/Balancing/forecastBasisDetails.yaml#/components/schemas/forecastBasisDetails

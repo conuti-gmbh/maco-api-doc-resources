@@ -1,0 +1,4 @@
+components:
+  schemas:
+    meetingPoint:
+      $ref: ../../../com/Address.yaml#/components/schemas/Address

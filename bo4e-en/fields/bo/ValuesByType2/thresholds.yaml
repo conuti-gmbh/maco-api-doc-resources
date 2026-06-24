@@ -1,0 +1,7 @@
+components:
+  schemas:
+    thresholds:
+      type: array
+      items:
+        $ref: ../../../com/Threshold.yaml#/components/schemas/Threshold
+      nullable: true

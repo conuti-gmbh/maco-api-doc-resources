@@ -1,0 +1,30 @@
+components:
+  schemas:
+    TradeDiscrepancyJustification:
+      title: TradeDiscrepancyJustification
+      type: object
+      properties:
+        correctness:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/correctness.yaml#/components/schemas/correctness
+        referenceDar:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/referenceDar.yaml#/components/schemas/referenceDar
+        referenceNumber:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/referenceNumber.yaml#/components/schemas/referenceNumber
+        confirmationDar:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/confirmationDar.yaml#/components/schemas/confirmationDar
+        acknowledgmentNotification:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/acknowledgmentNotification.yaml#/components/schemas/acknowledgmentNotification
+        reason:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/reason.yaml#/components/schemas/reason
+        hint:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/hint.yaml#/components/schemas/hint
+        references:
+          $ref: >-
+            ../fields/com/TradeDiscrepancyJustification/references.yaml#/components/schemas/references

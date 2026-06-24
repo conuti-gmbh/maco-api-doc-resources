@@ -1,0 +1,4 @@
+components:
+  schemas:
+    plannedProductPackage:
+      type: integer

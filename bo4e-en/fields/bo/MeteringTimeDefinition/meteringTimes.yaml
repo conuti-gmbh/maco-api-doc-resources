@@ -1,0 +1,7 @@
+components:
+  schemas:
+    meteringTimes:
+      type: array
+      items:
+        $ref: ../../../com/MeteringTime.yaml#/components/schemas/MeteringTime
+      nullable: true

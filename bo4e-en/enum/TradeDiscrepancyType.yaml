@@ -1,0 +1,10 @@
+components:
+  schemas:
+    TradeDiscrepancyType:
+      title: TradeDiscrepancyType
+      type: string
+      enum:
+        - TRADE_INVOICE
+        - DELIVERY_NOTE_TRADE_DISCREPANCY_TYPE
+        - DELIVERY_NOTE_BASE_ENERGY_PRICE
+        - DELIVERY_NOTE_ENERGY_POWER_PRICE

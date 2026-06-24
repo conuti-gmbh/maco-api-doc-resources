@@ -1,0 +1,4 @@
+components:
+  schemas:
+    transaction:
+      type: string

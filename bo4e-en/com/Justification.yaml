@@ -1,0 +1,21 @@
+components:
+  schemas:
+    Justification:
+      title: Justification
+      type: object
+      properties:
+        justification1:
+          $ref: >-
+            ../fields/com/Justification/justification1.yaml#/components/schemas/justification1
+        justification2:
+          $ref: >-
+            ../fields/com/Justification/justification2.yaml#/components/schemas/justification2
+        justification3:
+          $ref: >-
+            ../fields/com/Justification/justification3.yaml#/components/schemas/justification3
+        justification4:
+          $ref: >-
+            ../fields/com/Justification/justification4.yaml#/components/schemas/justification4
+        justification5:
+          $ref: >-
+            ../fields/com/Justification/justification5.yaml#/components/schemas/justification5

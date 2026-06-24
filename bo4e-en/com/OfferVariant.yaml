@@ -1,0 +1,26 @@
+components:
+  schemas:
+    OfferVariant:
+      title: OfferVariant
+      type: object
+      properties:
+        offerStatus:
+          $ref: >-
+            ../fields/com/OfferVariant/offerStatus.yaml#/components/schemas/offerStatus
+        description:
+          $ref: >-
+            ../fields/com/OfferVariant/description.yaml#/components/schemas/description
+        creationDate:
+          $ref: >-
+            ../fields/com/OfferVariant/creationDate.yaml#/components/schemas/creationDate
+        bindingPeriod:
+          $ref: >-
+            ../fields/com/OfferVariant/bindingPeriod.yaml#/components/schemas/bindingPeriod
+        totalQuantity:
+          $ref: >-
+            ../fields/com/OfferVariant/totalQuantity.yaml#/components/schemas/totalQuantity
+        totalCosts:
+          $ref: >-
+            ../fields/com/OfferVariant/totalCosts.yaml#/components/schemas/totalCosts
+        parts:
+          $ref: ../fields/com/OfferVariant/parts.yaml#/components/schemas/parts

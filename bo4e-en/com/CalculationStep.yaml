@@ -1,0 +1,30 @@
+components:
+  schemas:
+    CalculationStep:
+      title: CalculationStep
+      type: object
+      properties:
+        calculationStepComponentId:
+          $ref: >-
+            ../fields/com/CalculationStep/calculationStepComponentId.yaml#/components/schemas/calculationStepComponentId
+        referenceCalculationStepId:
+          $ref: >-
+            ../fields/com/CalculationStep/referenceCalculationStepId.yaml#/components/schemas/referenceCalculationStepId
+        operation:
+          $ref: >-
+            ../fields/com/CalculationStep/operation.yaml#/components/schemas/operation
+        lossFactorTransformer:
+          $ref: >-
+            ../fields/com/CalculationStep/lossFactorTransformer.yaml#/components/schemas/lossFactorTransformer
+        lossFactorLine:
+          $ref: >-
+            ../fields/com/CalculationStep/lossFactorLine.yaml#/components/schemas/lossFactorLine
+        allocationFactorEnergyQuantity:
+          $ref: >-
+            ../fields/com/CalculationStep/allocationFactorEnergyQuantity.yaml#/components/schemas/allocationFactorEnergyQuantity
+        meteringLocationId:
+          $ref: >-
+            ../fields/com/CalculationStep/meteringLocationId.yaml#/components/schemas/meteringLocationId
+        energyFlowDirection:
+          $ref: >-
+            ../fields/com/CalculationStep/energyFlowDirection.yaml#/components/schemas/energyFlowDirection

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    necessity:
+      $ref: >-
+        ../../../enum/DefinitionsNecessity.yaml#/components/schemas/DefinitionsNecessity

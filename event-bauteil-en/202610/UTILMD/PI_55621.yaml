@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: PI_55621
+  version: '202610'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55621:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55621__masterData'
+      required:
+      - masterData
+    PI_55621__masterData:
+      type: object
+      properties:
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__masterData__GRID_LOCATION'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__masterData__USAGE_PERIOD'
+      required:
+      - GRID_LOCATION
+      - USAGE_PERIOD
+    PI_55621__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZA9|ZB0]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55621__masterData__GRID_LOCATION__validityPeriod'
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55621__masterData__GRID_LOCATION__marketRoles'
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+      required:
+      - dataQuality
+      - validityPeriod
+      - marketRoles
+      - gridLocationId
+    PI_55621__masterData__GRID_LOCATION__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZA9|ZB0]
+      required:
+      - periodId
+    PI_55621__masterData__GRID_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZA9|ZB0].SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZA9|ZB0].SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[ZA9|ZB0].SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+    PI_55621__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

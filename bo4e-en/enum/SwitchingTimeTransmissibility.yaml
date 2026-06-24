@@ -1,0 +1,8 @@
+components:
+  schemas:
+    SwitchingTimeTransmissibility:
+      title: SwitchingTimeTransmissibility
+      type: string
+      enum:
+        - ELECTRONIC
+        - NON_ELECTRONIC

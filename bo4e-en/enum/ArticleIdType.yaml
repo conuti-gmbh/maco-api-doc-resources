@@ -1,0 +1,8 @@
+components:
+  schemas:
+    ArticleIdType:
+      title: ArticleIdType
+      type: string
+      enum:
+        - ARTICLE_ID
+        - GROUP_ARTICLE_ID

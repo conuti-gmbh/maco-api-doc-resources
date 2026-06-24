@@ -1,0 +1,4 @@
+components:
+  schemas:
+    geoCoordinates:
+      $ref: ../../../com/GeoCoordinates.yaml#/components/schemas/GeoCoordinates

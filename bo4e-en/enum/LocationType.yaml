@@ -1,0 +1,12 @@
+components:
+  schemas:
+    LocationType:
+      title: LocationType
+      type: string
+      enum:
+        - MALO
+        - MELO
+        - NELO
+        - TECHNICAL_RESOURCE
+        - CONTROLLABLE_RESOURCE
+        - TRANCHE

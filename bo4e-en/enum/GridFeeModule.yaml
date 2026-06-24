@@ -1,0 +1,9 @@
+components:
+  schemas:
+    GridFeeModule:
+      title: GridFeeModule
+      type: string
+      enum:
+        - FLAT_RATE_GRID_FEE_REDUCTION_MODULE_1
+        - PERCENTAGE_REDUCTION_ENERGY_PRICE_MODULE_2
+        - INCENTIVE_MODULE_TIME_VARIABLE_GRID_FEE_MODULE_3

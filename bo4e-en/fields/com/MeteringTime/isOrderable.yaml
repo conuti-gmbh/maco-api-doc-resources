@@ -1,0 +1,4 @@
+components:
+  schemas:
+    isOrderable:
+      type: boolean

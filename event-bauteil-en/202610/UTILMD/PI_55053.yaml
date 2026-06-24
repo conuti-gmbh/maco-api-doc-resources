@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: PI_55053
+  version: '202610'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55053:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55053__masterData'
+      required:
+      - masterData
+    PI_55053__masterData:
+      type: object
+      properties:
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55053__masterData__METERING_LOCATION'
+      required:
+      - METERING_LOCATION
+    PI_55053__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z17
+      required:
+      - meteringLocationId

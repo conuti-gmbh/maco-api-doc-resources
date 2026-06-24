@@ -1,0 +1,39 @@
+components:
+  schemas:
+    DisconnectionOrder:
+      title: DisconnectionOrder
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/DisconnectionOrder.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/structureVersion.yaml#/components/schemas/structureVersion
+        meetingPoint:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/meetingPoint.yaml#/components/schemas/meetingPoint
+        disconnectionOrderType:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/disconnectionOrderType.yaml#/components/schemas/disconnectionOrderType
+        disconnectionOrderStatus:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/disconnectionOrderStatus.yaml#/components/schemas/disconnectionOrderStatus
+        disconnectionOrderRejectionReason:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/disconnectionOrderRejectionReason.yaml#/components/schemas/disconnectionOrderRejectionReason
+        disconnectionPreventionReason:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/disconnectionPreventionReason.yaml#/components/schemas/disconnectionPreventionReason
+        meterNumber:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/meterNumber.yaml#/components/schemas/meterNumber
+        isOrderedByBailiff:
+          $ref: >-
+            ../fields/bo/DisconnectionOrder/isOrderedByBailiff.yaml#/components/schemas/isOrderedByBailiff

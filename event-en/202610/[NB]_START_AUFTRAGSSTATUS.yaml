@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_AUFTRAGSSTATUS'
+  version: '202610'
+  x-bpmn-source-sha: eaf359e3
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[NB] START_AUFTRAGSSTATUS':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        transactionData:
+          type: object
+          required:
+          - sender
+          - responseStatus
+          - responseStatusCodeList
+          - receiver
+          - completionDate
+          - sector
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            responseStatus:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/responseStatus.yaml#/components/schemas/responseStatus
+            responseStatusCodeList:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/responseStatusCodeList.yaml#/components/schemas/responseStatusCodeList
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            completionDate:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/completionDate.yaml#/components/schemas/completionDate
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
+              examples:
+              - '21039'
+              - '21040'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_AUFTRAGSSTATUS
+              default: START_AUFTRAGSSTATUS
+      x-pending-pruefis:
+      - '21039'
+      - '21040'

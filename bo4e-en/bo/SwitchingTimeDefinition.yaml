@@ -1,0 +1,36 @@
+components:
+  schemas:
+    SwitchingTimeDefinition:
+      title: SwitchingTimeDefinition
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/SwitchingTimeDefinition.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/structureVersion.yaml#/components/schemas/structureVersion
+        beginDate:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/beginDate.yaml#/components/schemas/beginDate
+        closingDate:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/closingDate.yaml#/components/schemas/closingDate
+        version:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/version.yaml#/components/schemas/version
+        code:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/code.yaml#/components/schemas/code
+        necessity:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/necessity.yaml#/components/schemas/necessity
+        switchingTimes:
+          $ref: >-
+            ../fields/bo/SwitchingTimeDefinition/switchingTimes.yaml#/components/schemas/switchingTimes

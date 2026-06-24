@@ -1,0 +1,8 @@
+components:
+  schemas:
+    AggregationResponsibility:
+      title: AggregationResponsibility
+      type: string
+      enum:
+        - UENB
+        - VNB

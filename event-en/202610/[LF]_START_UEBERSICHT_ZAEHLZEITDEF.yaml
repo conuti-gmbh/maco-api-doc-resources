@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_UEBERSICHT_ZAEHLZEITDEF'
+  version: '202610'
+  x-bpmn-source-sha: 3a7c8fc1
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[LF] START_UEBERSICHT_ZAEHLZEITDEF':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - sector
+          properties:
+            sender:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sender.yaml#/components/schemas/sender
+            receiver:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/receiver.yaml#/components/schemas/receiver
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
+              examples:
+              - '25004'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_UEBERSICHT_ZAEHLZEITDEF
+              default: START_UEBERSICHT_ZAEHLZEITDEF
+      x-pending-pruefis:
+      - '25004'

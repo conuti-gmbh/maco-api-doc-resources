@@ -1,0 +1,4 @@
+components:
+  schemas:
+    invoiceType:
+      $ref: ../../../enum/InvoiceType.yaml#/components/schemas/InvoiceType

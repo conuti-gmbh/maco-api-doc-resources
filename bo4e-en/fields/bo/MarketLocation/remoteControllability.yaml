@@ -1,0 +1,5 @@
+components:
+  schemas:
+    remoteControllability:
+      $ref: >-
+        ../../../enum/RemoteControllability.yaml#/components/schemas/RemoteControllability

@@ -1,0 +1,46 @@
+components:
+  schemas:
+    Consumption:
+      title: Consumption
+      type: object
+      properties:
+        startDate:
+          $ref: >-
+            ../fields/com/Consumption/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: ../fields/com/Consumption/endDate.yaml#/components/schemas/endDate
+        valueDeterminationMethod:
+          $ref: >-
+            ../fields/com/Consumption/valueDeterminationMethod.yaml#/components/schemas/valueDeterminationMethod
+        measurementValueStatus:
+          $ref: >-
+            ../fields/com/Consumption/measurementValueStatus.yaml#/components/schemas/measurementValueStatus
+        obisNumber:
+          $ref: >-
+            ../fields/com/Consumption/obisNumber.yaml#/components/schemas/obisNumber
+        value:
+          $ref: ../fields/com/Consumption/value.yaml#/components/schemas/value
+        unit:
+          $ref: ../fields/com/Consumption/unit.yaml#/components/schemas/unit
+        type:
+          $ref: ../fields/com/Consumption/type.yaml#/components/schemas/type
+        tariffLevel:
+          $ref: >-
+            ../fields/com/Consumption/tariffLevel.yaml#/components/schemas/tariffLevel
+        usageTimestamp:
+          $ref: >-
+            ../fields/com/Consumption/usageTimestamp.yaml#/components/schemas/usageTimestamp
+        executionTimestamp:
+          $ref: >-
+            ../fields/com/Consumption/executionTimestamp.yaml#/components/schemas/executionTimestamp
+        position:
+          $ref: ../fields/com/Consumption/position.yaml#/components/schemas/position
+        readingDate:
+          $ref: >-
+            ../fields/com/Consumption/readingDate.yaml#/components/schemas/readingDate
+        servicePeriod:
+          $ref: >-
+            ../fields/com/Consumption/servicePeriod.yaml#/components/schemas/servicePeriod
+        statusAdditionalInformation:
+          $ref: >-
+            ../fields/com/Consumption/statusAdditionalInformation.yaml#/components/schemas/statusAdditionalInformation

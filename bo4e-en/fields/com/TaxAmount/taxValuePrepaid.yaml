@@ -1,0 +1,5 @@
+components:
+  schemas:
+    taxValuePrepaid:
+      type: number
+      format: float

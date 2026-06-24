@@ -1,0 +1,8 @@
+components:
+  schemas:
+    specialBillingTypes:
+      type: array
+      items:
+        $ref: >-
+          ../../../enum/SpecialBillingType.yaml#/components/schemas/SpecialBillingType
+      nullable: true

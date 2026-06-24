@@ -1,0 +1,19 @@
+components:
+  schemas:
+    SenderView:
+      title: SenderView
+      type: object
+      properties:
+        usageFrom:
+          $ref: >-
+            ../fields/com/SenderView/usageFrom.yaml#/components/schemas/usageFrom
+        usageTo:
+          $ref: ../fields/com/SenderView/usageTo.yaml#/components/schemas/usageTo
+        servicePeriod:
+          $ref: >-
+            ../fields/com/SenderView/servicePeriod.yaml#/components/schemas/servicePeriod
+        amount:
+          $ref: ../fields/com/SenderView/amount.yaml#/components/schemas/amount
+        tariffLevel:
+          $ref: >-
+            ../fields/com/SenderView/tariffLevel.yaml#/components/schemas/tariffLevel

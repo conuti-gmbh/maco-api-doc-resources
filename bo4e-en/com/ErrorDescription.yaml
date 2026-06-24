@@ -1,0 +1,21 @@
+components:
+  schemas:
+    ErrorDescription:
+      title: ErrorDescription
+      type: object
+      properties:
+        description1:
+          $ref: >-
+            ../fields/com/ErrorDescription/description1.yaml#/components/schemas/description1
+        description2:
+          $ref: >-
+            ../fields/com/ErrorDescription/description2.yaml#/components/schemas/description2
+        description3:
+          $ref: >-
+            ../fields/com/ErrorDescription/description3.yaml#/components/schemas/description3
+        description4:
+          $ref: >-
+            ../fields/com/ErrorDescription/description4.yaml#/components/schemas/description4
+        description5:
+          $ref: >-
+            ../fields/com/ErrorDescription/description5.yaml#/components/schemas/description5

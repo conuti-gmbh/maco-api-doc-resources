@@ -1,0 +1,5 @@
+components:
+  schemas:
+    compensationRecipient:
+      $ref: >-
+        ../../../enum/CompensationRecipient.yaml#/components/schemas/CompensationRecipient

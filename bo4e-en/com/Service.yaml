@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Service:
+      title: Service
+      type: object
+      properties:
+        serviceType:
+          $ref: >-
+            ../fields/com/Service/serviceType.yaml#/components/schemas/serviceType
+        designation:
+          $ref: >-
+            ../fields/com/Service/designation.yaml#/components/schemas/designation

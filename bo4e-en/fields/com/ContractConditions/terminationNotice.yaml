@@ -1,0 +1,4 @@
+components:
+  schemas:
+    terminationNotice:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

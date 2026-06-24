@@ -1,0 +1,21 @@
+components:
+  schemas:
+    IpAddressClsDevice:
+      title: IpAddressClsDevice
+      type: object
+      properties:
+        IpAddressClsDevice1:
+          $ref: >-
+            ../fields/com/IpAddressClsDevice/IpAddressClsDevice1.yaml#/components/schemas/IpAddressClsDevice1
+        IpAddressClsDevice2:
+          $ref: >-
+            ../fields/com/IpAddressClsDevice/IpAddressClsDevice2.yaml#/components/schemas/IpAddressClsDevice2
+        IpAddressClsDevice3:
+          $ref: >-
+            ../fields/com/IpAddressClsDevice/IpAddressClsDevice3.yaml#/components/schemas/IpAddressClsDevice3
+        IpAddressClsDevice4:
+          $ref: >-
+            ../fields/com/IpAddressClsDevice/IpAddressClsDevice4.yaml#/components/schemas/IpAddressClsDevice4
+        IpAddressClsDevice5:
+          $ref: >-
+            ../fields/com/IpAddressClsDevice/IpAddressClsDevice5.yaml#/components/schemas/IpAddressClsDevice5

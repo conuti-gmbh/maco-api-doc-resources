@@ -1,0 +1,4 @@
+components:
+  schemas:
+    referenceMarketLocationId:
+      type: string

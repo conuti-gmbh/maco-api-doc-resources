@@ -1,0 +1,9 @@
+components:
+  schemas:
+    Publisher:
+      title: Publisher
+      type: string
+      enum:
+        - NB
+        - BDEW
+        - TUM

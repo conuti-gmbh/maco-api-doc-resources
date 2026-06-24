@@ -1,0 +1,9 @@
+components:
+  schemas:
+    MeteringTechnicalClassification:
+      title: MeteringTechnicalClassification
+      type: string
+      enum:
+        - IMS
+        - KME_MME
+        - NO_MEASUREMENT

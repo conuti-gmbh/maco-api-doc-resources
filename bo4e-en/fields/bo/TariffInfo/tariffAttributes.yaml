@@ -1,0 +1,7 @@
+components:
+  schemas:
+    tariffAttributes:
+      type: array
+      items:
+        $ref: ../../../enum/TariffAttribute.yaml#/components/schemas/TariffAttribute
+      nullable: true

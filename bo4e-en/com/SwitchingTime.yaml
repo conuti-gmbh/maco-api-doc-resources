@@ -1,0 +1,23 @@
+components:
+  schemas:
+    SwitchingTime:
+      title: SwitchingTime
+      type: object
+      properties:
+        code:
+          $ref: ../fields/com/SwitchingTime/code.yaml#/components/schemas/code
+        changeTimestamp:
+          $ref: >-
+            ../fields/com/SwitchingTime/changeTimestamp.yaml#/components/schemas/changeTimestamp
+        frequency:
+          $ref: >-
+            ../fields/com/SwitchingTime/frequency.yaml#/components/schemas/frequency
+        transmissibility:
+          $ref: >-
+            ../fields/com/SwitchingTime/transmissibility.yaml#/components/schemas/transmissibility
+        switchingAction:
+          $ref: >-
+            ../fields/com/SwitchingTime/switchingAction.yaml#/components/schemas/switchingAction
+        configurationProduct:
+          $ref: >-
+            ../fields/com/SwitchingTime/configurationProduct.yaml#/components/schemas/configurationProduct

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    disconnectionOrderRejectionReason:
+      $ref: >-
+        ../../../enum/DisconnectionOrderRejectionReason.yaml#/components/schemas/DisconnectionOrderRejectionReason

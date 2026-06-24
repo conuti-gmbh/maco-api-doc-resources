@@ -1,0 +1,4 @@
+components:
+  schemas:
+    dataSource:
+      $ref: ../../../cdoc/DataSource.yaml#/components/schemas/DataSource

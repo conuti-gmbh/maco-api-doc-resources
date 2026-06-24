@@ -1,0 +1,5 @@
+components:
+  schemas:
+    payerReactivePower:
+      $ref: >-
+        ../../../enum/PayerReactivePower.yaml#/components/schemas/PayerReactivePower

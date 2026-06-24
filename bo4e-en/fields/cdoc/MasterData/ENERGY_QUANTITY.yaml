@@ -1,0 +1,6 @@
+components:
+  schemas:
+    ENERGY_QUANTITY:
+      type: array
+      items:
+        $ref: ../../../bo/EnergyQuantity.yaml#/components/schemas/EnergyQuantity

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    signatoryOfferRecipient:
+      $ref: ../../../bo/ContactPerson.yaml#/components/schemas/ContactPerson

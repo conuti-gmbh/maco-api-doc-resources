@@ -1,0 +1,20 @@
+components:
+  schemas:
+    ErrorCause:
+      title: ErrorCause
+      type: object
+      properties:
+        document:
+          $ref: ../fields/com/ErrorCause/document.yaml#/components/schemas/document
+        message:
+          $ref: ../fields/com/ErrorCause/message.yaml#/components/schemas/message
+        transaction:
+          $ref: >-
+            ../fields/com/ErrorCause/transaction.yaml#/components/schemas/transaction
+        group:
+          $ref: ../fields/com/ErrorCause/group.yaml#/components/schemas/group
+        segment:
+          $ref: ../fields/com/ErrorCause/segment.yaml#/components/schemas/segment
+        description:
+          $ref: >-
+            ../fields/com/ErrorCause/description.yaml#/components/schemas/description

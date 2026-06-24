@@ -1,0 +1,6 @@
+components:
+  schemas:
+    VALUES_BY_TYPE2:
+      type: array
+      items:
+        $ref: ../../../bo/ValuesByType2.yaml#/components/schemas/ValuesByType2

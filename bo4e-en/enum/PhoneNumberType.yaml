@@ -1,0 +1,15 @@
+components:
+  schemas:
+    PhoneNumberType:
+      title: PhoneNumberType
+      type: string
+      enum:
+        - PHONE_CENTRAL
+        - FAX_CENTRAL
+        - COLLECTIVE_PHONE
+        - COLLECTIVE_FAX
+        - DEPARTMENT_PHONE
+        - DEPARTMENT_FAX
+        - PHONE_EXTENSION
+        - FAX_EXTENSION
+        - MOBILE_NUMBER

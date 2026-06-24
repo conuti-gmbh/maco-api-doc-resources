@@ -1,0 +1,48 @@
+components:
+  schemas:
+    CalculationFormula:
+      title: CalculationFormula
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/CalculationFormula.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/CalculationFormula/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/CalculationFormula/structureVersion.yaml#/components/schemas/structureVersion
+        beginDate:
+          $ref: >-
+            ../fields/bo/CalculationFormula/beginDate.yaml#/components/schemas/beginDate
+        necessity:
+          $ref: >-
+            ../fields/bo/CalculationFormula/necessity.yaml#/components/schemas/necessity
+        deliveryDirection:
+          $ref: >-
+            ../fields/bo/CalculationFormula/deliveryDirection.yaml#/components/schemas/deliveryDirection
+        calculationStepId:
+          $ref: >-
+            ../fields/bo/CalculationFormula/calculationStepId.yaml#/components/schemas/calculationStepId
+        calculationStep:
+          $ref: >-
+            ../fields/bo/CalculationFormula/calculationStep.yaml#/components/schemas/calculationStep
+        calculationSteps:
+          $ref: >-
+            ../fields/bo/CalculationFormula/calculationSteps.yaml#/components/schemas/calculationSteps
+        purposeOfUse:
+          $ref: >-
+            ../fields/bo/CalculationFormula/purposeOfUse.yaml#/components/schemas/purposeOfUse
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/CalculationFormula/validityPeriod.yaml#/components/schemas/validityPeriod
+        locationId:
+          $ref: >-
+            ../fields/bo/CalculationFormula/locationId.yaml#/components/schemas/locationId
+        locationType:
+          $ref: >-
+            ../fields/bo/CalculationFormula/locationType.yaml#/components/schemas/locationType

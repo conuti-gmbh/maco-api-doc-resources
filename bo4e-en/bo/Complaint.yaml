@@ -1,0 +1,38 @@
+components:
+  schemas:
+    Complaint:
+      title: Complaint
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Complaint.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Complaint/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Complaint/structureVersion.yaml#/components/schemas/structureVersion
+        locationId:
+          $ref: >-
+            ../fields/bo/Complaint/locationId.yaml#/components/schemas/locationId
+        locationType:
+          $ref: >-
+            ../fields/bo/Complaint/locationType.yaml#/components/schemas/locationType
+        obisNumber:
+          $ref: >-
+            ../fields/bo/Complaint/obisNumber.yaml#/components/schemas/obisNumber
+        measurementValueRequestPeriod:
+          $ref: >-
+            ../fields/bo/Complaint/measurementValueRequestPeriod.yaml#/components/schemas/measurementValueRequestPeriod
+        complaintReason:
+          $ref: >-
+            ../fields/bo/Complaint/complaintReason.yaml#/components/schemas/complaintReason
+        complaintReasonNote:
+          $ref: >-
+            ../fields/bo/Complaint/complaintReasonNote.yaml#/components/schemas/complaintReasonNote
+        configuration:
+          $ref: >-
+            ../fields/bo/Complaint/configuration.yaml#/components/schemas/configuration

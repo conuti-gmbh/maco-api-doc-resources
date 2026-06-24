@@ -1,0 +1,8 @@
+components:
+  schemas:
+    CurrencyUnit:
+      title: CurrencyUnit
+      type: string
+      enum:
+        - EUR
+        - CT

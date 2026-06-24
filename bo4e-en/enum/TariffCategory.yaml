@@ -1,0 +1,10 @@
+components:
+  schemas:
+    TariffCategory:
+      title: TariffCategory
+      type: string
+      enum:
+        - EMERGENCY_SUPPLY
+        - DEFAULT_SUPPLY
+        - DEFAULT_EMERGENCY_SUPPLY
+        - SPECIAL_TARIFF

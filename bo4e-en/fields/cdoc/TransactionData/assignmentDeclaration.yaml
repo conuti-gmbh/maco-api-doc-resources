@@ -1,0 +1,5 @@
+components:
+  schemas:
+    assignmentDeclaration:
+      $ref: >-
+        ../../../com/AssignmentDeclaration.yaml#/components/schemas/AssignmentDeclaration

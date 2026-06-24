@@ -1,0 +1,13 @@
+components:
+  schemas:
+    ErrorDetail:
+      title: ErrorDetail
+      type: object
+      properties:
+        code:
+          $ref: ../fields/com/ErrorDetail/code.yaml#/components/schemas/code
+        cause:
+          $ref: ../fields/com/ErrorDetail/cause.yaml#/components/schemas/cause
+        description:
+          $ref: >-
+            ../fields/com/ErrorDetail/description.yaml#/components/schemas/description

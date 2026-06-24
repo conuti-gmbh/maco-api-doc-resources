@@ -1,0 +1,4 @@
+components:
+  schemas:
+    referenceValue:
+      $ref: ../../../enum/QuantityUnit.yaml#/components/schemas/QuantityUnit

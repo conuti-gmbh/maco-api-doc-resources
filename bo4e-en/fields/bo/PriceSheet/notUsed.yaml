@@ -1,0 +1,4 @@
+components:
+  schemas:
+    notUsed:
+      type: boolean

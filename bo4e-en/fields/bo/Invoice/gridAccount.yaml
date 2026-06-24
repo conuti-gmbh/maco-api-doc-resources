@@ -1,0 +1,4 @@
+components:
+  schemas:
+    gridAccount:
+      type: string

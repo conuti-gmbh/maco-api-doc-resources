@@ -1,0 +1,4 @@
+components:
+  schemas:
+    timeRelatedQuantity:
+      $ref: ../../../com/Quantity.yaml#/components/schemas/Quantity

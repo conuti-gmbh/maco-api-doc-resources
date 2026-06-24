@@ -1,0 +1,4 @@
+components:
+  schemas:
+    positionAmount:
+      $ref: ../../../com/Amount.yaml#/components/schemas/Amount

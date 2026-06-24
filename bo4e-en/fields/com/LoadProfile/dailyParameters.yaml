@@ -1,0 +1,4 @@
+components:
+  schemas:
+    dailyParameters:
+      $ref: ../../../com/DailyParameters.yaml#/components/schemas/DailyParameters

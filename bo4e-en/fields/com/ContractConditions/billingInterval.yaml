@@ -1,0 +1,4 @@
+components:
+  schemas:
+    billingInterval:
+      type: integer

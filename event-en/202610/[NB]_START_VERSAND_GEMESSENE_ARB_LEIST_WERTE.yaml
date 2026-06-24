@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_VERSAND_GEMESSENE_ARB_LEIST_WERTE'
+  version: '202610'
+  x-bpmn-source-sha: eaf359e3
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[NB] START_VERSAND_GEMESSENE_ARB_LEIST_WERTE':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        transactionData:
+          type: object
+          required:
+          - sender
+          - inquiryReference
+          - receiver
+          - sector
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            inquiryReference:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/inquiryReference.yaml#/components/schemas/inquiryReference
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13015.
+              examples:
+              - '13015'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_GEMESSENE_ARB_LEIST_WERTE
+              default: START_VERSAND_GEMESSENE_ARB_LEIST_WERTE
+      x-pending-pruefis:
+      - '13015'

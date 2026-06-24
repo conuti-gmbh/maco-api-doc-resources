@@ -1,0 +1,25 @@
+components:
+  schemas:
+    MarketRole:
+      title: MarketRole
+      type: string
+      enum:
+        - NB
+        - LF
+        - MSB
+        - MSBA
+        - GMSB
+        - MDL
+        - DL
+        - BKV
+        - UENB
+        - CUSTOMER_SELF_NN
+        - MGV
+        - EIV
+        - RB
+        - CUSTOMER
+        - PROSPECT
+        - KN
+        - UBA
+        - BIKO
+        - ESA

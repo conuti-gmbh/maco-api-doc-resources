@@ -1,0 +1,32 @@
+components:
+  schemas:
+    MeteringTime:
+      title: MeteringTime
+      type: object
+      properties:
+        code:
+          $ref: ../fields/com/MeteringTime/code.yaml#/components/schemas/code
+        frequency:
+          $ref: >-
+            ../fields/com/MeteringTime/frequency.yaml#/components/schemas/frequency
+        transmissibility:
+          $ref: >-
+            ../fields/com/MeteringTime/transmissibility.yaml#/components/schemas/transmissibility
+        peakLoadDetermination:
+          $ref: >-
+            ../fields/com/MeteringTime/peakLoadDetermination.yaml#/components/schemas/peakLoadDetermination
+        isOrderable:
+          $ref: >-
+            ../fields/com/MeteringTime/isOrderable.yaml#/components/schemas/isOrderable
+        typeValue:
+          $ref: >-
+            ../fields/com/MeteringTime/typeValue.yaml#/components/schemas/typeValue
+        descriptionType:
+          $ref: >-
+            ../fields/com/MeteringTime/descriptionType.yaml#/components/schemas/descriptionType
+        changeTimestamp:
+          $ref: >-
+            ../fields/com/MeteringTime/changeTimestamp.yaml#/components/schemas/changeTimestamp
+        register:
+          $ref: >-
+            ../fields/com/MeteringTime/register.yaml#/components/schemas/register

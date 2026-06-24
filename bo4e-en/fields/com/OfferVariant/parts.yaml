@@ -1,0 +1,7 @@
+components:
+  schemas:
+    parts:
+      type: array
+      items:
+        $ref: ../../../com/OfferPart.yaml#/components/schemas/OfferPart
+      nullable: true

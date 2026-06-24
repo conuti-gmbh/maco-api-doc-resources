@@ -1,0 +1,4 @@
+components:
+  schemas:
+    billingViaNna:
+      type: boolean

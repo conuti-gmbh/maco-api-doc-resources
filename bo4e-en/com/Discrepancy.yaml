@@ -1,0 +1,60 @@
+components:
+  schemas:
+    Discrepancy:
+      title: Discrepancy
+      type: object
+      properties:
+        discrepancyReason:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReason.yaml#/components/schemas/discrepancyReason
+        discrepancyReasonNote:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonNote.yaml#/components/schemas/discrepancyReasonNote
+        associatedInvoice:
+          $ref: >-
+            ../fields/com/Discrepancy/associatedInvoice.yaml#/components/schemas/associatedInvoice
+        associatedOrder:
+          $ref: >-
+            ../fields/com/Discrepancy/associatedOrder.yaml#/components/schemas/associatedOrder
+        discrepancyReasonCode:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonCode.yaml#/components/schemas/discrepancyReasonCode
+        discrepancyReasonCodeList:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonCodeList.yaml#/components/schemas/discrepancyReasonCodeList
+        missingPositions1:
+          $ref: >-
+            ../fields/com/Discrepancy/missingPositions1.yaml#/components/schemas/missingPositions1
+        missingPositions2:
+          $ref: >-
+            ../fields/com/Discrepancy/missingPositions2.yaml#/components/schemas/missingPositions2
+        missingPositions3:
+          $ref: >-
+            ../fields/com/Discrepancy/missingPositions3.yaml#/components/schemas/missingPositions3
+        missingPositions4:
+          $ref: >-
+            ../fields/com/Discrepancy/missingPositions4.yaml#/components/schemas/missingPositions4
+        missingPositions5:
+          $ref: >-
+            ../fields/com/Discrepancy/missingPositions5.yaml#/components/schemas/missingPositions5
+        discrepancyReasonNote1:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonNote1.yaml#/components/schemas/discrepancyReasonNote1
+        discrepancyReasonNote2:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonNote2.yaml#/components/schemas/discrepancyReasonNote2
+        discrepancyReasonNote3:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonNote3.yaml#/components/schemas/discrepancyReasonNote3
+        discrepancyReasonNote4:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonNote4.yaml#/components/schemas/discrepancyReasonNote4
+        discrepancyReasonNote5:
+          $ref: >-
+            ../fields/com/Discrepancy/discrepancyReasonNote5.yaml#/components/schemas/discrepancyReasonNote5
+        reference:
+          $ref: >-
+            ../fields/com/Discrepancy/reference.yaml#/components/schemas/reference
+        installmentInvoices:
+          $ref: >-
+            ../fields/com/Discrepancy/installmentInvoices.yaml#/components/schemas/installmentInvoices

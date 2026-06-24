@@ -1,0 +1,10 @@
+components:
+  schemas:
+    ValueGranularity:
+      title: ValueGranularity
+      type: string
+      enum:
+        - ANNUAL
+        - SEMI_ANNUAL
+        - QUARTERLY
+        - MONTHLY

@@ -1,0 +1,10 @@
+components:
+  schemas:
+    Surcharge:
+      title: Surcharge
+      type: object
+      properties:
+        typeValue:
+          $ref: ../fields/com/Surcharge/typeValue.yaml#/components/schemas/typeValue
+        percent:
+          $ref: ../fields/com/Surcharge/percent.yaml#/components/schemas/percent

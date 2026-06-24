@@ -1,0 +1,15 @@
+components:
+  schemas:
+    CertificateInformation:
+      title: CertificateInformation
+      type: object
+      properties:
+        uriSubCA:
+          $ref: >-
+            ../fields/com/CertificateInformation/uriSubCA.yaml#/components/schemas/uriSubCA
+        commonNameCertificate:
+          $ref: >-
+            ../fields/com/CertificateInformation/commonNameCertificate.yaml#/components/schemas/commonNameCertificate
+        serialNumberCertificate:
+          $ref: >-
+            ../fields/com/CertificateInformation/serialNumberCertificate.yaml#/components/schemas/serialNumberCertificate

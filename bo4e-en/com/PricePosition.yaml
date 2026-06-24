@@ -1,0 +1,60 @@
+components:
+  schemas:
+    PricePosition:
+      title: PricePosition
+      type: object
+      properties:
+        calculationMethod:
+          $ref: >-
+            ../fields/com/PricePosition/calculationMethod.yaml#/components/schemas/calculationMethod
+        performanceType:
+          $ref: >-
+            ../fields/com/PricePosition/performanceType.yaml#/components/schemas/performanceType
+        serviceDesignation:
+          $ref: >-
+            ../fields/com/PricePosition/serviceDesignation.yaml#/components/schemas/serviceDesignation
+        priceUnit:
+          $ref: >-
+            ../fields/com/PricePosition/priceUnit.yaml#/components/schemas/priceUnit
+        referenceQuantity:
+          $ref: >-
+            ../fields/com/PricePosition/referenceQuantity.yaml#/components/schemas/referenceQuantity
+        timeBasis:
+          $ref: >-
+            ../fields/com/PricePosition/timeBasis.yaml#/components/schemas/timeBasis
+        tariffTime:
+          $ref: >-
+            ../fields/com/PricePosition/tariffTime.yaml#/components/schemas/tariffTime
+        bdewArticleNumber:
+          $ref: >-
+            ../fields/com/PricePosition/bdewArticleNumber.yaml#/components/schemas/bdewArticleNumber
+        zoningSize:
+          $ref: >-
+            ../fields/com/PricePosition/zoningSize.yaml#/components/schemas/zoningSize
+        priceKeyMaster:
+          $ref: >-
+            ../fields/com/PricePosition/priceKeyMaster.yaml#/components/schemas/priceKeyMaster
+        positionNumber:
+          $ref: >-
+            ../fields/com/PricePosition/positionNumber.yaml#/components/schemas/positionNumber
+        meteringLevel:
+          $ref: >-
+            ../fields/com/PricePosition/meteringLevel.yaml#/components/schemas/meteringLevel
+        description:
+          $ref: >-
+            ../fields/com/PricePosition/description.yaml#/components/schemas/description
+        descriptionFormat:
+          $ref: >-
+            ../fields/com/PricePosition/descriptionFormat.yaml#/components/schemas/descriptionFormat
+        processingPeriod:
+          $ref: >-
+            ../fields/com/PricePosition/processingPeriod.yaml#/components/schemas/processingPeriod
+        articleId:
+          $ref: >-
+            ../fields/com/PricePosition/articleId.yaml#/components/schemas/articleId
+        surchargesDiscounts:
+          $ref: >-
+            ../fields/com/PricePosition/surchargesDiscounts.yaml#/components/schemas/surchargesDiscounts
+        priceSteps:
+          $ref: >-
+            ../fields/com/PricePosition/priceSteps.yaml#/components/schemas/priceSteps

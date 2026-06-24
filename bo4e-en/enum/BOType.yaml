@@ -1,0 +1,54 @@
+components:
+  schemas:
+    BOType:
+      title: BOType
+      type: string
+      enum:
+        - CONTACT_PERSON
+        - ADVICE_NOTE
+        - ENERGY_QUANTITY
+        - BUSINESS_OBJECT
+        - BUSINESS_PARTNER
+        - MARKET_LOCATION
+        - MARKET_PARTICIPANT
+        - METERING_LOCATION
+        - METER
+        - COSTS
+        - TARIFF
+        - PRICE_SHEET
+        - PRICE_SHEET_GRID_ACCESS
+        - PRICE_SHEET_MEASUREMENT
+        - PRICE_SHEET_LEVIES
+        - PRICE_SHEET_SERVICE
+        - PRICE_SHEET_CONCESSION_FEE
+        - TIME_SERIES
+        - LOAD_PROFILE
+        - TRADE_DISCREPANCY
+        - REQUEST
+        - ORDER
+        - STATUS_NOTIFICATION
+        - CALCULATION_FORMULA
+        - INVOICE
+        - BALANCING
+        - GRID_ACCESS_CONTRACT
+        - METERING_POINT_OPERATION_CONTRACT
+        - ENERGY_SUPPLY_CONTRACT
+        - DISCONNECTION_ORDER
+        - OFFER
+        - TRANCHE
+        - COMMUNICATION_DATA
+        - METERING_TIME_DEFINITION
+        - SWITCHING_TIME_DEFINITION
+        - LOAD_CURVE_DEFINITION
+        - GRID_LOCATION
+        - CONTROLLABLE_RESOURCE
+        - TECHNICAL_RESOURCE
+        - AD_HOC_CONTROL_CHANNEL
+        - LOCATION_BUNDLE
+        - VALUES_BY_TYPE2
+        - COMPLAINT
+        - STATUS_REPORT
+        - CONTRACT
+        - BALANCING_GROUP
+        - USAGE_PERIOD
+        - TARIFF_INFO

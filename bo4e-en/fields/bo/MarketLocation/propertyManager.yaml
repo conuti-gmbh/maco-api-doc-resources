@@ -1,0 +1,4 @@
+components:
+  schemas:
+    propertyManager:
+      $ref: ../../../bo/BusinessPartner.yaml#/components/schemas/BusinessPartner

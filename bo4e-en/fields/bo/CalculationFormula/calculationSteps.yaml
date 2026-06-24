@@ -1,0 +1,7 @@
+components:
+  schemas:
+    calculationSteps:
+      type: array
+      items:
+        $ref: ../../../com/CalculationStep.yaml#/components/schemas/CalculationStep
+      nullable: true

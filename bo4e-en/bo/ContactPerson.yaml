@@ -1,0 +1,26 @@
+components:
+  schemas:
+    ContactPerson:
+      title: ContactPerson
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/ContactPerson.json
+      properties:
+        boType:
+          $ref: ../fields/bo/ContactPerson/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/ContactPerson/structureVersion.yaml#/components/schemas/structureVersion
+        lastName:
+          $ref: >-
+            ../fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+        eMailAddress:
+          $ref: >-
+            ../fields/bo/ContactPerson/eMailAddress.yaml#/components/schemas/eMailAddress
+        phoneNumbers:
+          $ref: >-
+            ../fields/bo/ContactPerson/phoneNumbers.yaml#/components/schemas/phoneNumbers

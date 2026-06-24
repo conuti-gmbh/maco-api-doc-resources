@@ -1,0 +1,4 @@
+components:
+  schemas:
+    targetAddress4:
+      type: string

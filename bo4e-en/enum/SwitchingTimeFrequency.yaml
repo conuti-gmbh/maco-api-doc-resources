@@ -1,0 +1,8 @@
+components:
+  schemas:
+    SwitchingTimeFrequency:
+      title: SwitchingTimeFrequency
+      type: string
+      enum:
+        - ONE_TIME
+        - ANNUAL

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    commonNameCertificate:
+      type: string

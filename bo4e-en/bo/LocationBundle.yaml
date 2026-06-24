@@ -1,0 +1,35 @@
+components:
+  schemas:
+    LocationBundle:
+      title: LocationBundle
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/LocationBundle.json
+      properties:
+        boType:
+          $ref: ../fields/bo/LocationBundle/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/LocationBundle/structureVersion.yaml#/components/schemas/structureVersion
+        locationBundleStructureId:
+          $ref: >-
+            ../fields/bo/LocationBundle/locationBundleStructureId.yaml#/components/schemas/locationBundleStructureId
+        locationBundleNumber:
+          $ref: >-
+            ../fields/bo/LocationBundle/locationBundleNumber.yaml#/components/schemas/locationBundleNumber
+        standardizedLocationBundleStructure:
+          $ref: >-
+            ../fields/bo/LocationBundle/standardizedLocationBundleStructure.yaml#/components/schemas/standardizedLocationBundleStructure
+        dataQuality:
+          $ref: >-
+            ../fields/bo/LocationBundle/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/LocationBundle/validityPeriod.yaml#/components/schemas/validityPeriod
+        assignmentObjectCode:
+          $ref: >-
+            ../fields/bo/LocationBundle/assignmentObjectCode.yaml#/components/schemas/assignmentObjectCode

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Product:
+      title: Product
+      type: object
+      properties:
+        productCode:
+          $ref: >-
+            ../fields/com/Product/productCode.yaml#/components/schemas/productCode
+        productAttributeCode:
+          $ref: >-
+            ../fields/com/Product/productAttributeCode.yaml#/components/schemas/productAttributeCode
+        valueDetails:
+          $ref: >-
+            ../fields/com/Product/valueDetails.yaml#/components/schemas/valueDetails

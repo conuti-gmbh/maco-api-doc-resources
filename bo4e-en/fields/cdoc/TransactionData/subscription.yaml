@@ -1,0 +1,4 @@
+components:
+  schemas:
+    subscription:
+      type: string

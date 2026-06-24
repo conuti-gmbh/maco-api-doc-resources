@@ -1,0 +1,33 @@
+components:
+  schemas:
+    AdviceNotePosition:
+      title: AdviceNotePosition
+      type: object
+      properties:
+        invoiceNumber:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/invoiceNumber.yaml#/components/schemas/invoiceNumber
+        billingDate:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/billingDate.yaml#/components/schemas/billingDate
+        isCancellation:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/isCancellation.yaml#/components/schemas/isCancellation
+        isSelfIssued:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/isSelfIssued.yaml#/components/schemas/isSelfIssued
+        totalGross:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/totalGross.yaml#/components/schemas/totalGross
+        toPay:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/toPay.yaml#/components/schemas/toPay
+        reference:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/reference.yaml#/components/schemas/reference
+        discrepancy:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/discrepancy.yaml#/components/schemas/discrepancy
+        positions:
+          $ref: >-
+            ../fields/com/AdviceNotePosition/positions.yaml#/components/schemas/positions

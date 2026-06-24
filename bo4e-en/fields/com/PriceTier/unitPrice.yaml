@@ -1,0 +1,5 @@
+components:
+  schemas:
+    unitPrice:
+      type: number
+      format: float

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    GasQuality:
+      title: GasQuality
+      type: string
+      enum:
+        - H_GAS
+        - L_GAS

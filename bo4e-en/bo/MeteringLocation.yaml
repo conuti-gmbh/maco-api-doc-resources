@@ -1,0 +1,91 @@
+components:
+  schemas:
+    MeteringLocation:
+      title: MeteringLocation
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/MeteringLocation.json
+      properties:
+        boType:
+          $ref: ../fields/bo/MeteringLocation/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/MeteringLocation/structureVersion.yaml#/components/schemas/structureVersion
+        meteringLocationId:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+        sector:
+          $ref: ../fields/bo/MeteringLocation/sector.yaml#/components/schemas/sector
+        energyDirection:
+          $ref: >-
+            ../fields/bo/MeteringLocation/energyDirection.yaml#/components/schemas/energyDirection
+        meteringGridLevel:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringGridLevel.yaml#/components/schemas/meteringGridLevel
+        meteringAreaNumber:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringAreaNumber.yaml#/components/schemas/meteringAreaNumber
+        responsibleMsbCodeNumber:
+          $ref: >-
+            ../fields/bo/MeteringLocation/responsibleMsbCodeNumber.yaml#/components/schemas/responsibleMsbCodeNumber
+        meteringAddress:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringAddress.yaml#/components/schemas/meteringAddress
+        balancingMethod:
+          $ref: >-
+            ../fields/bo/MeteringLocation/balancingMethod.yaml#/components/schemas/balancingMethod
+        meteringPointOperationBillingNna:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringPointOperationBillingNna.yaml#/components/schemas/meteringPointOperationBillingNna
+        gasQuality:
+          $ref: >-
+            ../fields/bo/MeteringLocation/gasQuality.yaml#/components/schemas/gasQuality
+        lossFactor:
+          $ref: >-
+            ../fields/bo/MeteringLocation/lossFactor.yaml#/components/schemas/lossFactor
+        operationalState:
+          $ref: >-
+            ../fields/bo/MeteringLocation/operationalState.yaml#/components/schemas/operationalState
+        readingCardRecipient:
+          $ref: >-
+            ../fields/bo/MeteringLocation/readingCardRecipient.yaml#/components/schemas/readingCardRecipient
+        referenceMarketLocationId:
+          $ref: >-
+            ../fields/bo/MeteringLocation/referenceMarketLocationId.yaml#/components/schemas/referenceMarketLocationId
+        usageScope:
+          $ref: >-
+            ../fields/bo/MeteringLocation/usageScope.yaml#/components/schemas/usageScope
+        futureReportingPoint:
+          $ref: >-
+            ../fields/bo/MeteringLocation/futureReportingPoint.yaml#/components/schemas/futureReportingPoint
+        locationAssignment:
+          $ref: >-
+            ../fields/bo/MeteringLocation/locationAssignment.yaml#/components/schemas/locationAssignment
+        involvedMarketPartner:
+          $ref: >-
+            ../fields/bo/MeteringLocation/involvedMarketPartner.yaml#/components/schemas/involvedMarketPartner
+        devices:
+          $ref: >-
+            ../fields/bo/MeteringLocation/devices.yaml#/components/schemas/devices
+        meteringService:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringService.yaml#/components/schemas/meteringService
+        meteringLocationMeter:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meteringLocationMeter.yaml#/components/schemas/meteringLocationMeter
+        meterRegisters:
+          $ref: >-
+            ../fields/bo/MeteringLocation/meterRegisters.yaml#/components/schemas/meterRegisters
+        marketRoles:
+          $ref: >-
+            ../fields/bo/MeteringLocation/marketRoles.yaml#/components/schemas/marketRoles
+        dataQuality:
+          $ref: >-
+            ../fields/bo/MeteringLocation/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/MeteringLocation/validityPeriod.yaml#/components/schemas/validityPeriod

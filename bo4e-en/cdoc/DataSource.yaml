@@ -1,0 +1,8 @@
+components:
+  schemas:
+    DataSource:
+      title: DataSource
+      type: string
+      enum:
+        - INBOUND
+        - OUTBOUND

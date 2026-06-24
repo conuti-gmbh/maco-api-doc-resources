@@ -1,0 +1,138 @@
+components:
+  schemas:
+    Tranche:
+      title: Tranche
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Tranche.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Tranche/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Tranche/structureVersion.yaml#/components/schemas/structureVersion
+        trancheId:
+          $ref: ../fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+        sector:
+          $ref: ../fields/bo/Tranche/sector.yaml#/components/schemas/sector
+        energyDirection:
+          $ref: >-
+            ../fields/bo/Tranche/energyDirection.yaml#/components/schemas/energyDirection
+        balancingMethod:
+          $ref: >-
+            ../fields/bo/Tranche/balancingMethod.yaml#/components/schemas/balancingMethod
+        consumptionType:
+          $ref: >-
+            ../fields/bo/Tranche/consumptionType.yaml#/components/schemas/consumptionType
+        interruptible:
+          $ref: >-
+            ../fields/bo/Tranche/interruptible.yaml#/components/schemas/interruptible
+        gridLevel:
+          $ref: ../fields/bo/Tranche/gridLevel.yaml#/components/schemas/gridLevel
+        gridOperatorCodeNumber:
+          $ref: >-
+            ../fields/bo/Tranche/gridOperatorCodeNumber.yaml#/components/schemas/gridOperatorCodeNumber
+        areaType:
+          $ref: ../fields/bo/Tranche/areaType.yaml#/components/schemas/areaType
+        gridAreaNumber:
+          $ref: >-
+            ../fields/bo/Tranche/gridAreaNumber.yaml#/components/schemas/gridAreaNumber
+        balancingArea:
+          $ref: >-
+            ../fields/bo/Tranche/balancingArea.yaml#/components/schemas/balancingArea
+        defaultSupplierCodeNumber:
+          $ref: >-
+            ../fields/bo/Tranche/defaultSupplierCodeNumber.yaml#/components/schemas/defaultSupplierCodeNumber
+        gasQuality:
+          $ref: ../fields/bo/Tranche/gasQuality.yaml#/components/schemas/gasQuality
+        endCustomer:
+          $ref: >-
+            ../fields/bo/Tranche/endCustomer.yaml#/components/schemas/endCustomer
+        locationAddress:
+          $ref: >-
+            ../fields/bo/Tranche/locationAddress.yaml#/components/schemas/locationAddress
+        cadastralInformation:
+          $ref: >-
+            ../fields/bo/Tranche/cadastralInformation.yaml#/components/schemas/cadastralInformation
+        controlZone:
+          $ref: >-
+            ../fields/bo/Tranche/controlZone.yaml#/components/schemas/controlZone
+        marketArea:
+          $ref: ../fields/bo/Tranche/marketArea.yaml#/components/schemas/marketArea
+        timeSeriesType:
+          $ref: >-
+            ../fields/bo/Tranche/timeSeriesType.yaml#/components/schemas/timeSeriesType
+        meteringTechnicalClassification:
+          $ref: >-
+            ../fields/bo/Tranche/meteringTechnicalClassification.yaml#/components/schemas/meteringTechnicalClassification
+        lockStatus:
+          $ref: ../fields/bo/Tranche/lockStatus.yaml#/components/schemas/lockStatus
+        referenceMarketLocationId:
+          $ref: >-
+            ../fields/bo/Tranche/referenceMarketLocationId.yaml#/components/schemas/referenceMarketLocationId
+        supplyType:
+          $ref: ../fields/bo/Tranche/supplyType.yaml#/components/schemas/supplyType
+        remoteControllability:
+          $ref: >-
+            ../fields/bo/Tranche/remoteControllability.yaml#/components/schemas/remoteControllability
+        compensationRecipient:
+          $ref: >-
+            ../fields/bo/Tranche/compensationRecipient.yaml#/components/schemas/compensationRecipient
+        promotionCountry:
+          $ref: >-
+            ../fields/bo/Tranche/promotionCountry.yaml#/components/schemas/promotionCountry
+        statusGeneratingMalo:
+          $ref: >-
+            ../fields/bo/Tranche/statusGeneratingMalo.yaml#/components/schemas/statusGeneratingMalo
+        referenceTranche:
+          $ref: >-
+            ../fields/bo/Tranche/referenceTranche.yaml#/components/schemas/referenceTranche
+        allocationQuantity:
+          $ref: >-
+            ../fields/bo/Tranche/allocationQuantity.yaml#/components/schemas/allocationQuantity
+        balancingGroup:
+          $ref: >-
+            ../fields/bo/Tranche/balancingGroup.yaml#/components/schemas/balancingGroup
+        trancheFormationSize:
+          $ref: >-
+            ../fields/bo/Tranche/trancheFormationSize.yaml#/components/schemas/trancheFormationSize
+        futureReportingPoint:
+          $ref: >-
+            ../fields/bo/Tranche/futureReportingPoint.yaml#/components/schemas/futureReportingPoint
+        locationAssignment:
+          $ref: >-
+            ../fields/bo/Tranche/locationAssignment.yaml#/components/schemas/locationAssignment
+        involvedMarketPartner:
+          $ref: >-
+            ../fields/bo/Tranche/involvedMarketPartner.yaml#/components/schemas/involvedMarketPartner
+        marketRoles:
+          $ref: >-
+            ../fields/bo/Tranche/marketRoles.yaml#/components/schemas/marketRoles
+        meterRegisters:
+          $ref: >-
+            ../fields/bo/Tranche/meterRegisters.yaml#/components/schemas/meterRegisters
+        meterRegistersInvolvedMarketRole:
+          $ref: >-
+            ../fields/bo/Tranche/meterRegistersInvolvedMarketRole.yaml#/components/schemas/meterRegistersInvolvedMarketRole
+        consumptionQuantity:
+          $ref: >-
+            ../fields/bo/Tranche/consumptionQuantity.yaml#/components/schemas/consumptionQuantity
+        associatedMeteringLocations:
+          $ref: >-
+            ../fields/bo/Tranche/associatedMeteringLocations.yaml#/components/schemas/associatedMeteringLocations
+        gridAccessBillingData:
+          $ref: >-
+            ../fields/bo/Tranche/gridAccessBillingData.yaml#/components/schemas/gridAccessBillingData
+        energyOrigin:
+          $ref: >-
+            ../fields/bo/Tranche/energyOrigin.yaml#/components/schemas/energyOrigin
+        dataQuality:
+          $ref: >-
+            ../fields/bo/Tranche/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/Tranche/validityPeriod.yaml#/components/schemas/validityPeriod

@@ -1,0 +1,12 @@
+components:
+  schemas:
+    HeatUsage:
+      title: HeatUsage
+      type: string
+      enum:
+        - STORAGE_HEATING
+        - HEAT_PUMP
+        - DIRECT_HEATING
+        - HEAT_PUMP_HEATING_COOLING
+        - HEAT_PUMP_COOLING
+        - HEAT_PUMP_HEATING

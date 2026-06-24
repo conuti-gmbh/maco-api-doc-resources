@@ -1,0 +1,111 @@
+components:
+  schemas:
+    StatusNotificationPosition:
+      title: StatusNotificationPosition
+      type: object
+      properties:
+        positionNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+        processingDate:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/processingDate.yaml#/components/schemas/processingDate
+        usageFrom:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/usageFrom.yaml#/components/schemas/usageFrom
+        usageTo:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/usageTo.yaml#/components/schemas/usageTo
+        endDate:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/endDate.yaml#/components/schemas/endDate
+        orderStatus:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/orderStatus.yaml#/components/schemas/orderStatus
+        statusOccasion:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/statusOccasion.yaml#/components/schemas/statusOccasion
+        responseStatus:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/responseStatus.yaml#/components/schemas/responseStatus
+        errorDescription:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/errorDescription.yaml#/components/schemas/errorDescription
+        justification:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/justification.yaml#/components/schemas/justification
+        locationId:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/locationId.yaml#/components/schemas/locationId
+        referenceMelo:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/referenceMelo.yaml#/components/schemas/referenceMelo
+        generalInformation:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/generalInformation.yaml#/components/schemas/generalInformation
+        statusChangeTimestamp:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/statusChangeTimestamp.yaml#/components/schemas/statusChangeTimestamp
+        orderStatusList:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/orderStatusList.yaml#/components/schemas/orderStatusList
+        locationType:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/locationType.yaml#/components/schemas/locationType
+        statusObject:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/statusObject.yaml#/components/schemas/statusObject
+        responseStatusCodeList:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/responseStatusCodeList.yaml#/components/schemas/responseStatusCodeList
+        processReferenceNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/processReferenceNumber.yaml#/components/schemas/processReferenceNumber
+        notificationNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/notificationNumber.yaml#/components/schemas/notificationNumber
+        requestReferenceNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/requestReferenceNumber.yaml#/components/schemas/requestReferenceNumber
+        completionDate:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/completionDate.yaml#/components/schemas/completionDate
+        deliveryDate:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/deliveryDate.yaml#/components/schemas/deliveryDate
+        shipmentPosition:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/shipmentPosition.yaml#/components/schemas/shipmentPosition
+        validFrom:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/validFrom.yaml#/components/schemas/validFrom
+        referenceMalo:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/referenceMalo.yaml#/components/schemas/referenceMalo
+        referencePriceKeyMaster:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/referencePriceKeyMaster.yaml#/components/schemas/referencePriceKeyMaster
+        referenceArticleId:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/referenceArticleId.yaml#/components/schemas/referenceArticleId
+        startDate:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/startDate.yaml#/components/schemas/startDate
+        offerNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/offerNumber.yaml#/components/schemas/offerNumber
+        inquiryReference:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/inquiryReference.yaml#/components/schemas/inquiryReference
+        contractEnd:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/contractEnd.yaml#/components/schemas/contractEnd
+        senderView:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/senderView.yaml#/components/schemas/senderView
+        validityTimespan:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/validityTimespan.yaml#/components/schemas/validityTimespan
+        privilegedEnergyQuantity:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/privilegedEnergyQuantity.yaml#/components/schemas/privilegedEnergyQuantity

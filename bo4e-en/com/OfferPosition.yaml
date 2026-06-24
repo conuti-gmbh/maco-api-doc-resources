@@ -1,0 +1,45 @@
+components:
+  schemas:
+    OfferPosition:
+      title: OfferPosition
+      type: object
+      properties:
+        positionDesignation:
+          $ref: >-
+            ../fields/com/OfferPosition/positionDesignation.yaml#/components/schemas/positionDesignation
+        itemQuantity:
+          $ref: >-
+            ../fields/com/OfferPosition/itemQuantity.yaml#/components/schemas/itemQuantity
+        positionPrice:
+          $ref: >-
+            ../fields/com/OfferPosition/positionPrice.yaml#/components/schemas/positionPrice
+        positionAmount:
+          $ref: >-
+            ../fields/com/OfferPosition/positionAmount.yaml#/components/schemas/positionAmount
+        priceKeyMaster:
+          $ref: >-
+            ../fields/com/OfferPosition/priceKeyMaster.yaml#/components/schemas/priceKeyMaster
+        articleNumber:
+          $ref: >-
+            ../fields/com/OfferPosition/articleNumber.yaml#/components/schemas/articleNumber
+        articleId:
+          $ref: >-
+            ../fields/com/OfferPosition/articleId.yaml#/components/schemas/articleId
+        offerable:
+          $ref: >-
+            ../fields/com/OfferPosition/offerable.yaml#/components/schemas/offerable
+        freeText:
+          $ref: >-
+            ../fields/com/OfferPosition/freeText.yaml#/components/schemas/freeText
+        referenceCatalogNumber:
+          $ref: >-
+            ../fields/com/OfferPosition/referenceCatalogNumber.yaml#/components/schemas/referenceCatalogNumber
+        involvedMarketPartner:
+          $ref: >-
+            ../fields/com/OfferPosition/involvedMarketPartner.yaml#/components/schemas/involvedMarketPartner
+        referenceMarketLocationIds:
+          $ref: >-
+            ../fields/com/OfferPosition/referenceMarketLocationIds.yaml#/components/schemas/referenceMarketLocationIds
+        configurationProduct:
+          $ref: >-
+            ../fields/com/OfferPosition/configurationProduct.yaml#/components/schemas/configurationProduct

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    assignedDefinition:
+      $ref: >-
+        ../../../com/AssignedDefinition.yaml#/components/schemas/AssignedDefinition

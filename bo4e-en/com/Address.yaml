@@ -1,0 +1,31 @@
+components:
+  schemas:
+    Address:
+      title: Address
+      type: object
+      properties:
+        postalCode:
+          $ref: ../fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+        city:
+          $ref: ../fields/com/Address/city.yaml#/components/schemas/city
+        street:
+          $ref: ../fields/com/Address/street.yaml#/components/schemas/street
+        houseNumber:
+          $ref: >-
+            ../fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+        poBox:
+          $ref: ../fields/com/Address/poBox.yaml#/components/schemas/poBox
+        addressSupplement:
+          $ref: >-
+            ../fields/com/Address/addressSupplement.yaml#/components/schemas/addressSupplement
+        coSupplement:
+          $ref: >-
+            ../fields/com/Address/coSupplement.yaml#/components/schemas/coSupplement
+        countryCode:
+          $ref: >-
+            ../fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+        district:
+          $ref: ../fields/com/Address/district.yaml#/components/schemas/district
+        additionalInformation:
+          $ref: >-
+            ../fields/com/Address/additionalInformation.yaml#/components/schemas/additionalInformation

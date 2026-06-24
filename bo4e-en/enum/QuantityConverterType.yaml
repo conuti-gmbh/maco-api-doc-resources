@@ -1,0 +1,9 @@
+components:
+  schemas:
+    QuantityConverterType:
+      title: QuantityConverterType
+      type: string
+      enum:
+        - DENSITY_QUANTITY_CONVERTER
+        - TEMPERATURE_QUANTITY_CONVERTER
+        - STATE_QUANTITY_CONVERTER

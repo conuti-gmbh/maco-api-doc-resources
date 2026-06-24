@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deliveryPeriod:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_ERHEBUNG_MESSWERTE'
+  version: '202610'
+  x-bpmn-source-sha: aa74db2c
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[MSB] START_ERHEBUNG_MESSWERTE':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        transactionData:
+          type: object
+          required:
+          - sender
+          - inquiryReference
+          - receiver
+          - category
+          - locationType
+          - sector
+          - typeValue
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            inquiryReference:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/inquiryReference.yaml#/components/schemas/inquiryReference
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            locationType:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/locationType.yaml#/components/schemas/locationType
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            typeValue:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/typeValue.yaml#/components/schemas/typeValue
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13007, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.
+              examples:
+              - '13002'
+              - '13007'
+              - '13008'
+              - '13009'
+              - '13016'
+              - '13017'
+              - '13018'
+              - '13019'
+              - '13025'
+              - '13027'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_ERHEBUNG_MESSWERTE
+              default: START_COLLECTION_MEASURED_VALUES
+      x-pending-pruefis:
+      - '13002'
+      - '13007'
+      - '13008'
+      - '13009'
+      - '13016'
+      - '13017'
+      - '13018'
+      - '13019'
+      - '13025'
+      - '13027'

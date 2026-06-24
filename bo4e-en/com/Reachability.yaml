@@ -1,0 +1,11 @@
+components:
+  schemas:
+    Reachability:
+      title: Reachability
+      type: object
+      properties:
+        availability:
+          $ref: >-
+            ../fields/com/Reachability/availability.yaml#/components/schemas/availability
+        time:
+          $ref: ../fields/com/Reachability/time.yaml#/components/schemas/time

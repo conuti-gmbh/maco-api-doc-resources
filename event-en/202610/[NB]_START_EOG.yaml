@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_EOG'
+  version: '202610'
+  x-bpmn-source-sha: eaf359e3
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[NB] START_EOG':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/UTILMD/PI_55013.yaml#/components/schemas/PI_55013__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - category
+          - sector
+          - transactionReason
+          - transactionReasonSupplement
+          - transactionReasonSupplementTemporaryRegistration
+          - contractStart
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            transactionReasonSupplement:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
+            transactionReasonSupplementTemporaryRegistration:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplementTemporaryRegistration.yaml#/components/schemas/transactionReasonSupplementTemporaryRegistration
+            contractStart:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/contractStart.yaml#/components/schemas/contractStart
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44013, 55013.
+              examples:
+              - '44013'
+              - '55013'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_EOG
+              default: START_EOG
+      x-pending-pruefis:
+      - '44013'

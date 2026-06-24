@@ -1,0 +1,24 @@
+components:
+  schemas:
+    AssignmentDeclaration:
+      title: AssignmentDeclaration
+      type: object
+      properties:
+        password:
+          $ref: >-
+            ../fields/com/AssignmentDeclaration/password.yaml#/components/schemas/password
+        link1:
+          $ref: >-
+            ../fields/com/AssignmentDeclaration/link1.yaml#/components/schemas/link1
+        link2:
+          $ref: >-
+            ../fields/com/AssignmentDeclaration/link2.yaml#/components/schemas/link2
+        link3:
+          $ref: >-
+            ../fields/com/AssignmentDeclaration/link3.yaml#/components/schemas/link3
+        link4:
+          $ref: >-
+            ../fields/com/AssignmentDeclaration/link4.yaml#/components/schemas/link4
+        link5:
+          $ref: >-
+            ../fields/com/AssignmentDeclaration/link5.yaml#/components/schemas/link5

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    positions:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/FeedbackPosition.yaml#/components/schemas/FeedbackPosition
+      nullable: true

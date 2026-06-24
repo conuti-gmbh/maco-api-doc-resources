@@ -1,0 +1,4 @@
+components:
+  schemas:
+    procedure:
+      $ref: ../../../enum/ProfileProcedure.yaml#/components/schemas/ProfileProcedure

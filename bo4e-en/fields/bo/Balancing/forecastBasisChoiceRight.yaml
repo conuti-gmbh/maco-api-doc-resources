@@ -1,0 +1,5 @@
+components:
+  schemas:
+    forecastBasisChoiceRight:
+      $ref: >-
+        ../../../enum/ForecastBasisChoiceRight.yaml#/components/schemas/ForecastBasisChoiceRight

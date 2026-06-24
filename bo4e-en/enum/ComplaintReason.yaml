@@ -1,0 +1,16 @@
+components:
+  schemas:
+    ComplaintReason:
+      title: ComplaintReason
+      type: string
+      enum:
+        - VALUES_TOO_HIGH
+        - VALUES_TOO_LOW
+        - VALUES_MISSING
+        - CONFIGURATION_HAS_NO_EFFECT
+        - CONFIGURATION_HAS_PARTIAL_EFFECT
+        - VALUES_NOT_TRANSMITTED_AS_SPECIFIED
+        - OVERVIEW_MISSING
+        - OVERVIEW_IMPLAUSIBLE
+        - ROLLED_OUT_DEFINITION_MISSING
+        - ROLLED_OUT_DEFINITION_IMPLAUSIBLE

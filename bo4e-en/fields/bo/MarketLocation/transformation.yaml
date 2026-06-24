@@ -1,0 +1,4 @@
+components:
+  schemas:
+    transformation:
+      $ref: ../../../enum/GridLevel.yaml#/components/schemas/GridLevel

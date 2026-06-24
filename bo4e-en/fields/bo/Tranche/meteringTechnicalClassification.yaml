@@ -1,0 +1,5 @@
+components:
+  schemas:
+    meteringTechnicalClassification:
+      $ref: >-
+        ../../../enum/MeteringTechnicalClassification.yaml#/components/schemas/MeteringTechnicalClassification

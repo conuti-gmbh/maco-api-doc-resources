@@ -1,0 +1,4 @@
+components:
+  schemas:
+    endpointAddress:
+      $ref: ../../../com/EndpointAddress.yaml#/components/schemas/EndpointAddress

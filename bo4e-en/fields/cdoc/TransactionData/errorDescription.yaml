@@ -1,0 +1,4 @@
+components:
+  schemas:
+    errorDescription:
+      type: string

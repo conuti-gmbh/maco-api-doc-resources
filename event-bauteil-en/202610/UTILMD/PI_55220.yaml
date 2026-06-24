@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: PI_55220
+  version: '202610'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55220:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55220__masterData'
+      required:
+      - masterData
+    PI_55220__masterData:
+      type: object
+      properties:
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55220__masterData__BALANCING'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55220__masterData__MARKET_LOCATION'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55220__masterData__GRID_ACCESS_CONTRACT'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55220__masterData__USAGE_PERIOD'
+      required:
+      - BALANCING
+      - MARKET_LOCATION
+      - GRID_ACCESS_CONTRACT
+      - USAGE_PERIOD
+    PI_55220__masterData__BALANCING:
+      type: object
+      properties:
+        consumptionAllocation:
+          $ref: '#/components/schemas/PI_55220__masterData__BALANCING__consumptionAllocation'
+      required:
+      - consumptionAllocation
+    PI_55220__masterData__BALANCING__consumptionAllocation:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++E17.CAV+Z22
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++E17.CAV+Z22
+      required:
+      - unit
+      - value
+    PI_55220__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z51|Z52]
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81]
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55220__masterData__MARKET_LOCATION__validityPeriod'
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        gridOperatorCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/gridOperatorCodeNumber.yaml#/components/schemas/gridOperatorCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG10.CCI+++ZB3.CAV+Z88
+        gridAccessBillingData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData'
+      required:
+      - dataQuality
+      - validityPeriod
+      - marketLocationId
+      - gridOperatorCodeNumber
+      - gridAccessBillingData
+    PI_55220__masterData__MARKET_LOCATION__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z51|Z52]
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81]
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97]
+      required:
+      - periodId
+    PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData:
+      type: object
+      properties:
+        installment:
+          $ref: ../../../bo4e-en/fields/com/GridAccessBillingData/installment.yaml#/components/schemas/installment
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG9.QTY
+        quantity:
+          $ref: ../../../bo4e-en/fields/com/GridAccessBillingData/quantity.yaml#/components/schemas/quantity
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG9.QTY+Z38
+        articleId:
+          $ref: ../../../bo4e-en/fields/com/GridAccessBillingData/articleId.yaml#/components/schemas/articleId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].PIA+Z02
+        articleIdType:
+          $ref: ../../../bo4e-en/fields/com/GridAccessBillingData/articleIdType.yaml#/components/schemas/articleIdType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].PIA+Z02
+        municipalDiscount:
+          $ref: ../../../bo4e-en/fields/com/GridAccessBillingData/municipalDiscount.yaml#/components/schemas/municipalDiscount
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG9.QTY
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG9.QTY+Z16
+        priceSingularEquipment:
+          $ref: '#/components/schemas/PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData__priceSingularEquipment'
+        singularEquipment:
+          $ref: '#/components/schemas/PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData__singularEquipment'
+        meteringTimes:
+          $ref: '#/components/schemas/PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData__meteringTimes'
+        surcharge:
+          $ref: ../../../bo4e-en/fields/com/GridAccessBillingData/surcharge.yaml#/components/schemas/surcharge
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG9.QTY
+      required:
+      - installment
+      - quantity
+      - articleId
+      - articleIdType
+      - municipalDiscount
+      - priceSingularEquipment
+      - singularEquipment
+      - meteringTimes
+      - surcharge
+    PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData__priceSingularEquipment:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG10.CCI+Z44+ZD8
+      required:
+      - value
+    PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData__singularEquipment:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG9.QTY+Z33
+      required:
+      - value
+    PI_55220__masterData__MARKET_LOCATION__gridAccessBillingData__meteringTimes:
+      type: object
+      properties:
+        register:
+          $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/register.yaml#/components/schemas/register
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG10.CCI+Z38
+        meteringTimeDefinition:
+          $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z82|Z83|Z96|Z97].SG10.CCI+Z39
+      required:
+      - register
+      - meteringTimeDefinition
+    PI_55220__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractConditions:
+          $ref: '#/components/schemas/PI_55220__masterData__GRID_ACCESS_CONTRACT__contractConditions'
+      required:
+      - contractConditions
+    PI_55220__masterData__GRID_ACCESS_CONTRACT__contractConditions:
+      type: object
+      properties:
+        nextGridAccessBilling:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/nextGridAccessBilling.yaml#/components/schemas/nextGridAccessBilling
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z51|Z52].DTM+Z09
+        gridAccessBilling:
+          $ref: '#/components/schemas/PI_55220__masterData__GRID_ACCESS_CONTRACT__contractConditions__gridAccessBilling'
+        gridAccessBillingInterval:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/gridAccessBillingInterval.yaml#/components/schemas/gridAccessBillingInterval
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z51|Z52].DTM+Z22
+        gridAccessBillingBasis:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/gridAccessBillingBasis.yaml#/components/schemas/gridAccessBillingBasis
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++Z88.CAV+ZA7
+        gridAccessContract:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/gridAccessContract.yaml#/components/schemas/gridAccessContract
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++Z88.CAV+Z74
+        gridAccessPayer:
+          $ref: ../../../bo4e-en/fields/com/ContractConditions/gridAccessPayer.yaml#/components/schemas/gridAccessPayer
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++Z88.CAV+Z73
+      required:
+      - gridAccessBillingBasis
+      - gridAccessContract
+      - gridAccessPayer
+    PI_55220__masterData__GRID_ACCESS_CONTRACT__contractConditions__gridAccessBilling:
+      type: object
+      properties:
+        billingPeriod:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/billingPeriod.yaml#/components/schemas/billingPeriod
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z51|Z52].DTM+Z21
+    PI_55220__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

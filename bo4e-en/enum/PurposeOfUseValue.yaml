@@ -1,0 +1,15 @@
+components:
+  schemas:
+    PurposeOfUseValue:
+      title: PurposeOfUseValue
+      type: string
+      enum:
+        - GRID_ACCESS_BILLING
+        - BALANCING_GROUP_BILLING
+        - MORE_LESS_QUANTITIES_BILLING
+        - END_CUSTOMER_BILLING
+        - TRANSMISSION_TO_HKNR
+        - REACTIVE_ENERGY_BILLING
+        - DETERMINATION_OF_BALANCING_GROUP_BALANCE
+        - REACTIVE_ENERGY_BILLING_OPERATIONS_MANAGEMENT
+        - NO_PURPOSE_OF_USE_PRESENT

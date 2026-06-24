@@ -1,0 +1,5 @@
+components:
+  schemas:
+    boType:
+      $ref: ../../../enum/BOType.yaml#/components/schemas/BOType
+      default: VERWENDUNGSZEITRAUM

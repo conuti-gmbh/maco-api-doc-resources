@@ -1,0 +1,7 @@
+components:
+  schemas:
+    deliveryPointOfferPart:
+      type: array
+      items:
+        $ref: ../../../bo/MarketLocation.yaml#/components/schemas/MarketLocation
+      nullable: true

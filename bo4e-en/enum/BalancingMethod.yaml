@@ -1,0 +1,12 @@
+components:
+  schemas:
+    BalancingMethod:
+      title: BalancingMethod
+      type: string
+      enum:
+        - RLM
+        - SLP
+        - TLP_SHARED
+        - TLP_SEPARATE
+        - FLAT_RATE
+        - IMS

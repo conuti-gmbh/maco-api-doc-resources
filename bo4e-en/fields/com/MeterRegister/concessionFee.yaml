@@ -1,0 +1,4 @@
+components:
+  schemas:
+    concessionFee:
+      $ref: ../../../com/ConcessionFee.yaml#/components/schemas/ConcessionFee

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    discrepancyInfo:
+      type: string

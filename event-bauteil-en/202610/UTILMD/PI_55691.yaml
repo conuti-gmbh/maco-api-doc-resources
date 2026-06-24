@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: PI_55691
+  version: '202610'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55691:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55691__masterData'
+      required:
+      - masterData
+    PI_55691__masterData:
+      type: object
+      properties:
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55691__masterData__MARKET_LOCATION'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55691__masterData__USAGE_PERIOD'
+      required:
+      - MARKET_LOCATION
+      - USAGE_PERIOD
+    PI_55691__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        packageId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/packageId.yaml#/components/schemas/packageId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z67
+      required:
+      - dataQuality
+      - marketLocationId
+      - packageId
+    PI_55691__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+      required:
+      - dataQuality
+      - usageFrom

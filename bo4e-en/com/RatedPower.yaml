@@ -1,0 +1,10 @@
+components:
+  schemas:
+    RatedPower:
+      title: RatedPower
+      type: object
+      properties:
+        intake:
+          $ref: ../fields/com/RatedPower/intake.yaml#/components/schemas/intake
+        levy:
+          $ref: ../fields/com/RatedPower/levy.yaml#/components/schemas/levy

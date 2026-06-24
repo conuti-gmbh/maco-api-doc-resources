@@ -1,0 +1,5 @@
+components:
+  schemas:
+    tierLimitTo:
+      type: number
+      format: float

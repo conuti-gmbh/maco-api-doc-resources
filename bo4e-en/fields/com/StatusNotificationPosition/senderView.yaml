@@ -1,0 +1,7 @@
+components:
+  schemas:
+    senderView:
+      type: array
+      items:
+        $ref: ../../../com/SenderView.yaml#/components/schemas/SenderView
+      nullable: true

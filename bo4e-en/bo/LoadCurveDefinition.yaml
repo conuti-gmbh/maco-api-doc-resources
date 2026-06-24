@@ -1,0 +1,35 @@
+components:
+  schemas:
+    LoadCurveDefinition:
+      title: LoadCurveDefinition
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/LoadCurveDefinition.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/structureVersion.yaml#/components/schemas/structureVersion
+        beginDate:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/beginDate.yaml#/components/schemas/beginDate
+        closingDate:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/closingDate.yaml#/components/schemas/closingDate
+        version:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/version.yaml#/components/schemas/version
+        code:
+          $ref: ../fields/bo/LoadCurveDefinition/code.yaml#/components/schemas/code
+        necessity:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/necessity.yaml#/components/schemas/necessity
+        loadCurves:
+          $ref: >-
+            ../fields/bo/LoadCurveDefinition/loadCurves.yaml#/components/schemas/loadCurves

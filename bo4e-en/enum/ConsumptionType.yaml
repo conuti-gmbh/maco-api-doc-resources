@@ -1,0 +1,12 @@
+components:
+  schemas:
+    ConsumptionType:
+      title: ConsumptionType
+      type: string
+      enum:
+        - KL
+        - W
+        - EMOB
+        - SB
+        - SW
+        - WK

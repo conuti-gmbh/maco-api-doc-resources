@@ -1,0 +1,6 @@
+components:
+  schemas:
+    COMPLAINT:
+      type: array
+      items:
+        $ref: ../../../bo/Complaint.yaml#/components/schemas/Complaint

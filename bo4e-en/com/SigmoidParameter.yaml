@@ -1,0 +1,14 @@
+components:
+  schemas:
+    SigmoidParameter:
+      title: SigmoidParameter
+      type: object
+      properties:
+        A:
+          $ref: ../fields/com/SigmoidParameter/A.yaml#/components/schemas/A
+        B:
+          $ref: ../fields/com/SigmoidParameter/B.yaml#/components/schemas/B
+        C:
+          $ref: ../fields/com/SigmoidParameter/C.yaml#/components/schemas/C
+        D:
+          $ref: ../fields/com/SigmoidParameter/D.yaml#/components/schemas/D

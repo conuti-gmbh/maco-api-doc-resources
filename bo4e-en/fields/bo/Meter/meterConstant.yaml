@@ -1,0 +1,5 @@
+components:
+  schemas:
+    meterConstant:
+      type: number
+      format: float

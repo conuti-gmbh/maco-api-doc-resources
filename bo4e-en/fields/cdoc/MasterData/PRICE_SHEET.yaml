@@ -1,0 +1,6 @@
+components:
+  schemas:
+    PRICE_SHEET:
+      type: array
+      items:
+        $ref: ../../../bo/PriceSheet.yaml#/components/schemas/PriceSheet

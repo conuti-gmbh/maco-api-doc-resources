@@ -1,0 +1,4 @@
+components:
+  schemas:
+    cadastralInformation:
+      $ref: ../../../com/CadastralAddress.yaml#/components/schemas/CadastralAddress

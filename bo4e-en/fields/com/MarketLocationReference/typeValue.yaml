@@ -1,0 +1,5 @@
+components:
+  schemas:
+    typeValue:
+      $ref: >-
+        ../../../enum/MarketLocationType.yaml#/components/schemas/MarketLocationType

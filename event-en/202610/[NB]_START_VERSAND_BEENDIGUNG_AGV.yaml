@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_VERSAND_BEENDIGUNG_AGV'
+  version: '202610'
+  x-bpmn-source-sha: eaf359e3
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[NB] START_VERSAND_BEENDIGUNG_AGV':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - sector
+          - transactionReason
+          - usageTo
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            usageTo:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/usageTo.yaml#/components/schemas/usageTo
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55188.
+              examples:
+              - '55188'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_BEENDIGUNG_AGV
+              default: START_VERSAND_BEENDIGUNG_AGV
+      x-pending-pruefis:
+      - '55188'

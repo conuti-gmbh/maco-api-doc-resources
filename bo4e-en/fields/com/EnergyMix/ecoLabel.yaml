@@ -1,0 +1,7 @@
+components:
+  schemas:
+    ecoLabel:
+      type: array
+      items:
+        $ref: ../../../enum/EcoLabel.yaml#/components/schemas/EcoLabel
+      nullable: true

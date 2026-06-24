@@ -1,0 +1,25 @@
+components:
+  schemas:
+    Price:
+      title: Price
+      type: object
+      properties:
+        value:
+          $ref: ../fields/com/Price/value.yaml#/components/schemas/value
+        amount:
+          $ref: ../fields/com/Price/amount.yaml#/components/schemas/amount
+        minimumAmount:
+          $ref: >-
+            ../fields/com/Price/minimumAmount.yaml#/components/schemas/minimumAmount
+        maximumAmount:
+          $ref: >-
+            ../fields/com/Price/maximumAmount.yaml#/components/schemas/maximumAmount
+        unit:
+          $ref: ../fields/com/Price/unit.yaml#/components/schemas/unit
+        referenceValue:
+          $ref: >-
+            ../fields/com/Price/referenceValue.yaml#/components/schemas/referenceValue
+        status:
+          $ref: ../fields/com/Price/status.yaml#/components/schemas/status
+        priceType:
+          $ref: ../fields/com/Price/priceType.yaml#/components/schemas/priceType

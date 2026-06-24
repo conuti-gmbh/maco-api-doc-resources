@@ -1,0 +1,5 @@
+components:
+  schemas:
+    complaintReasonNote:
+      $ref: >-
+        ../../../com/ComplaintReasonNote.yaml#/components/schemas/ComplaintReasonNote

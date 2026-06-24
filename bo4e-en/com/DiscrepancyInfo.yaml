@@ -1,0 +1,21 @@
+components:
+  schemas:
+    DiscrepancyInfo:
+      title: DiscrepancyInfo
+      type: object
+      properties:
+        discrepancy1:
+          $ref: >-
+            ../fields/com/DiscrepancyInfo/discrepancy1.yaml#/components/schemas/discrepancy1
+        discrepancy2:
+          $ref: >-
+            ../fields/com/DiscrepancyInfo/discrepancy2.yaml#/components/schemas/discrepancy2
+        discrepancy3:
+          $ref: >-
+            ../fields/com/DiscrepancyInfo/discrepancy3.yaml#/components/schemas/discrepancy3
+        discrepancy4:
+          $ref: >-
+            ../fields/com/DiscrepancyInfo/discrepancy4.yaml#/components/schemas/discrepancy4
+        discrepancy5:
+          $ref: >-
+            ../fields/com/DiscrepancyInfo/discrepancy5.yaml#/components/schemas/discrepancy5

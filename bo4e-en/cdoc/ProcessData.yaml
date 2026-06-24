@@ -1,0 +1,14 @@
+components:
+  schemas:
+    ProcessData:
+      type: object
+      properties:
+        masterData:
+          $ref: >-
+            ../fields/cdoc/ProcessData/masterData.yaml#/components/schemas/masterData
+        transactionData:
+          $ref: >-
+            ../fields/cdoc/ProcessData/transactionData.yaml#/components/schemas/transactionData
+        additionalData:
+          $ref: >-
+            ../fields/cdoc/ProcessData/additionalData.yaml#/components/schemas/additionalData

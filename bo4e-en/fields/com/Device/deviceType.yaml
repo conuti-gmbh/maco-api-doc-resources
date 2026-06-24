@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deviceType:
+      $ref: ../../../enum/DeviceType.yaml#/components/schemas/DeviceType

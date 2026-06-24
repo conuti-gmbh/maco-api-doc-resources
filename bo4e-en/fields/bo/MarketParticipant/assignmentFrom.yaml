@@ -1,0 +1,5 @@
+components:
+  schemas:
+    assignmentFrom:
+      type: string
+      format: date-time

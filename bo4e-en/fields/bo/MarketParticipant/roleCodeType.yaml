@@ -1,0 +1,4 @@
+components:
+  schemas:
+    roleCodeType:
+      $ref: ../../../enum/RoleCodeType.yaml#/components/schemas/RoleCodeType

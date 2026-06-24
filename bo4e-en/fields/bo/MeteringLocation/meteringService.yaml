@@ -1,0 +1,7 @@
+components:
+  schemas:
+    meteringService:
+      type: array
+      items:
+        $ref: ../../../com/Service.yaml#/components/schemas/Service
+      nullable: true

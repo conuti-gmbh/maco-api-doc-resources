@@ -1,0 +1,18 @@
+components:
+  schemas:
+    MeasurementQuantity:
+      title: MeasurementQuantity
+      type: string
+      enum:
+        - ACTIVE_ENERGY_ELECTRICAL
+        - POWER_ELECTRICAL
+        - REACTIVE_ENERGY_CAPACITIVE
+        - REACTIVE_ENERGY_INDUCTIVE
+        - REACTIVE_POWER_CAPACITIVE
+        - REACTIVE_POWER_INDUCTIVE
+        - ACTIVE_ENERGY_THERMAL
+        - POWER_THERMAL
+        - VOLUME
+        - VOLUME_FLOW
+        - USAGE_DURATION
+        - COUNT

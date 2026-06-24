@@ -1,0 +1,4 @@
+components:
+  schemas:
+    publisher:
+      $ref: ../../../enum/Publisher.yaml#/components/schemas/Publisher

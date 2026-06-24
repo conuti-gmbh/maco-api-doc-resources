@@ -1,0 +1,4 @@
+components:
+  schemas:
+    threshold:
+      $ref: ../../../com/Threshold.yaml#/components/schemas/Threshold

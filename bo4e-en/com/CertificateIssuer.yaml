@@ -1,0 +1,21 @@
+components:
+  schemas:
+    CertificateIssuer:
+      title: CertificateIssuer
+      type: object
+      properties:
+        certificateIssuer1:
+          $ref: >-
+            ../fields/com/CertificateIssuer/certificateIssuer1.yaml#/components/schemas/certificateIssuer1
+        certificateIssuer2:
+          $ref: >-
+            ../fields/com/CertificateIssuer/certificateIssuer2.yaml#/components/schemas/certificateIssuer2
+        certificateIssuer3:
+          $ref: >-
+            ../fields/com/CertificateIssuer/certificateIssuer3.yaml#/components/schemas/certificateIssuer3
+        certificateIssuer4:
+          $ref: >-
+            ../fields/com/CertificateIssuer/certificateIssuer4.yaml#/components/schemas/certificateIssuer4
+        certificateIssuer5:
+          $ref: >-
+            ../fields/com/CertificateIssuer/certificateIssuer5.yaml#/components/schemas/certificateIssuer5

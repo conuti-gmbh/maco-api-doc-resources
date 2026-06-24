@@ -1,0 +1,10 @@
+components:
+  schemas:
+    IpRange:
+      title: IpRange
+      type: object
+      properties:
+        lowerLimit:
+          $ref: ../fields/com/IpRange/lowerLimit.yaml#/components/schemas/lowerLimit
+        upperLimit:
+          $ref: ../fields/com/IpRange/upperLimit.yaml#/components/schemas/upperLimit

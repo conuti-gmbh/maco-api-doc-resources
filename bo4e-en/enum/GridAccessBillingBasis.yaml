@@ -1,0 +1,8 @@
+components:
+  schemas:
+    GridAccessBillingBasis:
+      title: GridAccessBillingBasis
+      type: string
+      enum:
+        - DELIVERY_NOTE
+        - DEVIATING_BASIS

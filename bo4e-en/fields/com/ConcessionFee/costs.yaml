@@ -1,0 +1,5 @@
+components:
+  schemas:
+    costs:
+      type: number
+      format: float

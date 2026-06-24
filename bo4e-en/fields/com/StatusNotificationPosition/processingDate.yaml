@@ -1,0 +1,5 @@
+components:
+  schemas:
+    processingDate:
+      type: string
+      format: date-time

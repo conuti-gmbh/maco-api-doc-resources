@@ -1,0 +1,40 @@
+components:
+  schemas:
+    ValuesByType2:
+      title: ValuesByType2
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/ValuesByType2.json
+      properties:
+        boType:
+          $ref: ../fields/bo/ValuesByType2/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/ValuesByType2/structureVersion.yaml#/components/schemas/structureVersion
+        configurationProduct:
+          $ref: >-
+            ../fields/bo/ValuesByType2/configurationProduct.yaml#/components/schemas/configurationProduct
+        meteringProduct:
+          $ref: >-
+            ../fields/bo/ValuesByType2/meteringProduct.yaml#/components/schemas/meteringProduct
+        targetAddress:
+          $ref: >-
+            ../fields/bo/ValuesByType2/targetAddress.yaml#/components/schemas/targetAddress
+        issuer:
+          $ref: ../fields/bo/ValuesByType2/issuer.yaml#/components/schemas/issuer
+        certificateUser:
+          $ref: >-
+            ../fields/bo/ValuesByType2/certificateUser.yaml#/components/schemas/certificateUser
+        configurationChangeOption:
+          $ref: >-
+            ../fields/bo/ValuesByType2/configurationChangeOption.yaml#/components/schemas/configurationChangeOption
+        thresholds:
+          $ref: >-
+            ../fields/bo/ValuesByType2/thresholds.yaml#/components/schemas/thresholds
+        meterRegisters:
+          $ref: >-
+            ../fields/bo/ValuesByType2/meterRegisters.yaml#/components/schemas/meterRegisters

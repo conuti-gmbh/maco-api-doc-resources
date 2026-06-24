@@ -1,0 +1,4 @@
+components:
+  schemas:
+    targetAddress:
+      $ref: ../../../com/TargetAddress.yaml#/components/schemas/TargetAddress

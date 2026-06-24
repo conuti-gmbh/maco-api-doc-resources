@@ -1,0 +1,4 @@
+components:
+  schemas:
+    measurementValueRequestPeriod:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

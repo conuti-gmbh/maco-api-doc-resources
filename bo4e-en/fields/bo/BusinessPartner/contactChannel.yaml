@@ -1,0 +1,7 @@
+components:
+  schemas:
+    contactChannel:
+      type: array
+      items:
+        $ref: ../../../enum/ContactType.yaml#/components/schemas/ContactType
+      nullable: true

@@ -1,0 +1,68 @@
+components:
+  schemas:
+    Contract:
+      title: Contract
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Contract.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Contract/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Contract/structureVersion.yaml#/components/schemas/structureVersion
+        sector:
+          $ref: ../fields/bo/Contract/sector.yaml#/components/schemas/sector
+        contractType:
+          $ref: >-
+            ../fields/bo/Contract/contractType.yaml#/components/schemas/contractType
+        contractNumber:
+          $ref: >-
+            ../fields/bo/Contract/contractNumber.yaml#/components/schemas/contractNumber
+        description:
+          $ref: >-
+            ../fields/bo/Contract/description.yaml#/components/schemas/description
+        locationId:
+          $ref: ../fields/bo/Contract/locationId.yaml#/components/schemas/locationId
+        locationType:
+          $ref: >-
+            ../fields/bo/Contract/locationType.yaml#/components/schemas/locationType
+        contractStatus:
+          $ref: >-
+            ../fields/bo/Contract/contractStatus.yaml#/components/schemas/contractStatus
+        contractStart:
+          $ref: >-
+            ../fields/bo/Contract/contractStart.yaml#/components/schemas/contractStart
+        contractEnd:
+          $ref: >-
+            ../fields/bo/Contract/contractEnd.yaml#/components/schemas/contractEnd
+        municipalDiscount:
+          $ref: >-
+            ../fields/bo/Contract/municipalDiscount.yaml#/components/schemas/municipalDiscount
+        contractConditions:
+          $ref: >-
+            ../fields/bo/Contract/contractConditions.yaml#/components/schemas/contractConditions
+        correspondencePartner:
+          $ref: >-
+            ../fields/bo/Contract/correspondencePartner.yaml#/components/schemas/correspondencePartner
+        billingViaNna:
+          $ref: >-
+            ../fields/bo/Contract/billingViaNna.yaml#/components/schemas/billingViaNna
+        dataQuality:
+          $ref: >-
+            ../fields/bo/Contract/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/Contract/validityPeriod.yaml#/components/schemas/validityPeriod
+        contractPartner1:
+          $ref: >-
+            ../fields/bo/Contract/contractPartner1.yaml#/components/schemas/contractPartner1
+        contractPartner2:
+          $ref: >-
+            ../fields/bo/Contract/contractPartner2.yaml#/components/schemas/contractPartner2
+        enfg:
+          $ref: ../fields/bo/Contract/enfg.yaml#/components/schemas/enfg

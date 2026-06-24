@@ -1,0 +1,4 @@
+components:
+  schemas:
+    surchargeDiscountCurrency:
+      $ref: ../../../enum/CurrencyUnit.yaml#/components/schemas/CurrencyUnit

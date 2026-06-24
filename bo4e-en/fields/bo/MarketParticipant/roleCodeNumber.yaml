@@ -1,0 +1,4 @@
+components:
+  schemas:
+    roleCodeNumber:
+      type: string

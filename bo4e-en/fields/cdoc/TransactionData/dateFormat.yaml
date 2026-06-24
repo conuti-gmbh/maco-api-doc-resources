@@ -1,0 +1,4 @@
+components:
+  schemas:
+    dateFormat:
+      type: string

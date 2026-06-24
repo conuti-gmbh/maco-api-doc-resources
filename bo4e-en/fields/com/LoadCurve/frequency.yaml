@@ -1,0 +1,5 @@
+components:
+  schemas:
+    frequency:
+      $ref: >-
+        ../../../enum/LoadCurveFrequency.yaml#/components/schemas/LoadCurveFrequency

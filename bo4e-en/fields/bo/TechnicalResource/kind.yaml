@@ -1,0 +1,5 @@
+components:
+  schemas:
+    kind:
+      $ref: >-
+        ../../../enum/TechnicalResourceType.yaml#/components/schemas/TechnicalResourceType

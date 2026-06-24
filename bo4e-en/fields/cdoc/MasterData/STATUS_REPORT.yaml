@@ -1,0 +1,6 @@
+components:
+  schemas:
+    STATUS_REPORT:
+      type: array
+      items:
+        $ref: ../../../bo/StatusReport.yaml#/components/schemas/StatusReport

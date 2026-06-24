@@ -1,0 +1,10 @@
+components:
+  schemas:
+    CalculationFormulaNecessity:
+      title: CalculationFormulaNecessity
+      type: string
+      enum:
+        - CALCULATION_FORMULA_NECESSARY
+        - CALCULATION_FORMULA_MUST_BE_REQUESTED
+        - CALCULATION_FORMULA_TRIVIAL
+        - CALCULATION_FORMULA_NOT_NECESSARY

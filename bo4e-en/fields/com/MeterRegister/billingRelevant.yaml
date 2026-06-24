@@ -1,0 +1,4 @@
+components:
+  schemas:
+    billingRelevant:
+      type: boolean

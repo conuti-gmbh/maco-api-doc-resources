@@ -1,0 +1,19 @@
+components:
+  schemas:
+    BankAccount:
+      title: BankAccount
+      type: object
+      properties:
+        purposeOfUse:
+          $ref: >-
+            ../fields/com/BankAccount/purposeOfUse.yaml#/components/schemas/purposeOfUse
+        iban:
+          $ref: ../fields/com/BankAccount/iban.yaml#/components/schemas/iban
+        accountHolder:
+          $ref: >-
+            ../fields/com/BankAccount/accountHolder.yaml#/components/schemas/accountHolder
+        bic:
+          $ref: ../fields/com/BankAccount/bic.yaml#/components/schemas/bic
+        creditInstitution:
+          $ref: >-
+            ../fields/com/BankAccount/creditInstitution.yaml#/components/schemas/creditInstitution

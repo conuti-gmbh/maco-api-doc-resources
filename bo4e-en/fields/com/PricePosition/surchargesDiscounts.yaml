@@ -1,0 +1,8 @@
+components:
+  schemas:
+    surchargesDiscounts:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/PositionSurchargeDiscount.yaml#/components/schemas/PositionSurchargeDiscount
+      nullable: true

@@ -1,0 +1,18 @@
+components:
+  schemas:
+    DailyParameters:
+      title: DailyParameters
+      type: object
+      properties:
+        climateZone:
+          $ref: >-
+            ../fields/com/DailyParameters/climateZone.yaml#/components/schemas/climateZone
+        temperatureMeasuringPoint:
+          $ref: >-
+            ../fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
+        serviceProvider:
+          $ref: >-
+            ../fields/com/DailyParameters/serviceProvider.yaml#/components/schemas/serviceProvider
+        publisher:
+          $ref: >-
+            ../fields/com/DailyParameters/publisher.yaml#/components/schemas/publisher

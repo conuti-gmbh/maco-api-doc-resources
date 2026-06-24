@@ -1,0 +1,17 @@
+components:
+  schemas:
+    DisconnectionOrderRejectionReason:
+      title: DisconnectionOrderRejectionReason
+      type: string
+      enum:
+        - DUPLICATE
+        - INCORRECT_MSB
+        - INCORRECT_VOLTAGE_LEVEL
+        - ADDITIONAL_MARKET_LOCATION_AFFECTED
+        - OTHER_REJECTION_REASON
+        - DEADLINE_VIOLATION_DATE_BOUND
+        - DEADLINE_VIOLATION_NOT_DATE_BOUND
+        - OTHER_ERROR
+        - ALREADY_EXISTS
+        - OTHER_FUTURE_SUPPLIER
+        - CONFIRMED_SUPPLY_START

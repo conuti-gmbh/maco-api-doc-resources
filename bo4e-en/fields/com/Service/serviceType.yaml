@@ -1,0 +1,4 @@
+components:
+  schemas:
+    serviceType:
+      $ref: ../../../enum/ServiceType.yaml#/components/schemas/ServiceType

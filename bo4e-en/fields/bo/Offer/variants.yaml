@@ -1,0 +1,7 @@
+components:
+  schemas:
+    variants:
+      type: array
+      items:
+        $ref: ../../../com/OfferVariant.yaml#/components/schemas/OfferVariant
+      nullable: true

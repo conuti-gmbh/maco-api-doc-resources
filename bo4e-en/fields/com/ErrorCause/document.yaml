@@ -1,0 +1,4 @@
+components:
+  schemas:
+    document:
+      type: string

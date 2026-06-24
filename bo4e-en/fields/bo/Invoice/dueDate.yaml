@@ -1,0 +1,5 @@
+components:
+  schemas:
+    dueDate:
+      type: string
+      format: date-time

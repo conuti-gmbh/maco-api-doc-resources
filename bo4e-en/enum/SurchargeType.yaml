@@ -1,0 +1,10 @@
+components:
+  schemas:
+    SurchargeType:
+      title: SurchargeType
+      type: string
+      enum:
+        - TRANSFORMATION_SURCHARGE
+        - EQUIPMENT_P19_ELECTRICITY_NEV
+        - ADJUSTMENT_P19_ELECTRICITY_NEV
+        - ADJUSTMENT_FLAT_RATE_GRID_FEE_REDUCTION_P14A_ENWG_AT_LEVEL_OF_NNE

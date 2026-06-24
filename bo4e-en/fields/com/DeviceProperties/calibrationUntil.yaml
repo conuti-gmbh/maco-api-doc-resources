@@ -1,0 +1,4 @@
+components:
+  schemas:
+    calibrationUntil:
+      type: string

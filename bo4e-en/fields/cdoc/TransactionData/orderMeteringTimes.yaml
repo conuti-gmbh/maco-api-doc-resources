@@ -1,0 +1,4 @@
+components:
+  schemas:
+    orderMeteringTimes:
+      type: string

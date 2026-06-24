@@ -1,0 +1,4 @@
+components:
+  schemas:
+    controlChannel:
+      $ref: ../../../enum/ControlChannel.yaml#/components/schemas/ControlChannel

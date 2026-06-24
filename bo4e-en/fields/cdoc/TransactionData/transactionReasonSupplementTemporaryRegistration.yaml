@@ -1,0 +1,4 @@
+components:
+  schemas:
+    transactionReasonSupplementTemporaryRegistration:
+      type: string

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    technicalInstallations:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/TechnicalInstallation.yaml#/components/schemas/TechnicalInstallation
+      nullable: true

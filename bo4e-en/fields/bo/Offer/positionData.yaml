@@ -1,0 +1,7 @@
+components:
+  schemas:
+    positionData:
+      type: array
+      items:
+        $ref: ../../../com/OfferPosition.yaml#/components/schemas/OfferPosition
+      nullable: true
