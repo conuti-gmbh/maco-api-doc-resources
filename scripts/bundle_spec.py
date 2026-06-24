@@ -81,6 +81,12 @@ def readable_key(repo_root: Path, file: Path, name: str) -> str:
     rel = file.resolve().relative_to(repo_root.resolve()).with_suffix("")
     parts = str(rel).split("/")
     ns = parts[0]
+    # EN trees (bo4e-en/, pruefi-en/, event-bauteil-en/, event-en/) use the same
+    # readable scheme as their DE counterparts — strip the -en suffix for keying
+    # so the EN bundle gets `bo.BusinessPartner` / `event.LF.X`, not a verbose
+    # `bo4e-en.bo.…` fallback. (DE and EN are separate bundles → no collision.)
+    if ns.endswith("-en"):
+        ns = ns[:-3]
     if ns == "bo4e":
         tier = parts[1]  # bo / com / cdoc / enum / fields
         if tier == "fields":

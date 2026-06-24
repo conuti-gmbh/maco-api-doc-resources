@@ -89,3 +89,23 @@ def test_rewrite_neutralizes_json_schema_meta_ref():
     assert out["properties"]["x-descriptions"] == {"$ref": bs._FRAG + "field.foo"}
     # external example URL untouched
     assert out["properties"]["example"]["$ref"].startswith("https://raw.githubusercontent.com")
+
+
+@pytest.mark.parametrize(
+    "rel,name,expected",
+    [
+        ("bo4e-en/bo/BusinessPartner.yaml", "BusinessPartner", "bo.BusinessPartner"),
+        ("bo4e-en/fields/bo/BusinessPartner/salutation.yaml", "salutation",
+         "field.BusinessPartner.salutation"),
+        ("event-bauteil-en/202604/UTILMD/PI_55001.yaml", "PI_55001__masterData",
+         "bauteil.PI_55001.masterData"),
+        ("pruefi-en/202604/UTILMD/PI_55001.yaml", "PI_55001__masterData__MARKET_LOCATION",
+         "pruefi.PI_55001.masterData.MARKET_LOCATION"),
+        ("event-en/202604/[LF]_START_ABR_NN.yaml", "[LF] START_ABR_NN",
+         "event.LF.START_ABR_NN"),
+    ],
+)
+def test_readable_key_en_trees_match_de_scheme(rel, name, expected):
+    # EN trees (*-en/) get the same readable keys as their DE counterparts, not a
+    # verbose bo4e-en.* / event-en.* fallback (MACO-13088 EN bundle parity).
+    assert rk(rel, name) == expected
