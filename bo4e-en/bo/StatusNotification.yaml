@@ -1,0 +1,30 @@
+components:
+  schemas:
+    StatusNotification:
+      title: StatusNotification
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/StatusNotification.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/StatusNotification/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/StatusNotification/structureVersion.yaml#/components/schemas/structureVersion
+        statusObject:
+          $ref: >-
+            ../fields/bo/StatusNotification/statusObject.yaml#/components/schemas/statusObject
+        statusOccasion:
+          $ref: >-
+            ../fields/bo/StatusNotification/statusOccasion.yaml#/components/schemas/statusOccasion
+        orderStatus:
+          $ref: >-
+            ../fields/bo/StatusNotification/orderStatus.yaml#/components/schemas/orderStatus
+        positionData:
+          $ref: >-
+            ../fields/bo/StatusNotification/positionData.yaml#/components/schemas/positionData

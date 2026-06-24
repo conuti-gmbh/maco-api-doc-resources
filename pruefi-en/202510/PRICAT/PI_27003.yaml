@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: PI_27003
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_27003:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_27003__masterData'
+        transactionData:
+          $ref: '#/components/schemas/PI_27003__transactionData'
+      required:
+      - masterData
+      - transactionData
+    PI_27003__masterData:
+      type: object
+      properties:
+        PRICE_SHEET:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET'
+      required:
+      - PRICE_SHEET
+    PI_27003__masterData__PRICE_SHEET:
+      type: object
+      properties:
+        validity:
+          $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET__validity'
+        priceGridOperatorCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/PriceSheet/priceGridOperatorCodeNumber.yaml#/components/schemas/priceGridOperatorCodeNumber
+          x-edifact-segment:
+          - SG1.RFF+Z56
+        pricePositions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET__pricePositions'
+      required:
+      - validity
+      - priceGridOperatorCodeNumber
+      - pricePositions
+    PI_27003__masterData__PRICE_SHEET__validity:
+      type: object
+      properties:
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - DTM+157
+      required:
+      - startDate
+    PI_27003__masterData__PRICE_SHEET__pricePositions:
+      type: object
+      properties:
+        articleId:
+          $ref: ../../../bo4e-en/fields/com/PricePosition/articleId.yaml#/components/schemas/articleId
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN
+          - SG17.PGI+Z01.SG36.LIN
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/PricePosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN
+          - SG17.PGI+Z01.SG36.LIN
+        priceSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET__pricePositions__priceSteps'
+        timeBasis:
+          $ref: ../../../bo4e-en/fields/com/PricePosition/timeBasis.yaml#/components/schemas/timeBasis
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN.SG40.PRI+CAL
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL
+      required:
+      - articleId
+      - positionNumber
+      - priceSteps
+      - timeBasis
+    PI_27003__masterData__PRICE_SHEET__pricePositions__priceSteps:
+      type: object
+      properties:
+        unitPrice:
+          $ref: ../../../bo4e-en/fields/com/PriceTier/unitPrice.yaml#/components/schemas/unitPrice
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN.SG40.PRI+CAL
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL
+        tierLimitTo:
+          $ref: ../../../bo4e-en/fields/com/PriceTier/tierLimitTo.yaml#/components/schemas/tierLimitTo
+          x-edifact-segment:
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL.RNG+10+KWH
+        tierLimitFrom:
+          $ref: ../../../bo4e-en/fields/com/PriceTier/tierLimitFrom.yaml#/components/schemas/tierLimitFrom
+          x-edifact-segment:
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL.RNG+10+KWH
+      required:
+      - unitPrice
+    PI_27003__transactionData:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/PI_27003__transactionData__sender'
+        documentNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+          x-edifact-segment:
+          - BGM+[Z54|Z64|Z67|Z70]
+        receiver:
+          $ref: '#/components/schemas/PI_27003__transactionData__receiver'
+        category:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+          x-edifact-segment:
+          - BGM+[Z54|Z64|Z67|Z70]
+        messageDate:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
+          x-edifact-segment:
+          - DTM+137
+        messageReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+          x-edifact-segment:
+          - UNH
+        verificationIdentifier:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+          x-edifact-segment:
+          - SG1.RFF+Z13
+        processReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/processReferenceNumber.yaml#/components/schemas/processReferenceNumber
+          x-edifact-segment:
+          - SG1.RFF+ACW
+      required:
+      - sender
+      - documentNumber
+      - receiver
+      - category
+      - messageDate
+      - messageReferenceNumber
+      - verificationIdentifier
+      - processReferenceNumber
+    PI_27003__transactionData__sender:
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/PI_27003__transactionData__sender__contactPerson'
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MS
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - contactPerson
+      - roleCodeNumber
+      - roleCodeType
+    PI_27003__transactionData__sender__contactPerson:
+      type: object
+      properties:
+        eMailAddress:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/eMailAddress.yaml#/components/schemas/eMailAddress
+          x-edifact-segment:
+          - SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+        lastName:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+          x-edifact-segment:
+          - SG2.NAD+MS.SG4.CTA+IC
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__transactionData__sender__contactPerson__phoneNumbers'
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+    PI_27003__transactionData__sender__contactPerson__phoneNumbers:
+      type: object
+      properties:
+        numberType:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/numberType.yaml#/components/schemas/numberType
+          x-edifact-segment:
+          - SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+        phoneNumber:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
+          x-edifact-segment:
+          - SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+      required:
+      - numberType
+      - phoneNumber
+    PI_27003__transactionData__receiver:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MR
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - roleCodeNumber
+      - roleCodeType

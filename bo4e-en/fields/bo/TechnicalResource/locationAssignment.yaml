@@ -1,0 +1,5 @@
+components:
+  schemas:
+    locationAssignment:
+      $ref: >-
+        ../../../enum/LocationAssignment.yaml#/components/schemas/LocationAssignment

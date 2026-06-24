@@ -1,0 +1,4 @@
+components:
+  schemas:
+    isExisting:
+      type: string

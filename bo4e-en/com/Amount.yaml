@@ -1,0 +1,10 @@
+components:
+  schemas:
+    Amount:
+      title: Amount
+      type: object
+      properties:
+        value:
+          $ref: ../fields/com/Amount/value.yaml#/components/schemas/value
+        currency:
+          $ref: ../fields/com/Amount/currency.yaml#/components/schemas/currency

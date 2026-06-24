@@ -1,0 +1,15 @@
+components:
+  schemas:
+    BusinessPartnerRole:
+      title: BusinessPartnerRole
+      type: string
+      enum:
+        - CUSTOMER
+        - SUPPLIER
+        - SERVICE_PROVIDER
+        - PROSPECT
+        - MARKET_PARTNER
+        - OWNER
+        - PROPERTY_MANAGER
+        - CORRESPONDENCE_RECIPIENT
+        - READING_CARD_RECIPIENT

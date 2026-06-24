@@ -1,0 +1,26 @@
+components:
+  schemas:
+    Device:
+      title: Device
+      type: object
+      properties:
+        deviceType:
+          $ref: ../fields/com/Device/deviceType.yaml#/components/schemas/deviceType
+        designation:
+          $ref: >-
+            ../fields/com/Device/designation.yaml#/components/schemas/designation
+        deviceNumber:
+          $ref: >-
+            ../fields/com/Device/deviceNumber.yaml#/components/schemas/deviceNumber
+        deviceReference:
+          $ref: >-
+            ../fields/com/Device/deviceReference.yaml#/components/schemas/deviceReference
+        deviceProperties:
+          $ref: >-
+            ../fields/com/Device/deviceProperties.yaml#/components/schemas/deviceProperties
+        volumeCapture:
+          $ref: >-
+            ../fields/com/Device/volumeCapture.yaml#/components/schemas/volumeCapture
+        additionalDeviceNumbers:
+          $ref: >-
+            ../fields/com/Device/additionalDeviceNumbers.yaml#/components/schemas/additionalDeviceNumbers

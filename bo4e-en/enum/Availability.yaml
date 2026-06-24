@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Availability:
+      title: Availability
+      type: string
+      enum:
+        - MONDAY
+        - TUESDAY
+        - WEDNESDAY
+        - THURSDAY
+        - FRIDAY
+        - BREAK

@@ -1,0 +1,13 @@
+components:
+  schemas:
+    ConcessionFee:
+      title: ConcessionFee
+      type: object
+      properties:
+        rate:
+          $ref: ../fields/com/ConcessionFee/rate.yaml#/components/schemas/rate
+        costs:
+          $ref: ../fields/com/ConcessionFee/costs.yaml#/components/schemas/costs
+        category:
+          $ref: >-
+            ../fields/com/ConcessionFee/category.yaml#/components/schemas/category

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    isSelfIssued:
+      type: boolean

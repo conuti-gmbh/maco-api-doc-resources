@@ -1,0 +1,7 @@
+components:
+  schemas:
+    LOAD_CURVE_DEFINITION:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/LoadCurveDefinition.yaml#/components/schemas/LoadCurveDefinition

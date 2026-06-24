@@ -1,0 +1,28 @@
+components:
+  schemas:
+    TimePeriod:
+      title: TimePeriod
+      type: object
+      properties:
+        timeUnit:
+          $ref: ../fields/com/TimePeriod/timeUnit.yaml#/components/schemas/timeUnit
+        duration:
+          $ref: ../fields/com/TimePeriod/duration.yaml#/components/schemas/duration
+        startDate:
+          $ref: >-
+            ../fields/com/TimePeriod/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: ../fields/com/TimePeriod/endDate.yaml#/components/schemas/endDate
+        unit:
+          $ref: ../fields/com/TimePeriod/unit.yaml#/components/schemas/unit
+        readingPeriod:
+          $ref: >-
+            ../fields/com/TimePeriod/readingPeriod.yaml#/components/schemas/readingPeriod
+        billingPeriod:
+          $ref: >-
+            ../fields/com/TimePeriod/billingPeriod.yaml#/components/schemas/billingPeriod
+        periodText:
+          $ref: >-
+            ../fields/com/TimePeriod/periodText.yaml#/components/schemas/periodText
+        periodId:
+          $ref: ../fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId

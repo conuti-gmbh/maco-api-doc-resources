@@ -1,0 +1,45 @@
+components:
+  schemas:
+    Request:
+      title: Request
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Request.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Request/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Request/structureVersion.yaml#/components/schemas/structureVersion
+        locationType:
+          $ref: >-
+            ../fields/bo/Request/locationType.yaml#/components/schemas/locationType
+        locationId:
+          $ref: ../fields/bo/Request/locationId.yaml#/components/schemas/locationId
+        requestType:
+          $ref: >-
+            ../fields/bo/Request/requestType.yaml#/components/schemas/requestType
+        subscription:
+          $ref: >-
+            ../fields/bo/Request/subscription.yaml#/components/schemas/subscription
+        requestReference:
+          $ref: >-
+            ../fields/bo/Request/requestReference.yaml#/components/schemas/requestReference
+        generalInformation:
+          $ref: >-
+            ../fields/bo/Request/generalInformation.yaml#/components/schemas/generalInformation
+        requestCategory:
+          $ref: >-
+            ../fields/bo/Request/requestCategory.yaml#/components/schemas/requestCategory
+        energyDirection:
+          $ref: >-
+            ../fields/bo/Request/energyDirection.yaml#/components/schemas/energyDirection
+        validityDuration:
+          $ref: >-
+            ../fields/bo/Request/validityDuration.yaml#/components/schemas/validityDuration
+        validFrom:
+          $ref: ../fields/bo/Request/validFrom.yaml#/components/schemas/validFrom

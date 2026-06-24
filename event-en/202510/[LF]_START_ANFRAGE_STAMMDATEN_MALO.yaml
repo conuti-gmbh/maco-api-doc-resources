@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: '[LF] START_ANFRAGE_STAMMDATEN_MALO'
+  version: '202510'
+  x-bpmn-source-sha: 3a7c8fc1
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[LF] START_ANFRAGE_STAMMDATEN_MALO':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202510/ORDERS/PI_17101.yaml#/components/schemas/PI_17101__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - category
+          - sector
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17101.
+              examples:
+              - '17101'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_ANFRAGE_STAMMDATEN_MALO
+              default: START_ANFRAGE_STAMMDATEN_MALO

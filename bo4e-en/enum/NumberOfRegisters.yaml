@@ -1,0 +1,9 @@
+components:
+  schemas:
+    NumberOfRegisters:
+      title: NumberOfRegisters
+      type: string
+      enum:
+        - SINGLE_TARIFF
+        - MULTI_TARIFF
+        - TWO_TARIFF

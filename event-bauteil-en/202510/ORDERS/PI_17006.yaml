@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: PI_17006
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17006:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17006__masterData'
+      required:
+      - masterData
+    PI_17006__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17006__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17006__masterData__ORDER'
+      required:
+      - REQUEST
+      - ORDER
+    PI_17006__masterData__REQUEST:
+      type: object
+      properties:
+        subscription:
+          $ref: ../../../bo4e-en/fields/bo/Request/subscription.yaml#/components/schemas/subscription
+          x-edifact-segment:
+          - IMD++Z02
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - subscription
+      - locationId
+    PI_17006__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17006__masterData__ORDER__positionData'
+      required:
+      - executionDate
+      - positionData
+    PI_17006__masterData__ORDER__positionData:
+      type: object
+      properties:
+        requestReason:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/requestReason.yaml#/components/schemas/requestReason
+          x-edifact-segment:
+          - SG29.LIN.IMD++[Z61|Z62|Z63]
+      required:
+      - requestReason

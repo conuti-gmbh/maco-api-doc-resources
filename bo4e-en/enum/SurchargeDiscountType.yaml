@@ -1,0 +1,8 @@
+components:
+  schemas:
+    SurchargeDiscountType:
+      title: SurchargeDiscountType
+      type: string
+      enum:
+        - RELATIVE
+        - ABSOLUTE

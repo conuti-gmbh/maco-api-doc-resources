@@ -1,0 +1,4 @@
+components:
+  schemas:
+    creditInstitution:
+      type: string

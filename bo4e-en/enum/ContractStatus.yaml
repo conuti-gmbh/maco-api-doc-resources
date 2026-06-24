@@ -1,0 +1,15 @@
+components:
+  schemas:
+    ContractStatus:
+      title: ContractStatus
+      type: string
+      enum:
+        - IN_PROGRESS
+        - TRANSMITTED
+        - ACCEPTED
+        - ACTIVE
+        - REJECTED
+        - REVOKED
+        - CANCELLED
+        - TERMINATED_BY_NOTICE
+        - TERMINATED

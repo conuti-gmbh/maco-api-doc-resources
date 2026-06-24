@@ -1,0 +1,6 @@
+components:
+  schemas:
+    TRADE_DISCREPANCY:
+      type: array
+      items:
+        $ref: ../../../bo/TradeDiscrepancy.yaml#/components/schemas/TradeDiscrepancy

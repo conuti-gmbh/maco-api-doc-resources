@@ -1,0 +1,11 @@
+components:
+  schemas:
+    ContractType:
+      title: ContractType
+      type: string
+      enum:
+        - ENERGY_SUPPLY_CONTRACT
+        - GRID_ACCESS_CONTRACT
+        - BALANCING_CONTRACT
+        - METERING_POINT_OPERATION_CONTRACT
+        - BUNDLE_CONTRACT

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    METERING_TIME_DEFINITION:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/MeteringTimeDefinition.yaml#/components/schemas/MeteringTimeDefinition

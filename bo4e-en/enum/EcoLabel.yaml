@@ -1,0 +1,18 @@
+components:
+  schemas:
+    EcoLabel:
+      title: EcoLabel
+      type: string
+      enum:
+        - ENERGREEN
+        - GASGREEN
+        - GASGREEN_GREEN_ELECTRICITY
+        - GREEN_ELECTRICITY
+        - GREEN_ELECTRICITY_GOLD
+        - GREEN_ELECTRICITY_SILVER
+        - GREEN_GAS
+        - NATURWATT_ELECTRICITY
+        - OK_POWER
+        - RENEWABLE_PLUS
+        - WATERGREEN
+        - WATERGREEN_PLUS

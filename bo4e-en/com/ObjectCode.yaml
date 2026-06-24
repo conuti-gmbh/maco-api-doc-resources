@@ -1,0 +1,12 @@
+components:
+  schemas:
+    ObjectCode:
+      title: ObjectCode
+      type: object
+      properties:
+        objectCode:
+          $ref: >-
+            ../fields/com/ObjectCode/objectCode.yaml#/components/schemas/objectCode
+        locationBundleNumber:
+          $ref: >-
+            ../fields/com/ObjectCode/locationBundleNumber.yaml#/components/schemas/locationBundleNumber

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    gridAccessPeriodEnd:
+      type: string
+      format: date-time

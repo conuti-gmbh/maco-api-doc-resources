@@ -1,0 +1,370 @@
+openapi: 3.1.0
+info:
+  title: PI_55602
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55602:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55602__masterData'
+        transactionData:
+          $ref: '#/components/schemas/PI_55602__transactionData'
+      required:
+      - masterData
+      - transactionData
+    PI_55602__masterData:
+      type: object
+      properties:
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__METERING_LOCATION'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__GRID_LOCATION'
+        GRID_ACCESS_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__GRID_ACCESS_CONTRACT'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__CONTROLLABLE_RESOURCE'
+        TECHNICAL_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__TECHNICAL_RESOURCE'
+      required:
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - GRID_LOCATION
+      - GRID_ACCESS_CONTRACT
+      - CONTROLLABLE_RESOURCE
+      - TECHNICAL_RESOURCE
+    PI_55602__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__MARKET_LOCATION__marketRoles'
+      required:
+      - marketLocationId
+      - marketRoles
+    PI_55602__masterData__MARKET_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+        subContracted:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+      - subContracted
+    PI_55602__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__METERING_LOCATION__marketRoles'
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z17
+          - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
+      required:
+      - marketRoles
+      - meteringLocationId
+    PI_55602__masterData__METERING_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+ZF0
+        subContracted:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+      - subContracted
+    PI_55602__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__GRID_LOCATION__marketRoles'
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+          - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
+      required:
+      - marketRoles
+      - gridLocationId
+    PI_55602__masterData__GRID_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+    PI_55602__masterData__GRID_ACCESS_CONTRACT:
+      type: object
+      properties:
+        contractStart:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractStart.yaml#/components/schemas/contractStart
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        contractEnd:
+          $ref: ../../../bo4e-en/fields/bo/Contract/contractEnd.yaml#/components/schemas/contractEnd
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93
+      required:
+      - contractStart
+    PI_55602__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__masterData__CONTROLLABLE_RESOURCE__marketRoles'
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z19
+          - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
+      required:
+      - marketRoles
+      - resourceId
+    PI_55602__masterData__CONTROLLABLE_RESOURCE__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        meteringPointOperatorAttribute:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/meteringPointOperatorAttribute.yaml#/components/schemas/meteringPointOperatorAttribute
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
+      required:
+      - marketRole
+      - meteringPointOperatorAttribute
+      - roleCodeNumber
+    PI_55602__masterData__TECHNICAL_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+      required:
+      - resourceId
+    PI_55602__transactionData:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/PI_55602__transactionData__sender'
+        requestReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/requestReferenceNumber.yaml#/components/schemas/requestReferenceNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+TN
+        responseStatus:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/responseStatus.yaml#/components/schemas/responseStatus
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        responseStatusCodeList:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/responseStatusCodeList.yaml#/components/schemas/responseStatusCodeList
+          x-edifact-segment:
+          - SG4.IDE+24.STS+E01
+        documentNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+          x-edifact-segment:
+          - BGM+E01
+        receiver:
+          $ref: '#/components/schemas/PI_55602__transactionData__receiver'
+        plannedProductPackage:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/plannedProductPackage.yaml#/components/schemas/plannedProductPackage
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z60
+        category:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+          x-edifact-segment:
+          - BGM+E01
+        messageDate:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
+          x-edifact-segment:
+          - DTM+137
+        messageReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+          x-edifact-segment:
+          - UNH
+        verificationIdentifier:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+Z13
+        transactionReason:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transactionReasonSupplement:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        transactionReasonSupplementTemporaryRegistration:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplementTemporaryRegistration.yaml#/components/schemas/transactionReasonSupplementTemporaryRegistration
+          x-edifact-segment:
+          - SG4.IDE+24.STS+7
+        contractStart:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/contractStart.yaml#/components/schemas/contractStart
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+92
+        contractEnd:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/contractEnd.yaml#/components/schemas/contractEnd
+          x-edifact-segment:
+          - SG4.IDE+24.DTM+93
+        processNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/processNumber.yaml#/components/schemas/processNumber
+          x-edifact-segment:
+          - SG4.IDE+24
+      required:
+      - sender
+      - requestReferenceNumber
+      - responseStatus
+      - responseStatusCodeList
+      - documentNumber
+      - receiver
+      - plannedProductPackage
+      - category
+      - messageDate
+      - messageReferenceNumber
+      - verificationIdentifier
+      - transactionReason
+      - transactionReasonSupplement
+      - transactionReasonSupplementTemporaryRegistration
+      - contractStart
+      - processNumber
+    PI_55602__transactionData__sender:
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/PI_55602__transactionData__sender__contactPerson'
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MS
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - contactPerson
+      - roleCodeNumber
+      - roleCodeType
+    PI_55602__transactionData__sender__contactPerson:
+      type: object
+      properties:
+        eMailAddress:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/eMailAddress.yaml#/components/schemas/eMailAddress
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
+        lastName:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55602__transactionData__sender__contactPerson__phoneNumbers'
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+    PI_55602__transactionData__sender__contactPerson__phoneNumbers:
+      type: object
+      properties:
+        numberType:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/numberType.yaml#/components/schemas/numberType
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
+        phoneNumber:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
+      required:
+      - numberType
+      - phoneNumber
+    PI_55602__transactionData__receiver:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MR
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - roleCodeNumber
+      - roleCodeType

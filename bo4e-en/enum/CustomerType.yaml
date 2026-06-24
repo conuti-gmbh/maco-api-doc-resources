@@ -1,0 +1,21 @@
+components:
+  schemas:
+    CustomerType:
+      title: CustomerType
+      type: string
+      enum:
+        - PUBLIC_LIGHTING
+        - STREET_LIGHTING
+        - DIRECT_HEATING
+        - COMMUNITY_MULTI_FAMILY_BUILDING
+        - COMMERCIAL
+        - HOUSEHOLD
+        - CHURCH
+        - CHP
+        - CHARGING_STATION
+        - FARMER
+        - PRIVATE
+        - OTHER
+        - STORAGE_HEATING
+        - INTERRUPTIBLE_FACILITY
+        - HEAT_PUMP

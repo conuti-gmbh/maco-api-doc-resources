@@ -1,0 +1,6 @@
+components:
+  schemas:
+    ENERGY_SUPPLY_CONTRACT:
+      type: array
+      items:
+        $ref: ../../../bo/Contract.yaml#/components/schemas/Contract

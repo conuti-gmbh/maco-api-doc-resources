@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deliveryDirection:
+      $ref: ../../../enum/EnergyDirection.yaml#/components/schemas/EnergyDirection

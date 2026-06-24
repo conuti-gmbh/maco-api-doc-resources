@@ -1,0 +1,87 @@
+components:
+  schemas:
+    Meter:
+      title: Meter
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Meter.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Meter/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Meter/structureVersion.yaml#/components/schemas/structureVersion
+        meterNumber:
+          $ref: ../fields/bo/Meter/meterNumber.yaml#/components/schemas/meterNumber
+        sector:
+          $ref: ../fields/bo/Meter/sector.yaml#/components/schemas/sector
+        meterCharacteristic:
+          $ref: >-
+            ../fields/bo/Meter/meterCharacteristic.yaml#/components/schemas/meterCharacteristic
+        meterType:
+          $ref: ../fields/bo/Meter/meterType.yaml#/components/schemas/meterType
+        tariffType:
+          $ref: ../fields/bo/Meter/tariffType.yaml#/components/schemas/tariffType
+        meterConstant:
+          $ref: >-
+            ../fields/bo/Meter/meterConstant.yaml#/components/schemas/meterConstant
+        calibrationUntil:
+          $ref: >-
+            ../fields/bo/Meter/calibrationUntil.yaml#/components/schemas/calibrationUntil
+        meterManufacturer:
+          $ref: >-
+            ../fields/bo/Meter/meterManufacturer.yaml#/components/schemas/meterManufacturer
+        gateway:
+          $ref: ../fields/bo/Meter/gateway.yaml#/components/schemas/gateway
+        remoteSwitch:
+          $ref: >-
+            ../fields/bo/Meter/remoteSwitch.yaml#/components/schemas/remoteSwitch
+        measurementValueCapture:
+          $ref: >-
+            ../fields/bo/Meter/measurementValueCapture.yaml#/components/schemas/measurementValueCapture
+        meterTypeSpecification:
+          $ref: >-
+            ../fields/bo/Meter/meterTypeSpecification.yaml#/components/schemas/meterTypeSpecification
+        mountingType:
+          $ref: >-
+            ../fields/bo/Meter/mountingType.yaml#/components/schemas/mountingType
+        meterSize:
+          $ref: ../fields/bo/Meter/meterSize.yaml#/components/schemas/meterSize
+        quantityConverterType:
+          $ref: >-
+            ../fields/bo/Meter/quantityConverterType.yaml#/components/schemas/quantityConverterType
+        volumeCapture:
+          $ref: >-
+            ../fields/bo/Meter/volumeCapture.yaml#/components/schemas/volumeCapture
+        serialNumber:
+          $ref: >-
+            ../fields/bo/Meter/serialNumber.yaml#/components/schemas/serialNumber
+        deviceAttribute:
+          $ref: >-
+            ../fields/bo/Meter/deviceAttribute.yaml#/components/schemas/deviceAttribute
+        manufacturingDate:
+          $ref: >-
+            ../fields/bo/Meter/manufacturingDate.yaml#/components/schemas/manufacturingDate
+        yearOfConstruction:
+          $ref: >-
+            ../fields/bo/Meter/yearOfConstruction.yaml#/components/schemas/yearOfConstruction
+        meteringLocationId:
+          $ref: >-
+            ../fields/bo/Meter/meteringLocationId.yaml#/components/schemas/meteringLocationId
+        marketLocationId:
+          $ref: >-
+            ../fields/bo/Meter/marketLocationId.yaml#/components/schemas/marketLocationId
+        devices:
+          $ref: ../fields/bo/Meter/devices.yaml#/components/schemas/devices
+        meterRegisters:
+          $ref: >-
+            ../fields/bo/Meter/meterRegisters.yaml#/components/schemas/meterRegisters
+        dataQuality:
+          $ref: ../fields/bo/Meter/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/Meter/validityPeriod.yaml#/components/schemas/validityPeriod

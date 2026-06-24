@@ -1,0 +1,5 @@
+components:
+  schemas:
+    upperThreshold:
+      type: number
+      format: float

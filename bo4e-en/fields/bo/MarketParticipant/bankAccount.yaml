@@ -1,0 +1,7 @@
+components:
+  schemas:
+    bankAccount:
+      type: array
+      items:
+        $ref: ../../../com/BankAccount.yaml#/components/schemas/BankAccount
+      nullable: true

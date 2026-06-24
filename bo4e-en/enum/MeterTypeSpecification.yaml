@@ -1,0 +1,11 @@
+components:
+  schemas:
+    MeterTypeSpecification:
+      title: MeterTypeSpecification
+      type: string
+      enum:
+        - EDL40
+        - EDL21
+        - OTHER_EHZ
+        - MME_STANDARD
+        - MME_MEDA

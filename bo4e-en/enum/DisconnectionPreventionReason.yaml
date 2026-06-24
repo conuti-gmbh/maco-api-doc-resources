@@ -1,0 +1,13 @@
+components:
+  schemas:
+    DisconnectionPreventionReason:
+      title: DisconnectionPreventionReason
+      type: string
+      enum:
+        - LEGAL_REASON_MISSING
+        - ACTIVE_ACCESS_DENIAL
+        - PASSIVE_ACCESS_DENIAL
+        - OTHER_PREVENTION_REASON
+        - ACTUAL_PREVENTION_REASON
+        - TECHNICAL_PREVENTION_REASON
+        - CONNECTION_USER_NOT_ENCOUNTERED

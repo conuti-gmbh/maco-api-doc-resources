@@ -1,0 +1,5 @@
+components:
+  schemas:
+    validFrom:
+      type: string
+      format: date-time

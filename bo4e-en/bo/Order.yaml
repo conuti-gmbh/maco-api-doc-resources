@@ -1,0 +1,66 @@
+components:
+  schemas:
+    Order:
+      title: Order
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/Order.json
+      properties:
+        boType:
+          $ref: ../fields/bo/Order/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/Order/structureVersion.yaml#/components/schemas/structureVersion
+        executionDate:
+          $ref: >-
+            ../fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+        completionDate:
+          $ref: >-
+            ../fields/bo/Order/completionDate.yaml#/components/schemas/completionDate
+        startDate:
+          $ref: ../fields/bo/Order/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: ../fields/bo/Order/endDate.yaml#/components/schemas/endDate
+        sector:
+          $ref: ../fields/bo/Order/sector.yaml#/components/schemas/sector
+        deliveryAddress:
+          $ref: >-
+            ../fields/bo/Order/deliveryAddress.yaml#/components/schemas/deliveryAddress
+        marketLocationId:
+          $ref: >-
+            ../fields/bo/Order/marketLocationId.yaml#/components/schemas/marketLocationId
+        minimumPrice:
+          $ref: >-
+            ../fields/bo/Order/minimumPrice.yaml#/components/schemas/minimumPrice
+        maximumPrice:
+          $ref: >-
+            ../fields/bo/Order/maximumPrice.yaml#/components/schemas/maximumPrice
+        energyDirection:
+          $ref: >-
+            ../fields/bo/Order/energyDirection.yaml#/components/schemas/energyDirection
+        calculationPrice:
+          $ref: >-
+            ../fields/bo/Order/calculationPrice.yaml#/components/schemas/calculationPrice
+        totalSum:
+          $ref: ../fields/bo/Order/totalSum.yaml#/components/schemas/totalSum
+        postponedDeregistrationDate:
+          $ref: >-
+            ../fields/bo/Order/postponedDeregistrationDate.yaml#/components/schemas/postponedDeregistrationDate
+        resolutionTimestamp:
+          $ref: >-
+            ../fields/bo/Order/resolutionTimestamp.yaml#/components/schemas/resolutionTimestamp
+        deliveryAddressOldDevices:
+          $ref: >-
+            ../fields/bo/Order/deliveryAddressOldDevices.yaml#/components/schemas/deliveryAddressOldDevices
+        definitionType:
+          $ref: >-
+            ../fields/bo/Order/definitionType.yaml#/components/schemas/definitionType
+        positionData:
+          $ref: >-
+            ../fields/bo/Order/positionData.yaml#/components/schemas/positionData
+        remarks:
+          $ref: ../fields/bo/Order/remarks.yaml#/components/schemas/remarks

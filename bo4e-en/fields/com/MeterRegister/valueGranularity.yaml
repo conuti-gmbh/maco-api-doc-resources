@@ -1,0 +1,4 @@
+components:
+  schemas:
+    valueGranularity:
+      $ref: ../../../enum/ValueGranularity.yaml#/components/schemas/ValueGranularity

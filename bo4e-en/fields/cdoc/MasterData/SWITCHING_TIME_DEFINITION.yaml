@@ -1,0 +1,7 @@
+components:
+  schemas:
+    SWITCHING_TIME_DEFINITION:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/SwitchingTimeDefinition.yaml#/components/schemas/SwitchingTimeDefinition

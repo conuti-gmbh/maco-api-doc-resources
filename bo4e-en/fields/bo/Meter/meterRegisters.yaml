@@ -1,0 +1,7 @@
+components:
+  schemas:
+    meterRegisters:
+      type: array
+      items:
+        $ref: ../../../com/MeterRegister.yaml#/components/schemas/MeterRegister
+      nullable: true

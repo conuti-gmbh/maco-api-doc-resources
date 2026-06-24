@@ -1,0 +1,6 @@
+components:
+  schemas:
+    OFFER:
+      type: array
+      items:
+        $ref: ../../../bo/Offer.yaml#/components/schemas/Offer

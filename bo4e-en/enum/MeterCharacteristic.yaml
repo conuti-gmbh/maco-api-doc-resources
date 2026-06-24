@@ -1,0 +1,8 @@
+components:
+  schemas:
+    MeterCharacteristic:
+      title: MeterCharacteristic
+      type: string
+      enum:
+        - SINGLE_DIRECTION_METER
+        - BIDIRECTIONAL_METER

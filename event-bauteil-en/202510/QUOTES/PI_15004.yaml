@@ -1,0 +1,263 @@
+openapi: 3.1.0
+info:
+  title: PI_15004
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_15004:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_15004__masterData'
+      required:
+      - masterData
+    PI_15004__masterData:
+      type: object
+      properties:
+        AD_HOC_CONTROL_CHANNEL:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__AD_HOC_CONTROL_CHANNEL'
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__REQUEST'
+        OFFER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__OFFER'
+        LOAD_CURVE_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__LOAD_CURVE_DEFINITION'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__METERING_LOCATION'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__GRID_LOCATION'
+        SWITCHING_TIME_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__SWITCHING_TIME_DEFINITION'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__CONTROLLABLE_RESOURCE'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__TRANCHE'
+        VALUES_BY_TYPE2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__VALUES_BY_TYPE2'
+      required:
+      - AD_HOC_CONTROL_CHANNEL
+      - REQUEST
+      - OFFER
+      - LOAD_CURVE_DEFINITION
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - GRID_LOCATION
+      - SWITCHING_TIME_DEFINITION
+      - CONTROLLABLE_RESOURCE
+      - TRANCHE
+      - VALUES_BY_TYPE2
+    PI_15004__masterData__AD_HOC_CONTROL_CHANNEL:
+      type: object
+      properties:
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/AdHocControlChannel/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z66.PIA+5
+      required:
+      - configurationProduct
+    PI_15004__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++[Z55|Z64]
+      required:
+      - requestType
+    PI_15004__masterData__OFFER:
+      type: object
+      properties:
+        requestReference:
+          $ref: ../../../bo4e-en/fields/bo/Offer/requestReference.yaml#/components/schemas/requestReference
+          x-edifact-segment:
+          - SG1.RFF+AAV
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__OFFER__positionData'
+      required:
+      - requestReference
+      - positionData
+    PI_15004__masterData__OFFER__positionData:
+      type: object
+      properties:
+        articleId:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/articleId.yaml#/components/schemas/articleId
+          x-edifact-segment:
+          - SG27.LIN+Z64.PIA+Z02
+          - SG27.LIN+Z65.PIA+Z02
+          - SG27.LIN+Z66.PIA+Z02
+          - SG27.LIN+Z67.PIA+Z02
+          - SG27.LIN+Z68.PIA+Z02
+        positionDesignation:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/positionDesignation.yaml#/components/schemas/positionDesignation
+          x-edifact-segment:
+          - SG27.LIN+Z64
+          - SG27.LIN+Z65
+          - SG27.LIN+Z66
+          - SG27.LIN+Z67
+          - SG27.LIN+Z68
+      required:
+      - articleId
+      - positionDesignation
+    PI_15004__masterData__LOAD_CURVE_DEFINITION:
+      type: object
+      properties:
+        loadCurves:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__LOAD_CURVE_DEFINITION__loadCurves'
+      required:
+      - loadCurves
+    PI_15004__masterData__LOAD_CURVE_DEFINITION__loadCurves:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG27.LIN+Z65.SG28.CCI+Z53
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z65.PIA+5
+      required:
+      - code
+      - configurationProduct
+    PI_15004__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - marketLocationId
+    PI_15004__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - meteringLocationId
+    PI_15004__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - gridLocationId
+    PI_15004__masterData__SWITCHING_TIME_DEFINITION:
+      type: object
+      properties:
+        switchingTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__SWITCHING_TIME_DEFINITION__switchingTimes'
+      required:
+      - switchingTimes
+    PI_15004__masterData__SWITCHING_TIME_DEFINITION__switchingTimes:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/SwitchingTime/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG27.LIN+Z64.SG28.CCI+Z52
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/SwitchingTime/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z64.PIA+5
+      required:
+      - code
+      - configurationProduct
+    PI_15004__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - resourceId
+    PI_15004__masterData__TRANCHE:
+      type: object
+      properties:
+        trancheId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - trancheId
+    PI_15004__masterData__VALUES_BY_TYPE2:
+      type: object
+      properties:
+        configurationChangeOption:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/configurationChangeOption.yaml#/components/schemas/configurationChangeOption
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z54
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z68.PIA+5
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG27.LIN+Z67.PIA+5
+        thresholds:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15004__masterData__VALUES_BY_TYPE2__thresholds'
+      required:
+      - configurationChangeOption
+      - configurationProduct
+      - meteringProduct
+      - thresholds
+    PI_15004__masterData__VALUES_BY_TYPE2__thresholds:
+      type: object
+      properties:
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/Threshold/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z60
+        upperThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/upperThreshold.yaml#/components/schemas/upperThreshold
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z60
+        lowerThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/lowerThreshold.yaml#/components/schemas/lowerThreshold
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z60
+      required:
+      - configurationProduct
+      - upperThreshold
+      - lowerThreshold

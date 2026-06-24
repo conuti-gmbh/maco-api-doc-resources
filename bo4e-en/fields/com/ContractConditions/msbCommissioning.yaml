@@ -1,0 +1,4 @@
+components:
+  schemas:
+    msbCommissioning:
+      $ref: ../../../enum/MsbCommissioning.yaml#/components/schemas/MsbCommissioning

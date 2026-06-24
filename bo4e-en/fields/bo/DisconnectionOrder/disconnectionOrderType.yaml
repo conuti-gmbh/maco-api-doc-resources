@@ -1,0 +1,5 @@
+components:
+  schemas:
+    disconnectionOrderType:
+      $ref: >-
+        ../../../enum/DisconnectionOrderType.yaml#/components/schemas/DisconnectionOrderType

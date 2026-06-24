@@ -1,0 +1,12 @@
+components:
+  schemas:
+    ForecastBasisChoiceRight:
+      title: ForecastBasisChoiceRight
+      type: string
+      enum:
+        - BY_SUPPLIER
+        - BY_SUPPLIER_NOT_GIVEN
+        - NOT_DUE_TO_LARGE_CONSUMPTION
+        - NOT_DUE_TO_SELF_CONSUMPTION
+        - NOT_DUE_TO_DAILY_CONSUMPTION
+        - NOT_DUE_TO_ENWG

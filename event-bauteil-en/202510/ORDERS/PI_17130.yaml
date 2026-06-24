@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: PI_17130
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17130:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17130__masterData'
+      required:
+      - masterData
+    PI_17130__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17130__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17130__masterData__ORDER'
+        VALUES_BY_TYPE2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2'
+      required:
+      - REQUEST
+      - VALUES_BY_TYPE2
+    PI_17130__masterData__REQUEST:
+      type: object
+      properties:
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - locationId
+    PI_17130__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+    PI_17130__masterData__VALUES_BY_TYPE2:
+      type: object
+      properties:
+        configurationChangeOption:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/configurationChangeOption.yaml#/components/schemas/configurationChangeOption
+          x-edifact-segment:
+          - SG29.LIN+Z68.SG30.CCI+Z54
+        issuer:
+          $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2__issuer'
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG29.LIN+Z67.PIA+5
+          - SG29.LIN+Z68.PIA+5
+        thresholds:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2__thresholds'
+        certificateUser:
+          $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2__certificateUser'
+        targetAddress:
+          $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2__targetAddress'
+      required:
+      - configurationChangeOption
+      - issuer
+      - meteringProduct
+      - thresholds
+      - certificateUser
+      - targetAddress
+    PI_17130__masterData__VALUES_BY_TYPE2__issuer:
+      type: object
+      properties:
+        issuer1:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer1.yaml#/components/schemas/issuer1
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z24
+        issuer2:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer2.yaml#/components/schemas/issuer2
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z24
+        issuer3:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer3.yaml#/components/schemas/issuer3
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z24
+        issuer4:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer4.yaml#/components/schemas/issuer4
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z24
+        issuer5:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer5.yaml#/components/schemas/issuer5
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z24
+      required:
+      - issuer1
+      - issuer2
+      - issuer3
+      - issuer4
+      - issuer5
+    PI_17130__masterData__VALUES_BY_TYPE2__thresholds:
+      type: object
+      properties:
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/Threshold/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG29.LIN+Z68.SG30.CCI+Z60
+        upperThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/upperThreshold.yaml#/components/schemas/upperThreshold
+          x-edifact-segment:
+          - SG29.LIN+Z68.SG30.CCI+Z60
+        lowerThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/lowerThreshold.yaml#/components/schemas/lowerThreshold
+          x-edifact-segment:
+          - SG29.LIN+Z68.SG30.CCI+Z60
+      required:
+      - configurationProduct
+      - upperThreshold
+      - lowerThreshold
+    PI_17130__masterData__VALUES_BY_TYPE2__certificateUser:
+      type: object
+      properties:
+        certificateUser1:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser1.yaml#/components/schemas/certificateUser1
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z23
+        certificateUser2:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser2.yaml#/components/schemas/certificateUser2
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z23
+        certificateUser3:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser3.yaml#/components/schemas/certificateUser3
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z23
+        certificateUser4:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser4.yaml#/components/schemas/certificateUser4
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z23
+        certificateUser5:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser5.yaml#/components/schemas/certificateUser5
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z23
+      required:
+      - certificateUser1
+      - certificateUser2
+      - certificateUser3
+      - certificateUser4
+      - certificateUser5
+    PI_17130__masterData__VALUES_BY_TYPE2__targetAddress:
+      type: object
+      properties:
+        targetAddress1:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress1.yaml#/components/schemas/targetAddress1
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z17
+        targetAddress2:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress2.yaml#/components/schemas/targetAddress2
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z17
+        targetAddress3:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress3.yaml#/components/schemas/targetAddress3
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z17
+        targetAddress4:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress4.yaml#/components/schemas/targetAddress4
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z17
+        targetAddress5:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress5.yaml#/components/schemas/targetAddress5
+          x-edifact-segment:
+          - SG29.LIN+Z68.FTX+Z17
+      required:
+      - targetAddress1
+      - targetAddress2
+      - targetAddress3
+      - targetAddress4
+      - targetAddress5

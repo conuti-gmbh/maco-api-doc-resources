@@ -1,0 +1,7 @@
+components:
+  schemas:
+    referenceMarketLocationIds:
+      type: array
+      items:
+        type: string
+      nullable: true

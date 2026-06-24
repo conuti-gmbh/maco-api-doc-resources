@@ -1,0 +1,4 @@
+components:
+  schemas:
+    transactionData:
+      $ref: ../../../cdoc/TransactionData.yaml#/components/schemas/TransactionData

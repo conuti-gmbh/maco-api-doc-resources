@@ -1,0 +1,12 @@
+components:
+  schemas:
+    MarketLocationReference:
+      title: MarketLocationReference
+      type: object
+      properties:
+        marketLocationId:
+          $ref: >-
+            ../fields/com/MarketLocationReference/marketLocationId.yaml#/components/schemas/marketLocationId
+        typeValue:
+          $ref: >-
+            ../fields/com/MarketLocationReference/typeValue.yaml#/components/schemas/typeValue

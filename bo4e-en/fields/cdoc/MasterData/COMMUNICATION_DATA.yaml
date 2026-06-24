@@ -1,0 +1,7 @@
+components:
+  schemas:
+    COMMUNICATION_DATA:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/CommunicationData.yaml#/components/schemas/CommunicationData

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    B:
+      type: number
+      format: float

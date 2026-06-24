@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: PI_55639
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55639:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55639__masterData'
+      required:
+      - masterData
+    PI_55639__masterData:
+      type: object
+      properties:
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55639__masterData__GRID_LOCATION'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55639__masterData__USAGE_PERIOD'
+      required:
+      - GRID_LOCATION
+      - USAGE_PERIOD
+    PI_55639__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        orderingMarketPartner:
+          $ref: '#/components/schemas/PI_55639__masterData__GRID_LOCATION__orderingMarketPartner'
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51
+          - SG4.IDE+24.SG8.SEQ+Z57
+          - SG4.IDE+24.SG8.SEQ+Z60
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55639__masterData__GRID_LOCATION__validityPeriod'
+        noConfigurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/noConfigurationProduct.yaml#/components/schemas/noConfigurationProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+11
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.PIA+5
+        loadCurveDefinition:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+Z53
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z18
+        productDataRelevantRole:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZA8
+        controlChannel:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/controlChannel.yaml#/components/schemas/controlChannel
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51.SG10.CCI+Z49
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55639__masterData__GRID_LOCATION__meterRegisters'
+      required:
+      - orderingMarketPartner
+      - dataQuality
+      - validityPeriod
+      - noConfigurationProduct
+      - loadCurveDefinition
+      - gridLocationId
+      - productDataRelevantRole
+      - controlChannel
+      - meterRegisters
+    PI_55639__masterData__GRID_LOCATION__orderingMarketPartner:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z60.SG10.CCI+++ZB3.CAV+[Z88|Z89]
+      required:
+      - marketRole
+      - roleCodeNumber
+    PI_55639__masterData__GRID_LOCATION__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z51
+          - SG4.IDE+24.SG8.SEQ+Z57
+          - SG4.IDE+24.SG8.SEQ+Z60
+      required:
+      - periodId
+    PI_55639__masterData__GRID_LOCATION__meterRegisters:
+      type: object
+      properties:
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.PIA+5
+        purposesOfUse:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55639__masterData__GRID_LOCATION__meterRegisters__purposesOfUse'
+      required:
+      - obisCode
+      - purposesOfUse
+    PI_55639__masterData__GRID_LOCATION__meterRegisters__purposesOfUse:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+++ZA8.CAV
+        purpose:
+          $ref: ../../../bo4e-en/fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z57.SG10.CCI+++ZA8.CAV
+      required:
+      - marketRole
+      - purpose
+    PI_55639__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

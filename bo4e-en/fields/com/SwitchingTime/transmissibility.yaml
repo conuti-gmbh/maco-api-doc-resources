@@ -1,0 +1,5 @@
+components:
+  schemas:
+    transmissibility:
+      $ref: >-
+        ../../../enum/SwitchingTimeTransmissibility.yaml#/components/schemas/SwitchingTimeTransmissibility

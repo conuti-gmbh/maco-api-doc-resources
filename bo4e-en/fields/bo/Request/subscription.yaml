@@ -1,0 +1,5 @@
+components:
+  schemas:
+    subscription:
+      $ref: ../../../enum/Subscription.yaml#/components/schemas/Subscription
+      description: Start or end of subscription

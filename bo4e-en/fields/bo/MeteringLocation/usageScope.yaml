@@ -1,0 +1,4 @@
+components:
+  schemas:
+    usageScope:
+      $ref: ../../../enum/UsageScope.yaml#/components/schemas/UsageScope

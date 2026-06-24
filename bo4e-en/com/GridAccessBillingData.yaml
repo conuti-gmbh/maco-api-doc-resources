@@ -1,0 +1,45 @@
+components:
+  schemas:
+    GridAccessBillingData:
+      title: GridAccessBillingData
+      type: object
+      properties:
+        articleId:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/articleId.yaml#/components/schemas/articleId
+        articleIdType:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/articleIdType.yaml#/components/schemas/articleIdType
+        quantity:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/quantity.yaml#/components/schemas/quantity
+        municipalDiscount:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/municipalDiscount.yaml#/components/schemas/municipalDiscount
+        surcharge:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/surcharge.yaml#/components/schemas/surcharge
+        installment:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/installment.yaml#/components/schemas/installment
+        singularEquipment:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/singularEquipment.yaml#/components/schemas/singularEquipment
+        priceSingularEquipment:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/priceSingularEquipment.yaml#/components/schemas/priceSingularEquipment
+        billingReactivePower:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/billingReactivePower.yaml#/components/schemas/billingReactivePower
+        payerReactivePower:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/payerReactivePower.yaml#/components/schemas/payerReactivePower
+        payerReactivePowerSupplier:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/payerReactivePowerSupplier.yaml#/components/schemas/payerReactivePowerSupplier
+        differenceData:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/differenceData.yaml#/components/schemas/differenceData
+        meteringTimes:
+          $ref: >-
+            ../fields/com/GridAccessBillingData/meteringTimes.yaml#/components/schemas/meteringTimes

@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: PI_17118
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17118:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17118__masterData'
+      required:
+      - masterData
+    PI_17118__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__masterData__ORDER'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__masterData__METERING_LOCATION'
+      required:
+      - REQUEST
+      - ORDER
+      - METERING_LOCATION
+    PI_17118__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - locationId
+    PI_17118__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__masterData__ORDER__positionData'
+      required:
+      - executionDate
+      - positionData
+    PI_17118__masterData__ORDER__positionData:
+      type: object
+      properties:
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG29.LIN++Z19
+      required:
+      - positionNumber
+    PI_17118__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17118__masterData__METERING_LOCATION__meterRegisters'
+      required:
+      - meterRegisters
+    PI_17118__masterData__METERING_LOCATION__meterRegisters:
+      type: object
+      properties:
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG29.LIN++Z19.PIA+5
+        necessitySecondMeasurement:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/necessitySecondMeasurement.yaml#/components/schemas/necessitySecondMeasurement
+          x-edifact-segment:
+          - SG29.LIN++Z19.SG30.CCI+Z35.CAV+ZC9
+        valueTransmissionPurpose:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/valueTransmissionPurpose.yaml#/components/schemas/valueTransmissionPurpose
+          x-edifact-segment:
+          - SG29.LIN++Z19.SG30.CCI+Z35.CAV+Z88
+        meteringTimes:
+          $ref: '#/components/schemas/PI_17118__masterData__METERING_LOCATION__meterRegisters__meteringTimes'
+      required:
+      - meteringProduct
+      - necessitySecondMeasurement
+      - valueTransmissionPurpose
+      - meteringTimes
+    PI_17118__masterData__METERING_LOCATION__meterRegisters__meteringTimes:
+      type: object
+      properties:
+        meteringTimeDefinition:
+          $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
+          x-edifact-segment:
+          - SG29.LIN++Z19.SG30.CCI
+      required:
+      - meteringTimeDefinition

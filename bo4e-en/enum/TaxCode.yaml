@@ -1,0 +1,14 @@
+components:
+  schemas:
+    TaxCode:
+      title: TaxCode
+      type: string
+      enum:
+        - VAT_19
+        - VAT_16
+        - VAT_7
+        - INPUT_TAX_0
+        - INPUT_TAX_19
+        - INPUT_TAX_16
+        - INPUT_TAX_7
+        - RCV

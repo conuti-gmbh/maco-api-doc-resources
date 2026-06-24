@@ -1,0 +1,27 @@
+components:
+  schemas:
+    UsagePeriod:
+      title: UsagePeriod
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/UsagePeriod.json
+      properties:
+        boType:
+          $ref: ../fields/bo/UsagePeriod/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/UsagePeriod/structureVersion.yaml#/components/schemas/structureVersion
+        usageFrom:
+          $ref: >-
+            ../fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+        usageTo:
+          $ref: ../fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+        periodId:
+          $ref: ../fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+        dataQuality:
+          $ref: >-
+            ../fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    orderStatus:
+      $ref: ../../../enum/OrderStatus.yaml#/components/schemas/OrderStatus

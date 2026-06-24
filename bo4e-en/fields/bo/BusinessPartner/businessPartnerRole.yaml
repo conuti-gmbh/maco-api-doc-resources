@@ -1,0 +1,8 @@
+components:
+  schemas:
+    businessPartnerRole:
+      type: array
+      items:
+        $ref: >-
+          ../../../enum/BusinessPartnerRole.yaml#/components/schemas/BusinessPartnerRole
+      nullable: true

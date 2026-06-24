@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_BESTELLUNG_SDAE'
+  version: '202510'
+  x-bpmn-source-sha: eaf359e3
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[NB] START_BESTELLUNG_SDAE':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55137.yaml#/components/schemas/PI_55137__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55232.yaml#/components/schemas/PI_55232__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55555.yaml#/components/schemas/PI_55555__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55559.yaml#/components/schemas/PI_55559__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55644.yaml#/components/schemas/PI_55644__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55645.yaml#/components/schemas/PI_55645__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55646.yaml#/components/schemas/PI_55646__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55647.yaml#/components/schemas/PI_55647__masterData
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55648.yaml#/components/schemas/PI_55648__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - sector
+          - transactionReason
+          - transactionReasonSupplement
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            transactionReasonSupplement:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+              examples:
+              - '55137'
+              - '55232'
+              - '55555'
+              - '55559'
+              - '55644'
+              - '55645'
+              - '55646'
+              - '55647'
+              - '55648'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_BESTELLUNG_SDAE
+              default: START_ORDER_SDAE

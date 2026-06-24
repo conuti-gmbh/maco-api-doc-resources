@@ -1,0 +1,4 @@
+components:
+  schemas:
+    easting:
+      type: string

@@ -1,0 +1,21 @@
+components:
+  schemas:
+    CertificateUser:
+      title: CertificateUser
+      type: object
+      properties:
+        certificateUser1:
+          $ref: >-
+            ../fields/com/CertificateUser/certificateUser1.yaml#/components/schemas/certificateUser1
+        certificateUser2:
+          $ref: >-
+            ../fields/com/CertificateUser/certificateUser2.yaml#/components/schemas/certificateUser2
+        certificateUser3:
+          $ref: >-
+            ../fields/com/CertificateUser/certificateUser3.yaml#/components/schemas/certificateUser3
+        certificateUser4:
+          $ref: >-
+            ../fields/com/CertificateUser/certificateUser4.yaml#/components/schemas/certificateUser4
+        certificateUser5:
+          $ref: >-
+            ../fields/com/CertificateUser/certificateUser5.yaml#/components/schemas/certificateUser5

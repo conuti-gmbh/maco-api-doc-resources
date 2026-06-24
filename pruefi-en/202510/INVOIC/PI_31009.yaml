@@ -1,0 +1,403 @@
+openapi: 3.1.0
+info:
+  title: PI_31009
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_31009:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_31009__masterData'
+        transactionData:
+          $ref: '#/components/schemas/PI_31009__transactionData'
+      required:
+      - masterData
+      - transactionData
+    PI_31009__masterData:
+      type: object
+      properties:
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__METERING_LOCATION'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__GRID_LOCATION'
+        INVOICE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__INVOICE'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__CONTROLLABLE_RESOURCE'
+        TECHNICAL_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__TECHNICAL_RESOURCE'
+      required:
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - GRID_LOCATION
+      - INVOICE
+      - CONTROLLABLE_RESOURCE
+      - TECHNICAL_RESOURCE
+    PI_31009__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        locationAddress:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/locationAddress.yaml#/components/schemas/locationAddress
+          x-edifact-segment:
+          - SG2.NAD+DP
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - locationAddress
+      - marketLocationId
+    PI_31009__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - meteringLocationId
+    PI_31009__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - gridLocationId
+    PI_31009__masterData__INVOICE:
+      type: object
+      properties:
+        processingDate:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/processingDate.yaml#/components/schemas/processingDate
+          x-edifact-segment:
+          - DTM+9
+        dueDate:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/dueDate.yaml#/components/schemas/dueDate
+          x-edifact-segment:
+          - SG8.PYT.DTM+265
+        totalGrossAmount:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__totalGrossAmount'
+        isReverseCharge:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/isReverseCharge.yaml#/components/schemas/isReverseCharge
+          x-edifact-segment:
+          - FTX+REG++RCH
+        invoiceDate:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/invoiceDate.yaml#/components/schemas/invoiceDate
+          x-edifact-segment:
+          - DTM+137
+        invoicePeriod:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePeriod'
+        invoicePositions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePositions'
+        invoiceStatus:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/invoiceStatus.yaml#/components/schemas/invoiceStatus
+          x-edifact-segment:
+          - BGM+380
+        invoiceType:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/invoiceType.yaml#/components/schemas/invoiceType
+          x-edifact-segment:
+          - IMD
+        referenceDocumentNumber:
+          $ref: ../../../bo4e-en/fields/bo/Invoice/referenceDocumentNumber.yaml#/components/schemas/referenceDocumentNumber
+          x-edifact-segment:
+          - SG1.RFF+ACE
+        taxAmounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_31009__masterData__INVOICE__taxAmounts'
+        toPay:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__toPay'
+      required:
+      - processingDate
+      - dueDate
+      - totalGrossAmount
+      - invoiceDate
+      - invoicePeriod
+      - invoicePositions
+      - invoiceStatus
+      - invoiceType
+      - referenceDocumentNumber
+      - taxAmounts
+      - toPay
+    PI_31009__masterData__INVOICE__totalGrossAmount:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG50.MOA+77
+      required:
+      - value
+    PI_31009__masterData__INVOICE__invoicePeriod:
+      type: object
+      properties:
+        endDate:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - DTM+156
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - DTM+155
+      required:
+      - endDate
+      - startDate
+    PI_31009__masterData__INVOICE__invoicePositions:
+      type: object
+      properties:
+        articleNumber:
+          $ref: ../../../bo4e-en/fields/com/InvoicePosition/articleNumber.yaml#/components/schemas/articleNumber
+          x-edifact-segment:
+          - SG26.LIN
+        executionDate:
+          $ref: ../../../bo4e-en/fields/com/InvoicePosition/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - SG26.LIN.DTM+203
+        individualPrice:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePositions__individualPrice'
+        deliveryUntil:
+          $ref: ../../../bo4e-en/fields/com/InvoicePosition/deliveryUntil.yaml#/components/schemas/deliveryUntil
+          x-edifact-segment:
+          - SG26.LIN.DTM+156
+        deliveryFrom:
+          $ref: ../../../bo4e-en/fields/com/InvoicePosition/deliveryFrom.yaml#/components/schemas/deliveryFrom
+          x-edifact-segment:
+          - SG26.LIN.DTM+155
+        positionQuantity:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePositions__positionQuantity'
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/InvoicePosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG26.LIN
+        subtotalNet:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePositions__subtotalNet'
+        subtotalTax:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePositions__subtotalTax'
+        timeRelatedQuantity:
+          $ref: '#/components/schemas/PI_31009__masterData__INVOICE__invoicePositions__timeRelatedQuantity'
+      required:
+      - articleNumber
+      - individualPrice
+      - positionQuantity
+      - positionNumber
+      - subtotalNet
+      - subtotalTax
+    PI_31009__masterData__INVOICE__invoicePositions__individualPrice:
+      type: object
+      properties:
+        referenceValue:
+          $ref: ../../../bo4e-en/fields/com/Price/referenceValue.yaml#/components/schemas/referenceValue
+          x-edifact-segment:
+          - SG26.LIN.SG29.PRI+CAL
+        value:
+          $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG26.LIN.SG29.PRI+CAL
+      required:
+      - referenceValue
+      - value
+    PI_31009__masterData__INVOICE__invoicePositions__positionQuantity:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG26.LIN.QTY+47
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG26.LIN.QTY+47
+      required:
+      - unit
+      - value
+    PI_31009__masterData__INVOICE__invoicePositions__subtotalNet:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG26.LIN.SG27.MOA+203
+      required:
+      - value
+    PI_31009__masterData__INVOICE__invoicePositions__subtotalTax:
+      type: object
+      properties:
+        taxCode:
+          $ref: ../../../bo4e-en/fields/com/TaxAmount/taxCode.yaml#/components/schemas/taxCode
+          x-edifact-segment:
+          - SG26.LIN.SG34.TAX+7+VAT
+      required:
+      - taxCode
+    PI_31009__masterData__INVOICE__invoicePositions__timeRelatedQuantity:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG26.LIN.QTY+136
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG26.LIN.QTY+136
+    PI_31009__masterData__INVOICE__taxAmounts:
+      type: object
+      properties:
+        baseValue:
+          $ref: ../../../bo4e-en/fields/com/TaxAmount/baseValue.yaml#/components/schemas/baseValue
+          x-edifact-segment:
+          - SG52.TAX+7+VAT.MOA+125
+        taxCode:
+          $ref: ../../../bo4e-en/fields/com/TaxAmount/taxCode.yaml#/components/schemas/taxCode
+          x-edifact-segment:
+          - SG52.TAX+7+VAT
+        taxValue:
+          $ref: ../../../bo4e-en/fields/com/TaxAmount/taxValue.yaml#/components/schemas/taxValue
+          x-edifact-segment:
+          - SG52.TAX+7+VAT.MOA+161
+      required:
+      - baseValue
+      - taxCode
+      - taxValue
+    PI_31009__masterData__INVOICE__toPay:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG50.MOA+9
+      required:
+      - value
+    PI_31009__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - resourceId
+    PI_31009__masterData__TECHNICAL_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - resourceId
+    PI_31009__transactionData:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/PI_31009__transactionData__sender'
+        documentNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+          x-edifact-segment:
+          - BGM+380
+        receiver:
+          $ref: '#/components/schemas/PI_31009__transactionData__receiver'
+        messageReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+          x-edifact-segment:
+          - UNH
+        verificationIdentifier:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+          x-edifact-segment:
+          - SG1.RFF+Z13
+      required:
+      - sender
+      - documentNumber
+      - receiver
+      - messageReferenceNumber
+      - verificationIdentifier
+    PI_31009__transactionData__sender:
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/PI_31009__transactionData__sender__contactPerson'
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG2.NAD+MS
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MS
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MS
+        taxNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/taxNumber.yaml#/components/schemas/taxNumber
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.RFF+[VA|FC]
+        vatId:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/vatId.yaml#/components/schemas/vatId
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.RFF+[VA|FC]
+      required:
+      - contactPerson
+      - name1
+      - roleCodeNumber
+      - roleCodeType
+      - taxNumber
+      - vatId
+    PI_31009__transactionData__sender__contactPerson:
+      type: object
+      properties:
+        lastName:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+          x-edifact-segment:
+          - SG2.NAD+MS.SG5.CTA+IC
+      required:
+      - lastName
+    PI_31009__transactionData__receiver:
+      type: object
+      properties:
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG2.NAD+MR
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MR
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MR
+        taxNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/taxNumber.yaml#/components/schemas/taxNumber
+          x-edifact-segment:
+          - SG2.NAD+MR.SG3.RFF+[VA|FC]
+        vatId:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/vatId.yaml#/components/schemas/vatId
+          x-edifact-segment:
+          - SG2.NAD+MR.SG3.RFF+[VA|FC]
+      required:
+      - name1
+      - roleCodeNumber
+      - roleCodeType
+      - taxNumber
+      - vatId

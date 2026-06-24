@@ -1,0 +1,12 @@
+components:
+  schemas:
+    StatusGeneratingMarketLocation:
+      title: StatusGeneratingMarketLocation
+      type: string
+      enum:
+        - FEED_IN_REMUNERATION_PARAGRAPH_37
+        - SUBSIDIZED_DIRECT_MARKETING
+        - OTHER_DIRECT_MARKETING
+        - MARKETING_WITHOUT_STATUTORY_REMUNERATION
+        - CHP_REMUNERATION
+        - FEED_IN_REMUNERATION_PARAGRAPH_38_FALLBACK_REMUNERATION

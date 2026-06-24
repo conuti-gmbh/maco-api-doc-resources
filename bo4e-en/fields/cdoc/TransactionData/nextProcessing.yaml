@@ -1,0 +1,5 @@
+components:
+  schemas:
+    nextProcessing:
+      type: string
+      format: date-time

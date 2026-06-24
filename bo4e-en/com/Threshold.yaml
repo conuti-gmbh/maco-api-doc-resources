@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Threshold:
+      title: Threshold
+      type: object
+      properties:
+        upperThreshold:
+          $ref: >-
+            ../fields/com/Threshold/upperThreshold.yaml#/components/schemas/upperThreshold
+        lowerThreshold:
+          $ref: >-
+            ../fields/com/Threshold/lowerThreshold.yaml#/components/schemas/lowerThreshold
+        configurationProduct:
+          $ref: >-
+            ../fields/com/Threshold/configurationProduct.yaml#/components/schemas/configurationProduct

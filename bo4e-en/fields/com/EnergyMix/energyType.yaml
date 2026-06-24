@@ -1,0 +1,4 @@
+components:
+  schemas:
+    energyType:
+      $ref: ../../../enum/Sector.yaml#/components/schemas/Sector

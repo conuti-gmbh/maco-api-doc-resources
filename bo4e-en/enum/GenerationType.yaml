@@ -1,0 +1,21 @@
+components:
+  schemas:
+    GenerationType:
+      title: GenerationType
+      type: string
+      enum:
+        - EEG
+        - CHP
+        - EEG_DV
+        - CHP_DV
+        - WIND
+        - SOLAR
+        - NUCLEAR
+        - WATER
+        - GEOTHERMAL
+        - BIOMASS
+        - COAL
+        - GAS
+        - OTHER
+        - OTHER_EEG
+        - OTHER_GENERATION_TYPE

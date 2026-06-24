@@ -1,0 +1,4 @@
+components:
+  schemas:
+    versionSpecification:
+      type: string

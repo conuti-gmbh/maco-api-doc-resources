@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offPeakCapable:
+      $ref: ../../../enum/OffPeakCapable.yaml#/components/schemas/OffPeakCapable

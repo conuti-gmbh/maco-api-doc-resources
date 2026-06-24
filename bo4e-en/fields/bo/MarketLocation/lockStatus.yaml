@@ -1,0 +1,4 @@
+components:
+  schemas:
+    lockStatus:
+      $ref: ../../../enum/LockStatus.yaml#/components/schemas/LockStatus

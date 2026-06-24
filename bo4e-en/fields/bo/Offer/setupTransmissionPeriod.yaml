@@ -1,0 +1,4 @@
+components:
+  schemas:
+    setupTransmissionPeriod:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

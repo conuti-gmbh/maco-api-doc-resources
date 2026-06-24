@@ -1,0 +1,4 @@
+components:
+  schemas:
+    contactPersonCustomer:
+      $ref: ../../../bo/ContactPerson.yaml#/components/schemas/ContactPerson

@@ -1,0 +1,21 @@
+components:
+  schemas:
+    LoadCurve:
+      title: LoadCurve
+      type: object
+      properties:
+        code:
+          $ref: ../fields/com/LoadCurve/code.yaml#/components/schemas/code
+        changeTimestamp:
+          $ref: >-
+            ../fields/com/LoadCurve/changeTimestamp.yaml#/components/schemas/changeTimestamp
+        frequency:
+          $ref: ../fields/com/LoadCurve/frequency.yaml#/components/schemas/frequency
+        transmissibility:
+          $ref: >-
+            ../fields/com/LoadCurve/transmissibility.yaml#/components/schemas/transmissibility
+        threshold:
+          $ref: ../fields/com/LoadCurve/threshold.yaml#/components/schemas/threshold
+        configurationProduct:
+          $ref: >-
+            ../fields/com/LoadCurve/configurationProduct.yaml#/components/schemas/configurationProduct

@@ -1,0 +1,29 @@
+components:
+  schemas:
+    LoadProfile:
+      title: LoadProfile
+      type: object
+      properties:
+        designation:
+          $ref: >-
+            ../fields/com/LoadProfile/designation.yaml#/components/schemas/designation
+        procedure:
+          $ref: >-
+            ../fields/com/LoadProfile/procedure.yaml#/components/schemas/procedure
+        profileType:
+          $ref: >-
+            ../fields/com/LoadProfile/profileType.yaml#/components/schemas/profileType
+        profileFamily:
+          $ref: >-
+            ../fields/com/LoadProfile/profileFamily.yaml#/components/schemas/profileFamily
+        feedIn:
+          $ref: ../fields/com/LoadProfile/feedIn.yaml#/components/schemas/feedIn
+        publisher:
+          $ref: >-
+            ../fields/com/LoadProfile/publisher.yaml#/components/schemas/publisher
+        dailyParameters:
+          $ref: >-
+            ../fields/com/LoadProfile/dailyParameters.yaml#/components/schemas/dailyParameters
+        referenceProfileDesignation:
+          $ref: >-
+            ../fields/com/LoadProfile/referenceProfileDesignation.yaml#/components/schemas/referenceProfileDesignation

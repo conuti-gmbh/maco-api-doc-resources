@@ -1,0 +1,4 @@
+components:
+  schemas:
+    meteringGridLevel:
+      $ref: ../../../enum/GridLevel.yaml#/components/schemas/GridLevel

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    lossFactorTransformer:
+      type: number
+      format: float

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    tenantId:
+      type: string
+      default: NONE

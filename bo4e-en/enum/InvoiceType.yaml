@@ -1,0 +1,23 @@
+components:
+  schemas:
+    InvoiceType:
+      title: InvoiceType
+      type: string
+      enum:
+        - FINAL_INVOICE
+        - INSTALLMENT_INVOICE
+        - PERIODIC_INVOICE
+        - MONTHLY_INVOICE
+        - WIM_INVOICE
+        - INTERIM_INVOICE
+        - INTEGRATED_13TH_INVOICE
+        - ADDITIONAL_13TH_INVOICE
+        - MORE_LESS_QUANTITIES_INVOICE
+        - MSB_INVOICE
+        - CAPACITY_INVOICE
+        - DISCONNECTION_COMMISSIONING
+        - LATE_PAYMENT_COSTS
+        - REACTIVE_ENERGY
+        - SPECIAL_INVOICE
+        - BILLING_OF_CONFIGURATIONS_UNIVERSAL_ORDER_PROCESS
+        - BILLING_OF_TECHNOLOGY

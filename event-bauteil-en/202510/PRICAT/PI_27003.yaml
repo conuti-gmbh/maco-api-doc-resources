@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: PI_27003
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_27003:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_27003__masterData'
+      required:
+      - masterData
+    PI_27003__masterData:
+      type: object
+      properties:
+        PRICE_SHEET:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET'
+      required:
+      - PRICE_SHEET
+    PI_27003__masterData__PRICE_SHEET:
+      type: object
+      properties:
+        validity:
+          $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET__validity'
+        priceGridOperatorCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/PriceSheet/priceGridOperatorCodeNumber.yaml#/components/schemas/priceGridOperatorCodeNumber
+          x-edifact-segment:
+          - SG1.RFF+Z56
+        pricePositions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET__pricePositions'
+      required:
+      - validity
+      - priceGridOperatorCodeNumber
+      - pricePositions
+    PI_27003__masterData__PRICE_SHEET__validity:
+      type: object
+      properties:
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - DTM+157
+      required:
+      - startDate
+    PI_27003__masterData__PRICE_SHEET__pricePositions:
+      type: object
+      properties:
+        articleId:
+          $ref: ../../../bo4e-en/fields/com/PricePosition/articleId.yaml#/components/schemas/articleId
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN
+          - SG17.PGI+Z01.SG36.LIN
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/PricePosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN
+          - SG17.PGI+Z01.SG36.LIN
+        priceSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_27003__masterData__PRICE_SHEET__pricePositions__priceSteps'
+        timeBasis:
+          $ref: ../../../bo4e-en/fields/com/PricePosition/timeBasis.yaml#/components/schemas/timeBasis
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN.SG40.PRI+CAL
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL
+      required:
+      - articleId
+      - positionNumber
+      - priceSteps
+      - timeBasis
+    PI_27003__masterData__PRICE_SHEET__pricePositions__priceSteps:
+      type: object
+      properties:
+        unitPrice:
+          $ref: ../../../bo4e-en/fields/com/PriceTier/unitPrice.yaml#/components/schemas/unitPrice
+          x-edifact-segment:
+          - SG17.PGI+9.SG36.LIN.SG40.PRI+CAL
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL
+        tierLimitTo:
+          $ref: ../../../bo4e-en/fields/com/PriceTier/tierLimitTo.yaml#/components/schemas/tierLimitTo
+          x-edifact-segment:
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL.RNG+10+KWH
+        tierLimitFrom:
+          $ref: ../../../bo4e-en/fields/com/PriceTier/tierLimitFrom.yaml#/components/schemas/tierLimitFrom
+          x-edifact-segment:
+          - SG17.PGI+Z01.SG36.LIN.SG40.PRI+CAL.RNG+10+KWH
+      required:
+      - unitPrice

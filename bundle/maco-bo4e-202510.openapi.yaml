@@ -22029,6 +22029,7 @@ components:
       - START_KUENDIGUNG_MSB
       - START_GESCHAEFTSDATENANFRAGE
       - START_VERSAND_PREISBLATT_IMS
+      - START_UEBERMITTLUNG_ENFG
       title: EventName
       type: string
     cdoc.Message:
@@ -23241,6 +23242,8 @@ components:
           $ref: '#/components/schemas/field.Preisstaffel.staffelgrenzeBis'
         staffelgrenzeVon:
           $ref: '#/components/schemas/field.Preisstaffel.staffelgrenzeVon'
+        zeitbasis:
+          $ref: '#/components/schemas/field.Preisstaffel.zeitbasis'
       title: Preisstaffel
       type: object
     com.Produkt:
@@ -34472,9 +34475,7 @@ components:
       description: externeKundenummerLieferant
       type: string
     field.Geschaeftspartner.externeReferenzen:
-      description: 'Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer) (Details siehe
-
-        ExterneReferenz)'
+      description: "Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer) (Details siehe\nExterneReferenz)"
       items:
         $ref: '#/components/schemas/com.ExterneReferenz'
       nullable: true
@@ -34486,9 +34487,7 @@ components:
       nullable: true
       type: array
     field.Geschaeftspartner.gewerbekennzeichnung:
-      description: 'Kennzeichnung ob es sich um einen Gewerbe/Unternehmen (gewerbeKennzeichnung = true)
-
-        oder eine Privatperson handelt. (gewerbeKennzeichnung = false)'
+      description: "Kennzeichnung ob es sich um einen Gewerbe/Unternehmen (gewerbeKennzeichnung = true)\noder eine Privatperson handelt. (gewerbeKennzeichnung = false)"
       type: boolean
     field.Geschaeftspartner.glaeubigerId:
       description: '* Die Gläubiger-ID welche im Zahlungsverkehr verwendet wird- Z.B. DE 47116789'
@@ -34503,25 +34502,13 @@ components:
       nullable: true
       type: array
     field.Geschaeftspartner.name1:
-      description: 'Erster Teil des Namens. Hier kann der Firmenname oder bei Privatpersonen
-
-        beispielsweise der Nachname dargestellt werden. Beispiele: Yellow Strom GmbH
-
-        oder Hagen'
+      description: "Erster Teil des Namens. Hier kann der Firmenname oder bei Privatpersonen\nbeispielsweise der Nachname dargestellt werden. Beispiele: Yellow Strom GmbH\noder Hagen"
       type: string
     field.Geschaeftspartner.name2:
-      description: 'Zweiter Teil des Namens. Hier kann der eine Erweiterung zum Firmennamen oder
-
-        bei Privatpersonen beispielsweise der Vorname dargestellt werden. Beispiele:
-
-        Bereich Süd oder Nina'
+      description: "Zweiter Teil des Namens. Hier kann der eine Erweiterung zum Firmennamen oder\nbei Privatpersonen beispielsweise der Vorname dargestellt werden. Beispiele:\nBereich Süd oder Nina"
       type: string
     field.Geschaeftspartner.name3:
-      description: 'Dritter Teil des Namens. Hier können weitere Ergänzungen zum Firmennamen oder
-
-        bei Privatpersonen Zusätze zum Namen dargestellt werden. Beispiele: und Afrika
-
-        oder Sängerin'
+      description: "Dritter Teil des Namens. Hier können weitere Ergänzungen zum Firmennamen oder\nbei Privatpersonen Zusätze zum Namen dargestellt werden. Beispiele: und Afrika\noder Sängerin"
       type: string
     field.Geschaeftspartner.name4:
       description: name4
@@ -34829,13 +34816,7 @@ components:
       $ref: '#/components/schemas/bo.Geschaeftspartner'
     field.Marktlokation.katasterinformation:
       $ref: '#/components/schemas/com.Katasteradresse'
-      description: 'Alternativ zu einer postalischen Adresse und Geokoordinaten kann hier eine
-
-        Ortsangabe mittels Gemarkung und Flurstück erfolgen.
-
-        Achtung: Es darf immer nur eine Art der Ortsangabe vorhanden sein (entweder
-
-        eine Adresse oder eine GeoKoordinate oder eine Katasteradresse.'
+      description: "Alternativ zu einer postalischen Adresse und Geokoordinaten kann hier eine\nOrtsangabe mittels Gemarkung und Flurstück erfolgen.\nAchtung: Es darf immer nur eine Art der Ortsangabe vorhanden sein (entweder\neine Adresse oder eine GeoKoordinate oder eine Katasteradresse."
     field.Marktlokation.konfigurationsprodukt:
       description: konfigurationsprodukt
       type: string
@@ -34851,9 +34832,7 @@ components:
       description: für EDIFACT mapping
       type: string
     field.Marktlokation.marktlokationsId:
-      description: 'Identifikationsnummer einer Marktlokation, an der Energie entweder
-
-        verbraucht, oder erzeugt wird'
+      description: "Identifikationsnummer einer Marktlokation, an der Energie entweder\nverbraucht, oder erzeugt wird"
       type: string
     field.Marktlokation.marktlokationsTyp:
       description: Angabe der Typisierung der Marktlokation mit möglicher Angabe zeitlicher Gültigkeit
@@ -34879,17 +34858,11 @@ components:
     field.Marktlokation.modulNetzentgelte:
       $ref: '#/components/schemas/enum.ModulNetzentgelte'
     field.Marktlokation.netzbetreiberCodeNr:
-      description: 'Codenummer des Netzbetreibers, an dessen Netz diese Marktlokation
-
-        angeschlossen ist.'
+      description: "Codenummer des Netzbetreibers, an dessen Netz diese Marktlokation\nangeschlossen ist."
       type: string
     field.Marktlokation.netzebene:
       $ref: '#/components/schemas/enum.Netzebene'
-      description: 'Netzebene, in der der Bezug der Energie erfolgt. Bei Strom Spannungsebene der
-
-        Lieferung, bei Gas Druckstufe. Beispiel Strom: Niederspannung Beispiel Gas:
-
-        Niederdruck.'
+      description: "Netzebene, in der der Bezug der Energie erfolgt. Bei Strom Spannungsebene der\nLieferung, bei Gas Druckstufe. Beispiel Strom: Niederspannung Beispiel Gas:\nNiederdruck."
     field.Marktlokation.netzgebietNr:
       description: Die Nummer des Netzgebietes in der ene't-Datenbank.
       type: string
@@ -35038,9 +35011,7 @@ components:
       $ref: '#/components/schemas/enum.Geschaeftspartnerrolle'
       description: Rolle, die der Geschäftspartner hat (z.B. Interessent, Kunde).
     field.Marktteilnehmer.gewerbekennzeichnung:
-      description: 'Kennzeichnung ob es sich um einen Gewerbe/Unternehmen (gewerbeKennzeichnung = true)
-
-        oder eine Privatperson handelt. (gewerbeKennzeichnung = false)'
+      description: "Kennzeichnung ob es sich um einen Gewerbe/Unternehmen (gewerbeKennzeichnung = true)\noder eine Privatperson handelt. (gewerbeKennzeichnung = false)"
       type: boolean
     field.Marktteilnehmer.hrnummer:
       description: Handelsregisternummer des Geschäftspartners
@@ -35055,9 +35026,7 @@ components:
     field.Marktteilnehmer.kommunikationsrolle:
       $ref: '#/components/schemas/enum.Kommunikationsrolle'
     field.Marktteilnehmer.makoadresse:
-      description: 'Die 1:1-Kommunikationsadresse des Marktteilnehmers. Diese wird in der
-
-        Marktkommunikation verwendet.'
+      description: "Die 1:1-Kommunikationsadresse des Marktteilnehmers. Diese wird in der\nMarktkommunikation verwendet."
       type: string
     field.Marktteilnehmer.marktrolle:
       $ref: '#/components/schemas/enum.Marktrolle'
@@ -35065,25 +35034,13 @@ components:
     field.Marktteilnehmer.messstellenbetreiberEigenschaft:
       $ref: '#/components/schemas/enum.MSBEigenschaft'
     field.Marktteilnehmer.name1:
-      description: 'Erster Teil des Namens. Hier kann der Firmenname oder bei Privatpersonen
-
-        beispielsweise der Nachname dargestellt werden. Beispiele: Yellow Strom GmbH
-
-        oder Hagen'
+      description: "Erster Teil des Namens. Hier kann der Firmenname oder bei Privatpersonen\nbeispielsweise der Nachname dargestellt werden. Beispiele: Yellow Strom GmbH\noder Hagen"
       type: string
     field.Marktteilnehmer.name2:
-      description: 'Zweiter Teil des Namens. Hier kann der eine Erweiterung zum Firmennamen oder
-
-        bei Privatpersonen beispielsweise der Vorname dargestellt werden. Beispiele:
-
-        Bereich Süd oder Nina'
+      description: "Zweiter Teil des Namens. Hier kann der eine Erweiterung zum Firmennamen oder\nbei Privatpersonen beispielsweise der Vorname dargestellt werden. Beispiele:\nBereich Süd oder Nina"
       type: string
     field.Marktteilnehmer.name3:
-      description: 'Dritter Teil des Namens. Hier können weitere Ergänzungen zum Firmennamen oder
-
-        bei Privatpersonen Zusätze zum Namen dargestellt werden. Beispiele: und Afrika
-
-        oder Sängerin'
+      description: "Dritter Teil des Namens. Hier können weitere Ergänzungen zum Firmennamen oder\nbei Privatpersonen Zusätze zum Namen dargestellt werden. Beispiele: und Afrika\noder Sängerin"
       type: string
     field.Marktteilnehmer.name4:
       description: name4
@@ -35137,9 +35094,7 @@ components:
     field.Messlokation.ablesekartenempfaenger:
       $ref: '#/components/schemas/bo.Geschaeftspartner'
     field.Messlokation.abrechnungmessstellenbetriebnna:
-      description: 'Dieser Wert ist true, falls die Abrechnungs des Messstellenbetriebs die Netznutzungsabrechnung enthält. false
-
-        andernfalls'
+      description: "Dieser Wert ist true, falls die Abrechnungs des Messstellenbetriebs die Netznutzungsabrechnung enthält. false\nandernfalls"
       type: boolean
     field.Messlokation.beteiligterMarktpartner:
       $ref: '#/components/schemas/bo.Marktteilnehmer'
@@ -35165,11 +35120,7 @@ components:
       nullable: true
       type: array
     field.Messlokation.grundzustaendigerMSBCodeNr:
-      description: 'Codenummer des grundzuständigen Messstellenbetreibers, der für diese
-
-        Messlokation zuständig ist.( Dieser ist immer dann Messstellenbetreiber, wenn
-
-        kein anderer MSB die Einrichtungen an der Messlokation betreibt.)'
+      description: "Codenummer des grundzuständigen Messstellenbetreibers, der für diese\nMesslokation zuständig ist.( Dieser ist immer dann Messstellenbetreiber, wenn\nkein anderer MSB die Einrichtungen an der Messlokation betreibt.)"
       type: string
     field.Messlokation.gueltigkeitszeitraum:
       $ref: '#/components/schemas/com.Zeitraum'
@@ -35183,13 +35134,7 @@ components:
       type: array
     field.Messlokation.messadresse:
       $ref: '#/components/schemas/com.Adresse'
-      description: 'Die Adresse, an der die Messeinrichtungen zu finden sind.( Nur angeben, wenn
-
-        diese von der Adresse der Marktlokation abweicht.)
-
-        Achtung: Es darf immer nur eine Art der Ortsangabe vorhanden sein (entweder
-
-        eine Adresse oder eine GeoKoordinate oder eine Katasteradresse.'
+      description: "Die Adresse, an der die Messeinrichtungen zu finden sind.( Nur angeben, wenn\ndiese von der Adresse der Marktlokation abweicht.)\nAchtung: Es darf immer nur eine Art der Ortsangabe vorhanden sein (entweder\neine Adresse oder eine GeoKoordinate oder eine Katasteradresse."
     field.Messlokation.messdienstleistung:
       description: Liste der Messdienstleistungen, die zu dieser Messstelle gehört.
       items:
@@ -35200,9 +35145,7 @@ components:
       description: Die Nummer des Messgebietes in der ene't-Datenbank.
       type: string
     field.Messlokation.messlokationsId:
-      description: 'Die Messlokations-Identifikation. Das ist die frühere Zählpunktbezeichnung,
-
-        z.B. DE 47108151234567'
+      description: "Die Messlokations-Identifikation. Das ist die frühere Zählpunktbezeichnung,\nz.B. DE 47108151234567"
       type: string
     field.Messlokation.messlokationszaehler:
       description: Zähler, die zu dieser Messlokation gehören. Details
@@ -35291,9 +35234,7 @@ components:
     field.Netzlokation.datenqualitaet:
       $ref: '#/components/schemas/enum.Datenqualitaet'
     field.Netzlokation.grundzustaendigerMSBCodeNr:
-      description: 'Codenummer des grundzuständigen Messstellenbetreibers, der für diese
-
-        Netzlokation zuständig ist.'
+      description: "Codenummer des grundzuständigen Messstellenbetreibers, der für diese\nNetzlokation zuständig ist."
       type: string
     field.Netzlokation.gueltigkeitszeitraum:
       $ref: '#/components/schemas/com.Zeitraum'
@@ -35318,9 +35259,7 @@ components:
       description: Netzanschlussleistungsmenge der Netzlokation
       type: string
     field.Netzlokation.netzlokationsId:
-      description: 'Identifikationsnummer einer Netzlokation, an der Energie entweder
-
-        verbraucht, oder erzeugt wird (Like MarktlokationsId Marktlokation)'
+      description: "Identifikationsnummer einer Netzlokation, an der Energie entweder\nverbraucht, oder erzeugt wird (Like MarktlokationsId Marktlokation)"
       type: string
     field.Netzlokation.produktdatenRelevanteRolle:
       $ref: '#/components/schemas/enum.Marktrolle'
@@ -35328,13 +35267,7 @@ components:
       $ref: '#/components/schemas/enum.Sparte'
       description: Sparte der Netzlokation, z.B. Gas oder Strom.
     field.Netzlokation.steuerkanal:
-      description: 'Ob ein Steuerkanal der Netzlokation zugeordnet ist und somit die Netzlokation gesteuert
-
-        werden kann.
-
-        ZF2: Kein Steuerkanal vorhanden
-
-        ZF3: Steuerkanal vorhanden'
+      description: "Ob ein Steuerkanal der Netzlokation zugeordnet ist und somit die Netzlokation gesteuert\nwerden kann.\nZF2: Kein Steuerkanal vorhanden\nZF3: Steuerkanal vorhanden"
       type: boolean
     field.Netzlokation.versionStruktur:
       default: '1'
@@ -35447,9 +35380,7 @@ components:
       description: Preise des Netzbetreibers
       type: string
     field.Preisblatt.preispositionen:
-      description: 'Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc.
-
-        Details siehe Preisposition'
+      description: "Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc.\nDetails siehe Preisposition"
       items:
         $ref: '#/components/schemas/com.Preisposition'
       nullable: true
@@ -35472,9 +35403,7 @@ components:
       type: string
     field.Preisposition.bdewArtikelnummer:
       $ref: '#/components/schemas/enum.BDEWArtikelnummer'
-      description: 'Eine vom BDEW standardisierte Bezeichnung für die abgerechnete Leistungserbringung. Diese Artikelnummer wird
-
-        auch im Rechnungsteil der INVOIC verwendet.'
+      description: "Eine vom BDEW standardisierte Bezeichnung für die abgerechnete Leistungserbringung. Diese Artikelnummer wird\nauch im Rechnungsteil der INVOIC verwendet."
     field.Preisposition.berechnungsmethode:
       $ref: '#/components/schemas/enum.Kalkulationsmethode'
       description: Das Modell, das der Preisbildung zugrunde liegt. Details Kalkulationsmethode
@@ -35486,9 +35415,7 @@ components:
       description: Vgl. PRICAT IMD 7077
     field.Preisposition.bezugsgroesse:
       $ref: '#/components/schemas/enum.Mengeneinheit'
-      description: 'Hier wird festgelegt, auf welche Bezugsgröße sich der Preis bezieht, z.B. kWh oder Stück. Details
-
-        Mengeneinheit'
+      description: "Hier wird festgelegt, auf welche Bezugsgröße sich der Preis bezieht, z.B. kWh oder Stück. Details\nMengeneinheit"
     field.Preisposition.leistungsbezeichnung:
       $ref: '#/components/schemas/enum.Leistungsbezeichnung'
       description: Bezeichnung für die in der Position abgebildete Leistungserbringung
@@ -35503,9 +35430,7 @@ components:
       type: integer
     field.Preisposition.preiseinheit:
       $ref: '#/components/schemas/enum.Waehrungseinheit'
-      description: 'Festlegung, mit welcher Preiseinheit abgerechnet wird, z.B. Ct. oder €. Details
-
-        Waehrungseinheit'
+      description: "Festlegung, mit welcher Preiseinheit abgerechnet wird, z.B. Ct. oder €. Details\nWaehrungseinheit"
     field.Preisposition.preisschluesselstamm:
       description: Preisschlüsselstamm>
       type: string
@@ -35523,9 +35448,7 @@ components:
       description: Verarbeitungszeitraum. Details Zeitraum
     field.Preisposition.zeitbasis:
       $ref: '#/components/schemas/enum.Zeiteinheit'
-      description: 'Die Zeit(dauer) auf die sich der Preis bezieht. Z.B. ein Jahr für einen Leistungspreis der in €/kW/Jahr
-
-        ausgegeben wird.'
+      description: "Die Zeit(dauer) auf die sich der Preis bezieht. Z.B. ein Jahr für einen Leistungspreis der in €/kW/Jahr\nausgegeben wird."
     field.Preisposition.zonungsgroesse:
       $ref: '#/components/schemas/enum.Bemessungsgroesse'
       description: Mit der Menge der hier angegebenen Größe wird die Staffelung/Zonung durchgeführt. Z.B. Vollbenutzungsstunden.
@@ -35551,6 +35474,9 @@ components:
       description: staffelgrenzeVon
       format: float
       type: number
+    field.Preisstaffel.zeitbasis:
+      $ref: '#/components/schemas/enum.Zeiteinheit'
+      description: "Die Zeit(dauer) auf die sich der Preis bezieht. Z.B. ein Jahr für einen Leistungspreis der in €/kW/Jahr\nausgegeben wird."
     field.Process.businessKey:
       description: BusinessKey
       type: string
@@ -35713,9 +35639,7 @@ components:
       nullable: true
       type: array
     field.Rechnung.steuerbetraege:
-      description: 'Eine Liste mit Steuerbeträgen pro Steuerkennzeichen/Steuersatz. Die Summe dieser Beträge ergibt den Wert für
-
-        gesamtsteuer. Details Steuerbetrag'
+      description: "Eine Liste mit Steuerbeträgen pro Steuerkennzeichen/Steuersatz. Die Summe dieser Beträge ergibt den Wert für\ngesamtsteuer. Details Steuerbetrag"
       items:
         $ref: '#/components/schemas/com.Steuerbetrag'
       nullable: true
@@ -35734,9 +35658,7 @@ components:
     field.Rechnungsposition.abschlag:
       $ref: '#/components/schemas/com.Abschlag'
     field.Rechnungsposition.artikelnummer:
-      description: 'Kennzeichnung der Rechnungsposition mit der Standard-Artikelnummer des BDEW. Details
-
-        BDEWArtikelnummer'
+      description: "Kennzeichnung der Rechnungsposition mit der Standard-Artikelnummer des BDEW. Details\nBDEWArtikelnummer"
       type: string
     field.Rechnungsposition.ausfuehrungsdatum:
       description: Das Datum an dem die Leistung erbracht wurde.
@@ -35771,17 +35693,13 @@ components:
       type: integer
     field.Rechnungsposition.teilsummeNetto:
       $ref: '#/components/schemas/com.Betrag'
-      description: 'Das Ergebnis der Multiplikation aus einzelpreis * positionsMenge * (Faktor aus zeitbezogeneMenge). Z.B. 12,60€
-
-        * 120 kW * 3/12 (für 3 Monate). Details Betrag'
+      description: "Das Ergebnis der Multiplikation aus einzelpreis * positionsMenge * (Faktor aus zeitbezogeneMenge). Z.B. 12,60€\n* 120 kW * 3/12 (für 3 Monate). Details Betrag"
     field.Rechnungsposition.teilsummeSteuer:
       $ref: '#/components/schemas/com.Steuerbetrag'
       description: Auf die Position entfallende Steuer, bestehend aus Steuersatz und Betrag. Details Steuerbetrag
     field.Rechnungsposition.zeitbezogeneMenge:
       $ref: '#/components/schemas/com.Menge'
-      description: 'Eine auf die Zeiteinheit bezogene Untermenge. Z.B. bei einem Jahrespreis, 3 Monate oder 146 Tage. Basierend
-
-        darauf wird der Preis aufgeteilt. Details Menge'
+      description: "Eine auf die Zeiteinheit bezogene Untermenge. Z.B. bei einem Jahrespreis, 3 Monate oder 146 Tage. Basierend\ndarauf wird der Preis aufgeteilt. Details Menge"
     field.Rechnungsposition.zuschlag:
       $ref: '#/components/schemas/com.Zuschlag'
     field.Reklamation.boTyp:
@@ -36425,9 +36343,7 @@ components:
       $ref: '#/components/schemas/enum.Speicherart'
       description: "Art der speicher. Details Speicherart\nBeispiel: CAV+ZF7'\nSpeicherart:\n    ZF7: Wasserstoffspeicher\n    ZF8: Pumpspeicher\n    ZF9: Batteriespeicher\n    ZG6: Sonstige Speicherart"
     field.TechnischeRessource.speicherkapazitaet:
-      description: 'Speicherkapazität
-
-        Beispiel: QTY+Z42:100:KWH'''
+      description: "Speicherkapazität\nBeispiel: QTY+Z42:100:KWH'"
       format: float
       type: number
     field.TechnischeRessource.verbrauchsart:
@@ -37001,9 +36917,7 @@ components:
       description: obligatory version of the BO4E definition. Currently hard coded to 1
       type: string
     field.Vertrag.vertragsart:
-      description: 'Hier ist festgelegt, um welche Art von Vertrag es sich handelt. Z.B. Netznutzungvertrag. Details siehe ENUM
-
-        Vertragsart'
+      description: "Hier ist festgelegt, um welche Art von Vertrag es sich handelt. Z.B. Netznutzungvertrag. Details siehe ENUM\nVertragsart"
       type: string
     field.Vertrag.vertragsbeginn:
       description: Gibt an, wann der Vertrag beginnt.
@@ -37020,17 +36934,13 @@ components:
       description: Eine im Verwendungskontext eindeutige Nummer für den Vertrag
       type: string
     field.Vertrag.vertragspartner1:
-      description: 'Der "erstgenannte" Vertragspartner. In der Regel der Aussteller des Vertrags. Beispiel: "Vertrag zwischen
-
-        Vertagspartner 1 ..." Siehe BO Geschaeftspartner'
+      description: "Der \"erstgenannte\" Vertragspartner. In der Regel der Aussteller des Vertrags. Beispiel: \"Vertrag zwischen\nVertagspartner 1 ...\" Siehe BO Geschaeftspartner"
       items:
         $ref: '#/components/schemas/bo.Geschaeftspartner'
       nullable: true
       type: array
     field.Vertrag.vertragspartner2:
-      description: 'Der "zweitgenannte" Vertragspartner. In der Regel der Empfänger des Vertrags. Beispiel "Vertrag zwischen
-
-        Vertagspartner 1 und Vertragspartner 2". Siehe BO Geschaeftspartner'
+      description: "Der \"zweitgenannte\" Vertragspartner. In der Regel der Empfänger des Vertrags. Beispiel \"Vertrag zwischen\nVertagspartner 1 und Vertragspartner 2\". Siehe BO Geschaeftspartner"
       items:
         $ref: '#/components/schemas/bo.Geschaeftspartner'
       nullable: true
@@ -37045,9 +36955,7 @@ components:
       type: integer
     field.Vertragskonditionen.abschlagszyklus:
       $ref: '#/components/schemas/com.Zeitraum'
-      description: 'In diesen Zyklen werden Abschläge gestellt. Details Zeitraum. Alternativ kann auch die Anzahl
-
-        in den Konditionen angeben werden."'
+      description: "In diesen Zyklen werden Abschläge gestellt. Details Zeitraum. Alternativ kann auch die Anzahl\nin den Konditionen angeben werden.\""
     field.Vertragskonditionen.anzahl_abschlaege:
       description: Anzahl der vereinbarten Abschläge pro Jahr, z.B. 12
       format: float
@@ -37098,9 +37006,7 @@ components:
       description: Über diesen Zeitraum läuft der Vertrag. Details Zeitraum
     field.Vertragskonditionen.vertragsverlaengerung:
       $ref: '#/components/schemas/com.Zeitraum'
-      description: 'Falls der Vertrag nicht gekündigt wird, verlängert er sich automatisch um die hier angegebene Zeit. Details
-
-        Zeitraum'
+      description: "Falls der Vertrag nicht gekündigt wird, verlängert er sich automatisch um die hier angegebene Zeit. Details\nZeitraum"
     field.Verwendungszeitraum.boTyp:
       $ref: '#/components/schemas/enum.BOTyp'
       default: VERWENDUNGSZEITRAUM
@@ -37290,11 +37196,7 @@ components:
     field.Zaehlwerk.notwendigkeitZweiteMessung:
       $ref: '#/components/schemas/enum.NotwendigkeitZweiteMessung'
     field.Zaehlwerk.obisKennzahl:
-      description: 'Die OBIS-Kennzahl für das Zählwerk, die festlegt, welche auf die gemessene Größe mit dem Stand gemeldet wird.
-
-        Nur Zählwerkstände mit dieser OBIS-Kennzahl werden an diesem Zählwerk registriert. Beispiel:1-0:1.8.1 für
-
-        elektrische Wirkarbeit.'
+      description: "Die OBIS-Kennzahl für das Zählwerk, die festlegt, welche auf die gemessene Größe mit dem Stand gemeldet wird.\nNur Zählwerkstände mit dieser OBIS-Kennzahl werden an diesem Zählwerk registriert. Beispiel:1-0:1.8.1 für\nelektrische Wirkarbeit."
       type: string
     field.Zaehlwerk.richtung:
       $ref: '#/components/schemas/enum.Energierichtung'
@@ -37336,9 +37238,7 @@ components:
       $ref: '#/components/schemas/enum.Waermenutzung'
       description: Stromverbrauchsart/Wärmenutzung Marktlokation
     field.Zaehlwerk.wandlerfaktor:
-      description: 'Mit diesem Faktor wird eine Zählerstandsdifferenz multipliziert, um zum eigentlichen Verbrauch im Zeitraum zu
-
-        kommen.'
+      description: "Mit diesem Faktor wird eine Zählerstandsdifferenz multipliziert, um zum eigentlichen Verbrauch im Zeitraum zu\nkommen."
       format: float
       type: number
     field.Zaehlwerk.wertegranularitaet:
@@ -37346,9 +37246,7 @@ components:
     field.Zaehlwerk.werteuebermittlungVerwendungszweck:
       $ref: '#/components/schemas/enum.WerteuebermittlungVerwendungszweck'
     field.Zaehlwerk.zaehlwerkId:
-      description: 'Identifikation des Zählwerks (Registers) innerhalb des Zählers. Oftmals eine laufende Nummer hinter der
-
-        Zählernummer. Z.B. 47110815_1'
+      description: "Identifikation des Zählwerks (Registers) innerhalb des Zählers. Oftmals eine laufende Nummer hinter der\nZählernummer. Z.B. 47110815_1"
       type: string
     field.Zaehlwerk.zaehlzeiten:
       $ref: '#/components/schemas/com.Zaehlzeitregister'

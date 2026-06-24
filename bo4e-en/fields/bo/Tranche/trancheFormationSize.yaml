@@ -1,0 +1,5 @@
+components:
+  schemas:
+    trancheFormationSize:
+      $ref: >-
+        ../../../enum/TrancheFormationSize.yaml#/components/schemas/TrancheFormationSize

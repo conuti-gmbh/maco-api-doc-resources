@@ -1,0 +1,16 @@
+components:
+  schemas:
+    SpecialBillingType:
+      title: SpecialBillingType
+      type: string
+      enum:
+        - CONCESSION_FEE_ATTESTATION
+        - INDIVIDUAL_ATYPICAL
+        - INDIVIDUAL_SINGULAR
+        - CHP_ACT_LEVY
+        - OFFSHORE_LEVY
+        - P19_ELECTRICITY_NEV_LEVY
+        - P18_ABLAV
+        - CONCESSION_FEE_CHANGE_RLM
+        - PRIVILEGE_UNDER_ENFG
+        - CONCESSION_FEE_FORWARDED_QUANTITIES

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    CALCULATION_FORMULA:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/CalculationFormula.yaml#/components/schemas/CalculationFormula

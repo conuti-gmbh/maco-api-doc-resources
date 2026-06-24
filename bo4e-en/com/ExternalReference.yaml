@@ -1,0 +1,12 @@
+components:
+  schemas:
+    ExternalReference:
+      title: ExternalReference
+      type: object
+      properties:
+        externalReferenceName:
+          $ref: >-
+            ../fields/com/ExternalReference/externalReferenceName.yaml#/components/schemas/externalReferenceName
+        externalReferenceValue:
+          $ref: >-
+            ../fields/com/ExternalReference/externalReferenceValue.yaml#/components/schemas/externalReferenceValue

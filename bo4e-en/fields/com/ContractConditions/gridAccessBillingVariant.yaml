@@ -1,0 +1,5 @@
+components:
+  schemas:
+    gridAccessBillingVariant:
+      $ref: >-
+        ../../../enum/GridAccessBillingVariant.yaml#/components/schemas/GridAccessBillingVariant

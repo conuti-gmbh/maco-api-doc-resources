@@ -1,0 +1,4 @@
+components:
+  schemas:
+    deliveryDate:
+      type: string

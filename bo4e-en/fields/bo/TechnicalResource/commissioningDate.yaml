@@ -1,0 +1,4 @@
+components:
+  schemas:
+    commissioningDate:
+      $ref: ../../../enum/Commissioning.yaml#/components/schemas/Commissioning

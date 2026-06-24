@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: PI_19116
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_19116:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_19116__masterData'
+      required:
+      - masterData
+    PI_19116__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19116__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19116__masterData__ORDER'
+      required:
+      - REQUEST
+      - ORDER
+    PI_19116__masterData__REQUEST:
+      type: object
+      properties:
+        requestCategory:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestCategory.yaml#/components/schemas/requestCategory
+          x-edifact-segment:
+          - BGM+[Z51|Z52]
+      required:
+      - requestCategory
+    PI_19116__masterData__ORDER:
+      type: object
+      properties:
+        maximumPrice:
+          $ref: '#/components/schemas/PI_19116__masterData__ORDER__maximumPrice'
+        minimumPrice:
+          $ref: '#/components/schemas/PI_19116__masterData__ORDER__minimumPrice'
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19116__masterData__ORDER__positionData'
+      required:
+      - positionData
+    PI_19116__masterData__ORDER__maximumPrice:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - MOA+Z03
+    PI_19116__masterData__ORDER__minimumPrice:
+      type: object
+      properties:
+        value:
+          $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - MOA+Z02
+    PI_19116__masterData__ORDER__positionData:
+      type: object
+      properties:
+        discrepancyInfo:
+          $ref: '#/components/schemas/PI_19116__masterData__ORDER__positionData__discrepancyInfo'
+      required:
+      - discrepancyInfo
+    PI_19116__masterData__ORDER__positionData__discrepancyInfo:
+      type: object
+      properties:
+        discrepancy1:
+          $ref: ../../../bo4e-en/fields/com/DiscrepancyInfo/discrepancy1.yaml#/components/schemas/discrepancy1
+          x-edifact-segment:
+          - SG27.LIN.FTX+ABO
+        discrepancy2:
+          $ref: ../../../bo4e-en/fields/com/DiscrepancyInfo/discrepancy2.yaml#/components/schemas/discrepancy2
+          x-edifact-segment:
+          - SG27.LIN.FTX+ABO
+        discrepancy3:
+          $ref: ../../../bo4e-en/fields/com/DiscrepancyInfo/discrepancy3.yaml#/components/schemas/discrepancy3
+          x-edifact-segment:
+          - SG27.LIN.FTX+ABO
+        discrepancy4:
+          $ref: ../../../bo4e-en/fields/com/DiscrepancyInfo/discrepancy4.yaml#/components/schemas/discrepancy4
+          x-edifact-segment:
+          - SG27.LIN.FTX+ABO
+        discrepancy5:
+          $ref: ../../../bo4e-en/fields/com/DiscrepancyInfo/discrepancy5.yaml#/components/schemas/discrepancy5
+          x-edifact-segment:
+          - SG27.LIN.FTX+ABO
+      required:
+      - discrepancy1
+      - discrepancy2
+      - discrepancy3
+      - discrepancy4
+      - discrepancy5

@@ -1,0 +1,95 @@
+components:
+  schemas:
+    MasterData:
+      type: object
+      properties:
+        BALANCING:
+          $ref: >-
+            ../fields/cdoc/MasterData/BALANCING.yaml#/components/schemas/BALANCING
+        MARKET_LOCATION:
+          $ref: >-
+            ../fields/cdoc/MasterData/MARKET_LOCATION.yaml#/components/schemas/MARKET_LOCATION
+        METERING_LOCATION:
+          $ref: >-
+            ../fields/cdoc/MasterData/METERING_LOCATION.yaml#/components/schemas/METERING_LOCATION
+        GRID_ACCESS_CONTRACT:
+          $ref: >-
+            ../fields/cdoc/MasterData/GRID_ACCESS_CONTRACT.yaml#/components/schemas/GRID_ACCESS_CONTRACT
+        METERING_POINT_OPERATION_CONTRACT:
+          $ref: >-
+            ../fields/cdoc/MasterData/METERING_POINT_OPERATION_CONTRACT.yaml#/components/schemas/METERING_POINT_OPERATION_CONTRACT
+        ENERGY_SUPPLY_CONTRACT:
+          $ref: >-
+            ../fields/cdoc/MasterData/ENERGY_SUPPLY_CONTRACT.yaml#/components/schemas/ENERGY_SUPPLY_CONTRACT
+        ENERGY_QUANTITY:
+          $ref: >-
+            ../fields/cdoc/MasterData/ENERGY_QUANTITY.yaml#/components/schemas/ENERGY_QUANTITY
+        METER:
+          $ref: ../fields/cdoc/MasterData/METER.yaml#/components/schemas/METER
+        INVOICE:
+          $ref: ../fields/cdoc/MasterData/INVOICE.yaml#/components/schemas/INVOICE
+        STATUS_NOTIFICATION:
+          $ref: >-
+            ../fields/cdoc/MasterData/STATUS_NOTIFICATION.yaml#/components/schemas/STATUS_NOTIFICATION
+        TRADE_DISCREPANCY:
+          $ref: >-
+            ../fields/cdoc/MasterData/TRADE_DISCREPANCY.yaml#/components/schemas/TRADE_DISCREPANCY
+        ORDER:
+          $ref: ../fields/cdoc/MasterData/ORDER.yaml#/components/schemas/ORDER
+        REQUEST:
+          $ref: ../fields/cdoc/MasterData/REQUEST.yaml#/components/schemas/REQUEST
+        CALCULATION_FORMULA:
+          $ref: >-
+            ../fields/cdoc/MasterData/CALCULATION_FORMULA.yaml#/components/schemas/CALCULATION_FORMULA
+        DISCONNECTION_ORDER:
+          $ref: >-
+            ../fields/cdoc/MasterData/DISCONNECTION_ORDER.yaml#/components/schemas/DISCONNECTION_ORDER
+        OFFER:
+          $ref: ../fields/cdoc/MasterData/OFFER.yaml#/components/schemas/OFFER
+        TRANCHE:
+          $ref: ../fields/cdoc/MasterData/TRANCHE.yaml#/components/schemas/TRANCHE
+        COMMUNICATION_DATA:
+          $ref: >-
+            ../fields/cdoc/MasterData/COMMUNICATION_DATA.yaml#/components/schemas/COMMUNICATION_DATA
+        PRICE_SHEET:
+          $ref: >-
+            ../fields/cdoc/MasterData/PRICE_SHEET.yaml#/components/schemas/PRICE_SHEET
+        STATUS_REPORT:
+          $ref: >-
+            ../fields/cdoc/MasterData/STATUS_REPORT.yaml#/components/schemas/STATUS_REPORT
+        ADVICE_NOTE:
+          $ref: >-
+            ../fields/cdoc/MasterData/ADVICE_NOTE.yaml#/components/schemas/ADVICE_NOTE
+        COMPLAINT:
+          $ref: >-
+            ../fields/cdoc/MasterData/COMPLAINT.yaml#/components/schemas/COMPLAINT
+        METERING_TIME_DEFINITION:
+          $ref: >-
+            ../fields/cdoc/MasterData/METERING_TIME_DEFINITION.yaml#/components/schemas/METERING_TIME_DEFINITION
+        SWITCHING_TIME_DEFINITION:
+          $ref: >-
+            ../fields/cdoc/MasterData/SWITCHING_TIME_DEFINITION.yaml#/components/schemas/SWITCHING_TIME_DEFINITION
+        LOAD_CURVE_DEFINITION:
+          $ref: >-
+            ../fields/cdoc/MasterData/LOAD_CURVE_DEFINITION.yaml#/components/schemas/LOAD_CURVE_DEFINITION
+        GRID_LOCATION:
+          $ref: >-
+            ../fields/cdoc/MasterData/GRID_LOCATION.yaml#/components/schemas/GRID_LOCATION
+        CONTROLLABLE_RESOURCE:
+          $ref: >-
+            ../fields/cdoc/MasterData/CONTROLLABLE_RESOURCE.yaml#/components/schemas/CONTROLLABLE_RESOURCE
+        TECHNICAL_RESOURCE:
+          $ref: >-
+            ../fields/cdoc/MasterData/TECHNICAL_RESOURCE.yaml#/components/schemas/TECHNICAL_RESOURCE
+        LOCATION_BUNDLE:
+          $ref: >-
+            ../fields/cdoc/MasterData/LOCATION_BUNDLE.yaml#/components/schemas/LOCATION_BUNDLE
+        AD_HOC_CONTROL_CHANNEL:
+          $ref: >-
+            ../fields/cdoc/MasterData/AD_HOC_CONTROL_CHANNEL.yaml#/components/schemas/AD_HOC_CONTROL_CHANNEL
+        VALUES_BY_TYPE2:
+          $ref: >-
+            ../fields/cdoc/MasterData/VALUES_BY_TYPE2.yaml#/components/schemas/VALUES_BY_TYPE2
+        USAGE_PERIOD:
+          $ref: >-
+            ../fields/cdoc/MasterData/USAGE_PERIOD.yaml#/components/schemas/USAGE_PERIOD

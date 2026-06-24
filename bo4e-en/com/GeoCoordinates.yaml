@@ -1,0 +1,26 @@
+components:
+  schemas:
+    GeoCoordinates:
+      title: GeoCoordinates
+      type: object
+      properties:
+        latitude:
+          $ref: >-
+            ../fields/com/GeoCoordinates/latitude.yaml#/components/schemas/latitude
+        longitude:
+          $ref: >-
+            ../fields/com/GeoCoordinates/longitude.yaml#/components/schemas/longitude
+        eastingValue:
+          $ref: >-
+            ../fields/com/GeoCoordinates/eastingValue.yaml#/components/schemas/eastingValue
+        northValue:
+          $ref: >-
+            ../fields/com/GeoCoordinates/northValue.yaml#/components/schemas/northValue
+        zone:
+          $ref: ../fields/com/GeoCoordinates/zone.yaml#/components/schemas/zone
+        northing:
+          $ref: >-
+            ../fields/com/GeoCoordinates/northing.yaml#/components/schemas/northing
+        easting:
+          $ref: >-
+            ../fields/com/GeoCoordinates/easting.yaml#/components/schemas/easting

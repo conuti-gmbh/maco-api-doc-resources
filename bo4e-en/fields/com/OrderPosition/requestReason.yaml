@@ -1,0 +1,4 @@
+components:
+  schemas:
+    requestReason:
+      $ref: ../../../enum/RequestReason.yaml#/components/schemas/RequestReason

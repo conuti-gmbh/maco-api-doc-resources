@@ -1,0 +1,12 @@
+components:
+  schemas:
+    TechnicalInstallation:
+      title: TechnicalInstallation
+      type: object
+      properties:
+        technicalInstallationsPresent:
+          $ref: >-
+            ../fields/com/TechnicalInstallation/technicalInstallationsPresent.yaml#/components/schemas/technicalInstallationsPresent
+        consumptionType:
+          $ref: >-
+            ../fields/com/TechnicalInstallation/consumptionType.yaml#/components/schemas/consumptionType

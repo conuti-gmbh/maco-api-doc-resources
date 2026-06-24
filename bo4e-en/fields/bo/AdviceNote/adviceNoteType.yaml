@@ -1,0 +1,4 @@
+components:
+  schemas:
+    adviceNoteType:
+      $ref: ../../../enum/AdviceNoteType.yaml#/components/schemas/AdviceNoteType

@@ -1,0 +1,6 @@
+components:
+  schemas:
+    ADVICE_NOTE:
+      type: array
+      items:
+        $ref: ../../../bo/AdviceNote.yaml#/components/schemas/AdviceNote

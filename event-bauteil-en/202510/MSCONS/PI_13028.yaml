@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: PI_13028
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_13028:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_13028__masterData'
+      required:
+      - masterData
+    PI_13028__masterData:
+      type: object
+      properties:
+        ENERGY_QUANTITY:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13028__masterData__ENERGY_QUANTITY'
+      required:
+      - ENERGY_QUANTITY
+    PI_13028__masterData__ENERGY_QUANTITY:
+      type: object
+      properties:
+        energyConsumption:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13028__masterData__ENERGY_QUANTITY__energyConsumption'
+        configuration:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/configuration.yaml#/components/schemas/configuration
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172
+      required:
+      - energyConsumption
+      - configuration
+      - locationId
+    PI_13028__masterData__ENERGY_QUANTITY__energyConsumption:
+      type: object
+      properties:
+        endDate:
+          $ref: ../../../bo4e-en/fields/com/Consumption/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+164
+        measurementValueStatus:
+          $ref: ../../../bo4e-en/fields/com/Consumption/measurementValueStatus.yaml#/components/schemas/measurementValueStatus
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
+        obisNumber:
+          $ref: ../../../bo4e-en/fields/com/Consumption/obisNumber.yaml#/components/schemas/obisNumber
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.PIA+5
+        position:
+          $ref: ../../../bo4e-en/fields/com/Consumption/position.yaml#/components/schemas/position
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/Consumption/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+163
+        value:
+          $ref: ../../../bo4e-en/fields/com/Consumption/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
+      required:
+      - endDate
+      - measurementValueStatus
+      - obisNumber
+      - position
+      - startDate
+      - value

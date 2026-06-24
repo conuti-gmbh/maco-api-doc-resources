@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: PI_25009
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_25009:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_25009__masterData'
+        transactionData:
+          $ref: '#/components/schemas/PI_25009__transactionData'
+      required:
+      - masterData
+      - transactionData
+    PI_25009__masterData:
+      type: object
+      properties:
+        LOAD_CURVE_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25009__masterData__LOAD_CURVE_DEFINITION'
+      required:
+      - LOAD_CURVE_DEFINITION
+    PI_25009__masterData__LOAD_CURVE_DEFINITION:
+      type: object
+      properties:
+        beginDate:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/beginDate.yaml#/components/schemas/beginDate
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+Z34
+        code:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG5.IDE+24.LOC+Z09
+        closingDate:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/closingDate.yaml#/components/schemas/closingDate
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+Z35
+        loadCurves:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25009__masterData__LOAD_CURVE_DEFINITION__loadCurves'
+        version:
+          $ref: ../../../bo4e-en/fields/bo/LoadCurveDefinition/version.yaml#/components/schemas/version
+          x-edifact-segment:
+          - SG5.IDE+24.DTM+293
+      required:
+      - beginDate
+      - code
+      - loadCurves
+      - version
+    PI_25009__masterData__LOAD_CURVE_DEFINITION__loadCurves:
+      type: object
+      properties:
+        changeTimestamp:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/changeTimestamp.yaml#/components/schemas/changeTimestamp
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z74.DTM+Z45
+        frequency:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/frequency.yaml#/components/schemas/frequency
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z74.DTM+Z45
+        threshold:
+          $ref: '#/components/schemas/PI_25009__masterData__LOAD_CURVE_DEFINITION__loadCurves__threshold'
+      required:
+      - changeTimestamp
+      - frequency
+      - threshold
+    PI_25009__masterData__LOAD_CURVE_DEFINITION__loadCurves__threshold:
+      type: object
+      properties:
+        upperThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/upperThreshold.yaml#/components/schemas/upperThreshold
+          x-edifact-segment:
+          - SG5.IDE+24.SG8.SEQ+Z74.SG11.QTY+Z40
+      required:
+      - upperThreshold
+    PI_25009__transactionData:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/PI_25009__transactionData__sender'
+        inquiryReference:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/inquiryReference.yaml#/components/schemas/inquiryReference
+          x-edifact-segment:
+          - SG5.IDE+24.SG6.RFF+AGI
+        documentNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+          x-edifact-segment:
+          - BGM+Z81
+        receiver:
+          $ref: '#/components/schemas/PI_25009__transactionData__receiver'
+        messageDate:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
+          x-edifact-segment:
+          - DTM+137
+        messageReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+          x-edifact-segment:
+          - UNH
+        verificationIdentifier:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+          x-edifact-segment:
+          - SG5.IDE+24.SG6.RFF+Z13
+        processNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/processNumber.yaml#/components/schemas/processNumber
+          x-edifact-segment:
+          - SG5.IDE+24
+      required:
+      - sender
+      - inquiryReference
+      - documentNumber
+      - receiver
+      - messageDate
+      - messageReferenceNumber
+      - verificationIdentifier
+      - processNumber
+    PI_25009__transactionData__sender:
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/PI_25009__transactionData__sender__contactPerson'
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MS
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MS
+      required:
+      - contactPerson
+      - roleCodeNumber
+      - roleCodeType
+    PI_25009__transactionData__sender__contactPerson:
+      type: object
+      properties:
+        eMailAddress:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/eMailAddress.yaml#/components/schemas/eMailAddress
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+        lastName:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA+IC
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_25009__transactionData__sender__contactPerson__phoneNumbers'
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+    PI_25009__transactionData__sender__contactPerson__phoneNumbers:
+      type: object
+      properties:
+        numberType:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/numberType.yaml#/components/schemas/numberType
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+        phoneNumber:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
+          x-edifact-segment:
+          - SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]
+      required:
+      - numberType
+      - phoneNumber
+    PI_25009__transactionData__receiver:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG2.NAD+MR
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG2.NAD+MR
+      required:
+      - roleCodeNumber
+      - roleCodeType

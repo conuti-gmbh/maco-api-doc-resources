@@ -1,0 +1,7 @@
+components:
+  schemas:
+    discrepancy:
+      type: array
+      items:
+        $ref: ../../../com/Discrepancy.yaml#/components/schemas/Discrepancy
+      nullable: true

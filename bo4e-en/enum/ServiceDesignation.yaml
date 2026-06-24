@@ -1,0 +1,23 @@
+components:
+  schemas:
+    ServiceDesignation:
+      title: ServiceDesignation
+      type: string
+      enum:
+        - POG_CONSUMPTION_IMS_ABOVE_100K
+        - POG_CONSUMPTION_IMS_50K_TO_100K
+        - POG_CONSUMPTION_IMS_20K_TO_50K
+        - POG_CONSUMPTION_IMS_10K_TO_20K
+        - POG_CONSUMPTION_IMS_INTERRUPTIBLE
+        - POG_CONSUMPTION_IMS_6K_TO_10K
+        - POG_GENERATION_IMS_7_TO_15
+        - POG_GENERATION_IMS_15_TO_30
+        - POG_GENERATION_IMS_30_TO_100
+        - POG_GENERATION_IMS_ABOVE_100
+        - POG_MME
+        - POG_CONSUMPTION_IMS_4K_TO_6K
+        - POG_CONSUMPTION_IMS_3K_TO_4K
+        - POG_CONSUMPTION_IMS_2K_TO_3K
+        - POG_CONSUMPTION_IMS_0_TO_2K
+        - POG_GENERATION_IMS_OPTIONAL
+        - ADDITIONAL_SERVICE

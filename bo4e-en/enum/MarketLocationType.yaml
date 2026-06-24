@@ -1,0 +1,9 @@
+components:
+  schemas:
+    MarketLocationType:
+      title: MarketLocationType
+      type: string
+      enum:
+        - STANDARD_MARKET_LOCATION
+        - DORMANT_MARKET_LOCATION
+        - CUSTOMER_FACILITY

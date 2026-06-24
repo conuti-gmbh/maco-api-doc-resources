@@ -1,0 +1,8 @@
+components:
+  schemas:
+    LoadCurveTransmissibility:
+      title: LoadCurveTransmissibility
+      type: string
+      enum:
+        - ELECTRONIC
+        - NON_ELECTRONIC

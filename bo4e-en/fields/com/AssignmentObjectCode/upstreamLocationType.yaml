@@ -1,0 +1,4 @@
+components:
+  schemas:
+    upstreamLocationType:
+      $ref: ../../../enum/LocationType.yaml#/components/schemas/LocationType

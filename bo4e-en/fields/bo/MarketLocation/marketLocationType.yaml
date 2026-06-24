@@ -1,0 +1,8 @@
+components:
+  schemas:
+    marketLocationType:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/MarketLocationTyping.yaml#/components/schemas/MarketLocationTyping
+      nullable: true

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    description4:
+      type: string

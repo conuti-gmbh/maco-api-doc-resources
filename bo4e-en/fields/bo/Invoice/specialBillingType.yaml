@@ -1,0 +1,5 @@
+components:
+  schemas:
+    specialBillingType:
+      $ref: >-
+        ../../../enum/SpecialBillingType.yaml#/components/schemas/SpecialBillingType

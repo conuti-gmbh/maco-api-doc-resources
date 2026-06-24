@@ -1,0 +1,5 @@
+components:
+  schemas:
+    discrepancyReason:
+      $ref: >-
+        ../../../enum/DiscrepancyReason.yaml#/components/schemas/DiscrepancyReason

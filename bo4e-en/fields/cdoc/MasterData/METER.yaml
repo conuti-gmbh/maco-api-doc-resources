@@ -1,0 +1,6 @@
+components:
+  schemas:
+    METER:
+      type: array
+      items:
+        $ref: ../../../bo/Meter.yaml#/components/schemas/Meter

@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ConsumptionQuantityType:
+      title: ConsumptionQuantityType
+      type: string
+      enum:
+        - ENERGY_POWER_DAILY_PARAMETER_DEPENDENT_MALO
+        - ESTIMATED_ANNUAL_QUANTITY
+        - TUM_CUSTOMER_VALUE

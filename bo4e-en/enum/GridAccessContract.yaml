@@ -1,0 +1,8 @@
+components:
+  schemas:
+    GridAccessContract:
+      title: GridAccessContract
+      type: string
+      enum:
+        - CUSTOMER_GRID_OPERATOR
+        - SUPPLIER_GRID_OPERATOR

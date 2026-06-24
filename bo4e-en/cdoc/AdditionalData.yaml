@@ -1,0 +1,35 @@
+components:
+  schemas:
+    AdditionalData:
+      type: object
+      properties:
+        processId:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/processId.yaml#/components/schemas/processId
+        eventname:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/eventname.yaml#/components/schemas/eventname
+        ediType:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/ediType.yaml#/components/schemas/ediType
+        ediReceiptDate:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/ediReceiptDate.yaml#/components/schemas/ediReceiptDate
+        ediVersion:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/ediVersion.yaml#/components/schemas/ediVersion
+        marketPartnerRole:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/marketPartnerRole.yaml#/components/schemas/marketPartnerRole
+        contrlReference:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/contrlReference.yaml#/components/schemas/contrlReference
+        parentBusinessKey:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/parentBusinessKey.yaml#/components/schemas/parentBusinessKey
+        targetBusinessKey:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/targetBusinessKey.yaml#/components/schemas/targetBusinessKey
+        authorizationPresent:
+          $ref: >-
+            ../fields/cdoc/AdditionalData/authorizationPresent.yaml#/components/schemas/authorizationPresent

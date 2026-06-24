@@ -1,0 +1,9 @@
+components:
+  schemas:
+    PriceType:
+      title: PriceType
+      type: string
+      enum:
+        - SETUP_PRICE
+        - TRANSACTION_PRICE
+        - OPERATING_PRICE

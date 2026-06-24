@@ -1,0 +1,15 @@
+components:
+  schemas:
+    CommunicationParameters:
+      title: CommunicationParameters
+      type: object
+      properties:
+        targetAddress:
+          $ref: >-
+            ../fields/com/CommunicationParameters/targetAddress.yaml#/components/schemas/targetAddress
+        certificateIssuer:
+          $ref: >-
+            ../fields/com/CommunicationParameters/certificateIssuer.yaml#/components/schemas/certificateIssuer
+        certificateUser:
+          $ref: >-
+            ../fields/com/CommunicationParameters/certificateUser.yaml#/components/schemas/certificateUser

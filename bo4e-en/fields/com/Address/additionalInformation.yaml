@@ -1,0 +1,5 @@
+components:
+  schemas:
+    additionalInformation:
+      $ref: >-
+        ../../../com/AddressSupplementInformation.yaml#/components/schemas/AddressSupplementInformation

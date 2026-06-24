@@ -1,0 +1,9 @@
+components:
+  schemas:
+    TypeElectricMobility:
+      title: TypeElectricMobility
+      type: string
+      enum:
+        - WB
+        - LS
+        - LP

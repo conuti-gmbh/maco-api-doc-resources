@@ -1,0 +1,5 @@
+components:
+  schemas:
+    justification:
+      $ref: >-
+        ../../../com/TradeDiscrepancyJustification.yaml#/components/schemas/TradeDiscrepancyJustification

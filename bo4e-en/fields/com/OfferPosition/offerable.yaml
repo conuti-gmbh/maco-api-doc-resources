@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offerable:
+      type: boolean

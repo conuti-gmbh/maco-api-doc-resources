@@ -1,0 +1,4 @@
+components:
+  schemas:
+    energyFlowDirection:
+      $ref: ../../../enum/EnergyDirection.yaml#/components/schemas/EnergyDirection

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    referenceGridLocation:
+      type: string

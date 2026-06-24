@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: PI_17115
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17115:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17115__masterData'
+      required:
+      - masterData
+    PI_17115__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17115__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17115__masterData__ORDER'
+        DISCONNECTION_ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17115__masterData__DISCONNECTION_ORDER'
+      required:
+      - REQUEST
+      - ORDER
+      - DISCONNECTION_ORDER
+    PI_17115__masterData__REQUEST:
+      type: object
+      properties:
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - locationId
+    PI_17115__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17115__masterData__ORDER__positionData'
+        startDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - DTM+469
+      required:
+      - positionData
+    PI_17115__masterData__ORDER__positionData:
+      type: object
+      properties:
+        generalInformation:
+          $ref: '#/components/schemas/PI_17115__masterData__ORDER__positionData__generalInformation'
+      required:
+      - generalInformation
+    PI_17115__masterData__ORDER__positionData__generalInformation:
+      type: object
+      properties:
+        info1:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info1.yaml#/components/schemas/info1
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info2:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info2.yaml#/components/schemas/info2
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info3:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info3.yaml#/components/schemas/info3
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info4:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info4.yaml#/components/schemas/info4
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+        info5:
+          $ref: ../../../bo4e-en/fields/com/GeneralInformation/info5.yaml#/components/schemas/info5
+          x-edifact-segment:
+          - SG29.LIN.FTX+ACB
+      required:
+      - info1
+      - info2
+      - info3
+      - info4
+      - info5
+    PI_17115__masterData__DISCONNECTION_ORDER:
+      type: object
+      properties:
+        meetingPoint:
+          $ref: '#/components/schemas/PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint'
+      required:
+      - meetingPoint
+    PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint:
+      type: object
+      properties:
+        houseNumber:
+          $ref: ../../../bo4e-en/fields/com/Address/houseNumber.yaml#/components/schemas/houseNumber
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        countryCode:
+          $ref: ../../../bo4e-en/fields/com/Address/countryCode.yaml#/components/schemas/countryCode
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        city:
+          $ref: ../../../bo4e-en/fields/com/Address/city.yaml#/components/schemas/city
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        district:
+          $ref: ../../../bo4e-en/fields/com/Address/district.yaml#/components/schemas/district
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        poBox:
+          $ref: ../../../bo4e-en/fields/com/Address/poBox.yaml#/components/schemas/poBox
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        postalCode:
+          $ref: ../../../bo4e-en/fields/com/Address/postalCode.yaml#/components/schemas/postalCode
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        street:
+          $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        additionalInformation:
+          $ref: '#/components/schemas/PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint__additionalInformation'
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      - additionalInformation
+    PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint__additionalInformation:
+      type: object
+      properties:
+        supplement1:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement1.yaml#/components/schemas/supplement1
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement2:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement2.yaml#/components/schemas/supplement2
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement3:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement3.yaml#/components/schemas/supplement3
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement4:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement4.yaml#/components/schemas/supplement4
+          x-edifact-segment:
+          - SG2.NAD+Z24
+        supplement5:
+          $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
+          x-edifact-segment:
+          - SG2.NAD+Z24
+      required:
+      - supplement1
+      - supplement2
+      - supplement3
+      - supplement4
+      - supplement5

@@ -1,0 +1,64 @@
+components:
+  schemas:
+    GridLocation:
+      title: GridLocation
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/GridLocation.json
+      properties:
+        boType:
+          $ref: ../fields/bo/GridLocation/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/GridLocation/structureVersion.yaml#/components/schemas/structureVersion
+        gridLocationId:
+          $ref: >-
+            ../fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+        sector:
+          $ref: ../fields/bo/GridLocation/sector.yaml#/components/schemas/sector
+        gridConnectionPower:
+          $ref: >-
+            ../fields/bo/GridLocation/gridConnectionPower.yaml#/components/schemas/gridConnectionPower
+        responsibleMsbCodeNumber:
+          $ref: >-
+            ../fields/bo/GridLocation/responsibleMsbCodeNumber.yaml#/components/schemas/responsibleMsbCodeNumber
+        controlChannel:
+          $ref: >-
+            ../fields/bo/GridLocation/controlChannel.yaml#/components/schemas/controlChannel
+        locationAssignment:
+          $ref: >-
+            ../fields/bo/GridLocation/locationAssignment.yaml#/components/schemas/locationAssignment
+        productDataRelevantRole:
+          $ref: >-
+            ../fields/bo/GridLocation/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+        orderingMarketPartner:
+          $ref: >-
+            ../fields/bo/GridLocation/orderingMarketPartner.yaml#/components/schemas/orderingMarketPartner
+        configurationProduct:
+          $ref: >-
+            ../fields/bo/GridLocation/configurationProduct.yaml#/components/schemas/configurationProduct
+        noConfigurationProduct:
+          $ref: >-
+            ../fields/bo/GridLocation/noConfigurationProduct.yaml#/components/schemas/noConfigurationProduct
+        loadCurveDefinition:
+          $ref: >-
+            ../fields/bo/GridLocation/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+        marketRoles:
+          $ref: >-
+            ../fields/bo/GridLocation/marketRoles.yaml#/components/schemas/marketRoles
+        meterRegisters:
+          $ref: >-
+            ../fields/bo/GridLocation/meterRegisters.yaml#/components/schemas/meterRegisters
+        billingData:
+          $ref: >-
+            ../fields/bo/GridLocation/billingData.yaml#/components/schemas/billingData
+        dataQuality:
+          $ref: >-
+            ../fields/bo/GridLocation/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/GridLocation/validityPeriod.yaml#/components/schemas/validityPeriod

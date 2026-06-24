@@ -1,0 +1,6 @@
+components:
+  schemas:
+    MARKET_LOCATION:
+      type: array
+      items:
+        $ref: ../../../bo/MarketLocation.yaml#/components/schemas/MarketLocation

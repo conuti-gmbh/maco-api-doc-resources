@@ -1,0 +1,7 @@
+components:
+  schemas:
+    STATUS_NOTIFICATION:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/StatusNotification.yaml#/components/schemas/StatusNotification

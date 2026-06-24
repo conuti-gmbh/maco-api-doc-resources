@@ -1,0 +1,11 @@
+components:
+  schemas:
+    ContactType:
+      title: ContactType
+      type: string
+      enum:
+        - WRITTEN_LETTER
+        - PHONE_CALL
+        - FAX
+        - EMAIL
+        - SMS

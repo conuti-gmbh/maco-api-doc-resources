@@ -1,0 +1,27 @@
+components:
+  schemas:
+    AdviceNote:
+      title: AdviceNote
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/AdviceNote.json
+      properties:
+        boType:
+          $ref: ../fields/bo/AdviceNote/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/AdviceNote/structureVersion.yaml#/components/schemas/structureVersion
+        adviceNoteNumber:
+          $ref: >-
+            ../fields/bo/AdviceNote/adviceNoteNumber.yaml#/components/schemas/adviceNoteNumber
+        adviceNoteType:
+          $ref: >-
+            ../fields/bo/AdviceNote/adviceNoteType.yaml#/components/schemas/adviceNoteType
+        toPay:
+          $ref: ../fields/bo/AdviceNote/toPay.yaml#/components/schemas/toPay
+        positions:
+          $ref: ../fields/bo/AdviceNote/positions.yaml#/components/schemas/positions

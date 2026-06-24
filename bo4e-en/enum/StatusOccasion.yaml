@@ -1,0 +1,12 @@
+components:
+  schemas:
+    StatusOccasion:
+      title: StatusOccasion
+      type: string
+      enum:
+        - COMMUNICATION_FAULT
+        - STATUS_DEVICE_CHANGE
+        - METERING_DEVICE_FAULTY_DEFECTIVE
+        - NO_FAULT_DETECTABLE
+        - FAULT_RESOLUTION_NOT_POSSIBLE
+        - REPAIR_WITHOUT_DEVICE_CHANGE

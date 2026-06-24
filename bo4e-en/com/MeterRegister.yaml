@@ -1,0 +1,98 @@
+components:
+  schemas:
+    MeterRegister:
+      title: MeterRegister
+      type: object
+      properties:
+        meterRegisterId:
+          $ref: >-
+            ../fields/com/MeterRegister/meterRegisterId.yaml#/components/schemas/meterRegisterId
+        designation:
+          $ref: >-
+            ../fields/com/MeterRegister/designation.yaml#/components/schemas/designation
+        direction:
+          $ref: >-
+            ../fields/com/MeterRegister/direction.yaml#/components/schemas/direction
+        obisCode:
+          $ref: >-
+            ../fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+        transformerFactor:
+          $ref: >-
+            ../fields/com/MeterRegister/transformerFactor.yaml#/components/schemas/transformerFactor
+        unit:
+          $ref: ../fields/com/MeterRegister/unit.yaml#/components/schemas/unit
+        offPeakCapable:
+          $ref: >-
+            ../fields/com/MeterRegister/offPeakCapable.yaml#/components/schemas/offPeakCapable
+        consumptionType:
+          $ref: >-
+            ../fields/com/MeterRegister/consumptionType.yaml#/components/schemas/consumptionType
+        interruptibility:
+          $ref: >-
+            ../fields/com/MeterRegister/interruptibility.yaml#/components/schemas/interruptibility
+        heatUsage:
+          $ref: >-
+            ../fields/com/MeterRegister/heatUsage.yaml#/components/schemas/heatUsage
+        concessionFee:
+          $ref: >-
+            ../fields/com/MeterRegister/concessionFee.yaml#/components/schemas/concessionFee
+        taxExempt:
+          $ref: >-
+            ../fields/com/MeterRegister/taxExempt.yaml#/components/schemas/taxExempt
+        integerDigits:
+          $ref: >-
+            ../fields/com/MeterRegister/integerDigits.yaml#/components/schemas/integerDigits
+        decimalPlaces:
+          $ref: >-
+            ../fields/com/MeterRegister/decimalPlaces.yaml#/components/schemas/decimalPlaces
+        billingRelevant:
+          $ref: >-
+            ../fields/com/MeterRegister/billingRelevant.yaml#/components/schemas/billingRelevant
+        numberOfReadings:
+          $ref: >-
+            ../fields/com/MeterRegister/numberOfReadings.yaml#/components/schemas/numberOfReadings
+        meteringTimes:
+          $ref: >-
+            ../fields/com/MeterRegister/meteringTimes.yaml#/components/schemas/meteringTimes
+        configuration:
+          $ref: >-
+            ../fields/com/MeterRegister/configuration.yaml#/components/schemas/configuration
+        meteringProduct:
+          $ref: >-
+            ../fields/com/MeterRegister/meteringProduct.yaml#/components/schemas/meteringProduct
+        valueGranularity:
+          $ref: >-
+            ../fields/com/MeterRegister/valueGranularity.yaml#/components/schemas/valueGranularity
+        necessitySecondMeasurement:
+          $ref: >-
+            ../fields/com/MeterRegister/necessitySecondMeasurement.yaml#/components/schemas/necessitySecondMeasurement
+        valueTransmissionPurpose:
+          $ref: >-
+            ../fields/com/MeterRegister/valueTransmissionPurpose.yaml#/components/schemas/valueTransmissionPurpose
+        typeElectricMobility:
+          $ref: >-
+            ../fields/com/MeterRegister/typeElectricMobility.yaml#/components/schemas/typeElectricMobility
+        configurationProduct:
+          $ref: >-
+            ../fields/com/MeterRegister/configurationProduct.yaml#/components/schemas/configurationProduct
+        noConfigurationProduct:
+          $ref: >-
+            ../fields/com/MeterRegister/noConfigurationProduct.yaml#/components/schemas/noConfigurationProduct
+        loadCurveDefinition:
+          $ref: >-
+            ../fields/com/MeterRegister/loadCurveDefinition.yaml#/components/schemas/loadCurveDefinition
+        purposesOfUse:
+          $ref: >-
+            ../fields/com/MeterRegister/purposesOfUse.yaml#/components/schemas/purposesOfUse
+        usagePurposeNB:
+          $ref: >-
+            ../fields/com/MeterRegister/usagePurposeNB.yaml#/components/schemas/usagePurposeNB
+        usagePurposeLF:
+          $ref: >-
+            ../fields/com/MeterRegister/usagePurposeLF.yaml#/components/schemas/usagePurposeLF
+        usagePurposeUENB:
+          $ref: >-
+            ../fields/com/MeterRegister/usagePurposeUENB.yaml#/components/schemas/usagePurposeUENB
+        noProduct:
+          $ref: >-
+            ../fields/com/MeterRegister/noProduct.yaml#/components/schemas/noProduct

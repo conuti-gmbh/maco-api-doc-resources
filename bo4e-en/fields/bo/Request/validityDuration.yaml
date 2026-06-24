@@ -1,0 +1,4 @@
+components:
+  schemas:
+    validityDuration:
+      type: string

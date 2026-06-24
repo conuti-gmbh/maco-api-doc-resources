@@ -1,0 +1,4 @@
+components:
+  schemas:
+    validity:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

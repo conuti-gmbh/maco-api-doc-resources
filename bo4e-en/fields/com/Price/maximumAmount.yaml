@@ -1,0 +1,4 @@
+components:
+  schemas:
+    maximumAmount:
+      type: integer

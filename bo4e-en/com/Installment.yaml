@@ -1,0 +1,11 @@
+components:
+  schemas:
+    Installment:
+      title: Installment
+      type: object
+      properties:
+        typeValue:
+          $ref: >-
+            ../fields/com/Installment/typeValue.yaml#/components/schemas/typeValue
+        percent:
+          $ref: ../fields/com/Installment/percent.yaml#/components/schemas/percent

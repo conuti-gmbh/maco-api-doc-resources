@@ -1,0 +1,4 @@
+components:
+  schemas:
+    gridAccessBilling:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

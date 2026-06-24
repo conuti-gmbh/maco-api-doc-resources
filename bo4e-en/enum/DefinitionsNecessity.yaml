@@ -1,0 +1,10 @@
+components:
+  schemas:
+    DefinitionsNecessity:
+      title: DefinitionsNecessity
+      type: string
+      enum:
+        - METERING_TIME_DEFINITIONS_USED
+        - METERING_TIME_DEFINITIONS_NOT_USED
+        - DEFINITIONS_USED
+        - DEFINITIONS_NOT_USED

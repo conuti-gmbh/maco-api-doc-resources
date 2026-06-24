@@ -1,0 +1,7 @@
+components:
+  schemas:
+    AD_HOC_CONTROL_CHANNEL:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/AdHocControlChannel.yaml#/components/schemas/AdHocControlChannel

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    OfferStatus:
+      title: OfferStatus
+      type: string
+      enum:
+        - CONCEPTION
+        - NON_BINDING
+        - BINDING
+        - COMMISSIONED
+        - INVALID
+        - REJECTED
+        - FOLLOWED_UP
+        - PENDING
+        - COMPLETED

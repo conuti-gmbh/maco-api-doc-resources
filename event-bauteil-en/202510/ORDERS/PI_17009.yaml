@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: PI_17009
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17009:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17009__masterData'
+      required:
+      - masterData
+    PI_17009__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17009__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17009__masterData__ORDER'
+        METER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17009__masterData__METER'
+      required:
+      - REQUEST
+      - ORDER
+      - METER
+    PI_17009__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++[Z58|Z59]
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - requestType
+      - locationId
+    PI_17009__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+      required:
+      - executionDate
+    PI_17009__masterData__METER:
+      type: object
+      properties:
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17009__masterData__METER__devices'
+      required:
+      - devices
+    PI_17009__masterData__METER__devices:
+      type: object
+      properties:
+        deviceProperties:
+          $ref: '#/components/schemas/PI_17009__masterData__METER__devices__deviceProperties'
+        deviceNumber:
+          $ref: ../../../bo4e-en/fields/com/Device/deviceNumber.yaml#/components/schemas/deviceNumber
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z09
+        additionalDeviceNumbers:
+          $ref: ../../../bo4e-en/fields/com/Device/additionalDeviceNumbers.yaml#/components/schemas/additionalDeviceNumbers
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z09
+      required:
+      - deviceProperties
+      - deviceNumber
+    PI_17009__masterData__METER__devices__deviceProperties:
+      type: object
+      properties:
+        deviceType:
+          $ref: ../../../bo4e-en/fields/com/DeviceProperties/deviceType.yaml#/components/schemas/deviceType
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI
+      required:
+      - deviceType

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    EnergyCapture:
+      title: EnergyCapture
+      type: string
+      enum:
+        - CAPTURED_SEPARATELY
+        - NOT_CAPTURED_SEPARATELY

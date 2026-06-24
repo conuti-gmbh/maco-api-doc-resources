@@ -1,0 +1,10 @@
+components:
+  schemas:
+    Quantity:
+      title: Quantity
+      type: object
+      properties:
+        value:
+          $ref: ../fields/com/Quantity/value.yaml#/components/schemas/value
+        unit:
+          $ref: ../fields/com/Quantity/unit.yaml#/components/schemas/unit

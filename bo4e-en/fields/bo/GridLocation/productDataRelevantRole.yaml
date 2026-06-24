@@ -1,0 +1,4 @@
+components:
+  schemas:
+    productDataRelevantRole:
+      $ref: ../../../enum/MarketRole.yaml#/components/schemas/MarketRole

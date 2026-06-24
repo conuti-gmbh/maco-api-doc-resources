@@ -1,0 +1,4 @@
+components:
+  schemas:
+    tariffTime:
+      $ref: ../../../enum/TariffTime.yaml#/components/schemas/TariffTime

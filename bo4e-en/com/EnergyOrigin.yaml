@@ -1,0 +1,12 @@
+components:
+  schemas:
+    EnergyOrigin:
+      title: EnergyOrigin
+      type: object
+      properties:
+        generationType:
+          $ref: >-
+            ../fields/com/EnergyOrigin/generationType.yaml#/components/schemas/generationType
+        sharePercent:
+          $ref: >-
+            ../fields/com/EnergyOrigin/sharePercent.yaml#/components/schemas/sharePercent

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    configurationChangeOption:
+      $ref: >-
+        ../../../enum/ConfigurationChangeOption.yaml#/components/schemas/ConfigurationChangeOption

@@ -1,0 +1,299 @@
+components:
+  schemas:
+    TransactionData:
+      type: object
+      properties:
+        dataExchangeReference:
+          $ref: >-
+            ../fields/cdoc/TransactionData/dataExchangeReference.yaml#/components/schemas/dataExchangeReference
+        sector:
+          $ref: >-
+            ../fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+        transactionReason:
+          $ref: >-
+            ../fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+        transactionReasonSupplement:
+          $ref: >-
+            ../fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
+        transactionReasonSupplementTemporaryRegistration:
+          $ref: >-
+            ../fields/cdoc/TransactionData/transactionReasonSupplementTemporaryRegistration.yaml#/components/schemas/transactionReasonSupplementTemporaryRegistration
+        deliveryDirection:
+          $ref: >-
+            ../fields/cdoc/TransactionData/deliveryDirection.yaml#/components/schemas/deliveryDirection
+        processdate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/processdate.yaml#/components/schemas/processdate
+        processNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/processNumber.yaml#/components/schemas/processNumber
+        idempotencyKey:
+          $ref: >-
+            ../fields/cdoc/TransactionData/idempotencyKey.yaml#/components/schemas/idempotencyKey
+        verificationIdentifier:
+          $ref: >-
+            ../fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+        sender:
+          $ref: >-
+            ../fields/cdoc/TransactionData/sender.yaml#/components/schemas/sender
+        receiver:
+          $ref: >-
+            ../fields/cdoc/TransactionData/receiver.yaml#/components/schemas/receiver
+        documentNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+        documentName:
+          $ref: >-
+            ../fields/cdoc/TransactionData/documentName.yaml#/components/schemas/documentName
+        category:
+          $ref: >-
+            ../fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+        messageFunction:
+          $ref: >-
+            ../fields/cdoc/TransactionData/messageFunction.yaml#/components/schemas/messageFunction
+        messageDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
+        messageReferenceNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+        requestReferenceNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/requestReferenceNumber.yaml#/components/schemas/requestReferenceNumber
+        processReferenceNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/processReferenceNumber.yaml#/components/schemas/processReferenceNumber
+        shipmentPosition:
+          $ref: >-
+            ../fields/cdoc/TransactionData/shipmentPosition.yaml#/components/schemas/shipmentPosition
+        positionNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/positionNumber.yaml#/components/schemas/positionNumber
+        notificationNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/notificationNumber.yaml#/components/schemas/notificationNumber
+        gridUsageBillingInterval:
+          $ref: >-
+            ../fields/cdoc/TransactionData/gridUsageBillingInterval.yaml#/components/schemas/gridUsageBillingInterval
+        typeValue:
+          $ref: >-
+            ../fields/cdoc/TransactionData/typeValue.yaml#/components/schemas/typeValue
+        inquiryReference:
+          $ref: >-
+            ../fields/cdoc/TransactionData/inquiryReference.yaml#/components/schemas/inquiryReference
+        orderReference:
+          $ref: >-
+            ../fields/cdoc/TransactionData/orderReference.yaml#/components/schemas/orderReference
+        contractStart:
+          $ref: >-
+            ../fields/cdoc/TransactionData/contractStart.yaml#/components/schemas/contractStart
+        contractEnd:
+          $ref: >-
+            ../fields/cdoc/TransactionData/contractEnd.yaml#/components/schemas/contractEnd
+        executionDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/executionDate.yaml#/components/schemas/executionDate
+        deliveryDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/deliveryDate.yaml#/components/schemas/deliveryDate
+        reportingPoint:
+          $ref: >-
+            ../fields/cdoc/TransactionData/reportingPoint.yaml#/components/schemas/reportingPoint
+        startDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/endDate.yaml#/components/schemas/endDate
+        usageFrom:
+          $ref: >-
+            ../fields/cdoc/TransactionData/usageFrom.yaml#/components/schemas/usageFrom
+        usageTo:
+          $ref: >-
+            ../fields/cdoc/TransactionData/usageTo.yaml#/components/schemas/usageTo
+        servicePeriod:
+          $ref: >-
+            ../fields/cdoc/TransactionData/servicePeriod.yaml#/components/schemas/servicePeriod
+        subscription:
+          $ref: >-
+            ../fields/cdoc/TransactionData/subscription.yaml#/components/schemas/subscription
+        productDescription:
+          $ref: >-
+            ../fields/cdoc/TransactionData/productDescription.yaml#/components/schemas/productDescription
+        orderMeteringTimes:
+          $ref: >-
+            ../fields/cdoc/TransactionData/orderMeteringTimes.yaml#/components/schemas/orderMeteringTimes
+        offerNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/offerNumber.yaml#/components/schemas/offerNumber
+        offerReference:
+          $ref: >-
+            ../fields/cdoc/TransactionData/offerReference.yaml#/components/schemas/offerReference
+        nextGridUsageBilling:
+          $ref: >-
+            ../fields/cdoc/TransactionData/nextGridUsageBilling.yaml#/components/schemas/nextGridUsageBilling
+        nextScheduledReadingElectricity:
+          $ref: >-
+            ../fields/cdoc/TransactionData/nextScheduledReadingElectricity.yaml#/components/schemas/nextScheduledReadingElectricity
+        nextScheduledReadingGas:
+          $ref: >-
+            ../fields/cdoc/TransactionData/nextScheduledReadingGas.yaml#/components/schemas/nextScheduledReadingGas
+        identificationLogic:
+          $ref: >-
+            ../fields/cdoc/TransactionData/identificationLogic.yaml#/components/schemas/identificationLogic
+        dateFormat:
+          $ref: >-
+            ../fields/cdoc/TransactionData/dateFormat.yaml#/components/schemas/dateFormat
+        responseStatus:
+          $ref: >-
+            ../fields/cdoc/TransactionData/responseStatus.yaml#/components/schemas/responseStatus
+        responseStatusCodeList:
+          $ref: >-
+            ../fields/cdoc/TransactionData/responseStatusCodeList.yaml#/components/schemas/responseStatusCodeList
+        thirdPartyResponseStatus:
+          $ref: >-
+            ../fields/cdoc/TransactionData/thirdPartyResponseStatus.yaml#/components/schemas/thirdPartyResponseStatus
+        thirdPartyResponseStatusAffectedLocation:
+          $ref: >-
+            ../fields/cdoc/TransactionData/thirdPartyResponseStatusAffectedLocation.yaml#/components/schemas/thirdPartyResponseStatusAffectedLocation
+        thirdPartyResponseStatusCodeList:
+          $ref: >-
+            ../fields/cdoc/TransactionData/thirdPartyResponseStatusCodeList.yaml#/components/schemas/thirdPartyResponseStatusCodeList
+        thirdPartyResponseStatusReference:
+          $ref: >-
+            ../fields/cdoc/TransactionData/thirdPartyResponseStatusReference.yaml#/components/schemas/thirdPartyResponseStatusReference
+        involvedMarketPartner:
+          $ref: >-
+            ../fields/cdoc/TransactionData/involvedMarketPartner.yaml#/components/schemas/involvedMarketPartner
+        involvedMarketPartnerReference:
+          $ref: >-
+            ../fields/cdoc/TransactionData/involvedMarketPartnerReference.yaml#/components/schemas/involvedMarketPartnerReference
+        involvedMarketPartnerReferenceCode:
+          $ref: >-
+            ../fields/cdoc/TransactionData/involvedMarketPartnerReferenceCode.yaml#/components/schemas/involvedMarketPartnerReferenceCode
+        freeText:
+          $ref: >-
+            ../fields/cdoc/TransactionData/freeText.yaml#/components/schemas/freeText
+        errorDescription:
+          $ref: >-
+            ../fields/cdoc/TransactionData/errorDescription.yaml#/components/schemas/errorDescription
+        justification:
+          $ref: >-
+            ../fields/cdoc/TransactionData/justification.yaml#/components/schemas/justification
+        discrepancyInfo:
+          $ref: >-
+            ../fields/cdoc/TransactionData/discrepancyInfo.yaml#/components/schemas/discrepancyInfo
+        supplementedMarketLocation:
+          $ref: >-
+            ../fields/cdoc/TransactionData/supplementedMarketLocation.yaml#/components/schemas/supplementedMarketLocation
+        meterReadingInfo:
+          $ref: >-
+            ../fields/cdoc/TransactionData/meterReadingInfo.yaml#/components/schemas/meterReadingInfo
+        locationId:
+          $ref: >-
+            ../fields/cdoc/TransactionData/locationId.yaml#/components/schemas/locationId
+        locationType:
+          $ref: >-
+            ../fields/cdoc/TransactionData/locationType.yaml#/components/schemas/locationType
+        referenceMalo:
+          $ref: >-
+            ../fields/cdoc/TransactionData/referenceMalo.yaml#/components/schemas/referenceMalo
+        referenceMelo:
+          $ref: >-
+            ../fields/cdoc/TransactionData/referenceMelo.yaml#/components/schemas/referenceMelo
+        referencePriceKeyMaster:
+          $ref: >-
+            ../fields/cdoc/TransactionData/referencePriceKeyMaster.yaml#/components/schemas/referencePriceKeyMaster
+        serviceDateStart:
+          $ref: >-
+            ../fields/cdoc/TransactionData/serviceDateStart.yaml#/components/schemas/serviceDateStart
+        endAtDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/endAtDate.yaml#/components/schemas/endAtDate
+        nextProcessing:
+          $ref: >-
+            ../fields/cdoc/TransactionData/nextProcessing.yaml#/components/schemas/nextProcessing
+        deliveryStartDateInProcess:
+          $ref: >-
+            ../fields/cdoc/TransactionData/deliveryStartDateInProcess.yaml#/components/schemas/deliveryStartDateInProcess
+        offerType:
+          $ref: >-
+            ../fields/cdoc/TransactionData/offerType.yaml#/components/schemas/offerType
+        amount:
+          $ref: >-
+            ../fields/cdoc/TransactionData/amount.yaml#/components/schemas/amount
+        tariffLevel:
+          $ref: >-
+            ../fields/cdoc/TransactionData/tariffLevel.yaml#/components/schemas/tariffLevel
+        balancingGroupAssignment:
+          $ref: >-
+            ../fields/cdoc/TransactionData/balancingGroupAssignment.yaml#/components/schemas/balancingGroupAssignment
+        applicationReferenceNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/applicationReferenceNumber.yaml#/components/schemas/applicationReferenceNumber
+        completionDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/completionDate.yaml#/components/schemas/completionDate
+        handoverDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/handoverDate.yaml#/components/schemas/handoverDate
+        validFrom:
+          $ref: >-
+            ../fields/cdoc/TransactionData/validFrom.yaml#/components/schemas/validFrom
+        readingDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/readingDate.yaml#/components/schemas/readingDate
+        processingOrder:
+          $ref: >-
+            ../fields/cdoc/TransactionData/processingOrder.yaml#/components/schemas/processingOrder
+        contactPersonCustomer:
+          $ref: >-
+            ../fields/cdoc/TransactionData/contactPersonCustomer.yaml#/components/schemas/contactPersonCustomer
+        statusChangeTimestamp:
+          $ref: >-
+            ../fields/cdoc/TransactionData/statusChangeTimestamp.yaml#/components/schemas/statusChangeTimestamp
+        validityTimespan:
+          $ref: >-
+            ../fields/cdoc/TransactionData/validityTimespan.yaml#/components/schemas/validityTimespan
+        messageReferenceOrderConfirmation:
+          $ref: >-
+            ../fields/cdoc/TransactionData/messageReferenceOrderConfirmation.yaml#/components/schemas/messageReferenceOrderConfirmation
+        processReferenceOrderConfirmation:
+          $ref: >-
+            ../fields/cdoc/TransactionData/processReferenceOrderConfirmation.yaml#/components/schemas/processReferenceOrderConfirmation
+        terminationDateCustomer:
+          $ref: >-
+            ../fields/cdoc/TransactionData/terminationDateCustomer.yaml#/components/schemas/terminationDateCustomer
+        terminationDateSupplier:
+          $ref: >-
+            ../fields/cdoc/TransactionData/terminationDateSupplier.yaml#/components/schemas/terminationDateSupplier
+        referenceArticleId:
+          $ref: >-
+            ../fields/cdoc/TransactionData/referenceArticleId.yaml#/components/schemas/referenceArticleId
+        balancingGroup:
+          $ref: >-
+            ../fields/cdoc/TransactionData/balancingGroup.yaml#/components/schemas/balancingGroup
+        plannedProductPackage:
+          $ref: >-
+            ../fields/cdoc/TransactionData/plannedProductPackage.yaml#/components/schemas/plannedProductPackage
+        assignmentDeclaration:
+          $ref: >-
+            ../fields/cdoc/TransactionData/assignmentDeclaration.yaml#/components/schemas/assignmentDeclaration
+        responseStatusPeriod:
+          $ref: >-
+            ../fields/cdoc/TransactionData/responseStatusPeriod.yaml#/components/schemas/responseStatusPeriod
+        apiPath:
+          $ref: >-
+            ../fields/cdoc/TransactionData/apiPath.yaml#/components/schemas/apiPath
+        apiIdentifier:
+          $ref: >-
+            ../fields/cdoc/TransactionData/apiIdentifier.yaml#/components/schemas/apiIdentifier
+        acceptanceDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/acceptanceDate.yaml#/components/schemas/acceptanceDate
+        unbOutboundDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/unbOutboundDate.yaml#/components/schemas/unbOutboundDate
+        deviceRemovalDate:
+          $ref: >-
+            ../fields/cdoc/TransactionData/deviceRemovalDate.yaml#/components/schemas/deviceRemovalDate

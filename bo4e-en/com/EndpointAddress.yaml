@@ -1,0 +1,14 @@
+components:
+  schemas:
+    EndpointAddress:
+      title: EndpointAddress
+      type: object
+      properties:
+        gwaManagement:
+          $ref: >-
+            ../fields/com/EndpointAddress/gwaManagement.yaml#/components/schemas/gwaManagement
+        gwaAdminService:
+          $ref: >-
+            ../fields/com/EndpointAddress/gwaAdminService.yaml#/components/schemas/gwaAdminService
+        gwaNTP:
+          $ref: ../fields/com/EndpointAddress/gwaNTP.yaml#/components/schemas/gwaNTP

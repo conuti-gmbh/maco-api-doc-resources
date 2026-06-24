@@ -1,0 +1,12 @@
+components:
+  schemas:
+    Sector:
+      title: Sector
+      type: string
+      enum:
+        - ELECTRICITY
+        - GAS
+        - DISTRICT_HEATING
+        - LOCAL_HEATING
+        - WATER
+        - WASTEWATER

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    IpAddressClsDevice2:
+      type: string

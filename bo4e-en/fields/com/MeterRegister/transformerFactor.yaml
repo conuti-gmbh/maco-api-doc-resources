@@ -1,0 +1,5 @@
+components:
+  schemas:
+    transformerFactor:
+      type: number
+      format: float

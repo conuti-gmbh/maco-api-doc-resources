@@ -1,0 +1,12 @@
+components:
+  schemas:
+    ArithmeticOperation:
+      title: ArithmeticOperation
+      type: string
+      enum:
+        - ADDITION
+        - SUBTRACTION
+        - DIVISION
+        - DIVIDEND
+        - MULTIPLICATION
+        - POSITIVE_VALUE

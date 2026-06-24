@@ -1,0 +1,5 @@
+components:
+  schemas:
+    quantityConverterType:
+      $ref: >-
+        ../../../enum/QuantityConverterType.yaml#/components/schemas/QuantityConverterType

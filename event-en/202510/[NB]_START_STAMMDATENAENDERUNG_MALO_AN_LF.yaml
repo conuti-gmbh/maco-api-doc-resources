@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: '[NB] START_STAMMDATENAENDERUNG_MALO_AN_LF'
+  version: '202510'
+  x-bpmn-source-sha: eaf359e3
+  x-bo4e-schema-version: 1.7.1
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    '[NB] START_STAMMDATENAENDERUNG_MALO_AN_LF':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202510/UTILMD/PI_55615.yaml#/components/schemas/PI_55615__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - validFrom
+          - category
+          - sector
+          properties:
+            sender:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            validFrom:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/validFrom.yaml#/components/schemas/validFrom
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
+              examples:
+              - '55615'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_STAMMDATENAENDERUNG_MALO_AN_LF
+              default: START_STAMMDATENAENDERUNG_MALO_AN_LF

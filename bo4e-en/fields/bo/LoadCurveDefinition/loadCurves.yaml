@@ -1,0 +1,7 @@
+components:
+  schemas:
+    loadCurves:
+      type: array
+      items:
+        $ref: ../../../com/LoadCurve.yaml#/components/schemas/LoadCurve
+      nullable: true

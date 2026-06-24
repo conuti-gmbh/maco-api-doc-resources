@@ -1,0 +1,57 @@
+components:
+  schemas:
+    ControllableResource:
+      title: ControllableResource
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/ControllableResource.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/ControllableResource/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/ControllableResource/structureVersion.yaml#/components/schemas/structureVersion
+        resourceId:
+          $ref: >-
+            ../fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+        sector:
+          $ref: >-
+            ../fields/bo/ControllableResource/sector.yaml#/components/schemas/sector
+        locationAssignment:
+          $ref: >-
+            ../fields/bo/ControllableResource/locationAssignment.yaml#/components/schemas/locationAssignment
+        configurationProduct:
+          $ref: >-
+            ../fields/bo/ControllableResource/configurationProduct.yaml#/components/schemas/configurationProduct
+        controlChannel:
+          $ref: >-
+            ../fields/bo/ControllableResource/controlChannel.yaml#/components/schemas/controlChannel
+        productDataRelevantRole:
+          $ref: >-
+            ../fields/bo/ControllableResource/productDataRelevantRole.yaml#/components/schemas/productDataRelevantRole
+        orderingMarketPartner:
+          $ref: >-
+            ../fields/bo/ControllableResource/orderingMarketPartner.yaml#/components/schemas/orderingMarketPartner
+        assignedDefinition:
+          $ref: >-
+            ../fields/bo/ControllableResource/assignedDefinition.yaml#/components/schemas/assignedDefinition
+        marketRoles:
+          $ref: >-
+            ../fields/bo/ControllableResource/marketRoles.yaml#/components/schemas/marketRoles
+        dataQuality:
+          $ref: >-
+            ../fields/bo/ControllableResource/dataQuality.yaml#/components/schemas/dataQuality
+        validityPeriod:
+          $ref: >-
+            ../fields/bo/ControllableResource/validityPeriod.yaml#/components/schemas/validityPeriod
+        requiredProducts:
+          $ref: >-
+            ../fields/bo/ControllableResource/requiredProducts.yaml#/components/schemas/requiredProducts
+        noConfigurationProduct:
+          $ref: >-
+            ../fields/bo/ControllableResource/noConfigurationProduct.yaml#/components/schemas/noConfigurationProduct

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    consumptionType:
+      $ref: ../../../enum/ConsumptionType.yaml#/components/schemas/ConsumptionType

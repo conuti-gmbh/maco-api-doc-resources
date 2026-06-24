@@ -1,0 +1,5 @@
+components:
+  schemas:
+    zoningSize:
+      $ref: >-
+        ../../../enum/MeasurementQuantity.yaml#/components/schemas/MeasurementQuantity

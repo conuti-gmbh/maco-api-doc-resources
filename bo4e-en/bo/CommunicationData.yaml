@@ -1,0 +1,30 @@
+components:
+  schemas:
+    CommunicationData:
+      title: CommunicationData
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/CommunicationData.json
+      properties:
+        boType:
+          $ref: >-
+            ../fields/bo/CommunicationData/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/CommunicationData/structureVersion.yaml#/components/schemas/structureVersion
+        validity:
+          $ref: >-
+            ../fields/bo/CommunicationData/validity.yaml#/components/schemas/validity
+        communicationDataSheetInactive:
+          $ref: >-
+            ../fields/bo/CommunicationData/communicationDataSheetInactive.yaml#/components/schemas/communicationDataSheetInactive
+        marketParticipant:
+          $ref: >-
+            ../fields/bo/CommunicationData/marketParticipant.yaml#/components/schemas/marketParticipant
+        communicationDetails:
+          $ref: >-
+            ../fields/bo/CommunicationData/communicationDetails.yaml#/components/schemas/communicationDetails

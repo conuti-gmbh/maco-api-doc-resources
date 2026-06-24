@@ -1,0 +1,16 @@
+components:
+  schemas:
+    MeasurementValueStatus:
+      title: MeasurementValueStatus
+      type: string
+      enum:
+        - READ
+        - SUBSTITUTE_VALUE
+        - SUGGESTED_VALUE
+        - NOT_USABLE
+        - FORECAST_VALUE
+        - ENERGY_QUANTITY_SUMMED
+        - PROVISIONAL_VALUE
+        - MISSING
+        - SPECIFICATION_FOR_DELIVERY_NOTE
+        - BASIS_POG_DETERMINATION

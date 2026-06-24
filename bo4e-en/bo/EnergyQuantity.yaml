@@ -1,0 +1,46 @@
+components:
+  schemas:
+    EnergyQuantity:
+      title: EnergyQuantity
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/EnergyQuantity.json
+      properties:
+        boType:
+          $ref: ../fields/bo/EnergyQuantity/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/structureVersion.yaml#/components/schemas/structureVersion
+        locationId:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/locationId.yaml#/components/schemas/locationId
+        locationType:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/locationType.yaml#/components/schemas/locationType
+        completionDate:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/completionDate.yaml#/components/schemas/completionDate
+        startDate:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: ../fields/bo/EnergyQuantity/endDate.yaml#/components/schemas/endDate
+        balancingDate:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/balancingDate.yaml#/components/schemas/balancingDate
+        beginDate:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/beginDate.yaml#/components/schemas/beginDate
+        referenceMasterDataNotificationMsb:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/referenceMasterDataNotificationMsb.yaml#/components/schemas/referenceMasterDataNotificationMsb
+        configuration:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/configuration.yaml#/components/schemas/configuration
+        energyConsumption:
+          $ref: >-
+            ../fields/bo/EnergyQuantity/energyConsumption.yaml#/components/schemas/energyConsumption

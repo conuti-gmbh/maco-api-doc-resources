@@ -1,0 +1,4 @@
+components:
+  schemas:
+    masterData:
+      $ref: ../../../cdoc/MasterData.yaml#/components/schemas/MasterData

@@ -1,0 +1,5 @@
+components:
+  schemas:
+    classification:
+      $ref: >-
+        ../../../enum/ResourceChangeOption.yaml#/components/schemas/ResourceChangeOption

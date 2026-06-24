@@ -1,0 +1,302 @@
+openapi: 3.1.0
+info:
+  title: PI_55672
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_55672:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55672__masterData'
+      required:
+      - masterData
+    PI_55672__masterData:
+      type: object
+      properties:
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55672__masterData__BALANCING'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55672__masterData__MARKET_LOCATION'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55672__masterData__TRANCHE'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55672__masterData__USAGE_PERIOD'
+      required:
+      - BALANCING
+      - MARKET_LOCATION
+      - TRANCHE
+      - USAGE_PERIOD
+    PI_55672__masterData__BALANCING:
+      type: object
+      properties:
+        aggregationResponsibility:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/aggregationResponsibility.yaml#/components/schemas/aggregationResponsibility
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+6
+        balancingGroup:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/balancingGroup.yaml#/components/schemas/balancingGroup
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z19
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08
+          - SG4.IDE+24.SG8.SEQ+Z21
+          - SG4.IDE+24.SG8.SEQ+Z38
+        forecastBasisDetails:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/forecastBasisDetails.yaml#/components/schemas/forecastBasisDetails
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI.CAV+[E02|E14]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55672__masterData__BALANCING__validityPeriod'
+        annualConsumptionForecast:
+          $ref: '#/components/schemas/PI_55672__masterData__BALANCING__annualConsumptionForecast'
+        loadProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55672__masterData__BALANCING__loadProfiles'
+        forecastBasis:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/forecastBasis.yaml#/components/schemas/forecastBasis
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
+        temperatureWork:
+          $ref: '#/components/schemas/PI_55672__masterData__BALANCING__temperatureWork'
+        timeSeriesType:
+          $ref: ../../../bo4e-en/fields/bo/Balancing/timeSeriesType.yaml#/components/schemas/timeSeriesType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+15++Z21.CAV
+      required:
+      - aggregationResponsibility
+      - balancingGroup
+      - dataQuality
+      - validityPeriod
+      - annualConsumptionForecast
+      - loadProfiles
+      - forecastBasis
+      - temperatureWork
+      - timeSeriesType
+    PI_55672__masterData__BALANCING__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08
+          - SG4.IDE+24.SG8.SEQ+Z21
+          - SG4.IDE+24.SG8.SEQ+Z38
+      required:
+      - periodId
+    PI_55672__masterData__BALANCING__annualConsumptionForecast:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
+      required:
+      - unit
+      - value
+    PI_55672__masterData__BALANCING__loadProfiles:
+      type: object
+      properties:
+        designation:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/designation.yaml#/components/schemas/designation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+Z05.CAV
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+Z02.CAV
+        feedIn:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/feedIn.yaml#/components/schemas/feedIn
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+Z05
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+Z02
+        profileType:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/profileType.yaml#/components/schemas/profileType
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+Z05
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+Z02
+        profileFamily:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/profileFamily.yaml#/components/schemas/profileFamily
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+++Z12.CAV
+        referenceProfileDesignation:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/referenceProfileDesignation.yaml#/components/schemas/referenceProfileDesignation
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z38.SG10.CCI+Z05.CAV
+        dailyParameters:
+          $ref: '#/components/schemas/PI_55672__masterData__BALANCING__loadProfiles__dailyParameters'
+        procedure:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/procedure.yaml#/components/schemas/procedure
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+Z05
+          - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+Z02
+      required:
+      - designation
+      - feedIn
+      - profileType
+      - profileFamily
+      - referenceProfileDesignation
+      - dailyParameters
+      - procedure
+    PI_55672__masterData__BALANCING__loadProfiles__dailyParameters:
+      type: object
+      properties:
+        serviceProvider:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/serviceProvider.yaml#/components/schemas/serviceProvider
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[ZA0|Z99]
+        publisher:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/publisher.yaml#/components/schemas/publisher
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[ZA0|Z99]
+        climateZone:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/climateZone.yaml#/components/schemas/climateZone
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[ZA0|Z99]
+        temperatureMeasuringPoint:
+          $ref: ../../../bo4e-en/fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[ZA0|Z99]
+      required:
+      - serviceProvider
+      - publisher
+      - climateZone
+      - temperatureMeasuringPoint
+    PI_55672__masterData__BALANCING__temperatureWork:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265]
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265]
+      required:
+      - unit
+      - value
+    PI_55672__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        balancingArea:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/balancingArea.yaml#/components/schemas/balancingArea
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z20
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55672__masterData__MARKET_LOCATION__validityPeriod'
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z16
+        marketRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55672__masterData__MARKET_LOCATION__marketRoles'
+        controlZone:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/controlZone.yaml#/components/schemas/controlZone
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z18
+      required:
+      - balancingArea
+      - dataQuality
+      - validityPeriod
+      - marketLocationId
+      - marketRoles
+      - controlZone
+    PI_55672__masterData__MARKET_LOCATION__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01
+      required:
+      - periodId
+    PI_55672__masterData__MARKET_LOCATION__marketRoles:
+      type: object
+      properties:
+        marketRole:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
+      required:
+      - marketRole
+      - roleCodeNumber
+    PI_55672__masterData__TRANCHE:
+      type: object
+      properties:
+        balancingGroup:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/balancingGroup.yaml#/components/schemas/balancingGroup
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+Z19
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55672__masterData__TRANCHE__validityPeriod'
+        trancheId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z21
+      required:
+      - balancingGroup
+      - dataQuality
+      - validityPeriod
+      - trancheId
+    PI_55672__masterData__TRANCHE__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z15
+      required:
+      - periodId
+    PI_55672__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

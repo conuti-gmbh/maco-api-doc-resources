@@ -1,0 +1,91 @@
+openapi: 3.1.0
+info:
+  title: PI_23011
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_23011:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_23011__masterData'
+      required:
+      - masterData
+    PI_23011__masterData:
+      type: object
+      properties:
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_23011__masterData__STATUS_NOTIFICATION'
+      required:
+      - STATUS_NOTIFICATION
+    PI_23011__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_23011__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - positionData
+    PI_23011__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        orderStatus:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/orderStatus.yaml#/components/schemas/orderStatus
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.STS+Z06
+        endDate:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.DTM+292
+        errorDescription:
+          $ref: '#/components/schemas/PI_23011__masterData__STATUS_NOTIFICATION__positionData__errorDescription'
+        locationId:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.SG8.NAD+DP.LOC+172
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN
+        referenceMelo:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/referenceMelo.yaml#/components/schemas/referenceMelo
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.SG8.NAD+DP.RFF+Z21
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.DTM+163
+      required:
+      - orderStatus
+      - endDate
+      - locationId
+      - positionNumber
+    PI_23011__masterData__STATUS_NOTIFICATION__positionData__errorDescription:
+      type: object
+      properties:
+        description1:
+          $ref: ../../../bo4e-en/fields/com/ErrorDescription/description1.yaml#/components/schemas/description1
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.FTX+AAO
+        description2:
+          $ref: ../../../bo4e-en/fields/com/ErrorDescription/description2.yaml#/components/schemas/description2
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.FTX+AAO
+        description3:
+          $ref: ../../../bo4e-en/fields/com/ErrorDescription/description3.yaml#/components/schemas/description3
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.FTX+AAO
+        description4:
+          $ref: ../../../bo4e-en/fields/com/ErrorDescription/description4.yaml#/components/schemas/description4
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.FTX+AAO
+        description5:
+          $ref: ../../../bo4e-en/fields/com/ErrorDescription/description5.yaml#/components/schemas/description5
+          x-edifact-segment:
+          - SG3.DOC+23.SG7.LIN.FTX+AAO

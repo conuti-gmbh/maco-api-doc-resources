@@ -1,0 +1,4 @@
+components:
+  schemas:
+    position:
+      type: integer

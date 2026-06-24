@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ProfileSubtype:
+      title: ProfileSubtype
+      type: string
+      enum:
+        - SLP_SEP
+        - TLP_TEP
+        - TEP

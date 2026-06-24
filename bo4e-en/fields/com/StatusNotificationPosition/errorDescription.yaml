@@ -1,0 +1,4 @@
+components:
+  schemas:
+    errorDescription:
+      $ref: ../../../com/ErrorDescription.yaml#/components/schemas/ErrorDescription

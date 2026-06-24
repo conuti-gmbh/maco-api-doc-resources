@@ -1,0 +1,33 @@
+components:
+  schemas:
+    StatusReport:
+      title: StatusReport
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/StatusReport.json
+      properties:
+        boType:
+          $ref: ../fields/bo/StatusReport/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/StatusReport/structureVersion.yaml#/components/schemas/structureVersion
+        status:
+          $ref: ../fields/bo/StatusReport/status.yaml#/components/schemas/status
+        auditObject:
+          $ref: >-
+            ../fields/bo/StatusReport/auditObject.yaml#/components/schemas/auditObject
+        reviewDate:
+          $ref: >-
+            ../fields/bo/StatusReport/reviewDate.yaml#/components/schemas/reviewDate
+        error:
+          $ref: ../fields/bo/StatusReport/error.yaml#/components/schemas/error
+        senderReference:
+          $ref: >-
+            ../fields/bo/StatusReport/senderReference.yaml#/components/schemas/senderReference
+        transactionReferenceNumber:
+          $ref: >-
+            ../fields/bo/StatusReport/transactionReferenceNumber.yaml#/components/schemas/transactionReferenceNumber

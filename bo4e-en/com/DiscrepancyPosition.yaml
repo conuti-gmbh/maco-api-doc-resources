@@ -1,0 +1,21 @@
+components:
+  schemas:
+    DiscrepancyPosition:
+      title: DiscrepancyPosition
+      type: object
+      properties:
+        discrepancyReasonCode:
+          $ref: >-
+            ../fields/com/DiscrepancyPosition/discrepancyReasonCode.yaml#/components/schemas/discrepancyReasonCode
+        discrepancyReasonCodeList:
+          $ref: >-
+            ../fields/com/DiscrepancyPosition/discrepancyReasonCodeList.yaml#/components/schemas/discrepancyReasonCodeList
+        discrepancyReasonNote:
+          $ref: >-
+            ../fields/com/DiscrepancyPosition/discrepancyReasonNote.yaml#/components/schemas/discrepancyReasonNote
+        associatedInvoice:
+          $ref: >-
+            ../fields/com/DiscrepancyPosition/associatedInvoice.yaml#/components/schemas/associatedInvoice
+        associatedOrder:
+          $ref: >-
+            ../fields/com/DiscrepancyPosition/associatedOrder.yaml#/components/schemas/associatedOrder

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    responseStatus:
+      type: string

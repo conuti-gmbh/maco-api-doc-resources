@@ -1,0 +1,9 @@
+components:
+  schemas:
+    RemoteControllability:
+      title: RemoteControllability
+      type: string
+      enum:
+        - TECHNICALLY_NOT_REMOTE_CONTROLLABLE
+        - TECHNICALLY_REMOTE_CONTROLLABLE
+        - REMOTELY_CONTROLLABLE_BY_SUPPLIER

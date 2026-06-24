@@ -1,0 +1,4 @@
+components:
+  schemas:
+    remoteSwitch:
+      $ref: ../../../enum/RemoteSwitch.yaml#/components/schemas/RemoteSwitch

@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: PI_17103
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_17103:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17103__masterData'
+      required:
+      - masterData
+    PI_17103__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17103__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17103__masterData__ORDER'
+      required:
+      - REQUEST
+      - ORDER
+    PI_17103__masterData__REQUEST:
+      type: object
+      properties:
+        requestCategory:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestCategory.yaml#/components/schemas/requestCategory
+          x-edifact-segment:
+          - BGM+7
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++Z10
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - requestCategory
+      - requestType
+      - locationId
+    PI_17103__masterData__ORDER:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17103__masterData__ORDER__positionData'
+      required:
+      - positionData
+    PI_17103__masterData__ORDER__positionData:
+      type: object
+      properties:
+        endDate:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - SG29.LIN.DTM+164
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - SG29.LIN.DTM+163
+      required:
+      - endDate
+      - startDate

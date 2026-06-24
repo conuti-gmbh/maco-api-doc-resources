@@ -1,0 +1,51 @@
+components:
+  schemas:
+    InvoicePosition:
+      title: InvoicePosition
+      type: object
+      properties:
+        individualPrice:
+          $ref: >-
+            ../fields/com/InvoicePosition/individualPrice.yaml#/components/schemas/individualPrice
+        deliveryUntil:
+          $ref: >-
+            ../fields/com/InvoicePosition/deliveryUntil.yaml#/components/schemas/deliveryUntil
+        deliveryFrom:
+          $ref: >-
+            ../fields/com/InvoicePosition/deliveryFrom.yaml#/components/schemas/deliveryFrom
+        positionQuantity:
+          $ref: >-
+            ../fields/com/InvoicePosition/positionQuantity.yaml#/components/schemas/positionQuantity
+        positionNumber:
+          $ref: >-
+            ../fields/com/InvoicePosition/positionNumber.yaml#/components/schemas/positionNumber
+        articleNumber:
+          $ref: >-
+            ../fields/com/InvoicePosition/articleNumber.yaml#/components/schemas/articleNumber
+        subtotalNet:
+          $ref: >-
+            ../fields/com/InvoicePosition/subtotalNet.yaml#/components/schemas/subtotalNet
+        subtotalTax:
+          $ref: >-
+            ../fields/com/InvoicePosition/subtotalTax.yaml#/components/schemas/subtotalTax
+        timeRelatedQuantity:
+          $ref: >-
+            ../fields/com/InvoicePosition/timeRelatedQuantity.yaml#/components/schemas/timeRelatedQuantity
+        installment:
+          $ref: >-
+            ../fields/com/InvoicePosition/installment.yaml#/components/schemas/installment
+        surcharge:
+          $ref: >-
+            ../fields/com/InvoicePosition/surcharge.yaml#/components/schemas/surcharge
+        municipalDiscount:
+          $ref: >-
+            ../fields/com/InvoicePosition/municipalDiscount.yaml#/components/schemas/municipalDiscount
+        totalSurchargeDiscountAmount:
+          $ref: >-
+            ../fields/com/InvoicePosition/totalSurchargeDiscountAmount.yaml#/components/schemas/totalSurchargeDiscountAmount
+        correctionFactor:
+          $ref: >-
+            ../fields/com/InvoicePosition/correctionFactor.yaml#/components/schemas/correctionFactor
+        executionDate:
+          $ref: >-
+            ../fields/com/InvoicePosition/executionDate.yaml#/components/schemas/executionDate

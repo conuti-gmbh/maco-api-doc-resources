@@ -1,0 +1,7 @@
+components:
+  schemas:
+    share:
+      type: array
+      items:
+        $ref: ../../../com/EnergyOrigin.yaml#/components/schemas/EnergyOrigin
+      nullable: true

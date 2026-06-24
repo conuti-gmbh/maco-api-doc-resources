@@ -1,0 +1,4 @@
+components:
+  schemas:
+    iban:
+      type: string

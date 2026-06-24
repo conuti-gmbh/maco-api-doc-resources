@@ -1,0 +1,5 @@
+components:
+  schemas:
+    surchargeDiscountType:
+      $ref: >-
+        ../../../enum/SurchargeDiscountType.yaml#/components/schemas/SurchargeDiscountType

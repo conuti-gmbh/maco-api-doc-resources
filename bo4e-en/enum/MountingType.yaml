@@ -1,0 +1,11 @@
+components:
+  schemas:
+    MountingType:
+      title: MountingType
+      type: string
+      enum:
+        - PLUG_TECHNOLOGY
+        - THREE_POINT
+        - DIN_RAIL
+        - SINGLE_SOCKET
+        - DOUBLE_SOCKET

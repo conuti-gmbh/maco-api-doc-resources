@@ -1,0 +1,4 @@
+components:
+  schemas:
+    group1:
+      type: string

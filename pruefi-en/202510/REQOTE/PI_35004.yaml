@@ -1,0 +1,465 @@
+openapi: 3.1.0
+info:
+  title: PI_35004
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_35004:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_35004__masterData'
+        transactionData:
+          $ref: '#/components/schemas/PI_35004__transactionData'
+      required:
+      - masterData
+      - transactionData
+    PI_35004__masterData:
+      type: object
+      properties:
+        AD_HOC_CONTROL_CHANNEL:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__AD_HOC_CONTROL_CHANNEL'
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__REQUEST'
+        LOAD_CURVE_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__LOAD_CURVE_DEFINITION'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__METERING_LOCATION'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__GRID_LOCATION'
+        SWITCHING_TIME_DEFINITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__SWITCHING_TIME_DEFINITION'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__CONTROLLABLE_RESOURCE'
+        TECHNICAL_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__TECHNICAL_RESOURCE'
+        VALUES_BY_TYPE2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2'
+      required:
+      - AD_HOC_CONTROL_CHANNEL
+      - REQUEST
+      - LOAD_CURVE_DEFINITION
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - GRID_LOCATION
+      - SWITCHING_TIME_DEFINITION
+      - CONTROLLABLE_RESOURCE
+      - TECHNICAL_RESOURCE
+      - VALUES_BY_TYPE2
+    PI_35004__masterData__AD_HOC_CONTROL_CHANNEL:
+      type: object
+      properties:
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/AdHocControlChannel/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z66.PIA+5
+      required:
+      - configurationProduct
+    PI_35004__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++[Z55|Z64]
+      required:
+      - requestType
+    PI_35004__masterData__LOAD_CURVE_DEFINITION:
+      type: object
+      properties:
+        loadCurves:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__LOAD_CURVE_DEFINITION__loadCurves'
+      required:
+      - loadCurves
+    PI_35004__masterData__LOAD_CURVE_DEFINITION__loadCurves:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG27.LIN+Z65.SG28.CCI+Z53
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/LoadCurve/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z65.PIA+5
+      required:
+      - code
+      - configurationProduct
+    PI_35004__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - marketLocationId
+    PI_35004__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - meteringLocationId
+    PI_35004__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - gridLocationId
+    PI_35004__masterData__SWITCHING_TIME_DEFINITION:
+      type: object
+      properties:
+        switchingTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__SWITCHING_TIME_DEFINITION__switchingTimes'
+      required:
+      - switchingTimes
+    PI_35004__masterData__SWITCHING_TIME_DEFINITION__switchingTimes:
+      type: object
+      properties:
+        code:
+          $ref: ../../../bo4e-en/fields/com/SwitchingTime/code.yaml#/components/schemas/code
+          x-edifact-segment:
+          - SG27.LIN+Z64.SG28.CCI+Z52
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/SwitchingTime/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z64.PIA+5
+      required:
+      - code
+      - configurationProduct
+    PI_35004__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - resourceId
+    PI_35004__masterData__TECHNICAL_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - resourceId
+    PI_35004__masterData__VALUES_BY_TYPE2:
+      type: object
+      properties:
+        configurationChangeOption:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/configurationChangeOption.yaml#/components/schemas/configurationChangeOption
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z54
+        issuer:
+          $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2__issuer'
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z68.PIA+5
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG27.LIN+Z67.PIA+5
+        thresholds:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2__thresholds'
+        certificateUser:
+          $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2__certificateUser'
+        targetAddress:
+          $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2__targetAddress'
+      required:
+      - configurationChangeOption
+      - issuer
+      - configurationProduct
+      - meteringProduct
+      - thresholds
+      - certificateUser
+      - targetAddress
+    PI_35004__masterData__VALUES_BY_TYPE2__issuer:
+      type: object
+      properties:
+        issuer1:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer1.yaml#/components/schemas/issuer1
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z24
+        issuer2:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer2.yaml#/components/schemas/issuer2
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z24
+        issuer3:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer3.yaml#/components/schemas/issuer3
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z24
+        issuer4:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer4.yaml#/components/schemas/issuer4
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z24
+        issuer5:
+          $ref: ../../../bo4e-en/fields/com/Issuer/issuer5.yaml#/components/schemas/issuer5
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z24
+      required:
+      - issuer1
+      - issuer2
+      - issuer3
+      - issuer4
+      - issuer5
+    PI_35004__masterData__VALUES_BY_TYPE2__thresholds:
+      type: object
+      properties:
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/com/Threshold/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z60
+        upperThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/upperThreshold.yaml#/components/schemas/upperThreshold
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z60
+        lowerThreshold:
+          $ref: ../../../bo4e-en/fields/com/Threshold/lowerThreshold.yaml#/components/schemas/lowerThreshold
+          x-edifact-segment:
+          - SG27.LIN+Z68.SG28.CCI+Z60
+      required:
+      - configurationProduct
+      - upperThreshold
+      - lowerThreshold
+    PI_35004__masterData__VALUES_BY_TYPE2__certificateUser:
+      type: object
+      properties:
+        certificateUser1:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser1.yaml#/components/schemas/certificateUser1
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z23
+        certificateUser2:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser2.yaml#/components/schemas/certificateUser2
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z23
+        certificateUser3:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser3.yaml#/components/schemas/certificateUser3
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z23
+        certificateUser4:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser4.yaml#/components/schemas/certificateUser4
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z23
+        certificateUser5:
+          $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser5.yaml#/components/schemas/certificateUser5
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z23
+      required:
+      - certificateUser1
+      - certificateUser2
+      - certificateUser3
+      - certificateUser4
+      - certificateUser5
+    PI_35004__masterData__VALUES_BY_TYPE2__targetAddress:
+      type: object
+      properties:
+        targetAddress1:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress1.yaml#/components/schemas/targetAddress1
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z17
+        targetAddress2:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress2.yaml#/components/schemas/targetAddress2
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z17
+        targetAddress3:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress3.yaml#/components/schemas/targetAddress3
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z17
+        targetAddress4:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress4.yaml#/components/schemas/targetAddress4
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z17
+        targetAddress5:
+          $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress5.yaml#/components/schemas/targetAddress5
+          x-edifact-segment:
+          - SG27.LIN+Z68.FTX+Z17
+      required:
+      - targetAddress1
+      - targetAddress2
+      - targetAddress3
+      - targetAddress4
+      - targetAddress5
+    PI_35004__transactionData:
+      type: object
+      properties:
+        sender:
+          $ref: '#/components/schemas/PI_35004__transactionData__sender'
+        involvedMarketPartner:
+          $ref: '#/components/schemas/PI_35004__transactionData__involvedMarketPartner'
+        documentNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/documentNumber.yaml#/components/schemas/documentNumber
+          x-edifact-segment:
+          - BGM+[Z74|Z82]
+        receiver:
+          $ref: '#/components/schemas/PI_35004__transactionData__receiver'
+        category:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+          x-edifact-segment:
+          - BGM+[Z74|Z82]
+        deliveryDate:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/deliveryDate.yaml#/components/schemas/deliveryDate
+          x-edifact-segment:
+          - DTM+76
+        messageReferenceOrderConfirmation:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceOrderConfirmation.yaml#/components/schemas/messageReferenceOrderConfirmation
+          x-edifact-segment:
+          - SG1.RFF+Z42
+        messageDate:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
+          x-edifact-segment:
+          - DTM+137
+        messageReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/messageReferenceNumber.yaml#/components/schemas/messageReferenceNumber
+          x-edifact-segment:
+          - UNH
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG27.LIN+Z64
+          - SG27.LIN+Z65
+          - SG27.LIN+Z66
+          - SG27.LIN+Z67
+          - SG27.LIN+Z68
+        verificationIdentifier:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/verificationIdentifier.yaml#/components/schemas/verificationIdentifier
+          x-edifact-segment:
+          - SG1.RFF+Z13
+        processReferenceOrderConfirmation:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/processReferenceOrderConfirmation.yaml#/components/schemas/processReferenceOrderConfirmation
+          x-edifact-segment:
+          - SG1.RFF+Z43
+        processReferenceNumber:
+          $ref: ../../../bo4e-en/fields/cdoc/TransactionData/processReferenceNumber.yaml#/components/schemas/processReferenceNumber
+          x-edifact-segment:
+          - SG1.RFF+Z41
+      required:
+      - sender
+      - involvedMarketPartner
+      - documentNumber
+      - receiver
+      - category
+      - messageReferenceOrderConfirmation
+      - messageDate
+      - messageReferenceNumber
+      - positionNumber
+      - verificationIdentifier
+      - processReferenceOrderConfirmation
+      - processReferenceNumber
+    PI_35004__transactionData__sender:
+      type: object
+      properties:
+        contactPerson:
+          $ref: '#/components/schemas/PI_35004__transactionData__sender__contactPerson'
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG11.NAD+MS
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG11.NAD+MS
+      required:
+      - contactPerson
+      - roleCodeNumber
+      - roleCodeType
+    PI_35004__transactionData__sender__contactPerson:
+      type: object
+      properties:
+        eMailAddress:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/eMailAddress.yaml#/components/schemas/eMailAddress
+          x-edifact-segment:
+          - SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]
+        lastName:
+          $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
+          x-edifact-segment:
+          - SG11.NAD+MS.SG14.CTA
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_35004__transactionData__sender__contactPerson__phoneNumbers'
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+    PI_35004__transactionData__sender__contactPerson__phoneNumbers:
+      type: object
+      properties:
+        numberType:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/numberType.yaml#/components/schemas/numberType
+          x-edifact-segment:
+          - SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]
+        phoneNumber:
+          $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
+          x-edifact-segment:
+          - SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]
+      required:
+      - numberType
+      - phoneNumber
+    PI_35004__transactionData__involvedMarketPartner:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG11.NAD+DDM
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG11.NAD+DDM
+      required:
+      - roleCodeNumber
+      - roleCodeType
+    PI_35004__transactionData__receiver:
+      type: object
+      properties:
+        roleCodeNumber:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+          x-edifact-segment:
+          - SG11.NAD+MR
+        roleCodeType:
+          $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
+          x-edifact-segment:
+          - SG11.NAD+MR
+      required:
+      - roleCodeNumber
+      - roleCodeType

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    ipVersion:
+      type: string

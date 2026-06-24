@@ -1,0 +1,7 @@
+components:
+  schemas:
+    CONTROLLABLE_RESOURCE:
+      type: array
+      items:
+        $ref: >-
+          ../../../bo/ControllableResource.yaml#/components/schemas/ControllableResource

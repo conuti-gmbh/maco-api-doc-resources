@@ -1,0 +1,54 @@
+components:
+  schemas:
+    TariffInfo:
+      title: TariffInfo
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/TariffInfo.json
+      properties:
+        boType:
+          $ref: ../fields/bo/TariffInfo/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/TariffInfo/structureVersion.yaml#/components/schemas/structureVersion
+        provider:
+          $ref: ../fields/bo/TariffInfo/provider.yaml#/components/schemas/provider
+        providerName:
+          $ref: >-
+            ../fields/bo/TariffInfo/providerName.yaml#/components/schemas/providerName
+        applicableFrom:
+          $ref: >-
+            ../fields/bo/TariffInfo/applicableFrom.yaml#/components/schemas/applicableFrom
+        remark:
+          $ref: ../fields/bo/TariffInfo/remark.yaml#/components/schemas/remark
+        designation:
+          $ref: >-
+            ../fields/bo/TariffInfo/designation.yaml#/components/schemas/designation
+        energyMix:
+          $ref: ../fields/bo/TariffInfo/energyMix.yaml#/components/schemas/energyMix
+        customerTypes:
+          $ref: >-
+            ../fields/bo/TariffInfo/customerTypes.yaml#/components/schemas/customerTypes
+        numberOfRegisters:
+          $ref: >-
+            ../fields/bo/TariffInfo/numberOfRegisters.yaml#/components/schemas/numberOfRegisters
+        sector:
+          $ref: ../fields/bo/TariffInfo/sector.yaml#/components/schemas/sector
+        tariffAttributes:
+          $ref: >-
+            ../fields/bo/TariffInfo/tariffAttributes.yaml#/components/schemas/tariffAttributes
+        tariffCategory:
+          $ref: >-
+            ../fields/bo/TariffInfo/tariffCategory.yaml#/components/schemas/tariffCategory
+        contractConditions:
+          $ref: >-
+            ../fields/bo/TariffInfo/contractConditions.yaml#/components/schemas/contractConditions
+        website:
+          $ref: ../fields/bo/TariffInfo/website.yaml#/components/schemas/website
+        temporalValidity:
+          $ref: >-
+            ../fields/bo/TariffInfo/temporalValidity.yaml#/components/schemas/temporalValidity

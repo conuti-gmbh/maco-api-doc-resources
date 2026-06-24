@@ -1,0 +1,4 @@
+components:
+  schemas:
+    inquiryReference:
+      type: string

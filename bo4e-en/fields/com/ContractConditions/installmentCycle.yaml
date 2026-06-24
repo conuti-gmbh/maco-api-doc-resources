@@ -1,0 +1,4 @@
+components:
+  schemas:
+    installmentCycle:
+      $ref: ../../../com/TimePeriod.yaml#/components/schemas/TimePeriod

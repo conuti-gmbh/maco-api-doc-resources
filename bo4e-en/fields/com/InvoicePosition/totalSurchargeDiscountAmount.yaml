@@ -1,0 +1,5 @@
+components:
+  schemas:
+    totalSurchargeDiscountAmount:
+      type: number
+      format: float

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    provider:
+      $ref: ../../../bo/MarketParticipant.yaml#/components/schemas/MarketParticipant

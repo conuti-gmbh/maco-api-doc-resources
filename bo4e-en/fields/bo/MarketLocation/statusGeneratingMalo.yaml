@@ -1,0 +1,5 @@
+components:
+  schemas:
+    statusGeneratingMalo:
+      $ref: >-
+        ../../../enum/StatusGeneratingMarketLocation.yaml#/components/schemas/StatusGeneratingMarketLocation

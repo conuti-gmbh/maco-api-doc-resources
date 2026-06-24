@@ -1,0 +1,26 @@
+components:
+  schemas:
+    OfferPart:
+      title: OfferPart
+      type: object
+      properties:
+        requestSubReference:
+          $ref: >-
+            ../fields/com/OfferPart/requestSubReference.yaml#/components/schemas/requestSubReference
+        offerPartTotalQuantity:
+          $ref: >-
+            ../fields/com/OfferPart/offerPartTotalQuantity.yaml#/components/schemas/offerPartTotalQuantity
+        offerPartTotalCosts:
+          $ref: >-
+            ../fields/com/OfferPart/offerPartTotalCosts.yaml#/components/schemas/offerPartTotalCosts
+        deliveryPeriod:
+          $ref: >-
+            ../fields/com/OfferPart/deliveryPeriod.yaml#/components/schemas/deliveryPeriod
+        referenceCatalogNumber:
+          $ref: >-
+            ../fields/com/OfferPart/referenceCatalogNumber.yaml#/components/schemas/referenceCatalogNumber
+        deliveryPointOfferPart:
+          $ref: >-
+            ../fields/com/OfferPart/deliveryPointOfferPart.yaml#/components/schemas/deliveryPointOfferPart
+        positions:
+          $ref: ../fields/com/OfferPart/positions.yaml#/components/schemas/positions

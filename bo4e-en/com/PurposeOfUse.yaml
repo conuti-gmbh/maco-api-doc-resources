@@ -1,0 +1,11 @@
+components:
+  schemas:
+    PurposeOfUse:
+      title: PurposeOfUse
+      type: object
+      properties:
+        marketRole:
+          $ref: >-
+            ../fields/com/PurposeOfUse/marketRole.yaml#/components/schemas/marketRole
+        purpose:
+          $ref: ../fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose

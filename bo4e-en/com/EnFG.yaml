@@ -1,0 +1,11 @@
+components:
+  schemas:
+    EnFG:
+      title: EnFG
+      type: object
+      properties:
+        basisForLevyReduction:
+          $ref: >-
+            ../fields/com/EnFG/basisForLevyReduction.yaml#/components/schemas/basisForLevyReduction
+        reason:
+          $ref: ../fields/com/EnFG/reason.yaml#/components/schemas/reason

@@ -1,0 +1,10 @@
+components:
+  schemas:
+    RoleCodeType:
+      title: RoleCodeType
+      type: string
+      enum:
+        - BDEW
+        - GS1
+        - GLN
+        - DVGW

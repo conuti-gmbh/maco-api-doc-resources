@@ -1,0 +1,16 @@
+components:
+  schemas:
+    DataQuality:
+      title: DataQuality
+      type: string
+      enum:
+        - EXPECTED_DATA
+        - DATA_PRESENT_IN_SYSTEM
+        - INFORMATIVE_DATA
+        - VALID_DATA
+        - NO_DATA
+        - NO_DATA_PRESENT_IN_SYSTEM
+        - NO_DATA_EXPECTED
+        - DIFFERENCE_DATA
+        - DIFFERENCE_EXPECTED_DATA
+        - DIFFERENCE_SYSTEM_PRESENT_DATA

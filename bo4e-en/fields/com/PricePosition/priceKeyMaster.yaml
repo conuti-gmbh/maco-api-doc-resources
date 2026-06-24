@@ -1,0 +1,4 @@
+components:
+  schemas:
+    priceKeyMaster:
+      type: string

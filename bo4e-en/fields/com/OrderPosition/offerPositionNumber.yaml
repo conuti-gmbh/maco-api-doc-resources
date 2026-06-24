@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offerPositionNumber:
+      type: string

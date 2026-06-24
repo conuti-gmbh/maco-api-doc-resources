@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: PI_15003
+  version: '202510'
+  x-bo4e-schema-version: 1.7.1
+  x-bo4e-schema-sha: 559c00569530c9ff74ef104e035eadd88c5d4a54
+  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+components:
+  schemas:
+    PI_15003:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_15003__masterData'
+      required:
+      - masterData
+    PI_15003__masterData:
+      type: object
+      properties:
+        OFFER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__OFFER'
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__MARKET_LOCATION'
+        METERING_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__METERING_LOCATION'
+        GRID_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__GRID_LOCATION'
+        CONTROLLABLE_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__CONTROLLABLE_RESOURCE'
+        TRANCHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__TRANCHE'
+        VALUES_BY_TYPE2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__VALUES_BY_TYPE2'
+      required:
+      - OFFER
+      - MARKET_LOCATION
+      - METERING_LOCATION
+      - GRID_LOCATION
+      - CONTROLLABLE_RESOURCE
+      - TRANCHE
+      - VALUES_BY_TYPE2
+    PI_15003__masterData__OFFER:
+      type: object
+      properties:
+        requestReference:
+          $ref: ../../../bo4e-en/fields/bo/Offer/requestReference.yaml#/components/schemas/requestReference
+          x-edifact-segment:
+          - SG1.RFF+AAV
+        offerBindingPeriod:
+          $ref: '#/components/schemas/PI_15003__masterData__OFFER__offerBindingPeriod'
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__OFFER__positionData'
+        setupTransmissionPeriod:
+          $ref: '#/components/schemas/PI_15003__masterData__OFFER__setupTransmissionPeriod'
+      required:
+      - requestReference
+      - offerBindingPeriod
+      - positionData
+    PI_15003__masterData__OFFER__offerBindingPeriod:
+      type: object
+      properties:
+        duration:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/duration.yaml#/components/schemas/duration
+          x-edifact-segment:
+          - DTM+273
+        unit:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - DTM+273
+      required:
+      - duration
+      - unit
+    PI_15003__masterData__OFFER__positionData:
+      type: object
+      properties:
+        articleId:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/articleId.yaml#/components/schemas/articleId
+          x-edifact-segment:
+          - SG27.LIN+Z67.PIA+Z02
+          - SG27.LIN+Z68.PIA+Z02
+        positionDesignation:
+          $ref: ../../../bo4e-en/fields/com/OfferPosition/positionDesignation.yaml#/components/schemas/positionDesignation
+          x-edifact-segment:
+          - SG27.LIN+Z67
+          - SG27.LIN+Z68
+        positionPrice:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__OFFER__positionData__positionPrice'
+      required:
+      - articleId
+      - positionDesignation
+      - positionPrice
+    PI_15003__masterData__OFFER__positionData__positionPrice:
+      type: object
+      properties:
+        referenceValue:
+          $ref: ../../../bo4e-en/fields/com/Price/referenceValue.yaml#/components/schemas/referenceValue
+          x-edifact-segment:
+          - SG27.LIN+Z67.SG31.PRI+CAL
+          - SG27.LIN+Z68.SG31.PRI+CAL
+        amount:
+          $ref: ../../../bo4e-en/fields/com/Price/amount.yaml#/components/schemas/amount
+          x-edifact-segment:
+          - SG27.LIN+Z67.SG31.PRI+CAL
+          - SG27.LIN+Z68.SG31.PRI+CAL
+        priceType:
+          $ref: ../../../bo4e-en/fields/com/Price/priceType.yaml#/components/schemas/priceType
+          x-edifact-segment:
+          - SG27.LIN+Z67.SG31.PRI+CAL
+          - SG27.LIN+Z68.SG31.PRI+CAL
+        value:
+          $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG27.LIN+Z67.SG31.PRI+CAL
+          - SG27.LIN+Z68.SG31.PRI+CAL
+      required:
+      - referenceValue
+      - amount
+      - priceType
+      - value
+    PI_15003__masterData__OFFER__setupTransmissionPeriod:
+      type: object
+      properties:
+        duration:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/duration.yaml#/components/schemas/duration
+          x-edifact-segment:
+          - DTM+279
+        unit:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - DTM+279
+    PI_15003__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        marketLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - marketLocationId
+    PI_15003__masterData__METERING_LOCATION:
+      type: object
+      properties:
+        meteringLocationId:
+          $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - meteringLocationId
+    PI_15003__masterData__GRID_LOCATION:
+      type: object
+      properties:
+        gridLocationId:
+          $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - gridLocationId
+    PI_15003__masterData__CONTROLLABLE_RESOURCE:
+      type: object
+      properties:
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - resourceId
+    PI_15003__masterData__TRANCHE:
+      type: object
+      properties:
+        trancheId:
+          $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - trancheId
+    PI_15003__masterData__VALUES_BY_TYPE2:
+      type: object
+      properties:
+        configurationProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/configurationProduct.yaml#/components/schemas/configurationProduct
+          x-edifact-segment:
+          - SG27.LIN+Z68.PIA+5
+        meteringProduct:
+          $ref: ../../../bo4e-en/fields/bo/ValuesByType2/meteringProduct.yaml#/components/schemas/meteringProduct
+          x-edifact-segment:
+          - SG27.LIN+Z67.PIA+5
+        meterRegisters:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_15003__masterData__VALUES_BY_TYPE2__meterRegisters'
+      required:
+      - configurationProduct
+      - meteringProduct
+      - meterRegisters
+    PI_15003__masterData__VALUES_BY_TYPE2__meterRegisters:
+      type: object
+      properties:
+        obisCode:
+          $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
+          x-edifact-segment:
+          - SG27.LIN+Z67.PIA+5
+      required:
+      - obisCode

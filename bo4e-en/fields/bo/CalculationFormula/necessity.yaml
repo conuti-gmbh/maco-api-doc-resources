@@ -1,0 +1,5 @@
+components:
+  schemas:
+    necessity:
+      $ref: >-
+        ../../../enum/CalculationFormulaNecessity.yaml#/components/schemas/CalculationFormulaNecessity

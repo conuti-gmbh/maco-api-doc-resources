@@ -1,0 +1,8 @@
+components:
+  schemas:
+    EnergyDirection:
+      title: EnergyDirection
+      type: string
+      enum:
+        - FEED_OUT
+        - FEED_IN

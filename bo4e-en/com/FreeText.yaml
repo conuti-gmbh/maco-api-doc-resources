@@ -1,0 +1,16 @@
+components:
+  schemas:
+    FreeText:
+      title: FreeText
+      type: object
+      properties:
+        freeText1:
+          $ref: ../fields/com/FreeText/freeText1.yaml#/components/schemas/freeText1
+        freeText2:
+          $ref: ../fields/com/FreeText/freeText2.yaml#/components/schemas/freeText2
+        freeText3:
+          $ref: ../fields/com/FreeText/freeText3.yaml#/components/schemas/freeText3
+        freeText4:
+          $ref: ../fields/com/FreeText/freeText4.yaml#/components/schemas/freeText4
+        freeText5:
+          $ref: ../fields/com/FreeText/freeText5.yaml#/components/schemas/freeText5

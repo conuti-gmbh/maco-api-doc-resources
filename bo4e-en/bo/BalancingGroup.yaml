@@ -1,0 +1,20 @@
+components:
+  schemas:
+    BalancingGroup:
+      title: BalancingGroup
+      type: object
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/BalancingGroup.json
+      properties:
+        boType:
+          $ref: ../fields/bo/BalancingGroup/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/BalancingGroup/structureVersion.yaml#/components/schemas/structureVersion
+        designation:
+          $ref: >-
+            ../fields/bo/BalancingGroup/designation.yaml#/components/schemas/designation
+        priority:
+          $ref: >-
+            ../fields/bo/BalancingGroup/priority.yaml#/components/schemas/priority

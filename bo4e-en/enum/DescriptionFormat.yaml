@@ -1,0 +1,9 @@
+components:
+  schemas:
+    DescriptionFormat:
+      title: DescriptionFormat
+      type: string
+      enum:
+        - CODE
+        - FREE_TEXT
+        - PARTIALLY_STRUCTURED

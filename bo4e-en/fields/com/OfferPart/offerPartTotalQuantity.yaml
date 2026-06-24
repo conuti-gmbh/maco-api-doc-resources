@@ -1,0 +1,4 @@
+components:
+  schemas:
+    offerPartTotalQuantity:
+      $ref: ../../../com/Quantity.yaml#/components/schemas/Quantity

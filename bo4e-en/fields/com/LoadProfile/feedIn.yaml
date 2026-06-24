@@ -1,0 +1,4 @@
+components:
+  schemas:
+    feedIn:
+      type: boolean

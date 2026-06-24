@@ -1,0 +1,11 @@
+components:
+  schemas:
+    Error:
+      title: Error
+      type: object
+      properties:
+        typeValue:
+          $ref: ../fields/com/Error/typeValue.yaml#/components/schemas/typeValue
+        errorDetails:
+          $ref: >-
+            ../fields/com/Error/errorDetails.yaml#/components/schemas/errorDetails

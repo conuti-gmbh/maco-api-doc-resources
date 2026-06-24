@@ -1,0 +1,8 @@
+components:
+  schemas:
+    positionData:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/StatusNotificationPosition.yaml#/components/schemas/StatusNotificationPosition
+      nullable: true

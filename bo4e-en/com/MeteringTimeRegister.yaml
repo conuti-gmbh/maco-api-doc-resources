@@ -1,0 +1,15 @@
+components:
+  schemas:
+    MeteringTimeRegister:
+      title: MeteringTimeRegister
+      type: object
+      properties:
+        register:
+          $ref: >-
+            ../fields/com/MeteringTimeRegister/register.yaml#/components/schemas/register
+        meteringTimeDefinition:
+          $ref: >-
+            ../fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
+        offPeakCapable:
+          $ref: >-
+            ../fields/com/MeteringTimeRegister/offPeakCapable.yaml#/components/schemas/offPeakCapable
