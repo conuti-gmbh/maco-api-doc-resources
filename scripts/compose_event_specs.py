@@ -66,11 +66,13 @@ TRANSAKTIONSDATEN_REF = (
 # the cdoc/Transaktionsdaten field atom; nested reads (e.g. absender.rollencode-
 # nummer) become a focused sub-object whose properties are the read sub-fields,
 # resolved to the referenced BO's field atoms.
+# {root} = the bo4e atom mirror dir name (bo4e for DE, bo4e-en for EN) — taken
+# from --bo4e-dir so EN event specs reference bo4e-schema-en, not the DE atoms.
 CDOC_TD_FIELD_REF = (
-    "../../bo4e/fields/cdoc/Transaktionsdaten/{field}.yaml#/components/schemas/{field}"
+    "../../{root}/fields/cdoc/Transaktionsdaten/{field}.yaml#/components/schemas/{field}"
 )
 BO_SUBFIELD_REF = (
-    "../../bo4e/fields/{tier}/{bo}/{seg}.yaml#/components/schemas/{seg}"
+    "../../{root}/fields/{tier}/{bo}/{seg}.yaml#/components/schemas/{seg}"
 )
 # Matches the BO target inside a cdoc field atom's $ref, e.g.
 # "../../../bo/Marktteilnehmer.yaml#/..." → ("bo", "Marktteilnehmer").
@@ -248,7 +250,7 @@ def cdoc_field_ref(
         return None
     atom = bo4e_dir / "fields" / "cdoc" / "Transaktionsdaten" / f"{field}.yaml"
     if field in schema_names(atom, yaml, schema_cache):
-        return CDOC_TD_FIELD_REF.format(field=field)
+        return CDOC_TD_FIELD_REF.format(root=bo4e_dir.name, field=field)
     return None
 
 
@@ -306,7 +308,7 @@ def build_nested_field(
     for seg in segs:
         atom = bo4e_dir / "fields" / tier / bo / f"{seg}.yaml"
         if seg in schema_names(atom, yaml, schema_cache):
-            properties[seg] = {"$ref": BO_SUBFIELD_REF.format(tier=tier, bo=bo, seg=seg)}
+            properties[seg] = {"$ref": BO_SUBFIELD_REF.format(root=bo4e_dir.name, tier=tier, bo=bo, seg=seg)}
         else:
             warnings.add(
                 f"no atom for {field}.{seg} ({tier}/{bo}) — sub-field omitted"
@@ -406,15 +408,18 @@ def build_schema(
     td_reads: dict[str, list[str]],
     pruefi_source: str | None,
     bo4e_dir: Path | None,
+    bauteil_dirname: str,
     yaml: YAML,
     bo_cache: dict[str, tuple[str, str] | None],
     schema_cache: dict[Path, set],
     warnings: set[str],
 ) -> dict:
+    # bauteil_dirname = event-bauteil for DE, event-bauteil-en for EN — must match
+    # the dir the pool was built from, else EN events $ref the DE bauteile (broken).
     one_of = [
         {
             "$ref": (
-                f"../../event-bauteil/{format_version}/{scope}/"
+                f"../../{bauteil_dirname}/{format_version}/{scope}/"
                 f"PI_{pid}.yaml#/components/schemas/PI_{pid}__stammdaten"
             )
         }
@@ -579,8 +584,8 @@ def compose(
         name = schema_name(role, topic, all_ids)
         schema = build_schema(
             fmt, role, topic, pool, pending, all_ids, required_fields,
-            td_reads, pruefi_source, bo4e_dir, yaml, bo_cache, schema_cache,
-            td_warnings,
+            td_reads, pruefi_source, bo4e_dir, bauteil_dir.name, yaml, bo_cache,
+            schema_cache, td_warnings,
         )
 
         if fmt not in provenance_cache and fmt in representative:

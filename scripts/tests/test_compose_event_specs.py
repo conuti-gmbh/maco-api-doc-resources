@@ -590,3 +590,42 @@ def test_main_happy_path_returns_ok(tmp_path: Path) -> None:
     ])
     assert rc == comp.EXIT_OK
     assert (tmp_path / "event" / "202604" / "[LF]_TOPIC.yaml").is_file()
+
+
+def test_en_dirs_emit_en_refs(tmp_path: Path) -> None:
+    """EN run (--bauteil-dir/--bo4e-dir with -en names) must emit $refs into the
+    EN trees, not the DE defaults. Regression: event-en specs pointed at the DE
+    event-bauteil/ + bo4e/ (CI: 19 broken refs)."""
+    bauteil_en = tmp_path / "event-bauteil-en"
+    _write_bauteil(bauteil_en, "202604", "UTILMD", 55001)
+    bo4e_en = tmp_path / "bo4e-en"
+    mapping = _mapping("LF", "START_LIEFERBEGINN", [55001])
+    required = _required("LF", "START_LIEFERBEGINN", ["sparte"])
+    _provision_atoms(bo4e_en, required, set())
+
+    seen, written, warnings = comp.compose(
+        bauteil_dir=bauteil_en,
+        mapping=mapping,
+        required_doc=required,
+        target=tmp_path / "event-en",
+        bo4e_dir=bo4e_en,
+        filter_format=None,
+        filter_role=None,
+        filter_topic=None,
+        verbose=False,
+    )
+    assert (seen, written) == (1, 1)
+
+    path = tmp_path / "event-en" / "202604" / "[LF]_START_LIEFERBEGINN.yaml"
+    schema = _yaml().load(path.read_text(encoding="utf-8"))["components"]["schemas"][
+        "[LF] START_LIEFERBEGINN"
+    ]
+    # stammdaten oneOf -> event-bauteil-en/ (not event-bauteil/)
+    assert schema["properties"]["stammdaten"]["oneOf"][0]["$ref"] == (
+        "../../event-bauteil-en/202604/UTILMD/PI_55001.yaml"
+        "#/components/schemas/PI_55001__stammdaten"
+    )
+    # transaktionsdaten field -> bo4e-en/ (not bo4e/)
+    assert schema["properties"]["transaktionsdaten"]["properties"]["sparte"]["$ref"] == (
+        "../../bo4e-en/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte"
+    )
