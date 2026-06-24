@@ -139,6 +139,10 @@ jobs:
           echo "msb=$(git -C repos/maco-msb-processes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           VER=$(jq -r '.packages[] | select(.name=="conuti/bo4e-schema") | .version + "@" + (.source.reference // "?")' templater/composer.lock)
           echo "schema=${VER:-unknown}" >> "$GITHUB_OUTPUT"
+          # Bare version (e.g. 1.7.0) — used to check out bo4e-schema-en at the
+          # matching tag so the EN atoms are version-consistent with the DE schema.
+          SV=$(jq -r '.packages[] | select(.name=="conuti/bo4e-schema") | .version' templater/composer.lock)
+          echo "schema_version=${SV:-main}" >> "$GITHUB_OUTPUT"
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -219,11 +223,12 @@ jobs:
         working-directory: gen
         run: bash scripts/lint-openapi.sh bundle
 
-      # --- EN path (Story 11 / MACO-13088): build the bo4e-translator from
-      # source (Rust is preinstalled on the runner) and run it locally to
-      # translate each DE bundle to EN. No ECR/IAM — only the ID_RSA checkout.
-      # The translation map is taken from the templater's vendored bo4e-schema,
-      # so it matches the exact version that produced the DE specs.
+      # --- EN path (Story 11 / MACO-13088): build the parallel EN side from the
+      # canonical bo4e-schema-en atoms. Per-file translation (NOT bundle-level)
+      # so each prüfi spec's $refs are rewritten bo4e/ -> bo4e-en/ and resolve
+      # against the EN mirror. The translator is built from source and run
+      # locally (no ECR/IAM, only the ID_RSA checkout); the map comes from the
+      # templater's vendored bo4e-schema (version-consistent with the DE specs).
       - name: Checkout bo4e-translator (source)
         uses: actions/checkout@v4
         with:
@@ -231,6 +236,14 @@ jobs:
           ref: ${{ inputs.translator_ref }}
           ssh-key: ${{ secrets.ID_RSA }}
           path: translator-src
+
+      - name: Checkout bo4e-schema-en (matching version)
+        uses: actions/checkout@v4
+        with:
+          repository: conuti-gmbh/bo4e-schema-en
+          ref: ${{ steps.prov.outputs.schema_version }}
+          ssh-key: ${{ secrets.ID_RSA }}
+          path: bo4e-schema-en-src
 
       - name: Cache cargo
         uses: actions/cache@v4
@@ -242,15 +255,18 @@ jobs:
           key: cargo-${{ runner.os }}-${{ hashFiles('translator-src/Cargo.lock') }}
           restore-keys: cargo-${{ runner.os }}-
 
-      - name: Build translator + translate bundles to EN
+      - name: Build EN side (mirror + translate + derive)
         id: translate
         working-directory: gen
         env:
           MAP: ${{ github.workspace }}/templater/vendor/conuti/bo4e-schema/translation/v1/DE_to_EN.yaml
+          EN_MODEL: ${{ github.workspace }}/bo4e-schema-en-src/docs/openapi-model
         run: |
           [ -f "$MAP" ] || { echo "::error::translation map not found at $MAP"; exit 1; }
-          # Build needs no build-args (build_info uses option_env! fallbacks) and
-          # no submodule (the map is loaded at runtime, not compiled in).
+          [ -d "$EN_MODEL" ] || { echo "::error::bo4e-schema-en openapi-model missing at $EN_MODEL"; exit 1; }
+          # 1) canonical EN atom mirror
+          rsync -a --delete "$EN_MODEL/" bo4e-en/
+          # 2) build + start translator (no build-args, no submodule — map is runtime)
           cargo build --release --manifest-path "$GITHUB_WORKSPACE/translator-src/Cargo.toml"
           TRANSLATION_MAP_PATH="$MAP" PORT=8080 \
             "$GITHUB_WORKSPACE/translator-src/target/release/bo4e-translator" &
@@ -261,38 +277,50 @@ jobs:
             sleep 1
           done
           [ "$ok" = 1 ] || { echo "::error::translator not healthy"; kill "$TPID" 2>/dev/null || true; exit 1; }
-          echo "image=maco-bo4e-translator-app@$(git -C "$GITHUB_WORKSPACE/translator-src" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          for F in ${{ steps.formats.outputs.list }}; do
-            echo "::group::translate $F"
-            # OpenAPI route: YAML in, JSON out (Story 04). Schema/component names
-            # stay DE by design; property names/descriptions/enums become EN.
-            curl -fsS -X POST --data-binary "@bundle/maco-bo4e-$F.openapi.yaml" \
-              -H 'Content-Type: application/yaml' \
-              http://localhost:8080/api/translate/openapi/de/en/ \
-              -o "bundle/maco-bo4e-$F-en.openapi.json"
-            echo "::endgroup::"
-          done
+          # 3) per-file translate pruefi/ -> pruefi-en/ (refs -> bo4e-en/, JSON->YAML)
+          python -m scripts.translate_specs --source pruefi --target pruefi-en \
+            --endpoint http://localhost:8080/api/translate/openapi/de/en/
           kill "$TPID" 2>/dev/null || true
+          echo "translator=maco-bo4e-translator-app@$(git -C "$GITHUB_WORKSPACE/translator-src" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          # 4) derive EN event-bauteil + event (mapping is language-neutral; atoms
+          #    resolve against the EN mirror)
+          python -m scripts.filter_event_bauteile --source pruefi-en --target event-bauteil-en
+          python -m scripts.compose_event_specs \
+            --bauteil-dir event-bauteil-en --bo4e-dir bo4e-en --target event-en
 
-      - name: Lint EN bundles
+      - name: Check EN $ref consistency
+        working-directory: gen
+        run: python -m scripts.check_refs --roots pruefi-en,event-bauteil-en,event-en
+
+      - name: Bundle EN per format
         working-directory: gen
         run: |
-          for f in bundle/*-en.openapi.json; do
-            vacuum lint --ruleset vacuum-ruleset.yaml --no-banner --no-style --silent "$f" \
-              || { echo "::error::EN bundle lint failed: $f"; exit 1; }
-            echo "EN bundle OK: $f"
+          for F in ${{ steps.formats.outputs.list }}; do
+            echo "::group::bundle-en $F"
+            python -m scripts.bundle_spec \
+              --repo-root . \
+              --format "$F" \
+              --roots event-en,pruefi-en \
+              --catalog-roots bo4e-en/bo,bo4e-en/com,bo4e-en/cdoc,bo4e-en/enum \
+              --out "bundle/maco-bo4e-$F-en.openapi.yaml"
+            echo "::endgroup::"
           done
+
+      - name: Lint EN specs + bundles
+        working-directory: gen
+        run: bash scripts/lint-openapi.sh pruefi-en event-bauteil-en event-en bundle
 
       - name: Publish per-format branches
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TRANSLATOR: ${{ steps.translate.outputs.image }}
+          TRANSLATOR: ${{ steps.translate.outputs.translator }}
           TRAILER: >-
             Generated from maco-templater-app@${{ steps.prov.outputs.templater }},
             maco-lf-processes@${{ steps.prov.outputs.lf }},
             maco-nb-processes@${{ steps.prov.outputs.nb }},
             maco-msb-processes@${{ steps.prov.outputs.msb }},
-            conuti/bo4e-schema@${{ steps.prov.outputs.schema }}
+            conuti/bo4e-schema@${{ steps.prov.outputs.schema }},
+            conuti/bo4e-schema-en@${{ steps.prov.outputs.schema_version }}
         run: |
           set -euo pipefail
           git clone "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" publish
@@ -304,18 +332,20 @@ jobs:
               # fast-forwards) — fresh branch off main only if it doesn't exist
               # yet. Avoids the non-fast-forward rejection of rebuilding from main.
               git checkout -B "v$F" "origin/v$F" 2>/dev/null || git checkout -B "v$F" origin/main
-              # Wipe any prior output; a v<format> branch holds exactly one format.
-              rm -rf bo4e pruefi event-bauteil event bundle
-              mkdir -p pruefi event-bauteil event bundle
+              # Wipe any prior output; a v<format> branch holds exactly one format
+              # (DE + EN side).
+              rm -rf bo4e pruefi event-bauteil event bo4e-en pruefi-en event-bauteil-en event-en bundle
+              mkdir -p pruefi event-bauteil event pruefi-en event-bauteil-en event-en bundle
               cp -r "../gen/bo4e" "./bo4e"
+              cp -r "../gen/bo4e-en" "./bo4e-en"
               # A format may exist in only one dimension (e.g. retired from the
               # templater registry but still carried in the process repos as
               # stub events, or vice versa) — copy each part only if present.
-              [ -d "../gen/pruefi/$F" ]        && cp -r "../gen/pruefi/$F"        "./pruefi/$F"        || echo "note: no pruefi/ for $F"
-              [ -d "../gen/event-bauteil/$F" ] && cp -r "../gen/event-bauteil/$F" "./event-bauteil/$F" || echo "note: no event-bauteil/ for $F"
-              [ -d "../gen/event/$F" ]         && cp -r "../gen/event/$F"         "./event/$F"         || echo "note: no event/ for $F"
+              for d in pruefi event-bauteil event pruefi-en event-bauteil-en event-en; do
+                [ -d "../gen/$d/$F" ] && cp -r "../gen/$d/$F" "./$d/$F" || echo "note: no $d/ for $F"
+              done
               cp "../gen/bundle/maco-bo4e-$F.openapi.yaml" "./bundle/"
-              [ -f "../gen/bundle/maco-bo4e-$F-en.openapi.json" ] && cp "../gen/bundle/maco-bo4e-$F-en.openapi.json" "./bundle/" || echo "note: no EN bundle for $F"
+              [ -f "../gen/bundle/maco-bo4e-$F-en.openapi.yaml" ] && cp "../gen/bundle/maco-bo4e-$F-en.openapi.yaml" "./bundle/" || echo "note: no EN bundle for $F"
               git add -A
               if git diff --cached --quiet; then
                 echo "v$F: no changes"

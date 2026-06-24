@@ -10,6 +10,7 @@ Generator-Skripte für die Doku-Pipeline. Konsumieren `pruefi/` (Templater-Outpu
 | `compose_event_specs.py` | MACO-13040 | ✓ implementiert — Event-Specs aus event-bauteil/ + event-mapping.json + event-required-fields.json komponieren |
 | `bundle_spec.py` | MACO-13229 | ✓ implementiert — atomare Specs zu einer Single-Spec je Format bündeln (Apidog-Importartefakt) |
 | `check_refs.py` | MACO-13087 | ✓ implementiert — externe `$ref` aus pruefi/ event-bauteil/ event/ gegen vorhandene Files prüfen (CI-Gate) |
+| `translate_specs.py` | MACO-13088 | ✓ implementiert — Specs per Translator-Endpoint übersetzen (pruefi/ → pruefi-en/, JSON→YAML), Refs auf `bo4e-en/` |
 
 ## Setup
 
