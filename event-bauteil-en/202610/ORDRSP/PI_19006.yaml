@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: PI_19006
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_19006:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_19006__masterData'
+      required:
+      - masterData
+    PI_19006__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19006__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19006__masterData__ORDER'
+      required:
+      - REQUEST
+    PI_19006__masterData__REQUEST:
+      type: object
+      properties:
+        requestCategory:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestCategory.yaml#/components/schemas/requestCategory
+          x-edifact-segment:
+          - BGM+[Z12|Z93]
+      required:
+      - requestCategory
+    PI_19006__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+        endDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - DTM+472
+        startDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - DTM+469

@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: PI_29002
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_29002:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_29002__masterData'
+      required:
+      - masterData
+    PI_29002__masterData:
+      type: object
+      properties:
+        TRADE_DISCREPANCY:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_29002__masterData__TRADE_DISCREPANCY'
+      required:
+      - TRADE_DISCREPANCY
+    PI_29002__masterData__TRADE_DISCREPANCY:
+      type: object
+      properties:
+        justification:
+          $ref: '#/components/schemas/PI_29002__masterData__TRADE_DISCREPANCY__justification'
+        number:
+          $ref: ../../../bo4e-en/fields/bo/TradeDiscrepancy/number.yaml#/components/schemas/number
+          x-edifact-segment:
+          - SG2.DOC+[Z41|Z42]
+        typeValue:
+          $ref: ../../../bo4e-en/fields/bo/TradeDiscrepancy/typeValue.yaml#/components/schemas/typeValue
+          x-edifact-segment:
+          - SG2.DOC+[Z41|Z42]
+      required:
+      - justification
+      - number
+      - typeValue
+    PI_29002__masterData__TRADE_DISCREPANCY__justification:
+      type: object
+      properties:
+        reason:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/reason.yaml#/components/schemas/reason
+          x-edifact-segment:
+          - SG2.DOC+[Z41|Z42].SG3.AJT
+        hint:
+          $ref: ../../../bo4e-en/fields/com/TradeDiscrepancyJustification/hint.yaml#/components/schemas/hint
+          x-edifact-segment:
+          - SG2.DOC+[Z41|Z42].SG3.AJT.FTX+ACB
+      required:
+      - reason
+      - hint

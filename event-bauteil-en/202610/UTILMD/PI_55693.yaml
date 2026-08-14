@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: PI_55693
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_55693:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55693__masterData'
+      required:
+      - masterData
+    PI_55693__masterData:
+      type: object
+      properties:
+        TECHNICAL_RESOURCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55693__masterData__TECHNICAL_RESOURCE'
+        USAGE_PERIOD:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55693__masterData__USAGE_PERIOD'
+      required:
+      - TECHNICAL_RESOURCE
+      - USAGE_PERIOD
+    PI_55693__masterData__TECHNICAL_RESOURCE:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+        remoteControllability:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/remoteControllability.yaml#/components/schemas/remoteControllability
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52.SG10.CCI+Z24.CAV+[ZW5|ZW6]
+        validityPeriod:
+          $ref: '#/components/schemas/PI_55693__masterData__TECHNICAL_RESOURCE__validityPeriod'
+        resourceId:
+          $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
+          x-edifact-segment:
+          - SG4.IDE+24.SG5.LOC+Z20
+      required:
+      - dataQuality
+      - validityPeriod
+      - resourceId
+    PI_55693__masterData__TECHNICAL_RESOURCE__validityPeriod:
+      type: object
+      properties:
+        periodId:
+          $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z52
+      required:
+      - periodId
+    PI_55693__masterData__USAGE_PERIOD:
+      type: object
+      properties:
+        dataQuality:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/dataQuality.yaml#/components/schemas/dataQuality
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z25
+        usageTo:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53].DTM+Z26
+        periodId:
+          $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
+          x-edifact-segment:
+          - SG4.IDE+24.SG6.RFF+[Z49|Z53]
+      required:
+      - dataQuality
+      - usageFrom
+      - periodId

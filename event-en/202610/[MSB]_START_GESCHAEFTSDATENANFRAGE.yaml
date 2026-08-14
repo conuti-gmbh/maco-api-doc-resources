@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[MSB] START_GESCHAEFTSDATENANFRAGE'
   version: '202610'
-  x-bpmn-source-sha: aa74db2c
-  x-bo4e-schema-version: 1.7.1
-  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+  x-bpmn-source-sha: 3c6d64fa
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
 components:
   schemas:
     '[MSB] START_GESCHAEFTSDATENANFRAGE':
@@ -14,6 +14,11 @@ components:
       - transactionData
       - additionalData
       properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/ORDERS/PI_17104.yaml#/components/schemas/PI_17104__masterData
+          - $ref: ../../event-bauteil-en/202610/ORDERS/PI_17126.yaml#/components/schemas/PI_17126__masterData
+          - $ref: ../../event-bauteil-en/202610/ORDERS/PI_17132.yaml#/components/schemas/PI_17132__masterData
         transactionData:
           type: object
           required:
@@ -54,7 +59,3 @@ components:
               type: string
               const: START_GESCHAEFTSDATENANFRAGE
               default: START_BUSINESS_DATA_REQUEST
-      x-pending-pruefis:
-      - '17104'
-      - '17126'
-      - '17132'

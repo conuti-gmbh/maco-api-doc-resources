@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: PI_17004
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_17004:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17004__masterData'
+      required:
+      - masterData
+    PI_17004__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17004__masterData__REQUEST'
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17004__masterData__ORDER'
+      required:
+      - REQUEST
+      - ORDER
+    PI_17004__masterData__REQUEST:
+      type: object
+      properties:
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++Z13
+        locationId:
+          $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - requestType
+      - locationId
+    PI_17004__masterData__ORDER:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17004__masterData__ORDER__positionData'
+      required:
+      - positionData
+    PI_17004__masterData__ORDER__positionData:
+      type: object
+      properties:
+        requestReason:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/requestReason.yaml#/components/schemas/requestReason
+          x-edifact-segment:
+          - SG29.LIN.IMD++[Z46|Z47|Z48|Z49]
+        validFrom:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/validFrom.yaml#/components/schemas/validFrom
+          x-edifact-segment:
+          - SG29.LIN.DTM+7
+      required:
+      - requestReason
+      - validFrom

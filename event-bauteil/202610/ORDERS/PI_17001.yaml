@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: PI_17001
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_17001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17001__stammdaten'
+      required:
+        - stammdaten
+    PI_17001__stammdaten:
+      type: object
+      properties:
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17001__stammdaten__AUFTRAG'
+      required:
+        - AUFTRAG
+    PI_17001__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17001__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - ausfuehrungsdatum
+        - positionsdaten
+    PI_17001__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        apnKommunikationsdaten:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/apnKommunikationsdaten.yaml#/components/schemas/apnKommunikationsdaten'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z32
+        endpunktAdresse:
+          $ref: '#/components/schemas/PI_17001__stammdaten__AUFTRAG__positionsdaten__endpunktAdresse'
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN
+        positionsnummerAngebot:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummerAngebot.yaml#/components/schemas/positionsnummerAngebot'
+          x-edifact-segment:
+            - SG29.LIN.SG34.RFF+Z03
+        wakeUpPort:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/wakeUpPort.yaml#/components/schemas/wakeUpPort'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z31
+        zertifikatsInformationen:
+          $ref: '#/components/schemas/PI_17001__stammdaten__AUFTRAG__positionsdaten__zertifikatsInformationen'
+      required:
+        - positionsnummer
+        - positionsnummerAngebot
+    PI_17001__stammdaten__AUFTRAG__positionsdaten__endpunktAdresse:
+      type: object
+      properties:
+        gwaAdminService:
+          $ref: '../../../bo4e/fields/com/EndpunktAdresse/gwaAdminService.yaml#/components/schemas/gwaAdminService'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z29
+        gwaManagement:
+          $ref: '../../../bo4e/fields/com/EndpunktAdresse/gwaManagement.yaml#/components/schemas/gwaManagement'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z29
+        gwaNTP:
+          $ref: '../../../bo4e/fields/com/EndpunktAdresse/gwaNTP.yaml#/components/schemas/gwaNTP'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z29
+    PI_17001__stammdaten__AUFTRAG__positionsdaten__zertifikatsInformationen:
+      type: object
+      properties:
+        commonNameZertifikat:
+          $ref: '../../../bo4e/fields/com/Zertifikatsinformationen/commonNameZertifikat.yaml#/components/schemas/commonNameZertifikat'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z30
+        seriennummerZertifikat:
+          $ref: '../../../bo4e/fields/com/Zertifikatsinformationen/seriennummerZertifikat.yaml#/components/schemas/seriennummerZertifikat'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z30
+        uriSubCA:
+          $ref: '../../../bo4e/fields/com/Zertifikatsinformationen/uriSubCA.yaml#/components/schemas/uriSubCA'
+          x-edifact-segment:
+            - SG29.LIN.FTX+Z30

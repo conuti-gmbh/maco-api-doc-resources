@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_STORNO_SE_AUFTRAG'
   version: '202610'
-  x-bpmn-source-sha: 3a7c8fc1
-  x-bo4e-schema-version: 1.7.1
-  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+  x-bpmn-source-sha: 25b8cceb
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
 components:
   schemas:
     '[LF] START_STORNO_SE_AUFTRAG':
@@ -14,6 +14,9 @@ components:
       - transactionData
       - additionalData
       properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/ORDCHG/PI_39000.yaml#/components/schemas/PI_39000__masterData
         transactionData:
           type: object
           required:
@@ -57,5 +60,3 @@ components:
               type: string
               const: START_STORNO_SE_AUFTRAG
               default: START_STORNO_SE_AUFTRAG
-      x-pending-pruefis:
-      - '39000'

@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: PI_55080
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_55080:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_55080__masterData'
+      required:
+      - masterData
+    PI_55080__masterData:
+      type: object
+      properties:
+        MARKET_LOCATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55080__masterData__MARKET_LOCATION'
+      required:
+      - MARKET_LOCATION
+    PI_55080__masterData__MARKET_LOCATION:
+      type: object
+      properties:
+        requiredProductPackage:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55080__masterData__MARKET_LOCATION__requiredProductPackage'
+      required:
+      - requiredProductPackage
+    PI_55080__masterData__MARKET_LOCATION__requiredProductPackage:
+      type: object
+      properties:
+        product:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_55080__masterData__MARKET_LOCATION__requiredProductPackage__product'
+        productPackageId:
+          $ref: ../../../bo4e-en/fields/com/ProductPackage/productPackageId.yaml#/components/schemas/productPackageId
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z79
+      required:
+      - product
+      - productPackageId
+    PI_55080__masterData__MARKET_LOCATION__requiredProductPackage__product:
+      type: object
+      properties:
+        productCode:
+          $ref: ../../../bo4e-en/fields/com/Product/productCode.yaml#/components/schemas/productCode
+          x-edifact-segment:
+          - SG4.IDE+24.SG8.SEQ+Z79.PIA+5
+      required:
+      - productCode

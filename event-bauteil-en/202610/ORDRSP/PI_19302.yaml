@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: PI_19302
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_19302:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_19302__masterData'
+      required:
+      - masterData
+    PI_19302__masterData:
+      type: object
+      properties:
+        REQUEST:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19302__masterData__REQUEST'
+      required:
+      - REQUEST
+    PI_19302__masterData__REQUEST:
+      type: object
+      properties:
+        subscription:
+          $ref: ../../../bo4e-en/fields/bo/Request/subscription.yaml#/components/schemas/subscription
+          x-edifact-segment:
+          - IMD++Z02
+        requestCategory:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestCategory.yaml#/components/schemas/requestCategory
+          x-edifact-segment:
+          - BGM+[7|Z14]
+        requestType:
+          $ref: ../../../bo4e-en/fields/bo/Request/requestType.yaml#/components/schemas/requestType
+          x-edifact-segment:
+          - IMD++[Z11|Z12]
+      required:
+      - subscription
+      - requestCategory

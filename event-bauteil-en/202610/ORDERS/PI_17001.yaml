@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: PI_17001
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    PI_17001:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_17001__masterData'
+      required:
+      - masterData
+    PI_17001__masterData:
+      type: object
+      properties:
+        ORDER:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17001__masterData__ORDER'
+      required:
+      - ORDER
+    PI_17001__masterData__ORDER:
+      type: object
+      properties:
+        executionDate:
+          $ref: ../../../bo4e-en/fields/bo/Order/executionDate.yaml#/components/schemas/executionDate
+          x-edifact-segment:
+          - DTM+203
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17001__masterData__ORDER__positionData'
+      required:
+      - executionDate
+      - positionData
+    PI_17001__masterData__ORDER__positionData:
+      type: object
+      properties:
+        apnCommunicationData:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/apnCommunicationData.yaml#/components/schemas/apnCommunicationData
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z32
+        endpointAddress:
+          $ref: '#/components/schemas/PI_17001__masterData__ORDER__positionData__endpointAddress'
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG29.LIN
+        offerPositionNumber:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/offerPositionNumber.yaml#/components/schemas/offerPositionNumber
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z03
+        wakeUpPort:
+          $ref: ../../../bo4e-en/fields/com/OrderPosition/wakeUpPort.yaml#/components/schemas/wakeUpPort
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z31
+        certificateInformation:
+          $ref: '#/components/schemas/PI_17001__masterData__ORDER__positionData__certificateInformation'
+      required:
+      - positionNumber
+      - offerPositionNumber
+    PI_17001__masterData__ORDER__positionData__endpointAddress:
+      type: object
+      properties:
+        gwaAdminService:
+          $ref: ../../../bo4e-en/fields/com/EndpointAddress/gwaAdminService.yaml#/components/schemas/gwaAdminService
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z29
+        gwaManagement:
+          $ref: ../../../bo4e-en/fields/com/EndpointAddress/gwaManagement.yaml#/components/schemas/gwaManagement
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z29
+        gwaNTP:
+          $ref: ../../../bo4e-en/fields/com/EndpointAddress/gwaNTP.yaml#/components/schemas/gwaNTP
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z29
+    PI_17001__masterData__ORDER__positionData__certificateInformation:
+      type: object
+      properties:
+        commonNameCertificate:
+          $ref: ../../../bo4e-en/fields/com/CertificateInformation/commonNameCertificate.yaml#/components/schemas/commonNameCertificate
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z30
+        serialNumberCertificate:
+          $ref: ../../../bo4e-en/fields/com/CertificateInformation/serialNumberCertificate.yaml#/components/schemas/serialNumberCertificate
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z30
+        uriSubCA:
+          $ref: ../../../bo4e-en/fields/com/CertificateInformation/uriSubCA.yaml#/components/schemas/uriSubCA
+          x-edifact-segment:
+          - SG29.LIN.FTX+Z30

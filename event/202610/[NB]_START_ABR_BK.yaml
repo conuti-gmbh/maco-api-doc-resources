@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_ABR_BK'
   version: '202610'
-  x-bpmn-source-sha: eaf359e3
-  x-bo4e-schema-version: 1.7.1
-  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+  x-bpmn-source-sha: b9f275c7
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
 components:
   schemas:
     '[NB] START_ABR_BK':
@@ -17,7 +17,9 @@ components:
         stammdaten:
           oneOf:
             - $ref: ../../event-bauteil/202610/UTILMD/PI_55126.yaml#/components/schemas/PI_55126__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD/PI_55613.yaml#/components/schemas/PI_55613__stammdaten
             - $ref: ../../event-bauteil/202610/UTILMD/PI_55672.yaml#/components/schemas/PI_55672__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD/PI_55674.yaml#/components/schemas/PI_55674__stammdaten
         transaktionsdaten:
           type: object
           required:
@@ -64,6 +66,3 @@ components:
               type: string
               const: START_ABR_BK
               default: START_ABR_BK
-      x-pending-pruefis:
-        - '55613'
-        - '55674'

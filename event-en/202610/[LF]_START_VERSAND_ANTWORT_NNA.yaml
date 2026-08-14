@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_VERSAND_ANTWORT_NNA'
   version: '202610'
-  x-bpmn-source-sha: 3a7c8fc1
-  x-bo4e-schema-version: 1.7.1
-  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+  x-bpmn-source-sha: 25b8cceb
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
 components:
   schemas:
     '[LF] START_VERSAND_ANTWORT_NNA':
@@ -14,6 +14,12 @@ components:
       - transactionData
       - additionalData
       properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/REMADV/PI_33001.yaml#/components/schemas/PI_33001__masterData
+          - $ref: ../../event-bauteil-en/202610/REMADV/PI_33002.yaml#/components/schemas/PI_33002__masterData
+          - $ref: ../../event-bauteil-en/202610/REMADV/PI_33003.yaml#/components/schemas/PI_33003__masterData
+          - $ref: ../../event-bauteil-en/202610/REMADV/PI_33004.yaml#/components/schemas/PI_33004__masterData
         transactionData:
           type: object
           required:
@@ -41,12 +47,12 @@ components:
             messageDate:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/messageDate.yaml#/components/schemas/messageDate
             verificationIdentifier:
-              enum:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 33001, 33002, 33003, 33004.
+              examples:
               - '33001'
               - '33002'
               - '33003'
               - '33004'
-              description: Pflichtfeld — bestimmt direkt die Antwort-Variante. Der Body-Wert routet den Versand-Prozess (T_-Gateway über ${pruefidentifikator}).
             sector:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
         additionalData:
@@ -61,8 +67,3 @@ components:
               type: string
               const: START_VERSAND_ANTWORT_NNA
               default: START_DISPATCH_RESPONSE_NNA
-      x-pending-pruefis:
-      - '33001'
-      - '33002'
-      - '33003'
-      - '33004'
