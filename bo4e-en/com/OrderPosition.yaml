@@ -19,6 +19,9 @@ components:
         positionAmount:
           $ref: >-
             ../fields/com/OrderPosition/positionAmount.yaml#/components/schemas/positionAmount
+        validFrom:
+          $ref: >-
+            ../fields/com/OrderPosition/validFrom.yaml#/components/schemas/validFrom
         startDate:
           $ref: >-
             ../fields/com/OrderPosition/startDate.yaml#/components/schemas/startDate
@@ -60,3 +63,6 @@ components:
         apnCommunicationData:
           $ref: >-
             ../fields/com/OrderPosition/apnCommunicationData.yaml#/components/schemas/apnCommunicationData
+        apnCommunicationDataAccessParameters:
+          $ref: >-
+            ../fields/com/OrderPosition/apnCommunicationDataAccessParameters.yaml#/components/schemas/apnCommunicationDataAccessParameters

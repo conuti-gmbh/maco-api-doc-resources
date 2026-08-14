@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_UEBERSICHT_LEISTUNGSKURVENDEF'
   version: '202604'
-  x-bpmn-source-sha: 3a7c8fc1
-  x-bo4e-schema-version: 1.7.1
-  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+  x-bpmn-source-sha: 25b8cceb
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
 components:
   schemas:
     '[LF] START_UEBERSICHT_LEISTUNGSKURVENDEF':
@@ -21,13 +21,25 @@ components:
           type: object
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           properties:
             sender:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sender.yaml#/components/schemas/sender
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            inquiryReference:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/inquiryReference.yaml#/components/schemas/inquiryReference
             receiver:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/receiver.yaml#/components/schemas/receiver
+              type: object
+              properties:
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
             sector:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
             verificationIdentifier:
@@ -45,4 +57,4 @@ components:
             eventname:
               type: string
               const: START_UEBERSICHT_LEISTUNGSKURVENDEF
-              default: START_UEBERSICHT_LEISTUNGSKURVENDEF
+              default: START_OVERVIEW_LOAD_CURVE_DEFINITION

@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_BESTELLUNG_GERAETUEBERNAHME'
+  version: '202604'
+  x-bpmn-source-sha: 3c6d64fa
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+components:
+  schemas:
+    '[MSB] START_BESTELLUNG_GERAETUEBERNAHME':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202604/ORDERS/PI_17001.yaml#/components/schemas/PI_17001__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - sector
+          properties:
+            sender:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sender.yaml#/components/schemas/sender
+            receiver:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/receiver.yaml#/components/schemas/receiver
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17001.
+              examples:
+              - '17001'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_BESTELLUNG_GERAETUEBERNAHME
+              default: START_BESTELLUNG_GERAETUEBERNAHME

@@ -337,6 +337,10 @@ components:
           $ref: '#/components/schemas/field.Consumption.position'
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN
+        servicePeriod:
+          $ref: '#/components/schemas/field.Consumption.servicePeriod'
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+306
         startDate:
           $ref: '#/components/schemas/field.Consumption.startDate'
           x-edifact-segment:
@@ -350,11 +354,9 @@ components:
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
       required:
-      - endDate
       - measurementValueStatus
       - obisNumber
       - position
-      - startDate
       - value
       type: object
     bauteil.PI_13009.masterData.ENERGY_QUANTITY.energyConsumption.statusAdditionalInformation:
@@ -939,6 +941,261 @@ components:
       - position
       - value
       type: object
+    bauteil.PI_15001.masterData:
+      properties:
+        METER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.METER'
+          type: array
+        METERING_LOCATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.METERING_LOCATION'
+          type: array
+        OFFER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.OFFER'
+          type: array
+        REQUEST:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.REQUEST'
+          type: array
+      required:
+      - REQUEST
+      - OFFER
+      - METERING_LOCATION
+      - METER
+      type: object
+    bauteil.PI_15001.masterData.METER:
+      properties:
+        calibrationUntil:
+          $ref: '#/components/schemas/field.Meter.calibrationUntil'
+          x-edifact-segment:
+          - SG27.LIN.DTM+Z04
+        devices:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.METER.devices'
+          type: array
+        measurementValueCapture:
+          $ref: '#/components/schemas/field.Meter.measurementValueCapture'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E12.CAV
+        meterCharacteristic:
+          $ref: '#/components/schemas/field.Meter.meterCharacteristic'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterSize:
+          $ref: '#/components/schemas/field.Meter.meterSize'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterType:
+          $ref: '#/components/schemas/field.Meter.meterType'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        meterTypeSpecification:
+          $ref: '#/components/schemas/field.Meter.meterTypeSpecification'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        mountingType:
+          $ref: '#/components/schemas/field.Meter.mountingType'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z28.CAV
+        tariffType:
+          $ref: '#/components/schemas/field.Meter.tariffType'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+      required:
+      - mountingType
+      - devices
+      - measurementValueCapture
+      - meterType
+      - meterTypeSpecification
+      type: object
+    bauteil.PI_15001.masterData.METER.devices:
+      properties:
+        deviceProperties:
+          $ref: '#/components/schemas/bauteil.PI_15001.masterData.METER.devices.deviceProperties'
+      required:
+      - deviceProperties
+      type: object
+    bauteil.PI_15001.masterData.METER.devices.deviceProperties:
+      properties:
+        deviceAttribute:
+          $ref: '#/components/schemas/field.DeviceProperties.deviceAttribute'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z25.CAV
+          - SG27.LIN.SG28.CCI+Z26.CAV
+          - SG27.LIN.SG28.CCI+Z27.CAV
+          - SG27.LIN.SG28.CCI+Z64.CAV
+        factor:
+          $ref: '#/components/schemas/field.DeviceProperties.factor'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z25.CAV
+      required:
+      - factor
+      - deviceAttribute
+      type: object
+    bauteil.PI_15001.masterData.METERING_LOCATION:
+      properties:
+        meteringLocationId:
+          $ref: '#/components/schemas/field.MeteringLocation.meteringLocationId'
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - meteringLocationId
+      type: object
+    bauteil.PI_15001.masterData.OFFER:
+      properties:
+        offerDate:
+          $ref: '#/components/schemas/field.Offer.offerDate'
+          x-edifact-segment:
+          - DTM+76
+        positionData:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.OFFER.positionData'
+          type: array
+        requestReference:
+          $ref: '#/components/schemas/field.Offer.requestReference'
+          x-edifact-segment:
+          - SG1.RFF+AAV
+      required:
+      - requestReference
+      - offerDate
+      - positionData
+      type: object
+    bauteil.PI_15001.masterData.OFFER.positionData:
+      properties:
+        articleNumber:
+          $ref: '#/components/schemas/field.OfferPosition.articleNumber'
+          x-edifact-segment:
+          - SG27.LIN
+          - SG27.LIN.DTM+[94|Z03]
+          - SG27.LIN.GIN+BN
+          - SG27.LIN.SG32.RFF+Z09
+        freeText:
+          $ref: '#/components/schemas/field.OfferPosition.freeText'
+          x-edifact-segment:
+          - SG27.LIN.FTX+ACB
+        involvedMarketPartner:
+          $ref: '#/components/schemas/bauteil.PI_15001.masterData.OFFER.positionData.involvedMarketPartner'
+        offerable:
+          $ref: '#/components/schemas/field.OfferPosition.offerable'
+          x-edifact-segment:
+          - SG27.LIN.IMD++Z09
+        positionDesignation:
+          $ref: '#/components/schemas/field.OfferPosition.positionDesignation'
+          x-edifact-segment:
+          - SG27.LIN
+        positionPrice:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.masterData.OFFER.positionData.positionPrice'
+          type: array
+        referenceCatalogNumber:
+          $ref: '#/components/schemas/bauteil.PI_15001.masterData.OFFER.positionData.referenceCatalogNumber'
+      required:
+      - articleNumber
+      - involvedMarketPartner
+      - positionDesignation
+      - positionPrice
+      - referenceCatalogNumber
+      type: object
+    bauteil.PI_15001.masterData.OFFER.positionData.involvedMarketPartner:
+      properties:
+        roleCodeNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+          x-edifact-segment:
+          - SG27.LIN.SG42.NAD+VY
+        roleCodeType:
+          $ref: '#/components/schemas/field.MarketParticipant.roleCodeType'
+          x-edifact-segment:
+          - SG27.LIN.SG42.NAD+VY
+      required:
+      - roleCodeNumber
+      - roleCodeType
+      type: object
+    bauteil.PI_15001.masterData.OFFER.positionData.positionPrice:
+      properties:
+        amount:
+          $ref: '#/components/schemas/field.Price.amount'
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+        referenceValue:
+          $ref: '#/components/schemas/field.Price.referenceValue'
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+        value:
+          $ref: '#/components/schemas/field.Price.value'
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+      required:
+      - referenceValue
+      - amount
+      - value
+      type: object
+    bauteil.PI_15001.masterData.OFFER.positionData.referenceCatalogNumber:
+      properties:
+        catalogNumber:
+          $ref: '#/components/schemas/field.CatalogReference.catalogNumber'
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+        lineNumber:
+          $ref: '#/components/schemas/field.CatalogReference.lineNumber'
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+        versionNumber:
+          $ref: '#/components/schemas/field.CatalogReference.versionNumber'
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+      required:
+      - catalogNumber
+      - versionNumber
+      - lineNumber
+      type: object
+    bauteil.PI_15001.masterData.REQUEST:
+      properties:
+        requestType:
+          $ref: '#/components/schemas/field.Request.requestType'
+          x-edifact-segment:
+          - IMD++[Z07|Z08]
+      required:
+      - requestType
+      type: object
+    bauteil.PI_17001.masterData:
+      properties:
+        ORDER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17001.masterData.ORDER'
+          type: array
+      required:
+      - ORDER
+      type: object
+    bauteil.PI_17001.masterData.ORDER:
+      properties:
+        executionDate:
+          $ref: '#/components/schemas/field.Order.executionDate'
+          x-edifact-segment:
+          - DTM+203
+        positionData:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17001.masterData.ORDER.positionData'
+          type: array
+      required:
+      - executionDate
+      - positionData
+      type: object
+    bauteil.PI_17001.masterData.ORDER.positionData:
+      properties:
+        offerPositionNumber:
+          $ref: '#/components/schemas/field.OrderPosition.offerPositionNumber'
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z03
+        positionNumber:
+          $ref: '#/components/schemas/field.OrderPosition.positionNumber'
+          x-edifact-segment:
+          - SG29.LIN
+      required:
+      - positionNumber
+      - offerPositionNumber
+      type: object
     bauteil.PI_17003.masterData:
       properties:
         METERING_LOCATION:
@@ -1094,6 +1351,82 @@ components:
           - IMD++Z02
       required:
       - subscription
+      - locationId
+      type: object
+    bauteil.PI_17009.masterData:
+      properties:
+        METER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.masterData.METER'
+          type: array
+        ORDER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.masterData.ORDER'
+          type: array
+        REQUEST:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.masterData.REQUEST'
+          type: array
+      required:
+      - REQUEST
+      - ORDER
+      - METER
+      type: object
+    bauteil.PI_17009.masterData.METER:
+      properties:
+        devices:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.masterData.METER.devices'
+          type: array
+      required:
+      - devices
+      type: object
+    bauteil.PI_17009.masterData.METER.devices:
+      properties:
+        additionalDeviceNumbers:
+          $ref: '#/components/schemas/field.Device.additionalDeviceNumbers'
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z09
+        deviceNumber:
+          $ref: '#/components/schemas/field.Device.deviceNumber'
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z09
+        deviceProperties:
+          $ref: '#/components/schemas/bauteil.PI_17009.masterData.METER.devices.deviceProperties'
+      required:
+      - deviceProperties
+      - deviceNumber
+      type: object
+    bauteil.PI_17009.masterData.METER.devices.deviceProperties:
+      properties:
+        deviceType:
+          $ref: '#/components/schemas/field.DeviceProperties.deviceType'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI
+      required:
+      - deviceType
+      type: object
+    bauteil.PI_17009.masterData.ORDER:
+      properties:
+        executionDate:
+          $ref: '#/components/schemas/field.Order.executionDate'
+          x-edifact-segment:
+          - DTM+203
+      required:
+      - executionDate
+      type: object
+    bauteil.PI_17009.masterData.REQUEST:
+      properties:
+        locationId:
+          $ref: '#/components/schemas/field.Request.locationId'
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+        requestType:
+          $ref: '#/components/schemas/field.Request.requestType'
+          x-edifact-segment:
+          - IMD++[Z58|Z59]
+      required:
+      - requestType
       - locationId
       type: object
     bauteil.PI_17101.masterData:
@@ -2186,6 +2519,153 @@ components:
           - SG2.NAD+DP.LOC+172
       required:
       - locationId
+      type: object
+    bauteil.PI_17122.masterData:
+      properties:
+        COMPLAINT:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.COMPLAINT'
+          type: array
+        LOAD_CURVE_DEFINITION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.LOAD_CURVE_DEFINITION'
+          type: array
+        METERING_TIME_DEFINITION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.METERING_TIME_DEFINITION'
+          type: array
+        ORDER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.ORDER'
+          type: array
+        SWITCHING_TIME_DEFINITION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.SWITCHING_TIME_DEFINITION'
+          type: array
+      required:
+      - ORDER
+      - LOAD_CURVE_DEFINITION
+      - COMPLAINT
+      - SWITCHING_TIME_DEFINITION
+      - METERING_TIME_DEFINITION
+      type: object
+    bauteil.PI_17122.masterData.COMPLAINT:
+      properties:
+        complaintReason:
+          $ref: '#/components/schemas/field.Complaint.complaintReason'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        complaintReasonNote:
+          $ref: '#/components/schemas/bauteil.PI_17122.masterData.COMPLAINT.complaintReasonNote'
+      required:
+      - complaintReason
+      - complaintReasonNote
+      type: object
+    bauteil.PI_17122.masterData.COMPLAINT.complaintReasonNote:
+      properties:
+        remark1:
+          $ref: '#/components/schemas/field.ComplaintReasonNote.remark1'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark2:
+          $ref: '#/components/schemas/field.ComplaintReasonNote.remark2'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark3:
+          $ref: '#/components/schemas/field.ComplaintReasonNote.remark3'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark4:
+          $ref: '#/components/schemas/field.ComplaintReasonNote.remark4'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        remark5:
+          $ref: '#/components/schemas/field.ComplaintReasonNote.remark5'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+      required:
+      - remark1
+      - remark2
+      - remark3
+      - remark4
+      - remark5
+      type: object
+    bauteil.PI_17122.masterData.LOAD_CURVE_DEFINITION:
+      properties:
+        loadCurves:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.LOAD_CURVE_DEFINITION.loadCurves'
+          type: array
+      required:
+      - loadCurves
+      type: object
+    bauteil.PI_17122.masterData.LOAD_CURVE_DEFINITION.loadCurves:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.LoadCurve.code'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z52
+      required:
+      - code
+      type: object
+    bauteil.PI_17122.masterData.METERING_TIME_DEFINITION:
+      properties:
+        meteringTimes:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.METERING_TIME_DEFINITION.meteringTimes'
+          type: array
+      required:
+      - meteringTimes
+      type: object
+    bauteil.PI_17122.masterData.METERING_TIME_DEFINITION.meteringTimes:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.MeteringTime.code'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI
+      required:
+      - code
+      type: object
+    bauteil.PI_17122.masterData.ORDER:
+      properties:
+        positionData:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.ORDER.positionData'
+          type: array
+      required:
+      - positionData
+      type: object
+    bauteil.PI_17122.masterData.ORDER.positionData:
+      properties:
+        definitionType:
+          $ref: '#/components/schemas/field.OrderPosition.definitionType'
+          x-edifact-segment:
+          - SG29.LIN
+        positionNumber:
+          $ref: '#/components/schemas/field.OrderPosition.positionNumber'
+          x-edifact-segment:
+          - SG29.LIN
+      required:
+      - definitionType
+      - positionNumber
+      type: object
+    bauteil.PI_17122.masterData.SWITCHING_TIME_DEFINITION:
+      properties:
+        switchingTimes:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.masterData.SWITCHING_TIME_DEFINITION.switchingTimes'
+          type: array
+      required:
+      - switchingTimes
+      type: object
+    bauteil.PI_17122.masterData.SWITCHING_TIME_DEFINITION.switchingTimes:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.SwitchingTime.code'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z52
+      required:
+      - code
       type: object
     bauteil.PI_17123.masterData:
       properties:
@@ -5416,6 +5896,931 @@ components:
       - street
       type: object
     bauteil.PI_37000.masterData.COMMUNICATION_DATA.marketParticipant.reachability:
+      properties:
+        availability:
+          $ref: '#/components/schemas/field.Reachability.availability'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+        time:
+          $ref: '#/components/schemas/field.Reachability.time'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+      required:
+      - availability
+      - time
+      type: object
+    bauteil.PI_37001.masterData:
+      properties:
+        COMMUNICATION_DATA:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA'
+          type: array
+      required:
+      - COMMUNICATION_DATA
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA:
+      properties:
+        communicationDataSheetInactive:
+          $ref: '#/components/schemas/field.CommunicationData.communicationDataSheetInactive'
+          x-edifact-segment:
+          - BGM+10
+        communicationDetails:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails'
+          type: array
+        marketParticipant:
+          $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant'
+        validity:
+          $ref: '#/components/schemas/field.CommunicationData.validity'
+          x-edifact-segment:
+          - SG1.RFF+AGK.DTM+157
+      required:
+      - communicationDataSheetInactive
+      - communicationDetails
+      - marketParticipant
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails:
+      properties:
+        communicationRole:
+          $ref: '#/components/schemas/field.MarketParticipant.communicationRole'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18
+          - SG4.NAD+Z18.SG7.CTA+IC
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19
+          - SG4.NAD+Z19.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20
+          - SG4.NAD+Z20.SG7.CTA+IC
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21
+          - SG4.NAD+Z21.SG7.CTA+IC
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33
+          - SG4.NAD+Z33.SG7.CTA+IC
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+        contactPerson:
+          $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson'
+        name1:
+          $ref: '#/components/schemas/field.MarketParticipant.name1'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        name2:
+          $ref: '#/components/schemas/field.MarketParticipant.name2'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        name3:
+          $ref: '#/components/schemas/field.MarketParticipant.name3'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        name4:
+          $ref: '#/components/schemas/field.MarketParticipant.name4'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        partnerAddress:
+          $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails.partnerAddress'
+        salutation:
+          $ref: '#/components/schemas/field.MarketParticipant.salutation'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+      required:
+      - salutation
+      - contactPerson
+      - communicationRole
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson:
+      properties:
+        eMailAddress:
+          $ref: '#/components/schemas/field.ContactPerson.eMailAddress'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+        lastName:
+          $ref: '#/components/schemas/field.ContactPerson.lastName'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z18.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC
+          - SG4.NAD+Z20.SG7.CTA+IC
+          - SG4.NAD+Z21.SG7.CTA+IC
+          - SG4.NAD+Z33.SG7.CTA+IC
+        phoneNumbers:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson.phoneNumbers'
+          type: array
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson.phoneNumbers:
+      properties:
+        numberType:
+          $ref: '#/components/schemas/field.PhoneNumber.numberType'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+        phoneNumber:
+          $ref: '#/components/schemas/field.PhoneNumber.phoneNumber'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+      required:
+      - numberType
+      - phoneNumber
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.communicationDetails.partnerAddress:
+      properties:
+        city:
+          $ref: '#/components/schemas/field.Address.city'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        countryCode:
+          $ref: '#/components/schemas/field.Address.countryCode'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        district:
+          $ref: '#/components/schemas/field.Address.district'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        houseNumber:
+          $ref: '#/components/schemas/field.Address.houseNumber'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        poBox:
+          $ref: '#/components/schemas/field.Address.poBox'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        postalCode:
+          $ref: '#/components/schemas/field.Address.postalCode'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        street:
+          $ref: '#/components/schemas/field.Address.street'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant:
+      properties:
+        bankAccount:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant.bankAccount'
+          type: array
+        commercialClassification:
+          $ref: '#/components/schemas/field.MarketParticipant.commercialClassification'
+          x-edifact-segment:
+          - SG4.NAD
+        commercialRegisterNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.commercialRegisterNumber'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        courtOfRegistration:
+          $ref: '#/components/schemas/field.MarketParticipant.courtOfRegistration'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        faxNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.faxNumber'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+Z25
+        marketRole:
+          $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+          x-edifact-segment:
+          - SG4.NAD
+        name1:
+          $ref: '#/components/schemas/field.MarketParticipant.name1'
+          x-edifact-segment:
+          - SG4.NAD
+        name2:
+          $ref: '#/components/schemas/field.MarketParticipant.name2'
+          x-edifact-segment:
+          - SG4.NAD
+        name3:
+          $ref: '#/components/schemas/field.MarketParticipant.name3'
+          x-edifact-segment:
+          - SG4.NAD
+        name4:
+          $ref: '#/components/schemas/field.MarketParticipant.name4'
+          x-edifact-segment:
+          - SG4.NAD
+        partnerAddress:
+          $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant.partnerAddress'
+        reachability:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant.reachability'
+          type: array
+        salutation:
+          $ref: '#/components/schemas/field.MarketParticipant.salutation'
+          x-edifact-segment:
+          - SG4.NAD
+        taxNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.taxNumber'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        vatId:
+          $ref: '#/components/schemas/field.MarketParticipant.vatId'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        website:
+          $ref: '#/components/schemas/field.MarketParticipant.website'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z13
+      required:
+      - salutation
+      - bankAccount
+      - reachability
+      - faxNumber
+      - commercialClassification
+      - marketRole
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+      - taxNumber
+      - vatId
+      - website
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant.bankAccount:
+      properties:
+        accountHolder:
+          $ref: '#/components/schemas/field.BankAccount.accountHolder'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        bic:
+          $ref: '#/components/schemas/field.BankAccount.bic'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        creditInstitution:
+          $ref: '#/components/schemas/field.BankAccount.creditInstitution'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        iban:
+          $ref: '#/components/schemas/field.BankAccount.iban'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+      required:
+      - bic
+      - iban
+      - accountHolder
+      - creditInstitution
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant.partnerAddress:
+      properties:
+        city:
+          $ref: '#/components/schemas/field.Address.city'
+          x-edifact-segment:
+          - SG4.NAD
+        countryCode:
+          $ref: '#/components/schemas/field.Address.countryCode'
+          x-edifact-segment:
+          - SG4.NAD
+        district:
+          $ref: '#/components/schemas/field.Address.district'
+          x-edifact-segment:
+          - SG4.NAD
+        houseNumber:
+          $ref: '#/components/schemas/field.Address.houseNumber'
+          x-edifact-segment:
+          - SG4.NAD
+        poBox:
+          $ref: '#/components/schemas/field.Address.poBox'
+          x-edifact-segment:
+          - SG4.NAD
+        postalCode:
+          $ref: '#/components/schemas/field.Address.postalCode'
+          x-edifact-segment:
+          - SG4.NAD
+        street:
+          $ref: '#/components/schemas/field.Address.street'
+          x-edifact-segment:
+          - SG4.NAD
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      type: object
+    bauteil.PI_37001.masterData.COMMUNICATION_DATA.marketParticipant.reachability:
+      properties:
+        availability:
+          $ref: '#/components/schemas/field.Reachability.availability'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+        time:
+          $ref: '#/components/schemas/field.Reachability.time'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+      required:
+      - availability
+      - time
+      type: object
+    bauteil.PI_37002.masterData:
+      properties:
+        COMMUNICATION_DATA:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA'
+          type: array
+      required:
+      - COMMUNICATION_DATA
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA:
+      properties:
+        communicationDataSheetInactive:
+          $ref: '#/components/schemas/field.CommunicationData.communicationDataSheetInactive'
+          x-edifact-segment:
+          - BGM
+        communicationDetails:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails'
+          type: array
+        marketParticipant:
+          $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant'
+        validity:
+          $ref: '#/components/schemas/field.CommunicationData.validity'
+          x-edifact-segment:
+          - SG1.RFF+AGK.DTM+157
+      required:
+      - communicationDataSheetInactive
+      - communicationDetails
+      - marketParticipant
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails:
+      properties:
+        communicationRole:
+          $ref: '#/components/schemas/field.MarketParticipant.communicationRole'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12
+          - SG4.NAD+Z12.SG7.CTA+IC
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19
+          - SG4.NAD+Z19.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+        contactPerson:
+          $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson'
+        name1:
+          $ref: '#/components/schemas/field.MarketParticipant.name1'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        name2:
+          $ref: '#/components/schemas/field.MarketParticipant.name2'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        name3:
+          $ref: '#/components/schemas/field.MarketParticipant.name3'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        name4:
+          $ref: '#/components/schemas/field.MarketParticipant.name4'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        partnerAddress:
+          $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails.partnerAddress'
+        salutation:
+          $ref: '#/components/schemas/field.MarketParticipant.salutation'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+      required:
+      - salutation
+      - contactPerson
+      - communicationRole
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson:
+      properties:
+        eMailAddress:
+          $ref: '#/components/schemas/field.ContactPerson.eMailAddress'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+        lastName:
+          $ref: '#/components/schemas/field.ContactPerson.lastName'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z12.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC
+        phoneNumbers:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson.phoneNumbers'
+          type: array
+      required:
+      - eMailAddress
+      - lastName
+      - phoneNumbers
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails.contactPerson.phoneNumbers:
+      properties:
+        numberType:
+          $ref: '#/components/schemas/field.PhoneNumber.numberType'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+        phoneNumber:
+          $ref: '#/components/schemas/field.PhoneNumber.phoneNumber'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+      required:
+      - numberType
+      - phoneNumber
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.communicationDetails.partnerAddress:
+      properties:
+        city:
+          $ref: '#/components/schemas/field.Address.city'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        countryCode:
+          $ref: '#/components/schemas/field.Address.countryCode'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        district:
+          $ref: '#/components/schemas/field.Address.district'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        houseNumber:
+          $ref: '#/components/schemas/field.Address.houseNumber'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        poBox:
+          $ref: '#/components/schemas/field.Address.poBox'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        postalCode:
+          $ref: '#/components/schemas/field.Address.postalCode'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        street:
+          $ref: '#/components/schemas/field.Address.street'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant:
+      properties:
+        bankAccount:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant.bankAccount'
+          type: array
+        commercialClassification:
+          $ref: '#/components/schemas/field.MarketParticipant.commercialClassification'
+          x-edifact-segment:
+          - SG4.NAD
+        commercialRegisterNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.commercialRegisterNumber'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        courtOfRegistration:
+          $ref: '#/components/schemas/field.MarketParticipant.courtOfRegistration'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        faxNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.faxNumber'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+Z25
+        marketRole:
+          $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+          x-edifact-segment:
+          - SG4.NAD
+        name1:
+          $ref: '#/components/schemas/field.MarketParticipant.name1'
+          x-edifact-segment:
+          - SG4.NAD
+        name2:
+          $ref: '#/components/schemas/field.MarketParticipant.name2'
+          x-edifact-segment:
+          - SG4.NAD
+        name3:
+          $ref: '#/components/schemas/field.MarketParticipant.name3'
+          x-edifact-segment:
+          - SG4.NAD
+        name4:
+          $ref: '#/components/schemas/field.MarketParticipant.name4'
+          x-edifact-segment:
+          - SG4.NAD
+        partnerAddress:
+          $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant.partnerAddress'
+        reachability:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant.reachability'
+          type: array
+        salutation:
+          $ref: '#/components/schemas/field.MarketParticipant.salutation'
+          x-edifact-segment:
+          - SG4.NAD
+        taxNumber:
+          $ref: '#/components/schemas/field.MarketParticipant.taxNumber'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        vatId:
+          $ref: '#/components/schemas/field.MarketParticipant.vatId'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        website:
+          $ref: '#/components/schemas/field.MarketParticipant.website'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z13
+      required:
+      - salutation
+      - bankAccount
+      - reachability
+      - faxNumber
+      - commercialClassification
+      - marketRole
+      - name1
+      - name2
+      - name3
+      - name4
+      - partnerAddress
+      - taxNumber
+      - vatId
+      - website
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant.bankAccount:
+      properties:
+        accountHolder:
+          $ref: '#/components/schemas/field.BankAccount.accountHolder'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        bic:
+          $ref: '#/components/schemas/field.BankAccount.bic'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        creditInstitution:
+          $ref: '#/components/schemas/field.BankAccount.creditInstitution'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        iban:
+          $ref: '#/components/schemas/field.BankAccount.iban'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+      required:
+      - bic
+      - iban
+      - accountHolder
+      - creditInstitution
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant.partnerAddress:
+      properties:
+        city:
+          $ref: '#/components/schemas/field.Address.city'
+          x-edifact-segment:
+          - SG4.NAD
+        countryCode:
+          $ref: '#/components/schemas/field.Address.countryCode'
+          x-edifact-segment:
+          - SG4.NAD
+        district:
+          $ref: '#/components/schemas/field.Address.district'
+          x-edifact-segment:
+          - SG4.NAD
+        houseNumber:
+          $ref: '#/components/schemas/field.Address.houseNumber'
+          x-edifact-segment:
+          - SG4.NAD
+        poBox:
+          $ref: '#/components/schemas/field.Address.poBox'
+          x-edifact-segment:
+          - SG4.NAD
+        postalCode:
+          $ref: '#/components/schemas/field.Address.postalCode'
+          x-edifact-segment:
+          - SG4.NAD
+        street:
+          $ref: '#/components/schemas/field.Address.street'
+          x-edifact-segment:
+          - SG4.NAD
+      required:
+      - houseNumber
+      - countryCode
+      - city
+      - district
+      - poBox
+      - postalCode
+      - street
+      type: object
+    bauteil.PI_37002.masterData.COMMUNICATION_DATA.marketParticipant.reachability:
       properties:
         availability:
           $ref: '#/components/schemas/field.Reachability.availability'
@@ -28466,6 +29871,17 @@ components:
       - START_BUSINESS_DATA_REQUEST
       - START_DISPATCH_PRICE_SHEET_IMS
       - START_TRANSMISSION_ENFG
+      - START_PARTIN
+      - START_DEVICE_TAKEOVER
+      - START_OFFER_DEVICE_TAKEOVER
+      - START_ORDER_DEVICE_TAKEOVER
+      - START_TRANSMISSION_DEFINITION
+      - START_OVERVIEW_LOAD_CURVE_DEFINITION
+      - START_OVERVIEW_SWITCHING_TIME_DEFINITION
+      - START_OVERVIEW_COUNTING_DEFINITION
+      - START_COMPLAINT_DEFINITION
+      - START_DISPATCH_STATUS_MESSAGE
+      - START_DEVICE_CHANGE
       title: EventName
       type: string
     cdoc.MasterData:
@@ -28832,6 +30248,16 @@ components:
         value:
           $ref: '#/components/schemas/field.Amount.value'
       title: Amount
+      type: object
+    com.ApnCommunicationDataAccessParameters:
+      properties:
+        apnName:
+          $ref: '#/components/schemas/field.ApnCommunicationDataAccessParameters.apnName'
+        password:
+          $ref: '#/components/schemas/field.ApnCommunicationDataAccessParameters.password'
+        user:
+          $ref: '#/components/schemas/field.ApnCommunicationDataAccessParameters.user'
+      title: ApnCommunicationDataAccessParameters
       type: object
     com.AssignedDefinition:
       properties:
@@ -29783,6 +31209,8 @@ components:
       properties:
         apnCommunicationData:
           $ref: '#/components/schemas/field.OrderPosition.apnCommunicationData'
+        apnCommunicationDataAccessParameters:
+          $ref: '#/components/schemas/field.OrderPosition.apnCommunicationDataAccessParameters'
         articleNumber:
           $ref: '#/components/schemas/field.OrderPosition.articleNumber'
         certificateInformation:
@@ -29817,6 +31245,8 @@ components:
           $ref: '#/components/schemas/field.OrderPosition.requestReason'
         startDate:
           $ref: '#/components/schemas/field.OrderPosition.startDate'
+        validFrom:
+          $ref: '#/components/schemas/field.OrderPosition.validFrom'
         wakeUpPort:
           $ref: '#/components/schemas/field.OrderPosition.wakeUpPort'
       title: OrderPosition
@@ -32912,20 +34342,12 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_17120.masterData'
         transactionData:
           properties:
-            category:
-              $ref: '#/components/schemas/field.TransactionData.category'
             receiver:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.receiver'
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17120.
               examples:
@@ -32933,7 +34355,6 @@ components:
           required:
           - sender
           - receiver
-          - category
           - sector
           type: object
       required:
@@ -33202,20 +34623,12 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_17003.masterData'
         transactionData:
           properties:
-            category:
-              $ref: '#/components/schemas/field.TransactionData.category'
             receiver:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.receiver'
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
               examples:
@@ -33223,7 +34636,6 @@ components:
           required:
           - sender
           - receiver
-          - category
           - sector
           type: object
       required:
@@ -33681,12 +35093,20 @@ components:
               properties:
                 marketRole:
                   $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            sender:
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37000.
               examples:
               - '37000'
           required:
+          - sender
           - receiver
           - category
           type: object
@@ -33951,7 +35371,7 @@ components:
           properties:
             eventname:
               const: START_UEBERM_DEFINITION
-              default: START_UEBERM_DEFINITION
+              default: START_TRANSMISSION_DEFINITION
               type: string
             processId:
               type: string
@@ -33966,12 +35386,22 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25009.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
               examples:
@@ -33980,7 +35410,9 @@ components:
               - '25009'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -33994,7 +35426,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_LEISTUNGSKURVENDEF
-              default: START_UEBERSICHT_LEISTUNGSKURVENDEF
+              default: START_OVERVIEW_LOAD_CURVE_DEFINITION
               type: string
             processId:
               type: string
@@ -34007,19 +35439,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25007.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
               - '25007'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -34033,7 +35477,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_SCHALTZEITDEF
-              default: START_UEBERSICHT_SCHALTZEITDEF
+              default: START_OVERVIEW_SWITCHING_TIME_DEFINITION
               type: string
             processId:
               type: string
@@ -34046,19 +35490,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25006.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
               - '25006'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -34072,7 +35528,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_ZAEHLZEITDEF
-              default: START_UEBERSICHT_ZAEHLZEITDEF
+              default: START_OVERVIEW_COUNTING_DEFINITION
               type: string
             processId:
               type: string
@@ -34085,19 +35541,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25004.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
               - '25004'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -34448,13 +35916,13 @@ components:
       type: object
       x-pending-pruefis:
       - '13006'
-    event.LF.START_VERSAND_UEBERSICHT_LKD:
+    event.MSB.START_ANGEBOT_GERAETUEBERNAHME:
       properties:
         additionalData:
           properties:
             eventname:
-              const: START_VERSAND_UEBERSICHT_LKD
-              default: START_VERSAND_UEBERSICHT_LKD
+              const: START_ANGEBOT_GERAETUEBERNAHME
+              default: START_ANGEBOT_GERAETUEBERNAHME
               type: string
             processId:
               type: string
@@ -34464,34 +35932,22 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_25007.masterData'
+          - $ref: '#/components/schemas/bauteil.PI_15001.masterData'
         transactionData:
           properties:
-            category:
-              $ref: '#/components/schemas/field.TransactionData.category'
-            inquiryReference:
-              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.receiver'
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 15001.
               examples:
-              - '25007'
+              - '15001'
           required:
           - sender
-          - inquiryReference
           - receiver
-          - category
           - sector
           type: object
       required:
@@ -34499,13 +35955,13 @@ components:
       - transactionData
       - additionalData
       type: object
-    event.LF.START_VERSAND_UEBERSICHT_SZD:
+    event.MSB.START_BESTELLUNG_GERAETUEBERNAHME:
       properties:
         additionalData:
           properties:
             eventname:
-              const: START_VERSAND_UEBERSICHT_SZD
-              default: START_VERSAND_UEBERSICHT_SZD
+              const: START_BESTELLUNG_GERAETUEBERNAHME
+              default: START_BESTELLUNG_GERAETUEBERNAHME
               type: string
             processId:
               type: string
@@ -34515,85 +35971,22 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_25006.masterData'
+          - $ref: '#/components/schemas/bauteil.PI_17001.masterData'
         transactionData:
           properties:
-            category:
-              $ref: '#/components/schemas/field.TransactionData.category'
-            inquiryReference:
-              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.receiver'
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
+              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17001.
               examples:
-              - '25006'
+              - '17001'
           required:
           - sender
-          - inquiryReference
           - receiver
-          - category
-          - sector
-          type: object
-      required:
-      - masterData
-      - transactionData
-      - additionalData
-      type: object
-    event.LF.START_VERSAND_UEBERSICHT_ZZD:
-      properties:
-        additionalData:
-          properties:
-            eventname:
-              const: START_VERSAND_UEBERSICHT_ZZD
-              default: START_VERSAND_UEBERSICHT_ZZD
-              type: string
-            processId:
-              type: string
-          required:
-          - processId
-          - eventname
-          type: object
-        masterData:
-          oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_25004.masterData'
-        transactionData:
-          properties:
-            category:
-              $ref: '#/components/schemas/field.TransactionData.category'
-            inquiryReference:
-              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
-            receiver:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              properties:
-                roleCodeNumber:
-                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
-              type: object
-            verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
-              examples:
-              - '25004'
-          required:
-          - sender
-          - inquiryReference
-          - receiver
-          - category
           - sector
           type: object
       required:
@@ -34737,6 +36130,58 @@ components:
       - transactionData
       - additionalData
       type: object
+    event.MSB.START_GERAETEWECHSEL:
+      properties:
+        additionalData:
+          properties:
+            eventname:
+              const: START_GERAETEWECHSEL
+              default: START_DEVICE_CHANGE
+              type: string
+            processId:
+              type: string
+          required:
+          - processId
+          - eventname
+          type: object
+        masterData:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_17009.masterData'
+        transactionData:
+          properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            receiver:
+              properties:
+                marketRole:
+                  $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            sector:
+              $ref: '#/components/schemas/field.TransactionData.sector'
+            sender:
+              properties:
+                marketRole:
+                  $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17009.
+              examples:
+              - '17009'
+          required:
+          - sender
+          - receiver
+          - category
+          - sector
+          type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      type: object
     event.MSB.START_GERAETUEBERNAHME:
       properties:
         additionalData:
@@ -34835,6 +36280,113 @@ components:
               - '17132'
           required:
           - sender
+          - receiver
+          - category
+          - sector
+          type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      type: object
+    event.MSB.START_PARTIN:
+      properties:
+        additionalData:
+          properties:
+            eventname:
+              const: START_PARTIN
+              default: START_PARTIN
+              type: string
+            processId:
+              type: string
+          required:
+          - processId
+          - eventname
+          type: object
+        masterData:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_37002.masterData'
+        transactionData:
+          properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            receiver:
+              properties:
+                marketRole:
+                  $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            sector:
+              $ref: '#/components/schemas/field.TransactionData.sector'
+            sender:
+              properties:
+                marketRole:
+                  $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37002.
+              examples:
+              - '37002'
+          required:
+          - sender
+          - receiver
+          - category
+          - sector
+          type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      type: object
+    event.MSB.START_REKLAMATION_DEFINITION:
+      properties:
+        additionalData:
+          properties:
+            eventname:
+              const: START_REKLAMATION_DEFINITION
+              default: START_COMPLAINT_DEFINITION
+              type: string
+            processId:
+              type: string
+          required:
+          - processId
+          - eventname
+          type: object
+        masterData:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_17122.masterData'
+        transactionData:
+          properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            receiver:
+              properties:
+                marketRole:
+                  $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            requestReferenceNumber:
+              $ref: '#/components/schemas/field.TransactionData.requestReferenceNumber'
+            sector:
+              $ref: '#/components/schemas/field.TransactionData.sector'
+            sender:
+              properties:
+                marketRole:
+                  $ref: '#/components/schemas/field.MarketParticipant.marketRole'
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17122.
+              examples:
+              - '17122'
+          required:
+          - sender
+          - requestReferenceNumber
           - receiver
           - category
           - sector
@@ -35582,7 +37134,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648, 55694.
               examples:
               - '55137'
               - '55232'
@@ -35593,6 +37145,7 @@ components:
               - '55646'
               - '55647'
               - '55648'
+              - '55694'
           required:
           - sender
           - receiver
@@ -35605,6 +37158,8 @@ components:
       - transactionData
       - additionalData
       type: object
+      x-pending-pruefis:
+      - '55694'
     event.NB.START_BEST_AEND_TK:
       properties:
         additionalData:
@@ -36039,6 +37594,54 @@ components:
       - transactionData
       - additionalData
       type: object
+    event.NB.START_PARTIN:
+      properties:
+        additionalData:
+          properties:
+            eventname:
+              const: START_PARTIN
+              default: START_PARTIN
+              type: string
+            processId:
+              type: string
+          required:
+          - processId
+          - eventname
+          type: object
+        masterData:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_37001.masterData'
+        transactionData:
+          properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            receiver:
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            sector:
+              $ref: '#/components/schemas/field.TransactionData.sector'
+            sender:
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37001.
+              examples:
+              - '37001'
+          required:
+          - sender
+          - receiver
+          - category
+          - sector
+          type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      type: object
     event.NB.START_PREISBLATT:
       properties:
         additionalData:
@@ -36078,6 +37681,57 @@ components:
               - '27003'
           required:
           - sender
+          - receiver
+          - category
+          - sector
+          type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      type: object
+    event.NB.START_REKLAMATION_DEFINITION:
+      properties:
+        additionalData:
+          properties:
+            eventname:
+              const: START_REKLAMATION_DEFINITION
+              default: START_COMPLAINT_DEFINITION
+              type: string
+            processId:
+              type: string
+          required:
+          - processId
+          - eventname
+          type: object
+        masterData:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_17122.masterData'
+        transactionData:
+          properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            receiver:
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            requestReferenceNumber:
+              $ref: '#/components/schemas/field.TransactionData.requestReferenceNumber'
+            sector:
+              $ref: '#/components/schemas/field.TransactionData.sector'
+            sender:
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17122.
+              examples:
+              - '17122'
+          required:
+          - sender
+          - requestReferenceNumber
           - receiver
           - category
           - sector
@@ -36141,7 +37795,7 @@ components:
           properties:
             eventname:
               const: START_UEBERM_DEFINITION
-              default: START_UEBERM_DEFINITION
+              default: START_TRANSMISSION_DEFINITION
               type: string
             processId:
               type: string
@@ -36156,12 +37810,22 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25009.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
               examples:
@@ -36170,7 +37834,9 @@ components:
               - '25009'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -36184,7 +37850,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_LEISTUNGSKURVENDEF
-              default: START_UEBERSICHT_LEISTUNGSKURVENDEF
+              default: START_OVERVIEW_LOAD_CURVE_DEFINITION
               type: string
             processId:
               type: string
@@ -36197,19 +37863,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25007.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
               - '25007'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -36223,7 +37901,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_SCHALTZEITDEF
-              default: START_UEBERSICHT_SCHALTZEITDEF
+              default: START_OVERVIEW_SWITCHING_TIME_DEFINITION
               type: string
             processId:
               type: string
@@ -36236,19 +37914,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25006.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
               - '25006'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -36262,7 +37952,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_ZAEHLZEITDEF
-              default: START_UEBERSICHT_ZAEHLZEITDEF
+              default: START_OVERVIEW_COUNTING_DEFINITION
               type: string
             processId:
               type: string
@@ -36275,19 +37965,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25004.masterData'
         transactionData:
           properties:
+            category:
+              $ref: '#/components/schemas/field.TransactionData.category'
+            inquiryReference:
+              $ref: '#/components/schemas/field.TransactionData.inquiryReference'
             receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             sector:
               $ref: '#/components/schemas/field.TransactionData.sector'
             sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
+              properties:
+                roleCodeNumber:
+                  $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
+              type: object
             verificationIdentifier:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
               - '25004'
           required:
           - sender
+          - inquiryReference
           - receiver
+          - category
           - sector
           type: object
       required:
@@ -36744,7 +38446,7 @@ components:
           properties:
             eventname:
               const: START_VERSAND_STATUSMELDUNG
-              default: START_VERSAND_STATUSMELDUNG
+              default: START_DISPATCH_STATUS_MESSAGE
               type: string
             processId:
               type: string
@@ -37192,6 +38894,12 @@ components:
     field.Amount.value:
       format: float
       type: number
+    field.ApnCommunicationDataAccessParameters.apnName:
+      type: string
+    field.ApnCommunicationDataAccessParameters.password:
+      type: string
+    field.ApnCommunicationDataAccessParameters.user:
+      type: string
     field.AssignedDefinition.loadCurveDefinition:
       type: string
     field.AssignedDefinition.switchingTimeDefinition:
@@ -39165,6 +40873,8 @@ components:
       type: number
     field.OrderPosition.apnCommunicationData:
       type: string
+    field.OrderPosition.apnCommunicationDataAccessParameters:
+      $ref: '#/components/schemas/com.ApnCommunicationDataAccessParameters'
     field.OrderPosition.articleNumber:
       $ref: '#/components/schemas/enum.BDEWArticleNumber'
     field.OrderPosition.certificateInformation:
@@ -39199,6 +40909,9 @@ components:
     field.OrderPosition.requestReason:
       $ref: '#/components/schemas/enum.RequestReason'
     field.OrderPosition.startDate:
+      format: date-time
+      type: string
+    field.OrderPosition.validFrom:
       format: date-time
       type: string
     field.OrderPosition.wakeUpPort:
@@ -41030,6 +42743,10 @@ components:
           $ref: '#/components/schemas/field.Consumption.position'
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN
+        servicePeriod:
+          $ref: '#/components/schemas/field.Consumption.servicePeriod'
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+306
         startDate:
           $ref: '#/components/schemas/field.Consumption.startDate'
           x-edifact-segment:
@@ -41043,11 +42760,9 @@ components:
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
       required:
-      - endDate
       - measurementValueStatus
       - obisNumber
       - position
-      - startDate
       - value
       type: object
     pruefi.PI_13009.masterData.ENERGY_QUANTITY.energyConsumption.statusAdditionalInformation:

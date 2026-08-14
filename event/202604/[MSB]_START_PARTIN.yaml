@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: '[LF] START_VERSAND_UEBERSICHT_SZD'
+  title: '[MSB] START_PARTIN'
   version: '202604'
-  x-bpmn-source-sha: 3a7c8fc1
-  x-bo4e-schema-version: 1.7.1
-  x-templater-sha: 3cf4d8497849ad9ec9ef89f2454ebe6f1f2f008f
+  x-bpmn-source-sha: 3c6d64fa
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
 components:
   schemas:
-    '[LF] START_VERSAND_UEBERSICHT_SZD':
+    '[MSB] START_PARTIN':
       type: object
       required:
         - stammdaten
@@ -16,12 +16,11 @@ components:
       properties:
         stammdaten:
           oneOf:
-            - $ref: ../../event-bauteil/202604/UTILTS/PI_25006.yaml#/components/schemas/PI_25006__stammdaten
+            - $ref: ../../event-bauteil/202604/PARTIN/PI_37002.yaml#/components/schemas/PI_37002__stammdaten
         transaktionsdaten:
           type: object
           required:
             - absender
-            - anfrageReferenz
             - empfaenger
             - kategorie
             - sparte
@@ -29,13 +28,15 @@ components:
             absender:
               type: object
               properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
                 rollencodenummer:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
-            anfrageReferenz:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/anfrageReferenz.yaml#/components/schemas/anfrageReferenz
             empfaenger:
               type: object
               properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
                 rollencodenummer:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
             kategorie:
@@ -43,9 +44,9 @@ components:
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37002.
               examples:
-                - '25006'
+                - '37002'
         zusatzdaten:
           type: object
           required:
@@ -56,5 +57,5 @@ components:
               type: string
             eventname:
               type: string
-              const: START_VERSAND_UEBERSICHT_SZD
-              default: START_VERSAND_UEBERSICHT_SZD
+              const: START_PARTIN
+              default: START_PARTIN

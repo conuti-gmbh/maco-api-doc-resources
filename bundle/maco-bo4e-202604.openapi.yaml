@@ -325,6 +325,10 @@ components:
           $ref: '#/components/schemas/field.Verbrauch.enddatum'
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+164
+        leistungsperiode:
+          $ref: '#/components/schemas/field.Verbrauch.leistungsperiode'
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+306
         messwertstatus:
           $ref: '#/components/schemas/field.Verbrauch.messwertstatus'
           x-edifact-segment:
@@ -350,11 +354,9 @@ components:
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
       required:
-      - enddatum
       - messwertstatus
       - obiskennzahl
       - position
-      - startdatum
       - wert
       type: object
     bauteil.PI_13009.stammdaten.ENERGIEMENGE.energieverbrauch.statuszusatzinformationen:
@@ -939,6 +941,261 @@ components:
       - position
       - wert
       type: object
+    bauteil.PI_15001.stammdaten:
+      properties:
+        ANFRAGE:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ANFRAGE'
+          type: array
+        ANGEBOT:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ANGEBOT'
+          type: array
+        MESSLOKATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.MESSLOKATION'
+          type: array
+        ZAEHLER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ZAEHLER'
+          type: array
+      required:
+      - ANFRAGE
+      - ANGEBOT
+      - MESSLOKATION
+      - ZAEHLER
+      type: object
+    bauteil.PI_15001.stammdaten.ANFRAGE:
+      properties:
+        anfragetyp:
+          $ref: '#/components/schemas/field.Anfrage.anfragetyp'
+          x-edifact-segment:
+          - IMD++[Z07|Z08]
+      required:
+      - anfragetyp
+      type: object
+    bauteil.PI_15001.stammdaten.ANGEBOT:
+      properties:
+        anfragereferenz:
+          $ref: '#/components/schemas/field.Angebot.anfragereferenz'
+          x-edifact-segment:
+          - SG1.RFF+AAV
+        angebotsdatum:
+          $ref: '#/components/schemas/field.Angebot.angebotsdatum'
+          x-edifact-segment:
+          - DTM+76
+        positionsdaten:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten'
+          type: array
+      required:
+      - anfragereferenz
+      - angebotsdatum
+      - positionsdaten
+      type: object
+    bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten:
+      properties:
+        anbietbar:
+          $ref: '#/components/schemas/field.Angebotsposition.anbietbar'
+          x-edifact-segment:
+          - SG27.LIN.IMD++Z09
+        artikelnummer:
+          $ref: '#/components/schemas/field.Angebotsposition.artikelnummer'
+          x-edifact-segment:
+          - SG27.LIN
+          - SG27.LIN.DTM+[94|Z03]
+          - SG27.LIN.GIN+BN
+          - SG27.LIN.SG32.RFF+Z09
+        beteiligterMarktpartner:
+          $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten.beteiligterMarktpartner'
+        freitext:
+          $ref: '#/components/schemas/field.Angebotsposition.freitext'
+          x-edifact-segment:
+          - SG27.LIN.FTX+ACB
+        positionsbezeichnung:
+          $ref: '#/components/schemas/field.Angebotsposition.positionsbezeichnung'
+          x-edifact-segment:
+          - SG27.LIN
+        positionspreis:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten.positionspreis'
+          type: array
+        verweisKatalognummer:
+          $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten.verweisKatalognummer'
+      required:
+      - artikelnummer
+      - beteiligterMarktpartner
+      - positionsbezeichnung
+      - positionspreis
+      - verweisKatalognummer
+      type: object
+    bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten.beteiligterMarktpartner:
+      properties:
+        rollencodenummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+          x-edifact-segment:
+          - SG27.LIN.SG42.NAD+VY
+        rollencodetyp:
+          $ref: '#/components/schemas/field.Marktteilnehmer.rollencodetyp'
+          x-edifact-segment:
+          - SG27.LIN.SG42.NAD+VY
+      required:
+      - rollencodenummer
+      - rollencodetyp
+      type: object
+    bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten.positionspreis:
+      properties:
+        bezugswert:
+          $ref: '#/components/schemas/field.Preis.bezugswert'
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+        menge:
+          $ref: '#/components/schemas/field.Preis.menge'
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+        wert:
+          $ref: '#/components/schemas/field.Preis.wert'
+          x-edifact-segment:
+          - SG27.LIN.SG31.PRI+CAL
+      required:
+      - bezugswert
+      - menge
+      - wert
+      type: object
+    bauteil.PI_15001.stammdaten.ANGEBOT.positionsdaten.verweisKatalognummer:
+      properties:
+        katalognummer:
+          $ref: '#/components/schemas/field.Katalogverweis.katalognummer'
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+        versionsnummer:
+          $ref: '#/components/schemas/field.Katalogverweis.versionsnummer'
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+        zeilennummer:
+          $ref: '#/components/schemas/field.Katalogverweis.zeilennummer'
+          x-edifact-segment:
+          - SG27.LIN.SG32.RFF+APF
+      required:
+      - katalognummer
+      - versionsnummer
+      - zeilennummer
+      type: object
+    bauteil.PI_15001.stammdaten.MESSLOKATION:
+      properties:
+        messlokationsId:
+          $ref: '#/components/schemas/field.Messlokation.messlokationsId'
+          x-edifact-segment:
+          - SG11.NAD+DP.LOC+172
+      required:
+      - messlokationsId
+      type: object
+    bauteil.PI_15001.stammdaten.ZAEHLER:
+      properties:
+        befestigungsart:
+          $ref: '#/components/schemas/field.Zaehler.befestigungsart'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z28.CAV
+        eichungBis:
+          $ref: '#/components/schemas/field.Zaehler.eichungBis'
+          x-edifact-segment:
+          - SG27.LIN.DTM+Z04
+        geraete:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ZAEHLER.geraete'
+          type: array
+        messwerterfassung:
+          $ref: '#/components/schemas/field.Zaehler.messwerterfassung'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E12.CAV
+        tarifart:
+          $ref: '#/components/schemas/field.Zaehler.tarifart'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlerauspraegung:
+          $ref: '#/components/schemas/field.Zaehler.zaehlerauspraegung'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlergroesse:
+          $ref: '#/components/schemas/field.Zaehler.zaehlergroesse'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlertyp:
+          $ref: '#/components/schemas/field.Zaehler.zaehlertyp'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+        zaehlertypspezifikation:
+          $ref: '#/components/schemas/field.Zaehler.zaehlertypspezifikation'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+E13.CAV
+      required:
+      - befestigungsart
+      - geraete
+      - messwerterfassung
+      - zaehlertyp
+      - zaehlertypspezifikation
+      type: object
+    bauteil.PI_15001.stammdaten.ZAEHLER.geraete:
+      properties:
+        geraeteeigenschaften:
+          $ref: '#/components/schemas/bauteil.PI_15001.stammdaten.ZAEHLER.geraete.geraeteeigenschaften'
+      required:
+      - geraeteeigenschaften
+      type: object
+    bauteil.PI_15001.stammdaten.ZAEHLER.geraete.geraeteeigenschaften:
+      properties:
+        faktor:
+          $ref: '#/components/schemas/field.Geraeteeigenschaften.faktor'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z25.CAV
+        geraetemerkmal:
+          $ref: '#/components/schemas/field.Geraeteeigenschaften.geraetemerkmal'
+          x-edifact-segment:
+          - SG27.LIN.SG28.CCI+Z25.CAV
+          - SG27.LIN.SG28.CCI+Z26.CAV
+          - SG27.LIN.SG28.CCI+Z27.CAV
+          - SG27.LIN.SG28.CCI+Z64.CAV
+      required:
+      - faktor
+      - geraetemerkmal
+      type: object
+    bauteil.PI_17001.stammdaten:
+      properties:
+        AUFTRAG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17001.stammdaten.AUFTRAG'
+          type: array
+      required:
+      - AUFTRAG
+      type: object
+    bauteil.PI_17001.stammdaten.AUFTRAG:
+      properties:
+        ausfuehrungsdatum:
+          $ref: '#/components/schemas/field.Auftrag.ausfuehrungsdatum'
+          x-edifact-segment:
+          - DTM+203
+        positionsdaten:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17001.stammdaten.AUFTRAG.positionsdaten'
+          type: array
+      required:
+      - ausfuehrungsdatum
+      - positionsdaten
+      type: object
+    bauteil.PI_17001.stammdaten.AUFTRAG.positionsdaten:
+      properties:
+        positionsnummer:
+          $ref: '#/components/schemas/field.AuftragPosition.positionsnummer'
+          x-edifact-segment:
+          - SG29.LIN
+        positionsnummerAngebot:
+          $ref: '#/components/schemas/field.AuftragPosition.positionsnummerAngebot'
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z03
+      required:
+      - positionsnummer
+      - positionsnummerAngebot
+      type: object
     bauteil.PI_17003.stammdaten:
       properties:
         ANFRAGE:
@@ -1095,6 +1352,82 @@ components:
           - SG29.LIN.IMD++[Z61|Z62|Z63]
       required:
       - anfragegrund
+      type: object
+    bauteil.PI_17009.stammdaten:
+      properties:
+        ANFRAGE:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.stammdaten.ANFRAGE'
+          type: array
+        AUFTRAG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.stammdaten.AUFTRAG'
+          type: array
+        ZAEHLER:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.stammdaten.ZAEHLER'
+          type: array
+      required:
+      - ANFRAGE
+      - AUFTRAG
+      - ZAEHLER
+      type: object
+    bauteil.PI_17009.stammdaten.ANFRAGE:
+      properties:
+        anfragetyp:
+          $ref: '#/components/schemas/field.Anfrage.anfragetyp'
+          x-edifact-segment:
+          - IMD++[Z58|Z59]
+        lokationsId:
+          $ref: '#/components/schemas/field.Anfrage.lokationsId'
+          x-edifact-segment:
+          - SG2.NAD+DP.LOC+172
+      required:
+      - anfragetyp
+      - lokationsId
+      type: object
+    bauteil.PI_17009.stammdaten.AUFTRAG:
+      properties:
+        ausfuehrungsdatum:
+          $ref: '#/components/schemas/field.Auftrag.ausfuehrungsdatum'
+          x-edifact-segment:
+          - DTM+203
+      required:
+      - ausfuehrungsdatum
+      type: object
+    bauteil.PI_17009.stammdaten.ZAEHLER:
+      properties:
+        geraete:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17009.stammdaten.ZAEHLER.geraete'
+          type: array
+      required:
+      - geraete
+      type: object
+    bauteil.PI_17009.stammdaten.ZAEHLER.geraete:
+      properties:
+        geraeteeigenschaften:
+          $ref: '#/components/schemas/bauteil.PI_17009.stammdaten.ZAEHLER.geraete.geraeteeigenschaften'
+        geraetenummer:
+          $ref: '#/components/schemas/field.Geraet.geraetenummer'
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z09
+        weitereGeraetenummern:
+          $ref: '#/components/schemas/field.Geraet.weitereGeraetenummern'
+          x-edifact-segment:
+          - SG29.LIN.SG34.RFF+Z09
+      required:
+      - geraeteeigenschaften
+      - geraetenummer
+      type: object
+    bauteil.PI_17009.stammdaten.ZAEHLER.geraete.geraeteeigenschaften:
+      properties:
+        geraetetyp:
+          $ref: '#/components/schemas/field.Geraeteeigenschaften.geraetetyp'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI
+      required:
+      - geraetetyp
       type: object
     bauteil.PI_17101.stammdaten:
       properties:
@@ -2186,6 +2519,153 @@ components:
           - SG29.LIN.SG30.CCI+Z77.CAV+[Z38|Z39]
       required:
       - prognosegrundlage
+      type: object
+    bauteil.PI_17122.stammdaten:
+      properties:
+        AUFTRAG:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.AUFTRAG'
+          type: array
+        LEISTUNGSKURVENDEFINITION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.LEISTUNGSKURVENDEFINITION'
+          type: array
+        REKLAMATION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.REKLAMATION'
+          type: array
+        SCHALTZEITDEFINITION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.SCHALTZEITDEFINITION'
+          type: array
+        ZAEHLZEITDEFINITION:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.ZAEHLZEITDEFINITION'
+          type: array
+      required:
+      - AUFTRAG
+      - LEISTUNGSKURVENDEFINITION
+      - REKLAMATION
+      - SCHALTZEITDEFINITION
+      - ZAEHLZEITDEFINITION
+      type: object
+    bauteil.PI_17122.stammdaten.AUFTRAG:
+      properties:
+        positionsdaten:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.AUFTRAG.positionsdaten'
+          type: array
+      required:
+      - positionsdaten
+      type: object
+    bauteil.PI_17122.stammdaten.AUFTRAG.positionsdaten:
+      properties:
+        definitionsTyp:
+          $ref: '#/components/schemas/field.AuftragPosition.definitionsTyp'
+          x-edifact-segment:
+          - SG29.LIN
+        positionsnummer:
+          $ref: '#/components/schemas/field.AuftragPosition.positionsnummer'
+          x-edifact-segment:
+          - SG29.LIN
+      required:
+      - definitionsTyp
+      - positionsnummer
+      type: object
+    bauteil.PI_17122.stammdaten.LEISTUNGSKURVENDEFINITION:
+      properties:
+        leistungskurven:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.LEISTUNGSKURVENDEFINITION.leistungskurven'
+          type: array
+      required:
+      - leistungskurven
+      type: object
+    bauteil.PI_17122.stammdaten.LEISTUNGSKURVENDEFINITION.leistungskurven:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.Leistungskurve.code'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z52
+      required:
+      - code
+      type: object
+    bauteil.PI_17122.stammdaten.REKLAMATION:
+      properties:
+        reklamationsgrund:
+          $ref: '#/components/schemas/field.Reklamation.reklamationsgrund'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        reklamationsgrundBemerkung:
+          $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.REKLAMATION.reklamationsgrundBemerkung'
+      required:
+      - reklamationsgrund
+      - reklamationsgrundBemerkung
+      type: object
+    bauteil.PI_17122.stammdaten.REKLAMATION.reklamationsgrundBemerkung:
+      properties:
+        bemerkung1:
+          $ref: '#/components/schemas/field.ReklamationsgrundBemerkung.bemerkung1'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        bemerkung2:
+          $ref: '#/components/schemas/field.ReklamationsgrundBemerkung.bemerkung2'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        bemerkung3:
+          $ref: '#/components/schemas/field.ReklamationsgrundBemerkung.bemerkung3'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        bemerkung4:
+          $ref: '#/components/schemas/field.ReklamationsgrundBemerkung.bemerkung4'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+        bemerkung5:
+          $ref: '#/components/schemas/field.ReklamationsgrundBemerkung.bemerkung5'
+          x-edifact-segment:
+          - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
+      required:
+      - bemerkung1
+      - bemerkung2
+      - bemerkung3
+      - bemerkung4
+      - bemerkung5
+      type: object
+    bauteil.PI_17122.stammdaten.SCHALTZEITDEFINITION:
+      properties:
+        schaltzeiten:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.SCHALTZEITDEFINITION.schaltzeiten'
+          type: array
+      required:
+      - schaltzeiten
+      type: object
+    bauteil.PI_17122.stammdaten.SCHALTZEITDEFINITION.schaltzeiten:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.Schaltzeit.code'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI+Z52
+      required:
+      - code
+      type: object
+    bauteil.PI_17122.stammdaten.ZAEHLZEITDEFINITION:
+      properties:
+        zaehlzeiten:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_17122.stammdaten.ZAEHLZEITDEFINITION.zaehlzeiten'
+          type: array
+      required:
+      - zaehlzeiten
+      type: object
+    bauteil.PI_17122.stammdaten.ZAEHLZEITDEFINITION.zaehlzeiten:
+      properties:
+        code:
+          $ref: '#/components/schemas/field.Zaehlzeit.code'
+          x-edifact-segment:
+          - SG29.LIN.SG30.CCI
+      required:
+      - code
       type: object
     bauteil.PI_17123.stammdaten:
       properties:
@@ -5391,6 +5871,931 @@ components:
       - zeit
       type: object
     bauteil.PI_37000.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.NAD
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.NAD
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.NAD
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.NAD
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.NAD
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.NAD
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.NAD
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_37001.stammdaten:
+      properties:
+        KOMMUNIKATIONSDATEN:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN'
+          type: array
+      required:
+      - KOMMUNIKATIONSDATEN
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN:
+      properties:
+        gueltigkeit:
+          $ref: '#/components/schemas/field.Kommunikationsdaten.gueltigkeit'
+          x-edifact-segment:
+          - SG1.RFF+AGK.DTM+157
+        kommunikationsDatenBlattInaktiv:
+          $ref: '#/components/schemas/field.Kommunikationsdaten.kommunikationsDatenBlattInaktiv'
+          x-edifact-segment:
+          - BGM+10
+        kommunikationsangaben:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben'
+          type: array
+        marktteilnehmer:
+          $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer'
+      required:
+      - kommunikationsDatenBlattInaktiv
+      - kommunikationsangaben
+      - marktteilnehmer
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Marktteilnehmer.anrede'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        ansprechpartner:
+          $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner'
+        kommunikationsrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.kommunikationsrolle'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18
+          - SG4.NAD+Z18.SG7.CTA+IC
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19
+          - SG4.NAD+Z19.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20
+          - SG4.NAD+Z20.SG7.CTA+IC
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21
+          - SG4.NAD+Z21.SG7.CTA+IC
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33
+          - SG4.NAD+Z33.SG7.CTA+IC
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+        name1:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name1'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        name2:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name2'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        name3:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name3'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        name4:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name4'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.partneradresse'
+      required:
+      - anrede
+      - ansprechpartner
+      - kommunikationsrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner:
+      properties:
+        eMailAdresse:
+          $ref: '#/components/schemas/field.Ansprechpartner.eMailAdresse'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+        nachname:
+          $ref: '#/components/schemas/field.Ansprechpartner.nachname'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z18.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC
+          - SG4.NAD+Z20.SG7.CTA+IC
+          - SG4.NAD+Z21.SG7.CTA+IC
+          - SG4.NAD+Z33.SG7.CTA+IC
+        rufnummern:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner.rufnummern'
+          type: array
+      required:
+      - eMailAdresse
+      - nachname
+      - rufnummern
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner.rufnummern:
+      properties:
+        nummerntyp:
+          $ref: '#/components/schemas/field.Rufnummer.nummerntyp'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+        rufnummer:
+          $ref: '#/components/schemas/field.Rufnummer.rufnummer'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z18.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+          - SG4.NAD+Z20.SG7.CTA+IC.COM
+          - SG4.NAD+Z21.SG7.CTA+IC.COM
+          - SG4.NAD+Z33.SG7.CTA+IC.COM
+      required:
+      - nummerntyp
+      - rufnummer
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z18
+          - SG4.NAD+Z19
+          - SG4.NAD+Z20
+          - SG4.NAD+Z21
+          - SG4.NAD+Z33
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer:
+      properties:
+        amtsgericht:
+          $ref: '#/components/schemas/field.Marktteilnehmer.amtsgericht'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        anrede:
+          $ref: '#/components/schemas/field.Marktteilnehmer.anrede'
+          x-edifact-segment:
+          - SG4.NAD
+        bankverbindung:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.bankverbindung'
+          type: array
+        erreichbarkeit:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.erreichbarkeit'
+          type: array
+        faxnummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.faxnummer'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+Z25
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Marktteilnehmer.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.NAD
+        hrnummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.hrnummer'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.NAD
+        name1:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name1'
+          x-edifact-segment:
+          - SG4.NAD
+        name2:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name2'
+          x-edifact-segment:
+          - SG4.NAD
+        name3:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name3'
+          x-edifact-segment:
+          - SG4.NAD
+        name4:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name4'
+          x-edifact-segment:
+          - SG4.NAD
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.partneradresse'
+        steuernummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.steuernummer'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        umsatzsteuerId:
+          $ref: '#/components/schemas/field.Marktteilnehmer.umsatzsteuerId'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        website:
+          $ref: '#/components/schemas/field.Marktteilnehmer.website'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z13
+      required:
+      - anrede
+      - bankverbindung
+      - erreichbarkeit
+      - faxnummer
+      - gewerbekennzeichnung
+      - marktrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      - steuernummer
+      - umsatzsteuerId
+      - website
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.bankverbindung:
+      properties:
+        bic:
+          $ref: '#/components/schemas/field.Bankverbindung.bic'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        iban:
+          $ref: '#/components/schemas/field.Bankverbindung.iban'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        kontoinhaber:
+          $ref: '#/components/schemas/field.Bankverbindung.kontoinhaber'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        kreditinstitut:
+          $ref: '#/components/schemas/field.Bankverbindung.kreditinstitut'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+      required:
+      - bic
+      - iban
+      - kontoinhaber
+      - kreditinstitut
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.erreichbarkeit:
+      properties:
+        verfuegbarkeit:
+          $ref: '#/components/schemas/field.Erreichbarkeit.verfuegbarkeit'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+        zeit:
+          $ref: '#/components/schemas/field.Erreichbarkeit.zeit'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+      required:
+      - verfuegbarkeit
+      - zeit
+      type: object
+    bauteil.PI_37001.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.NAD
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.NAD
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.NAD
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.NAD
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.NAD
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.NAD
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.NAD
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_37002.stammdaten:
+      properties:
+        KOMMUNIKATIONSDATEN:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN'
+          type: array
+      required:
+      - KOMMUNIKATIONSDATEN
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN:
+      properties:
+        gueltigkeit:
+          $ref: '#/components/schemas/field.Kommunikationsdaten.gueltigkeit'
+          x-edifact-segment:
+          - SG1.RFF+AGK.DTM+157
+        kommunikationsDatenBlattInaktiv:
+          $ref: '#/components/schemas/field.Kommunikationsdaten.kommunikationsDatenBlattInaktiv'
+          x-edifact-segment:
+          - BGM
+        kommunikationsangaben:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben'
+          type: array
+        marktteilnehmer:
+          $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer'
+      required:
+      - kommunikationsDatenBlattInaktiv
+      - kommunikationsangaben
+      - marktteilnehmer
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben:
+      properties:
+        anrede:
+          $ref: '#/components/schemas/field.Marktteilnehmer.anrede'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        ansprechpartner:
+          $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner'
+        kommunikationsrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.kommunikationsrolle'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12
+          - SG4.NAD+Z12.SG7.CTA+IC
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19
+          - SG4.NAD+Z19.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+        name1:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name1'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        name2:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name2'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        name3:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name3'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        name4:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name4'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.partneradresse'
+      required:
+      - anrede
+      - ansprechpartner
+      - kommunikationsrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner:
+      properties:
+        eMailAdresse:
+          $ref: '#/components/schemas/field.Ansprechpartner.eMailAdresse'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+        nachname:
+          $ref: '#/components/schemas/field.Ansprechpartner.nachname'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC
+          - SG4.NAD+Z11.SG7.CTA+IC
+          - SG4.NAD+Z12.SG7.CTA+IC
+          - SG4.NAD+Z13.SG7.CTA+IC
+          - SG4.NAD+Z14.SG7.CTA+IC
+          - SG4.NAD+Z16.SG7.CTA+IC
+          - SG4.NAD+Z17.SG7.CTA+IC
+          - SG4.NAD+Z19.SG7.CTA+IC
+        rufnummern:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner.rufnummern'
+          type: array
+      required:
+      - eMailAdresse
+      - nachname
+      - rufnummern
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.ansprechpartner.rufnummern:
+      properties:
+        nummerntyp:
+          $ref: '#/components/schemas/field.Rufnummer.nummerntyp'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+        rufnummer:
+          $ref: '#/components/schemas/field.Rufnummer.rufnummer'
+          x-edifact-segment:
+          - SG4.NAD+Z10.SG7.CTA+IC.COM
+          - SG4.NAD+Z11.SG7.CTA+IC.COM
+          - SG4.NAD+Z12.SG7.CTA+IC.COM
+          - SG4.NAD+Z13.SG7.CTA+IC.COM
+          - SG4.NAD+Z14.SG7.CTA+IC.COM
+          - SG4.NAD+Z16.SG7.CTA+IC.COM
+          - SG4.NAD+Z17.SG7.CTA+IC.COM
+          - SG4.NAD+Z19.SG7.CTA+IC.COM
+      required:
+      - nummerntyp
+      - rufnummer
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.kommunikationsangaben.partneradresse:
+      properties:
+        hausnummer:
+          $ref: '#/components/schemas/field.Adresse.hausnummer'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        landescode:
+          $ref: '#/components/schemas/field.Adresse.landescode'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        ort:
+          $ref: '#/components/schemas/field.Adresse.ort'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        ortsteil:
+          $ref: '#/components/schemas/field.Adresse.ortsteil'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        postfach:
+          $ref: '#/components/schemas/field.Adresse.postfach'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        postleitzahl:
+          $ref: '#/components/schemas/field.Adresse.postleitzahl'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+        strasse:
+          $ref: '#/components/schemas/field.Adresse.strasse'
+          x-edifact-segment:
+          - SG4.NAD+Z10
+          - SG4.NAD+Z11
+          - SG4.NAD+Z12
+          - SG4.NAD+Z13
+          - SG4.NAD+Z14
+          - SG4.NAD+Z16
+          - SG4.NAD+Z17
+          - SG4.NAD+Z19
+      required:
+      - hausnummer
+      - landescode
+      - ort
+      - ortsteil
+      - postfach
+      - postleitzahl
+      - strasse
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer:
+      properties:
+        amtsgericht:
+          $ref: '#/components/schemas/field.Marktteilnehmer.amtsgericht'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        anrede:
+          $ref: '#/components/schemas/field.Marktteilnehmer.anrede'
+          x-edifact-segment:
+          - SG4.NAD
+        bankverbindung:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.bankverbindung'
+          type: array
+        erreichbarkeit:
+          items:
+            $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.erreichbarkeit'
+          type: array
+        faxnummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.faxnummer'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+Z25
+        gewerbekennzeichnung:
+          $ref: '#/components/schemas/field.Marktteilnehmer.gewerbekennzeichnung'
+          x-edifact-segment:
+          - SG4.NAD
+        hrnummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.hrnummer'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z15
+        marktrolle:
+          $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+          x-edifact-segment:
+          - SG4.NAD
+        name1:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name1'
+          x-edifact-segment:
+          - SG4.NAD
+        name2:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name2'
+          x-edifact-segment:
+          - SG4.NAD
+        name3:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name3'
+          x-edifact-segment:
+          - SG4.NAD
+        name4:
+          $ref: '#/components/schemas/field.Marktteilnehmer.name4'
+          x-edifact-segment:
+          - SG4.NAD
+        partneradresse:
+          $ref: '#/components/schemas/bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.partneradresse'
+        steuernummer:
+          $ref: '#/components/schemas/field.Marktteilnehmer.steuernummer'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        umsatzsteuerId:
+          $ref: '#/components/schemas/field.Marktteilnehmer.umsatzsteuerId'
+          x-edifact-segment:
+          - SG4.NAD.SG6.RFF+[VA|FC]
+        website:
+          $ref: '#/components/schemas/field.Marktteilnehmer.website'
+          x-edifact-segment:
+          - SG4.NAD.FTX+Z13
+      required:
+      - anrede
+      - bankverbindung
+      - erreichbarkeit
+      - faxnummer
+      - gewerbekennzeichnung
+      - marktrolle
+      - name1
+      - name2
+      - name3
+      - name4
+      - partneradresse
+      - steuernummer
+      - umsatzsteuerId
+      - website
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.bankverbindung:
+      properties:
+        bic:
+          $ref: '#/components/schemas/field.Bankverbindung.bic'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        iban:
+          $ref: '#/components/schemas/field.Bankverbindung.iban'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        kontoinhaber:
+          $ref: '#/components/schemas/field.Bankverbindung.kontoinhaber'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+        kreditinstitut:
+          $ref: '#/components/schemas/field.Bankverbindung.kreditinstitut'
+          x-edifact-segment:
+          - SG4.NAD.FII+BK
+      required:
+      - bic
+      - iban
+      - kontoinhaber
+      - kreditinstitut
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.erreichbarkeit:
+      properties:
+        verfuegbarkeit:
+          $ref: '#/components/schemas/field.Erreichbarkeit.verfuegbarkeit'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+        zeit:
+          $ref: '#/components/schemas/field.Erreichbarkeit.zeit'
+          x-edifact-segment:
+          - SG4.NAD.SG12.CCI+Z40.DTM
+      required:
+      - verfuegbarkeit
+      - zeit
+      type: object
+    bauteil.PI_37002.stammdaten.KOMMUNIKATIONSDATEN.marktteilnehmer.partneradresse:
       properties:
         hausnummer:
           $ref: '#/components/schemas/field.Adresse.hausnummer'
@@ -28445,6 +29850,17 @@ components:
       - START_GESCHAEFTSDATENANFRAGE
       - START_VERSAND_PREISBLATT_IMS
       - START_UEBERMITTLUNG_ENFG
+      - START_PARTIN
+      - START_GERAETEUEBERNAHME
+      - START_ANGEBOT_GERAETEUEBERNAHME
+      - START_BESTELLUNG_GERAETEUEBERNAHME
+      - START_UEBERM_DEFINITION
+      - START_UEBERSICHT_LEISTUNGSKURVENDEF
+      - START_UEBERSICHT_SCHALTZEITDEF
+      - START_UEBERSICHT_ZAEHLZEITDEF
+      - START_REKLAMATION_DEFINITION
+      - START_VERSAND_STATUSMELDUNG
+      - START_GERAETEWECHSEL
       title: EventName
       type: string
     cdoc.Message:
@@ -28989,6 +30405,16 @@ components:
           $ref: '#/components/schemas/field.AntwortStatusZeitraum.zeitraumId'
       title: AntwortStatusZeitraum
       type: object
+    com.ApnKommunikationsdatenZugriffsparameter:
+      properties:
+        apnName:
+          $ref: '#/components/schemas/field.ApnKommunikationsdatenZugriffsparameter.apnName'
+        nutzer:
+          $ref: '#/components/schemas/field.ApnKommunikationsdatenZugriffsparameter.nutzer'
+        passwort:
+          $ref: '#/components/schemas/field.ApnKommunikationsdatenZugriffsparameter.passwort'
+      title: ApnKommunikationsdatenZugriffsparameter
+      type: object
     com.AuftragPosition:
       properties:
         allgemeineInformationen:
@@ -28997,6 +30423,8 @@ components:
           $ref: '#/components/schemas/field.AuftragPosition.anfragegrund'
         apnKommunikationsdaten:
           $ref: '#/components/schemas/field.AuftragPosition.apnKommunikationsdaten'
+        apnKommunikationsdatenZugriffsparameter:
+          $ref: '#/components/schemas/field.AuftragPosition.apnKommunikationsdatenZugriffsparameter'
         artikelnummer:
           $ref: '#/components/schemas/field.AuftragPosition.artikelnummer'
         definitionsTyp:
@@ -29007,6 +30435,8 @@ components:
           $ref: '#/components/schemas/field.AuftragPosition.endpunktAdresse'
         energieerfassung:
           $ref: '#/components/schemas/field.AuftragPosition.energieerfassung'
+        gueltigAb:
+          $ref: '#/components/schemas/field.AuftragPosition.gueltigAb'
         infoAbweichung:
           $ref: '#/components/schemas/field.AuftragPosition.infoAbweichung'
         istBestand:
@@ -33054,17 +34484,9 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
+              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
             empfaenger:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            kategorie:
-              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17120.
               examples:
@@ -33074,7 +34496,6 @@ components:
           required:
           - absender
           - empfaenger
-          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -33344,17 +34765,9 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
+              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
             empfaenger:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            kategorie:
-              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
               examples:
@@ -33364,7 +34777,6 @@ components:
           required:
           - absender
           - empfaenger
-          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -33816,10 +35228,17 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_37000.stammdaten'
         transaktionsdaten:
           properties:
+            absender:
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
             empfaenger:
               properties:
                 marktrolle:
                   $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
               type: object
             kategorie:
               $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
@@ -33828,6 +35247,7 @@ components:
               examples:
               - '37000'
           required:
+          - absender
           - empfaenger
           - kategorie
           type: object
@@ -34108,9 +35528,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
               examples:
@@ -34121,7 +35551,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -34149,9 +35581,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
@@ -34160,7 +35602,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -34188,9 +35632,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
@@ -34199,7 +35653,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -34227,9 +35683,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
@@ -34238,7 +35704,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -34601,45 +36069,33 @@ components:
       type: object
       x-pending-pruefis:
       - '13006'
-    event.LF.START_VERSAND_UEBERSICHT_LKD:
+    event.MSB.START_ANGEBOT_GERAETUEBERNAHME:
       properties:
         stammdaten:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_25007.stammdaten'
+          - $ref: '#/components/schemas/bauteil.PI_15001.stammdaten'
         transaktionsdaten:
           properties:
             absender:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            anfrageReferenz:
-              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
+              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
             empfaenger:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            kategorie:
-              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 15001.
               examples:
-              - '25007'
+              - '15001'
             sparte:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
-          - anfrageReferenz
           - empfaenger
-          - kategorie
           - sparte
           type: object
         zusatzdaten:
           properties:
             eventname:
-              const: START_VERSAND_UEBERSICHT_LKD
-              default: START_VERSAND_UEBERSICHT_LKD
+              const: START_ANGEBOT_GERAETUEBERNAHME
+              default: START_ANGEBOT_GERAETUEBERNAHME
               type: string
             prozessId:
               type: string
@@ -34652,96 +36108,33 @@ components:
       - transaktionsdaten
       - zusatzdaten
       type: object
-    event.LF.START_VERSAND_UEBERSICHT_SZD:
+    event.MSB.START_BESTELLUNG_GERAETUEBERNAHME:
       properties:
         stammdaten:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_25006.stammdaten'
+          - $ref: '#/components/schemas/bauteil.PI_17001.stammdaten'
         transaktionsdaten:
           properties:
             absender:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            anfrageReferenz:
-              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
+              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
             empfaenger:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            kategorie:
-              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17001.
               examples:
-              - '25006'
+              - '17001'
             sparte:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
-          - anfrageReferenz
           - empfaenger
-          - kategorie
           - sparte
           type: object
         zusatzdaten:
           properties:
             eventname:
-              const: START_VERSAND_UEBERSICHT_SZD
-              default: START_VERSAND_UEBERSICHT_SZD
-              type: string
-            prozessId:
-              type: string
-          required:
-          - prozessId
-          - eventname
-          type: object
-      required:
-      - stammdaten
-      - transaktionsdaten
-      - zusatzdaten
-      type: object
-    event.LF.START_VERSAND_UEBERSICHT_ZZD:
-      properties:
-        stammdaten:
-          oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_25004.stammdaten'
-        transaktionsdaten:
-          properties:
-            absender:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            anfrageReferenz:
-              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
-            empfaenger:
-              properties:
-                rollencodenummer:
-                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
-              type: object
-            kategorie:
-              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
-            pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
-              examples:
-              - '25004'
-            sparte:
-              $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
-          required:
-          - absender
-          - anfrageReferenz
-          - empfaenger
-          - kategorie
-          - sparte
-          type: object
-        zusatzdaten:
-          properties:
-            eventname:
-              const: START_VERSAND_UEBERSICHT_ZZD
-              default: START_VERSAND_UEBERSICHT_ZZD
+              const: START_BESTELLUNG_GERAETUEBERNAHME
+              default: START_BESTELLUNG_GERAETUEBERNAHME
               type: string
             prozessId:
               type: string
@@ -34890,6 +36283,58 @@ components:
       - transaktionsdaten
       - zusatzdaten
       type: object
+    event.MSB.START_GERAETEWECHSEL:
+      properties:
+        stammdaten:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_17009.stammdaten'
+        transaktionsdaten:
+          properties:
+            absender:
+              properties:
+                marktrolle:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            empfaenger:
+              properties:
+                marktrolle:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17009.
+              examples:
+              - '17009'
+            sparte:
+              $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
+          required:
+          - absender
+          - empfaenger
+          - kategorie
+          - sparte
+          type: object
+        zusatzdaten:
+          properties:
+            eventname:
+              const: START_GERAETEWECHSEL
+              default: START_GERAETEWECHSEL
+              type: string
+            prozessId:
+              type: string
+          required:
+          - prozessId
+          - eventname
+          type: object
+      required:
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
+      type: object
     event.MSB.START_GERAETUEBERNAHME:
       properties:
         stammdaten:
@@ -34985,6 +36430,113 @@ components:
             eventname:
               const: START_GESCHAEFTSDATENANFRAGE
               default: START_GESCHAEFTSDATENANFRAGE
+              type: string
+            prozessId:
+              type: string
+          required:
+          - prozessId
+          - eventname
+          type: object
+      required:
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
+      type: object
+    event.MSB.START_PARTIN:
+      properties:
+        stammdaten:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_37002.stammdaten'
+        transaktionsdaten:
+          properties:
+            absender:
+              properties:
+                marktrolle:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            empfaenger:
+              properties:
+                marktrolle:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37002.
+              examples:
+              - '37002'
+            sparte:
+              $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
+          required:
+          - absender
+          - empfaenger
+          - kategorie
+          - sparte
+          type: object
+        zusatzdaten:
+          properties:
+            eventname:
+              const: START_PARTIN
+              default: START_PARTIN
+              type: string
+            prozessId:
+              type: string
+          required:
+          - prozessId
+          - eventname
+          type: object
+      required:
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
+      type: object
+    event.MSB.START_REKLAMATION_DEFINITION:
+      properties:
+        stammdaten:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_17122.stammdaten'
+        transaktionsdaten:
+          properties:
+            absender:
+              properties:
+                marktrolle:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfragereferenznummer:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfragereferenznummer'
+            empfaenger:
+              properties:
+                marktrolle:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.marktrolle'
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17122.
+              examples:
+              - '17122'
+            sparte:
+              $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
+          required:
+          - absender
+          - anfragereferenznummer
+          - empfaenger
+          - kategorie
+          - sparte
+          type: object
+        zusatzdaten:
+          properties:
+            eventname:
+              const: START_REKLAMATION_DEFINITION
+              default: START_REKLAMATION_DEFINITION
               type: string
             prozessId:
               type: string
@@ -35717,7 +37269,7 @@ components:
                   $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
               type: object
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648, 55694.
               examples:
               - '55137'
               - '55232'
@@ -35728,6 +37280,7 @@ components:
               - '55646'
               - '55647'
               - '55648'
+              - '55694'
             sparte:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
             transaktionsgrund:
@@ -35758,6 +37311,8 @@ components:
       - transaktionsdaten
       - zusatzdaten
       type: object
+      x-pending-pruefis:
+      - '55694'
     event.NB.START_BEST_AEND_TK:
       properties:
         stammdaten:
@@ -36192,6 +37747,54 @@ components:
       - transaktionsdaten
       - zusatzdaten
       type: object
+    event.NB.START_PARTIN:
+      properties:
+        stammdaten:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_37001.stammdaten'
+        transaktionsdaten:
+          properties:
+            absender:
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            empfaenger:
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37001.
+              examples:
+              - '37001'
+            sparte:
+              $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
+          required:
+          - absender
+          - empfaenger
+          - kategorie
+          - sparte
+          type: object
+        zusatzdaten:
+          properties:
+            eventname:
+              const: START_PARTIN
+              default: START_PARTIN
+              type: string
+            prozessId:
+              type: string
+          required:
+          - prozessId
+          - eventname
+          type: object
+      required:
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
+      type: object
     event.NB.START_PREISBLATT:
       properties:
         stammdaten:
@@ -36228,6 +37831,57 @@ components:
             eventname:
               const: START_PREISBLATT
               default: START_PREISBLATT
+              type: string
+            prozessId:
+              type: string
+          required:
+          - prozessId
+          - eventname
+          type: object
+      required:
+      - stammdaten
+      - transaktionsdaten
+      - zusatzdaten
+      type: object
+    event.NB.START_REKLAMATION_DEFINITION:
+      properties:
+        stammdaten:
+          oneOf:
+          - $ref: '#/components/schemas/bauteil.PI_17122.stammdaten'
+        transaktionsdaten:
+          properties:
+            absender:
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfragereferenznummer:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfragereferenznummer'
+            empfaenger:
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17122.
+              examples:
+              - '17122'
+            sparte:
+              $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
+          required:
+          - absender
+          - anfragereferenznummer
+          - empfaenger
+          - kategorie
+          - sparte
+          type: object
+        zusatzdaten:
+          properties:
+            eventname:
+              const: START_REKLAMATION_DEFINITION
+              default: START_REKLAMATION_DEFINITION
               type: string
             prozessId:
               type: string
@@ -36298,9 +37952,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
               examples:
@@ -36311,7 +37975,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -36339,9 +38005,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
@@ -36350,7 +38026,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -36378,9 +38056,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
@@ -36389,7 +38077,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -36417,9 +38107,19 @@ components:
         transaktionsdaten:
           properties:
             absender:
-              $ref: '#/components/schemas/field.Transaktionsdaten.absender'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            anfrageReferenz:
+              $ref: '#/components/schemas/field.Transaktionsdaten.anfrageReferenz'
             empfaenger:
-              $ref: '#/components/schemas/field.Transaktionsdaten.empfaenger'
+              properties:
+                rollencodenummer:
+                  $ref: '#/components/schemas/field.Marktteilnehmer.rollencodenummer'
+              type: object
+            kategorie:
+              $ref: '#/components/schemas/field.Transaktionsdaten.kategorie'
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
@@ -36428,7 +38128,9 @@ components:
               $ref: '#/components/schemas/field.Transaktionsdaten.sparte'
           required:
           - absender
+          - anfrageReferenz
           - empfaenger
+          - kategorie
           - sparte
           type: object
         zusatzdaten:
@@ -37633,6 +39335,15 @@ components:
     field.AntwortStatusZeitraum.zeitraumId:
       description: zeitraumId
       type: integer
+    field.ApnKommunikationsdatenZugriffsparameter.apnName:
+      description: Name des APNs
+      type: string
+    field.ApnKommunikationsdatenZugriffsparameter.nutzer:
+      description: Nutzer
+      type: string
+    field.ApnKommunikationsdatenZugriffsparameter.passwort:
+      description: Passwort
+      type: string
     field.Auftrag.ausfuehrungsdatum:
       description: Das Ausführungsdatum beschreibt zu welchem Zeitpunkt ein Auftrag ausgeführt werden soll.
       format: date-time
@@ -37712,6 +39423,8 @@ components:
     field.AuftragPosition.apnKommunikationsdaten:
       description: APN der Kommunikationsdaten
       type: string
+    field.AuftragPosition.apnKommunikationsdatenZugriffsparameter:
+      $ref: '#/components/schemas/com.ApnKommunikationsdatenZugriffsparameter'
     field.AuftragPosition.artikelnummer:
       $ref: '#/components/schemas/enum.BDEWArtikelnummer'
     field.AuftragPosition.definitionsTyp:
@@ -37724,6 +39437,10 @@ components:
       $ref: '#/components/schemas/com.EndpunktAdresse'
     field.AuftragPosition.energieerfassung:
       $ref: '#/components/schemas/enum.Energieerfassung'
+    field.AuftragPosition.gueltigAb:
+      description: gueltigAb
+      format: date-time
+      type: string
     field.AuftragPosition.infoAbweichung:
       $ref: '#/components/schemas/com.InfoAbweichung'
     field.AuftragPosition.istBestand:
@@ -42137,6 +43854,10 @@ components:
           $ref: '#/components/schemas/field.Verbrauch.enddatum'
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+164
+        leistungsperiode:
+          $ref: '#/components/schemas/field.Verbrauch.leistungsperiode'
+          x-edifact-segment:
+          - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.DTM+306
         messwertstatus:
           $ref: '#/components/schemas/field.Verbrauch.messwertstatus'
           x-edifact-segment:
@@ -42162,11 +43883,9 @@ components:
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY
       required:
-      - enddatum
       - messwertstatus
       - obiskennzahl
       - position
-      - startdatum
       - wert
       type: object
     pruefi.PI_13009.stammdaten.ENERGIEMENGE.energieverbrauch.statuszusatzinformationen:
