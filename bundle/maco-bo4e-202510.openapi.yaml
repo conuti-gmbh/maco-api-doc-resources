@@ -22030,6 +22030,17 @@ components:
       - START_GESCHAEFTSDATENANFRAGE
       - START_VERSAND_PREISBLATT_IMS
       - START_UEBERMITTLUNG_ENFG
+      - START_PARTIN
+      - START_GERAETEUEBERNAHME
+      - START_ANGEBOT_GERAETEUEBERNAHME
+      - START_BESTELLUNG_GERAETEUEBERNAHME
+      - START_UEBERM_DEFINITION
+      - START_UEBERSICHT_LEISTUNGSKURVENDEF
+      - START_UEBERSICHT_SCHALTZEITDEF
+      - START_UEBERSICHT_ZAEHLZEITDEF
+      - START_REKLAMATION_DEFINITION
+      - START_VERSAND_STATUSMELDUNG
+      - START_GERAETEWECHSEL
       title: EventName
       type: string
     cdoc.Message:
@@ -22574,6 +22585,16 @@ components:
           $ref: '#/components/schemas/field.AntwortStatusZeitraum.zeitraumId'
       title: AntwortStatusZeitraum
       type: object
+    com.ApnKommunikationsdatenZugriffsparameter:
+      properties:
+        apnName:
+          $ref: '#/components/schemas/field.ApnKommunikationsdatenZugriffsparameter.apnName'
+        nutzer:
+          $ref: '#/components/schemas/field.ApnKommunikationsdatenZugriffsparameter.nutzer'
+        passwort:
+          $ref: '#/components/schemas/field.ApnKommunikationsdatenZugriffsparameter.passwort'
+      title: ApnKommunikationsdatenZugriffsparameter
+      type: object
     com.AuftragPosition:
       properties:
         allgemeineInformationen:
@@ -22582,6 +22603,8 @@ components:
           $ref: '#/components/schemas/field.AuftragPosition.anfragegrund'
         apnKommunikationsdaten:
           $ref: '#/components/schemas/field.AuftragPosition.apnKommunikationsdaten'
+        apnKommunikationsdatenZugriffsparameter:
+          $ref: '#/components/schemas/field.AuftragPosition.apnKommunikationsdatenZugriffsparameter'
         artikelnummer:
           $ref: '#/components/schemas/field.AuftragPosition.artikelnummer'
         definitionsTyp:
@@ -22592,6 +22615,8 @@ components:
           $ref: '#/components/schemas/field.AuftragPosition.endpunktAdresse'
         energieerfassung:
           $ref: '#/components/schemas/field.AuftragPosition.energieerfassung'
+        gueltigAb:
+          $ref: '#/components/schemas/field.AuftragPosition.gueltigAb'
         infoAbweichung:
           $ref: '#/components/schemas/field.AuftragPosition.infoAbweichung'
         istBestand:
@@ -33786,6 +33811,15 @@ components:
     field.AntwortStatusZeitraum.zeitraumId:
       description: zeitraumId
       type: integer
+    field.ApnKommunikationsdatenZugriffsparameter.apnName:
+      description: Name des APNs
+      type: string
+    field.ApnKommunikationsdatenZugriffsparameter.nutzer:
+      description: Nutzer
+      type: string
+    field.ApnKommunikationsdatenZugriffsparameter.passwort:
+      description: Passwort
+      type: string
     field.Auftrag.ausfuehrungsdatum:
       description: Das Ausführungsdatum beschreibt zu welchem Zeitpunkt ein Auftrag ausgeführt werden soll.
       format: date-time
@@ -33865,6 +33899,8 @@ components:
     field.AuftragPosition.apnKommunikationsdaten:
       description: APN der Kommunikationsdaten
       type: string
+    field.AuftragPosition.apnKommunikationsdatenZugriffsparameter:
+      $ref: '#/components/schemas/com.ApnKommunikationsdatenZugriffsparameter'
     field.AuftragPosition.artikelnummer:
       $ref: '#/components/schemas/enum.BDEWArtikelnummer'
     field.AuftragPosition.definitionsTyp:
@@ -33877,6 +33913,10 @@ components:
       $ref: '#/components/schemas/com.EndpunktAdresse'
     field.AuftragPosition.energieerfassung:
       $ref: '#/components/schemas/enum.Energieerfassung'
+    field.AuftragPosition.gueltigAb:
+      description: gueltigAb
+      format: date-time
+      type: string
     field.AuftragPosition.infoAbweichung:
       $ref: '#/components/schemas/com.InfoAbweichung'
     field.AuftragPosition.istBestand:

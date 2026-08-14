@@ -22051,6 +22051,17 @@ components:
       - START_BUSINESS_DATA_REQUEST
       - START_DISPATCH_PRICE_SHEET_IMS
       - START_TRANSMISSION_ENFG
+      - START_PARTIN
+      - START_DEVICE_TAKEOVER
+      - START_OFFER_DEVICE_TAKEOVER
+      - START_ORDER_DEVICE_TAKEOVER
+      - START_TRANSMISSION_DEFINITION
+      - START_OVERVIEW_LOAD_CURVE_DEFINITION
+      - START_OVERVIEW_SWITCHING_TIME_DEFINITION
+      - START_OVERVIEW_COUNTING_DEFINITION
+      - START_COMPLAINT_DEFINITION
+      - START_DISPATCH_STATUS_MESSAGE
+      - START_DEVICE_CHANGE
       title: EventName
       type: string
     cdoc.MasterData:
@@ -22417,6 +22428,16 @@ components:
         value:
           $ref: '#/components/schemas/field.Amount.value'
       title: Amount
+      type: object
+    com.ApnCommunicationDataAccessParameters:
+      properties:
+        apnName:
+          $ref: '#/components/schemas/field.ApnCommunicationDataAccessParameters.apnName'
+        password:
+          $ref: '#/components/schemas/field.ApnCommunicationDataAccessParameters.password'
+        user:
+          $ref: '#/components/schemas/field.ApnCommunicationDataAccessParameters.user'
+      title: ApnCommunicationDataAccessParameters
       type: object
     com.AssignedDefinition:
       properties:
@@ -23368,6 +23389,8 @@ components:
       properties:
         apnCommunicationData:
           $ref: '#/components/schemas/field.OrderPosition.apnCommunicationData'
+        apnCommunicationDataAccessParameters:
+          $ref: '#/components/schemas/field.OrderPosition.apnCommunicationDataAccessParameters'
         articleNumber:
           $ref: '#/components/schemas/field.OrderPosition.articleNumber'
         certificateInformation:
@@ -23402,6 +23425,8 @@ components:
           $ref: '#/components/schemas/field.OrderPosition.requestReason'
         startDate:
           $ref: '#/components/schemas/field.OrderPosition.startDate'
+        validFrom:
+          $ref: '#/components/schemas/field.OrderPosition.validFrom'
         wakeUpPort:
           $ref: '#/components/schemas/field.OrderPosition.wakeUpPort'
       title: OrderPosition
@@ -28441,7 +28466,7 @@ components:
           properties:
             eventname:
               const: START_UEBERM_DEFINITION
-              default: START_UEBERM_DEFINITION
+              default: START_TRANSMISSION_DEFINITION
               type: string
             processId:
               type: string
@@ -28484,7 +28509,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_LEISTUNGSKURVENDEF
-              default: START_UEBERSICHT_LEISTUNGSKURVENDEF
+              default: START_OVERVIEW_LOAD_CURVE_DEFINITION
               type: string
             processId:
               type: string
@@ -28523,7 +28548,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_SCHALTZEITDEF
-              default: START_UEBERSICHT_SCHALTZEITDEF
+              default: START_OVERVIEW_SWITCHING_TIME_DEFINITION
               type: string
             processId:
               type: string
@@ -28562,7 +28587,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_ZAEHLZEITDEF
-              default: START_UEBERSICHT_ZAEHLZEITDEF
+              default: START_OVERVIEW_COUNTING_DEFINITION
               type: string
             processId:
               type: string
@@ -32288,7 +32313,7 @@ components:
           properties:
             eventname:
               const: START_UEBERM_DEFINITION
-              default: START_UEBERM_DEFINITION
+              default: START_TRANSMISSION_DEFINITION
               type: string
             processId:
               type: string
@@ -32331,7 +32356,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_LEISTUNGSKURVENDEF
-              default: START_UEBERSICHT_LEISTUNGSKURVENDEF
+              default: START_OVERVIEW_LOAD_CURVE_DEFINITION
               type: string
             processId:
               type: string
@@ -32370,7 +32395,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_SCHALTZEITDEF
-              default: START_UEBERSICHT_SCHALTZEITDEF
+              default: START_OVERVIEW_SWITCHING_TIME_DEFINITION
               type: string
             processId:
               type: string
@@ -32409,7 +32434,7 @@ components:
           properties:
             eventname:
               const: START_UEBERSICHT_ZAEHLZEITDEF
-              default: START_UEBERSICHT_ZAEHLZEITDEF
+              default: START_OVERVIEW_COUNTING_DEFINITION
               type: string
             processId:
               type: string
@@ -32891,7 +32916,7 @@ components:
           properties:
             eventname:
               const: START_VERSAND_STATUSMELDUNG
-              default: START_VERSAND_STATUSMELDUNG
+              default: START_DISPATCH_STATUS_MESSAGE
               type: string
             processId:
               type: string
@@ -33345,6 +33370,12 @@ components:
     field.Amount.value:
       format: float
       type: number
+    field.ApnCommunicationDataAccessParameters.apnName:
+      type: string
+    field.ApnCommunicationDataAccessParameters.password:
+      type: string
+    field.ApnCommunicationDataAccessParameters.user:
+      type: string
     field.AssignedDefinition.loadCurveDefinition:
       type: string
     field.AssignedDefinition.switchingTimeDefinition:
@@ -35318,6 +35349,8 @@ components:
       type: number
     field.OrderPosition.apnCommunicationData:
       type: string
+    field.OrderPosition.apnCommunicationDataAccessParameters:
+      $ref: '#/components/schemas/com.ApnCommunicationDataAccessParameters'
     field.OrderPosition.articleNumber:
       $ref: '#/components/schemas/enum.BDEWArticleNumber'
     field.OrderPosition.certificateInformation:
@@ -35352,6 +35385,9 @@ components:
     field.OrderPosition.requestReason:
       $ref: '#/components/schemas/enum.RequestReason'
     field.OrderPosition.startDate:
+      format: date-time
+      type: string
+    field.OrderPosition.validFrom:
       format: date-time
       type: string
     field.OrderPosition.wakeUpPort:

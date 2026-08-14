@@ -19,6 +19,9 @@ components:
         positionsbetrag:
           $ref: >-
             ../fields/com/AuftragPosition/positionsbetrag.yaml#/components/schemas/positionsbetrag
+        gueltigAb:
+          $ref: >-
+            ../fields/com/AuftragPosition/gueltigAb.yaml#/components/schemas/gueltigAb
         startdatum:
           $ref: >-
             ../fields/com/AuftragPosition/startdatum.yaml#/components/schemas/startdatum
@@ -61,3 +64,6 @@ components:
         apnKommunikationsdaten:
           $ref: >-
             ../fields/com/AuftragPosition/apnKommunikationsdaten.yaml#/components/schemas/apnKommunikationsdaten
+        apnKommunikationsdatenZugriffsparameter:
+          $ref: >-
+            ../fields/com/AuftragPosition/apnKommunikationsdatenZugriffsparameter.yaml#/components/schemas/apnKommunikationsdatenZugriffsparameter
