@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: '[MSB] START_GERAETUEBERNAHME'
+  title: '[MSB] START_ANGEBOT_GERAETEUEBERNAHME'
   version: '202604'
-  x-bpmn-source-sha: 3c6d64fa
+  x-bpmn-source-sha: 23ab5062
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
-    '[MSB] START_GERAETUEBERNAHME':
+    '[MSB] START_ANGEBOT_GERAETEUEBERNAHME':
       type: object
       required:
         - stammdaten
@@ -16,13 +16,12 @@ components:
       properties:
         stammdaten:
           oneOf:
-            - $ref: ../../event-bauteil/202604/REQOTE/PI_35001.yaml#/components/schemas/PI_35001__stammdaten
+            - $ref: ../../event-bauteil/202604/QUOTES/PI_15001.yaml#/components/schemas/PI_15001__stammdaten
         transaktionsdaten:
           type: object
           required:
             - absender
             - empfaenger
-            - gueltigAb
             - kategorie
             - sparte
           properties:
@@ -40,16 +39,14 @@ components:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
                 rollencodenummer:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
-            gueltigAb:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/gueltigAb.yaml#/components/schemas/gueltigAb
             kategorie:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 35001.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 15001.
               examples:
-                - '35001'
+                - '15001'
         zusatzdaten:
           type: object
           required:
@@ -60,5 +57,5 @@ components:
               type: string
             eventname:
               type: string
-              const: START_GERAETUEBERNAHME
-              default: START_GERAETUEBERNAHME
+              const: START_ANGEBOT_GERAETEUEBERNAHME
+              default: START_ANGEBOT_GERAETEUEBERNAHME

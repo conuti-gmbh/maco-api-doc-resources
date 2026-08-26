@@ -1,0 +1,39 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_VERSAND_BEED_WERTE'
+  version: '202604'
+  x-bpmn-source-sha: 23ab5062
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    '[MSB] START_VERSAND_BEED_WERTE':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        transaktionsdaten:
+          type: object
+          properties:
+            pruefidentifikator:
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21042.
+              examples:
+                - '21042'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_BEED_WERTE
+              default: START_VERSAND_BEED_WERTE
+      x-pending-pruefis:
+        - '21042'
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.

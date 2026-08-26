@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[MSB] START_VERSAND_STORNO_MSCONS'
   version: '202604'
-  x-bpmn-source-sha: 3c6d64fa
+  x-bpmn-source-sha: 23ab5062
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[MSB] START_VERSAND_STORNO_MSCONS':
@@ -43,7 +43,7 @@ components:
             processReferenceNumber:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/processReferenceNumber.yaml#/components/schemas/processReferenceNumber
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
               examples:
               - '13006'
         additionalData:

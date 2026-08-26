@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_KUENDIGUNG'
   version: '202604'
-  x-bpmn-source-sha: 25b8cceb
+  x-bpmn-source-sha: 47f8ad44
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[LF] START_KUENDIGUNG':
@@ -16,8 +16,48 @@ components:
       properties:
         masterData:
           oneOf:
-          - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44016.yaml#/components/schemas/PI_44016__masterData
-          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55016.yaml#/components/schemas/PI_55016__masterData
+          - allOf:
+            - $ref: ../../event-bauteil-en/202604/UTILMD_GAS/PI_44016.yaml#/components/schemas/PI_44016__masterData
+            - type: object
+              required:
+              - MARKET_LOCATION
+              properties:
+                MARKET_LOCATION:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - sector
+                    properties:
+                      sector:
+                        $ref: ../../bo4e-en/fields/bo/MarketLocation/sector.yaml#/components/schemas/sector
+                        x-process-routing:
+                        - variable: sparte
+                          source: $.stammdaten.MARKTLOKATION[0].sparte
+                          selects-pruefi: '44016'
+                          conditions:
+                          - ${sparte=="GAS"}
+          - allOf:
+            - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55016.yaml#/components/schemas/PI_55016__masterData
+            - type: object
+              required:
+              - MARKET_LOCATION
+              properties:
+                MARKET_LOCATION:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - sector
+                    properties:
+                      sector:
+                        $ref: ../../bo4e-en/fields/bo/MarketLocation/sector.yaml#/components/schemas/sector
+                        x-process-routing:
+                        - variable: sparte
+                          source: $.stammdaten.MARKTLOKATION[0].sparte
+                          selects-pruefi: '55016'
+                          conditions:
+                          - ${sparte=="STROM"}
         transactionData:
           type: object
           required:
@@ -43,7 +83,7 @@ components:
             transactionReason:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.'
               examples:
               - '44016'
               - '55016'

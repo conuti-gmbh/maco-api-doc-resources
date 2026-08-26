@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_BEGINN_MSB'
+  version: '202604'
+  x-bpmn-source-sha: 23ab5062
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    '[MSB] START_BEGINN_MSB':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202604/UTILMD/PI_55042.yaml#/components/schemas/PI_55042__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - serviceDateStart
+          - receiver
+          - category
+          - sector
+          - transactionReason
+          properties:
+            sender:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            serviceDateStart:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/serviceDateStart.yaml#/components/schemas/serviceDateStart
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
+            verificationIdentifier:
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44042, 55042.'
+              examples:
+              - '44042'
+              - '55042'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_BEGINN_MSB
+              default: START_BEGIN_MSB
+      x-pending-pruefis:
+      - '44042'
