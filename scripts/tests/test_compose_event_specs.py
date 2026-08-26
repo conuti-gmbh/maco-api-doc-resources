@@ -817,3 +817,32 @@ def test_variable_known_from_another_event_is_not_unresolved(tmp_path: Path) -> 
         "[LF] START_X"
     ]
     assert "x-unresolved-routing" not in schema
+
+
+def test_pruefi_description_names_the_actual_decision_variables(tmp_path: Path) -> None:
+    """The wording used to claim "Sparte + Transaktionsgrund + Empfänger-
+    Marktrolle" for every event; it must name what this topic really gates on."""
+    mapping, required = _routing_setup(tmp_path)
+    _run(tmp_path, mapping, required)
+
+    td = _load_out(tmp_path, "202604", "LF", "START_LIEFERBEGINN")["components"][
+        "schemas"
+    ]["[LF] START_LIEFERBEGINN"]["properties"]["transaktionsdaten"]
+    description = td["properties"]["pruefidentifikator"]["description"]
+    assert "Entscheidungsgrundlage: energierichtung, sparte" in description
+    assert "Transaktionsgrund" not in description
+    assert "44001, 55001, 55077" in description
+
+
+def test_pruefi_description_omits_basis_when_no_gate_is_known(tmp_path: Path) -> None:
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping("LF", "START_PLAIN", [55001])
+    required = _required("LF", "START_PLAIN", ["absender"])
+    _run(tmp_path, mapping, required)
+
+    td = _load_out(tmp_path, "202604", "LF", "START_PLAIN")["components"]["schemas"][
+        "[LF] START_PLAIN"
+    ]["properties"]["transaktionsdaten"]
+    description = td["properties"]["pruefidentifikator"]["description"]
+    assert "Entscheidungsgrundlage" not in description
+    assert description.startswith("Wird dynamisch im Event-Prozess ermittelt.")

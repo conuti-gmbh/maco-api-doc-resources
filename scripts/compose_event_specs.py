@@ -20,9 +20,10 @@ Modelling (Stand 2026-05-27, MACO-13040):
     DMN reads but the BO4E model lacks (e.g. lokationsTyp) go to
     ``x-unresolved-transaktionsdaten`` instead of required-but-undefined.
   * ``transaktionsdaten.pruefidentifikator`` is regularly **optional, no enum**:
-    Camunda determines the Prüfi dynamically (Sparte + Transaktionsgrund +
-    Empfänger-Marktrolle). Beauskunftung is carried by a ``description`` listing
-    the Prüfis possible in the topic plus an ``examples`` array. The single NNA
+    Camunda determines the Prüfi dynamically. Beauskunftung is carried by a
+    ``description`` naming the topic's actual decision variables (derived from
+    the BPMN gate conditions, not a fixed phrase) and listing the Prüfis
+    possible in the topic, plus an ``examples`` array. The single NNA
     outlier (``pruefidentifikator_source == "transaktionsdaten"``) instead marks
     it **required + enum**, because there the body value routes the T_ gateway.
   * ``oneOf`` over the topic's Prüfi-Bauteile = Union-of-Required-Coverage
@@ -105,11 +106,14 @@ STAMMDATEN_PATH_RE = re.compile(
 ATOM_TIERS = ("bo", "com", "cdoc")
 
 PRUEFI_DESC_DYNAMIC = (
-    "Wird dynamisch im Event-Prozess ermittelt "
-    "(Sparte + Transaktionsgrund + Empfänger-Marktrolle). "
+    "Wird dynamisch im Event-Prozess ermittelt{basis}. "
     "Ein vom Sender mitgegebener Wert wird ignoriert. "
     "Im Topic mögliche Prüfis — {pruefis}."
 )
+# Named per topic from the BPMN gate conditions. The former wording claimed
+# "Sparte + Transaktionsgrund + Empfänger-Marktrolle" for every event, which
+# holds for none of them — MACO-14052.
+PRUEFI_DESC_BASIS = " (Entscheidungsgrundlage: {vars})"
 PRUEFI_DESC_NNA = (
     "Pflichtfeld — bestimmt direkt die Antwort-Variante. "
     "Der Body-Wert routet den Versand-Prozess (T_-Gateway über ${pruefidentifikator})."
@@ -254,20 +258,29 @@ def routing_conditions(pruefis: list[dict]) -> dict[int, dict[str, list[str]]]:
     return out
 
 
-def discriminating_vars(by_pruefi: dict[int, dict[str, list[str]]]) -> set[str]:
-    """Variables whose condition differs across the topic's pruefis.
+def discriminating_vars(
+    by_pruefi: dict[int, dict[str, list[str]]], pruefi_count: int
+) -> set[str]:
+    """Variables that tell the topic's pruefis apart.
 
     ``${datenVorhanden==true}`` in front of every pruefi constrains all
-    branches equally and picks nothing; ``${energierichtung=="AUSSP"}`` vs
-    ``"EINSP"`` decides which pruefi is sent. Only the latter is a
-    discriminator — the distinction drives how urgently an unresolvable
-    variable needs clarification.
+    branches equally and picks nothing. A variable discriminates when its
+    conditions differ (``"AUSSP"`` vs ``"EINSP"``) **or** when it gates only
+    some of the pruefis (``${sparte=="GAS"}`` on one branch, absent on the
+    rest). The distinction drives how urgently an unresolvable variable needs
+    clarification.
     """
     per_var: dict[str, set[str]] = defaultdict(set)
+    seen_on: dict[str, int] = defaultdict(int)
     for variables in by_pruefi.values():
         for var, conditions in variables.items():
             per_var[var].update(conditions)
-    return {var for var, conditions in per_var.items() if len(conditions) > 1}
+            seen_on[var] += 1
+    return {
+        var
+        for var, conditions in per_var.items()
+        if len(conditions) > 1 or seen_on[var] < pruefi_count
+    }
 
 
 def resolve_routing_ref(
@@ -490,6 +503,7 @@ def build_transaktionsdaten(
     bo_cache: dict[str, tuple[str, str] | None],
     schema_cache: dict[Path, set],
     warnings: set[str],
+    routing_basis: list[str] | None = None,
 ) -> dict:
     """transaktionsdaten as a single object listing only the fields the event uses.
 
@@ -539,8 +553,15 @@ def build_transaktionsdaten(
         pruefi_prop = {"enum": pruefi_ids, "description": PRUEFI_DESC_NNA}
     else:
         # Regular case: optional, no constraint; Beauskunftung via description + examples.
+        basis = (
+            PRUEFI_DESC_BASIS.format(vars=", ".join(routing_basis))
+            if routing_basis
+            else ""
+        )
         pruefi_prop = {
-            "description": PRUEFI_DESC_DYNAMIC.format(pruefis=", ".join(pruefi_ids)),
+            "description": PRUEFI_DESC_DYNAMIC.format(
+                basis=basis, pruefis=", ".join(pruefi_ids)
+            ),
             "examples": pruefi_ids,
         }
     properties["pruefidentifikator"] = pruefi_prop
@@ -584,7 +605,7 @@ def build_schema(
     pruefis = pruefis or []
     jsonpaths = jsonpaths or {}
     by_pruefi = routing_conditions(pruefis)
-    discriminators = discriminating_vars(by_pruefi)
+    discriminators = discriminating_vars(by_pruefi, len(all_pruefi_ids))
     unresolved_routing: dict[str, list[str]] = {}
     one_of = []
     for pid, scope in pool:
@@ -639,6 +660,7 @@ def build_schema(
     properties["transaktionsdaten"] = build_transaktionsdaten(
         required_fields, td_reads, pruefi_source, all_pruefi_ids,
         bo4e_dir, yaml, bo_cache, schema_cache, warnings,
+        sorted(discriminators),
     )
     properties["zusatzdaten"] = {
         "type": "object",
