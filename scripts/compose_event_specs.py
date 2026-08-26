@@ -348,6 +348,7 @@ def build_routing_overlay(
     schema_cache: dict[Path, set],
     known_paths: dict[str, set[str]] | None = None,
     required_fields: list[str] | None = None,
+    alt_paths: dict[str, list[str]] | None = None,
 ) -> tuple[dict | None, list[str]]:
     """(overlay schema, unresolved variable names) for one pruefi branch.
 
@@ -363,8 +364,12 @@ def build_routing_overlay(
     """
     containers: dict[str, dict] = {}
     unresolved: list[str] = []
+    alt_paths = alt_paths or {}
     for var in sorted(variables):
-        own = jsonpaths.get(var) or []
+        # altJsonPath is an either/or fallback — requiring it alongside the
+        # primary path would reject a sender that legitimately fills only one.
+        fallbacks = set(alt_paths.get(var) or ())
+        own = [p for p in (jsonpaths.get(var) or []) if p not in fallbacks]
         # The obligation is only emitted from the event's own DMN row; the
         # repo-wide map may name a path that holds for a different event.
         matches = [m for m in (STAMMDATEN_PATH_RE.match(p) for p in own) if m]
@@ -386,16 +391,17 @@ def build_routing_overlay(
             )
             items = node["items"]
             if field not in items["properties"]:
+                annotation = {
+                    "variable": var,
+                    "source": match.group(0),
+                    "selects-pruefi": str(pid),
+                    "conditions": variables[var],
+                }
+                if fallbacks:
+                    annotation["accepts-alternative"] = sorted(fallbacks)
                 items["properties"][field] = {
                     "$ref": ref,
-                    "x-process-routing": [
-                        {
-                            "variable": var,
-                            "source": match.group(0),
-                            "selects-pruefi": str(pid),
-                            "conditions": variables[var],
-                        }
-                    ],
+                    "x-process-routing": [annotation],
                 }
                 items["required"].append(field)
                 items["required"].sort()
@@ -626,6 +632,7 @@ def build_schema(
     jsonpaths: dict[str, list[str]] | None = None,
     known_paths: dict[str, set[str]] | None = None,
     pending_dmn: bool = False,
+    alt_paths: dict[str, list[str]] | None = None,
 ) -> dict:
     # bauteil_dirname = event-bauteil for DE, event-bauteil-en for EN — must match
     # the dir the pool was built from, else EN events $ref the DE bauteile (broken).
@@ -644,7 +651,7 @@ def build_schema(
         }
         overlay, unresolved = build_routing_overlay(
             pid, by_pruefi.get(pid, {}), jsonpaths, bo4e_dir, yaml, schema_cache,
-            known_paths, required_fields,
+            known_paths, required_fields, alt_paths,
         )
         for var in unresolved:
             unresolved_routing.setdefault(var, []).append(str(pid))
@@ -661,7 +668,7 @@ def build_schema(
         pid_int = int(pid_str)
         overlay, unresolved = build_routing_overlay(
             pid_int, by_pruefi.get(pid_int, {}), jsonpaths, bo4e_dir, yaml,
-            schema_cache, known_paths, required_fields,
+            schema_cache, known_paths, required_fields, alt_paths,
         )
         for var in unresolved:
             unresolved_routing.setdefault(var, []).append(pid_str)
@@ -847,11 +854,13 @@ def compose(
             td_reads = required_entry.get("transaktionsdaten_reads", {})
             pruefi_source = required_entry.get("pruefidentifikator_source")
             jsonpaths = required_entry.get("jsonpaths", {})
+            alt_paths = required_entry.get("jsonpaths_alt", {})
         else:
             required_fields = []
             td_reads = {}
             pruefi_source = None
             jsonpaths = {}
+            alt_paths = {}
             fallback_count += 1
             if verbose:
                 print(
@@ -865,7 +874,7 @@ def compose(
             fmt, role, topic, pool, pending, all_ids, required_fields,
             td_reads, pruefi_source, bo4e_dir, bauteil_dir.name, yaml, bo_cache,
             schema_cache, td_warnings, pruefis, jsonpaths, known_paths,
-            required_entry is None,
+            required_entry is None, alt_paths,
         )
 
         if fmt not in provenance_cache and fmt in representative:

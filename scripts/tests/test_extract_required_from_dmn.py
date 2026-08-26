@@ -98,6 +98,53 @@ def test_extract_jsonpaths_handles_primary_and_alt() -> None:
     ]
 
 
+def test_extract_alt_jsonpaths_returns_only_the_fallbacks() -> None:
+    """The ranks must stay apart: altJsonPath is an either/or fallback, and a
+    consumer that turns a read into an obligation must not require both."""
+    value = (
+        "FN:GetDataFromInbound("
+        "jsonPath=$.transaktionsdaten.vertragsbeginn,"
+        "altJsonPath=$.stammdaten.MARKTLOKATION[0].vertragsbeginn)"
+    )
+    assert cli.extract_alt_jsonpaths(value) == [
+        "$.stammdaten.MARKTLOKATION[0].vertragsbeginn"
+    ]
+
+
+def test_extract_alt_jsonpaths_empty_without_fallback() -> None:
+    assert cli.extract_alt_jsonpaths(
+        "FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.sparte)"
+    ) == []
+
+
+def test_analyze_rule_records_alt_paths_separately() -> None:
+    """Through analyze_rule, not just the regex: a cell with a fallback must
+    surface it in jsonpaths_alt while keeping the primary in jsonpaths."""
+    rule = Rule(
+        event_name="START_WITH_FALLBACK",
+        outputs=(
+            (
+                "lokationsId",
+                "FN:GetDataFromInbound("
+                "jsonPath=$.stammdaten.MARKTLOKATION[0].marktlokationsId,"
+                "altJsonPath=$.stammdaten.MESSLOKATION[0].messlokationsId)",
+            ),
+            ("sparte", "FN:GetDataFromInbound(jsonPath=$.transaktionsdaten.sparte)"),
+        ),
+        description=None,
+    )
+    entry = cli.analyze_rule(rule)
+    assert entry["jsonpaths"]["lokationsId"] == [
+        "$.stammdaten.MARKTLOKATION[0].marktlokationsId",
+        "$.stammdaten.MESSLOKATION[0].messlokationsId",
+    ]
+    assert entry["jsonpaths_alt"]["lokationsId"] == [
+        "$.stammdaten.MESSLOKATION[0].messlokationsId"
+    ]
+    # A cell without a fallback must not gain an entry.
+    assert "sparte" not in entry["jsonpaths_alt"]
+
+
 def test_extract_jsonpaths_skips_literal_outputs() -> None:
     assert cli.extract_jsonpaths('"STROM"') == []
     assert cli.extract_jsonpaths("") == []

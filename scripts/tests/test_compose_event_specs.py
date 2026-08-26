@@ -85,6 +85,7 @@ def _required(
     include_event: bool = True,
     td_reads: dict[str, list[str]] | None = None,
     jsonpaths: dict[str, list[str]] | None = None,
+    jsonpaths_alt: dict[str, list[str]] | None = None,
 ) -> dict:
     events: dict = {}
     if include_event:
@@ -99,6 +100,7 @@ def _required(
                         "pruefidentifikator_source": pruefi_source,
                         "description": None,
                         "jsonpaths": jsonpaths or {},
+                        "jsonpaths_alt": jsonpaths_alt or {},
                     }
                 }
             }
@@ -870,3 +872,61 @@ def test_transaktionsdaten_path_inside_required_set_is_covered(tmp_path: Path) -
         "[LF] START_Z"
     ]
     assert "x-unresolved-routing" not in schema
+
+
+def test_alt_jsonpath_is_not_required_alongside_the_primary(tmp_path: Path) -> None:
+    """altJsonPath is an either/or fallback. Requiring both would reject a
+    sender that legitimately fills only the alternative."""
+    _write_bo_subfield(tmp_path / "bo4e", "bo", "Marktlokation", "marktlokationsId")
+    _write_bo_subfield(tmp_path / "bo4e", "bo", "Messlokation", "messlokationsId")
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping(
+        "LF", "START_L", [55001], paths_by_pid={55001: [['${lokationsId=="X"}']]}
+    )
+    required = _required(
+        "LF",
+        "START_L",
+        ["absender"],
+        jsonpaths={
+            "lokationsId": [
+                "$.stammdaten.MARKTLOKATION[0].marktlokationsId",
+                "$.stammdaten.MESSLOKATION[0].messlokationsId",
+            ]
+        },
+        jsonpaths_alt={"lokationsId": ["$.stammdaten.MESSLOKATION[0].messlokationsId"]},
+    )
+    _run(tmp_path, mapping, required)
+
+    schema = _load_out(tmp_path, "202604", "LF", "START_L")["components"]["schemas"][
+        "[LF] START_L"
+    ]
+    overlay = schema["properties"]["stammdaten"]["oneOf"][0]["allOf"][1]
+    # Only the primary container carries the obligation.
+    assert overlay["required"] == ["MARKTLOKATION"]
+    assert "MESSLOKATION" not in overlay["properties"]
+    routing = overlay["properties"]["MARKTLOKATION"]["items"]["properties"][
+        "marktlokationsId"
+    ]["x-process-routing"][0]
+    # The alternative stays visible so the reader knows it is accepted.
+    assert routing["accepts-alternative"] == [
+        "$.stammdaten.MESSLOKATION[0].messlokationsId"
+    ]
+
+
+def test_variable_with_only_an_alt_path_is_not_silently_dropped(tmp_path: Path) -> None:
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping(
+        "LF", "START_M", [55001], paths_by_pid={55001: [['${foo=="X"}']]}
+    )
+    required = _required(
+        "LF",
+        "START_M",
+        ["absender"],
+        jsonpaths={"foo": ["$.stammdaten.ANFRAGE[0].foo"]},
+        jsonpaths_alt={"foo": ["$.stammdaten.ANFRAGE[0].foo"]},
+    )
+    _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_M")["components"]["schemas"][
+        "[LF] START_M"
+    ]
+    assert [e["variable"] for e in schema["x-unresolved-routing"]] == ["foo"]
