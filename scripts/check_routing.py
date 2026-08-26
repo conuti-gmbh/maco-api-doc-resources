@@ -138,9 +138,6 @@ def main() -> int:
         mapping = json.load(fh)
     with args.required_fields.open("r", encoding="utf-8") as fh:
         required_doc = json.load(fh)
-    common_core = (required_doc.get("_aggregate") or {}).get(
-        "common_core_transaktionsdaten", []
-    )
     # Same repo-wide fallback the composer applies: a DMN column is defined
     # once and reused, so an event whose own row omits a variable is not
     # thereby of unknown origin.
@@ -180,7 +177,9 @@ def main() -> int:
                     ((required_doc.get("events") or {}).get(fmt) or {}).get(role) or {}
                 ).get(topic) or {}
                 jsonpaths = dmn_entry.get("jsonpaths") or {}
-                required_td = dmn_entry.get("required_transaktionsdaten") or common_core
+                # No aggregate fallback: an event without a DMN row has no
+                # derivable required set, so nothing there can cover a gate.
+                required_td = dmn_entry.get("required_transaktionsdaten") or []
 
                 for var, pruefis in sorted(gates.items()):
                     if var in required:

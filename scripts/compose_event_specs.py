@@ -115,6 +115,11 @@ PRUEFI_DESC_DYNAMIC = (
 # "Sparte + Transaktionsgrund + Empfänger-Marktrolle" for every event, which
 # holds for none of them — MACO-14052.
 PRUEFI_DESC_BASIS = " (Entscheidungsgrundlage: {vars})"
+PENDING_DMN_REASON = (
+    "Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event "
+    "keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht "
+    "bestimmbar und bleibt offen, bis die DMN-Zeile existiert."
+)
 PRUEFI_DESC_NNA = (
     "Pflichtfeld — bestimmt direkt die Antwort-Variante. "
     "Der Body-Wert routet den Versand-Prozess (T_-Gateway über ${pruefidentifikator})."
@@ -588,11 +593,10 @@ def build_transaktionsdaten(
         }
     properties["pruefidentifikator"] = pruefi_prop
 
-    td: dict = {
-        "type": "object",
-        "required": sorted(required),
-        "properties": properties,
-    }
+    td: dict = {"type": "object"}
+    if required:
+        td["required"] = sorted(required)
+    td["properties"] = properties
     if unresolved:
         td["x-unresolved-transaktionsdaten"] = sorted(unresolved)
         warnings.add(
@@ -621,6 +625,7 @@ def build_schema(
     pruefis: list[dict] | None = None,
     jsonpaths: dict[str, list[str]] | None = None,
     known_paths: dict[str, set[str]] | None = None,
+    pending_dmn: bool = False,
 ) -> dict:
     # bauteil_dirname = event-bauteil for DE, event-bauteil-en for EN — must match
     # the dir the pool was built from, else EN events $ref the DE bauteile (broken).
@@ -702,6 +707,8 @@ def build_schema(
         # Sichtbar gemacht, damit die Teil-Abdeckung im Artefakt steht; ein
         # Re-Run nach dem Templater-Nachzug entfernt den Marker.
         schema["x-pending-pruefis"] = pending
+    if pending_dmn:
+        schema["x-pending-dmn"] = {"reason": PENDING_DMN_REASON}
     if pending_routing:
         schema["x-pending-routing"] = pending_routing
     if unresolved_routing:
@@ -800,9 +807,6 @@ def compose(
     bo_cache: dict[str, tuple[str, str] | None] = {}
     schema_cache: dict[Path, set] = {}
     td_warnings: set[str] = set()
-    common_core = required_doc.get("_aggregate", {}).get(
-        "common_core_transaktionsdaten", []
-    )
     bpmn_provenance = mapping.get("_provenance", {})
     # Repo-wide variable → payload paths, aggregated over every event. A DMN
     # output column is defined once and reused; an event whose own entry omits
@@ -844,7 +848,7 @@ def compose(
             pruefi_source = required_entry.get("pruefidentifikator_source")
             jsonpaths = required_entry.get("jsonpaths", {})
         else:
-            required_fields = common_core
+            required_fields = []
             td_reads = {}
             pruefi_source = None
             jsonpaths = {}
@@ -852,7 +856,7 @@ def compose(
             if verbose:
                 print(
                     f"note: no DMN required-fields for {role}/{fmt}/{topic} — "
-                    f"using aggregate Common-Core",
+                    f"transaktionsdaten left open (x-pending-dmn)",
                     file=sys.stderr,
                 )
 
@@ -861,6 +865,7 @@ def compose(
             fmt, role, topic, pool, pending, all_ids, required_fields,
             td_reads, pruefi_source, bo4e_dir, bauteil_dir.name, yaml, bo_cache,
             schema_cache, td_warnings, pruefis, jsonpaths, known_paths,
+            required_entry is None,
         )
 
         if fmt not in provenance_cache and fmt in representative:
@@ -900,7 +905,7 @@ def compose(
     if fallback_count:
         warnings.append(
             f"{fallback_count} event(s) had no DMN required-fields entry — "
-            f"used aggregate Common-Core"
+            f"transaktionsdaten left open, marked x-pending-dmn"
         )
     warnings.extend(sorted(td_warnings))
     return seen, written, warnings

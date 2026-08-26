@@ -409,30 +409,37 @@ def test_field_with_miscased_atom_schema_is_unresolved(tmp_path: Path) -> None:
 # ----------------------------- fallback to aggregate -----------------------------
 
 
-def test_missing_required_entry_falls_back_to_common_core(tmp_path: Path) -> None:
-    bauteil = tmp_path / "event-bauteil"
-    _write_bauteil(bauteil, "202604", "UTILMD", 55001)
-
-    mapping = _mapping("LF", "SOME_TOPIC", [55001])
+def test_missing_dmn_entry_leaves_transaktionsdaten_open(tmp_path: Path) -> None:
+    """No DMN row means no process variable is ever set for this event, so the
+    required set is not derivable. Marked as such instead of filled with the
+    aggregate Common-Core, which is a statistic over *other* events."""
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping("LF", "START_UNKNOWN", [55001])
     required = _required(
-        "LF",
-        "SOME_TOPIC",
-        [],
-        common_core=["absender", "empfaenger"],
-        include_event=False,  # no DMN entry for this topic
+        "LF", "START_UNKNOWN", [], include_event=False,
+        common_core=["absender", "empfaenger", "sparte"],
     )
-    seen, written, warnings = _run(tmp_path, mapping, required)
-    assert (seen, written) == (1, 1)
-    assert any("Common-Core" in w for w in warnings)
+    _run(tmp_path, mapping, required)
 
-    td = _load_out(tmp_path, "202604", "LF", "SOME_TOPIC")["components"][
+    schema = _load_out(tmp_path, "202604", "LF", "START_UNKNOWN")["components"][
         "schemas"
-    ]["[LF] SOME_TOPIC"]["properties"]["transaktionsdaten"]
-    assert "allOf" not in td
-    assert td["required"] == ["absender", "empfaenger"]
+    ]["[LF] START_UNKNOWN"]
+    td = schema["properties"]["transaktionsdaten"]
+    assert "required" not in td
+    assert "absender" not in td.get("properties", {})
+    assert "S_EVENT_VARIABLEN.dmn" in schema["x-pending-dmn"]["reason"]
 
 
-# ----------------------------- missing bauteile -----------------------------
+def test_event_with_dmn_entry_has_no_pending_dmn_marker(tmp_path: Path) -> None:
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping("LF", "START_KNOWN", [55001])
+    required = _required("LF", "START_KNOWN", ["absender"])
+    _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_KNOWN")["components"][
+        "schemas"
+    ]["[LF] START_KNOWN"]
+    assert "x-pending-dmn" not in schema
+    assert schema["properties"]["transaktionsdaten"]["required"] == ["absender"]
 
 
 def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
