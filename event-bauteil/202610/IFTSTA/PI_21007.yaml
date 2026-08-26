@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: PI_21007
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    PI_21007:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21007__stammdaten'
+      required:
+        - stammdaten
+    PI_21007__stammdaten:
+      type: object
+      properties:
+        MESSLOKATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21007__stammdaten__MESSLOKATION'
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21007__stammdaten__STATUSMITTEILUNG'
+      required:
+        - MESSLOKATION
+        - STATUSMITTEILUNG
+    PI_21007__stammdaten__MESSLOKATION:
+      type: object
+      properties:
+        marktrollen:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21007__stammdaten__MESSLOKATION__marktrollen'
+      required:
+        - marktrollen
+    PI_21007__stammdaten__MESSLOKATION__marktrollen:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z10.SG17.NAD+DEB
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z10.SG17.NAD+DEB
+      required:
+        - rollencodenummer
+        - rollencodetyp
+    PI_21007__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21007__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_21007__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        anfragereferenznummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/anfragereferenznummer.yaml#/components/schemas/anfragereferenznummer'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z10.RFF+TN
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z10
+        lieferdatum:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/lieferdatum.yaml#/components/schemas/lieferdatum'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z10.DTM+76
+        lokationsId:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG14.CNI.LOC+172
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+      required:
+        - auftragsstatus
+        - lieferdatum
+        - lokationsId
+        - positionsnummer

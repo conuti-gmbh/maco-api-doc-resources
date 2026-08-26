@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_ANFRAGE_STAMMDATENAENDERUNG GAS'
   version: '202610'
-  x-bpmn-source-sha: 25b8cceb
+  x-bpmn-source-sha: 47f8ad44
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[LF] START_ANFRAGE_STAMMDATENAENDERUNG GAS':
@@ -17,6 +17,10 @@ components:
         stammdaten:
           oneOf:
             - $ref: ../../event-bauteil/202610/UTILMD_GAS/PI_44139.yaml#/components/schemas/PI_44139__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD_GAS/PI_44143.yaml#/components/schemas/PI_44143__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD_GAS/PI_44156.yaml#/components/schemas/PI_44156__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD_GAS/PI_44162.yaml#/components/schemas/PI_44162__stammdaten
+            - $ref: ../../event-bauteil/202610/UTILMD_GAS/PI_44180.yaml#/components/schemas/PI_44180__stammdaten
         transaktionsdaten:
           type: object
           required:
@@ -51,7 +55,7 @@ components:
             vertragsende:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/vertragsende.yaml#/components/schemas/vertragsende
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.'
               examples:
                 - '44139'
                 - '44143'
@@ -70,8 +74,3 @@ components:
               type: string
               const: START_ANFRAGE_STAMMDATENAENDERUNG
               default: START_ANFRAGE_STAMMDATENAENDERUNG
-      x-pending-pruefis:
-        - '44143'
-        - '44156'
-        - '44162'
-        - '44180'

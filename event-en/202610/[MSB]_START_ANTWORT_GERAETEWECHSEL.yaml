@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_ANTWORT_GERAETEWECHSEL'
+  version: '202610'
+  x-bpmn-source-sha: 23ab5062
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    '[MSB] START_ANTWORT_GERAETEWECHSEL':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/ORDRSP/PI_19015.yaml#/components/schemas/PI_19015__masterData
+        transactionData:
+          type: object
+          properties:
+            verificationIdentifier:
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: antwortstatus). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 19015, 19016.'
+              examples:
+              - '19015'
+              - '19016'
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_ANTWORT_GERAETEWECHSEL
+              default: START_ANTWORT_GERAETEWECHSEL
+      x-pending-pruefis:
+      - '19016'
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
+      x-unresolved-routing:
+      - variable: antwortstatus
+        discriminates: true
+        selects-pruefis:
+        - '19015'
+        - '19016'
+        conditions:
+        - ${antwortstatus=="E17" or antwortstatus=="Z07"}
+        - ${antwortstatus=="ZB4" or antwortstatus=="ZB5"}

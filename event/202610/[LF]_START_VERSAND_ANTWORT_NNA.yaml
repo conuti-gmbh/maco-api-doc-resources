@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_VERSAND_ANTWORT_NNA'
   version: '202610'
-  x-bpmn-source-sha: 25b8cceb
+  x-bpmn-source-sha: 47f8ad44
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[LF] START_VERSAND_ANTWORT_NNA':
@@ -47,7 +47,7 @@ components:
             nachrichtendatum:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 33001, 33002, 33003, 33004.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie, pruefi). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 33001, 33002, 33003, 33004.'
               examples:
                 - '33001'
                 - '33002'

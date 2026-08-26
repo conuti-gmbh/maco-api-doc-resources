@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_ANFRAGE_STAMMDATENAENDERUNG GAS'
   version: '202610'
-  x-bpmn-source-sha: b9f275c7
+  x-bpmn-source-sha: '72378213'
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[NB] START_ANFRAGE_STAMMDATENAENDERUNG GAS':
@@ -14,6 +14,15 @@ components:
       - transactionData
       - additionalData
       properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44113.yaml#/components/schemas/PI_44113__masterData
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44117.yaml#/components/schemas/PI_44117__masterData
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44137.yaml#/components/schemas/PI_44137__masterData
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44148.yaml#/components/schemas/PI_44148__masterData
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44150.yaml#/components/schemas/PI_44150__masterData
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44160.yaml#/components/schemas/PI_44160__masterData
+          - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44166.yaml#/components/schemas/PI_44166__masterData
         transactionData:
           type: object
           required:
@@ -43,7 +52,7 @@ components:
             transactionReason:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44113, 44117, 44137, 44148, 44150, 44160, 44166.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44113, 44117, 44137, 44148, 44150, 44160, 44166.'
               examples:
               - '44113'
               - '44117'
@@ -64,11 +73,3 @@ components:
               type: string
               const: START_ANFRAGE_STAMMDATENAENDERUNG
               default: START_ANFRAGE_STAMMDATENAENDERUNG
-      x-pending-pruefis:
-      - '44113'
-      - '44117'
-      - '44137'
-      - '44148'
-      - '44150'
-      - '44160'
-      - '44166'

@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_MESSWERTUEBERMITTLUNG'
+  version: '202610'
+  x-bpmn-source-sha: 23ab5062
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    '[MSB] START_MESSWERTUEBERMITTLUNG':
+      type: object
+      required:
+        - stammdaten
+        - transaktionsdaten
+        - zusatzdaten
+      properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202610/MSCONS/PI_13002.yaml#/components/schemas/PI_13002__stammdaten
+            - $ref: ../../event-bauteil/202610/MSCONS/PI_13007.yaml#/components/schemas/PI_13007__stammdaten
+            - $ref: ../../event-bauteil/202610/MSCONS/PI_13008.yaml#/components/schemas/PI_13008__stammdaten
+            - $ref: ../../event-bauteil/202610/MSCONS/PI_13009.yaml#/components/schemas/PI_13009__stammdaten
+        transaktionsdaten:
+          type: object
+          properties:
+            pruefidentifikator:
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie, typ). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13007, 13008, 13009.'
+              examples:
+                - '13002'
+                - '13007'
+                - '13008'
+                - '13009'
+        zusatzdaten:
+          type: object
+          required:
+            - prozessId
+            - eventname
+          properties:
+            prozessId:
+              type: string
+            eventname:
+              type: string
+              const: START_MESSWERTUEBERMITTLUNG
+              default: START_MESSWERTUEBERMITTLUNG
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
+      x-unresolved-routing:
+        - variable: kategorie
+          discriminates: true
+          selects-pruefis:
+            - '13007'
+            - '13008'
+          conditions:
+            - ${kategorie=="7" and typ=="TL"}
+            - ${kategorie=="Z21" and typ=="TL"}
+        - variable: typ
+          discriminates: true
+          selects-pruefis:
+            - '13002'
+            - '13007'
+            - '13008'
+            - '13009'
+          conditions:
+            - ${kategorie=="7" and typ=="TL"}
+            - ${kategorie=="Z21" and typ=="TL"}
+            - ${typ!="EM"}
+            - ${typ=="EM"}
+            - ${typ=="VL"}

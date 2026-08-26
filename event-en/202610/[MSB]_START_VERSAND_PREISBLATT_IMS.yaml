@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: '[MSB] START_VERSAND_PREISBLATT_IMS'
+  version: '202610'
+  x-bpmn-source-sha: 23ab5062
+  x-bo4e-schema-version: 1.7.4
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    '[MSB] START_VERSAND_PREISBLATT_IMS':
+      type: object
+      required:
+      - masterData
+      - transactionData
+      - additionalData
+      properties:
+        masterData:
+          oneOf:
+          - $ref: ../../event-bauteil-en/202610/PRICAT/PI_27002.yaml#/components/schemas/PI_27002__masterData
+        transactionData:
+          type: object
+          required:
+          - sender
+          - receiver
+          - category
+          - verificationIdentifier
+          - sector
+          properties:
+            sender:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            verificationIdentifier:
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 27002.
+              examples:
+              - '27002'
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+        additionalData:
+          type: object
+          required:
+          - processId
+          - eventname
+          properties:
+            processId:
+              type: string
+            eventname:
+              type: string
+              const: START_VERSAND_PREISBLATT_IMS
+              default: START_DISPATCH_PRICE_SHEET_IMS

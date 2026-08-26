@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_VERSAND_BESTANDSLISTE GAS'
   version: '202610'
-  x-bpmn-source-sha: b9f275c7
+  x-bpmn-source-sha: '72378213'
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[NB] START_VERSAND_BESTANDSLISTE GAS':
@@ -14,6 +14,9 @@ components:
         - transaktionsdaten
         - zusatzdaten
       properties:
+        stammdaten:
+          oneOf:
+            - $ref: ../../event-bauteil/202610/UTILMD_GAS/PI_44019.yaml#/components/schemas/PI_44019__stammdaten
         transaktionsdaten:
           type: object
           required:
@@ -37,7 +40,7 @@ components:
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44019.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44019.
               examples:
                 - '44019'
         zusatzdaten:
@@ -52,5 +55,3 @@ components:
               type: string
               const: START_VERSAND_BESTANDSLISTE
               default: START_VERSAND_BESTANDSLISTE
-      x-pending-pruefis:
-        - '44019'

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_UEBERM_DEFINITION'
   version: '202610'
-  x-bpmn-source-sha: b9f275c7
+  x-bpmn-source-sha: '72378213'
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[NB] START_UEBERM_DEFINITION':
@@ -21,19 +21,9 @@ components:
           - $ref: ../../event-bauteil-en/202610/UTILTS/PI_25009.yaml#/components/schemas/PI_25009__masterData
         transactionData:
           type: object
-          required:
-          - sender
-          - receiver
-          - sector
           properties:
-            sender:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sender.yaml#/components/schemas/sender
-            receiver:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/receiver.yaml#/components/schemas/receiver
-            sector:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.'
               examples:
               - '25005'
               - '25008'
@@ -50,3 +40,16 @@ components:
               type: string
               const: START_UEBERM_DEFINITION
               default: START_TRANSMISSION_DEFINITION
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
+      x-unresolved-routing:
+      - variable: kategorie
+        discriminates: true
+        selects-pruefis:
+        - '25005'
+        - '25008'
+        - '25009'
+        conditions:
+        - ${kategorie=="Z59"}
+        - ${kategorie=="Z80"}
+        - ${kategorie=="Z81"}

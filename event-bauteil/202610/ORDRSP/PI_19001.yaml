@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: PI_19001
+  version: '202610'
+  x-bo4e-schema-version: 1.7.4
+  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+components:
+  schemas:
+    PI_19001:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_19001__stammdaten'
+      required:
+        - stammdaten
+    PI_19001__stammdaten:
+      type: object
+      properties:
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19001__stammdaten__AUFTRAG'
+      required:
+        - AUFTRAG
+    PI_19001__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_19001__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - ausfuehrungsdatum
+        - positionsdaten
+    PI_19001__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        apnKommunikationsdatenZugriffsparameter:
+          $ref: '#/components/schemas/PI_19001__stammdaten__AUFTRAG__positionsdaten__apnKommunikationsdatenZugriffsparameter'
+      required:
+        - apnKommunikationsdatenZugriffsparameter
+    PI_19001__stammdaten__AUFTRAG__positionsdaten__apnKommunikationsdatenZugriffsparameter:
+      type: object
+      properties:
+        apnName:
+          $ref: '../../../bo4e/fields/com/ApnKommunikationsdatenZugriffsparameter/apnName.yaml#/components/schemas/apnName'
+          x-edifact-segment:
+            - SG27.LIN.FTX+Z33
+        nutzer:
+          $ref: '../../../bo4e/fields/com/ApnKommunikationsdatenZugriffsparameter/nutzer.yaml#/components/schemas/nutzer'
+          x-edifact-segment:
+            - SG27.LIN.FTX+Z33
+        passwort:
+          $ref: '../../../bo4e/fields/com/ApnKommunikationsdatenZugriffsparameter/passwort.yaml#/components/schemas/passwort'
+          x-edifact-segment:
+            - SG27.LIN.FTX+Z33
+      required:
+        - apnName
+        - nutzer
+        - passwort

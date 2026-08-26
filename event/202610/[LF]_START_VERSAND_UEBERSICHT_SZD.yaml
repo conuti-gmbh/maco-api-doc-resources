@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_VERSAND_UEBERSICHT_SZD'
   version: '202610'
-  x-bpmn-source-sha: 25b8cceb
+  x-bpmn-source-sha: 47f8ad44
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[LF] START_VERSAND_UEBERSICHT_SZD':
@@ -19,19 +19,9 @@ components:
             - $ref: ../../event-bauteil/202610/UTILTS/PI_25006.yaml#/components/schemas/PI_25006__stammdaten
         transaktionsdaten:
           type: object
-          required:
-            - absender
-            - empfaenger
-            - sparte
           properties:
-            absender:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/absender.yaml#/components/schemas/absender
-            empfaenger:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/empfaenger.yaml#/components/schemas/empfaenger
-            sparte:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
                 - '25006'
         zusatzdaten:
@@ -46,3 +36,5 @@ components:
               type: string
               const: START_VERSAND_UEBERSICHT_SZD
               default: START_VERSAND_UEBERSICHT_SZD
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
