@@ -45,7 +45,15 @@ components:
     )
 
 
-def _mapping(role: str, topic: str, pruefi_ids: list[int], fmt: str = "202604") -> dict:
+def _mapping(
+    role: str,
+    topic: str,
+    pruefi_ids: list[int],
+    fmt: str = "202604",
+    *,
+    paths_by_pid: dict[int, list[list[str]]] | None = None,
+) -> dict:
+    paths_by_pid = paths_by_pid or {}
     return {
         "_provenance": {f"maco-{role.lower()}-processes": "deadbeef"},
         "events": {
@@ -55,7 +63,10 @@ def _mapping(role: str, topic: str, pruefi_ids: list[int], fmt: str = "202604") 
                         "process_id": f"{role}-{fmt}-T_{topic}",
                         "process_name_raw": f"{topic}: test",
                         "source": f"maco-{role.lower()}-processes/{fmt}/T_PROZESSE/T_{topic}.bpmn",
-                        "pruefis": [{"id": pid, "paths": [[]]} for pid in pruefi_ids],
+                        "pruefis": [
+                            {"id": pid, "paths": paths_by_pid.get(pid, [[]])}
+                            for pid in pruefi_ids
+                        ],
                     }
                 }
             }
@@ -73,6 +84,7 @@ def _required(
     common_core: list[str] | None = None,
     include_event: bool = True,
     td_reads: dict[str, list[str]] | None = None,
+    jsonpaths: dict[str, list[str]] | None = None,
 ) -> dict:
     events: dict = {}
     if include_event:
@@ -86,7 +98,7 @@ def _required(
                         "stammdaten_reads": ["MARKTLOKATION"],
                         "pruefidentifikator_source": pruefi_source,
                         "description": None,
-                        "jsonpaths": {},
+                        "jsonpaths": jsonpaths or {},
                     }
                 }
             }
@@ -629,3 +641,179 @@ def test_en_dirs_emit_en_refs(tmp_path: Path) -> None:
     assert schema["properties"]["transaktionsdaten"]["properties"]["sparte"]["$ref"] == (
         "../../bo4e-en/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte"
     )
+
+
+# ----------------------------- routing fields (MACO-14052) ----------------------
+
+
+def _routing_setup(tmp_path: Path, *, atom: bool = True, container: str = "MARKTLOKATION"):
+    """START_LIEFERBEGINN-shaped topic: one GAS pruefi without the routing
+    variable, two STROM pruefis gated on energierichtung."""
+    bauteil = tmp_path / "event-bauteil"
+    for pid, scope in ((44001, "UTILMD_GAS"), (55001, "UTILMD"), (55077, "UTILMD")):
+        _write_bauteil(bauteil, "202604", scope, pid)
+    if atom:
+        _write_bo_subfield(tmp_path / "bo4e", "bo", "Marktlokation", "energierichtung")
+    mapping = _mapping(
+        "LF",
+        "START_LIEFERBEGINN",
+        [44001, 55001, 55077],
+        paths_by_pid={
+            44001: [['${sparte=="GAS"}']],
+            55001: [['${energierichtung=="AUSSP"}']],
+            55077: [['${energierichtung=="EINSP"}']],
+        },
+    )
+    required = _required(
+        "LF",
+        "START_LIEFERBEGINN",
+        ["absender", "empfaenger", "sparte"],
+        jsonpaths={
+            "energierichtung": [f"$.stammdaten.{container}[0].energierichtung"],
+            "sparte": ["$.transaktionsdaten.sparte"],
+        },
+    )
+    return mapping, required
+
+
+def test_stammdaten_routing_field_becomes_required_in_its_branch(tmp_path: Path) -> None:
+    mapping, required = _routing_setup(tmp_path)
+    _run(tmp_path, mapping, required)
+
+    schema = _load_out(tmp_path, "202604", "LF", "START_LIEFERBEGINN")["components"][
+        "schemas"
+    ]["[LF] START_LIEFERBEGINN"]
+    branches = schema["properties"]["stammdaten"]["oneOf"]
+    assert len(branches) == 3
+
+    # GAS branch does not read the variable — stays a plain $ref.
+    gas = [b for b in branches if "PI_44001" in json.dumps(b)][0]
+    assert "allOf" not in gas
+    assert set(gas) == {"$ref"}
+
+    strom = [b for b in branches if "PI_55001" in json.dumps(b)][0]
+    assert "$ref" in strom["allOf"][0]
+    overlay = strom["allOf"][1]
+    assert overlay["required"] == ["MARKTLOKATION"]
+    items = overlay["properties"]["MARKTLOKATION"]["items"]
+    assert items["required"] == ["energierichtung"]
+    field = items["properties"]["energierichtung"]
+    assert field["$ref"].endswith(
+        "bo4e/fields/bo/Marktlokation/energierichtung.yaml#/components/schemas/energierichtung"
+    )
+    routing = field["x-process-routing"][0]
+    assert routing["selects-pruefi"] == "55001"
+    assert routing["conditions"] == ['${energierichtung=="AUSSP"}']
+    assert routing["source"] == "$.stammdaten.MARKTLOKATION[0].energierichtung"
+
+    # Each branch carries its own condition, not a merged one.
+    other = [b for b in branches if "PI_55077" in json.dumps(b)][0]
+    other_routing = other["allOf"][1]["properties"]["MARKTLOKATION"]["items"][
+        "properties"
+    ]["energierichtung"]["x-process-routing"][0]
+    assert other_routing["conditions"] == ['${energierichtung=="EINSP"}']
+
+    assert "x-unresolved-routing" not in schema
+
+
+def test_transaktionsdaten_sourced_variable_is_not_unresolved(tmp_path: Path) -> None:
+    mapping, required = _routing_setup(tmp_path)
+    _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_LIEFERBEGINN")["components"][
+        "schemas"
+    ]["[LF] START_LIEFERBEGINN"]
+    # sparte gates the GAS branch but lives in transaktionsdaten — already required.
+    assert "x-unresolved-routing" not in schema
+
+
+def test_routing_field_without_atom_is_unresolved_not_dangling(tmp_path: Path) -> None:
+    mapping, required = _routing_setup(tmp_path, atom=False)
+    _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_LIEFERBEGINN")["components"][
+        "schemas"
+    ]["[LF] START_LIEFERBEGINN"]
+    assert "energierichtung" not in json.dumps(schema["properties"]["stammdaten"])
+    entry = [
+        e
+        for e in schema["x-unresolved-routing"]
+        if e["variable"] == "energierichtung"
+    ][0]
+    assert entry["discriminates"] is True
+    assert entry["selects-pruefis"] == ["55001", "55077"]
+
+
+def test_unknown_variable_is_recorded_with_discriminates_flag(tmp_path: Path) -> None:
+    bauteil = tmp_path / "event-bauteil"
+    _write_bauteil(bauteil, "202604", "IFTSTA", 21039)
+    _write_bauteil(bauteil, "202604", "IFTSTA", 21040)
+    mapping = _mapping(
+        "NB",
+        "START_WIEDERHERST_LB",
+        [21039, 21040],
+        paths_by_pid={
+            21039: [['${istAuftragsstatusGeplant==false}', '${datenVorhanden==true}']],
+            21040: [['${istAuftragsstatusGeplant==true}', '${datenVorhanden==true}']],
+        },
+    )
+    required = _required("NB", "START_WIEDERHERST_LB", ["absender"], jsonpaths={})
+    _run(tmp_path, mapping, required)
+
+    schema = _load_out(tmp_path, "202604", "NB", "START_WIEDERHERST_LB")["components"][
+        "schemas"
+    ]["[NB] START_WIEDERHERST_LB"]
+    by_var = {e["variable"]: e for e in schema["x-unresolved-routing"]}
+    # Differs per pruefi → decides which one is sent.
+    assert by_var["istAuftragsstatusGeplant"]["discriminates"] is True
+    assert by_var["istAuftragsstatusGeplant"]["selects-pruefis"] == ["21039", "21040"]
+    # Identical in front of every pruefi → constrains all branches equally.
+    assert by_var["datenVorhanden"]["discriminates"] is False
+
+
+def test_pending_pruefi_routing_is_recorded_not_dropped(tmp_path: Path) -> None:
+    """No bauteil means no oneOf branch — the obligation must not vanish."""
+    _write_bo_subfield(tmp_path / "bo4e", "bo", "Statusmitteilung", "auftragsstatus")
+    mapping = _mapping(
+        "NB",
+        "START_AUFTRAGSSTATUS",
+        [21039],
+        paths_by_pid={21039: [['${auftragsstatus!="GEPLANT"}']]},
+    )
+    required = _required(
+        "NB",
+        "START_AUFTRAGSSTATUS",
+        ["absender"],
+        jsonpaths={
+            "auftragsstatus": ["$.stammdaten.STATUSMITTEILUNG[0].auftragsstatus"]
+        },
+    )
+    _run(tmp_path, mapping, required)
+
+    schema = _load_out(tmp_path, "202604", "NB", "START_AUFTRAGSSTATUS")["components"][
+        "schemas"
+    ]["[NB] START_AUFTRAGSSTATUS"]
+    assert schema["x-pending-pruefis"] == ["21039"]
+    assert schema["x-pending-routing"] == [
+        {"pruefi": "21039", "required": {"STATUSMITTEILUNG": ["auftragsstatus"]}}
+    ]
+
+
+def test_variable_known_from_another_event_is_not_unresolved(tmp_path: Path) -> None:
+    """A sparse DMN row must not read as 'origin unknown' when the column is
+    mapped elsewhere in the same document."""
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping(
+        "LF", "START_X", [55001], paths_by_pid={55001: [['${energierichtung=="AUSSP"}']]}
+    )
+    required = _required("LF", "START_X", ["absender"], jsonpaths={})
+    required["events"]["202604"]["LF"]["START_OTHER"] = {
+        "required_transaktionsdaten": [],
+        "transaktionsdaten_reads": {},
+        "jsonpaths": {
+            "energierichtung": ["$.stammdaten.MARKTLOKATION[0].energierichtung"]
+        },
+    }
+    _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_X")["components"]["schemas"][
+        "[LF] START_X"
+    ]
+    assert "x-unresolved-routing" not in schema

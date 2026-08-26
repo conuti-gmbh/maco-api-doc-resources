@@ -28,6 +28,14 @@ Modelling (Stand 2026-05-27, MACO-13040):
   * ``oneOf`` over the topic's Prüfi-Bauteile = Union-of-Required-Coverage
     (the sender must satisfy the stammdaten any pool member needs), not a
     discriminated XOR branch. No discriminator, no x-condition, no empty ``{}``.
+  * Routing obligations (MACO-14052): a variable the T_ process gates the pruefi
+    send on, sourced from ``$.stammdaten.<CONTAINER>[i].<field>``, is mandatory
+    for the sender even when the templater never renders it into a segment. The
+    affected ``oneOf`` branch becomes ``allOf: [$ref bauteil, {required}]`` —
+    per branch, because bauteile are shared across events and a GAS pruefi in
+    the same topic often does not read the field. Recorded but not required
+    where no branch exists (``x-pending-routing``) or the variable has no
+    payload path at all (``x-unresolved-routing``, with ``discriminates``).
   * Schema name gets a trailing `` GAS`` suffix iff every Prüfi in the pool is
     in the 44xxx range.
 
@@ -44,6 +52,7 @@ import io
 import json
 import re
 import sys
+from collections import defaultdict
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -77,6 +86,23 @@ BO_SUBFIELD_REF = (
 # Matches the BO target inside a cdoc field atom's $ref, e.g.
 # "../../../bo/Marktteilnehmer.yaml#/..." → ("bo", "Marktteilnehmer").
 _BO_REF_RE = re.compile(r"([a-z]+)/([A-Za-z0-9_]+)\.yaml")
+
+# A T_-process gates its pruefi service tasks on Camunda variables; the DMN
+# feeds those variables from the inbound payload. Variables sourced outside
+# transaktionsdaten (e.g. $.stammdaten.MARKTLOKATION[0].energierichtung) are
+# mandatory for the sender — without them the process cannot pick a pruefi —
+# but they only reach the spec if the templater happens to render them into an
+# EDIFACT segment. This closes that gap: the required set is the union of what
+# the process reads, independent of the message payload. MACO-14052.
+CONDITION_VAR_RE = re.compile(r"\b([a-zA-Z][a-zA-Z0-9_]*)\s*(?:==|!=)")
+STAMMDATEN_PATH_RE = re.compile(
+    r"^\$\.stammdaten\.(?P<container>[A-Za-z0-9_]+)(?:\[\d*\])?\.(?P<field>[A-Za-z0-9_]+)$"
+)
+# Tiers searched for a routing field's atom, in order. The DMN names the
+# container (MARKTLOKATION), the mirror names the BO (bo/Marktlokation) — the
+# match is case-insensitive on the directory and then verified against the
+# schema names the atom actually defines.
+ATOM_TIERS = ("bo", "com", "cdoc")
 
 PRUEFI_DESC_DYNAMIC = (
     "Wird dynamisch im Event-Prozess ermittelt "
@@ -205,6 +231,142 @@ def resolve_pool(
     pool.sort()
     pending.sort()
     return pool, pending
+
+
+def routing_conditions(pruefis: list[dict]) -> dict[int, dict[str, list[str]]]:
+    """{pruefi id: {variable: sorted distinct conditions}} from the BPMN paths.
+
+    ``paths`` is an OR of AND-lists of condition expressions leading to the
+    pruefi's service task (Skript 2). Every ``x == y`` / ``x != y`` comparison
+    names a Camunda variable the process gates on.
+    """
+    out: dict[int, dict[str, list[str]]] = {}
+    for pruefi in pruefis:
+        per_var: dict[str, set[str]] = defaultdict(set)
+        for path in pruefi.get("paths", []):
+            for condition in path:
+                for var in CONDITION_VAR_RE.findall(condition):
+                    per_var[var].add(condition)
+        if per_var:
+            merged = out.setdefault(pruefi["id"], {})
+            for var, conditions in per_var.items():
+                merged[var] = sorted(set(merged.get(var, [])) | conditions)
+    return out
+
+
+def discriminating_vars(by_pruefi: dict[int, dict[str, list[str]]]) -> set[str]:
+    """Variables whose condition differs across the topic's pruefis.
+
+    ``${datenVorhanden==true}`` in front of every pruefi constrains all
+    branches equally and picks nothing; ``${energierichtung=="AUSSP"}`` vs
+    ``"EINSP"`` decides which pruefi is sent. Only the latter is a
+    discriminator — the distinction drives how urgently an unresolvable
+    variable needs clarification.
+    """
+    per_var: dict[str, set[str]] = defaultdict(set)
+    for variables in by_pruefi.values():
+        for var, conditions in variables.items():
+            per_var[var].update(conditions)
+    return {var for var, conditions in per_var.items() if len(conditions) > 1}
+
+
+def resolve_routing_ref(
+    bo4e_dir: Path | None,
+    container: str,
+    field: str,
+    yaml: YAML,
+    schema_cache: dict[Path, set],
+) -> str | None:
+    """Ref to the atom for ``<container>.<field>``, or None if none defines it.
+
+    The DMN spells the container in caps (MARKTLOKATION); the mirror uses the
+    BO's own spelling (bo/Marktlokation). Resolution is a case-insensitive
+    directory match plus the same case-sensitive ``schema_names`` check the
+    transaktionsdaten path uses, so a casing drift yields None rather than a
+    dangling pointer.
+    """
+    if bo4e_dir is None:
+        return None
+    for tier in ATOM_TIERS:
+        tier_dir = bo4e_dir / "fields" / tier
+        if not tier_dir.is_dir():
+            continue
+        for bo_dir in sorted(tier_dir.iterdir()):
+            if not bo_dir.is_dir() or bo_dir.name.lower() != container.lower():
+                continue
+            atom = bo_dir / f"{field}.yaml"
+            if field in schema_names(atom, yaml, schema_cache):
+                return BO_SUBFIELD_REF.format(
+                    root=bo4e_dir.name, tier=tier, bo=bo_dir.name, seg=field
+                )
+    return None
+
+
+def build_routing_overlay(
+    pid: int,
+    variables: dict[str, list[str]],
+    jsonpaths: dict[str, list[str]],
+    bo4e_dir: Path | None,
+    yaml: YAML,
+    schema_cache: dict[Path, set],
+    known_paths: dict[str, set[str]] | None = None,
+) -> tuple[dict | None, list[str]]:
+    """(overlay schema, unresolved variable names) for one pruefi branch.
+
+    The overlay is the second ``allOf`` member next to the bauteil ``$ref``: it
+    adds nothing but the routing fields as required. Kept per branch because
+    the obligation is pruefi-specific — a GAS pruefi in the same topic may not
+    read the field at all.
+    """
+    containers: dict[str, dict] = {}
+    unresolved: list[str] = []
+    for var in sorted(variables):
+        paths = jsonpaths.get(var) or []
+        matches = [m for m in (STAMMDATEN_PATH_RE.match(p) for p in paths) if m]
+        if not matches:
+            # Two different things look alike here and must not be conflated:
+            # a transaktionsdaten-sourced variable is already covered by the
+            # required set, and a variable this event's DMN entry simply does
+            # not map is still known repo-wide (known_paths). Only a variable
+            # with no payload path anywhere is of unknown origin.
+            covered = any(p.startswith("$.transaktionsdaten.") for p in paths)
+            known = known_paths.get(var) if known_paths else None
+            if not covered and not known:
+                unresolved.append(var)
+            continue
+        for match in matches:
+            container, field = match.group("container"), match.group("field")
+            ref = resolve_routing_ref(bo4e_dir, container, field, yaml, schema_cache)
+            if ref is None:
+                unresolved.append(var)
+                continue
+            node = containers.setdefault(
+                container,
+                {"type": "array", "items": {"type": "object", "required": [], "properties": {}}},
+            )
+            items = node["items"]
+            if field not in items["properties"]:
+                items["properties"][field] = {
+                    "$ref": ref,
+                    "x-process-routing": [
+                        {
+                            "variable": var,
+                            "source": match.group(0),
+                            "selects-pruefi": str(pid),
+                            "conditions": variables[var],
+                        }
+                    ],
+                }
+                items["required"].append(field)
+                items["required"].sort()
+    if not containers:
+        return None, sorted(set(unresolved))
+    overlay = {
+        "type": "object",
+        "required": sorted(containers),
+        "properties": {name: containers[name] for name in sorted(containers)},
+    }
+    return overlay, sorted(set(unresolved))
 
 
 def schema_name(role: str, topic: str, pruefi_ids: list[int]) -> str:
@@ -413,18 +575,58 @@ def build_schema(
     bo_cache: dict[str, tuple[str, str] | None],
     schema_cache: dict[Path, set],
     warnings: set[str],
+    pruefis: list[dict] | None = None,
+    jsonpaths: dict[str, list[str]] | None = None,
+    known_paths: dict[str, set[str]] | None = None,
 ) -> dict:
     # bauteil_dirname = event-bauteil for DE, event-bauteil-en for EN — must match
     # the dir the pool was built from, else EN events $ref the DE bauteile (broken).
-    one_of = [
-        {
+    pruefis = pruefis or []
+    jsonpaths = jsonpaths or {}
+    by_pruefi = routing_conditions(pruefis)
+    discriminators = discriminating_vars(by_pruefi)
+    unresolved_routing: dict[str, list[str]] = {}
+    one_of = []
+    for pid, scope in pool:
+        branch: dict = {
             "$ref": (
                 f"../../{bauteil_dirname}/{format_version}/{scope}/"
                 f"PI_{pid}.yaml#/components/schemas/PI_{pid}__stammdaten"
             )
         }
-        for pid, scope in pool
-    ]
+        overlay, unresolved = build_routing_overlay(
+            pid, by_pruefi.get(pid, {}), jsonpaths, bo4e_dir, yaml, schema_cache,
+            known_paths,
+        )
+        for var in unresolved:
+            unresolved_routing.setdefault(var, []).append(str(pid))
+        # allOf only where a routing field actually applies — every other branch
+        # keeps the plain $ref, so the diff stays confined to affected topics.
+        one_of.append({"allOf": [branch, overlay]} if overlay else branch)
+
+    # A pending pruefi has no oneOf branch to carry the obligation, so its
+    # routing fields would drop out entirely — the very failure this change
+    # exists to prevent. Recorded separately instead; a later templater run
+    # turns the entry into a real allOf branch.
+    pending_routing: list[dict] = []
+    for pid_str in pending:
+        pid_int = int(pid_str)
+        overlay, unresolved = build_routing_overlay(
+            pid_int, by_pruefi.get(pid_int, {}), jsonpaths, bo4e_dir, yaml,
+            schema_cache, known_paths,
+        )
+        for var in unresolved:
+            unresolved_routing.setdefault(var, []).append(pid_str)
+        if overlay:
+            pending_routing.append(
+                {
+                    "pruefi": pid_str,
+                    "required": {
+                        container: sorted(node["items"]["required"])
+                        for container, node in sorted(overlay["properties"].items())
+                    },
+                }
+            )
     properties: dict = {}
     if one_of:
         # stammdaten as a *visible* property: oneOf over the topic's Prüfi-Bauteile
@@ -456,6 +658,23 @@ def build_schema(
         # Sichtbar gemacht, damit die Teil-Abdeckung im Artefakt steht; ein
         # Re-Run nach dem Templater-Nachzug entfernt den Marker.
         schema["x-pending-pruefis"] = pending
+    if pending_routing:
+        schema["x-pending-routing"] = pending_routing
+    if unresolved_routing:
+        # Gates on a variable we cannot trace to a payload field. Recorded
+        # rather than dropped: silence here would read as "topic fully
+        # specified" while the sender contract is in fact unknown.
+        schema["x-unresolved-routing"] = [
+            {
+                "variable": var,
+                "discriminates": var in discriminators,
+                "selects-pruefis": sorted(set(unresolved_routing[var])),
+                "conditions": sorted(
+                    {c for v in by_pruefi.values() for c in v.get(var, [])}
+                ),
+            }
+            for var in sorted(unresolved_routing)
+        ]
     return schema
 
 
@@ -541,6 +760,16 @@ def compose(
         "common_core_transaktionsdaten", []
     )
     bpmn_provenance = mapping.get("_provenance", {})
+    # Repo-wide variable → payload paths, aggregated over every event. A DMN
+    # output column is defined once and reused; an event whose own entry omits
+    # a variable it gates on (common for sparte/kategorie) must not be reported
+    # as "origin unknown" just because its row is sparse.
+    known_paths: dict[str, set[str]] = defaultdict(set)
+    for _fmt_events in (required_doc.get("events") or {}).values():
+        for _role_events in (_fmt_events or {}).values():
+            for _entry in (_role_events or {}).values():
+                for _var, _paths in (_entry.get("jsonpaths") or {}).items():
+                    known_paths[_var].update(_paths)
 
     seen = 0
     written = 0
@@ -569,10 +798,12 @@ def compose(
             required_fields = required_entry.get("required_transaktionsdaten", [])
             td_reads = required_entry.get("transaktionsdaten_reads", {})
             pruefi_source = required_entry.get("pruefidentifikator_source")
+            jsonpaths = required_entry.get("jsonpaths", {})
         else:
             required_fields = common_core
             td_reads = {}
             pruefi_source = None
+            jsonpaths = {}
             fallback_count += 1
             if verbose:
                 print(
@@ -585,7 +816,7 @@ def compose(
         schema = build_schema(
             fmt, role, topic, pool, pending, all_ids, required_fields,
             td_reads, pruefi_source, bo4e_dir, bauteil_dir.name, yaml, bo_cache,
-            schema_cache, td_warnings,
+            schema_cache, td_warnings, pruefis, jsonpaths, known_paths,
         )
 
         if fmt not in provenance_cache and fmt in representative:
