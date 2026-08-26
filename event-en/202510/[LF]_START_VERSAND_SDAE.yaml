@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_VERSAND_SDAE'
   version: '202510'
-  x-bpmn-source-sha: 25b8cceb
+  x-bpmn-source-sha: 47f8ad44
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[LF] START_VERSAND_SDAE':
@@ -56,7 +56,7 @@ components:
             contractStart:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/contractStart.yaml#/components/schemas/contractStart
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44109, 44120, 55109, 55110, 55230.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle, sparte, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44109, 44120, 55109, 55110, 55230.'
               examples:
               - '44109'
               - '44120'

@@ -26049,7 +26049,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
               examples:
               - '55218'
           required:
@@ -26098,7 +26098,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 35004.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 35004.
               examples:
               - '35004'
           required:
@@ -26147,7 +26147,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102.
               examples:
               - '17102'
           required:
@@ -26195,7 +26195,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17115.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17115.
               examples:
               - '17115'
           required:
@@ -26248,7 +26248,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44139, 44143, 44156, 44162, 44180.'
               examples:
               - '44139'
               - '44143'
@@ -26309,7 +26309,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17101.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17101.
               examples:
               - '17101'
           required:
@@ -26354,7 +26354,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17127.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17127.
               examples:
               - '17127'
           required:
@@ -26402,7 +26402,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17103.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17103.
               examples:
               - '17103'
           required:
@@ -26434,26 +26434,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_17006.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17006.
               examples:
               - '17006'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.LF.START_BESTELLUNG_ABRECHNUNGSDATEN:
       properties:
         additionalData:
@@ -26488,7 +26480,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17133.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17133.
               examples:
               - '17133'
           required:
@@ -26536,7 +26528,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17120.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17120.
               examples:
               - '17120'
           required:
@@ -26583,7 +26575,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17131.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17131.
               examples:
               - '17131'
           required:
@@ -26636,7 +26628,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55227.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55227.
               examples:
               - '55227'
           required:
@@ -26685,7 +26677,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17130.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17130.
               examples:
               - '17130'
           required:
@@ -26735,7 +26727,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55692.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55692.
               examples:
               - '55692'
           required:
@@ -26786,14 +26778,8 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_55692.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55156, 55180, 55220, 55227, 55555, 55621, 55622, 55623, 55624, 55625, 55626, 55654, 55655, 55656, 55657, 55658, 55673, 55692.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55156, 55180, 55220, 55227, 55555, 55621, 55622, 55623, 55624, 55625, 55626, 55654, 55655, 55656, 55657, 55658, 55673, 55692.'
               examples:
               - '55156'
               - '55180'
@@ -26813,16 +26799,95 @@ components:
               - '55658'
               - '55673'
               - '55692'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
+      x-unresolved-routing:
+      - conditions:
+        - ${transaktionsgrund=="ZX2" or transaktionsgrund=="ZOA" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX3" or transaktionsgrund=="ZAN" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX4" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX5" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX6" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX6" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX7" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX7" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX8" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX8" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX9" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX9" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY0" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY1" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZY1" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY2" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY9" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZZA" and marktrolle=="NB"}
+        discriminates: true
+        selects-pruefis:
+        - '55156'
+        - '55180'
+        - '55220'
+        - '55227'
+        - '55555'
+        - '55621'
+        - '55622'
+        - '55623'
+        - '55624'
+        - '55625'
+        - '55626'
+        - '55654'
+        - '55655'
+        - '55656'
+        - '55657'
+        - '55658'
+        - '55673'
+        - '55692'
+        variable: marktrolle
+      - conditions:
+        - ${transaktionsgrund=="ZX2" or transaktionsgrund=="ZOA" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX3" or transaktionsgrund=="ZAN" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX4" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX5" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX6" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX6" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX7" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX7" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX8" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX8" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZX9" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZX9" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY0" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY1" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZY1" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY2" and marktrolle=="NB"}
+        - ${transaktionsgrund=="ZY9" and marktrolle=="MSB"}
+        - ${transaktionsgrund=="ZZA" and marktrolle=="NB"}
+        discriminates: true
+        selects-pruefis:
+        - '55156'
+        - '55180'
+        - '55220'
+        - '55227'
+        - '55555'
+        - '55621'
+        - '55622'
+        - '55623'
+        - '55624'
+        - '55625'
+        - '55626'
+        - '55654'
+        - '55655'
+        - '55656'
+        - '55657'
+        - '55658'
+        - '55673'
+        - '55692'
+        variable: transaktionsgrund
     event.LF.START_BESTELLUNG_STDAE_IND_BSTL_AN_MSB:
       properties:
         additionalData:
@@ -26861,7 +26926,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55555.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55555.
               examples:
               - '55555'
           required:
@@ -26913,7 +26978,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55180.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55180.
               examples:
               - '55180'
           required:
@@ -26966,7 +27031,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55655.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55655.
               examples:
               - '55655'
           required:
@@ -27020,7 +27085,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55622.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55622.
               examples:
               - '55622'
           required:
@@ -27072,7 +27137,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55658.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55658.
               examples:
               - '55658'
           required:
@@ -27123,7 +27188,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55626.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55626.
               examples:
               - '55626'
           required:
@@ -27174,7 +27239,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55654.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55654.
               examples:
               - '55654'
           required:
@@ -27225,7 +27290,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55621.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55621.
               examples:
               - '55621'
           required:
@@ -27276,7 +27341,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55656.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55656.
               examples:
               - '55656'
           required:
@@ -27327,7 +27392,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55624.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55624.
               examples:
               - '55624'
           required:
@@ -27378,7 +27443,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55657.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55657.
               examples:
               - '55657'
           required:
@@ -27429,7 +27494,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55625.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55625.
               examples:
               - '55625'
           required:
@@ -27480,7 +27545,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55623.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55623.
               examples:
               - '55623'
           required:
@@ -27529,7 +27594,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17123.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17123.
               examples:
               - '17123'
           required:
@@ -27577,7 +27642,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
               examples:
               - '17003'
           required:
@@ -27625,7 +27690,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
               examples:
               - '17003'
           required:
@@ -27673,7 +27738,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17117.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17117.
               examples:
               - '17117'
           required:
@@ -27724,7 +27789,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13017.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13017.'
               examples:
               - '13002'
               - '13017'
@@ -27756,8 +27821,48 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_17102.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_17132.masterData'
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_17102.masterData'
+            - properties:
+                REQUEST:
+                  items:
+                    properties:
+                      requestCategory:
+                        $ref: '#/components/schemas/field.Request.requestCategory'
+                        x-process-routing:
+                        - conditions:
+                          - ${anfragekategorie=="PROZESSDATENBERICHT" or anfragekategorie=="ENERGIEMENGE_UND_LEISTUNGSMAXIMUM" or  anfragekategorie=="LASTGANG_MALO_TRANCHE"}
+                          selects-pruefi: '17102'
+                          source: $.stammdaten.ANFRAGE[0].anfragekategorie
+                          variable: anfragekategorie
+                    required:
+                    - requestCategory
+                    type: object
+                  type: array
+              required:
+              - REQUEST
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_17132.masterData'
+            - properties:
+                REQUEST:
+                  items:
+                    properties:
+                      requestCategory:
+                        $ref: '#/components/schemas/field.Request.requestCategory'
+                        x-process-routing:
+                        - conditions:
+                          - ${anfragekategorie=="STAMMDATEN_MALO_ODER_MELO"}
+                          selects-pruefi: '17132'
+                          source: $.stammdaten.ANFRAGE[0].anfragekategorie
+                          variable: anfragekategorie
+                    required:
+                    - requestCategory
+                    type: object
+                  type: array
+              required:
+              - REQUEST
+              type: object
         transactionData:
           properties:
             category:
@@ -27775,7 +27880,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102, 17132.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: anfragekategorie). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102, 17132.'
               examples:
               - '17102'
               - '17132'
@@ -27806,7 +27911,27 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_55016.masterData'
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55016.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      sector:
+                        $ref: '#/components/schemas/field.MarketLocation.sector'
+                        x-process-routing:
+                        - conditions:
+                          - ${sparte=="STROM"}
+                          selects-pruefi: '55016'
+                          source: $.stammdaten.MARKTLOKATION[0].sparte
+                          variable: sparte
+                    required:
+                    - sector
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
         transactionData:
           properties:
             category:
@@ -27826,7 +27951,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44016, 55016.'
               examples:
               - '44016'
               - '55016'
@@ -27843,6 +27968,11 @@ components:
       type: object
       x-pending-pruefis:
       - '44016'
+      x-pending-routing:
+      - pruefi: '44016'
+        required:
+          MARKTLOKATION:
+          - sparte
     event.LF.START_LIEFERBEGINN:
       properties:
         additionalData:
@@ -27859,10 +27989,90 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_55001.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_55077.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_55600.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_55601.masterData'
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55001.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="AUSSP"}
+                          selects-pruefi: '55001'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55077.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="EINSP"}
+                          selects-pruefi: '55077'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55600.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="AUSSP"}
+                          selects-pruefi: '55600'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55601.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung!="AUSSP"}
+                          selects-pruefi: '55601'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
         transactionData:
           properties:
             category:
@@ -27888,7 +28098,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44001, 55001, 55077, 55600, 55601.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: energierichtung, sparte, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44001, 55001, 55077, 55600, 55601.'
               examples:
               - '44001'
               - '55001'
@@ -27953,7 +28163,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44004, 55004.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44004, 55004.'
               examples:
               - '44004'
               - '55004'
@@ -28004,7 +28214,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 3001.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 3001.
               examples:
               - '3001'
           required:
@@ -28046,7 +28256,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.marketRole'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37000.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 37000.
               examples:
               - '37000'
           required:
@@ -28094,7 +28304,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17113.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17113.
               examples:
               - '17113'
           required:
@@ -28143,7 +28353,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17115.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17115.
               examples:
               - '17115'
           required:
@@ -28192,7 +28402,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55230.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55230.
               examples:
               - '55230'
           required:
@@ -28243,7 +28453,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55110.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55110.
               examples:
               - '55110'
           required:
@@ -28294,7 +28504,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55109.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55109.
               examples:
               - '55109'
           required:
@@ -28342,7 +28552,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44120.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44120.
               examples:
               - '44120'
           required:
@@ -28393,7 +28603,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 39000.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 39000.
               examples:
               - '39000'
           required:
@@ -28445,7 +28655,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 39000.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 39000.
               examples:
               - '39000'
           required:
@@ -28481,28 +28691,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25009.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.'
               examples:
               - '25005'
               - '25008'
               - '25009'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
+      x-unresolved-routing:
+      - conditions:
+        - ${kategorie=="Z59"}
+        - ${kategorie=="Z80"}
+        - ${kategorie=="Z81"}
+        discriminates: true
+        selects-pruefis:
+        - '25005'
+        - '25008'
+        - '25009'
+        variable: kategorie
     event.LF.START_UEBERSICHT_LEISTUNGSKURVENDEF:
       properties:
         additionalData:
@@ -28522,26 +28735,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25007.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
               - '25007'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.LF.START_UEBERSICHT_SCHALTZEITDEF:
       properties:
         additionalData:
@@ -28561,26 +28766,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25006.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
               - '25006'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.LF.START_UEBERSICHT_ZAEHLZEITDEF:
       properties:
         additionalData:
@@ -28600,26 +28797,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25004.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
               - '25004'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.LF.START_VERSAND_ANF_STORNO:
       properties:
         additionalData:
@@ -28655,7 +28844,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44022, 55022.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44022, 55022.'
               examples:
               - '44022'
               - '55022'
@@ -28773,7 +28962,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17129.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17129.
               examples:
               - '17129'
           required:
@@ -28835,7 +29024,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44109, 44120, 55109, 55110, 55230.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle, sparte, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44109, 44120, 55109, 55110, 55230.'
               examples:
               - '44109'
               - '44120'
@@ -28894,7 +29083,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 23001.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 23001.
               examples:
               - '23001'
           required:
@@ -28943,7 +29132,7 @@ components:
             typeValue:
               $ref: '#/components/schemas/field.TransactionData.typeValue'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
               examples:
               - '13006'
           required:
@@ -28997,7 +29186,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
               - '25007'
           required:
@@ -29048,7 +29237,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
               - '25006'
           required:
@@ -29099,7 +29288,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
               - '25004'
           required:
@@ -29155,7 +29344,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44140.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44140.
               examples:
               - '44140'
           required:
@@ -29222,7 +29411,7 @@ components:
             typeValue:
               $ref: '#/components/schemas/field.TransactionData.typeValue'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13007, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie, sparte, typ). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13007, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.'
               examples:
               - '13002'
               - '13007'
@@ -29286,7 +29475,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17104, 17126, 17132.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie, sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17104, 17126, 17132.'
               examples:
               - '17104'
               - '17126'
@@ -29337,7 +29526,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55022.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55022.
               examples:
               - '55022'
           required:
@@ -29417,7 +29606,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44116, 44159, 55553, 55557, 55639, 55640, 55641, 55642, 55643, 55649, 55650, 55651, 55652, 55653, 55659, 55660, 55661, 55662, 55663, 55684, 55686.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolleEmpfaenger, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44116, 44159, 55553, 55557, 55639, 55640, 55641, 55642, 55643, 55649, 55650, 55651, 55652, 55653, 55659, 55660, 55661, 55662, 55663, 55684, 55686.'
               examples:
               - '44116'
               - '44159'
@@ -29492,7 +29681,7 @@ components:
             typeValue:
               $ref: '#/components/schemas/field.TransactionData.typeValue'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
               examples:
               - '13006'
           required:
@@ -29526,10 +29715,90 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_55126.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_55613.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_55672.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_55674.masterData'
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55126.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="AUSSP"}
+                          selects-pruefi: '55126'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55613.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="AUSSP"}
+                          selects-pruefi: '55613'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55672.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="EINSP"}
+                          selects-pruefi: '55672'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_55674.masterData'
+            - properties:
+                MARKET_LOCATION:
+                  items:
+                    properties:
+                      energyDirection:
+                        $ref: '#/components/schemas/field.MarketLocation.energyDirection'
+                        x-process-routing:
+                        - conditions:
+                          - ${energierichtung=="EINSP"}
+                          selects-pruefi: '55674'
+                          source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                          variable: energierichtung
+                    required:
+                    - energyDirection
+                    type: object
+                  type: array
+              required:
+              - MARKET_LOCATION
+              type: object
         transactionData:
           properties:
             receiver:
@@ -29551,7 +29820,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: energierichtung, marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.'
               examples:
               - '55126'
               - '55613'
@@ -29607,7 +29876,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
               examples:
               - '55218'
           required:
@@ -29658,7 +29927,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55225.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55225.
               examples:
               - '55225'
           required:
@@ -29709,7 +29978,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55175.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55175.
               examples:
               - '55175'
           required:
@@ -29760,7 +30029,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55218.
               examples:
               - '55218'
           required:
@@ -29811,7 +30080,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126.
               examples:
               - '55126'
           required:
@@ -29858,7 +30127,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17004.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17004.
               examples:
               - '17004'
           required:
@@ -29905,7 +30174,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17102.
               examples:
               - '17102'
           required:
@@ -29953,7 +30222,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17116.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17116.
               examples:
               - '17116'
           required:
@@ -30002,7 +30271,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44113, 44117, 44137, 44148, 44150, 44160, 44166.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44113, 44117, 44137, 44148, 44150, 44160, 44166.'
               examples:
               - '44113'
               - '44117'
@@ -30065,7 +30334,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44148, 55148.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44148, 55148.'
               examples:
               - '44148'
               - '55148'
@@ -30122,7 +30391,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44038, 55038.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44038, 55038.'
               examples:
               - '44038'
               - '55038'
@@ -30157,8 +30426,48 @@ components:
           type: object
         masterData:
           oneOf:
-          - $ref: '#/components/schemas/bauteil.PI_21039.masterData'
-          - $ref: '#/components/schemas/bauteil.PI_21040.masterData'
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_21039.masterData'
+            - properties:
+                STATUS_NOTIFICATION:
+                  items:
+                    properties:
+                      orderStatus:
+                        $ref: '#/components/schemas/field.StatusNotification.orderStatus'
+                        x-process-routing:
+                        - conditions:
+                          - ${auftragsstatus!="GEPLANT"}
+                          selects-pruefi: '21039'
+                          source: $.stammdaten.STATUSMITTEILUNG[0].auftragsstatus
+                          variable: auftragsstatus
+                    required:
+                    - orderStatus
+                    type: object
+                  type: array
+              required:
+              - STATUS_NOTIFICATION
+              type: object
+          - allOf:
+            - $ref: '#/components/schemas/bauteil.PI_21040.masterData'
+            - properties:
+                STATUS_NOTIFICATION:
+                  items:
+                    properties:
+                      orderStatus:
+                        $ref: '#/components/schemas/field.StatusNotification.orderStatus'
+                        x-process-routing:
+                        - conditions:
+                          - ${auftragsstatus=="GEPLANT"}
+                          selects-pruefi: '21040'
+                          source: $.stammdaten.STATUSMITTEILUNG[0].auftragsstatus
+                          variable: auftragsstatus
+                    required:
+                    - orderStatus
+                    type: object
+                  type: array
+              required:
+              - STATUS_NOTIFICATION
+              type: object
         transactionData:
           properties:
             completionDate:
@@ -30180,7 +30489,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: auftragsstatus). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.'
               examples:
               - '21039'
               - '21040'
@@ -30235,7 +30544,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25001.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25001.
               examples:
               - '25001'
           required:
@@ -30287,7 +30596,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55232.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55232.
               examples:
               - '55232'
           required:
@@ -30348,7 +30657,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137, 55232, 55555, 55559, 55644, 55645, 55646, 55647, 55648.'
               examples:
               - '55137'
               - '55232'
@@ -30405,7 +30714,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55559.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55559.
               examples:
               - '55559'
           required:
@@ -30455,7 +30764,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55555.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55555.
               examples:
               - '55555'
           required:
@@ -30506,7 +30815,7 @@ components:
             transactionReason:
               $ref: '#/components/schemas/field.TransactionData.transactionReason'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137.
               examples:
               - '55137'
           required:
@@ -30555,7 +30864,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55645.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55645.
               examples:
               - '55645'
           required:
@@ -30603,7 +30912,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55648.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55648.
               examples:
               - '55648'
           required:
@@ -30651,7 +30960,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55644.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55644.
               examples:
               - '55644'
           required:
@@ -30699,7 +31008,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55646.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55646.
               examples:
               - '55646'
           required:
@@ -30747,7 +31056,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55647.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55647.
               examples:
               - '55647'
           required:
@@ -30795,7 +31104,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17003.
               examples:
               - '17003'
           required:
@@ -30842,7 +31151,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55150.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55150.
               examples:
               - '55150'
           required:
@@ -30893,7 +31202,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17134.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17134.
               examples:
               - '17134'
           required:
@@ -30926,26 +31235,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_17134.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17134.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17134.
               examples:
               - '17134'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_ENDE_ZUORDNUNG:
       properties:
         additionalData:
@@ -30985,7 +31286,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55037, 55611.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55037, 55611.'
               examples:
               - '55037'
               - '55611'
@@ -31020,26 +31321,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_55632.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55632.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55632.
               examples:
               - '55632'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_END_STAMMDATENAENDERUNG_MELO_AN_LF:
       properties:
         additionalData:
@@ -31059,26 +31352,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_55620.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55620.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55620.
               examples:
               - '55620'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_END_STAMMDATENAENDERUNG_NELO_AN_MSB:
       properties:
         additionalData:
@@ -31098,26 +31383,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_55227.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55227.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55227.
               examples:
               - '55227'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_EOG:
       properties:
         additionalData:
@@ -31160,7 +31437,7 @@ components:
             transactionReasonSupplementTemporaryRegistration:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplementTemporaryRegistration'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44013, 55013.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44013, 55013.'
               examples:
               - '44013'
               - '55013'
@@ -31228,7 +31505,7 @@ components:
             typeValue:
               $ref: '#/components/schemas/field.TransactionData.typeValue'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie, sparte, typ). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13002, 13008, 13009, 13016, 13017, 13018, 13019, 13025, 13027.'
               examples:
               - '13002'
               - '13008'
@@ -31295,7 +31572,7 @@ components:
             transactionReasonSupplement:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplement'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44007, 55007.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44007, 55007.'
               examples:
               - '44007'
               - '55007'
@@ -31334,26 +31611,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_55110.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55110.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55110.
               examples:
               - '55110'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_N_BILA_REL_ANFR_ABR_BLINDARBEIT_AN_LF:
       properties:
         additionalData:
@@ -31390,7 +31659,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55232.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55232.
               examples:
               - '55232'
           required:
@@ -31441,7 +31710,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55137.
               examples:
               - '55137'
           required:
@@ -31489,7 +31758,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44166, 55166.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44166, 55166.'
               examples:
               - '44166'
               - '55166'
@@ -31542,7 +31811,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 27003.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 27003.
               examples:
               - '27003'
           required:
@@ -31590,7 +31859,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17113.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17113.
               examples:
               - '17113'
           required:
@@ -31635,7 +31904,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44123.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44123.
               examples:
               - '44123'
           required:
@@ -31682,7 +31951,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44175.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44175.
               examples:
               - '44175'
           required:
@@ -31731,7 +32000,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44112.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44112.
               examples:
               - '44112'
           required:
@@ -31781,7 +32050,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44113.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44113.
               examples:
               - '44113'
           required:
@@ -31834,7 +32103,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
               examples:
               - '55615'
           required:
@@ -31885,7 +32154,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55175.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55175.
               examples:
               - '55175'
           required:
@@ -31936,7 +32205,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55173.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55173.
               examples:
               - '55173'
           required:
@@ -31987,7 +32256,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
               examples:
               - '55615'
           required:
@@ -32038,7 +32307,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55627.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55627.
               examples:
               - '55627'
           required:
@@ -32089,7 +32358,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
               examples:
               - '55615'
           required:
@@ -32137,7 +32406,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55118.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55118.
               examples:
               - '55118'
           required:
@@ -32190,7 +32459,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55630.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55630.
               examples:
               - '55630'
           required:
@@ -32241,7 +32510,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55615.
               examples:
               - '55615'
           required:
@@ -32292,7 +32561,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55629.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55629.
               examples:
               - '55629'
           required:
@@ -32328,28 +32597,31 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25009.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25005, 25008, 25009.'
               examples:
               - '25005'
               - '25008'
               - '25009'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
+      x-unresolved-routing:
+      - conditions:
+        - ${kategorie=="Z59"}
+        - ${kategorie=="Z80"}
+        - ${kategorie=="Z81"}
+        discriminates: true
+        selects-pruefis:
+        - '25005'
+        - '25008'
+        - '25009'
+        variable: kategorie
     event.NB.START_UEBERSICHT_LEISTUNGSKURVENDEF:
       properties:
         additionalData:
@@ -32369,26 +32641,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25007.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25007.
               examples:
               - '25007'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_UEBERSICHT_SCHALTZEITDEF:
       properties:
         additionalData:
@@ -32408,26 +32672,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25006.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25006.
               examples:
               - '25006'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_UEBERSICHT_ZAEHLZEITDEF:
       properties:
         additionalData:
@@ -32447,26 +32703,18 @@ components:
           - $ref: '#/components/schemas/bauteil.PI_25004.masterData'
         transactionData:
           properties:
-            receiver:
-              $ref: '#/components/schemas/field.TransactionData.receiver'
-            sector:
-              $ref: '#/components/schemas/field.TransactionData.sector'
-            sender:
-              $ref: '#/components/schemas/field.TransactionData.sender'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
               - '25004'
-          required:
-          - sender
-          - receiver
-          - sector
           type: object
       required:
       - masterData
       - transactionData
       - additionalData
       type: object
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
     event.NB.START_VERSAND_ANF_STORNO:
       properties:
         additionalData:
@@ -32500,7 +32748,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44022, 55022.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44022, 55022.'
               examples:
               - '44022'
               - '55022'
@@ -32551,7 +32799,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21047.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21047.
               examples:
               - '21047'
           required:
@@ -32597,7 +32845,7 @@ components:
             usageTo:
               $ref: '#/components/schemas/field.TransactionData.usageTo'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55188.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55188.
               examples:
               - '55188'
           required:
@@ -32645,7 +32893,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44019.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44019.
               examples:
               - '44019'
           required:
@@ -32695,7 +32943,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 29002.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 29002.
               examples:
               - '29002'
           required:
@@ -32743,7 +32991,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13015.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13015.
               examples:
               - '13015'
           required:
@@ -32794,7 +33042,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13016, 13019.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: kategorie). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13016, 13019.'
               examples:
               - '13016'
               - '13019'
@@ -32868,7 +33116,7 @@ components:
             validFrom:
               $ref: '#/components/schemas/field.TransactionData.validFrom'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44112, 44113, 44123, 44175, 55173, 55175, 55225, 55615, 55616, 55617, 55618, 55619, 55620, 55627, 55628, 55629, 55630, 55632, 55670, 55688, 55691.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle, sparte, transaktionsgrund). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44112, 44113, 44123, 44175, 55173, 55175, 55225, 55615, 55616, 55617, 55618, 55619, 55620, 55627, 55628, 55629, 55630, 55632, 55670, 55688, 55691.'
               examples:
               - '44112'
               - '44113'
@@ -32942,7 +33190,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21047.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21047.
               examples:
               - '21047'
           required:
@@ -32987,7 +33235,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55670.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55670.
               examples:
               - '55670'
           required:
@@ -33034,7 +33282,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 23001.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 23001.
               examples:
               - '23001'
           required:
@@ -33083,7 +33331,7 @@ components:
             typeValue:
               $ref: '#/components/schemas/field.TransactionData.typeValue'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 13006.
               examples:
               - '13006'
           required:
@@ -33136,7 +33384,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: istAuftragsstatusGeplant). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 21039, 21040.'
               examples:
               - '21039'
               - '21040'
@@ -33151,6 +33399,15 @@ components:
       - transactionData
       - additionalData
       type: object
+      x-unresolved-routing:
+      - conditions:
+        - ${istAuftragsstatusGeplant==false}
+        - ${istAuftragsstatusGeplant==true}
+        discriminates: true
+        selects-pruefis:
+        - '21039'
+        - '21040'
+        variable: istAuftragsstatusGeplant
     event.NB.START_WIEDERSPRUCH_ABLEHNUNG:
       properties:
         additionalData:
@@ -33185,7 +33442,7 @@ components:
                   $ref: '#/components/schemas/field.MarketParticipant.roleCodeNumber'
               type: object
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 29002.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 29002.
               examples:
               - '29002'
           required:
@@ -33239,7 +33496,7 @@ components:
             transactionReasonSupplementTemporaryRegistration:
               $ref: '#/components/schemas/field.TransactionData.transactionReasonSupplementTemporaryRegistration'
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55607.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55607.
               examples:
               - '55607'
           required:

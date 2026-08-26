@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[LF] START_UEBERSICHT_ZAEHLZEITDEF'
   version: '202510'
-  x-bpmn-source-sha: 25b8cceb
+  x-bpmn-source-sha: 47f8ad44
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[LF] START_UEBERSICHT_ZAEHLZEITDEF':
@@ -19,19 +19,9 @@ components:
           - $ref: ../../event-bauteil-en/202510/UTILTS/PI_25004.yaml#/components/schemas/PI_25004__masterData
         transactionData:
           type: object
-          required:
-          - sender
-          - receiver
-          - sector
           properties:
-            sender:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sender.yaml#/components/schemas/sender
-            receiver:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/receiver.yaml#/components/schemas/receiver
-            sector:
-              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
+              description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 25004.
               examples:
               - '25004'
         additionalData:
@@ -46,3 +36,5 @@ components:
               type: string
               const: START_UEBERSICHT_ZAEHLZEITDEF
               default: START_OVERVIEW_COUNTING_DEFINITION
+      x-pending-dmn:
+        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_ABR_BK'
   version: '202510'
-  x-bpmn-source-sha: b9f275c7
+  x-bpmn-source-sha: '72378213'
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[NB] START_ABR_BK':
@@ -16,10 +16,90 @@ components:
       properties:
         stammdaten:
           oneOf:
-            - $ref: ../../event-bauteil/202510/UTILMD/PI_55126.yaml#/components/schemas/PI_55126__stammdaten
-            - $ref: ../../event-bauteil/202510/UTILMD/PI_55613.yaml#/components/schemas/PI_55613__stammdaten
-            - $ref: ../../event-bauteil/202510/UTILMD/PI_55672.yaml#/components/schemas/PI_55672__stammdaten
-            - $ref: ../../event-bauteil/202510/UTILMD/PI_55674.yaml#/components/schemas/PI_55674__stammdaten
+            - allOf:
+                - $ref: ../../event-bauteil/202510/UTILMD/PI_55126.yaml#/components/schemas/PI_55126__stammdaten
+                - type: object
+                  required:
+                    - MARKTLOKATION
+                  properties:
+                    MARKTLOKATION:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - energierichtung
+                        properties:
+                          energierichtung:
+                            $ref: ../../bo4e/fields/bo/Marktlokation/energierichtung.yaml#/components/schemas/energierichtung
+                            x-process-routing:
+                              - variable: energierichtung
+                                source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                                selects-pruefi: '55126'
+                                conditions:
+                                  - ${energierichtung=="AUSSP"}
+            - allOf:
+                - $ref: ../../event-bauteil/202510/UTILMD/PI_55613.yaml#/components/schemas/PI_55613__stammdaten
+                - type: object
+                  required:
+                    - MARKTLOKATION
+                  properties:
+                    MARKTLOKATION:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - energierichtung
+                        properties:
+                          energierichtung:
+                            $ref: ../../bo4e/fields/bo/Marktlokation/energierichtung.yaml#/components/schemas/energierichtung
+                            x-process-routing:
+                              - variable: energierichtung
+                                source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                                selects-pruefi: '55613'
+                                conditions:
+                                  - ${energierichtung=="AUSSP"}
+            - allOf:
+                - $ref: ../../event-bauteil/202510/UTILMD/PI_55672.yaml#/components/schemas/PI_55672__stammdaten
+                - type: object
+                  required:
+                    - MARKTLOKATION
+                  properties:
+                    MARKTLOKATION:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - energierichtung
+                        properties:
+                          energierichtung:
+                            $ref: ../../bo4e/fields/bo/Marktlokation/energierichtung.yaml#/components/schemas/energierichtung
+                            x-process-routing:
+                              - variable: energierichtung
+                                source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                                selects-pruefi: '55672'
+                                conditions:
+                                  - ${energierichtung=="EINSP"}
+            - allOf:
+                - $ref: ../../event-bauteil/202510/UTILMD/PI_55674.yaml#/components/schemas/PI_55674__stammdaten
+                - type: object
+                  required:
+                    - MARKTLOKATION
+                  properties:
+                    MARKTLOKATION:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - energierichtung
+                        properties:
+                          energierichtung:
+                            $ref: ../../bo4e/fields/bo/Marktlokation/energierichtung.yaml#/components/schemas/energierichtung
+                            x-process-routing:
+                              - variable: energierichtung
+                                source: $.stammdaten.MARKTLOKATION[0].energierichtung
+                                selects-pruefi: '55674'
+                                conditions:
+                                  - ${energierichtung=="EINSP"}
         transaktionsdaten:
           type: object
           required:
@@ -48,7 +128,7 @@ components:
             transaktionsgrundergaenzung:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/transaktionsgrundergaenzung.yaml#/components/schemas/transaktionsgrundergaenzung
             pruefidentifikator:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: energierichtung, marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55126, 55613, 55672, 55674.'
               examples:
                 - '55126'
                 - '55613'

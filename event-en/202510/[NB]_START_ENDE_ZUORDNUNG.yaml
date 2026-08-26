@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_ENDE_ZUORDNUNG'
   version: '202510'
-  x-bpmn-source-sha: b9f275c7
+  x-bpmn-source-sha: '72378213'
   x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 20c434c98f1808f1b10ab64bdf7a7a96d42aa7ee
+  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
 components:
   schemas:
     '[NB] START_ENDE_ZUORDNUNG':
@@ -46,7 +46,7 @@ components:
             transactionReasonSupplement:
               $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReasonSupplement.yaml#/components/schemas/transactionReasonSupplement
             verificationIdentifier:
-              description: Wird dynamisch im Event-Prozess ermittelt (Sparte + Transaktionsgrund + Empfänger-Marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55037, 55611.
+              description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: marktrolle). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 55037, 55611.'
               examples:
               - '55037'
               - '55611'
