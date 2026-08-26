@@ -10,6 +10,7 @@ Generator-Skripte für die Doku-Pipeline. Konsumieren `pruefi/` (Templater-Outpu
 | `compose_event_specs.py` | MACO-13040 | ✓ implementiert — Event-Specs aus event-bauteil/ + event-mapping.json + event-required-fields.json komponieren |
 | `bundle_spec.py` | MACO-13229 | ✓ implementiert — atomare Specs zu einer Single-Spec je Format bündeln (Apidog-Importartefakt) |
 | `check_refs.py` | MACO-13087 | ✓ implementiert — externe `$ref` aus pruefi/ event-bauteil/ event/ gegen vorhandene Files prüfen (CI-Gate) |
+| `check_routing.py` | MACO-14052 | ✓ implementiert — Routing-Invariante: keine Gate-Variable ohne Spur im Event-Spec (CI-Gate im Sync) + Coverage-Report |
 | `translate_specs.py` | MACO-13088 | ✓ implementiert — Specs per Translator-Endpoint übersetzen (pruefi/ → pruefi-en/, JSON→YAML), Refs auf `bo4e-en/` |
 
 ## Setup
@@ -114,10 +115,15 @@ Komponiert pro `(format, ROLE, topic)` eine OpenAPI-3.1-Event-Spec aus drei Inpu
 Modell (Stand 2026-05-27):
 
 - Event-Wrapper `required: [stammdaten, transaktionsdaten, zusatzdaten]`.
-- `transaktionsdaten` als **ein** Objekt, das nur die vom Event tatsächlich genutzten Felder zeigt (Schicht 1, DMN-abgeleitet aus `transaktionsdaten_reads`/`required_transaktionsdaten` von Skript 4; Fallback Aggregat-Common-Core). Skalar gelesene Felder → `$ref` auf das `fields/cdoc/Transaktionsdaten/<feld>`-Atom; verschachtelt gelesene Felder (z.B. `absender.rollencodenummer`) → fokussiertes Sub-Objekt nur über die gelesenen Subfelder (Atome des referenzierten BO). Ersetzt das frühere `allOf`(volles Transaktionsdaten + Required-Override), das Apidog als zwei nicht-mergebare `0`/`1`-Zweige rendert. Felder, die die DMN liest, die es aber im BO4E-Modell nicht gibt (z.B. `lokationsTyp`), landen in `x-unresolved-transaktionsdaten` statt required-aber-undefiniert.
+- `transaktionsdaten` als **ein** Objekt, das nur die vom Event tatsächlich genutzten Felder zeigt (Schicht 1, DMN-abgeleitet aus `transaktionsdaten_reads`/`required_transaktionsdaten` von Skript 4). Skalar gelesene Felder → `$ref` auf das `fields/cdoc/Transaktionsdaten/<feld>`-Atom; verschachtelt gelesene Felder (z.B. `absender.rollencodenummer`) → fokussiertes Sub-Objekt nur über die gelesenen Subfelder (Atome des referenzierten BO). Ersetzt das frühere `allOf`(volles Transaktionsdaten + Required-Override), das Apidog als zwei nicht-mergebare `0`/`1`-Zweige rendert. Felder, die die DMN liest, die es aber im BO4E-Modell nicht gibt (z.B. `lokationsTyp`), landen in `x-unresolved-transaktionsdaten` statt required-aber-undefiniert.
 - `transaktionsdaten.pruefidentifikator` regulär **optional, kein `enum`**: Beauskunftung über `description` (listet die im Topic möglichen Prüfis) + `examples`-Array. Der Prüfi wird in Camunda über Sparte + Transaktionsgrund + Empfänger-Marktrolle ermittelt; ein Sender-Wert wird ignoriert.
 - **NNA-Sonderfall** (`pruefidentifikator_source == "transaktionsdaten"`, z.B. `[LF] START_VERSAND_ANTWORT_NNA`): stattdessen **required + `enum`**, weil der Body-Wert das T_-Gateway routet.
 - `oneOf` über die Prüfi-Bauteile = Union-of-Required-Coverage (Sender muss die Stammdaten liefern, die irgendein Pool-Mitglied braucht), **kein** Discriminator, **kein** `x-condition`, **kein** leeres `{}`.
+- **Routing-Pflichtfelder** (MACO-14052): Variablen, auf die der `T_`-Prozess den Prüfi-Versand gattert (`${energierichtung=="AUSSP"}`), speist die DMN aus dem Payload. Liegt die Quelle unter `$.stammdaten.<CONTAINER>[i].<feld>`, ist das Feld für den Sender Pflicht — unabhängig davon, ob der Templater es in ein EDIFACT-Segment rendert. Der betroffene `oneOf`-Zweig wird dafür zu `allOf: [$ref Bauteil, {Routing-Required}]`; Zweige ohne die Variable bleiben unverändert. Die Pflicht sitzt **pro Zweig**, nicht am Event: dasselbe Bauteil wird von mehreren Events geteilt (`PI_17132` in `[LF]` und `[MSB] START_GESCHAEFTSDATENANFRAGE`), und innerhalb eines Events braucht der GAS-Prüfi das Feld oft nicht. Herkunft und Bedingung stehen als `x-process-routing` am Feld. Der Atom-`$ref` wird case-insensitiv über das BO-Verzeichnis gesucht und gegen die tatsächlich definierten Schema-Namen geprüft (`MARKTLOKATION` → `fields/bo/Marktlokation/`).
+- `x-pending-routing`: Routing-Pflicht eines Prüfis, der (noch) kein Bauteil hat — es gibt keinen `oneOf`-Zweig, der sie tragen könnte. Ohne diesen Eintrag würde die Pflicht mit dem fehlenden Templater-Spec verschwinden.
+- `x-unresolved-routing`: Gate-Variable ohne Payload-Pfad in `S_EVENT_VARIABLEN.dmn` (repo-weit, nicht nur im Eintrag des Events). `discriminates: true` = die Bedingung unterscheidet die Prüfis, die Herkunft ist aber ungeklärt → Klärungsbedarf; `discriminates: false` = die Variable schränkt alle Zweige gleich ein (Muster `${datenVorhanden==true}`) → prozessinternes Gate. Stilles Weglassen gibt es in keinem Fall.
+- **`altJsonPath` ist ein Entweder-oder**, kein zweites Pflichtfeld: `GetDataFromInbound(jsonPath=$.stammdaten.MARKTLOKATION[0].marktlokationsId,altJsonPath=$.stammdaten.MESSLOKATION[0].messlokationsId)` heißt „MaLo-ID **oder** MeLo-ID". Skript 4 hält die Ränge in `jsonpaths` (alle) und `jsonpaths_alt` (nur Fallbacks) auseinander; die Routing-Pflicht wird ausschließlich aus dem primären Pfad gebildet, der Alternativpfad steht als `accepts-alternative` in `x-process-routing`. Beide zu fordern würde einen Sender abweisen, der berechtigt nur einen füllt.
+- `x-pending-dmn`: Event **ohne** Eintrag in `S_EVENT_VARIABLEN.dmn`. Dann setzt der Prozess für dieses Event überhaupt keine Variablen (`G_EVENT_EINGANG` → BusinessRuleTask → `Eventvariablen initialisieren`), der Pflichtsatz ist also nicht bestimmbar — `transaktionsdaten` bleibt ohne `required`. **Kein Common-Core-Fallback mehr** (MACO-14052): das Aggregat ist eine Statistik über *andere* Events und hing an einer 80-%-Schwelle, die dasselbe Event je nach Format unterschiedlich behandelte (`kategorie` 81,9 % in 202604 → Pflicht, 77,8 % in 202610 → nicht). Ein geratener Pflichtsatz ist schlechter als ein sichtbar offener. `_aggregate` bleibt als Kennzahl im Skript-4-Output erhalten, wird aber nicht mehr als Ersatz eingesetzt.
 - Schema-Name bekommt `` GAS``-Suffix, wenn alle Prüfis im Pool im 44xxx-Bereich liegen.
 - Scope (UTILMD/UTILMD_GAS/…) wird aus dem `event-bauteil/`-Baum per Prüfi-Id aufgelöst; Prüfis ohne Bauteil werden mit Warnung verworfen.
 - Provenance-Header: `info.x-bpmn-source-sha` (aus `event-mapping.json`), `info.x-bo4e-schema-version` + `info.x-templater-sha` (aus einem repräsentativen Bauteil).
@@ -151,3 +157,22 @@ Fixtures unter `scripts/tests/fixtures/`:
 ## Determinismus
 
 Output ist deterministisch: zwei aufeinanderfolgende Läufe mit identischen Inputs produzieren byte-identische Files. Verifiziert per `test_output_is_deterministic_across_runs` (Filter) + `test_cli_output_is_deterministic_across_runs` (BPMN-Parser) + `test_output_is_deterministic` (Composer) und im Sync-Workflow als CI-Check.
+
+## `check_routing.py`
+
+Prüft, dass zwischen BPMN-Gate und Event-Spec keine Routing-Pflicht verloren geht. Zwei bewusst getrennte Ebenen, weil die Prozess-Repos laufend bearbeitet werden und ein Doku-Lauf nicht an unfertiger Prozessarbeit scheitern darf:
+
+**Hart (exit 1) — die Invariante.** Jede Camunda-Variable, auf die ein `T_`-Prozess den Prüfi-Versand gattert, muss im erzeugten Spec eine von vier Spuren hinterlassen: Pflichtfeld im `oneOf`-Zweig (`x-process-routing`), `x-pending-routing`, `x-unresolved-routing`, oder bereits Pflicht in `transaktionsdaten`. Keine Spur heißt: der Generator hat sie fallen lassen — ein Code-Defekt, kein Datenzustand. **WIP-Daten können die Invariante nicht verletzen**, weil jeder unfertige Zustand (neue Variable ohne DMN-Pfad, Prüfi ohne Bauteil, Feld ohne Atom) bereits eine Annotation erzeugt.
+
+**Weich (bricht nie) — Coverage.** Zählt, wie viel des Routings tatsächlich durch ein Pflichtfeld gedeckt ist, gegenüber `pending`/`unresolved`. Hier wird unfertige Prozessarbeit sichtbar; der Report macht den Trend über Läufe hinweg lesbar, blockiert aber nichts.
+
+Deckung über `transaktionsdaten` wird am **aufgelösten Pfad** entschieden, nicht am Variablennamen: `marktrolle` liest `$.transaktionsdaten.absender.marktrolle` und ist gedeckt, weil `absender` required ist — die Namen unterscheiden sich, ein Namensvergleich meldete Defekte, wo keine sind.
+
+```bash
+python3 scripts/check_routing.py \
+  --event-mapping event-mapping.json \
+  --required-fields event-required-fields.json \
+  --event-dir event [--filter-format 202610]
+```
+
+Läuft im `sync.yaml` nach dem Compose-Schritt. **Nicht** im PR-Gate der `v*`-Branches: `event-mapping.json` und `event-required-fields.json` sind Zwischenartefakte und werden nicht gepusht.

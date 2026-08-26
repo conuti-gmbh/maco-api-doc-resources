@@ -32,7 +32,8 @@ Output schema:
               "stammdaten_reads": ["MARKTLOKATION", "BILANZIERUNG"],
               "pruefidentifikator_source": "transaktionsdaten" | "erpEvent.eventName" | null,
               "description": "..." | null,
-              "jsonpaths": {"<output_col>": ["$.path1", "$.path2"]}
+              "jsonpaths": {"<output_col>": ["$.path1", "$.path2"]},
+              "jsonpaths_alt": {"<output_col>": ["$.path2"]}
             }
 
 ``transaktionsdaten_reads`` records, per top-level transaktionsdaten field, the
@@ -73,6 +74,10 @@ ROLES = ("lf", "nb", "msb")
 DEFAULT_COMMON_CORE_THRESHOLD = 0.80
 
 JSONPATH_RE = re.compile(r"(?:jsonPath|altJsonPath)=(\$\.[^,\)\s]+)")
+# `altJsonPath` is an either/or fallback: the Tasker reads the primary path and
+# only falls back if it is empty. Consumers that turn a read into an obligation
+# must not treat both as mandatory — hence the ranks are kept apart.
+ALT_JSONPATH_RE = re.compile(r"altJsonPath=(\$\.[^,\)\s]+)")
 
 BLOCK_TRANSAKTIONSDATEN = "transaktionsdaten"
 BLOCK_STAMMDATEN = "stammdaten"
@@ -178,6 +183,11 @@ def extract_jsonpaths(value: str) -> list[str]:
     return JSONPATH_RE.findall(value)
 
 
+def extract_alt_jsonpaths(value: str) -> list[str]:
+    """Only the `altJsonPath=...` fallbacks of a cell."""
+    return ALT_JSONPATH_RE.findall(value)
+
+
 def analyze_rule(rule: Rule) -> dict:
     """Turn a parsed DMN rule into the on-disk event entry."""
     td_fields: set[str] = set()
@@ -186,6 +196,7 @@ def analyze_rule(rule: Rule) -> dict:
     sd_fields: set[str] = set()
     zd_fields: set[str] = set()
     jsonpaths_per_column: dict[str, list[str]] = {}
+    alt_per_column: dict[str, list[str]] = {}
     pruefi_source: str | None = None
 
     for column, cell in rule.outputs:
@@ -196,6 +207,9 @@ def analyze_rule(rule: Rule) -> dict:
             # Literal output values like "STROM" — not a body read.
             continue
         jsonpaths_per_column[column] = paths
+        alt = extract_alt_jsonpaths(cell)
+        if alt:
+            alt_per_column[column] = alt
         for path in paths:
             block, top = classify_path(path)
             if block == BLOCK_TRANSAKTIONSDATEN and top:
@@ -235,6 +249,7 @@ def analyze_rule(rule: Rule) -> dict:
         "pruefidentifikator_source": pruefi_source,
         "description": rule.description,
         "jsonpaths": {col: sorted(paths) for col, paths in sorted(jsonpaths_per_column.items())},
+        "jsonpaths_alt": {col: sorted(paths) for col, paths in sorted(alt_per_column.items())},
     }
 
 

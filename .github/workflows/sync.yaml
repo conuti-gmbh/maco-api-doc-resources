@@ -172,6 +172,17 @@ jobs:
         working-directory: gen
         run: python -m scripts.check_refs
 
+      # Hard-fails only when a routing gate leaves no trace at all — a
+      # generator defect, not a data state, so WIP process repos cannot
+      # trip it. The coverage numbers it prints are informational.
+      - name: Check routing invariant
+        working-directory: gen
+        run: |
+          python -m scripts.check_routing \
+            --event-mapping event-mapping.json \
+            --required-fields event-required-fields.json \
+            --event-dir event
+
       - name: Install vacuum
         run: |
           arch=$(dpkg --print-architecture)
