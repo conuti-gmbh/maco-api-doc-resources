@@ -10,6 +10,7 @@ Generator-Skripte für die Doku-Pipeline. Konsumieren `pruefi/` (Templater-Outpu
 | `compose_event_specs.py` | MACO-13040 | ✓ implementiert — Event-Specs aus event-bauteil/ + event-mapping.json + event-required-fields.json komponieren |
 | `bundle_spec.py` | MACO-13229 | ✓ implementiert — atomare Specs zu einer Single-Spec je Format bündeln (Apidog-Importartefakt) |
 | `check_refs.py` | MACO-13087 | ✓ implementiert — externe `$ref` aus pruefi/ event-bauteil/ event/ gegen vorhandene Files prüfen (CI-Gate) |
+| `check_routing.py` | MACO-14052 | ✓ implementiert — Routing-Invariante: keine Gate-Variable ohne Spur im Event-Spec (CI-Gate im Sync) + Coverage-Report |
 | `translate_specs.py` | MACO-13088 | ✓ implementiert — Specs per Translator-Endpoint übersetzen (pruefi/ → pruefi-en/, JSON→YAML), Refs auf `bo4e-en/` |
 
 ## Setup
@@ -154,3 +155,22 @@ Fixtures unter `scripts/tests/fixtures/`:
 ## Determinismus
 
 Output ist deterministisch: zwei aufeinanderfolgende Läufe mit identischen Inputs produzieren byte-identische Files. Verifiziert per `test_output_is_deterministic_across_runs` (Filter) + `test_cli_output_is_deterministic_across_runs` (BPMN-Parser) + `test_output_is_deterministic` (Composer) und im Sync-Workflow als CI-Check.
+
+## `check_routing.py`
+
+Prüft, dass zwischen BPMN-Gate und Event-Spec keine Routing-Pflicht verloren geht. Zwei bewusst getrennte Ebenen, weil die Prozess-Repos laufend bearbeitet werden und ein Doku-Lauf nicht an unfertiger Prozessarbeit scheitern darf:
+
+**Hart (exit 1) — die Invariante.** Jede Camunda-Variable, auf die ein `T_`-Prozess den Prüfi-Versand gattert, muss im erzeugten Spec eine von vier Spuren hinterlassen: Pflichtfeld im `oneOf`-Zweig (`x-process-routing`), `x-pending-routing`, `x-unresolved-routing`, oder bereits Pflicht in `transaktionsdaten`. Keine Spur heißt: der Generator hat sie fallen lassen — ein Code-Defekt, kein Datenzustand. **WIP-Daten können die Invariante nicht verletzen**, weil jeder unfertige Zustand (neue Variable ohne DMN-Pfad, Prüfi ohne Bauteil, Feld ohne Atom) bereits eine Annotation erzeugt.
+
+**Weich (bricht nie) — Coverage.** Zählt, wie viel des Routings tatsächlich durch ein Pflichtfeld gedeckt ist, gegenüber `pending`/`unresolved`. Hier wird unfertige Prozessarbeit sichtbar; der Report macht den Trend über Läufe hinweg lesbar, blockiert aber nichts.
+
+Deckung über `transaktionsdaten` wird am **aufgelösten Pfad** entschieden, nicht am Variablennamen: `marktrolle` liest `$.transaktionsdaten.absender.marktrolle` und ist gedeckt, weil `absender` required ist — die Namen unterscheiden sich, ein Namensvergleich meldete Defekte, wo keine sind.
+
+```bash
+python3 scripts/check_routing.py \
+  --event-mapping event-mapping.json \
+  --required-fields event-required-fields.json \
+  --event-dir event [--filter-format 202610]
+```
+
+Läuft im `sync.yaml` nach dem Compose-Schritt. **Nicht** im PR-Gate der `v*`-Branches: `event-mapping.json` und `event-required-fields.json` sind Zwischenartefakte und werden nicht gepusht.

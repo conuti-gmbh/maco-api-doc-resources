@@ -797,9 +797,13 @@ def test_pending_pruefi_routing_is_recorded_not_dropped(tmp_path: Path) -> None:
     ]
 
 
-def test_variable_known_from_another_event_is_not_unresolved(tmp_path: Path) -> None:
-    """A sparse DMN row must not read as 'origin unknown' when the column is
-    mapped elsewhere in the same document."""
+def test_variable_only_known_from_another_event_is_still_unresolved(tmp_path: Path) -> None:
+    """A path that holds for a different event proves nothing here.
+
+    The obligation may only be derived from the event's own DMN row; otherwise
+    the generator would assert a sender contract it cannot back. Recorded as
+    unresolved rather than dropped.
+    """
     _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
     mapping = _mapping(
         "LF", "START_X", [55001], paths_by_pid={55001: [['${energierichtung=="AUSSP"}']]}
@@ -816,33 +820,46 @@ def test_variable_known_from_another_event_is_not_unresolved(tmp_path: Path) -> 
     schema = _load_out(tmp_path, "202604", "LF", "START_X")["components"]["schemas"][
         "[LF] START_X"
     ]
-    assert "x-unresolved-routing" not in schema
+    assert "energierichtung" not in json.dumps(schema["properties"]["stammdaten"])
+    assert [e["variable"] for e in schema["x-unresolved-routing"]] == ["energierichtung"]
 
 
-def test_pruefi_description_names_the_actual_decision_variables(tmp_path: Path) -> None:
-    """The wording used to claim "Sparte + Transaktionsgrund + Empfänger-
-    Marktrolle" for every event; it must name what this topic really gates on."""
-    mapping, required = _routing_setup(tmp_path)
-    _run(tmp_path, mapping, required)
+def test_transaktionsdaten_path_outside_required_set_is_unresolved(tmp_path: Path) -> None:
+    """Sourced from transaktionsdaten is not the same as guaranteed.
 
-    td = _load_out(tmp_path, "202604", "LF", "START_LIEFERBEGINN")["components"][
-        "schemas"
-    ]["[LF] START_LIEFERBEGINN"]["properties"]["transaktionsdaten"]
-    description = td["properties"]["pruefidentifikator"]["description"]
-    assert "Entscheidungsgrundlage: energierichtung, sparte" in description
-    assert "Transaktionsgrund" not in description
-    assert "44001, 55001, 55077" in description
-
-
-def test_pruefi_description_omits_basis_when_no_gate_is_known(tmp_path: Path) -> None:
+    If the field is not in the event's required set, the sender is under no
+    obligation to send it — so the gate is as unbacked as one with no path.
+    """
     _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
-    mapping = _mapping("LF", "START_PLAIN", [55001])
-    required = _required("LF", "START_PLAIN", ["absender"])
+    mapping = _mapping(
+        "LF", "START_Y", [55001], paths_by_pid={55001: [['${freitext=="X"}']]}
+    )
+    required = _required(
+        "LF",
+        "START_Y",
+        ["absender"],
+        jsonpaths={"freitext": ["$.transaktionsdaten.freitext"]},
+    )
     _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_Y")["components"]["schemas"][
+        "[LF] START_Y"
+    ]
+    assert [e["variable"] for e in schema["x-unresolved-routing"]] == ["freitext"]
 
-    td = _load_out(tmp_path, "202604", "LF", "START_PLAIN")["components"]["schemas"][
-        "[LF] START_PLAIN"
-    ]["properties"]["transaktionsdaten"]
-    description = td["properties"]["pruefidentifikator"]["description"]
-    assert "Entscheidungsgrundlage" not in description
-    assert description.startswith("Wird dynamisch im Event-Prozess ermittelt.")
+
+def test_transaktionsdaten_path_inside_required_set_is_covered(tmp_path: Path) -> None:
+    _write_bauteil(tmp_path / "event-bauteil", "202604", "UTILMD", 55001)
+    mapping = _mapping(
+        "LF", "START_Z", [55001], paths_by_pid={55001: [['${sparte=="STROM"}']]}
+    )
+    required = _required(
+        "LF",
+        "START_Z",
+        ["absender", "sparte"],
+        jsonpaths={"sparte": ["$.transaktionsdaten.sparte"]},
+    )
+    _run(tmp_path, mapping, required)
+    schema = _load_out(tmp_path, "202604", "LF", "START_Z")["components"]["schemas"][
+        "[LF] START_Z"
+    ]
+    assert "x-unresolved-routing" not in schema

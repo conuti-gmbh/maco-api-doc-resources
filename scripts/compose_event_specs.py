@@ -96,6 +96,7 @@ _BO_REF_RE = re.compile(r"([a-z]+)/([A-Za-z0-9_]+)\.yaml")
 # EDIFACT segment. This closes that gap: the required set is the union of what
 # the process reads, independent of the message payload. MACO-14052.
 CONDITION_VAR_RE = re.compile(r"\b([a-zA-Z][a-zA-Z0-9_]*)\s*(?:==|!=)")
+TRANSAKTIONSDATEN_PREFIX = "$.transaktionsdaten."
 STAMMDATEN_PATH_RE = re.compile(
     r"^\$\.stammdaten\.(?P<container>[A-Za-z0-9_]+)(?:\[\d*\])?\.(?P<field>[A-Za-z0-9_]+)$"
 )
@@ -315,6 +316,24 @@ def resolve_routing_ref(
     return None
 
 
+def covered_by_transaktionsdaten(paths: list[str], required_fields: list[str]) -> bool:
+    """True if a path points at a transaktionsdaten field that is required.
+
+    Being sourced from transaktionsdaten is not enough — the obligation only
+    holds if the field is actually in the event's required set. Otherwise the
+    variable is as unguaranteed as one with no path at all.
+    """
+    required = set(required_fields or [])
+    for path in paths:
+        if not path.startswith(TRANSAKTIONSDATEN_PREFIX):
+            continue
+        remainder = path[len(TRANSAKTIONSDATEN_PREFIX):]
+        top = remainder.split(".", 1)[0].split("[", 1)[0]
+        if top in required:
+            return True
+    return False
+
+
 def build_routing_overlay(
     pid: int,
     variables: dict[str, list[str]],
@@ -323,6 +342,7 @@ def build_routing_overlay(
     yaml: YAML,
     schema_cache: dict[Path, set],
     known_paths: dict[str, set[str]] | None = None,
+    required_fields: list[str] | None = None,
 ) -> tuple[dict | None, list[str]]:
     """(overlay schema, unresolved variable names) for one pruefi branch.
 
@@ -330,22 +350,24 @@ def build_routing_overlay(
     adds nothing but the routing fields as required. Kept per branch because
     the obligation is pruefi-specific — a GAS pruefi in the same topic may not
     read the field at all.
+
+    Every variable ends in exactly one of three states — required, covered by
+    the transaktionsdaten required set, or unresolved. There is deliberately no
+    fourth, silent one: a gate whose origin cannot be established is the case
+    this whole mechanism exists to surface.
     """
     containers: dict[str, dict] = {}
     unresolved: list[str] = []
     for var in sorted(variables):
-        paths = jsonpaths.get(var) or []
-        matches = [m for m in (STAMMDATEN_PATH_RE.match(p) for p in paths) if m]
+        own = jsonpaths.get(var) or []
+        # The obligation is only emitted from the event's own DMN row; the
+        # repo-wide map may name a path that holds for a different event.
+        matches = [m for m in (STAMMDATEN_PATH_RE.match(p) for p in own) if m]
         if not matches:
-            # Two different things look alike here and must not be conflated:
-            # a transaktionsdaten-sourced variable is already covered by the
-            # required set, and a variable this event's DMN entry simply does
-            # not map is still known repo-wide (known_paths). Only a variable
-            # with no payload path anywhere is of unknown origin.
-            covered = any(p.startswith("$.transaktionsdaten.") for p in paths)
-            known = known_paths.get(var) if known_paths else None
-            if not covered and not known:
-                unresolved.append(var)
+            repo_wide = sorted(known_paths.get(var, ())) if known_paths else []
+            if covered_by_transaktionsdaten(own or repo_wide, required_fields or []):
+                continue
+            unresolved.append(var)
             continue
         for match in matches:
             container, field = match.group("container"), match.group("field")
@@ -617,7 +639,7 @@ def build_schema(
         }
         overlay, unresolved = build_routing_overlay(
             pid, by_pruefi.get(pid, {}), jsonpaths, bo4e_dir, yaml, schema_cache,
-            known_paths,
+            known_paths, required_fields,
         )
         for var in unresolved:
             unresolved_routing.setdefault(var, []).append(str(pid))
@@ -634,7 +656,7 @@ def build_schema(
         pid_int = int(pid_str)
         overlay, unresolved = build_routing_overlay(
             pid_int, by_pruefi.get(pid_int, {}), jsonpaths, bo4e_dir, yaml,
-            schema_cache, known_paths,
+            schema_cache, known_paths, required_fields,
         )
         for var in unresolved:
             unresolved_routing.setdefault(var, []).append(pid_str)
