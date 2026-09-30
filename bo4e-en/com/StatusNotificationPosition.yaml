@@ -31,9 +31,15 @@ components:
         errorDescription:
           $ref: >-
             ../fields/com/StatusNotificationPosition/errorDescription.yaml#/components/schemas/errorDescription
+        errorDescriptionText:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/errorDescriptionText.yaml#/components/schemas/errorDescriptionText
         justification:
           $ref: >-
             ../fields/com/StatusNotificationPosition/justification.yaml#/components/schemas/justification
+        justificationText:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/justificationText.yaml#/components/schemas/justificationText
         locationId:
           $ref: >-
             ../fields/com/StatusNotificationPosition/locationId.yaml#/components/schemas/locationId
@@ -43,6 +49,9 @@ components:
         generalInformation:
           $ref: >-
             ../fields/com/StatusNotificationPosition/generalInformation.yaml#/components/schemas/generalInformation
+        generalInformationText:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/generalInformationText.yaml#/components/schemas/generalInformationText
         statusChangeTimestamp:
           $ref: >-
             ../fields/com/StatusNotificationPosition/statusChangeTimestamp.yaml#/components/schemas/statusChangeTimestamp
@@ -100,6 +109,12 @@ components:
         contractEnd:
           $ref: >-
             ../fields/com/StatusNotificationPosition/contractEnd.yaml#/components/schemas/contractEnd
+        runningNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/runningNumber.yaml#/components/schemas/runningNumber
+        documentReferenceNumber:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/documentReferenceNumber.yaml#/components/schemas/documentReferenceNumber
         senderView:
           $ref: >-
             ../fields/com/StatusNotificationPosition/senderView.yaml#/components/schemas/senderView
@@ -109,3 +124,6 @@ components:
         privilegedEnergyQuantity:
           $ref: >-
             ../fields/com/StatusNotificationPosition/privilegedEnergyQuantity.yaml#/components/schemas/privilegedEnergyQuantity
+        contactPerson:
+          $ref: >-
+            ../fields/com/StatusNotificationPosition/contactPerson.yaml#/components/schemas/contactPerson

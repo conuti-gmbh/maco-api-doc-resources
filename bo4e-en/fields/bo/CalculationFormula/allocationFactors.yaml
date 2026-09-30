@@ -1,0 +1,8 @@
+components:
+  schemas:
+    allocationFactors:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/AllocationFactor.yaml#/components/schemas/AllocationFactor
+      nullable: true

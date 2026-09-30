@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_15003
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_15003:
@@ -50,12 +50,6 @@ components:
             $ref: '#/components/schemas/PI_15003__masterData__VALUES_BY_TYPE2'
       required:
       - OFFER
-      - MARKET_LOCATION
-      - METERING_LOCATION
-      - GRID_LOCATION
-      - CONTROLLABLE_RESOURCE
-      - TRANCHE
-      - VALUES_BY_TYPE2
     PI_15003__masterData__OFFER:
       type: object
       properties:
@@ -74,7 +68,6 @@ components:
       required:
       - requestReference
       - offerBindingPeriod
-      - positionData
     PI_15003__masterData__OFFER__offerBindingPeriod:
       type: object
       properties:
@@ -106,10 +99,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_15003__masterData__OFFER__positionData__positionPrice'
-      required:
-      - articleId
-      - positionDesignation
-      - positionPrice
     PI_15003__masterData__OFFER__positionData__positionPrice:
       type: object
       properties:
@@ -133,11 +122,6 @@ components:
           x-edifact-segment:
           - SG27.LIN+Z67.SG31.PRI+CAL
           - SG27.LIN+Z68.SG31.PRI+CAL
-      required:
-      - referenceValue
-      - amount
-      - priceType
-      - value
     PI_15003__masterData__OFFER__setupTransmissionPeriod:
       type: object
       properties:
@@ -156,8 +140,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - marketLocationId
     PI_15003__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -165,8 +147,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - meteringLocationId
     PI_15003__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -174,8 +154,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - gridLocationId
     PI_15003__masterData__CONTROLLABLE_RESOURCE:
       type: object
       properties:
@@ -183,8 +161,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - resourceId
     PI_15003__masterData__TRANCHE:
       type: object
       properties:
@@ -192,8 +168,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - trancheId
     PI_15003__masterData__VALUES_BY_TYPE2:
       type: object
       properties:
@@ -209,10 +183,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_15003__masterData__VALUES_BY_TYPE2__meterRegisters'
-      required:
-      - configurationProduct
-      - meteringProduct
-      - meterRegisters
     PI_15003__masterData__VALUES_BY_TYPE2__meterRegisters:
       type: object
       properties:
@@ -220,8 +190,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
           x-edifact-segment:
           - SG27.LIN+Z67.PIA+5
-      required:
-      - obisCode
     PI_15003__transactionData:
       type: object
       properties:
@@ -299,9 +267,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_15003__transactionData__sender__contactPerson__phoneNumbers'
       required:
-      - eMailAddress
       - lastName
-      - phoneNumbers
     PI_15003__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -313,9 +279,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG11.NAD+MS.SG14.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_15003__transactionData__receiver:
       type: object
       properties:

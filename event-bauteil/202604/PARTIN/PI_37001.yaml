@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_37001
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_37001:
@@ -12,8 +12,6 @@ components:
       properties:
         stammdaten:
           $ref: '#/components/schemas/PI_37001__stammdaten'
-      required:
-        - stammdaten
     PI_37001__stammdaten:
       type: object
       properties:
@@ -21,8 +19,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_37001__stammdaten__KOMMUNIKATIONSDATEN'
-      required:
-        - KOMMUNIKATIONSDATEN
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN:
       type: object
       properties:
@@ -40,10 +36,6 @@ components:
             $ref: '#/components/schemas/PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben'
         marktteilnehmer:
           $ref: '#/components/schemas/PI_37001__stammdaten__KOMMUNIKATIONSDATEN__marktteilnehmer'
-      required:
-        - kommunikationsDatenBlattInaktiv
-        - kommunikationsangaben
-        - marktteilnehmer
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben:
       type: object
       properties:
@@ -157,15 +149,6 @@ components:
             - SG4.NAD+Z33
         partneradresse:
           $ref: '#/components/schemas/PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben__partneradresse'
-      required:
-        - anrede
-        - ansprechpartner
-        - kommunikationsrolle
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben__ansprechpartner:
       type: object
       properties:
@@ -201,10 +184,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -236,9 +215,6 @@ components:
             - SG4.NAD+Z20.SG7.CTA+IC.COM
             - SG4.NAD+Z21.SG7.CTA+IC.COM
             - SG4.NAD+Z33.SG7.CTA+IC.COM
-      required:
-        - nummerntyp
-        - rufnummer
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__kommunikationsangaben__partneradresse:
       type: object
       properties:
@@ -340,14 +316,6 @@ components:
             - SG4.NAD+Z20
             - SG4.NAD+Z21
             - SG4.NAD+Z33
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__marktteilnehmer:
       type: object
       properties:
@@ -413,21 +381,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/website.yaml#/components/schemas/website'
           x-edifact-segment:
             - SG4.NAD.FTX+Z13
-      required:
-        - anrede
-        - bankverbindung
-        - erreichbarkeit
-        - faxnummer
-        - gewerbekennzeichnung
-        - marktrolle
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
-        - steuernummer
-        - umsatzsteuerId
-        - website
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__marktteilnehmer__bankverbindung:
       type: object
       properties:
@@ -447,11 +400,6 @@ components:
           $ref: '../../../bo4e/fields/com/Bankverbindung/kreditinstitut.yaml#/components/schemas/kreditinstitut'
           x-edifact-segment:
             - SG4.NAD.FII+BK
-      required:
-        - bic
-        - iban
-        - kontoinhaber
-        - kreditinstitut
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__marktteilnehmer__erreichbarkeit:
       type: object
       properties:
@@ -463,9 +411,6 @@ components:
           $ref: '../../../bo4e/fields/com/Erreichbarkeit/zeit.yaml#/components/schemas/zeit'
           x-edifact-segment:
             - SG4.NAD.SG12.CCI+Z40.DTM
-      required:
-        - verfuegbarkeit
-        - zeit
     PI_37001__stammdaten__KOMMUNIKATIONSDATEN__marktteilnehmer__partneradresse:
       type: object
       properties:
@@ -497,11 +442,3 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.NAD
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse

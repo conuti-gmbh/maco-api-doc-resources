@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_44113
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_44113:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_44113__transactionData'
       required:
-      - masterData
       - transactionData
     PI_44113__masterData:
       type: object
@@ -36,11 +35,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44113__masterData__GRID_ACCESS_CONTRACT'
-      required:
-      - MARKET_LOCATION
-      - METERING_LOCATION
-      - METERING_POINT_OPERATION_CONTRACT
-      - GRID_ACCESS_CONTRACT
     PI_44113__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -52,10 +46,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+172
-      required:
-      - owner
-      - propertyManager
-      - marketLocationId
     PI_44113__masterData__MARKET_LOCATION__owner:
       type: object
       properties:
@@ -85,14 +75,6 @@ components:
           - SG4.IDE+24.SG12.NAD+EO
         partnerAddress:
           $ref: '#/components/schemas/PI_44113__masterData__MARKET_LOCATION__owner__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_44113__masterData__MARKET_LOCATION__owner__partnerAddress:
       type: object
       properties:
@@ -124,14 +106,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+EO
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_44113__masterData__MARKET_LOCATION__propertyManager:
       type: object
       properties:
@@ -161,14 +135,6 @@ components:
           - SG4.IDE+24.SG12.NAD+DDO
         partnerAddress:
           $ref: '#/components/schemas/PI_44113__masterData__MARKET_LOCATION__propertyManager__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_44113__masterData__MARKET_LOCATION__propertyManager__partnerAddress:
       type: object
       properties:
@@ -200,14 +166,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+DDO
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_44113__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -224,10 +182,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+172
           - SG4.IDE+24.SG8.SEQ+Z18.RFF+Z19
-      required:
-      - gasQuality
-      - marketRoles
-      - meteringLocationId
     PI_44113__masterData__METERING_LOCATION__marketRoles:
       type: object
       properties:
@@ -245,10 +199,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - roleCodeNumber
-      - subContracted
     PI_44113__masterData__METERING_POINT_OPERATION_CONTRACT:
       type: object
       properties:
@@ -262,9 +212,6 @@ components:
           - SG4.IDE+24.SG6.RFF+Z19
         contractConditions:
           $ref: '#/components/schemas/PI_44113__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions'
-      required:
-      - locationId
-      - locationType
     PI_44113__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions:
       type: object
       properties:
@@ -290,10 +237,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44113__masterData__GRID_ACCESS_CONTRACT__contractPartner2'
-      required:
-      - correspondencePartner
-      - contractStart
-      - contractPartner2
     PI_44113__masterData__GRID_ACCESS_CONTRACT__correspondencePartner:
       type: object
       properties:
@@ -323,14 +266,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z26
         partnerAddress:
           $ref: '#/components/schemas/PI_44113__masterData__GRID_ACCESS_CONTRACT__correspondencePartner__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_44113__masterData__GRID_ACCESS_CONTRACT__correspondencePartner__partnerAddress:
       type: object
       properties:
@@ -362,14 +297,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z26
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_44113__masterData__GRID_ACCESS_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -397,13 +324,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z25
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
     PI_44113__transactionData:
       type: object
       properties:
@@ -457,7 +377,6 @@ components:
       - messageReferenceNumber
       - verificationIdentifier
       - transactionReason
-      - contractStart
       - processNumber
     PI_44113__transactionData__sender:
       type: object
@@ -473,7 +392,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_44113__transactionData__sender__contactPerson:
@@ -491,10 +409,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44113__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_44113__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -506,9 +420,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_44113__transactionData__receiver:
       type: object
       properties:

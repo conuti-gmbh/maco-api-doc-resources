@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55553
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55553:
@@ -37,9 +37,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55553__masterData__METER'
       required:
-      - MARKET_LOCATION
       - USAGE_PERIOD
-      - METER
     PI_55553__masterData__AD_HOC_CONTROL_CHANNEL:
       type: object
       properties:
@@ -156,10 +154,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55553__masterData__MARKET_LOCATION__meterRegisters'
-      required:
-      - dataQuality
-      - validityPeriod
-      - meterRegisters
     PI_55553__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -167,8 +161,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z02
-      required:
-      - periodId
     PI_55553__masterData__MARKET_LOCATION__meterRegisters:
       type: object
       properties:
@@ -182,10 +174,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
         meteringTimes:
           $ref: '#/components/schemas/PI_55553__masterData__MARKET_LOCATION__meterRegisters__meteringTimes'
-      required:
-      - obisCode
-      - valueGranularity
-      - meteringTimes
     PI_55553__masterData__MARKET_LOCATION__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -197,9 +185,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z39
-      required:
-      - register
-      - meteringTimeDefinition
     PI_55553__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -249,13 +234,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55553__masterData__METER__meterRegisters'
-      required:
-      - dataQuality
-      - gateway
-      - devices
-      - validityPeriod
-      - meterNumber
-      - meterRegisters
     PI_55553__masterData__METER__devices:
       type: object
       properties:
@@ -267,9 +245,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Device/deviceType.yaml#/components/schemas/deviceType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z20.RFF+Z14
-      required:
-      - deviceNumber
-      - deviceType
     PI_55553__masterData__METER__validityPeriod:
       type: object
       properties:
@@ -278,8 +253,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z03
           - SG4.IDE+24.SG8.SEQ+Z20
-      required:
-      - periodId
     PI_55553__masterData__METER__meterRegisters:
       type: object
       properties:
@@ -309,14 +282,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
         meteringTimes:
           $ref: '#/components/schemas/PI_55553__masterData__METER__meterRegisters__meteringTimes'
-      required:
-      - designation
-      - configuration
-      - decimalPlaces
-      - obisCode
-      - integerDigits
-      - valueGranularity
-      - meteringTimes
     PI_55553__masterData__METER__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -328,9 +293,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+Z39
-      required:
-      - register
-      - meteringTimeDefinition
     PI_55553__transactionData:
       type: object
       properties:
@@ -406,7 +368,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_55553__transactionData__sender__contactPerson:
@@ -424,10 +385,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55553__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_55553__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -439,9 +396,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_55553__transactionData__sender__ipRange:
       type: object
       properties:

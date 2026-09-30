@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55013
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55013:
@@ -54,13 +54,8 @@ components:
             $ref: '#/components/schemas/PI_55013__stammdaten__TECHNISCHE_RESSOURCE'
       required:
         - BILANZIERUNG
-        - ENERGIELIEFERVERTRAG
         - MARKTLOKATION
-        - MESSLOKATION
-        - NETZLOKATION
         - NETZNUTZUNGSVERTRAG
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
     PI_55013__stammdaten__BILANZIERUNG:
       type: object
       properties:
@@ -77,9 +72,7 @@ components:
         temperaturarbeit:
           $ref: '#/components/schemas/PI_55013__stammdaten__BILANZIERUNG__temperaturarbeit'
       required:
-        - jahresverbrauchsprognose
         - prognosegrundlage
-        - temperaturarbeit
     PI_55013__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
       type: object
       properties:
@@ -91,9 +84,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+31
-      required:
-        - einheit
-        - wert
     PI_55013__stammdaten__BILANZIERUNG__temperaturarbeit:
       type: object
       properties:
@@ -105,9 +95,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+[265|Z08]'
-      required:
-        - einheit
-        - wert
     PI_55013__stammdaten__ENERGIELIEFERVERTRAG:
       type: object
       properties:
@@ -117,9 +104,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55013__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
-      required:
-        - korrespondenzpartner
-        - vertragspartner2
     PI_55013__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner:
       type: object
       properties:
@@ -145,13 +129,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z66
         partneradresse:
           $ref: '#/components/schemas/PI_55013__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55013__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -183,14 +160,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z66
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55013__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -218,13 +187,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z65
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - name1
-        - name2
-        - name3
-        - name4
     PI_55013__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -251,11 +213,7 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+Z42
       required:
-        - eigentuemer
-        - hausverwalter
-        - lokationsadresse
         - marktlokationsId
-        - marktrollen
         - netzebene
         - sperrstatus
     PI_55013__stammdaten__MARKTLOKATION__eigentuemer:
@@ -287,14 +245,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z69
         partneradresse:
           $ref: '#/components/schemas/PI_55013__stammdaten__MARKTLOKATION__eigentuemer__partneradresse'
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55013__stammdaten__MARKTLOKATION__eigentuemer__partneradresse:
       type: object
       properties:
@@ -326,14 +276,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z69
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55013__stammdaten__MARKTLOKATION__hausverwalter:
       type: object
       properties:
@@ -363,14 +305,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z70
         partneradresse:
           $ref: '#/components/schemas/PI_55013__stammdaten__MARKTLOKATION__hausverwalter__partneradresse'
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55013__stammdaten__MARKTLOKATION__hausverwalter__partneradresse:
       type: object
       properties:
@@ -402,14 +336,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z70
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55013__stammdaten__MARKTLOKATION__lokationsadresse:
       type: object
       properties:
@@ -443,15 +369,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z63
         zusatzInformation:
           $ref: '#/components/schemas/PI_55013__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_55013__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
       type: object
       properties:
@@ -475,12 +392,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z63
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_55013__stammdaten__MARKTLOKATION__marktrollen:
       type: object
       properties:
@@ -500,11 +411,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55013__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -517,9 +423,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z17
             - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
-      required:
-        - marktrollen
-        - messlokationsId
     PI_55013__stammdaten__MESSLOKATION__marktrollen:
       type: object
       properties:
@@ -541,11 +444,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55013__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -558,9 +456,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z18
             - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
-      required:
-        - marktrollen
-        - netzlokationsId
     PI_55013__stammdaten__NETZLOKATION__marktrollen:
       type: object
       properties:
@@ -576,10 +471,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55013__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -600,10 +491,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55013__stammdaten__NETZNUTZUNGSVERTRAG__vertragspartner2'
       required:
-        - korrespondenzpartner
-        - vertragsbeginn
         - vertragskonditionen
-        - vertragspartner2
     PI_55013__stammdaten__NETZNUTZUNGSVERTRAG__korrespondenzpartner:
       type: object
       properties:
@@ -629,13 +517,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z68
         partneradresse:
           $ref: '#/components/schemas/PI_55013__stammdaten__NETZNUTZUNGSVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55013__stammdaten__NETZNUTZUNGSVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -667,14 +548,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z68
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55013__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
       type: object
       properties:
@@ -711,13 +584,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z67
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - name1
-        - name2
-        - name3
-        - name4
     PI_55013__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -730,9 +596,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z19
             - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
-      required:
-        - marktrollen
-        - ressourcenId
     PI_55013__stammdaten__STEUERBARE_RESSOURCE__marktrollen:
       type: object
       properties:
@@ -748,10 +611,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55013__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -759,8 +618,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z20
-      required:
-        - ressourcenId
     PI_55013__transaktionsdaten:
       type: object
       properties:
@@ -818,7 +675,6 @@ components:
             - SG4.IDE+24
       required:
         - absender
-        - anfragereferenznummer
         - dokumentennummer
         - empfaenger
         - kategorie
@@ -827,8 +683,6 @@ components:
         - pruefidentifikator
         - transaktionsgrund
         - transaktionsgrundergaenzung
-        - transaktionsgrundergaenzungBefristeteAnmeldung
-        - vertragsbeginn
         - vorgangsnummer
     PI_55013__transaktionsdaten__absender:
       type: object
@@ -844,7 +698,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55013__transaktionsdaten__absender__ansprechpartner:
@@ -862,10 +715,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55013__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55013__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -877,9 +726,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55013__transaktionsdaten__empfaenger:
       type: object
       properties:

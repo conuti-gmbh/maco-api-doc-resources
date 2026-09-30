@@ -1,0 +1,10 @@
+components:
+  schemas:
+    DataStatusTimeSeries:
+      title: DataStatusTimeSeries
+      type: string
+      enum:
+        - BILLING_DATA
+        - BILLED_DATA
+        - BILLING_DATA_CORRECTION_BKA
+        - BILLED_DATA_CORRECTION_BKA

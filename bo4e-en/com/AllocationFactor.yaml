@@ -1,0 +1,12 @@
+components:
+  schemas:
+    AllocationFactor:
+      title: AllocationFactor
+      type: object
+      properties:
+        designationAllocationFactor:
+          $ref: >-
+            ../fields/com/AllocationFactor/designationAllocationFactor.yaml#/components/schemas/designationAllocationFactor
+        factor:
+          $ref: >-
+            ../fields/com/AllocationFactor/factor.yaml#/components/schemas/factor

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    balancedOutageQuantity:
+      $ref: ../../../com/Quantity.yaml#/components/schemas/Quantity

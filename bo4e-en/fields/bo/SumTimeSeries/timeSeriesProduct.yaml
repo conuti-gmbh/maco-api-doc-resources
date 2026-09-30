@@ -1,0 +1,8 @@
+components:
+  schemas:
+    timeSeriesProduct:
+      type: array
+      items:
+        $ref: >-
+          ../../../com/TimeSeriesProduct.yaml#/components/schemas/TimeSeriesProduct
+      nullable: true

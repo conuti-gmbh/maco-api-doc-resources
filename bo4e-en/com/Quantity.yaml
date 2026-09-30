@@ -8,3 +8,7 @@ components:
           $ref: ../fields/com/Quantity/value.yaml#/components/schemas/value
         unit:
           $ref: ../fields/com/Quantity/unit.yaml#/components/schemas/unit
+        startDate:
+          $ref: ../fields/com/Quantity/startDate.yaml#/components/schemas/startDate
+        endDate:
+          $ref: ../fields/com/Quantity/endDate.yaml#/components/schemas/endDate

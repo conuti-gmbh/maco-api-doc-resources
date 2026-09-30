@@ -1,0 +1,6 @@
+components:
+  schemas:
+    SUM_TIME_SERIES:
+      type: array
+      items:
+        $ref: ../../../bo/SumTimeSeries.yaml#/components/schemas/SumTimeSeries

@@ -1,0 +1,18 @@
+components:
+  schemas:
+    TimeSeriesProduct:
+      title: TimeSeriesProduct
+      type: object
+      properties:
+        identification:
+          $ref: >-
+            ../fields/com/TimeSeriesProduct/identification.yaml#/components/schemas/identification
+        correctionFactor:
+          $ref: >-
+            ../fields/com/TimeSeriesProduct/correctionFactor.yaml#/components/schemas/correctionFactor
+        energyQuantity:
+          $ref: >-
+            ../fields/com/TimeSeriesProduct/energyQuantity.yaml#/components/schemas/energyQuantity
+        annualConsumptionForecast:
+          $ref: >-
+            ../fields/com/TimeSeriesProduct/annualConsumptionForecast.yaml#/components/schemas/annualConsumptionForecast

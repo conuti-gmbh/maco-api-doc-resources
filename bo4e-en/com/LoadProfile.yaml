@@ -27,3 +27,18 @@ components:
         referenceProfileDesignation:
           $ref: >-
             ../fields/com/LoadProfile/referenceProfileDesignation.yaml#/components/schemas/referenceProfileDesignation
+        referenceProfile:
+          $ref: >-
+            ../fields/com/LoadProfile/referenceProfile.yaml#/components/schemas/referenceProfile
+        loadProfileType:
+          $ref: >-
+            ../fields/com/LoadProfile/loadProfileType.yaml#/components/schemas/loadProfileType
+        normalizationFactor:
+          $ref: >-
+            ../fields/com/LoadProfile/normalizationFactor.yaml#/components/schemas/normalizationFactor
+        dailyAverageTemperature:
+          $ref: >-
+            ../fields/com/LoadProfile/dailyAverageTemperature.yaml#/components/schemas/dailyAverageTemperature
+        limitingConstant:
+          $ref: >-
+            ../fields/com/LoadProfile/limitingConstant.yaml#/components/schemas/limitingConstant

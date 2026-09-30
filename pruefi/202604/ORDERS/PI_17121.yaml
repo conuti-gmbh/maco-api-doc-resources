@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17121
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17121:
@@ -47,10 +47,6 @@ components:
       required:
         - ANFRAGE
         - AUFTRAG
-        - MARKTLOKATION
-        - MESSLOKATION
-        - NETZLOKATION
-        - TRANCHE
     PI_17121__stammdaten__ANFRAGE:
       type: object
       properties:
@@ -78,7 +74,6 @@ components:
             $ref: '#/components/schemas/PI_17121__stammdaten__AUFTRAG__positionsdaten'
       required:
         - ausfuehrungsdatum
-        - positionsdaten
     PI_17121__stammdaten__AUFTRAG__positionsdaten:
       type: object
       properties:
@@ -89,8 +84,6 @@ components:
             - SG29.LIN+Z19
             - SG29.LIN+Z54
             - SG29.LIN+Z55
-      required:
-        - positionsnummer
     PI_17121__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -98,8 +91,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__stammdaten__MARKTLOKATION__zaehlwerke'
-      required:
-        - zaehlwerke
     PI_17121__stammdaten__MARKTLOKATION__zaehlwerke:
       type: object
       properties:
@@ -113,10 +104,6 @@ components:
             $ref: '#/components/schemas/PI_17121__stammdaten__MARKTLOKATION__zaehlwerke__verwendungszwecke'
         zaehlzeiten:
           $ref: '#/components/schemas/PI_17121__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten'
-      required:
-        - messprodukt
-        - verwendungszwecke
-        - zaehlzeiten
     PI_17121__stammdaten__MARKTLOKATION__zaehlwerke__verwendungszwecke:
       type: object
       properties:
@@ -132,9 +119,6 @@ components:
             - SG29.LIN+Z54.SG30.CCI+ZA7.CAV
             - SG29.LIN+Z54.SG30.CCI+ZA8.CAV
             - SG29.LIN+Z54.SG30.CCI+ZA9.CAV
-      required:
-        - marktrolle
-        - zweck
     PI_17121__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten:
       type: object
       properties:
@@ -142,8 +126,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
           x-edifact-segment:
             - 'SG29.LIN+Z54.SG30.CCI+[Z39|Z41]'
-      required:
-        - zaehlzeitDefinition
     PI_17121__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -155,9 +137,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__stammdaten__MESSLOKATION__zaehlwerke'
-      required:
-        - messlokationsId
-        - zaehlwerke
     PI_17121__stammdaten__MESSLOKATION__zaehlwerke:
       type: object
       properties:
@@ -175,11 +154,6 @@ components:
             - SG29.LIN+Z19.SG30.CCI+Z35.CAV+Z88
         zaehlzeiten:
           $ref: '#/components/schemas/PI_17121__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten'
-      required:
-        - messprodukt
-        - notwendigkeitZweiteMessung
-        - werteuebermittlungVerwendungszweck
-        - zaehlzeiten
     PI_17121__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten:
       type: object
       properties:
@@ -187,8 +161,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
           x-edifact-segment:
             - 'SG29.LIN+Z19.SG30.CCI+[Z39|Z41]'
-      required:
-        - zaehlzeitDefinition
     PI_17121__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -196,8 +168,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__stammdaten__NETZLOKATION__zaehlwerke'
-      required:
-        - zaehlwerke
     PI_17121__stammdaten__NETZLOKATION__zaehlwerke:
       type: object
       properties:
@@ -209,9 +179,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__stammdaten__NETZLOKATION__zaehlwerke__verwendungszwecke'
-      required:
-        - messprodukt
-        - verwendungszwecke
     PI_17121__stammdaten__NETZLOKATION__zaehlwerke__verwendungszwecke:
       type: object
       properties:
@@ -225,9 +192,6 @@ components:
           x-edifact-segment:
             - SG29.LIN+Z55.SG30.CCI+ZA7.CAV
             - SG29.LIN+Z55.SG30.CCI+ZA8.CAV
-      required:
-        - marktrolle
-        - zweck
     PI_17121__stammdaten__TRANCHE:
       type: object
       properties:
@@ -239,9 +203,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__stammdaten__TRANCHE__zaehlwerke'
-      required:
-        - tranchenId
-        - zaehlwerke
     PI_17121__stammdaten__TRANCHE__zaehlwerke:
       type: object
       properties:
@@ -253,9 +214,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__stammdaten__TRANCHE__zaehlwerke__verwendungszwecke'
-      required:
-        - messprodukt
-        - verwendungszwecke
     PI_17121__stammdaten__TRANCHE__zaehlwerke__verwendungszwecke:
       type: object
       properties:
@@ -271,9 +229,6 @@ components:
             - SG29.LIN+Z16.SG30.CCI+ZA7.CAV
             - SG29.LIN+Z16.SG30.CCI+ZA8.CAV
             - SG29.LIN+Z16.SG30.CCI+ZA9.CAV
-      required:
-        - marktrolle
-        - zweck
     PI_17121__transaktionsdaten:
       type: object
       properties:
@@ -318,7 +273,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_17121__transaktionsdaten__absender__ansprechpartner:
@@ -336,10 +290,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17121__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_17121__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -351,9 +301,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_17121__transaktionsdaten__empfaenger:
       type: object
       properties:

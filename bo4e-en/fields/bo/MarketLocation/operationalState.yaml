@@ -1,0 +1,4 @@
+components:
+  schemas:
+    operationalState:
+      $ref: ../../../enum/OperationalState.yaml#/components/schemas/OperationalState

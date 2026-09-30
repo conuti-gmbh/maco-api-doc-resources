@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55692
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55692:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_55692__transactionData'
       required:
-      - masterData
       - transactionData
     PI_55692__masterData:
       type: object
@@ -28,9 +27,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55692__masterData__USAGE_PERIOD'
-      required:
-      - MARKET_LOCATION
-      - USAGE_PERIOD
     PI_55692__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -46,10 +42,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/packageId.yaml#/components/schemas/packageId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+Z67
-      required:
-      - dataQuality
-      - marketLocationId
-      - packageId
     PI_55692__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -61,9 +53,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/UsagePeriod/usageFrom.yaml#/components/schemas/usageFrom
           x-edifact-segment:
           - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55].DTM+Z25
-      required:
-      - dataQuality
-      - usageFrom
     PI_55692__transactionData:
       type: object
       properties:
@@ -115,8 +104,6 @@ components:
           - SG4.IDE+24
       required:
       - sender
-      - requestReferenceNumber
-      - involvedMarketPartner
       - documentNumber
       - receiver
       - category
@@ -139,7 +126,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_55692__transactionData__sender__contactPerson:
@@ -157,10 +143,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55692__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_55692__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -172,9 +154,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_55692__transactionData__involvedMarketPartner:
       type: object
       properties:
@@ -186,9 +165,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+VY
-      required:
-      - roleCodeNumber
-      - roleCodeType
     PI_55692__transactionData__receiver:
       type: object
       properties:

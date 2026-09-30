@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17130
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17130:
@@ -34,7 +34,6 @@ components:
             $ref: '#/components/schemas/PI_17130__stammdaten__WERTE_NACH_TYP2'
       required:
         - ANFRAGE
-        - WERTE_NACH_TYP2
     PI_17130__stammdaten__ANFRAGE:
       type: object
       properties:
@@ -73,13 +72,6 @@ components:
           $ref: '#/components/schemas/PI_17130__stammdaten__WERTE_NACH_TYP2__zertifikatsNutzer'
         zieladresse:
           $ref: '#/components/schemas/PI_17130__stammdaten__WERTE_NACH_TYP2__zieladresse'
-      required:
-        - aenderungsmoeglichkeitKonfiguration
-        - aussteller
-        - messprodukt
-        - schwellwerte
-        - zertifikatsNutzer
-        - zieladresse
     PI_17130__stammdaten__WERTE_NACH_TYP2__aussteller:
       type: object
       properties:
@@ -103,12 +95,6 @@ components:
           $ref: '../../../bo4e/fields/com/Aussteller/aussteller5.yaml#/components/schemas/aussteller5'
           x-edifact-segment:
             - SG29.LIN+Z68.FTX+Z24
-      required:
-        - aussteller1
-        - aussteller2
-        - aussteller3
-        - aussteller4
-        - aussteller5
     PI_17130__stammdaten__WERTE_NACH_TYP2__schwellwerte:
       type: object
       properties:
@@ -124,10 +110,6 @@ components:
           $ref: '../../../bo4e/fields/com/Schwellwert/untererSchwellwert.yaml#/components/schemas/untererSchwellwert'
           x-edifact-segment:
             - SG29.LIN+Z68.SG30.CCI+Z60
-      required:
-        - konfigurationsprodukt
-        - obererSchwellwert
-        - untererSchwellwert
     PI_17130__stammdaten__WERTE_NACH_TYP2__zertifikatsNutzer:
       type: object
       properties:
@@ -151,12 +133,6 @@ components:
           $ref: '../../../bo4e/fields/com/ZertifikatsNutzer/zertifikatsNutzer5.yaml#/components/schemas/zertifikatsNutzer5'
           x-edifact-segment:
             - SG29.LIN+Z68.FTX+Z23
-      required:
-        - zertifikatsNutzer1
-        - zertifikatsNutzer2
-        - zertifikatsNutzer3
-        - zertifikatsNutzer4
-        - zertifikatsNutzer5
     PI_17130__stammdaten__WERTE_NACH_TYP2__zieladresse:
       type: object
       properties:
@@ -180,12 +156,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zieladresse/zieladresse5.yaml#/components/schemas/zieladresse5'
           x-edifact-segment:
             - SG29.LIN+Z68.FTX+Z17
-      required:
-        - zieladresse1
-        - zieladresse2
-        - zieladresse3
-        - zieladresse4
-        - zieladresse5
     PI_17130__transaktionsdaten:
       type: object
       properties:
@@ -217,13 +187,11 @@ components:
             - SG1.RFF+Z41
       required:
         - absender
-        - beteiligterMarktpartner
         - dokumentennummer
         - empfaenger
         - nachrichtendatum
         - nachrichtenreferenznummer
         - pruefidentifikator
-        - vorgangsreferenznummer
     PI_17130__transaktionsdaten__absender:
       type: object
       properties:
@@ -238,7 +206,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_17130__transaktionsdaten__absender__ansprechpartner:
@@ -256,10 +223,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17130__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_17130__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -271,9 +234,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_17130__transaktionsdaten__beteiligterMarktpartner:
       type: object
       properties:
@@ -285,9 +245,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
           x-edifact-segment:
             - SG2.NAD+DDM
-      required:
-        - rollencodenummer
-        - rollencodetyp
     PI_17130__transaktionsdaten__empfaenger:
       type: object
       properties:

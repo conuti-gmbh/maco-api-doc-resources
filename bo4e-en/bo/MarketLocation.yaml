@@ -166,6 +166,9 @@ components:
         packageId:
           $ref: >-
             ../fields/bo/MarketLocation/packageId.yaml#/components/schemas/packageId
+        operationalState:
+          $ref: >-
+            ../fields/bo/MarketLocation/operationalState.yaml#/components/schemas/operationalState
         marketLocationType:
           $ref: >-
             ../fields/bo/MarketLocation/marketLocationType.yaml#/components/schemas/marketLocationType

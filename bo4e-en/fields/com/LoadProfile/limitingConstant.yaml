@@ -1,0 +1,4 @@
+components:
+  schemas:
+    limitingConstant:
+      $ref: ../../../enum/LimitingConstant.yaml#/components/schemas/LimitingConstant

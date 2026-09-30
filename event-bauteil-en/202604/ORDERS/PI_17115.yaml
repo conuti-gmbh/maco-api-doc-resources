@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17115
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17115:
@@ -31,8 +31,6 @@ components:
             $ref: '#/components/schemas/PI_17115__masterData__DISCONNECTION_ORDER'
       required:
       - REQUEST
-      - ORDER
-      - DISCONNECTION_ORDER
     PI_17115__masterData__REQUEST:
       type: object
       properties:
@@ -57,15 +55,11 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Order/startDate.yaml#/components/schemas/startDate
           x-edifact-segment:
           - DTM+469
-      required:
-      - positionData
     PI_17115__masterData__ORDER__positionData:
       type: object
       properties:
         generalInformation:
           $ref: '#/components/schemas/PI_17115__masterData__ORDER__positionData__generalInformation'
-      required:
-      - generalInformation
     PI_17115__masterData__ORDER__positionData__generalInformation:
       type: object
       properties:
@@ -89,19 +83,11 @@ components:
           $ref: ../../../bo4e-en/fields/com/GeneralInformation/info5.yaml#/components/schemas/info5
           x-edifact-segment:
           - SG29.LIN.FTX+ACB
-      required:
-      - info1
-      - info2
-      - info3
-      - info4
-      - info5
     PI_17115__masterData__DISCONNECTION_ORDER:
       type: object
       properties:
         meetingPoint:
           $ref: '#/components/schemas/PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint'
-      required:
-      - meetingPoint
     PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint:
       type: object
       properties:
@@ -135,15 +121,6 @@ components:
           - SG2.NAD+Z24
         additionalInformation:
           $ref: '#/components/schemas/PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_17115__masterData__DISCONNECTION_ORDER__meetingPoint__additionalInformation:
       type: object
       properties:
@@ -167,9 +144,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG2.NAD+Z24
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5

@@ -1,0 +1,24 @@
+components:
+  schemas:
+    DailyAverageTemperature:
+      title: DailyAverageTemperature
+      type: object
+      properties:
+        dailyAverageTemperatureCalculation:
+          $ref: >-
+            ../fields/com/DailyAverageTemperature/dailyAverageTemperatureCalculation.yaml#/components/schemas/dailyAverageTemperatureCalculation
+        shareA:
+          $ref: >-
+            ../fields/com/DailyAverageTemperature/shareA.yaml#/components/schemas/shareA
+        shareB:
+          $ref: >-
+            ../fields/com/DailyAverageTemperature/shareB.yaml#/components/schemas/shareB
+        shareC:
+          $ref: >-
+            ../fields/com/DailyAverageTemperature/shareC.yaml#/components/schemas/shareC
+        shareD:
+          $ref: >-
+            ../fields/com/DailyAverageTemperature/shareD.yaml#/components/schemas/shareD
+        limitingTemperature:
+          $ref: >-
+            ../fields/com/DailyAverageTemperature/limitingTemperature.yaml#/components/schemas/limitingTemperature

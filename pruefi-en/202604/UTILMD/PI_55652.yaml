@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55652
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55652:
@@ -49,10 +49,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55652__masterData__TRANCHE__meterRegisters'
       required:
-      - dataQuality
-      - validityPeriod
       - trancheId
-      - meterRegisters
     PI_55652__masterData__TRANCHE__validityPeriod:
       type: object
       properties:
@@ -60,8 +57,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z17
-      required:
-      - periodId
     PI_55652__masterData__TRANCHE__meterRegisters:
       type: object
       properties:
@@ -73,9 +68,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55652__masterData__TRANCHE__meterRegisters__purposesOfUse'
-      required:
-      - obisCode
-      - purposesOfUse
     PI_55652__masterData__TRANCHE__meterRegisters__purposesOfUse:
       type: object
       properties:
@@ -87,9 +79,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PurposeOfUse/purpose.yaml#/components/schemas/purpose
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z17.SG10.CCI+++ZA7.CAV
-      required:
-      - marketRole
-      - purpose
     PI_55652__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -172,7 +161,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_55652__transactionData__sender__contactPerson:
@@ -190,10 +178,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55652__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_55652__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -205,9 +189,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_55652__transactionData__receiver:
       type: object
       properties:

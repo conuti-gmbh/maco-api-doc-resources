@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_15001
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_15001:
@@ -37,7 +37,6 @@ components:
       - REQUEST
       - OFFER
       - METERING_LOCATION
-      - METER
     PI_15001__masterData__REQUEST:
       type: object
       properties:
@@ -98,10 +97,7 @@ components:
           $ref: '#/components/schemas/PI_15001__masterData__OFFER__positionData__referenceCatalogNumber'
       required:
       - articleNumber
-      - involvedMarketPartner
       - positionDesignation
-      - positionPrice
-      - referenceCatalogNumber
     PI_15001__masterData__OFFER__positionData__involvedMarketPartner:
       type: object
       properties:
@@ -113,9 +109,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
           x-edifact-segment:
           - SG27.LIN.SG42.NAD+VY
-      required:
-      - roleCodeNumber
-      - roleCodeType
     PI_15001__masterData__OFFER__positionData__positionPrice:
       type: object
       properties:
@@ -131,10 +124,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Price/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG27.LIN.SG31.PRI+CAL
-      required:
-      - referenceValue
-      - amount
-      - value
     PI_15001__masterData__OFFER__positionData__referenceCatalogNumber:
       type: object
       properties:
@@ -150,10 +139,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/CatalogReference/lineNumber.yaml#/components/schemas/lineNumber
           x-edifact-segment:
           - SG27.LIN.SG32.RFF+APF
-      required:
-      - catalogNumber
-      - versionNumber
-      - lineNumber
     PI_15001__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -202,19 +187,11 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Meter/meterTypeSpecification.yaml#/components/schemas/meterTypeSpecification
           x-edifact-segment:
           - SG27.LIN.SG28.CCI+E13.CAV
-      required:
-      - mountingType
-      - devices
-      - measurementValueCapture
-      - meterType
-      - meterTypeSpecification
     PI_15001__masterData__METER__devices:
       type: object
       properties:
         deviceProperties:
           $ref: '#/components/schemas/PI_15001__masterData__METER__devices__deviceProperties'
-      required:
-      - deviceProperties
     PI_15001__masterData__METER__devices__deviceProperties:
       type: object
       properties:
@@ -229,6 +206,3 @@ components:
           - SG27.LIN.SG28.CCI+Z26.CAV
           - SG27.LIN.SG28.CCI+Z27.CAV
           - SG27.LIN.SG28.CCI+Z64.CAV
-      required:
-      - factor
-      - deviceAttribute

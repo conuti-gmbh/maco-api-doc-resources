@@ -1,0 +1,5 @@
+components:
+  schemas:
+    dataOfInvolvedMarketRole:
+      $ref: >-
+        ../../../com/DataOfTheInvolvedMarketRole.yaml#/components/schemas/DataOfTheInvolvedMarketRole

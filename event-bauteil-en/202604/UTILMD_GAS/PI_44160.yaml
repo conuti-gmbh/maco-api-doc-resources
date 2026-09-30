@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_44160
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_44160:
@@ -27,7 +27,6 @@ components:
             $ref: '#/components/schemas/PI_44160__masterData__GRID_ACCESS_CONTRACT'
       required:
       - METERING_LOCATION
-      - GRID_ACCESS_CONTRACT
     PI_44160__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -39,7 +38,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z05.RFF+Z19
           - SG4.IDE+24.SG5.LOC+172
       required:
-      - readingCardRecipient
       - meteringLocationId
     PI_44160__masterData__METERING_LOCATION__readingCardRecipient:
       type: object
@@ -70,14 +68,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z05
         partnerAddress:
           $ref: '#/components/schemas/PI_44160__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_44160__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress:
       type: object
       properties:
@@ -109,14 +99,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z05
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_44160__masterData__GRID_ACCESS_CONTRACT:
       type: object
       properties:
@@ -124,5 +106,3 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Contract/contractStart.yaml#/components/schemas/contractStart
           x-edifact-segment:
           - SG4.IDE+24.DTM+92
-      required:
-      - contractStart

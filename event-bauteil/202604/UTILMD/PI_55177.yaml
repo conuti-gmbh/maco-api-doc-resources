@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55177
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55177:
@@ -12,8 +12,6 @@ components:
       properties:
         stammdaten:
           $ref: '#/components/schemas/PI_55177__stammdaten'
-      required:
-        - stammdaten
     PI_55177__stammdaten:
       type: object
       properties:
@@ -45,14 +43,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55177__stammdaten__VERWENDUNGSZEITRAUM'
-      required:
-        - LOKATIONSBUENDEL
-        - MARKTLOKATION
-        - MESSLOKATION
-        - NETZLOKATION
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
-        - VERWENDUNGSZEITRAUM
     PI_55177__stammdaten__LOKATIONSBUENDEL:
       type: object
       properties:
@@ -79,13 +69,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55177__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode'
-      required:
-        - datenqualitaet
-        - gueltigkeitszeitraum
-        - lokationsbuendelNummer
-        - lokationsbuendelstrukturId
-        - standardisierteLokationsbuendelstruktur
-        - zuordnungObjectcode
     PI_55177__stammdaten__LOKATIONSBUENDEL__gueltigkeitszeitraum:
       type: object
       properties:
@@ -94,8 +77,6 @@ components:
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZC7|ZC8]'
             - 'SG4.IDE+24.SG8.SEQ+[ZC9|ZD0]'
-      required:
-        - zeitraumId
     PI_55177__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode:
       type: object
       properties:
@@ -123,10 +104,6 @@ components:
           $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/vorgelagerteLokationTyp.yaml#/components/schemas/vorgelagerteLokationTyp'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZC9|ZD0].RFF+[Z34|Z35]'
-      required:
-        - objectcode
-        - referenzLokationsId
-        - referenzLokationsTyp
     PI_55177__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode__objectcode:
       type: object
       properties:
@@ -138,9 +115,6 @@ components:
           $ref: '../../../bo4e/fields/com/Objectcode/objectcode.yaml#/components/schemas/objectcode'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZC9|ZD0].RFF+Z33'
-      required:
-        - lokationsbuendelNummer
-        - objectcode
     PI_55177__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -151,9 +125,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z16
             - SG4.IDE+24.SG5.LOC+Z22
-      required:
-        - gueltigkeitszeitraum
-        - marktlokationsId
     PI_55177__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -162,8 +133,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z16
             - SG4.IDE+24.SG5.LOC+Z22
-      required:
-        - zeitraumId
     PI_55177__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -173,9 +142,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z17
-      required:
-        - gueltigkeitszeitraum
-        - messlokationsId
     PI_55177__stammdaten__MESSLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -183,8 +149,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z17
-      required:
-        - zeitraumId
     PI_55177__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -194,9 +158,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Netzlokation/netzlokationsId.yaml#/components/schemas/netzlokationsId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z18
-      required:
-        - gueltigkeitszeitraum
-        - netzlokationsId
     PI_55177__stammdaten__NETZLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -204,8 +165,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z18
-      required:
-        - zeitraumId
     PI_55177__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -215,9 +174,6 @@ components:
           $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z19
-      required:
-        - gueltigkeitszeitraum
-        - ressourcenId
     PI_55177__stammdaten__STEUERBARE_RESSOURCE__gueltigkeitszeitraum:
       type: object
       properties:
@@ -225,8 +181,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z19
-      required:
-        - zeitraumId
     PI_55177__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -236,9 +190,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z20
-      required:
-        - gueltigkeitszeitraum
-        - ressourcenId
     PI_55177__stammdaten__TECHNISCHE_RESSOURCE__gueltigkeitszeitraum:
       type: object
       properties:
@@ -246,8 +197,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z20
-      required:
-        - zeitraumId
     PI_55177__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:
@@ -267,5 +216,3 @@ components:
           $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
-      required:
-        - verwendungAb

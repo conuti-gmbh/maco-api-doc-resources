@@ -297,3 +297,9 @@ components:
         deviceRemovalDate:
           $ref: >-
             ../fields/cdoc/TransactionData/deviceRemovalDate.yaml#/components/schemas/deviceRemovalDate
+        listNumber:
+          $ref: >-
+            ../fields/cdoc/TransactionData/listNumber.yaml#/components/schemas/listNumber
+        profileDescription:
+          $ref: >-
+            ../fields/cdoc/TransactionData/profileDescription.yaml#/components/schemas/profileDescription

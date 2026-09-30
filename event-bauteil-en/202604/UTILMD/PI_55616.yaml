@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55616
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55616:
@@ -30,8 +30,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55616__masterData__USAGE_PERIOD'
       required:
-      - MARKET_LOCATION
-      - GRID_ACCESS_CONTRACT
       - USAGE_PERIOD
     PI_55616__masterData__MARKET_LOCATION:
       type: object
@@ -100,21 +98,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55616__masterData__MARKET_LOCATION__meterRegisters'
-      required:
-      - dataQuality
-      - owner
-      - energyOrigin
-      - remoteControllability
-      - validityPeriod
-      - propertyManager
-      - locationAddress
-      - marketLocationId
-      - marketRoles
-      - meteringTechnicalClassification
-      - gridLevel
-      - statusGeneratingMalo
-      - compensationRecipient
-      - meterRegisters
     PI_55616__masterData__MARKET_LOCATION__owner:
       type: object
       properties:
@@ -144,14 +127,6 @@ components:
           - SG4.IDE+24.SG12.NAD+EO
         partnerAddress:
           $ref: '#/components/schemas/PI_55616__masterData__MARKET_LOCATION__owner__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55616__masterData__MARKET_LOCATION__owner__partnerAddress:
       type: object
       properties:
@@ -183,14 +158,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+EO
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55616__masterData__MARKET_LOCATION__energyOrigin:
       type: object
       properties:
@@ -198,8 +165,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/EnergyOrigin/generationType.yaml#/components/schemas/generationType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z34.CAV
-      required:
-      - generationType
     PI_55616__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -212,8 +177,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z01
           - SG4.IDE+24.SG8.SEQ+Z40
           - SG4.IDE+24.SG8.SEQ+Z44
-      required:
-      - periodId
     PI_55616__masterData__MARKET_LOCATION__propertyManager:
       type: object
       properties:
@@ -243,14 +206,6 @@ components:
           - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
         partnerAddress:
           $ref: '#/components/schemas/PI_55616__masterData__MARKET_LOCATION__propertyManager__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55616__masterData__MARKET_LOCATION__propertyManager__partnerAddress:
       type: object
       properties:
@@ -282,14 +237,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55616__masterData__MARKET_LOCATION__locationAddress:
       type: object
       properties:
@@ -323,15 +270,6 @@ components:
           - SG4.IDE+24.SG12.NAD+DP
         additionalInformation:
           $ref: '#/components/schemas/PI_55616__masterData__MARKET_LOCATION__locationAddress__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_55616__masterData__MARKET_LOCATION__locationAddress__additionalInformation:
       type: object
       properties:
@@ -355,12 +293,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+DP
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5
     PI_55616__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -380,11 +312,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
-      - subContracted
     PI_55616__masterData__MARKET_LOCATION__meterRegisters:
       type: object
       properties:
@@ -408,10 +335,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeterRegister/heatUsage.yaml#/components/schemas/heatUsage
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z44.SG10.CCI+Z17.CAV
-      required:
-      - obisCode
-      - interruptibility
-      - consumptionType
     PI_55616__masterData__GRID_ACCESS_CONTRACT:
       type: object
       properties:
@@ -428,11 +351,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55616__masterData__GRID_ACCESS_CONTRACT__contractPartner2'
-      required:
-      - dataQuality
-      - validityPeriod
-      - correspondencePartner
-      - contractPartner2
     PI_55616__masterData__GRID_ACCESS_CONTRACT__validityPeriod:
       type: object
       properties:
@@ -441,8 +359,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z25.RFF+Z46
           - SG4.IDE+24.SG12.NAD+Z26.RFF+Z46
-      required:
-      - periodId
     PI_55616__masterData__GRID_ACCESS_CONTRACT__correspondencePartner:
       type: object
       properties:
@@ -468,13 +384,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z26
         partnerAddress:
           $ref: '#/components/schemas/PI_55616__masterData__GRID_ACCESS_CONTRACT__correspondencePartner__partnerAddress'
-      required:
-      - salutation
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55616__masterData__GRID_ACCESS_CONTRACT__correspondencePartner__partnerAddress:
       type: object
       properties:
@@ -506,14 +415,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z26
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55616__masterData__GRID_ACCESS_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -541,13 +442,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z25
-      required:
-      - salutation
-      - businessPartnerRole
-      - name1
-      - name2
-      - name3
-      - name4
     PI_55616__masterData__USAGE_PERIOD:
       type: object
       properties:

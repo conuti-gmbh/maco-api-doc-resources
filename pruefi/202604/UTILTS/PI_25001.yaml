@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_25001
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_25001:
@@ -29,7 +29,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_25001__stammdaten__VERWENDUNGSZEITRAUM'
       required:
-        - BERECHNUNGSFORMEL
         - VERWENDUNGSZEITRAUM
     PI_25001__stammdaten__BERECHNUNGSFORMEL:
       type: object
@@ -48,10 +47,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_25001__stammdaten__BERECHNUNGSFORMEL__rechenschritte'
-      required:
-        - gueltigkeitszeitraum
-        - rechenschrittId
-        - rechenschritte
     PI_25001__stammdaten__BERECHNUNGSFORMEL__gueltigkeitszeitraum:
       type: object
       properties:
@@ -61,8 +56,6 @@ components:
             - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z46
             - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z46
             - SG5.IDE+24.STS+Z23
-      required:
-        - zeitraumId
     PI_25001__stammdaten__BERECHNUNGSFORMEL__rechenschritte:
       type: object
       properties:
@@ -98,13 +91,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rechenschritt/verlustfaktorTrafo.yaml#/components/schemas/verlustfaktorTrafo'
           x-edifact-segment:
             - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z16.CAV+Z28
-      required:
-        - aufteilungsfaktorEnergiemenge
-        - energieflussrichtung
-        - operation
-        - rechenschrittBestandteilId
-        - verlustfaktorLeitung
-        - verlustfaktorTrafo
     PI_25001__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:
@@ -182,7 +168,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_25001__transaktionsdaten__absender__ansprechpartner:
@@ -200,10 +185,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_25001__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_25001__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -215,9 +196,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_25001__transaktionsdaten__empfaenger:
       type: object
       properties:

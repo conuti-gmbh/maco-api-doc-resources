@@ -25,3 +25,5 @@ components:
         - KWHK
         - Z16
         - KWT
+        - WATT_PER_SQUARE_METER
+        - METER_PER_SECOND

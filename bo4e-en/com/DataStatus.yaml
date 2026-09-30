@@ -1,0 +1,27 @@
+components:
+  schemas:
+    DataStatus:
+      title: DataStatus
+      type: object
+      properties:
+        annualConsumptionForecast:
+          $ref: >-
+            ../fields/com/DataStatus/annualConsumptionForecast.yaml#/components/schemas/annualConsumptionForecast
+        actuallyBalancedEnergyQuantity:
+          $ref: >-
+            ../fields/com/DataStatus/actuallyBalancedEnergyQuantity.yaml#/components/schemas/actuallyBalancedEnergyQuantity
+        toBeBalancedEnergyQuantity:
+          $ref: >-
+            ../fields/com/DataStatus/toBeBalancedEnergyQuantity.yaml#/components/schemas/toBeBalancedEnergyQuantity
+        balancingGroup:
+          $ref: >-
+            ../fields/com/DataStatus/balancingGroup.yaml#/components/schemas/balancingGroup
+        balancingArea:
+          $ref: >-
+            ../fields/com/DataStatus/balancingArea.yaml#/components/schemas/balancingArea
+        loadProfiles:
+          $ref: >-
+            ../fields/com/DataStatus/loadProfiles.yaml#/components/schemas/loadProfiles
+        aggregationResponsibility:
+          $ref: >-
+            ../fields/com/DataStatus/aggregationResponsibility.yaml#/components/schemas/aggregationResponsibility

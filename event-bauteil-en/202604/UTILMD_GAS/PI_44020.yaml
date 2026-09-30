@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_44020
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_44020:
@@ -34,10 +34,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_44020__masterData__GRID_ACCESS_CONTRACT'
       required:
-      - BALANCING
-      - ENERGY_SUPPLY_CONTRACT
       - MARKET_LOCATION
-      - GRID_ACCESS_CONTRACT
     PI_44020__masterData__BALANCING:
       type: object
       properties:
@@ -69,13 +66,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Balancing/forecastBasis.yaml#/components/schemas/forecastBasis
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
-      required:
-      - balancingGroups
-      - caseGroupAssignment
-      - annualConsumptionForecast
-      - customerValue
-      - loadProfiles
-      - forecastBasis
     PI_44020__masterData__BALANCING__balancingGroups:
       type: object
       properties:
@@ -83,8 +73,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BalancingGroup/designation.yaml#/components/schemas/designation
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z19
-      required:
-      - designation
     PI_44020__masterData__BALANCING__annualConsumptionForecast:
       type: object
       properties:
@@ -96,9 +84,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
-      required:
-      - unit
-      - value
     PI_44020__masterData__BALANCING__customerValue:
       type: object
       properties:
@@ -106,8 +91,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+Y02
-      required:
-      - value
     PI_44020__masterData__BALANCING__loadProfiles:
       type: object
       properties:
@@ -125,11 +108,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/LoadProfile/procedure.yaml#/components/schemas/procedure
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI+Z12
-      required:
-      - designation
-      - publisher
-      - dailyParameters
-      - procedure
     PI_44020__masterData__BALANCING__loadProfiles__dailyParameters:
       type: object
       properties:
@@ -149,11 +127,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI
-      required:
-      - serviceProvider
-      - publisher
-      - climateZone
-      - temperatureMeasuringPoint
     PI_44020__masterData__ENERGY_SUPPLY_CONTRACT:
       type: object
       properties:
@@ -161,8 +134,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44020__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2'
-      required:
-      - contractPartner2
     PI_44020__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -190,13 +161,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z09
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
     PI_44020__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -277,8 +241,6 @@ components:
           - SG4.IDE+24.DTM+93
         contractConditions:
           $ref: '#/components/schemas/PI_44020__masterData__GRID_ACCESS_CONTRACT__contractConditions'
-      required:
-      - contractConditions
     PI_44020__masterData__GRID_ACCESS_CONTRACT__contractConditions:
       type: object
       properties:
@@ -294,6 +256,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/ContractConditions/gridAccessPayer.yaml#/components/schemas/gridAccessPayer
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z88.CAV+Z73
-      required:
-      - householdCustomer
-      - gridAccessPayer

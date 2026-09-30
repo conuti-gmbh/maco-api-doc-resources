@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55014
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55014:
@@ -48,8 +48,6 @@ components:
             $ref: '#/components/schemas/PI_55014__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
       required:
         - enFG
-        - korrespondenzpartner
-        - vertragspartner2
     PI_55014__stammdaten__ENERGIELIEFERVERTRAG__enFG:
       type: object
       properties:
@@ -88,13 +86,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z04
         partneradresse:
           $ref: '#/components/schemas/PI_55014__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55014__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -126,14 +117,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z04
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55014__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -161,13 +144,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z09
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - name1
-        - name2
-        - name3
-        - name4
     PI_55014__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -205,7 +181,6 @@ components:
       required:
         - produkt
         - produktpaketId
-        - umsetzungsgradvorgabe
     PI_55014__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
       type: object
       properties:
@@ -237,7 +212,6 @@ components:
         vertragskonditionen:
           $ref: '#/components/schemas/PI_55014__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
       required:
-        - vertragsbeginn
         - vertragskonditionen
     PI_55014__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
       type: object

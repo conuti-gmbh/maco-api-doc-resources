@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17128
   version: '202604'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17128:
@@ -12,8 +12,6 @@ components:
       properties:
         stammdaten:
           $ref: '#/components/schemas/PI_17128__stammdaten'
-      required:
-        - stammdaten
     PI_17128__stammdaten:
       type: object
       properties:
@@ -37,12 +35,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17128__stammdaten__WERTE_NACH_TYP2'
-      required:
-        - AD_HOC_STEUERKANAL
-        - LEISTUNGSKURVENDEFINITION
-        - REKLAMATION
-        - SCHALTZEITDEFINITION
-        - WERTE_NACH_TYP2
     PI_17128__stammdaten__AD_HOC_STEUERKANAL:
       type: object
       properties:
@@ -50,8 +42,6 @@ components:
           $ref: '../../../bo4e/fields/bo/AdHocSteuerkanal/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
           x-edifact-segment:
             - SG29.LIN+Z66.PIA+5
-      required:
-        - konfigurationsprodukt
     PI_17128__stammdaten__LEISTUNGSKURVENDEFINITION:
       type: object
       properties:
@@ -59,8 +49,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17128__stammdaten__LEISTUNGSKURVENDEFINITION__leistungskurven'
-      required:
-        - leistungskurven
     PI_17128__stammdaten__LEISTUNGSKURVENDEFINITION__leistungskurven:
       type: object
       properties:
@@ -72,9 +60,6 @@ components:
           $ref: '../../../bo4e/fields/com/Leistungskurve/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
           x-edifact-segment:
             - SG29.LIN+Z65.PIA+5
-      required:
-        - code
-        - konfigurationsprodukt
     PI_17128__stammdaten__REKLAMATION:
       type: object
       properties:
@@ -88,9 +73,6 @@ components:
             - 'SG29.LIN+Z68.FTX+[Z19|Z20|Z21]'
         reklamationsgrundBemerkung:
           $ref: '#/components/schemas/PI_17128__stammdaten__REKLAMATION__reklamationsgrundBemerkung'
-      required:
-        - reklamationsgrund
-        - reklamationsgrundBemerkung
     PI_17128__stammdaten__REKLAMATION__reklamationsgrundBemerkung:
       type: object
       properties:
@@ -134,12 +116,6 @@ components:
             - 'SG29.LIN+Z66.FTX+[Z19|Z20|Z21]'
             - 'SG29.LIN+Z67.FTX+[Z19|Z20|Z21]'
             - 'SG29.LIN+Z68.FTX+[Z19|Z20|Z21]'
-      required:
-        - bemerkung1
-        - bemerkung2
-        - bemerkung3
-        - bemerkung4
-        - bemerkung5
     PI_17128__stammdaten__SCHALTZEITDEFINITION:
       type: object
       properties:
@@ -147,8 +123,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17128__stammdaten__SCHALTZEITDEFINITION__schaltzeiten'
-      required:
-        - schaltzeiten
     PI_17128__stammdaten__SCHALTZEITDEFINITION__schaltzeiten:
       type: object
       properties:
@@ -160,9 +134,6 @@ components:
           $ref: '../../../bo4e/fields/com/Schaltzeit/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
           x-edifact-segment:
             - SG29.LIN+Z64.PIA+5
-      required:
-        - code
-        - konfigurationsprodukt
     PI_17128__stammdaten__WERTE_NACH_TYP2:
       type: object
       properties:
@@ -185,13 +156,6 @@ components:
           $ref: '#/components/schemas/PI_17128__stammdaten__WERTE_NACH_TYP2__zertifikatsNutzer'
         zieladresse:
           $ref: '#/components/schemas/PI_17128__stammdaten__WERTE_NACH_TYP2__zieladresse'
-      required:
-        - aenderungsmoeglichkeitKonfiguration
-        - aussteller
-        - messprodukt
-        - schwellwerte
-        - zertifikatsNutzer
-        - zieladresse
     PI_17128__stammdaten__WERTE_NACH_TYP2__aussteller:
       type: object
       properties:
@@ -215,12 +179,6 @@ components:
           $ref: '../../../bo4e/fields/com/Aussteller/aussteller5.yaml#/components/schemas/aussteller5'
           x-edifact-segment:
             - SG29.LIN+Z68.FTX+Z24
-      required:
-        - aussteller1
-        - aussteller2
-        - aussteller3
-        - aussteller4
-        - aussteller5
     PI_17128__stammdaten__WERTE_NACH_TYP2__schwellwerte:
       type: object
       properties:
@@ -236,10 +194,6 @@ components:
           $ref: '../../../bo4e/fields/com/Schwellwert/untererSchwellwert.yaml#/components/schemas/untererSchwellwert'
           x-edifact-segment:
             - SG29.LIN+Z68.SG30.CCI+Z60
-      required:
-        - konfigurationsprodukt
-        - obererSchwellwert
-        - untererSchwellwert
     PI_17128__stammdaten__WERTE_NACH_TYP2__zertifikatsNutzer:
       type: object
       properties:
@@ -263,12 +217,6 @@ components:
           $ref: '../../../bo4e/fields/com/ZertifikatsNutzer/zertifikatsNutzer5.yaml#/components/schemas/zertifikatsNutzer5'
           x-edifact-segment:
             - SG29.LIN+Z68.FTX+Z23
-      required:
-        - zertifikatsNutzer1
-        - zertifikatsNutzer2
-        - zertifikatsNutzer3
-        - zertifikatsNutzer4
-        - zertifikatsNutzer5
     PI_17128__stammdaten__WERTE_NACH_TYP2__zieladresse:
       type: object
       properties:
@@ -292,9 +240,3 @@ components:
           $ref: '../../../bo4e/fields/com/Zieladresse/zieladresse5.yaml#/components/schemas/zieladresse5'
           x-edifact-segment:
             - SG29.LIN+Z68.FTX+Z17
-      required:
-        - zieladresse1
-        - zieladresse2
-        - zieladresse3
-        - zieladresse4
-        - zieladresse5

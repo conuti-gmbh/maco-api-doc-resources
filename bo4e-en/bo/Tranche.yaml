@@ -109,6 +109,9 @@ components:
         involvedMarketPartner:
           $ref: >-
             ../fields/bo/Tranche/involvedMarketPartner.yaml#/components/schemas/involvedMarketPartner
+        operationalState:
+          $ref: >-
+            ../fields/bo/Tranche/operationalState.yaml#/components/schemas/operationalState
         marketRoles:
           $ref: >-
             ../fields/bo/Tranche/marketRoles.yaml#/components/schemas/marketRoles

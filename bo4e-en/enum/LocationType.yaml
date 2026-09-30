@@ -10,3 +10,4 @@ components:
         - TECHNICAL_RESOURCE
         - CONTROLLABLE_RESOURCE
         - TRANCHE
+        - MABIS_METERING_POINT
