@@ -92,12 +92,45 @@ BARE_SPEC = """      type: object
             - absender
 """
 
+BRANCH_SPEC = """      type: object
+      properties:
+        stammdaten:
+          anyOf:
+            - allOf:
+                - $ref: '../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten'
+                - type: object
+                  properties:
+                    MARKTLOKATION:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - foo
+                        properties:
+                          foo:
+                            x-process-routing:
+                              - variable: foo
+        transaktionsdaten:
+          type: object
+          required:
+            - absender
+"""
+
 
 def test_variable_without_any_trace_is_a_violation(tmp_path: Path) -> None:
     mapping = _mapping(tmp_path, ['${foo=="X"}'])
     required = _required(tmp_path, {"foo": ["$.zusatzdaten.erpEvent.foo"]}, ["absender"])
     event_dir = _spec(tmp_path, BARE_SPEC)
     assert _run(tmp_path, mapping, required, event_dir) == cr.EXIT_VIOLATION
+
+
+def test_routing_annotation_in_a_stammdaten_branch_satisfies_the_invariant(
+    tmp_path: Path,
+) -> None:
+    mapping = _mapping(tmp_path, ['${foo=="X"}'])
+    required = _required(tmp_path, {"foo": ["$.stammdaten.MARKTLOKATION[0].foo"]}, ["absender"])
+    event_dir = _spec(tmp_path, BRANCH_SPEC)
+    assert _run(tmp_path, mapping, required, event_dir) == cr.EXIT_OK
 
 
 def test_unresolved_annotation_satisfies_the_invariant(tmp_path: Path) -> None:

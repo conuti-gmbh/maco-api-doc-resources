@@ -87,7 +87,7 @@ Image: [`docker/dev/Dockerfile`](docker/dev/Dockerfile) (Python 3.13 + `ruamel`/
 
 - **Prüfi** (`pruefi/<format>/<scope>/PI_<id>.yaml`): OpenAPI 3.1, Container-Subset-Schemas pro Tiefenebene; skalare Leaves als `$ref` auf atomare `bo4e/fields/<cdoc|bo|com>/...`-Files (Single-Source); `x-edifact-segment`-Extension; `required` pro Container. Kein `paths` — reine Schema-Library für Composition.
 - **Event-Bauteil** (`event-bauteil/...`): Prüfi-Spec ohne `transaktionsdaten` (= Stammdaten-Anforderungen eines PI).
-- **Event** (`event/<format>/[<ROLLE>]_<Topic>.yaml`): `stammdaten` (`oneOf` über die Event-Bauteile des Topics) + `transaktionsdaten` (Objekt mit genau den vom DMN gelesenen Feldern) + `zusatzdaten` (`eventname.const`). Coverage-Lücken transparent via `x-pending-pruefis`/Stub.
+- **Event** (`event/<format>/[<ROLLE>]_<Topic>.yaml`): `stammdaten` (`anyOf` über die Event-Bauteile des Topics) + `transaktionsdaten` (Objekt mit genau den vom DMN gelesenen Feldern) + `zusatzdaten` (`eventname.const`). Coverage-Lücken transparent via `x-pending-pruefis`/Stub.
 - **EN-Pendants** (`*-en/`): strukturgleich, `$ref` auf `bo4e-en/` (kanonisches `bo4e-schema-en`); Property-Namen/Enums EN, Schema-Namen + `eventname` DE.
 
 ## Tickets

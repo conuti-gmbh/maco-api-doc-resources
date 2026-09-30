@@ -242,8 +242,8 @@ def test_agnostic_event_optional_pruefi_with_description_and_examples(
     assert zus["properties"]["eventname"]["const"] == "START_LIEFERBEGINN"
     assert zus["properties"]["eventname"]["default"] == "START_LIEFERBEGINN"
 
-    one_of = schema["properties"]["stammdaten"]["oneOf"]
-    assert [r["$ref"] for r in one_of] == [
+    any_of = schema["properties"]["stammdaten"]["anyOf"]
+    assert [r["$ref"] for r in any_of] == [
         "../../event-bauteil/202604/UTILMD_GAS/PI_44001.yaml#/components/schemas/PI_44001__stammdaten",
         "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten",
     ]
@@ -260,7 +260,7 @@ def test_agnostic_event_optional_pruefi_with_description_and_examples(
 
 
 def test_duplicate_pruefi_id_is_deduplicated(tmp_path: Path) -> None:
-    """Same pruefi on multiple tasks/paths → one oneOf ref, one pending entry."""
+    """Same pruefi on multiple tasks/paths → one anyOf ref, one pending entry."""
     bauteil = tmp_path / "event-bauteil"
     _write_bauteil(bauteil, "202604", "UTILMD", 55001)
     # 55001 twice (resolved), 55077 twice (pending).
@@ -271,8 +271,8 @@ def test_duplicate_pruefi_id_is_deduplicated(tmp_path: Path) -> None:
     schema = _load_out(tmp_path, "202604", "LF", "TOPIC")["components"]["schemas"][
         "[LF] TOPIC"
     ]
-    one_of = schema["properties"]["stammdaten"]["oneOf"]
-    assert [r["$ref"] for r in one_of] == [
+    any_of = schema["properties"]["stammdaten"]["anyOf"]
+    assert [r["$ref"] for r in any_of] == [
         "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten"
     ]
     assert schema["x-pending-pruefis"] == ["55077"]  # deduped
@@ -447,7 +447,7 @@ def test_event_with_dmn_entry_has_no_pending_dmn_marker(tmp_path: Path) -> None:
 def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
     bauteil = tmp_path / "event-bauteil"
     _write_bauteil(bauteil, "202604", "UTILMD", 55001)
-    # 55077 has no bauteil → recorded as pending, not in oneOf.
+    # 55077 has no bauteil → recorded as pending, not in anyOf.
 
     mapping = _mapping("LF", "TOPIC", [55001, 55077])
     required = _required("LF", "TOPIC", ["absender"])
@@ -458,8 +458,8 @@ def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
         "[LF] TOPIC"
     ]
     assert schema["x-pending-pruefis"] == ["55077"]
-    one_of = schema["properties"]["stammdaten"]["oneOf"]
-    assert [r["$ref"] for r in one_of] == [
+    any_of = schema["properties"]["stammdaten"]["anyOf"]
+    assert [r["$ref"] for r in any_of] == [
         "../../event-bauteil/202604/UTILMD/PI_55001.yaml#/components/schemas/PI_55001__stammdaten"
     ]
     # The pending pruefi still appears in the Beauskunftung (full topic pool).
@@ -471,7 +471,7 @@ def test_missing_bauteil_becomes_pending(tmp_path: Path) -> None:
 
 def test_all_missing_emits_stub(tmp_path: Path) -> None:
     # Format 202604 is in the snapshot (dir exists) but the pruefi has no
-    # bauteil → stub: envelope + x-pending, no oneOf body validation.
+    # bauteil → stub: envelope + x-pending, no anyOf body validation.
     (tmp_path / "event-bauteil" / "202604" / "UTILMD").mkdir(parents=True)
     mapping = _mapping("LF", "TOPIC", [99999])
     required = _required("LF", "TOPIC", ["absender"])
@@ -482,7 +482,7 @@ def test_all_missing_emits_stub(tmp_path: Path) -> None:
         "[LF] TOPIC"
     ]
     assert schema["x-pending-pruefis"] == ["99999"]
-    assert "allOf" not in schema  # stub: no oneOf
+    assert "allOf" not in schema  # stub: no anyOf
     assert schema["required"] == ["stammdaten", "transaktionsdaten", "zusatzdaten"]
     assert (
         schema["properties"]["zusatzdaten"]["properties"]["eventname"]["const"]
@@ -504,7 +504,7 @@ def test_uncovered_wip_format_emits_stub(tmp_path: Path) -> None:
         "[LF] TOPIC"
     ]
     assert schema["x-pending-pruefis"] == ["44001", "55001"]  # all pruefis TBD
-    assert "allOf" not in schema  # stub — no oneOf yet
+    assert "allOf" not in schema  # stub — no anyOf yet
     assert (
         schema["properties"]["zusatzdaten"]["properties"]["eventname"]["const"]
         == "TOPIC"
@@ -641,8 +641,8 @@ def test_en_dirs_emit_en_refs(tmp_path: Path) -> None:
     schema = _yaml().load(path.read_text(encoding="utf-8"))["components"]["schemas"][
         "[LF] START_LIEFERBEGINN"
     ]
-    # stammdaten oneOf -> event-bauteil-en/ (not event-bauteil/)
-    assert schema["properties"]["stammdaten"]["oneOf"][0]["$ref"] == (
+    # stammdaten anyOf -> event-bauteil-en/ (not event-bauteil/)
+    assert schema["properties"]["stammdaten"]["anyOf"][0]["$ref"] == (
         "../../event-bauteil-en/202604/UTILMD/PI_55001.yaml"
         "#/components/schemas/PI_55001__stammdaten"
     )
@@ -692,7 +692,7 @@ def test_stammdaten_routing_field_becomes_required_in_its_branch(tmp_path: Path)
     schema = _load_out(tmp_path, "202604", "LF", "START_LIEFERBEGINN")["components"][
         "schemas"
     ]["[LF] START_LIEFERBEGINN"]
-    branches = schema["properties"]["stammdaten"]["oneOf"]
+    branches = schema["properties"]["stammdaten"]["anyOf"]
     assert len(branches) == 3
 
     # GAS branch does not read the variable — stays a plain $ref.
@@ -779,7 +779,7 @@ def test_unknown_variable_is_recorded_with_discriminates_flag(tmp_path: Path) ->
 
 
 def test_pending_pruefi_routing_is_recorded_not_dropped(tmp_path: Path) -> None:
-    """No bauteil means no oneOf branch — the obligation must not vanish."""
+    """No bauteil means no anyOf branch — the obligation must not vanish."""
     _write_bo_subfield(tmp_path / "bo4e", "bo", "Statusmitteilung", "auftragsstatus")
     mapping = _mapping(
         "NB",
@@ -900,7 +900,7 @@ def test_alt_jsonpath_is_not_required_alongside_the_primary(tmp_path: Path) -> N
     schema = _load_out(tmp_path, "202604", "LF", "START_L")["components"]["schemas"][
         "[LF] START_L"
     ]
-    overlay = schema["properties"]["stammdaten"]["oneOf"][0]["allOf"][1]
+    overlay = schema["properties"]["stammdaten"]["anyOf"][0]["allOf"][1]
     # Only the primary container carries the obligation.
     assert overlay["required"] == ["MARKTLOKATION"]
     assert "MESSLOKATION" not in overlay["properties"]

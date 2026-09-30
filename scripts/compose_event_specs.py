@@ -26,13 +26,14 @@ Modelling (Stand 2026-05-27, MACO-13040):
     possible in the topic, plus an ``examples`` array. The single NNA
     outlier (``pruefidentifikator_source == "transaktionsdaten"``) instead marks
     it **required + enum**, because there the body value routes the T_ gateway.
-  * ``oneOf`` over the topic's Prüfi-Bauteile = Union-of-Required-Coverage
-    (the sender must satisfy the stammdaten any pool member needs), not a
-    discriminated XOR branch. No discriminator, no x-condition, no empty ``{}``.
+  * ``anyOf`` over the topic's Prüfi-Bauteile: the sender must satisfy the
+    stammdaten of at least one pool member (Camunda picks the Prüfi). Not an
+    XOR — Bauteile share fields and are open objects, so a complete payload
+    matches several branches. No discriminator, no x-condition, no empty ``{}``.
   * Routing obligations (MACO-14052): a variable the T_ process gates the pruefi
     send on, sourced from ``$.stammdaten.<CONTAINER>[i].<field>``, is mandatory
     for the sender even when the templater never renders it into a segment. The
-    affected ``oneOf`` branch becomes ``allOf: [$ref bauteil, {required}]`` —
+    affected ``anyOf`` branch becomes ``allOf: [$ref bauteil, {required}]`` —
     per branch, because bauteile are shared across events and a GAS pruefi in
     the same topic often does not read the field. Recorded but not required
     where no branch exists (``x-pending-routing``) or the variable has no
@@ -228,7 +229,7 @@ def resolve_pool(
     for pruefi in pruefis:
         pid = pruefi["id"]
         # A pruefi can appear on several service tasks / condition paths of the
-        # same topic (distinct `paths` in event-mapping). For the oneOf / pending
+        # same topic (distinct `paths` in event-mapping). For the anyOf / pending
         # we only care about the unique id, so de-duplicate here.
         if pid in seen_ids:
             continue
@@ -641,7 +642,7 @@ def build_schema(
     by_pruefi = routing_conditions(pruefis)
     discriminators = discriminating_vars(by_pruefi, len(all_pruefi_ids))
     unresolved_routing: dict[str, list[str]] = {}
-    one_of = []
+    any_of = []
     for pid, scope in pool:
         branch: dict = {
             "$ref": (
@@ -657,9 +658,9 @@ def build_schema(
             unresolved_routing.setdefault(var, []).append(str(pid))
         # allOf only where a routing field actually applies — every other branch
         # keeps the plain $ref, so the diff stays confined to affected topics.
-        one_of.append({"allOf": [branch, overlay]} if overlay else branch)
+        any_of.append({"allOf": [branch, overlay]} if overlay else branch)
 
-    # A pending pruefi has no oneOf branch to carry the obligation, so its
+    # A pending pruefi has no anyOf branch to carry the obligation, so its
     # routing fields would drop out entirely — the very failure this change
     # exists to prevent. Recorded separately instead; a later templater run
     # turns the entry into a real allOf branch.
@@ -683,13 +684,13 @@ def build_schema(
                 }
             )
     properties: dict = {}
-    if one_of:
-        # stammdaten as a *visible* property: oneOf over the topic's Prüfi-Bauteile
-        # = Stammdaten-Union-Coverage (the sender must satisfy the stammdaten any
-        # pool member needs). Surfaced here rather than as a top-level allOf[oneOf]
+    if any_of:
+        # stammdaten as a *visible* property: anyOf over the topic's Prüfi-Bauteile
+        # (the sender must satisfy at least one pool member's stammdaten).
+        # Surfaced here rather than as a top-level allOf[anyOf]
         # sibling so it renders in Apidog's model view; the $ref targets the named
         # PI_<id>__stammdaten sub-schema (one wrapper level less, no double nesting).
-        properties["stammdaten"] = {"oneOf": one_of}
+        properties["stammdaten"] = {"anyOf": any_of}
     # else: Stub — alle Prüfis pending, stammdaten bleibt required-aber-undefiniert.
     properties["transaktionsdaten"] = build_transaktionsdaten(
         required_fields, td_reads, pruefi_source, all_pruefi_ids,
