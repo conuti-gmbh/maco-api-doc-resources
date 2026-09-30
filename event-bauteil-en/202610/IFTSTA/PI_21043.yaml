@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: PI_21043
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21043:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_21043__masterData'
+      required:
+      - masterData
+    PI_21043__masterData:
+      type: object
+      properties:
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21043__masterData__STATUS_NOTIFICATION'
+      required:
+      - STATUS_NOTIFICATION
+    PI_21043__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21043__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - positionData
+    PI_21043__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        generalInformationText:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/generalInformationText.yaml#/components/schemas/generalInformationText
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21.SG25.GID.FTX+ACB
+        inquiryReference:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/inquiryReference.yaml#/components/schemas/inquiryReference
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21.RFF+AGI
+        responseStatus:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/responseStatus.yaml#/components/schemas/responseStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21
+        responseStatusCodeList:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/responseStatusCodeList.yaml#/components/schemas/responseStatusCodeList
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21
+        orderStatus:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/orderStatus.yaml#/components/schemas/orderStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG14.CNI
+        shipmentPosition:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/shipmentPosition.yaml#/components/schemas/shipmentPosition
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21.SG25.GID
+        statusChangeTimestamp:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/statusChangeTimestamp.yaml#/components/schemas/statusChangeTimestamp
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z21.DTM+334
+      required:
+      - inquiryReference
+      - responseStatus
+      - responseStatusCodeList
+      - orderStatus
+      - positionNumber
+      - statusChangeTimestamp

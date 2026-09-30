@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[MSB] START_ANTWORT_GERAETEWECHSEL'
   version: '202610'
-  x-bpmn-source-sha: 23ab5062
-  x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bpmn-source-sha: 9f68695f
+  x-bo4e-schema-version: 1.7.8
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     '[MSB] START_ANTWORT_GERAETEWECHSEL':
@@ -15,11 +15,40 @@ components:
       - additionalData
       properties:
         masterData:
-          oneOf:
+          anyOf:
           - $ref: ../../event-bauteil-en/202610/ORDRSP/PI_19015.yaml#/components/schemas/PI_19015__masterData
         transactionData:
           type: object
+          required:
+          - sender
+          - responseStatus
+          - responseStatusCodeList
+          - receiver
+          - category
+          - sector
           properties:
+            sender:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            responseStatus:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/responseStatus.yaml#/components/schemas/responseStatus
+            responseStatusCodeList:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/responseStatusCodeList.yaml#/components/schemas/responseStatusCodeList
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
             verificationIdentifier:
               description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: antwortstatus). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 19015, 19016.'
               examples:
@@ -36,17 +65,6 @@ components:
             eventname:
               type: string
               const: START_ANTWORT_GERAETEWECHSEL
-              default: START_ANTWORT_GERAETEWECHSEL
+              default: START_RESPONSE_DEVICE_CHANGE
       x-pending-pruefis:
       - '19016'
-      x-pending-dmn:
-        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
-      x-unresolved-routing:
-      - variable: antwortstatus
-        discriminates: true
-        selects-pruefis:
-        - '19015'
-        - '19016'
-        conditions:
-        - ${antwortstatus=="E17" or antwortstatus=="Z07"}
-        - ${antwortstatus=="ZB4" or antwortstatus=="ZB5"}

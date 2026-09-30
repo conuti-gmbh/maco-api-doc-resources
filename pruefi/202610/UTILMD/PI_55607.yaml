@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55607
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55607:
@@ -51,11 +51,6 @@ components:
       required:
         - MARKTLOKATION
         - MESSLOKATION
-        - NETZLOKATION
-        - NETZNUTZUNGSVERTRAG
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
-        - TRANCHE
     PI_55607__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -109,7 +104,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
       required:
-        - marktrolle
         - messstellenbetreiberEigenschaft
         - rollencodenummer
         - weiterverpflichtet
@@ -126,7 +120,6 @@ components:
             - SG4.IDE+24.SG5.LOC+Z17
             - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
       required:
-        - marktrollen
         - messlokationsId
     PI_55607__stammdaten__MESSLOKATION__marktrollen:
       type: object
@@ -149,11 +142,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55607__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -166,9 +154,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z18
             - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
-      required:
-        - marktrollen
-        - netzlokationsId
     PI_55607__stammdaten__NETZLOKATION__marktrollen:
       type: object
       properties:
@@ -184,10 +169,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55607__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -199,8 +180,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
           x-edifact-segment:
             - SG4.IDE+24.DTM+93
-      required:
-        - vertragsbeginn
     PI_55607__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -213,9 +192,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z19
             - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
-      required:
-        - marktrollen
-        - ressourcenId
     PI_55607__stammdaten__STEUERBARE_RESSOURCE__marktrollen:
       type: object
       properties:
@@ -231,10 +207,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55607__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -242,8 +214,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z20
-      required:
-        - ressourcenId
     PI_55607__stammdaten__TRANCHE:
       type: object
       properties:
@@ -257,10 +227,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z21
-      required:
-        - aufteilungsmenge
-        - bildungTranchengroesse
-        - tranchenId
     PI_55607__stammdaten__TRANCHE__aufteilungsmenge:
       type: object
       properties:
@@ -272,9 +238,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
-      required:
-        - einheit
-        - wert
     PI_55607__transaktionsdaten:
       type: object
       properties:
@@ -332,7 +295,6 @@ components:
             - SG4.IDE+24
       required:
         - absender
-        - anfragereferenznummer
         - dokumentennummer
         - empfaenger
         - kategorie
@@ -341,8 +303,6 @@ components:
         - pruefidentifikator
         - transaktionsgrund
         - transaktionsgrundergaenzung
-        - transaktionsgrundergaenzungBefristeteAnmeldung
-        - vertragsbeginn
         - vorgangsnummer
     PI_55607__transaktionsdaten__absender:
       type: object

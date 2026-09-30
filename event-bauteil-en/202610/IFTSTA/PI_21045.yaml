@@ -1,0 +1,142 @@
+openapi: 3.1.0
+info:
+  title: PI_21045
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21045:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_21045__masterData'
+      required:
+      - masterData
+    PI_21045__masterData:
+      type: object
+      properties:
+        ENERGY_SUPPLY_CONTRACT:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__masterData__ENERGY_SUPPLY_CONTRACT'
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__masterData__STATUS_NOTIFICATION'
+      required:
+      - STATUS_NOTIFICATION
+    PI_21045__masterData__ENERGY_SUPPLY_CONTRACT:
+      type: object
+      properties:
+        contractPartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2'
+    PI_21045__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
+      type: object
+      properties:
+        salutation:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/salutation.yaml#/components/schemas/salutation
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        businessPartnerRole:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/businessPartnerRole.yaml#/components/schemas/businessPartnerRole
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        commercialClassification:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/commercialClassification.yaml#/components/schemas/commercialClassification
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name1:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name1.yaml#/components/schemas/name1
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name2:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name2.yaml#/components/schemas/name2
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name3:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name3.yaml#/components/schemas/name3
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name4:
+          $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+    PI_21045__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - positionData
+    PI_21045__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        generalInformationText:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/generalInformationText.yaml#/components/schemas/generalInformationText
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG25.GID.FTX+ACB
+        orderStatusList:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/orderStatusList.yaml#/components/schemas/orderStatusList
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41
+        validityTimespan:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/validityTimespan.yaml#/components/schemas/validityTimespan
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.DTM+273
+        locationId:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG14.CNI
+        privilegedEnergyQuantity:
+          $ref: '#/components/schemas/PI_21045__masterData__STATUS_NOTIFICATION__positionData__privilegedEnergyQuantity'
+        shipmentPosition:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/shipmentPosition.yaml#/components/schemas/shipmentPosition
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG25.GID
+      required:
+      - orderStatusList
+      - validityTimespan
+      - locationId
+      - positionNumber
+      - privilegedEnergyQuantity
+    PI_21045__masterData__STATUS_NOTIFICATION__positionData__privilegedEnergyQuantity:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/PI_21045__masterData__STATUS_NOTIFICATION__positionData__privilegedEnergyQuantity__amount'
+        usageFrom:
+          $ref: ../../../bo4e-en/fields/com/TimeIntervalQuantity/usageFrom.yaml#/components/schemas/usageFrom
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.DTM+163
+        usageTo:
+          $ref: ../../../bo4e-en/fields/com/TimeIntervalQuantity/usageTo.yaml#/components/schemas/usageTo
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.DTM+164
+      required:
+      - amount
+      - usageFrom
+      - usageTo
+    PI_21045__masterData__STATUS_NOTIFICATION__positionData__privilegedEnergyQuantity__amount:
+      type: object
+      properties:
+        unit:
+          $ref: ../../../bo4e-en/fields/com/Quantity/unit.yaml#/components/schemas/unit
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.QTY
+        value:
+          $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.QTY
+      required:
+      - unit
+      - value

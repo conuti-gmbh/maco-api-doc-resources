@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55663
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55663:
@@ -35,9 +35,7 @@ components:
             $ref: '#/components/schemas/PI_55663__masterData__METER'
       required:
       - METERING_LOCATION
-      - METERING_POINT_OPERATION_CONTRACT
       - USAGE_PERIOD
-      - METER
     PI_55663__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -62,12 +60,7 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++E04.CAV
       required:
-      - readingCardRecipient
-      - dataQuality
-      - validityPeriod
-      - meteringAddress
       - meteringLocationId
-      - meteringGridLevel
     PI_55663__masterData__METERING_LOCATION__readingCardRecipient:
       type: object
       properties:
@@ -97,14 +90,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z05
         partnerAddress:
           $ref: '#/components/schemas/PI_55663__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55663__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress:
       type: object
       properties:
@@ -136,14 +121,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z05
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55663__masterData__METERING_LOCATION__validityPeriod:
       type: object
       properties:
@@ -153,8 +130,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z03.RFF+Z46
           - SG4.IDE+24.SG12.NAD+Z05.RFF+Z46
           - SG4.IDE+24.SG8.SEQ+Z18
-      required:
-      - periodId
     PI_55663__masterData__METERING_LOCATION__meteringAddress:
       type: object
       properties:
@@ -188,15 +163,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z03
         additionalInformation:
           $ref: '#/components/schemas/PI_55663__masterData__METERING_LOCATION__meteringAddress__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_55663__masterData__METERING_LOCATION__meteringAddress__additionalInformation:
       type: object
       properties:
@@ -220,12 +186,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z03
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT:
       type: object
       properties:
@@ -242,11 +202,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__contractPartner2'
-      required:
-      - dataQuality
-      - validityPeriod
-      - correspondencePartner
-      - contractPartner2
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__validityPeriod:
       type: object
       properties:
@@ -255,8 +210,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z07.RFF+Z46
           - SG4.IDE+24.SG12.NAD+Z08.RFF+Z46
-      required:
-      - periodId
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner:
       type: object
       properties:
@@ -284,14 +237,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z08
         partnerAddress:
           $ref: '#/components/schemas/PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__partnerAddress'
-      required:
-      - salutation
-      - contactPerson
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__contactPerson:
       type: object
       properties:
@@ -303,9 +248,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - phoneNumbers
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -317,9 +259,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z08.SG13.CTA.COM+[TE|EM]
-      required:
-      - numberType
-      - phoneNumber
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__correspondencePartner__partnerAddress:
       type: object
       properties:
@@ -351,14 +290,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z08
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55663__masterData__METERING_POINT_OPERATION_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -386,13 +317,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z07
-      required:
-      - salutation
-      - businessPartnerRole
-      - name1
-      - name2
-      - name3
-      - name4
     PI_55663__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -480,19 +404,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55663__masterData__METER__meterRegisters'
-      required:
-      - mountingType
-      - dataQuality
-      - remoteSwitch
-      - gateway
-      - devices
-      - validityPeriod
-      - measurementValueCapture
-      - meterCharacteristic
-      - meterNumber
-      - meterType
-      - meterTypeSpecification
-      - meterRegisters
     PI_55663__masterData__METER__devices:
       type: object
       properties:
@@ -518,10 +429,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Device/additionalDeviceNumbers.yaml#/components/schemas/additionalDeviceNumbers
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV+Z30
-      required:
-      - deviceProperties
-      - deviceNumber
-      - deviceType
     PI_55663__masterData__METER__devices__deviceProperties:
       type: object
       properties:
@@ -535,9 +442,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV
           - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV
           - SG4.IDE+24.SG8.SEQ+Z06.SG10.CCI+++Z27.CAV
-      required:
-      - factor
-      - deviceAttribute
     PI_55663__masterData__METER__validityPeriod:
       type: object
       properties:
@@ -551,8 +455,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z13
           - SG4.IDE+24.SG8.SEQ+Z14
           - SG4.IDE+24.SG8.SEQ+Z20
-      required:
-      - periodId
     PI_55663__masterData__METER__meterRegisters:
       type: object
       properties:
@@ -582,13 +484,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV
         meteringTimes:
           $ref: '#/components/schemas/PI_55663__masterData__METER__meterRegisters__meteringTimes'
-      required:
-      - designation
-      - decimalPlaces
-      - obisCode
-      - integerDigits
-      - valueGranularity
-      - meteringTimes
     PI_55663__masterData__METER__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -600,6 +495,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+Z39
-      required:
-      - register
-      - meteringTimeDefinition

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_44166
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_44166:
@@ -31,8 +31,6 @@ components:
             $ref: '#/components/schemas/PI_44166__stammdaten__NETZNUTZUNGSVERTRAG'
       required:
         - MESSLOKATION
-        - MESSSTELLENBETRIEBSVERTRAG
-        - NETZNUTZUNGSVERTRAG
     PI_44166__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -46,8 +44,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z05.RFF+Z19
             - SG4.IDE+24.SG5.LOC+172
       required:
-        - ablesekartenempfaenger
-        - messadresse
         - messlokationsId
     PI_44166__stammdaten__MESSLOKATION__ablesekartenempfaenger:
       type: object
@@ -78,14 +74,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z05
         partneradresse:
           $ref: '#/components/schemas/PI_44166__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse'
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_44166__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse:
       type: object
       properties:
@@ -117,14 +105,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z05
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_44166__stammdaten__MESSLOKATION__messadresse:
       type: object
       properties:
@@ -158,15 +138,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z03
         zusatzInformation:
           $ref: '#/components/schemas/PI_44166__stammdaten__MESSLOKATION__messadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_44166__stammdaten__MESSLOKATION__messadresse__zusatzInformation:
       type: object
       properties:
@@ -190,12 +161,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z03
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_44166__stammdaten__MESSSTELLENBETRIEBSVERTRAG:
       type: object
       properties:
@@ -205,9 +170,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44166__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragspartner2'
-      required:
-        - korrespondenzpartner
-        - vertragspartner2
     PI_44166__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner:
       type: object
       properties:
@@ -237,14 +199,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z08
         partneradresse:
           $ref: '#/components/schemas/PI_44166__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_44166__stammdaten__MESSSTELLENBETRIEBSVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -276,14 +230,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z08
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_44166__stammdaten__MESSSTELLENBETRIEBSVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -311,13 +257,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z07
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
     PI_44166__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -325,5 +264,3 @@ components:
           $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
           x-edifact-segment:
             - SG4.IDE+24.DTM+92
-      required:
-        - vertragsbeginn

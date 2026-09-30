@@ -1,0 +1,5 @@
+components:
+  schemas:
+    shareD:
+      type: number
+      format: float

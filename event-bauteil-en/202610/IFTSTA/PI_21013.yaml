@@ -1,0 +1,58 @@
+openapi: 3.1.0
+info:
+  title: PI_21013
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21013:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_21013__masterData'
+      required:
+      - masterData
+    PI_21013__masterData:
+      type: object
+      properties:
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21013__masterData__STATUS_NOTIFICATION'
+      required:
+      - STATUS_NOTIFICATION
+    PI_21013__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21013__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - positionData
+    PI_21013__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        responseStatus:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/responseStatus.yaml#/components/schemas/responseStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z10
+        orderStatus:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/orderStatus.yaml#/components/schemas/orderStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z10
+        locationId:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG14.CNI
+      required:
+      - responseStatus
+      - orderStatus
+      - locationId
+      - positionNumber

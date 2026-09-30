@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_35004
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_35004:
@@ -58,16 +58,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2'
       required:
-      - AD_HOC_CONTROL_CHANNEL
       - REQUEST
-      - LOAD_CURVE_DEFINITION
-      - MARKET_LOCATION
-      - METERING_LOCATION
-      - GRID_LOCATION
-      - SWITCHING_TIME_DEFINITION
-      - CONTROLLABLE_RESOURCE
-      - TECHNICAL_RESOURCE
-      - VALUES_BY_TYPE2
     PI_35004__masterData__AD_HOC_CONTROL_CHANNEL:
       type: object
       properties:
@@ -75,8 +66,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/AdHocControlChannel/configurationProduct.yaml#/components/schemas/configurationProduct
           x-edifact-segment:
           - SG27.LIN+Z66.PIA+5
-      required:
-      - configurationProduct
     PI_35004__masterData__REQUEST:
       type: object
       properties:
@@ -93,8 +82,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_35004__masterData__LOAD_CURVE_DEFINITION__loadCurves'
-      required:
-      - loadCurves
     PI_35004__masterData__LOAD_CURVE_DEFINITION__loadCurves:
       type: object
       properties:
@@ -106,9 +93,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/LoadCurve/configurationProduct.yaml#/components/schemas/configurationProduct
           x-edifact-segment:
           - SG27.LIN+Z65.PIA+5
-      required:
-      - code
-      - configurationProduct
     PI_35004__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -116,8 +100,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - marketLocationId
     PI_35004__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -125,8 +107,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - meteringLocationId
     PI_35004__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -134,8 +114,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - gridLocationId
     PI_35004__masterData__SWITCHING_TIME_DEFINITION:
       type: object
       properties:
@@ -143,8 +121,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_35004__masterData__SWITCHING_TIME_DEFINITION__switchingTimes'
-      required:
-      - switchingTimes
     PI_35004__masterData__SWITCHING_TIME_DEFINITION__switchingTimes:
       type: object
       properties:
@@ -156,9 +132,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/SwitchingTime/configurationProduct.yaml#/components/schemas/configurationProduct
           x-edifact-segment:
           - SG27.LIN+Z64.PIA+5
-      required:
-      - code
-      - configurationProduct
     PI_35004__masterData__CONTROLLABLE_RESOURCE:
       type: object
       properties:
@@ -166,8 +139,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - resourceId
     PI_35004__masterData__TECHNICAL_RESOURCE:
       type: object
       properties:
@@ -175,8 +146,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG11.NAD+DP.LOC+172
-      required:
-      - resourceId
     PI_35004__masterData__VALUES_BY_TYPE2:
       type: object
       properties:
@@ -202,14 +171,6 @@ components:
           $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2__certificateUser'
         targetAddress:
           $ref: '#/components/schemas/PI_35004__masterData__VALUES_BY_TYPE2__targetAddress'
-      required:
-      - configurationChangeOption
-      - issuer
-      - configurationProduct
-      - meteringProduct
-      - thresholds
-      - certificateUser
-      - targetAddress
     PI_35004__masterData__VALUES_BY_TYPE2__issuer:
       type: object
       properties:
@@ -233,12 +194,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Issuer/issuer5.yaml#/components/schemas/issuer5
           x-edifact-segment:
           - SG27.LIN+Z68.FTX+Z24
-      required:
-      - issuer1
-      - issuer2
-      - issuer3
-      - issuer4
-      - issuer5
     PI_35004__masterData__VALUES_BY_TYPE2__thresholds:
       type: object
       properties:
@@ -254,10 +209,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Threshold/lowerThreshold.yaml#/components/schemas/lowerThreshold
           x-edifact-segment:
           - SG27.LIN+Z68.SG28.CCI+Z60
-      required:
-      - configurationProduct
-      - upperThreshold
-      - lowerThreshold
     PI_35004__masterData__VALUES_BY_TYPE2__certificateUser:
       type: object
       properties:
@@ -281,12 +232,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser5.yaml#/components/schemas/certificateUser5
           x-edifact-segment:
           - SG27.LIN+Z68.FTX+Z23
-      required:
-      - certificateUser1
-      - certificateUser2
-      - certificateUser3
-      - certificateUser4
-      - certificateUser5
     PI_35004__masterData__VALUES_BY_TYPE2__targetAddress:
       type: object
       properties:
@@ -310,9 +255,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress5.yaml#/components/schemas/targetAddress5
           x-edifact-segment:
           - SG27.LIN+Z68.FTX+Z17
-      required:
-      - targetAddress1
-      - targetAddress2
-      - targetAddress3
-      - targetAddress4
-      - targetAddress5

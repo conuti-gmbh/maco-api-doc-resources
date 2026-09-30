@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55109
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55109:
@@ -34,9 +34,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55109__stammdaten__VERWENDUNGSZEITRAUM'
       required:
-        - ENERGIELIEFERVERTRAG
-        - MARKTLOKATION
-        - NETZNUTZUNGSVERTRAG
         - VERWENDUNGSZEITRAUM
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG:
       type: object
@@ -59,12 +56,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
-      required:
-        - datenqualitaet
-        - enFG
-        - gueltigkeitszeitraum
-        - korrespondenzpartner
-        - vertragspartner2
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__enFG:
       type: object
       properties:
@@ -76,8 +67,6 @@ components:
           $ref: '../../../bo4e/fields/com/EnFG/grundlageVerringerungUmlagen.yaml#/components/schemas/grundlageVerringerungUmlagen'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z75.SG10.CCI+Z61
-      required:
-        - grundlageVerringerungUmlagen
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__gueltigkeitszeitraum:
       type: object
       properties:
@@ -87,8 +76,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z04.RFF+Z46
             - SG4.IDE+24.SG12.NAD+Z09.RFF+Z46
             - SG4.IDE+24.SG8.SEQ+Z75
-      required:
-        - zeitraumId
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner:
       type: object
       properties:
@@ -116,14 +103,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z04
         partneradresse:
           $ref: '#/components/schemas/PI_55109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - ansprechpartner
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__ansprechpartner:
       type: object
       properties:
@@ -135,9 +114,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - rufnummern
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -149,9 +125,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG4.IDE+24.SG12.NAD+Z04.SG13.CTA.COM+[TE|EM]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -183,14 +156,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z04
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -222,13 +187,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z09
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - name1
-        - name2
-        - name3
-        - name4
     PI_55109__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2__externeReferenzen:
       type: object
       properties:
@@ -257,11 +215,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z16
-      required:
-        - datenqualitaet
-        - foerderungsLand
-        - gueltigkeitszeitraum
-        - marktlokationsId
     PI_55109__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -269,15 +222,11 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01
-      required:
-        - zeitraumId
     PI_55109__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
         vertragskonditionen:
           $ref: '#/components/schemas/PI_55109__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
-      required:
-        - vertragskonditionen
     PI_55109__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
       type: object
       properties:
@@ -285,8 +234,6 @@ components:
           $ref: '../../../bo4e/fields/com/Vertragskonditionen/haushaltskunde.yaml#/components/schemas/haushaltskunde'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
-      required:
-        - haushaltskunde
     PI_55109__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:

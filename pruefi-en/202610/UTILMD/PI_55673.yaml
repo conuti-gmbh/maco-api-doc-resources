@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55673
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55673:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_55673__transactionData'
       required:
-      - masterData
       - transactionData
     PI_55673__masterData:
       type: object
@@ -36,11 +35,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55673__masterData__USAGE_PERIOD'
-      required:
-      - BALANCING
-      - MARKET_LOCATION
-      - TRANCHE
-      - USAGE_PERIOD
     PI_55673__masterData__BALANCING:
       type: object
       properties:
@@ -80,16 +74,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Balancing/timeSeriesType.yaml#/components/schemas/timeSeriesType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+15++Z21.CAV
-      required:
-      - aggregationResponsibility
-      - balancingGroup
-      - dataQuality
-      - validityPeriod
-      - annualConsumptionForecast
-      - loadProfiles
-      - forecastBasis
-      - temperatureWork
-      - timeSeriesType
     PI_55673__masterData__BALANCING__validityPeriod:
       type: object
       properties:
@@ -99,8 +83,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+[Z85|Z86]
           - SG4.IDE+24.SG8.SEQ+[Z87|Z88]
           - SG4.IDE+24.SG8.SEQ+[Z89|Z90]
-      required:
-      - periodId
     PI_55673__masterData__BALANCING__annualConsumptionForecast:
       type: object
       properties:
@@ -112,9 +94,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+31
-      required:
-      - unit
-      - value
     PI_55673__masterData__BALANCING__loadProfiles:
       type: object
       properties:
@@ -148,14 +127,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+Z02
           - SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+Z03
-      required:
-      - designation
-      - feedIn
-      - profileType
-      - profileFamily
-      - referenceProfileDesignation
-      - dailyParameters
-      - procedure
     PI_55673__masterData__BALANCING__loadProfiles__dailyParameters:
       type: object
       properties:
@@ -175,11 +146,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z87|Z88].SG10.CCI+[ZA0|Z99]
-      required:
-      - serviceProvider
-      - publisher
-      - climateZone
-      - temperatureMeasuringPoint
     PI_55673__masterData__BALANCING__temperatureWork:
       type: object
       properties:
@@ -191,9 +157,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+[Z10|265]
-      required:
-      - unit
-      - value
     PI_55673__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -219,13 +182,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/controlZone.yaml#/components/schemas/controlZone
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+Z18
-      required:
-      - balancingArea
-      - dataQuality
-      - validityPeriod
-      - marketLocationId
-      - marketRoles
-      - controlZone
     PI_55673__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -233,8 +189,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81]
-      required:
-      - periodId
     PI_55673__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -246,9 +200,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z90
-      required:
-      - marketRole
-      - roleCodeNumber
     PI_55673__masterData__TRANCHE:
       type: object
       properties:
@@ -266,11 +217,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Tranche/trancheId.yaml#/components/schemas/trancheId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z21
-      required:
-      - balancingGroup
-      - dataQuality
-      - validityPeriod
-      - trancheId
     PI_55673__masterData__TRANCHE__validityPeriod:
       type: object
       properties:
@@ -278,8 +224,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+[Z94|Z95]
-      required:
-      - periodId
     PI_55673__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -299,10 +243,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/UsagePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]
-      required:
-      - dataQuality
-      - usageFrom
-      - periodId
     PI_55673__transactionData:
       type: object
       properties:
@@ -352,7 +292,6 @@ components:
           - SG4.IDE+24
       required:
       - sender
-      - requestReferenceNumber
       - documentNumber
       - receiver
       - category

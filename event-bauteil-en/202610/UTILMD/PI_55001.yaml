@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55001
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55001:
@@ -32,7 +32,6 @@ components:
       required:
       - ENERGY_SUPPLY_CONTRACT
       - MARKET_LOCATION
-      - GRID_ACCESS_CONTRACT
     PI_55001__masterData__ENERGY_SUPPLY_CONTRACT:
       type: object
       properties:
@@ -91,13 +90,7 @@ components:
         partnerAddress:
           $ref: '#/components/schemas/PI_55001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress'
       required:
-      - salutation
-      - contactPerson
       - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__contactPerson:
       type: object
       properties:
@@ -109,9 +102,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - phoneNumbers
     PI_55001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -123,9 +113,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z04.SG13.CTA.COM+[TE|EM]
-      required:
-      - numberType
-      - phoneNumber
     PI_55001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress:
       type: object
       properties:
@@ -157,14 +144,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z04
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55001__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -193,12 +172,7 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z09
       required:
-      - salutation
-      - businessPartnerRole
       - name1
-      - name2
-      - name3
-      - name4
     PI_55001__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -217,8 +191,6 @@ components:
             $ref: '#/components/schemas/PI_55001__masterData__MARKET_LOCATION__marketLocationType'
       required:
       - requiredProductPackage
-      - marketLocationId
-      - marketLocationType
     PI_55001__masterData__MARKET_LOCATION__requiredProductPackage:
       type: object
       properties:
@@ -242,7 +214,6 @@ components:
       required:
       - product
       - productPackageId
-      - implementationLevelRequirement
     PI_55001__masterData__MARKET_LOCATION__requiredProductPackage__product:
       type: object
       properties:
@@ -268,8 +239,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z16
           - SG4.IDE+24.SG5.LOC+Z22
-      required:
-      - typeValue
     PI_55001__masterData__GRID_ACCESS_CONTRACT:
       type: object
       properties:
@@ -283,9 +252,6 @@ components:
           - SG4.IDE+24.DTM+93
         contractConditions:
           $ref: '#/components/schemas/PI_55001__masterData__GRID_ACCESS_CONTRACT__contractConditions'
-      required:
-      - contractStart
-      - contractConditions
     PI_55001__masterData__GRID_ACCESS_CONTRACT__contractConditions:
       type: object
       properties:
@@ -293,5 +259,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/ContractConditions/householdCustomer.yaml#/components/schemas/householdCustomer
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
-      required:
-      - householdCustomer

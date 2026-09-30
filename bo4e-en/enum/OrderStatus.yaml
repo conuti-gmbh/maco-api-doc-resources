@@ -30,3 +30,5 @@ components:
         - ENFG_SHORE_POWER_FACILITIES
         - CHANGE_OF_DATA
         - NO_CHANGE_OF_DATA
+        - TIME_SERIES_ACCEPTED
+        - TIME_SERIES_NOT_ACCEPTED

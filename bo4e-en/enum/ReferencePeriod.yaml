@@ -1,0 +1,8 @@
+components:
+  schemas:
+    ReferencePeriod:
+      title: ReferencePeriod
+      type: string
+      enum:
+        - DAY
+        - MONTH

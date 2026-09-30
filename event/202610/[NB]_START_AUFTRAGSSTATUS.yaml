@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[NB] START_AUFTRAGSSTATUS'
   version: '202610'
-  x-bpmn-source-sha: '72378213'
-  x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bpmn-source-sha: 0d076b33
+  x-bo4e-schema-version: 1.7.8
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     '[NB] START_AUFTRAGSSTATUS':
@@ -14,14 +14,15 @@ components:
         - transaktionsdaten
         - zusatzdaten
       properties:
+        stammdaten:
+          anyOf:
+            - $ref: ../../event-bauteil/202610/IFTSTA/PI_21039.yaml#/components/schemas/PI_21039__stammdaten
+            - $ref: ../../event-bauteil/202610/IFTSTA/PI_21040.yaml#/components/schemas/PI_21040__stammdaten
         transaktionsdaten:
           type: object
           required:
             - absender
-            - antwortstatus
-            - antwortstatusCodeliste
             - empfaenger
-            - fertigstellungsdatum
             - sparte
           properties:
             absender:
@@ -29,17 +30,11 @@ components:
               properties:
                 rollencodenummer:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
-            antwortstatus:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/antwortstatus.yaml#/components/schemas/antwortstatus
-            antwortstatusCodeliste:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/antwortstatusCodeliste.yaml#/components/schemas/antwortstatusCodeliste
             empfaenger:
               type: object
               properties:
                 rollencodenummer:
                   $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
-            fertigstellungsdatum:
-              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/fertigstellungsdatum.yaml#/components/schemas/fertigstellungsdatum
             sparte:
               $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
@@ -59,15 +54,12 @@ components:
               type: string
               const: START_AUFTRAGSSTATUS
               default: START_AUFTRAGSSTATUS
-      x-pending-pruefis:
-        - '21039'
-        - '21040'
-      x-pending-routing:
-        - pruefi: '21039'
-          required:
-            STATUSMITTEILUNG:
-              - auftragsstatus
-        - pruefi: '21040'
-          required:
-            STATUSMITTEILUNG:
-              - auftragsstatus
+      x-unresolved-routing:
+        - variable: auftragsstatus
+          discriminates: true
+          selects-pruefis:
+            - '21039'
+            - '21040'
+          conditions:
+            - ${auftragsstatus!="GEPLANT"}
+            - ${auftragsstatus=="GEPLANT"}

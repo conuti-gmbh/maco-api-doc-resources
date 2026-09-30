@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: PI_21029
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21029:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_21029__masterData'
+      required:
+      - masterData
+    PI_21029__masterData:
+      type: object
+      properties:
+        STATUS_NOTIFICATION:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21029__masterData__STATUS_NOTIFICATION'
+      required:
+      - STATUS_NOTIFICATION
+    PI_21029__masterData__STATUS_NOTIFICATION:
+      type: object
+      properties:
+        positionData:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21029__masterData__STATUS_NOTIFICATION__positionData'
+      required:
+      - positionData
+    PI_21029__masterData__STATUS_NOTIFICATION__positionData:
+      type: object
+      properties:
+        orderStatus:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/orderStatus.yaml#/components/schemas/orderStatus
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z19
+        endDate:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/endDate.yaml#/components/schemas/endDate
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z24+Z17.DTM+472
+        deliveryDate:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/deliveryDate.yaml#/components/schemas/deliveryDate
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z19.DTM+76
+        locationId:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/locationId.yaml#/components/schemas/locationId
+          x-edifact-segment:
+          - SG14.CNI.LOC+172
+        positionNumber:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/positionNumber.yaml#/components/schemas/positionNumber
+          x-edifact-segment:
+          - SG14.CNI
+        referenceArticleId:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/referenceArticleId.yaml#/components/schemas/referenceArticleId
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z19.RFF+Z45
+        referenceMalo:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/referenceMalo.yaml#/components/schemas/referenceMalo
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z19.RFF+AVE
+          - SG14.CNI.SG15.STS+Z24+Z17.RFF+AVE
+        referencePriceKeyMaster:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/referencePriceKeyMaster.yaml#/components/schemas/referencePriceKeyMaster
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z19.RFF+Z17
+        startDate:
+          $ref: ../../../bo4e-en/fields/com/StatusNotificationPosition/startDate.yaml#/components/schemas/startDate
+          x-edifact-segment:
+          - SG14.CNI.SG15.STS+Z24+Z17.DTM+469
+      required:
+      - locationId
+      - positionNumber

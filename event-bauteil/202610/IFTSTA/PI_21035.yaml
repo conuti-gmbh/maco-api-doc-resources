@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: PI_21035
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21035:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21035__stammdaten'
+      required:
+        - stammdaten
+    PI_21035__stammdaten:
+      type: object
+      properties:
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__stammdaten__STATUSMITTEILUNG'
+      required:
+        - STATUSMITTEILUNG
+    PI_21035__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        ansichtSender:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten__ansichtSender'
+        antwortstatus:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/antwortstatus.yaml#/components/schemas/antwortstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25
+        antwortstatusCodeliste:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/antwortstatusCodeliste.yaml#/components/schemas/antwortstatusCodeliste'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+        vorgangsreferenznummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/vorgangsreferenznummer.yaml#/components/schemas/vorgangsreferenznummer'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.RFF+ACW
+      required:
+        - antwortstatus
+        - antwortstatusCodeliste
+        - auftragsstatus
+        - positionsnummer
+        - vorgangsreferenznummer
+    PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten__ansichtSender:
+      type: object
+      properties:
+        leistungsperiode:
+          $ref: '../../../bo4e/fields/com/AnsichtSender/leistungsperiode.yaml#/components/schemas/leistungsperiode'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.DTM+306
+        menge:
+          $ref: '#/components/schemas/PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten__ansichtSender__menge'
+        tarifstufe:
+          $ref: '../../../bo4e/fields/com/AnsichtSender/tarifstufe.yaml#/components/schemas/tarifstufe'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.QTY
+        verwendungAb:
+          $ref: '../../../bo4e/fields/com/AnsichtSender/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.DTM+163
+        verwendungBis:
+          $ref: '../../../bo4e/fields/com/AnsichtSender/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.DTM+164
+    PI_21035__stammdaten__STATUSMITTEILUNG__positionsdaten__ansichtSender__menge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.QTY
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z25.SG16.EFI+Z01.QTY

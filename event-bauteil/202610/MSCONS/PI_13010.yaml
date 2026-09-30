@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: PI_13010
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_13010:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_13010__stammdaten'
+      required:
+        - stammdaten
+    PI_13010__stammdaten:
+      type: object
+      properties:
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13010__stammdaten__BILANZIERUNG'
+        ENERGIEMENGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13010__stammdaten__ENERGIEMENGE'
+      required:
+        - BILANZIERUNG
+        - ENERGIEMENGE
+    PI_13010__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        lastprofile:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13010__stammdaten__BILANZIERUNG__lastprofile'
+      required:
+        - lastprofile
+    PI_13010__stammdaten__BILANZIERUNG__lastprofile:
+      type: object
+      properties:
+        bezeichnung:
+          $ref: '../../../bo4e/fields/com/Lastprofil/bezeichnung.yaml#/components/schemas/bezeichnung'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04
+      required:
+        - bezeichnung
+    PI_13010__stammdaten__ENERGIEMENGE:
+      type: object
+      properties:
+        energieverbrauch:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13010__stammdaten__ENERGIEMENGE__energieverbrauch'
+        fertigstellungsdatum:
+          $ref: '../../../bo4e/fields/bo/Energiemenge/fertigstellungsdatum.yaml#/components/schemas/fertigstellungsdatum'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.DTM+293
+      required:
+        - energieverbrauch
+    PI_13010__stammdaten__ENERGIEMENGE__energieverbrauch:
+      type: object
+      properties:
+        enddatum:
+          $ref: '../../../bo4e/fields/com/Verbrauch/enddatum.yaml#/components/schemas/enddatum'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.SG10.QTY.DTM+164
+        messwertstatus:
+          $ref: '../../../bo4e/fields/com/Verbrauch/messwertstatus.yaml#/components/schemas/messwertstatus'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.SG10.QTY
+        obiskennzahl:
+          $ref: '../../../bo4e/fields/com/Verbrauch/obiskennzahl.yaml#/components/schemas/obiskennzahl'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.PIA+5
+        position:
+          $ref: '../../../bo4e/fields/com/Verbrauch/position.yaml#/components/schemas/position'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN
+        startdatum:
+          $ref: '../../../bo4e/fields/com/Verbrauch/startdatum.yaml#/components/schemas/startdatum'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.SG10.QTY.DTM+163
+        wert:
+          $ref: '../../../bo4e/fields/com/Verbrauch/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.SG10.QTY
+      required:
+        - enddatum
+        - messwertstatus
+        - obiskennzahl
+        - position
+        - startdatum
+        - wert

@@ -1,0 +1,4 @@
+components:
+  schemas:
+    assignmentRule:
+      $ref: ../../../enum/AssignmentRule.yaml#/components/schemas/AssignmentRule

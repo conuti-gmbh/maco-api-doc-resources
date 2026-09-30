@@ -1,0 +1,8 @@
+components:
+  schemas:
+    AssignmentRule:
+      title: AssignmentRule
+      type: string
+      enum:
+        - SAME_SUPPLY_DIRECTION
+        - OPPOSITE_SUPPLY_DIRECTION

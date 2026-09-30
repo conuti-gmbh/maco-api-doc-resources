@@ -1,0 +1,4 @@
+components:
+  schemas:
+    justificationText:
+      type: string

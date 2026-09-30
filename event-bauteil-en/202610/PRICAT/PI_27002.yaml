@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_27002
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_27002:
@@ -34,7 +34,6 @@ components:
             $ref: '#/components/schemas/PI_27002__masterData__PRICE_SHEET__pricePositions'
       required:
       - validity
-      - pricePositions
     PI_27002__masterData__PRICE_SHEET__validity:
       type: object
       properties:
@@ -88,12 +87,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PricePosition/timeBasis.yaml#/components/schemas/timeBasis
           x-edifact-segment:
           - SG17.PGI+9.SG36.LIN.SG40.PRI+CAL
-      required:
-      - articleId
-      - bdewArticleNumber
-      - positionNumber
-      - priceSteps
-      - timeBasis
     PI_27002__masterData__PRICE_SHEET__pricePositions__priceSteps:
       type: object
       properties:
@@ -113,5 +106,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/PriceTier/tierLimitFrom.yaml#/components/schemas/tierLimitFrom
           x-edifact-segment:
           - SG17.PGI+9.SG36.LIN.SG40.PRI+CAL.RNG+10+KWH
-      required:
-      - unitPrice

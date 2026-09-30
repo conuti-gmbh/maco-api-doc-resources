@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_37010
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_37010:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_37010__transactionData'
       required:
-      - masterData
       - transactionData
     PI_37010__masterData:
       type: object
@@ -24,8 +23,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_37010__masterData__COMMUNICATION_DATA'
-      required:
-      - COMMUNICATION_DATA
     PI_37010__masterData__COMMUNICATION_DATA:
       type: object
       properties:
@@ -43,10 +40,6 @@ components:
             $ref: '#/components/schemas/PI_37010__masterData__COMMUNICATION_DATA__communicationDetails'
         marketParticipant:
           $ref: '#/components/schemas/PI_37010__masterData__COMMUNICATION_DATA__marketParticipant'
-      required:
-      - communicationDataSheetInactive
-      - communicationDetails
-      - marketParticipant
     PI_37010__masterData__COMMUNICATION_DATA__communicationDetails:
       type: object
       properties:
@@ -144,15 +137,6 @@ components:
           - SG4.NAD+Z33
         partnerAddress:
           $ref: '#/components/schemas/PI_37010__masterData__COMMUNICATION_DATA__communicationDetails__partnerAddress'
-      required:
-      - salutation
-      - contactPerson
-      - communicationRole
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_37010__masterData__COMMUNICATION_DATA__communicationDetails__contactPerson:
       type: object
       properties:
@@ -184,10 +168,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_37010__masterData__COMMUNICATION_DATA__communicationDetails__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_37010__masterData__COMMUNICATION_DATA__communicationDetails__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -215,9 +195,6 @@ components:
           - SG4.NAD+Z19.SG7.CTA+IC.COM
           - SG4.NAD+Z20.SG7.CTA+IC.COM
           - SG4.NAD+Z33.SG7.CTA+IC.COM
-      required:
-      - numberType
-      - phoneNumber
     PI_37010__masterData__COMMUNICATION_DATA__communicationDetails__partnerAddress:
       type: object
       properties:
@@ -305,14 +282,6 @@ components:
           - SG4.NAD+Z19
           - SG4.NAD+Z20
           - SG4.NAD+Z33
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_37010__masterData__COMMUNICATION_DATA__marketParticipant:
       type: object
       properties:
@@ -378,21 +347,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/website.yaml#/components/schemas/website
           x-edifact-segment:
           - SG4.NAD.FTX+Z13
-      required:
-      - salutation
-      - bankAccount
-      - reachability
-      - faxNumber
-      - commercialClassification
-      - marketRole
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
-      - taxNumber
-      - vatId
-      - website
     PI_37010__masterData__COMMUNICATION_DATA__marketParticipant__bankAccount:
       type: object
       properties:
@@ -412,11 +366,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/BankAccount/creditInstitution.yaml#/components/schemas/creditInstitution
           x-edifact-segment:
           - SG4.NAD.FII+BK
-      required:
-      - bic
-      - iban
-      - accountHolder
-      - creditInstitution
     PI_37010__masterData__COMMUNICATION_DATA__marketParticipant__reachability:
       type: object
       properties:
@@ -428,9 +377,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Reachability/time.yaml#/components/schemas/time
           x-edifact-segment:
           - SG4.NAD.SG12.CCI+Z40.DTM
-      required:
-      - availability
-      - time
     PI_37010__masterData__COMMUNICATION_DATA__marketParticipant__partnerAddress:
       type: object
       properties:
@@ -462,14 +408,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.NAD
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_37010__transactionData:
       type: object
       properties:
@@ -514,7 +452,6 @@ components:
       - messageDate
       - messageReferenceNumber
       - verificationIdentifier
-      - processReferenceNumber
     PI_37010__transactionData__sender:
       type: object
       properties:

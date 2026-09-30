@@ -1,0 +1,5 @@
+components:
+  schemas:
+    correctionFactor:
+      type: number
+      format: float

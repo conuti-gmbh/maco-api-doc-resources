@@ -1,0 +1,4 @@
+components:
+  schemas:
+    balancedEnergyQuantity:
+      $ref: ../../../com/Quantity.yaml#/components/schemas/Quantity

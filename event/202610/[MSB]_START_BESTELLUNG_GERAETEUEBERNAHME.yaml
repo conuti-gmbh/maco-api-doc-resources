@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[MSB] START_BESTELLUNG_GERAETEUEBERNAHME'
   version: '202610'
-  x-bpmn-source-sha: 23ab5062
-  x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bpmn-source-sha: 9f68695f
+  x-bo4e-schema-version: 1.7.8
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     '[MSB] START_BESTELLUNG_GERAETEUEBERNAHME':
@@ -15,11 +15,34 @@ components:
         - zusatzdaten
       properties:
         stammdaten:
-          oneOf:
+          anyOf:
             - $ref: ../../event-bauteil/202610/ORDERS/PI_17001.yaml#/components/schemas/PI_17001__stammdaten
         transaktionsdaten:
           type: object
+          required:
+            - absender
+            - empfaenger
+            - kategorie
+            - sparte
           properties:
+            absender:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            empfaenger:
+              type: object
+              properties:
+                marktrolle:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/marktrolle.yaml#/components/schemas/marktrolle
+                rollencodenummer:
+                  $ref: ../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer
+            kategorie:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/kategorie.yaml#/components/schemas/kategorie
+            sparte:
+              $ref: ../../bo4e/fields/cdoc/Transaktionsdaten/sparte.yaml#/components/schemas/sparte
             pruefidentifikator:
               description: Wird dynamisch im Event-Prozess ermittelt. Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 17001.
               examples:
@@ -36,5 +59,3 @@ components:
               type: string
               const: START_BESTELLUNG_GERAETEUEBERNAHME
               default: START_BESTELLUNG_GERAETEUEBERNAHME
-      x-pending-dmn:
-        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.

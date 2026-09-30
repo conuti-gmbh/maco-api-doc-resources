@@ -1,0 +1,4 @@
+components:
+  schemas:
+    dataStatusUENB:
+      $ref: ../../../com/DataStatus.yaml#/components/schemas/DataStatus

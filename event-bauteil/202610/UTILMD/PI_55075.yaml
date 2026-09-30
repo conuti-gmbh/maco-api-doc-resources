@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55075
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55075:
@@ -41,8 +41,6 @@ components:
         - BILANZIERUNG
         - MARKTLOKATION
         - MESSLOKATION
-        - TRANCHE
-        - ZAEHLER
     PI_55075__stammdaten__BILANZIERUNG:
       type: object
       properties:
@@ -59,7 +57,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+15++Z21.CAV
       required:
-        - bilanzkreis
         - marktlokationsId
         - zeitreihentyp
     PI_55075__stammdaten__MARKTLOKATION:
@@ -94,12 +91,8 @@ components:
             $ref: '#/components/schemas/PI_55075__stammdaten__MARKTLOKATION__zaehlwerke'
       required:
         - energieherkunft
-        - foerderungsLand
-        - lokationsadresse
         - marktlokationsId
-        - marktrollen
         - statusErzeugendeMalo
-        - zaehlwerke
     PI_55075__stammdaten__MARKTLOKATION__energieherkunft:
       type: object
       properties:
@@ -142,15 +135,6 @@ components:
             - SG4.IDE+24.SG12.NAD+DP
         zusatzInformation:
           $ref: '#/components/schemas/PI_55075__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_55075__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
       type: object
       properties:
@@ -174,12 +158,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+DP
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_55075__stammdaten__MARKTLOKATION__marktrollen:
       type: object
       properties:
@@ -191,9 +169,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z89
-      required:
-        - marktrolle
-        - rollencodenummer
     PI_55075__stammdaten__MARKTLOKATION__zaehlwerke:
       type: object
       properties:
@@ -201,8 +176,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z02.PIA+5
-      required:
-        - obisKennzahl
     PI_55075__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -239,13 +212,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55075__stammdaten__TRANCHE__zaehlwerke'
-      required:
-        - aufteilungsmenge
-        - bilanzkreis
-        - bildungTranchengroesse
-        - marktrollen
-        - tranchenId
-        - zaehlwerke
     PI_55075__stammdaten__TRANCHE__aufteilungsmenge:
       type: object
       properties:
@@ -257,9 +223,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z15.SG9.QTY+11
-      required:
-        - einheit
-        - wert
     PI_55075__stammdaten__TRANCHE__marktrollen:
       type: object
       properties:
@@ -271,9 +234,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z15.SG10.CCI+++ZB3.CAV+Z89
-      required:
-        - marktrolle
-        - rollencodenummer
     PI_55075__stammdaten__TRANCHE__zaehlwerke:
       type: object
       properties:
@@ -281,8 +241,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z17.PIA+5
-      required:
-        - obisKennzahl
     PI_55075__stammdaten__ZAEHLER:
       type: object
       properties:
@@ -330,16 +288,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55075__stammdaten__ZAEHLER__zaehlwerke'
-      required:
-        - gateway
-        - geraete
-        - marktlokationsId
-        - messlokationsId
-        - zaehlerauspraegung
-        - zaehlernummer
-        - zaehlertyp
-        - zaehlertypspezifikation
-        - zaehlwerke
     PI_55075__stammdaten__ZAEHLER__geraete:
       type: object
       properties:
@@ -363,10 +311,6 @@ components:
           $ref: '../../../bo4e/fields/com/Geraet/weitereGeraetenummern.yaml#/components/schemas/weitereGeraetenummern'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV+Z30
-      required:
-        - geraeteeigenschaften
-        - geraetenummer
-        - geraetetyp
     PI_55075__stammdaten__ZAEHLER__geraete__geraeteeigenschaften:
       type: object
       properties:
@@ -378,9 +322,6 @@ components:
           $ref: '../../../bo4e/fields/com/Geraeteeigenschaften/geraetemerkmal.yaml#/components/schemas/geraetemerkmal'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z04.SG10.CCI+++Z25.CAV
-      required:
-        - faktor
-        - geraetemerkmal
     PI_55075__stammdaten__ZAEHLER__zaehlwerke:
       type: object
       properties:
@@ -404,8 +345,3 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/wertegranularitaet.yaml#/components/schemas/wertegranularitaet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV
-      required:
-        - nachkommastelle
-        - obisKennzahl
-        - vorkommastelle
-        - wertegranularitaet

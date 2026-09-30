@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_35004
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_35004:
@@ -58,16 +58,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_35004__stammdaten__WERTE_NACH_TYP2'
       required:
-        - AD_HOC_STEUERKANAL
         - ANFRAGE
-        - LEISTUNGSKURVENDEFINITION
-        - MARKTLOKATION
-        - MESSLOKATION
-        - NETZLOKATION
-        - SCHALTZEITDEFINITION
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
-        - WERTE_NACH_TYP2
     PI_35004__stammdaten__AD_HOC_STEUERKANAL:
       type: object
       properties:
@@ -75,8 +66,6 @@ components:
           $ref: '../../../bo4e/fields/bo/AdHocSteuerkanal/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
           x-edifact-segment:
             - SG27.LIN+Z66.PIA+5
-      required:
-        - konfigurationsprodukt
     PI_35004__stammdaten__ANFRAGE:
       type: object
       properties:
@@ -93,8 +82,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_35004__stammdaten__LEISTUNGSKURVENDEFINITION__leistungskurven'
-      required:
-        - leistungskurven
     PI_35004__stammdaten__LEISTUNGSKURVENDEFINITION__leistungskurven:
       type: object
       properties:
@@ -106,9 +93,6 @@ components:
           $ref: '../../../bo4e/fields/com/Leistungskurve/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
           x-edifact-segment:
             - SG27.LIN+Z65.PIA+5
-      required:
-        - code
-        - konfigurationsprodukt
     PI_35004__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -116,8 +100,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktlokation/marktlokationsId.yaml#/components/schemas/marktlokationsId'
           x-edifact-segment:
             - SG11.NAD+DP.LOC+172
-      required:
-        - marktlokationsId
     PI_35004__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -125,8 +107,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
           x-edifact-segment:
             - SG11.NAD+DP.LOC+172
-      required:
-        - messlokationsId
     PI_35004__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -134,8 +114,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Netzlokation/netzlokationsId.yaml#/components/schemas/netzlokationsId'
           x-edifact-segment:
             - SG11.NAD+DP.LOC+172
-      required:
-        - netzlokationsId
     PI_35004__stammdaten__SCHALTZEITDEFINITION:
       type: object
       properties:
@@ -143,8 +121,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_35004__stammdaten__SCHALTZEITDEFINITION__schaltzeiten'
-      required:
-        - schaltzeiten
     PI_35004__stammdaten__SCHALTZEITDEFINITION__schaltzeiten:
       type: object
       properties:
@@ -156,9 +132,6 @@ components:
           $ref: '../../../bo4e/fields/com/Schaltzeit/konfigurationsprodukt.yaml#/components/schemas/konfigurationsprodukt'
           x-edifact-segment:
             - SG27.LIN+Z64.PIA+5
-      required:
-        - code
-        - konfigurationsprodukt
     PI_35004__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -166,8 +139,6 @@ components:
           $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG11.NAD+DP.LOC+172
-      required:
-        - ressourcenId
     PI_35004__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -175,8 +146,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG11.NAD+DP.LOC+172
-      required:
-        - ressourcenId
     PI_35004__stammdaten__WERTE_NACH_TYP2:
       type: object
       properties:
@@ -202,14 +171,6 @@ components:
           $ref: '#/components/schemas/PI_35004__stammdaten__WERTE_NACH_TYP2__zertifikatsNutzer'
         zieladresse:
           $ref: '#/components/schemas/PI_35004__stammdaten__WERTE_NACH_TYP2__zieladresse'
-      required:
-        - aenderungsmoeglichkeitKonfiguration
-        - aussteller
-        - konfigurationsprodukt
-        - messprodukt
-        - schwellwerte
-        - zertifikatsNutzer
-        - zieladresse
     PI_35004__stammdaten__WERTE_NACH_TYP2__aussteller:
       type: object
       properties:
@@ -233,12 +194,6 @@ components:
           $ref: '../../../bo4e/fields/com/Aussteller/aussteller5.yaml#/components/schemas/aussteller5'
           x-edifact-segment:
             - SG27.LIN+Z68.FTX+Z24
-      required:
-        - aussteller1
-        - aussteller2
-        - aussteller3
-        - aussteller4
-        - aussteller5
     PI_35004__stammdaten__WERTE_NACH_TYP2__schwellwerte:
       type: object
       properties:
@@ -254,10 +209,6 @@ components:
           $ref: '../../../bo4e/fields/com/Schwellwert/untererSchwellwert.yaml#/components/schemas/untererSchwellwert'
           x-edifact-segment:
             - SG27.LIN+Z68.SG28.CCI+Z60
-      required:
-        - konfigurationsprodukt
-        - obererSchwellwert
-        - untererSchwellwert
     PI_35004__stammdaten__WERTE_NACH_TYP2__zertifikatsNutzer:
       type: object
       properties:
@@ -281,12 +232,6 @@ components:
           $ref: '../../../bo4e/fields/com/ZertifikatsNutzer/zertifikatsNutzer5.yaml#/components/schemas/zertifikatsNutzer5'
           x-edifact-segment:
             - SG27.LIN+Z68.FTX+Z23
-      required:
-        - zertifikatsNutzer1
-        - zertifikatsNutzer2
-        - zertifikatsNutzer3
-        - zertifikatsNutzer4
-        - zertifikatsNutzer5
     PI_35004__stammdaten__WERTE_NACH_TYP2__zieladresse:
       type: object
       properties:
@@ -310,9 +255,3 @@ components:
           $ref: '../../../bo4e/fields/com/Zieladresse/zieladresse5.yaml#/components/schemas/zieladresse5'
           x-edifact-segment:
             - SG27.LIN+Z68.FTX+Z17
-      required:
-        - zieladresse1
-        - zieladresse2
-        - zieladresse3
-        - zieladresse4
-        - zieladresse5

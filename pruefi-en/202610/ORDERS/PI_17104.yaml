@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17104
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17104:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_17104__transactionData'
       required:
-      - masterData
       - transactionData
     PI_17104__masterData:
       type: object
@@ -28,9 +27,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17104__masterData__METERING_LOCATION'
-      required:
-      - REQUEST
-      - METERING_LOCATION
     PI_17104__masterData__REQUEST:
       type: object
       properties:
@@ -38,15 +34,11 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
           x-edifact-segment:
           - SG2.NAD+DP.LOC+172
-      required:
-      - locationId
     PI_17104__masterData__METERING_LOCATION:
       type: object
       properties:
         meteringAddress:
           $ref: '#/components/schemas/PI_17104__masterData__METERING_LOCATION__meteringAddress'
-      required:
-      - meteringAddress
     PI_17104__masterData__METERING_LOCATION__meteringAddress:
       type: object
       properties:
@@ -80,15 +72,6 @@ components:
           - SG2.NAD+Z03
         additionalInformation:
           $ref: '#/components/schemas/PI_17104__masterData__METERING_LOCATION__meteringAddress__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_17104__masterData__METERING_LOCATION__meteringAddress__additionalInformation:
       type: object
       properties:
@@ -112,12 +95,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG2.NAD+Z03
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5
     PI_17104__transactionData:
       type: object
       properties:
@@ -181,9 +158,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_17104__transactionData__sender__contactPerson__phoneNumbers'
       required:
-      - eMailAddress
       - lastName
-      - phoneNumbers
     PI_17104__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -195,9 +170,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_17104__transactionData__receiver:
       type: object
       properties:

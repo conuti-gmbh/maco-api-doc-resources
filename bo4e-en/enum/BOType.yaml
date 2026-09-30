@@ -52,3 +52,4 @@ components:
         - BALANCING_GROUP
         - USAGE_PERIOD
         - TARIFF_INFO
+        - SUM_TIME_SERIES

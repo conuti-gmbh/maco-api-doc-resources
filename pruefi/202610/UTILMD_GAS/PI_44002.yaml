@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_44002
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_44002:
@@ -50,7 +50,6 @@ components:
         - MARKTLOKATION
         - MESSLOKATION
         - NETZNUTZUNGSVERTRAG
-        - ZAEHLER
     PI_44002__stammdaten__BILANZIERUNG:
       type: object
       properties:
@@ -83,11 +82,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
       required:
-        - bilanzkreise
-        - fallgruppenzuordnung
-        - jahresverbrauchsprognose
-        - kundenwert
-        - lastprofile
         - prognosegrundlage
     PI_44002__stammdaten__BILANZIERUNG__bilanzkreise:
       type: object
@@ -96,8 +90,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Bilanzkreis/bezeichnung.yaml#/components/schemas/bezeichnung'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z19
-      required:
-        - bezeichnung
     PI_44002__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
       type: object
       properties:
@@ -109,9 +101,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
-      required:
-        - einheit
-        - wert
     PI_44002__stammdaten__BILANZIERUNG__kundenwert:
       type: object
       properties:
@@ -119,8 +108,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+Y02
-      required:
-        - wert
     PI_44002__stammdaten__BILANZIERUNG__lastprofile:
       type: object
       properties:
@@ -138,11 +125,6 @@ components:
           $ref: '../../../bo4e/fields/com/Lastprofil/verfahren.yaml#/components/schemas/verfahren'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI+Z12
-      required:
-        - bezeichnung
-        - herausgeber
-        - tagesparameter
-        - verfahren
     PI_44002__stammdaten__BILANZIERUNG__lastprofile__tagesparameter:
       type: object
       properties:
@@ -162,11 +144,6 @@ components:
           $ref: '../../../bo4e/fields/com/Tagesparameter/temperaturmessstelle.yaml#/components/schemas/temperaturmessstelle'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI
-      required:
-        - dienstanbieter
-        - herausgeber
-        - klimazone
-        - temperaturmessstelle
     PI_44002__stammdaten__ENERGIELIEFERVERTRAG:
       type: object
       properties:
@@ -212,13 +189,7 @@ components:
         partneradresse:
           $ref: '#/components/schemas/PI_44002__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
       required:
-        - anrede
-        - gewerbekennzeichnung
         - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_44002__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -250,14 +221,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z04
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_44002__stammdaten__ENERGIELIEFERVERTRAG__vertragskonditionen:
       type: object
       properties:
@@ -299,12 +262,7 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z09
       required:
-        - anrede
-        - gewerbekennzeichnung
         - name1
-        - name2
-        - name3
-        - name4
     PI_44002__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2__externeReferenzen:
       type: object
       properties:
@@ -339,7 +297,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_44002__stammdaten__MARKTLOKATION__zaehlwerke'
       required:
-        - lokationsadresse
         - marktgebiet
         - marktlokationsId
         - netzebene
@@ -377,15 +334,6 @@ components:
             - SG4.IDE+24.SG12.NAD+DP
         zusatzInformation:
           $ref: '#/components/schemas/PI_44002__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_44002__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
       type: object
       properties:
@@ -409,12 +357,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+DP
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_44002__stammdaten__MARKTLOKATION__zaehlwerke:
       type: object
       properties:
@@ -430,9 +372,7 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZE4.CAV
       required:
-        - konzessionsabgabe
         - obisKennzahl
-        - wertegranularitaet
     PI_44002__stammdaten__MARKTLOKATION__zaehlwerke__konzessionsabgabe:
       type: object
       properties:
@@ -448,10 +388,6 @@ components:
           $ref: '../../../bo4e/fields/com/Konzessionsabgabe/satz.yaml#/components/schemas/satz'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z07.SG10.CCI+++Z08.CAV
-      required:
-        - kategorie
-        - kosten
-        - satz
     PI_44002__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -473,8 +409,6 @@ components:
             - SG4.IDE+24.SG8.SEQ+Z18.RFF+Z19
       required:
         - ablesekartenempfaenger
-        - gasqualitaet
-        - marktrollen
         - messlokationsId
     PI_44002__stammdaten__MESSLOKATION__ablesekartenempfaenger:
       type: object
@@ -506,13 +440,7 @@ components:
         partneradresse:
           $ref: '#/components/schemas/PI_44002__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse'
       required:
-        - anrede
-        - gewerbekennzeichnung
         - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_44002__stammdaten__MESSLOKATION__ablesekartenempfaenger__partneradresse:
       type: object
       properties:
@@ -544,14 +472,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z05
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_44002__stammdaten__MESSLOKATION__marktrollen:
       type: object
       properties:
@@ -569,10 +489,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - rollencodenummer
-        - weiterverpflichtet
     PI_44002__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -592,7 +508,6 @@ components:
           $ref: '#/components/schemas/PI_44002__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen'
       required:
         - gemeinderabatt
-        - vertragsbeginn
         - vertragskonditionen
     PI_44002__stammdaten__NETZNUTZUNGSVERTRAG__vertragskonditionen:
       type: object
@@ -680,15 +595,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44002__stammdaten__ZAEHLER__zaehlwerke'
-      required:
-        - geraete
-        - messlokationsId
-        - messwerterfassung
-        - zaehlergroesse
-        - zaehlernummer
-        - zaehlertyp
-        - zaehlertypspezifikation
-        - zaehlwerke
     PI_44002__stammdaten__ZAEHLER__geraete:
       type: object
       properties:
@@ -701,9 +607,6 @@ components:
             - SG4.IDE+24.SG8.SEQ+Z09.SG10.CCI+++Z64.CAV+Z30
             - SG4.IDE+24.SG8.SEQ+Z13.SG10.CCI+++Z75.CAV+Z30
             - SG4.IDE+24.SG8.SEQ+Z50.SG10.CCI+++E13.CAV+Z30
-      required:
-        - geraeteeigenschaften
-        - geraetenummer
     PI_44002__stammdaten__ZAEHLER__geraete__geraeteeigenschaften:
       type: object
       properties:
@@ -712,8 +615,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z05.SG10.CCI+++Z26.CAV
             - SG4.IDE+24.SG8.SEQ+Z09.SG10.CCI+++Z64.CAV
-      required:
-        - geraetemerkmal
     PI_44002__stammdaten__ZAEHLER__zaehlwerke:
       type: object
       properties:
@@ -737,12 +638,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/wertegranularitaet.yaml#/components/schemas/wertegranularitaet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z20.SG10.CCI+++ZE4.CAV
-      required:
-        - bezeichnung
-        - nachkommastelle
-        - obisKennzahl
-        - vorkommastelle
-        - wertegranularitaet
     PI_44002__transaktionsdaten:
       type: object
       properties:
@@ -818,7 +713,6 @@ components:
         - nachrichtenreferenznummer
         - pruefidentifikator
         - transaktionsgrund
-        - vertragsbeginn
         - vorgangsnummer
     PI_44002__transaktionsdaten__absender:
       type: object

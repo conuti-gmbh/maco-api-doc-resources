@@ -1,0 +1,91 @@
+openapi: 3.1.0
+info:
+  title: PI_13011
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_13011:
+      type: object
+      properties:
+        masterData:
+          $ref: '#/components/schemas/PI_13011__masterData'
+      required:
+      - masterData
+    PI_13011__masterData:
+      type: object
+      properties:
+        BALANCING:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13011__masterData__BALANCING'
+        ENERGY_QUANTITY:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13011__masterData__ENERGY_QUANTITY'
+      required:
+      - BALANCING
+      - ENERGY_QUANTITY
+    PI_13011__masterData__BALANCING:
+      type: object
+      properties:
+        loadProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13011__masterData__BALANCING__loadProfiles'
+      required:
+      - loadProfiles
+    PI_13011__masterData__BALANCING__loadProfiles:
+      type: object
+      properties:
+        profileFamily:
+          $ref: ../../../bo4e-en/fields/com/LoadProfile/profileFamily.yaml#/components/schemas/profileFamily
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04
+      required:
+      - profileFamily
+    PI_13011__masterData__ENERGY_QUANTITY:
+      type: object
+      properties:
+        beginDate:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/beginDate.yaml#/components/schemas/beginDate
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04.DTM+157
+        energyConsumption:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_13011__masterData__ENERGY_QUANTITY__energyConsumption'
+        completionDate:
+          $ref: ../../../bo4e-en/fields/bo/EnergyQuantity/completionDate.yaml#/components/schemas/completionDate
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04.DTM+293
+      required:
+      - beginDate
+      - energyConsumption
+      - completionDate
+    PI_13011__masterData__ENERGY_QUANTITY__energyConsumption:
+      type: object
+      properties:
+        measurementValueStatus:
+          $ref: ../../../bo4e-en/fields/com/Consumption/measurementValueStatus.yaml#/components/schemas/measurementValueStatus
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.SG10.QTY
+        obisNumber:
+          $ref: ../../../bo4e-en/fields/com/Consumption/obisNumber.yaml#/components/schemas/obisNumber
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.PIA+5
+        position:
+          $ref: ../../../bo4e-en/fields/com/Consumption/position.yaml#/components/schemas/position
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN
+        value:
+          $ref: ../../../bo4e-en/fields/com/Consumption/value.yaml#/components/schemas/value
+          x-edifact-segment:
+          - SG5.NAD+DED.SG6.LOC+Z04.SG9.LIN.SG10.QTY
+      required:
+      - measurementValueStatus
+      - obisNumber
+      - position
+      - value

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_13002
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_13002:
@@ -52,9 +52,7 @@ components:
             - SG1.RFF+Z30
       required:
         - energieverbrauch
-        - konfiguration
         - lokationsId
-        - referenzStammdatenmeldungMsb
     PI_13002__stammdaten__ENERGIEMENGE__energieverbrauch:
       type: object
       properties:
@@ -111,11 +109,17 @@ components:
           x-edifact-segment:
             - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z31
             - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z32
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z33
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z34
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z40
         status:
           $ref: '../../../bo4e/fields/com/StatusZusatzInformation/status.yaml#/components/schemas/status'
           x-edifact-segment:
             - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z31
             - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z32
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z33
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z34
+            - SG5.NAD+DP.SG6.LOC+172.SG9.LIN.SG10.QTY.STS+Z40
     PI_13002__stammdaten__ZAEHLER:
       type: object
       properties:
@@ -162,7 +166,6 @@ components:
             - SG1.RFF+Z13
       required:
         - absender
-        - anfrageReferenz
         - dokumentennummer
         - empfaenger
         - kategorie

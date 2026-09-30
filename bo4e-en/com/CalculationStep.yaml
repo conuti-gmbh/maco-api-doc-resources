@@ -25,6 +25,12 @@ components:
         meteringLocationId:
           $ref: >-
             ../fields/com/CalculationStep/meteringLocationId.yaml#/components/schemas/meteringLocationId
+        marketLocationId:
+          $ref: >-
+            ../fields/com/CalculationStep/marketLocationId.yaml#/components/schemas/marketLocationId
         energyFlowDirection:
           $ref: >-
             ../fields/com/CalculationStep/energyFlowDirection.yaml#/components/schemas/energyFlowDirection
+        designationOperands:
+          $ref: >-
+            ../fields/com/CalculationStep/designationOperands.yaml#/components/schemas/designationOperands

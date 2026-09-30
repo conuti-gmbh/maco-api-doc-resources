@@ -1,0 +1,4 @@
+components:
+  schemas:
+    energyQuantity:
+      $ref: ../../../com/Consumption.yaml#/components/schemas/Consumption

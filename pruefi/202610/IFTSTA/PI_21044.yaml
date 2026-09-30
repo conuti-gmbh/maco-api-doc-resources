@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: PI_21044
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21044:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21044__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_21044__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_21044__stammdaten:
+      type: object
+      properties:
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21044__stammdaten__STATUSMITTEILUNG'
+      required:
+        - STATUSMITTEILUNG
+    PI_21044__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21044__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_21044__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        anfrageReferenz:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/anfrageReferenz.yaml#/components/schemas/anfrageReferenz'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z21.RFF+AGI
+        auftragsstatus:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/auftragsstatus.yaml#/components/schemas/auftragsstatus'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z21
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+        statusVeraenderungsZeitpunkt:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/statusVeraenderungsZeitpunkt.yaml#/components/schemas/statusVeraenderungsZeitpunkt'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z21.DTM+334
+      required:
+        - anfrageReferenz
+        - auftragsstatus
+        - positionsnummer
+        - statusVeraenderungsZeitpunkt
+    PI_21044__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_21044__transaktionsdaten__absender'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z72
+        empfaenger:
+          $ref: '#/components/schemas/PI_21044__transaktionsdaten__empfaenger'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z21.RFF+Z13
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_21044__transaktionsdaten__absender:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MS
+      required:
+        - rollencodenummer
+        - rollencodetyp
+    PI_21044__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

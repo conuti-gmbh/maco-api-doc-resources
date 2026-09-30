@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_44001
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_44001:
@@ -44,10 +44,8 @@ components:
       required:
       - BALANCING
       - ENERGY_SUPPLY_CONTRACT
-      - MARKET_LOCATION
       - METERING_LOCATION
       - GRID_ACCESS_CONTRACT
-      - METER
     PI_44001__masterData__BALANCING:
       type: object
       properties:
@@ -69,10 +67,6 @@ components:
             $ref: '#/components/schemas/PI_44001__masterData__BALANCING__loadProfiles'
       required:
       - balancingGroups
-      - caseGroupAssignment
-      - annualConsumptionForecast
-      - customerValue
-      - loadProfiles
     PI_44001__masterData__BALANCING__balancingGroups:
       type: object
       properties:
@@ -97,9 +91,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
-      required:
-      - unit
-      - value
     PI_44001__masterData__BALANCING__customerValue:
       type: object
       properties:
@@ -107,8 +98,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+Y02
-      required:
-      - value
     PI_44001__masterData__BALANCING__loadProfiles:
       type: object
       properties:
@@ -124,10 +113,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/LoadProfile/procedure.yaml#/components/schemas/procedure
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z35.SG10.CCI+Z12
-      required:
-      - designation
-      - publisher
-      - procedure
     PI_44001__masterData__ENERGY_SUPPLY_CONTRACT:
       type: object
       properties:
@@ -173,13 +158,7 @@ components:
         partnerAddress:
           $ref: '#/components/schemas/PI_44001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress'
       required:
-      - salutation
-      - commercialClassification
       - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_44001__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress:
       type: object
       properties:
@@ -211,14 +190,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z04
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_44001__masterData__ENERGY_SUPPLY_CONTRACT__contractConditions:
       type: object
       properties:
@@ -260,12 +231,7 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z09
       required:
-      - salutation
-      - commercialClassification
       - name1
-      - name2
-      - name3
-      - name4
     PI_44001__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2__externalReferences:
       type: object
       properties:
@@ -292,10 +258,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_44001__masterData__MARKET_LOCATION__meterRegisters'
-      required:
-      - locationAddress
-      - marketLocationId
-      - meterRegisters
     PI_44001__masterData__MARKET_LOCATION__locationAddress:
       type: object
       properties:
@@ -329,15 +291,6 @@ components:
           - SG4.IDE+24.SG12.NAD+DP
         additionalInformation:
           $ref: '#/components/schemas/PI_44001__masterData__MARKET_LOCATION__locationAddress__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_44001__masterData__MARKET_LOCATION__locationAddress__additionalInformation:
       type: object
       properties:
@@ -361,19 +314,11 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+DP
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5
     PI_44001__masterData__MARKET_LOCATION__meterRegisters:
       type: object
       properties:
         concessionFee:
           $ref: '#/components/schemas/PI_44001__masterData__MARKET_LOCATION__meterRegisters__concessionFee'
-      required:
-      - concessionFee
     PI_44001__masterData__MARKET_LOCATION__meterRegisters__concessionFee:
       type: object
       properties:
@@ -389,10 +334,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ConcessionFee/rate.yaml#/components/schemas/rate
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z07.SG10.CCI+++Z08.CAV
-      required:
-      - category
-      - costs
-      - rate
     PI_44001__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -405,7 +346,6 @@ components:
           - SG4.IDE+24.SG5.LOC+172
       required:
       - readingCardRecipient
-      - meteringLocationId
     PI_44001__masterData__METERING_LOCATION__readingCardRecipient:
       type: object
       properties:
@@ -436,13 +376,7 @@ components:
         partnerAddress:
           $ref: '#/components/schemas/PI_44001__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress'
       required:
-      - salutation
-      - commercialClassification
       - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_44001__masterData__METERING_LOCATION__readingCardRecipient__partnerAddress:
       type: object
       properties:
@@ -474,14 +408,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z05
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_44001__masterData__GRID_ACCESS_CONTRACT:
       type: object
       properties:
@@ -501,7 +427,6 @@ components:
           $ref: '#/components/schemas/PI_44001__masterData__GRID_ACCESS_CONTRACT__contractConditions'
       required:
       - municipalDiscount
-      - contractStart
       - contractConditions
     PI_44001__masterData__GRID_ACCESS_CONTRACT__contractConditions:
       type: object
@@ -529,5 +454,3 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Meter/meterNumber.yaml#/components/schemas/meterNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z03.SG10.CCI+++E13.CAV+Z30
-      required:
-      - meterNumber

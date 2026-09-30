@@ -72,6 +72,18 @@ components:
         validityPeriod:
           $ref: >-
             ../fields/bo/Balancing/validityPeriod.yaml#/components/schemas/validityPeriod
+        dataStatusUENB:
+          $ref: >-
+            ../fields/bo/Balancing/dataStatusUENB.yaml#/components/schemas/dataStatusUENB
+        dataStatusNB:
+          $ref: >-
+            ../fields/bo/Balancing/dataStatusNB.yaml#/components/schemas/dataStatusNB
+        dataOfInvolvedMarketRole:
+          $ref: >-
+            ../fields/bo/Balancing/dataOfInvolvedMarketRole.yaml#/components/schemas/dataOfInvolvedMarketRole
+        balancedEnergyQuantity:
+          $ref: >-
+            ../fields/bo/Balancing/balancedEnergyQuantity.yaml#/components/schemas/balancedEnergyQuantity
         loadProfiles:
           $ref: >-
             ../fields/bo/Balancing/loadProfiles.yaml#/components/schemas/loadProfiles

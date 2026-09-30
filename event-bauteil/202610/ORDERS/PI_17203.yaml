@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: PI_17203
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_17203:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_17203__stammdaten'
+      required:
+        - stammdaten
+    PI_17203__stammdaten:
+      type: object
+      properties:
+        ANFRAGE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17203__stammdaten__ANFRAGE'
+        AUFTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17203__stammdaten__AUFTRAG'
+        BILANZIERUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17203__stammdaten__BILANZIERUNG'
+        SUMMENZEITREIHE:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17203__stammdaten__SUMMENZEITREIHE'
+      required:
+        - ANFRAGE
+        - AUFTRAG
+        - BILANZIERUNG
+    PI_17203__stammdaten__ANFRAGE:
+      type: object
+      properties:
+        abonnement:
+          $ref: '../../../bo4e/fields/bo/Anfrage/abonnement.yaml#/components/schemas/abonnement'
+          x-edifact-segment:
+            - 'IMD++[Z01|Z02|Z03]'
+        gueltigkeitszeitspanne:
+          $ref: '../../../bo4e/fields/bo/Anfrage/gueltigkeitszeitspanne.yaml#/components/schemas/gueltigkeitszeitspanne'
+          x-edifact-segment:
+            - DTM+273
+      required:
+        - abonnement
+    PI_17203__stammdaten__AUFTRAG:
+      type: object
+      properties:
+        ausfuehrungsdatum:
+          $ref: '../../../bo4e/fields/bo/Auftrag/ausfuehrungsdatum.yaml#/components/schemas/ausfuehrungsdatum'
+          x-edifact-segment:
+            - DTM+203
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_17203__stammdaten__AUFTRAG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_17203__stammdaten__AUFTRAG__positionsdaten:
+      type: object
+      properties:
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/AuftragPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG29.LIN
+      required:
+        - positionsnummer
+    PI_17203__stammdaten__BILANZIERUNG:
+      type: object
+      properties:
+        bilanzkreis:
+          $ref: '../../../bo4e/fields/bo/Bilanzierung/bilanzkreis.yaml#/components/schemas/bilanzkreis'
+          x-edifact-segment:
+            - SG29.LIN.SG38.LOC+237
+      required:
+        - bilanzkreis
+    PI_17203__stammdaten__SUMMENZEITREIHE:
+      type: object
+      properties:
+        bilanzierungsgebiet:
+          $ref: '../../../bo4e/fields/bo/Summenzeitreihe/bilanzierungsgebiet.yaml#/components/schemas/bilanzierungsgebiet'
+          x-edifact-segment:
+            - 'SG2.NAD+MR.LOC+[107|231]'
+        regelzone:
+          $ref: '../../../bo4e/fields/bo/Summenzeitreihe/regelzone.yaml#/components/schemas/regelzone'
+          x-edifact-segment:
+            - 'SG2.NAD+MR.LOC+[107|231]'

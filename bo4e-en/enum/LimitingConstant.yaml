@@ -1,0 +1,8 @@
+components:
+  schemas:
+    LimitingConstant:
+      title: LimitingConstant
+      type: string
+      enum:
+        - LIMITING_CONSTANT_0
+        - LIMITING_CONSTANT_1

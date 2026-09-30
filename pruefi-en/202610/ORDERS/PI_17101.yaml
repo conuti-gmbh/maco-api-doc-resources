@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17101
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17101:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_17101__transactionData'
       required:
-      - masterData
       - transactionData
     PI_17101__masterData:
       type: object
@@ -40,12 +39,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17101__masterData__METER'
-      required:
-      - REQUEST
-      - ORDER
-      - ENERGY_SUPPLY_CONTRACT
-      - MARKET_LOCATION
-      - METER
     PI_17101__masterData__REQUEST:
       type: object
       properties:
@@ -53,8 +46,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Request/locationId.yaml#/components/schemas/locationId
           x-edifact-segment:
           - SG2.NAD+DP.LOC+172
-      required:
-      - locationId
     PI_17101__masterData__ORDER:
       type: object
       properties:
@@ -62,8 +53,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17101__masterData__ORDER__positionData'
-      required:
-      - positionData
     PI_17101__masterData__ORDER__positionData:
       type: object
       properties:
@@ -73,8 +62,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/OrderPosition/positionNumber.yaml#/components/schemas/positionNumber
           x-edifact-segment:
           - SG29.LIN
-      required:
-      - positionNumber
     PI_17101__masterData__ORDER__positionData__generalInformation:
       type: object
       properties:
@@ -105,8 +92,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17101__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2'
-      required:
-      - contractPartner2
     PI_17101__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -142,15 +127,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
           x-edifact-segment:
           - SG2.NAD+Z09
-      required:
-      - salutation
-      - externalReferences
-      - businessPartnerRole
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
     PI_17101__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2__externalReferences:
       type: object
       properties:
@@ -162,16 +138,11 @@ components:
           $ref: ../../../bo4e-en/fields/com/ExternalReference/externalReferenceValue.yaml#/components/schemas/externalReferenceValue
           x-edifact-segment:
           - SG2.NAD+Z09.SG3.RFF+AVC
-      required:
-      - externalReferenceName
-      - externalReferenceValue
     PI_17101__masterData__MARKET_LOCATION:
       type: object
       properties:
         locationAddress:
           $ref: '#/components/schemas/PI_17101__masterData__MARKET_LOCATION__locationAddress'
-      required:
-      - locationAddress
     PI_17101__masterData__MARKET_LOCATION__locationAddress:
       type: object
       properties:
@@ -205,15 +176,6 @@ components:
           - SG2.NAD+Z23
         additionalInformation:
           $ref: '#/components/schemas/PI_17101__masterData__MARKET_LOCATION__locationAddress__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_17101__masterData__MARKET_LOCATION__locationAddress__additionalInformation:
       type: object
       properties:
@@ -237,12 +199,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG2.NAD+Z23
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5
     PI_17101__masterData__METER:
       type: object
       properties:
@@ -250,8 +206,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17101__masterData__METER__devices'
-      required:
-      - devices
     PI_17101__masterData__METER__devices:
       type: object
       properties:
@@ -259,8 +213,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Device/deviceNumber.yaml#/components/schemas/deviceNumber
           x-edifact-segment:
           - SG29.LIN.SG34.RFF+Z09
-      required:
-      - deviceNumber
     PI_17101__transactionData:
       type: object
       properties:

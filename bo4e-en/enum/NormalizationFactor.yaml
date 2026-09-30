@@ -1,0 +1,9 @@
+components:
+  schemas:
+    NormalizationFactor:
+      title: NormalizationFactor
+      type: string
+      enum:
+        - NORMALIZATION_FACTOR_1_000_000_KWH_A
+        - NORMALIZATION_FACTOR_300_KWH_K
+        - NORMALIZATION_FACTOR_1_000_000_KW

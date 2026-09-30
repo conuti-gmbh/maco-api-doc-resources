@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55126
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55126:
@@ -33,8 +33,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55126__masterData__USAGE_PERIOD'
       required:
-      - BALANCING
-      - MARKET_LOCATION
       - USAGE_PERIOD
     PI_55126__masterData__BALANCING:
       type: object
@@ -74,16 +72,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Balancing/timeSeriesType.yaml#/components/schemas/timeSeriesType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+15++Z21.CAV
-      required:
-      - aggregationResponsibility
-      - balancingGroup
-      - dataQuality
-      - validityPeriod
-      - annualConsumptionForecast
-      - loadProfiles
-      - forecastBasis
-      - temperatureWork
-      - timeSeriesType
     PI_55126__masterData__BALANCING__validityPeriod:
       type: object
       properties:
@@ -92,8 +80,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z08
           - SG4.IDE+24.SG8.SEQ+Z21
-      required:
-      - periodId
     PI_55126__masterData__BALANCING__annualConsumptionForecast:
       type: object
       properties:
@@ -105,9 +91,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
-      required:
-      - unit
-      - value
     PI_55126__masterData__BALANCING__loadProfiles:
       type: object
       properties:
@@ -137,13 +120,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+Z03
           - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+Z02
-      required:
-      - designation
-      - feedIn
-      - profileType
-      - profileFamily
-      - dailyParameters
-      - procedure
     PI_55126__masterData__BALANCING__loadProfiles__dailyParameters:
       type: object
       properties:
@@ -163,11 +139,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[ZA0|Z99]
-      required:
-      - serviceProvider
-      - publisher
-      - climateZone
-      - temperatureMeasuringPoint
     PI_55126__masterData__BALANCING__temperatureWork:
       type: object
       properties:
@@ -179,9 +150,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[265|Z08]
-      required:
-      - unit
-      - value
     PI_55126__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -207,13 +175,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/controlZone.yaml#/components/schemas/controlZone
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+Z18
-      required:
-      - balancingArea
-      - dataQuality
-      - validityPeriod
-      - marketLocationId
-      - marketRoles
-      - controlZone
     PI_55126__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -221,8 +182,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01
-      required:
-      - periodId
     PI_55126__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -234,9 +193,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z90
-      required:
-      - marketRole
-      - roleCodeNumber
     PI_55126__masterData__USAGE_PERIOD:
       type: object
       properties:

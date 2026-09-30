@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55605
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55605:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_55605__transactionData'
       required:
-      - masterData
       - transactionData
     PI_55605__masterData:
       type: object
@@ -24,8 +23,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55605__masterData__MARKET_LOCATION'
-      required:
-      - MARKET_LOCATION
     PI_55605__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -37,9 +34,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z16
-      required:
-      - requiredProductPackage
-      - marketLocationId
     PI_55605__masterData__MARKET_LOCATION__requiredProductPackage:
       type: object
       properties:
@@ -51,9 +45,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ProductPackage/productPackageId.yaml#/components/schemas/productPackageId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z79
-      required:
-      - product
-      - productPackageId
     PI_55605__masterData__MARKET_LOCATION__requiredProductPackage__product:
       type: object
       properties:
@@ -61,8 +52,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Product/productCode.yaml#/components/schemas/productCode
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z79.PIA+5
-      required:
-      - productCode
     PI_55605__transactionData:
       type: object
       properties:
@@ -125,7 +114,6 @@ components:
       - requestReferenceNumber
       - responseStatus
       - responseStatusCodeList
-      - involvedMarketPartner
       - documentNumber
       - receiver
       - category
@@ -160,9 +148,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+VY
-      required:
-      - roleCodeNumber
-      - roleCodeType
     PI_55605__transactionData__receiver:
       type: object
       properties:

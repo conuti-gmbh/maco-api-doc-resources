@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17122
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17122:
@@ -39,10 +39,7 @@ components:
             $ref: '#/components/schemas/PI_17122__masterData__METERING_TIME_DEFINITION'
       required:
       - ORDER
-      - LOAD_CURVE_DEFINITION
       - COMPLAINT
-      - SWITCHING_TIME_DEFINITION
-      - METERING_TIME_DEFINITION
     PI_17122__masterData__ORDER:
       type: object
       properties:
@@ -73,8 +70,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17122__masterData__LOAD_CURVE_DEFINITION__loadCurves'
-      required:
-      - loadCurves
     PI_17122__masterData__LOAD_CURVE_DEFINITION__loadCurves:
       type: object
       properties:
@@ -82,8 +77,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/LoadCurve/code.yaml#/components/schemas/code
           x-edifact-segment:
           - SG29.LIN.SG30.CCI+Z53
-      required:
-      - code
     PI_17122__masterData__COMPLAINT:
       type: object
       properties:
@@ -95,7 +88,6 @@ components:
           $ref: '#/components/schemas/PI_17122__masterData__COMPLAINT__complaintReasonNote'
       required:
       - complaintReason
-      - complaintReasonNote
     PI_17122__masterData__COMPLAINT__complaintReasonNote:
       type: object
       properties:
@@ -119,12 +111,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ComplaintReasonNote/remark5.yaml#/components/schemas/remark5
           x-edifact-segment:
           - SG29.LIN.FTX+[Z07|Z08|Z09|Z10]
-      required:
-      - remark1
-      - remark2
-      - remark3
-      - remark4
-      - remark5
     PI_17122__masterData__SWITCHING_TIME_DEFINITION:
       type: object
       properties:
@@ -132,8 +118,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17122__masterData__SWITCHING_TIME_DEFINITION__switchingTimes'
-      required:
-      - switchingTimes
     PI_17122__masterData__SWITCHING_TIME_DEFINITION__switchingTimes:
       type: object
       properties:
@@ -141,8 +125,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/SwitchingTime/code.yaml#/components/schemas/code
           x-edifact-segment:
           - SG29.LIN.SG30.CCI+Z52
-      required:
-      - code
     PI_17122__masterData__METERING_TIME_DEFINITION:
       type: object
       properties:
@@ -150,8 +132,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17122__masterData__METERING_TIME_DEFINITION__meteringTimes'
-      required:
-      - meteringTimes
     PI_17122__masterData__METERING_TIME_DEFINITION__meteringTimes:
       type: object
       properties:
@@ -159,5 +139,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTime/code.yaml#/components/schemas/code
           x-edifact-segment:
           - SG29.LIN.SG30.CCI
-      required:
-      - code

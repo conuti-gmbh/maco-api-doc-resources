@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: PI_21045
+  version: '202610'
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
+components:
+  schemas:
+    PI_21045:
+      type: object
+      properties:
+        stammdaten:
+          $ref: '#/components/schemas/PI_21045__stammdaten'
+        transaktionsdaten:
+          $ref: '#/components/schemas/PI_21045__transaktionsdaten'
+      required:
+        - stammdaten
+        - transaktionsdaten
+    PI_21045__stammdaten:
+      type: object
+      properties:
+        ENERGIELIEFERVERTRAG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__stammdaten__ENERGIELIEFERVERTRAG'
+        STATUSMITTEILUNG:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__stammdaten__STATUSMITTEILUNG'
+      required:
+        - STATUSMITTEILUNG
+    PI_21045__stammdaten__ENERGIELIEFERVERTRAG:
+      type: object
+      properties:
+        vertragspartner2:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
+    PI_21045__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
+      type: object
+      properties:
+        anrede:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/anrede.yaml#/components/schemas/anrede'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        geschaeftspartnerrolle:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/geschaeftspartnerrolle.yaml#/components/schemas/geschaeftspartnerrolle'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        gewerbekennzeichnung:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/gewerbekennzeichnung.yaml#/components/schemas/gewerbekennzeichnung'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name1:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name1.yaml#/components/schemas/name1'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name2:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name2.yaml#/components/schemas/name2'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name3:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name3.yaml#/components/schemas/name3'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+        name4:
+          $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
+    PI_21045__stammdaten__STATUSMITTEILUNG:
+      type: object
+      properties:
+        positionsdaten:
+          type: array
+          items:
+            $ref: '#/components/schemas/PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten'
+      required:
+        - positionsdaten
+    PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten:
+      type: object
+      properties:
+        allgemeineInformationenText:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/allgemeineInformationenText.yaml#/components/schemas/allgemeineInformationenText'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG25.GID.FTX+ACB
+        auftragsStatusListe:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/auftragsStatusListe.yaml#/components/schemas/auftragsStatusListe'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41
+        gueltigkeitsZeitspanne:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/gueltigkeitsZeitspanne.yaml#/components/schemas/gueltigkeitsZeitspanne'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.DTM+273
+        lokationsId:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/lokationsId.yaml#/components/schemas/lokationsId'
+          x-edifact-segment:
+            - SG14.CNI.LOC+172
+        positionsnummer:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/positionsnummer.yaml#/components/schemas/positionsnummer'
+          x-edifact-segment:
+            - SG14.CNI
+        privilegierteEnergiemenge:
+          $ref: '#/components/schemas/PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten__privilegierteEnergiemenge'
+        sendungsposition:
+          $ref: '../../../bo4e/fields/com/StatusmitteilungPosition/sendungsposition.yaml#/components/schemas/sendungsposition'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG25.GID
+      required:
+        - auftragsStatusListe
+        - gueltigkeitsZeitspanne
+        - lokationsId
+        - positionsnummer
+        - privilegierteEnergiemenge
+    PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten__privilegierteEnergiemenge:
+      type: object
+      properties:
+        menge:
+          $ref: '#/components/schemas/PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten__privilegierteEnergiemenge__menge'
+        verwendungAb:
+          $ref: '../../../bo4e/fields/com/ZeitintervallMenge/verwendungAb.yaml#/components/schemas/verwendungAb'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.DTM+163
+        verwendungBis:
+          $ref: '../../../bo4e/fields/com/ZeitintervallMenge/verwendungBis.yaml#/components/schemas/verwendungBis'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.DTM+164
+      required:
+        - menge
+        - verwendungAb
+        - verwendungBis
+    PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten__privilegierteEnergiemenge__menge:
+      type: object
+      properties:
+        einheit:
+          $ref: '../../../bo4e/fields/com/Menge/einheit.yaml#/components/schemas/einheit'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.QTY
+        wert:
+          $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.SG16.EFI+Z02.QTY
+      required:
+        - einheit
+        - wert
+    PI_21045__transaktionsdaten:
+      type: object
+      properties:
+        absender:
+          $ref: '#/components/schemas/PI_21045__transaktionsdaten__absender'
+        dokumentennummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/dokumentennummer.yaml#/components/schemas/dokumentennummer'
+          x-edifact-segment:
+            - BGM+Z86
+        empfaenger:
+          $ref: '#/components/schemas/PI_21045__transaktionsdaten__empfaenger'
+        nachrichtendatum:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtendatum.yaml#/components/schemas/nachrichtendatum'
+          x-edifact-segment:
+            - DTM+137
+        nachrichtenreferenznummer:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/nachrichtenreferenznummer.yaml#/components/schemas/nachrichtenreferenznummer'
+          x-edifact-segment:
+            - UNH
+        pruefidentifikator:
+          $ref: '../../../bo4e/fields/cdoc/Transaktionsdaten/pruefidentifikator.yaml#/components/schemas/pruefidentifikator'
+          x-edifact-segment:
+            - SG14.CNI.SG15.STS+Z41.RFF+Z13
+      required:
+        - absender
+        - dokumentennummer
+        - empfaenger
+        - nachrichtendatum
+        - nachrichtenreferenznummer
+        - pruefidentifikator
+    PI_21045__transaktionsdaten__absender:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MS
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MS
+      required:
+        - rollencodenummer
+        - rollencodetyp
+    PI_21045__transaktionsdaten__empfaenger:
+      type: object
+      properties:
+        rollencodenummer:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
+          x-edifact-segment:
+            - SG1.NAD+MR
+        rollencodetyp:
+          $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodetyp.yaml#/components/schemas/rollencodetyp'
+          x-edifact-segment:
+            - SG1.NAD+MR
+      required:
+        - rollencodenummer
+        - rollencodetyp

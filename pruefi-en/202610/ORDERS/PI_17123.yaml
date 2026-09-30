@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17123
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17123:
@@ -35,7 +35,6 @@ components:
       required:
       - REQUEST
       - ORDER
-      - MARKET_LOCATION
     PI_17123__masterData__REQUEST:
       type: object
       properties:
@@ -66,8 +65,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17123__masterData__MARKET_LOCATION__meterRegisters'
-      required:
-      - meterRegisters
     PI_17123__masterData__MARKET_LOCATION__meterRegisters:
       type: object
       properties:
@@ -77,9 +74,6 @@ components:
           - SG29.LIN+Z54.PIA+5
         meteringTimes:
           $ref: '#/components/schemas/PI_17123__masterData__MARKET_LOCATION__meterRegisters__meteringTimes'
-      required:
-      - meteringProduct
-      - meteringTimes
     PI_17123__masterData__MARKET_LOCATION__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -87,8 +81,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG29.LIN+Z54.SG30.CCI
-      required:
-      - meteringTimeDefinition
     PI_17123__transactionData:
       type: object
       properties:

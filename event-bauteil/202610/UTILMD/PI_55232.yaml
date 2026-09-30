@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55232
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55232:
@@ -27,7 +27,6 @@ components:
             $ref: '#/components/schemas/PI_55232__stammdaten__VERWENDUNGSZEITRAUM'
       required:
         - NETZLOKATION
-        - VERWENDUNGSZEITRAUM
     PI_55232__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -46,9 +45,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z18
       required:
-        - abrechnungsdaten
-        - datenqualitaet
-        - gueltigkeitszeitraum
         - netzlokationsId
     PI_55232__stammdaten__NETZLOKATION__abrechnungsdaten:
       type: object
@@ -57,8 +53,6 @@ components:
           $ref: '../../../bo4e/fields/com/Netznutzungsabrechnungsdaten/zahlerBlindarbeitLf.yaml#/components/schemas/zahlerBlindarbeitLf'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2].SG10.CCI+Z46'
-      required:
-        - zahlerBlindarbeitLf
     PI_55232__stammdaten__NETZLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -66,8 +60,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZH1|ZH2]'
-      required:
-        - zeitraumId
     PI_55232__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:
@@ -87,7 +79,3 @@ components:
           $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
-      required:
-        - datenqualitaet
-        - verwendungAb
-        - zeitraumId

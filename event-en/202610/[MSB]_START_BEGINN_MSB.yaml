@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[MSB] START_BEGINN_MSB'
   version: '202610'
-  x-bpmn-source-sha: 23ab5062
-  x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bpmn-source-sha: 9f68695f
+  x-bo4e-schema-version: 1.7.8
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     '[MSB] START_BEGINN_MSB':
@@ -15,12 +15,41 @@ components:
       - additionalData
       properties:
         masterData:
-          oneOf:
+          anyOf:
           - $ref: ../../event-bauteil-en/202610/UTILMD_GAS/PI_44042.yaml#/components/schemas/PI_44042__masterData
           - $ref: ../../event-bauteil-en/202610/UTILMD/PI_55042.yaml#/components/schemas/PI_55042__masterData
         transactionData:
           type: object
+          required:
+          - sender
+          - serviceDateStart
+          - receiver
+          - category
+          - sector
+          - transactionReason
           properties:
+            sender:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            serviceDateStart:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/serviceDateStart.yaml#/components/schemas/serviceDateStart
+            receiver:
+              type: object
+              properties:
+                marketRole:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/marketRole.yaml#/components/schemas/marketRole
+                roleCodeNumber:
+                  $ref: ../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
+            category:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/category.yaml#/components/schemas/category
+            sector:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/sector.yaml#/components/schemas/sector
+            transactionReason:
+              $ref: ../../bo4e-en/fields/cdoc/TransactionData/transactionReason.yaml#/components/schemas/transactionReason
             verificationIdentifier:
               description: 'Wird dynamisch im Event-Prozess ermittelt (Entscheidungsgrundlage: sparte). Ein vom Sender mitgegebener Wert wird ignoriert. Im Topic mögliche Prüfis — 44042, 55042.'
               examples:
@@ -38,14 +67,3 @@ components:
               type: string
               const: START_BEGINN_MSB
               default: START_BEGIN_MSB
-      x-pending-dmn:
-        reason: Kein Eintrag in S_EVENT_VARIABLEN.dmn — der Prozess setzt für dieses Event keine Variablen. Der Pflichtsatz von transaktionsdaten ist damit nicht bestimmbar und bleibt offen, bis die DMN-Zeile existiert.
-      x-unresolved-routing:
-      - variable: sparte
-        discriminates: true
-        selects-pruefis:
-        - '44042'
-        - '55042'
-        conditions:
-        - ${sparte=="GAS"}
-        - ${sparte=="STROM"}

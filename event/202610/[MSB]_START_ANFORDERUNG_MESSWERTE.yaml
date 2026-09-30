@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: '[MSB] START_ANFORDERUNG_MESSWERTE'
   version: '202610'
-  x-bpmn-source-sha: 23ab5062
-  x-bo4e-schema-version: 1.7.4
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bpmn-source-sha: 9f68695f
+  x-bo4e-schema-version: 1.7.8
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     '[MSB] START_ANFORDERUNG_MESSWERTE':
@@ -15,7 +15,7 @@ components:
         - zusatzdaten
       properties:
         stammdaten:
-          oneOf:
+          anyOf:
             - $ref: ../../event-bauteil/202610/ORDERS/PI_17004.yaml#/components/schemas/PI_17004__stammdaten
         transaktionsdaten:
           type: object

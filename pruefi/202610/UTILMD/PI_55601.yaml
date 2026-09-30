@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55601
   version: '202610'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55601:
@@ -49,13 +49,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55601__stammdaten__ZAEHLER'
       required:
-        - ENERGIELIEFERVERTRAG
         - MARKTLOKATION
-        - MESSLOKATION
-        - NETZNUTZUNGSVERTRAG
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
-        - ZAEHLER
     PI_55601__stammdaten__ENERGIELIEFERVERTRAG:
       type: object
       properties:
@@ -65,9 +59,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55601__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
-      required:
-        - korrespondenzpartner
-        - vertragspartner2
     PI_55601__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner:
       type: object
       properties:
@@ -95,14 +86,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z04
         partneradresse:
           $ref: '#/components/schemas/PI_55601__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - ansprechpartner
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55601__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__ansprechpartner:
       type: object
       properties:
@@ -114,9 +97,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55601__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - rufnummern
     PI_55601__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -128,9 +108,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG4.IDE+24.SG12.NAD+Z04.SG13.CTA.COM+[TE|EM]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55601__stammdaten__ENERGIELIEFERVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -162,14 +139,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z04
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55601__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -197,13 +166,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z09
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - name1
-        - name2
-        - name3
-        - name4
     PI_55601__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -226,11 +188,7 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z16
       required:
-        - datenqualitaet
         - erforderlichesProduktpaket
-        - foerderungsLand
-        - lokationsadresse
-        - marktlokationsId
     PI_55601__stammdaten__MARKTLOKATION__erforderlichesProduktpaket:
       type: object
       properties:
@@ -254,7 +212,6 @@ components:
       required:
         - produkt
         - produktpaketId
-        - umsetzungsgradvorgabe
     PI_55601__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
       type: object
       properties:
@@ -305,15 +262,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z60
         zusatzInformation:
           $ref: '#/components/schemas/PI_55601__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_55601__stammdaten__MARKTLOKATION__lokationsadresse__zusatzInformation:
       type: object
       properties:
@@ -337,12 +285,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z60
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_55601__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -350,8 +292,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Messlokation/messlokationsId.yaml#/components/schemas/messlokationsId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z17
-      required:
-        - messlokationsId
     PI_55601__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -359,8 +299,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
           x-edifact-segment:
             - SG4.IDE+24.DTM+92
-      required:
-        - vertragsbeginn
     PI_55601__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -368,8 +306,6 @@ components:
           $ref: '../../../bo4e/fields/bo/SteuerbareRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z19
-      required:
-        - ressourcenId
     PI_55601__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -377,8 +313,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z20
-      required:
-        - ressourcenId
     PI_55601__stammdaten__ZAEHLER:
       type: object
       properties:
@@ -386,8 +320,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Zaehler/zaehlernummer.yaml#/components/schemas/zaehlernummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZA4.SG10.CCI+++E13.CAV+Z30
-      required:
-        - zaehlernummer
     PI_55601__transaktionsdaten:
       type: object
       properties:
@@ -447,7 +379,6 @@ components:
         - pruefidentifikator
         - transaktionsgrund
         - transaktionsgrundergaenzung
-        - vertragsbeginn
         - vorgangsnummer
     PI_55601__transaktionsdaten__absender:
       type: object
