@@ -6,7 +6,7 @@ The generator emits relative, file-level ``$ref``s of the form
 ``../../bo4e/fields/cdoc/Transaktionsdaten/absender.yaml#/components/schemas/absender``
 (events) or ``../../../bo4e/fields/bo/Statusbericht/datumPruefung.yaml#/...``
 (prüfis), plus ``../../event-bauteil/<format>/<scope>/PI_<id>.yaml#/...`` for the
-event ``oneOf`` branches. A missing target means a broken bundle and a broken
+event ``anyOf`` branches. A missing target means a broken bundle and a broken
 Apidog import — this check is the CI gate that catches it before push.
 
 Local ``#/components/schemas/...`` refs are intra-document and skipped; only

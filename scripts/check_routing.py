@@ -6,7 +6,7 @@ continuously and a doc run must not fail on unfinished process work:
 
 **Hard (exit 1) — the invariant.** Every Camunda variable a T_ process gates a
 pruefi send on must leave one of four traces in the generated spec: required in
-its ``oneOf`` branch, ``x-pending-routing``, ``x-unresolved-routing``, or
+its ``anyOf`` branch, ``x-pending-routing``, ``x-unresolved-routing``, or
 already required inside ``transaktionsdaten``. A variable with no trace at all
 means the generator dropped it — that is a code defect, never a data state, so
 failing the run is safe even against WIP process repos.
@@ -87,7 +87,7 @@ def traces_in_spec(schema: dict) -> tuple[set[str], set[str], set[str], set[str]
     """
     required: set[str] = set()
     stammdaten = (schema.get("properties", {}) or {}).get("stammdaten", {}) or {}
-    for branch in stammdaten.get("oneOf", []) or []:
+    for branch in stammdaten.get("anyOf", []) or []:
         for member in (branch.get("allOf", []) or [])[1:]:
             for node in (member.get("properties", {}) or {}).values():
                 items = node.get("items", {}) or {}
