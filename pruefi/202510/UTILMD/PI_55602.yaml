@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55602
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55602:
@@ -46,11 +46,6 @@ components:
             $ref: '#/components/schemas/PI_55602__stammdaten__TECHNISCHE_RESSOURCE'
       required:
         - MARKTLOKATION
-        - MESSLOKATION
-        - NETZLOKATION
-        - NETZNUTZUNGSVERTRAG
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
     PI_55602__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -64,7 +59,6 @@ components:
             $ref: '#/components/schemas/PI_55602__stammdaten__MARKTLOKATION__marktrollen'
       required:
         - marktlokationsId
-        - marktrollen
     PI_55602__stammdaten__MARKTLOKATION__marktrollen:
       type: object
       properties:
@@ -84,11 +78,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55602__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -101,9 +90,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z17
             - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
-      required:
-        - marktrollen
-        - messlokationsId
     PI_55602__stammdaten__MESSLOKATION__marktrollen:
       type: object
       properties:
@@ -125,11 +111,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55602__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -142,9 +123,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z18
             - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
-      required:
-        - marktrollen
-        - netzlokationsId
     PI_55602__stammdaten__NETZLOKATION__marktrollen:
       type: object
       properties:
@@ -160,10 +138,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55602__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -175,8 +149,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Vertrag/vertragsende.yaml#/components/schemas/vertragsende'
           x-edifact-segment:
             - SG4.IDE+24.DTM+93
-      required:
-        - vertragsbeginn
     PI_55602__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -189,9 +161,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z19
             - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
-      required:
-        - marktrollen
-        - ressourcenId
     PI_55602__stammdaten__STEUERBARE_RESSOURCE__marktrollen:
       type: object
       properties:
@@ -207,10 +176,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55602__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -218,8 +183,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/ressourcenId.yaml#/components/schemas/ressourcenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z20
-      required:
-        - ressourcenId
     PI_55602__transaktionsdaten:
       type: object
       properties:
@@ -301,8 +264,6 @@ components:
         - pruefidentifikator
         - transaktionsgrund
         - transaktionsgrundergaenzung
-        - transaktionsgrundergaenzungBefristeteAnmeldung
-        - vertragsbeginn
         - vorgangsnummer
     PI_55602__transaktionsdaten__absender:
       type: object
@@ -318,7 +279,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55602__transaktionsdaten__absender__ansprechpartner:
@@ -336,10 +296,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55602__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55602__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -351,9 +307,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55602__transaktionsdaten__empfaenger:
       type: object
       properties:

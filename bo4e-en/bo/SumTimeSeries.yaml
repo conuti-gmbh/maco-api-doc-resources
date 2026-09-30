@@ -1,0 +1,74 @@
+components:
+  schemas:
+    SumTimeSeries:
+      title: SumTimeSeries
+      type: object
+      required:
+        - boTyp
+        - versionStruktur
+      example:
+        $ref: >-
+          https://raw.githubusercontent.com/conuti-gmbh/bo4e-schema-en/main/docs/examples/bo/SumTimeSeries.json
+      properties:
+        boType:
+          $ref: ../fields/bo/SumTimeSeries/boType.yaml#/components/schemas/boType
+        structureVersion:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/structureVersion.yaml#/components/schemas/structureVersion
+        meteringPointId:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/meteringPointId.yaml#/components/schemas/meteringPointId
+        timeSeriesVersion:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/timeSeriesVersion.yaml#/components/schemas/timeSeriesVersion
+        balancingGroup:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancingGroup.yaml#/components/schemas/balancingGroup
+        balancingGroupTo:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancingGroupTo.yaml#/components/schemas/balancingGroupTo
+        balancingGroupFrom:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancingGroupFrom.yaml#/components/schemas/balancingGroupFrom
+        balancedEnergyQuantity:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancedEnergyQuantity.yaml#/components/schemas/balancedEnergyQuantity
+        balancedOutageQuantity:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancedOutageQuantity.yaml#/components/schemas/balancedOutageQuantity
+        balancingStart:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancingStart.yaml#/components/schemas/balancingStart
+        balancingArea:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/balancingArea.yaml#/components/schemas/balancingArea
+        designation:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/designation.yaml#/components/schemas/designation
+        responsibleMarketRole:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/responsibleMarketRole.yaml#/components/schemas/responsibleMarketRole
+        controlZone:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/controlZone.yaml#/components/schemas/controlZone
+        timeSeriesType:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/timeSeriesType.yaml#/components/schemas/timeSeriesType
+        referencePeriod:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/referencePeriod.yaml#/components/schemas/referencePeriod
+        gridLevel:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/gridLevel.yaml#/components/schemas/gridLevel
+        transformation:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/transformation.yaml#/components/schemas/transformation
+        dataStatusTimeSeries:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/dataStatusTimeSeries.yaml#/components/schemas/dataStatusTimeSeries
+        assignmentRule:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/assignmentRule.yaml#/components/schemas/assignmentRule
+        timeSeriesProduct:
+          $ref: >-
+            ../fields/bo/SumTimeSeries/timeSeriesProduct.yaml#/components/schemas/timeSeriesProduct

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17104
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17104:
@@ -15,7 +15,6 @@ components:
         transaktionsdaten:
           $ref: '#/components/schemas/PI_17104__transaktionsdaten'
       required:
-        - stammdaten
         - transaktionsdaten
     PI_17104__stammdaten:
       type: object
@@ -28,9 +27,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17104__stammdaten__MESSLOKATION'
-      required:
-        - ANFRAGE
-        - MESSLOKATION
     PI_17104__stammdaten__ANFRAGE:
       type: object
       properties:
@@ -38,15 +34,11 @@ components:
           $ref: '../../../bo4e/fields/bo/Anfrage/lokationsId.yaml#/components/schemas/lokationsId'
           x-edifact-segment:
             - SG2.NAD+DP.LOC+172
-      required:
-        - lokationsId
     PI_17104__stammdaten__MESSLOKATION:
       type: object
       properties:
         messadresse:
           $ref: '#/components/schemas/PI_17104__stammdaten__MESSLOKATION__messadresse'
-      required:
-        - messadresse
     PI_17104__stammdaten__MESSLOKATION__messadresse:
       type: object
       properties:
@@ -80,15 +72,6 @@ components:
             - SG2.NAD+Z03
         zusatzInformation:
           $ref: '#/components/schemas/PI_17104__stammdaten__MESSLOKATION__messadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_17104__stammdaten__MESSLOKATION__messadresse__zusatzInformation:
       type: object
       properties:
@@ -112,12 +95,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG2.NAD+Z03
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_17104__transaktionsdaten:
       type: object
       properties:
@@ -181,9 +158,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_17104__transaktionsdaten__absender__ansprechpartner__rufnummern'
       required:
-        - eMailAdresse
         - nachname
-        - rufnummern
     PI_17104__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -195,9 +170,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_17104__transaktionsdaten__empfaenger:
       type: object
       properties:

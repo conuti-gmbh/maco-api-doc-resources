@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_31009
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_31009:
@@ -46,11 +46,7 @@ components:
             $ref: '#/components/schemas/PI_31009__masterData__TECHNICAL_RESOURCE'
       required:
       - MARKET_LOCATION
-      - METERING_LOCATION
-      - GRID_LOCATION
       - INVOICE
-      - CONTROLLABLE_RESOURCE
-      - TECHNICAL_RESOURCE
     PI_31009__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -64,7 +60,6 @@ components:
           - SG2.NAD+DP.LOC+172
       required:
       - locationAddress
-      - marketLocationId
     PI_31009__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -72,8 +67,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
           x-edifact-segment:
           - SG2.NAD+DP.LOC+172
-      required:
-      - meteringLocationId
     PI_31009__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -81,8 +74,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
           x-edifact-segment:
           - SG2.NAD+DP.LOC+172
-      required:
-      - gridLocationId
     PI_31009__masterData__INVOICE:
       type: object
       properties:
@@ -137,7 +128,6 @@ components:
       - invoicePositions
       - invoiceStatus
       - invoiceType
-      - referenceDocumentNumber
       - taxAmounts
       - toPay
     PI_31009__masterData__INVOICE__totalGrossAmount:
@@ -215,7 +205,6 @@ components:
           x-edifact-segment:
           - SG26.LIN.SG29.PRI+CAL
       required:
-      - referenceValue
       - value
     PI_31009__masterData__INVOICE__invoicePositions__positionQuantity:
       type: object
@@ -295,8 +284,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG2.NAD+DP.LOC+172
-      required:
-      - resourceId
     PI_31009__masterData__TECHNICAL_RESOURCE:
       type: object
       properties:
@@ -304,8 +291,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG2.NAD+DP.LOC+172
-      required:
-      - resourceId
     PI_31009__transactionData:
       type: object
       properties:
@@ -357,12 +342,9 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS.SG3.RFF+[VA|FC]
       required:
-      - contactPerson
       - name1
       - roleCodeNumber
       - roleCodeType
-      - taxNumber
-      - vatId
     PI_31009__transactionData__sender__contactPerson:
       type: object
       properties:
@@ -370,8 +352,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
           x-edifact-segment:
           - SG2.NAD+MS.SG5.CTA+IC
-      required:
-      - lastName
     PI_31009__transactionData__receiver:
       type: object
       properties:
@@ -399,5 +379,3 @@ components:
       - name1
       - roleCodeNumber
       - roleCodeType
-      - taxNumber
-      - vatId

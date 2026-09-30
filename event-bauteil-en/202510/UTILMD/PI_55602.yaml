@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55602
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55602:
@@ -43,11 +43,6 @@ components:
             $ref: '#/components/schemas/PI_55602__masterData__TECHNICAL_RESOURCE'
       required:
       - MARKET_LOCATION
-      - METERING_LOCATION
-      - GRID_LOCATION
-      - GRID_ACCESS_CONTRACT
-      - CONTROLLABLE_RESOURCE
-      - TECHNICAL_RESOURCE
     PI_55602__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -61,7 +56,6 @@ components:
             $ref: '#/components/schemas/PI_55602__masterData__MARKET_LOCATION__marketRoles'
       required:
       - marketLocationId
-      - marketRoles
     PI_55602__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -81,11 +75,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
-      - subContracted
     PI_55602__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -98,9 +87,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z17
           - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
-      required:
-      - marketRoles
-      - meteringLocationId
     PI_55602__masterData__METERING_LOCATION__marketRoles:
       type: object
       properties:
@@ -122,11 +108,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
-      - subContracted
     PI_55602__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -139,9 +120,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z18
           - SG4.IDE+24.SG8.SEQ+ZD7.RFF+Z32
-      required:
-      - marketRoles
-      - gridLocationId
     PI_55602__masterData__GRID_LOCATION__marketRoles:
       type: object
       properties:
@@ -157,10 +135,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
     PI_55602__masterData__GRID_ACCESS_CONTRACT:
       type: object
       properties:
@@ -172,8 +146,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Contract/contractEnd.yaml#/components/schemas/contractEnd
           x-edifact-segment:
           - SG4.IDE+24.DTM+93
-      required:
-      - contractStart
     PI_55602__masterData__CONTROLLABLE_RESOURCE:
       type: object
       properties:
@@ -186,9 +158,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z19
           - SG4.IDE+24.SG8.SEQ+ZF1.RFF+Z38
-      required:
-      - marketRoles
-      - resourceId
     PI_55602__masterData__CONTROLLABLE_RESOURCE__marketRoles:
       type: object
       properties:
@@ -204,10 +173,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
     PI_55602__masterData__TECHNICAL_RESOURCE:
       type: object
       properties:
@@ -215,5 +180,3 @@ components:
           $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z20
-      required:
-      - resourceId

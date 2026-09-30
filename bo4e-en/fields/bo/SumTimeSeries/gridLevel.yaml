@@ -1,0 +1,4 @@
+components:
+  schemas:
+    gridLevel:
+      $ref: ../../../enum/GridLevel.yaml#/components/schemas/GridLevel

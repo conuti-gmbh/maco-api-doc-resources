@@ -1,0 +1,4 @@
+components:
+  schemas:
+    loadProfileType:
+      $ref: ../../../enum/ProfileSubtype.yaml#/components/schemas/ProfileSubtype

@@ -46,3 +46,15 @@ components:
         locationType:
           $ref: >-
             ../fields/bo/CalculationFormula/locationType.yaml#/components/schemas/locationType
+        calculationFormula:
+          $ref: >-
+            ../fields/bo/CalculationFormula/calculationFormula.yaml#/components/schemas/calculationFormula
+        dataQuality:
+          $ref: >-
+            ../fields/bo/CalculationFormula/dataQuality.yaml#/components/schemas/dataQuality
+        parameterIds:
+          $ref: >-
+            ../fields/bo/CalculationFormula/parameterIds.yaml#/components/schemas/parameterIds
+        allocationFactors:
+          $ref: >-
+            ../fields/bo/CalculationFormula/allocationFactors.yaml#/components/schemas/allocationFactors

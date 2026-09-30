@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55628
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55628:
@@ -37,9 +37,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55628__stammdaten__VERWENDUNGSZEITRAUM'
       required:
-        - BILANZIERUNG
-        - MARKTLOKATION
-        - NETZNUTZUNGSVERTRAG
         - VERWENDUNGSZEITRAUM
     PI_55628__stammdaten__BILANZIERUNG:
       type: object
@@ -72,14 +69,6 @@ components:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
         temperaturarbeit:
           $ref: '#/components/schemas/PI_55628__stammdaten__BILANZIERUNG__temperaturarbeit'
-      required:
-        - abwicklungsmodell
-        - datenqualitaet
-        - gueltigkeitszeitraum
-        - jahresverbrauchsprognose
-        - lastprofile
-        - prognosegrundlage
-        - temperaturarbeit
     PI_55628__stammdaten__BILANZIERUNG__gueltigkeitszeitraum:
       type: object
       properties:
@@ -89,8 +78,6 @@ components:
             - SG4.IDE+24.SG8.SEQ+Z08
             - SG4.IDE+24.SG8.SEQ+Z21
             - SG4.IDE+24.SG8.SEQ+Z38
-      required:
-        - zeitraumId
     PI_55628__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
       type: object
       properties:
@@ -102,9 +89,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
-      required:
-        - einheit
-        - wert
     PI_55628__stammdaten__BILANZIERUNG__lastprofile:
       type: object
       properties:
@@ -132,12 +116,6 @@ components:
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+Z08.SG10.CCI+[Z03|Z05]'
             - 'SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+[Z02|Z04]'
-      required:
-        - bezeichnung
-        - einspeisung
-        - profilart
-        - referenzprofilbezeichnung
-        - verfahren
     PI_55628__stammdaten__BILANZIERUNG__temperaturarbeit:
       type: object
       properties:
@@ -149,9 +127,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+[Z10|265|Z08]'
-      required:
-        - einheit
-        - wert
     PI_55628__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -193,16 +168,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktlokation/umspannung.yaml#/components/schemas/umspannung'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
-      required:
-        - datenqualitaet
-        - eigentuemer
-        - energieherkunft
-        - gueltigkeitszeitraum
-        - hausverwalter
-        - marktlokationsId
-        - marktrollen
-        - messtechnischeEinordnung
-        - netzebene
     PI_55628__stammdaten__MARKTLOKATION__eigentuemer:
       type: object
       properties:
@@ -232,14 +197,6 @@ components:
             - SG4.IDE+24.SG12.NAD+EO
         partneradresse:
           $ref: '#/components/schemas/PI_55628__stammdaten__MARKTLOKATION__eigentuemer__partneradresse'
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55628__stammdaten__MARKTLOKATION__eigentuemer__partneradresse:
       type: object
       properties:
@@ -271,14 +228,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+EO
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55628__stammdaten__MARKTLOKATION__energieherkunft:
       type: object
       properties:
@@ -286,8 +235,6 @@ components:
           $ref: '../../../bo4e/fields/com/Energieherkunft/erzeugungsart.yaml#/components/schemas/erzeugungsart'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++Z34.CAV
-      required:
-        - erzeugungsart
     PI_55628__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -297,8 +244,6 @@ components:
             - SG4.IDE+24.SG12.NAD+EO.RFF+Z46
             - 'SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58].RFF+Z46'
             - SG4.IDE+24.SG8.SEQ+Z01
-      required:
-        - zeitraumId
     PI_55628__stammdaten__MARKTLOKATION__hausverwalter:
       type: object
       properties:
@@ -328,14 +273,6 @@ components:
             - 'SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]'
         partneradresse:
           $ref: '#/components/schemas/PI_55628__stammdaten__MARKTLOKATION__hausverwalter__partneradresse'
-      required:
-        - anrede
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55628__stammdaten__MARKTLOKATION__hausverwalter__partneradresse:
       type: object
       properties:
@@ -367,14 +304,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - 'SG4.IDE+24.SG12.NAD+[DDO|Z57|Z58]'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55628__stammdaten__MARKTLOKATION__marktrollen:
       type: object
       properties:
@@ -396,11 +325,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55628__stammdaten__NETZNUTZUNGSVERTRAG:
       type: object
       properties:
@@ -417,11 +341,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55628__stammdaten__NETZNUTZUNGSVERTRAG__vertragspartner2'
-      required:
-        - datenqualitaet
-        - gueltigkeitszeitraum
-        - korrespondenzpartner
-        - vertragspartner2
     PI_55628__stammdaten__NETZNUTZUNGSVERTRAG__gueltigkeitszeitraum:
       type: object
       properties:
@@ -430,8 +349,6 @@ components:
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z25.RFF+Z46
             - SG4.IDE+24.SG12.NAD+Z26.RFF+Z46
-      required:
-        - zeitraumId
     PI_55628__stammdaten__NETZNUTZUNGSVERTRAG__korrespondenzpartner:
       type: object
       properties:
@@ -457,13 +374,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z26
         partneradresse:
           $ref: '#/components/schemas/PI_55628__stammdaten__NETZNUTZUNGSVERTRAG__korrespondenzpartner__partneradresse'
-      required:
-        - anrede
-        - name1
-        - name2
-        - name3
-        - name4
-        - partneradresse
     PI_55628__stammdaten__NETZNUTZUNGSVERTRAG__korrespondenzpartner__partneradresse:
       type: object
       properties:
@@ -495,14 +405,6 @@ components:
           $ref: '../../../bo4e/fields/com/Adresse/strasse.yaml#/components/schemas/strasse'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z26
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
     PI_55628__stammdaten__NETZNUTZUNGSVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -530,13 +432,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z25
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - name1
-        - name2
-        - name3
-        - name4
     PI_55628__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:
@@ -624,7 +519,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55628__transaktionsdaten__absender__ansprechpartner:
@@ -642,10 +536,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55628__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55628__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -657,9 +547,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55628__transaktionsdaten__empfaenger:
       type: object
       properties:

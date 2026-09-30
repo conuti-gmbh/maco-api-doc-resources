@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55620
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55620:
@@ -31,7 +31,6 @@ components:
             $ref: '#/components/schemas/PI_55620__masterData__USAGE_PERIOD'
       required:
       - METERING_LOCATION
-      - METERING_POINT_OPERATION_CONTRACT
       - USAGE_PERIOD
     PI_55620__masterData__METERING_LOCATION:
       type: object
@@ -51,9 +50,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z17
       required:
-      - dataQuality
-      - validityPeriod
-      - marketRoles
       - meteringLocationId
     PI_55620__masterData__METERING_LOCATION__validityPeriod:
       type: object
@@ -62,8 +58,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z18
-      required:
-      - periodId
     PI_55620__masterData__METERING_LOCATION__marketRoles:
       type: object
       properties:
@@ -85,18 +79,11 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z18.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
-      - subContracted
     PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT:
       type: object
       properties:
         contractConditions:
           $ref: '#/components/schemas/PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions'
-      required:
-      - contractConditions
     PI_55620__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions:
       type: object
       properties:
@@ -104,8 +91,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ContractConditions/billingViaNna.yaml#/components/schemas/billingViaNna
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z18.RFF+Z05
-      required:
-      - billingViaNna
     PI_55620__masterData__USAGE_PERIOD:
       type: object
       properties:

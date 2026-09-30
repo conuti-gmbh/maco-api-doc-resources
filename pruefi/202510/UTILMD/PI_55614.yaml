@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55614
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55614:
@@ -15,7 +15,6 @@ components:
         transaktionsdaten:
           $ref: '#/components/schemas/PI_55614__transaktionsdaten'
       required:
-        - stammdaten
         - transaktionsdaten
     PI_55614__stammdaten:
       type: object
@@ -32,10 +31,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55614__stammdaten__VERWENDUNGSZEITRAUM'
-      required:
-        - BILANZIERUNG
-        - MARKTLOKATION
-        - VERWENDUNGSZEITRAUM
     PI_55614__stammdaten__BILANZIERUNG:
       type: object
       properties:
@@ -67,14 +62,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Bilanzierung/zeitreihentyp.yaml#/components/schemas/zeitreihentyp'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+15++Z21.CAV'
-      required:
-        - bilanzkreis
-        - datenqualitaet
-        - gueltigkeitszeitraum
-        - jahresverbrauchsprognose
-        - lastprofile
-        - prognosegrundlage
-        - zeitreihentyp
     PI_55614__stammdaten__BILANZIERUNG__gueltigkeitszeitraum:
       type: object
       properties:
@@ -82,8 +69,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86]'
-      required:
-        - zeitraumId
     PI_55614__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
       type: object
       properties:
@@ -95,9 +80,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG9.QTY+31'
-      required:
-        - einheit
-        - wert
     PI_55614__stammdaten__BILANZIERUNG__lastprofile:
       type: object
       properties:
@@ -117,11 +99,6 @@ components:
           $ref: '../../../bo4e/fields/com/Lastprofil/verfahren.yaml#/components/schemas/verfahren'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z85|Z86].SG10.CCI+Z02'
-      required:
-        - bezeichnung
-        - einspeisung
-        - profilart
-        - verfahren
     PI_55614__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -151,13 +128,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktlokation/umspannung.yaml#/components/schemas/umspannung'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++E03.CAV'
-      required:
-        - bilanzierungsgebiet
-        - datenqualitaet
-        - gueltigkeitszeitraum
-        - marktlokationsId
-        - marktrollen
-        - netzebene
     PI_55614__stammdaten__MARKTLOKATION__gueltigkeitszeitraum:
       type: object
       properties:
@@ -165,8 +135,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81]'
-      required:
-        - zeitraumId
     PI_55614__stammdaten__MARKTLOKATION__marktrollen:
       type: object
       properties:
@@ -178,9 +146,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[Z80|Z81].SG10.CCI+++ZB3.CAV+Z89'
-      required:
-        - marktrolle
-        - rollencodenummer
     PI_55614__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:
@@ -200,10 +165,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
-      required:
-        - datenqualitaet
-        - verwendungAb
-        - zeitraumId
     PI_55614__transaktionsdaten:
       type: object
       properties:
@@ -253,7 +214,6 @@ components:
             - SG4.IDE+24
       required:
         - absender
-        - anfragereferenznummer
         - dokumentennummer
         - empfaenger
         - kategorie
@@ -276,7 +236,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55614__transaktionsdaten__absender__ansprechpartner:
@@ -294,10 +253,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55614__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55614__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -309,9 +264,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55614__transaktionsdaten__antwortStatusZeitraum:
       type: object
       properties:

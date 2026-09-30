@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_13017
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_13017:
@@ -30,7 +30,6 @@ components:
             $ref: '#/components/schemas/PI_13017__masterData__METER'
       required:
       - ENERGY_QUANTITY
-      - METER
     PI_13017__masterData__ENERGY_QUANTITY:
       type: object
       properties:
@@ -49,7 +48,6 @@ components:
           - SG5.NAD+DP.SG6.LOC+172
       required:
       - energyConsumption
-      - configuration
       - locationId
     PI_13017__masterData__ENERGY_QUANTITY__energyConsumption:
       type: object
@@ -110,8 +108,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/Meter/meterNumber.yaml#/components/schemas/meterNumber
           x-edifact-segment:
           - SG5.NAD+DP.SG6.LOC+172.SG7.RFF+MG
-      required:
-      - meterNumber
     PI_13017__transactionData:
       type: object
       properties:
@@ -149,7 +145,6 @@ components:
           - SG1.RFF+Z13
       required:
       - sender
-      - inquiryReference
       - documentNumber
       - receiver
       - category
@@ -171,7 +166,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_13017__transactionData__sender__contactPerson:
@@ -189,10 +183,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_13017__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_13017__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -204,9 +194,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG4.CTA+IC.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_13017__transactionData__receiver:
       type: object
       properties:

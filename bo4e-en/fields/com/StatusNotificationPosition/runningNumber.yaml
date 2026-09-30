@@ -1,0 +1,4 @@
+components:
+  schemas:
+    runningNumber:
+      type: integer

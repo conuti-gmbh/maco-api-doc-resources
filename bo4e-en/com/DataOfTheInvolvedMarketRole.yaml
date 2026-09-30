@@ -1,0 +1,12 @@
+components:
+  schemas:
+    DataOfTheInvolvedMarketRole:
+      title: DataOfTheInvolvedMarketRole
+      type: object
+      properties:
+        balancingStart:
+          $ref: >-
+            ../fields/com/DataOfTheInvolvedMarketRole/balancingStart.yaml#/components/schemas/balancingStart
+        balancingEnd:
+          $ref: >-
+            ../fields/com/DataOfTheInvolvedMarketRole/balancingEnd.yaml#/components/schemas/balancingEnd

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55623
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55623:
@@ -30,7 +30,6 @@ components:
             $ref: '#/components/schemas/PI_55623__stammdaten__VERWENDUNGSZEITRAUM'
       required:
         - TECHNISCHE_RESSOURCE
-        - VERWENDUNGSZEITRAUM
     PI_55623__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -99,13 +98,7 @@ components:
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG10.CCI+Z63.CAV+[ZH7|ZH8]'
       required:
-        - art
-        - datenqualitaet
-        - gueltigkeitszeitraum
-        - nennleistung
         - ressourcenId
-        - speicherkapazitaet
-        - weitereEinrichtung
     PI_55623__stammdaten__TECHNISCHE_RESSOURCE__gueltigkeitszeitraum:
       type: object
       properties:
@@ -113,8 +106,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZG4|ZG5]'
-      required:
-        - zeitraumId
     PI_55623__stammdaten__TECHNISCHE_RESSOURCE__nennleistung:
       type: object
       properties:
@@ -126,9 +117,6 @@ components:
           $ref: '../../../bo4e/fields/com/Nennleistung/aufnahme.yaml#/components/schemas/aufnahme'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+[ZG4|ZG5].SG9.QTY+Z43'
-      required:
-        - abgabe
-        - aufnahme
     PI_55623__stammdaten__VERWENDUNGSZEITRAUM:
       type: object
       properties:
@@ -148,10 +136,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Verwendungszeitraum/zeitraumId.yaml#/components/schemas/zeitraumId'
           x-edifact-segment:
             - 'SG4.IDE+24.SG6.RFF+[Z47|Z48|Z54|Z55]'
-      required:
-        - datenqualitaet
-        - verwendungAb
-        - zeitraumId
     PI_55623__transaktionsdaten:
       type: object
       properties:
@@ -197,7 +181,6 @@ components:
             - SG4.IDE+24
       required:
         - absender
-        - anfragereferenznummer
         - dokumentennummer
         - empfaenger
         - kategorie
@@ -220,7 +203,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55623__transaktionsdaten__absender__ansprechpartner:
@@ -238,10 +220,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55623__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55623__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -253,9 +231,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55623__transaktionsdaten__antwortStatusZeitraum:
       type: object
       properties:

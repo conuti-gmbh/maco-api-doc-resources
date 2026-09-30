@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17130
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17130:
@@ -31,7 +31,6 @@ components:
             $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2'
       required:
       - REQUEST
-      - VALUES_BY_TYPE2
     PI_17130__masterData__REQUEST:
       type: object
       properties:
@@ -70,13 +69,6 @@ components:
           $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2__certificateUser'
         targetAddress:
           $ref: '#/components/schemas/PI_17130__masterData__VALUES_BY_TYPE2__targetAddress'
-      required:
-      - configurationChangeOption
-      - issuer
-      - meteringProduct
-      - thresholds
-      - certificateUser
-      - targetAddress
     PI_17130__masterData__VALUES_BY_TYPE2__issuer:
       type: object
       properties:
@@ -100,12 +92,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Issuer/issuer5.yaml#/components/schemas/issuer5
           x-edifact-segment:
           - SG29.LIN+Z68.FTX+Z24
-      required:
-      - issuer1
-      - issuer2
-      - issuer3
-      - issuer4
-      - issuer5
     PI_17130__masterData__VALUES_BY_TYPE2__thresholds:
       type: object
       properties:
@@ -121,10 +107,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Threshold/lowerThreshold.yaml#/components/schemas/lowerThreshold
           x-edifact-segment:
           - SG29.LIN+Z68.SG30.CCI+Z60
-      required:
-      - configurationProduct
-      - upperThreshold
-      - lowerThreshold
     PI_17130__masterData__VALUES_BY_TYPE2__certificateUser:
       type: object
       properties:
@@ -148,12 +130,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/CertificateUser/certificateUser5.yaml#/components/schemas/certificateUser5
           x-edifact-segment:
           - SG29.LIN+Z68.FTX+Z23
-      required:
-      - certificateUser1
-      - certificateUser2
-      - certificateUser3
-      - certificateUser4
-      - certificateUser5
     PI_17130__masterData__VALUES_BY_TYPE2__targetAddress:
       type: object
       properties:
@@ -177,9 +153,3 @@ components:
           $ref: ../../../bo4e-en/fields/com/TargetAddress/targetAddress5.yaml#/components/schemas/targetAddress5
           x-edifact-segment:
           - SG29.LIN+Z68.FTX+Z17
-      required:
-      - targetAddress1
-      - targetAddress2
-      - targetAddress3
-      - targetAddress4
-      - targetAddress5

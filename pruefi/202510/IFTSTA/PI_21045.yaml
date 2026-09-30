@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_21045
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_21045:
@@ -33,7 +33,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_21045__stammdaten__STATUSMITTEILUNG'
       required:
-        - ENERGIELIEFERVERTRAG
         - MARKTLOKATION
         - STATUSMITTEILUNG
     PI_21045__stammdaten__ENERGIELIEFERVERTRAG:
@@ -43,8 +42,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_21045__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2'
-      required:
-        - vertragspartner2
     PI_21045__stammdaten__ENERGIELIEFERVERTRAG__vertragspartner2:
       type: object
       properties:
@@ -76,14 +73,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Geschaeftspartner/name4.yaml#/components/schemas/name4'
           x-edifact-segment:
             - SG14.CNI.SG15.STS+Z41.SG17.NAD+Z09
-      required:
-        - anrede
-        - geschaeftspartnerrolle
-        - gewerbekennzeichnung
-        - name1
-        - name2
-        - name3
-        - name4
     PI_21045__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -116,7 +105,6 @@ components:
           x-edifact-segment:
             - SG14.CNI
       required:
-        - allgemeineInformationen
         - auftragsStatusListe
         - positionsnummer
     PI_21045__stammdaten__STATUSMITTEILUNG__positionsdaten__allgemeineInformationen:
@@ -142,12 +130,6 @@ components:
           $ref: '../../../bo4e/fields/com/AllgemeineInformationen/info5.yaml#/components/schemas/info5'
           x-edifact-segment:
             - SG14.CNI.SG15.STS+Z41.SG25.GID.FTX+ACB
-      required:
-        - info1
-        - info2
-        - info3
-        - info4
-        - info5
     PI_21045__transaktionsdaten:
       type: object
       properties:
@@ -195,7 +177,6 @@ components:
         - nachrichtendatum
         - nachrichtenreferenznummer
         - pruefidentifikator
-        - sendungsposition
         - verwendungAb
         - verwendungBis
     PI_21045__transaktionsdaten__absender:
@@ -212,7 +193,6 @@ components:
           x-edifact-segment:
             - SG1.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_21045__transaktionsdaten__absender__ansprechpartner:
@@ -230,10 +210,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_21045__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_21045__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -245,9 +221,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG1.NAD+MS.SG2.CTA+IC.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_21045__transaktionsdaten__empfaenger:
       type: object
       properties:

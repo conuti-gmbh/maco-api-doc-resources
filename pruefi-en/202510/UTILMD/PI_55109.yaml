@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55109
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55109:
@@ -37,9 +37,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55109__masterData__USAGE_PERIOD'
       required:
-      - ENERGY_SUPPLY_CONTRACT
-      - MARKET_LOCATION
-      - GRID_ACCESS_CONTRACT
       - USAGE_PERIOD
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT:
       type: object
@@ -62,12 +59,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2'
-      required:
-      - dataQuality
-      - enfg
-      - validityPeriod
-      - correspondencePartner
-      - contractPartner2
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__enfg:
       type: object
       properties:
@@ -79,8 +70,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/EnFG/basisForLevyReduction.yaml#/components/schemas/basisForLevyReduction
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z75.SG10.CCI+Z61
-      required:
-      - basisForLevyReduction
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__validityPeriod:
       type: object
       properties:
@@ -90,8 +79,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z04.RFF+Z46
           - SG4.IDE+24.SG12.NAD+Z09.RFF+Z46
           - SG4.IDE+24.SG8.SEQ+Z75
-      required:
-      - periodId
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner:
       type: object
       properties:
@@ -117,13 +104,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z04
         partnerAddress:
           $ref: '#/components/schemas/PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress'
-      required:
-      - salutation
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__correspondencePartner__partnerAddress:
       type: object
       properties:
@@ -155,14 +135,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z04
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2:
       type: object
       properties:
@@ -194,13 +166,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/BusinessPartner/name4.yaml#/components/schemas/name4
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z09
-      required:
-      - salutation
-      - businessPartnerRole
-      - name1
-      - name2
-      - name3
-      - name4
     PI_55109__masterData__ENERGY_SUPPLY_CONTRACT__contractPartner2__externalReferences:
       type: object
       properties:
@@ -229,11 +194,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z16
-      required:
-      - dataQuality
-      - promotionCountry
-      - validityPeriod
-      - marketLocationId
     PI_55109__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -241,15 +201,11 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01
-      required:
-      - periodId
     PI_55109__masterData__GRID_ACCESS_CONTRACT:
       type: object
       properties:
         contractConditions:
           $ref: '#/components/schemas/PI_55109__masterData__GRID_ACCESS_CONTRACT__contractConditions'
-      required:
-      - contractConditions
     PI_55109__masterData__GRID_ACCESS_CONTRACT__contractConditions:
       type: object
       properties:
@@ -257,8 +213,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ContractConditions/householdCustomer.yaml#/components/schemas/householdCustomer
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI
-      required:
-      - householdCustomer
     PI_55109__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -346,7 +300,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_55109__transactionData__sender__contactPerson:
@@ -364,10 +317,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55109__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_55109__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -379,9 +328,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_55109__transactionData__receiver:
       type: object
       properties:

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_21027
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_21027:
@@ -38,11 +38,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_21027__masterData__CONTROLLABLE_RESOURCE'
       required:
-      - MARKET_LOCATION
-      - METERING_LOCATION
-      - GRID_LOCATION
       - STATUS_NOTIFICATION
-      - CONTROLLABLE_RESOURCE
     PI_21027__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -50,8 +46,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketLocation/marketLocationId.yaml#/components/schemas/marketLocationId
           x-edifact-segment:
           - SG14.CNI.LOC+172
-      required:
-      - marketLocationId
     PI_21027__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -59,8 +53,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
           x-edifact-segment:
           - SG14.CNI.LOC+172
-      required:
-      - meteringLocationId
     PI_21027__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -68,8 +60,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
           x-edifact-segment:
           - SG14.CNI.LOC+172
-      required:
-      - gridLocationId
     PI_21027__masterData__STATUS_NOTIFICATION:
       type: object
       properties:
@@ -94,7 +84,6 @@ components:
           x-edifact-segment:
           - SG14.CNI
       required:
-      - generalInformation
       - positionNumber
     PI_21027__masterData__STATUS_NOTIFICATION__positionData__generalInformation:
       type: object
@@ -119,12 +108,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/GeneralInformation/info5.yaml#/components/schemas/info5
           x-edifact-segment:
           - SG14.CNI.SG15.STS+Z15.SG25.GID.FTX+ACB
-      required:
-      - info1
-      - info2
-      - info3
-      - info4
-      - info5
     PI_21027__masterData__CONTROLLABLE_RESOURCE:
       type: object
       properties:
@@ -132,5 +115,3 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG14.CNI.LOC+172
-      required:
-      - resourceId

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55077
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55077:
@@ -34,8 +34,6 @@ components:
             $ref: '#/components/schemas/PI_55077__stammdaten__TRANCHE'
       required:
         - MARKTLOKATION
-        - NETZNUTZUNGSVERTRAG
-        - TRANCHE
     PI_55077__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -53,8 +51,6 @@ components:
             - SG4.IDE+24.SG5.LOC+Z16
       required:
         - erforderlichesProduktpaket
-        - foerderungsLand
-        - marktlokationsId
     PI_55077__stammdaten__MARKTLOKATION__erforderlichesProduktpaket:
       type: object
       properties:
@@ -78,7 +74,6 @@ components:
       required:
         - produkt
         - produktpaketId
-        - umsetzungsgradvorgabe
     PI_55077__stammdaten__MARKTLOKATION__erforderlichesProduktpaket__produkt:
       type: object
       properties:
@@ -103,8 +98,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Vertrag/vertragsbeginn.yaml#/components/schemas/vertragsbeginn'
           x-edifact-segment:
             - SG4.IDE+24.DTM+92
-      required:
-        - vertragsbeginn
     PI_55077__stammdaten__TRANCHE:
       type: object
       properties:
@@ -112,8 +105,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Tranche/tranchenId.yaml#/components/schemas/tranchenId'
           x-edifact-segment:
             - SG4.IDE+24.SG5.LOC+Z21
-      required:
-        - tranchenId
     PI_55077__transaktionsdaten:
       type: object
       properties:
@@ -169,7 +160,6 @@ components:
         - pruefidentifikator
         - transaktionsgrund
         - transaktionsgrundergaenzung
-        - vertragsbeginn
         - vorgangsnummer
     PI_55077__transaktionsdaten__absender:
       type: object
@@ -185,7 +175,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55077__transaktionsdaten__absender__ansprechpartner:
@@ -203,10 +192,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55077__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55077__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -218,9 +203,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55077__transaktionsdaten__abtretungserklaerung:
       type: object
       properties:

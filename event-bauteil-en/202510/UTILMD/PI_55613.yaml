@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55613
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55613:
@@ -30,7 +30,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55613__masterData__USAGE_PERIOD'
       required:
-      - BALANCING
       - MARKET_LOCATION
       - USAGE_PERIOD
     PI_55613__masterData__BALANCING:
@@ -68,14 +67,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+15++Z21.CAV
           - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+15++Z21.CAV
-      required:
-      - balancingGroup
-      - dataQuality
-      - validityPeriod
-      - annualConsumptionForecast
-      - loadProfiles
-      - forecastBasis
-      - timeSeriesType
     PI_55613__masterData__BALANCING__validityPeriod:
       type: object
       properties:
@@ -83,8 +74,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z21
-      required:
-      - periodId
     PI_55613__masterData__BALANCING__annualConsumptionForecast:
       type: object
       properties:
@@ -98,9 +87,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01.SG9.QTY+31
           - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+31
-      required:
-      - unit
-      - value
     PI_55613__masterData__BALANCING__loadProfiles:
       type: object
       properties:
@@ -120,11 +106,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/LoadProfile/procedure.yaml#/components/schemas/procedure
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z21.SG10.CCI+Z02
-      required:
-      - designation
-      - feedIn
-      - profileType
-      - procedure
     PI_55613__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -159,11 +140,7 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z01.SG10.CCI+++E03.CAV
           - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++E03.CAV
       required:
-      - balancingArea
       - dataQuality
-      - validityPeriod
-      - marketLocationId
-      - gridLevel
     PI_55613__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -171,8 +148,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z01
-      required:
-      - periodId
     PI_55613__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:

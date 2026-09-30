@@ -1,0 +1,4 @@
+components:
+  schemas:
+    listNumber:
+      type: integer

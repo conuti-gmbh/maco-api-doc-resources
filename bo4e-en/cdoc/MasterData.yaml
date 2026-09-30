@@ -93,3 +93,6 @@ components:
         USAGE_PERIOD:
           $ref: >-
             ../fields/cdoc/MasterData/USAGE_PERIOD.yaml#/components/schemas/USAGE_PERIOD
+        SUM_TIME_SERIES:
+          $ref: >-
+            ../fields/cdoc/MasterData/SUM_TIME_SERIES.yaml#/components/schemas/SUM_TIME_SERIES

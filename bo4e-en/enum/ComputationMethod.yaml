@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ComputationMethod:
+      title: ComputationMethod
+      type: string
+      enum:
+        - 24H_AVERAGE
+        - EQUIVALENT_DAILY_AVERAGE_TEMPERATURE_PROVIDED_BY_SUPPLIER
+        - EQUIVALENT_DAILY_AVERAGE_TEMPERATURE

@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_19015
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_19015:
@@ -15,7 +15,6 @@ components:
         transactionData:
           $ref: '#/components/schemas/PI_19015__transactionData'
       required:
-      - masterData
       - transactionData
     PI_19015__masterData:
       type: object
@@ -24,15 +23,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_19015__masterData__ORDER'
-      required:
-      - ORDER
     PI_19015__masterData__ORDER:
       type: object
       properties:
         deliveryAddressOldDevices:
           $ref: '#/components/schemas/PI_19015__masterData__ORDER__deliveryAddressOldDevices'
-      required:
-      - deliveryAddressOldDevices
     PI_19015__masterData__ORDER__deliveryAddressOldDevices:
       type: object
       properties:
@@ -62,14 +57,6 @@ components:
           - SG3.NAD+Z22
         partnerAddress:
           $ref: '#/components/schemas/PI_19015__masterData__ORDER__deliveryAddressOldDevices__partnerAddress'
-      required:
-      - salutation
-      - commercialClassification
-      - name1
-      - name2
-      - name3
-      - name4
-      - partnerAddress
     PI_19015__masterData__ORDER__deliveryAddressOldDevices__partnerAddress:
       type: object
       properties:
@@ -101,14 +88,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Address/street.yaml#/components/schemas/street
           x-edifact-segment:
           - SG3.NAD+Z22
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
     PI_19015__transactionData:
       type: object
       properties:
@@ -168,7 +147,6 @@ components:
           x-edifact-segment:
           - SG3.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_19015__transactionData__sender__contactPerson:
@@ -186,10 +164,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_19015__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_19015__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -201,9 +175,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG3.NAD+MS.SG6.CTA+IC.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_19015__transactionData__receiver:
       type: object
       properties:

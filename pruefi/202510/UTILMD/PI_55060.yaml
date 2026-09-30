@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55060
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55060:
@@ -57,15 +57,9 @@ components:
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__ZAEHLER'
       required:
-        - BILANZIERUNG
         - LOKATIONSBUENDEL
         - MARKTLOKATION
         - MESSLOKATION
-        - NETZLOKATION
-        - STEUERBARE_RESSOURCE
-        - TECHNISCHE_RESSOURCE
-        - TRANCHE
-        - ZAEHLER
     PI_55060__stammdaten__BILANZIERUNG:
       type: object
       properties:
@@ -81,10 +75,6 @@ components:
             - 'SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++[ZC0|ZA6]'
         temperaturarbeit:
           $ref: '#/components/schemas/PI_55060__stammdaten__BILANZIERUNG__temperaturarbeit'
-      required:
-        - jahresverbrauchsprognose
-        - prognosegrundlage
-        - temperaturarbeit
     PI_55060__stammdaten__BILANZIERUNG__jahresverbrauchsprognose:
       type: object
       properties:
@@ -96,9 +86,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+31
-      required:
-        - einheit
-        - wert
     PI_55060__stammdaten__BILANZIERUNG__temperaturarbeit:
       type: object
       properties:
@@ -110,9 +97,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+[265|Z08]'
-      required:
-        - einheit
-        - wert
     PI_55060__stammdaten__LOKATIONSBUENDEL:
       type: object
       properties:
@@ -133,10 +117,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode'
       required:
-        - lokationsbuendelNummer
-        - lokationsbuendelstrukturId
         - standardisierteLokationsbuendelstruktur
-        - zuordnungObjectcode
     PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode:
       type: object
       properties:
@@ -164,10 +145,6 @@ components:
           $ref: '../../../bo4e/fields/com/ZuordnungObjectcode/vorgelagerteLokationTyp.yaml#/components/schemas/vorgelagerteLokationTyp'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+ZD6.RFF+[Z34|Z35]'
-      required:
-        - objectcode
-        - referenzLokationsId
-        - referenzLokationsTyp
     PI_55060__stammdaten__LOKATIONSBUENDEL__zuordnungObjectcode__objectcode:
       type: object
       properties:
@@ -179,9 +156,6 @@ components:
           $ref: '../../../bo4e/fields/com/Objectcode/objectcode.yaml#/components/schemas/objectcode'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZD6.RFF+Z33
-      required:
-        - lokationsbuendelNummer
-        - objectcode
     PI_55060__stammdaten__MARKTLOKATION:
       type: object
       properties:
@@ -227,15 +201,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION__zaehlwerke'
       required:
-        - energieherkunft
-        - energierichtung
-        - konfigurationsprodukt
-        - leistungskurvendefinition
         - marktlokationsId
-        - marktrollen
-        - messtechnischeEinordnung
-        - netzebene
-        - zaehlwerke
     PI_55060__stammdaten__MARKTLOKATION__energieherkunft:
       type: object
       properties:
@@ -243,8 +209,6 @@ components:
           $ref: '../../../bo4e/fields/com/Energieherkunft/erzeugungsart.yaml#/components/schemas/erzeugungsart'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++Z34.CAV+[Z33|Z34|Z35|Z37|Z46]'
-      required:
-        - erzeugungsart
     PI_55060__stammdaten__MARKTLOKATION__marktrollen:
       type: object
       properties:
@@ -268,11 +232,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55060__stammdaten__MARKTLOKATION__zaehlwerke:
       type: object
       properties:
@@ -290,11 +249,6 @@ components:
             - 'SG4.IDE+24.SG8.SEQ+ZE3.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]'
         zaehlzeiten:
           $ref: '#/components/schemas/PI_55060__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten'
-      required:
-        - messprodukt
-        - obisKennzahl
-        - wertegranularitaet
-        - zaehlzeiten
     PI_55060__stammdaten__MARKTLOKATION__zaehlwerke__zaehlzeiten:
       type: object
       properties:
@@ -307,9 +261,6 @@ components:
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+ZE2.SG10.CCI+[Z39|Z41]'
             - SG4.IDE+24.SG8.SEQ+ZE3.SG10.CCI+Z39
-      required:
-        - register
-        - zaehlzeitDefinition
     PI_55060__stammdaten__MESSLOKATION:
       type: object
       properties:
@@ -339,12 +290,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__zaehlwerke'
       required:
-        - marktrollen
-        - messadresse
         - messlokationsId
-        - netzebenemessung
-        - verwendungsumfang
-        - zaehlwerke
     PI_55060__stammdaten__MESSLOKATION__marktrollen:
       type: object
       properties:
@@ -366,11 +312,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/weiterverpflichtet.yaml#/components/schemas/weiterverpflichtet'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
-        - weiterverpflichtet
     PI_55060__stammdaten__MESSLOKATION__messadresse:
       type: object
       properties:
@@ -404,15 +345,6 @@ components:
             - SG4.IDE+24.SG12.NAD+Z64
         zusatzInformation:
           $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__messadresse__zusatzInformation'
-      required:
-        - hausnummer
-        - landescode
-        - ort
-        - ortsteil
-        - postfach
-        - postleitzahl
-        - strasse
-        - zusatzInformation
     PI_55060__stammdaten__MESSLOKATION__messadresse__zusatzInformation:
       type: object
       properties:
@@ -436,12 +368,6 @@ components:
           $ref: '../../../bo4e/fields/com/AdresszusatzInformation/zusatz5.yaml#/components/schemas/zusatz5'
           x-edifact-segment:
             - SG4.IDE+24.SG12.NAD+Z64
-      required:
-        - zusatz1
-        - zusatz2
-        - zusatz3
-        - zusatz4
-        - zusatz5
     PI_55060__stammdaten__MESSLOKATION__zaehlwerke:
       type: object
       properties:
@@ -459,11 +385,6 @@ components:
             - SG4.IDE+24.SG8.SEQ+ZF4.SG10.CCI+Z35.CAV+Z88
         zaehlzeiten:
           $ref: '#/components/schemas/PI_55060__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten'
-      required:
-        - messprodukt
-        - notwendigkeitZweiteMessung
-        - werteuebermittlungVerwendungszweck
-        - zaehlzeiten
     PI_55060__stammdaten__MESSLOKATION__zaehlwerke__zaehlzeiten:
       type: object
       properties:
@@ -471,8 +392,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlzeitregister/zaehlzeitDefinition.yaml#/components/schemas/zaehlzeitDefinition'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+ZF4.SG10.CCI+[Z39|Z41]'
-      required:
-        - zaehlzeitDefinition
     PI_55060__stammdaten__NETZLOKATION:
       type: object
       properties:
@@ -503,13 +422,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__NETZLOKATION__zaehlwerke'
-      required:
-        - konfigurationsprodukt
-        - leistungskurvendefinition
-        - marktrollen
-        - netzlokationsId
-        - steuerkanal
-        - zaehlwerke
     PI_55060__stammdaten__NETZLOKATION__marktrollen:
       type: object
       properties:
@@ -525,10 +437,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55060__stammdaten__NETZLOKATION__zaehlwerke:
       type: object
       properties:
@@ -536,8 +444,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/obisKennzahl.yaml#/components/schemas/obisKennzahl'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZD9.PIA+5
-      required:
-        - obisKennzahl
     PI_55060__stammdaten__STEUERBARE_RESSOURCE:
       type: object
       properties:
@@ -561,12 +467,6 @@ components:
             - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+Z49.CAV+ZF2
         zugeordneteDefinition:
           $ref: '#/components/schemas/PI_55060__stammdaten__STEUERBARE_RESSOURCE__zugeordneteDefinition'
-      required:
-        - konfigurationsprodukt
-        - marktrollen
-        - ressourcenId
-        - steuerkanal
-        - zugeordneteDefinition
     PI_55060__stammdaten__STEUERBARE_RESSOURCE__marktrollen:
       type: object
       properties:
@@ -582,10 +482,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
-      required:
-        - marktrolle
-        - messstellenbetreiberEigenschaft
-        - rollencodenummer
     PI_55060__stammdaten__STEUERBARE_RESSOURCE__zugeordneteDefinition:
       type: object
       properties:
@@ -597,9 +493,6 @@ components:
           $ref: '../../../bo4e/fields/com/ZugeordneteDefinition/schaltzeitdefinition.yaml#/components/schemas/schaltzeitdefinition'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+ZF2.SG10.CCI+[Z52|Z53]'
-      required:
-        - leistungskurvendefinition
-        - schaltzeitdefinition
     PI_55060__stammdaten__TECHNISCHE_RESSOURCE:
       type: object
       properties:
@@ -654,12 +547,6 @@ components:
           $ref: '../../../bo4e/fields/bo/TechnischeRessource/weitereEinrichtung.yaml#/components/schemas/weitereEinrichtung'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+ZF0.SG10.CCI+Z63.CAV+[ZH7|ZH8]'
-      required:
-        - art
-        - nennleistung
-        - ressourcenId
-        - speicherkapazitaet
-        - weitereEinrichtung
     PI_55060__stammdaten__TECHNISCHE_RESSOURCE__nennleistung:
       type: object
       properties:
@@ -671,9 +558,6 @@ components:
           $ref: '../../../bo4e/fields/com/Nennleistung/aufnahme.yaml#/components/schemas/aufnahme'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF0.SG9.QTY+Z43
-      required:
-        - abgabe
-        - aufnahme
     PI_55060__stammdaten__TRANCHE:
       type: object
       properties:
@@ -701,13 +585,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__TRANCHE__zaehlwerke'
-      required:
-        - aufteilungsmenge
-        - bildungTranchengroesse
-        - marktrollen
-        - referenzMarktlokationsId
-        - tranchenId
-        - zaehlwerke
     PI_55060__stammdaten__TRANCHE__aufteilungsmenge:
       type: object
       properties:
@@ -719,9 +596,6 @@ components:
           $ref: '../../../bo4e/fields/com/Menge/wert.yaml#/components/schemas/wert'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZE7.SG9.QTY+11
-      required:
-        - einheit
-        - wert
     PI_55060__stammdaten__TRANCHE__marktrollen:
       type: object
       properties:
@@ -733,9 +607,6 @@ components:
           $ref: '../../../bo4e/fields/bo/Marktteilnehmer/rollencodenummer.yaml#/components/schemas/rollencodenummer'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZE7.SG10.CCI+++ZB3.CAV+Z89
-      required:
-        - marktrolle
-        - rollencodenummer
     PI_55060__stammdaten__TRANCHE__zaehlwerke:
       type: object
       properties:
@@ -743,8 +614,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/messprodukt.yaml#/components/schemas/messprodukt'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZE8.PIA+5
-      required:
-        - messprodukt
     PI_55060__stammdaten__ZAEHLER:
       type: object
       properties:
@@ -785,15 +654,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55060__stammdaten__ZAEHLER__zaehlwerke'
-      required:
-        - gateway
-        - geraete
-        - messlokationsId
-        - messwerterfassung
-        - zaehlernummer
-        - zaehlertyp
-        - zaehlertypspezifikation
-        - zaehlwerke
     PI_55060__stammdaten__ZAEHLER__geraete:
       type: object
       properties:
@@ -815,10 +675,6 @@ components:
           $ref: '../../../bo4e/fields/com/Geraet/weitereGeraetenummern.yaml#/components/schemas/weitereGeraetenummern'
           x-edifact-segment:
             - SG4.IDE+24.SG8.SEQ+ZF7.SG10.CCI+++Z25.CAV+Z30
-      required:
-        - geraeteeigenschaften
-        - geraetenummer
-        - geraetetyp
     PI_55060__stammdaten__ZAEHLER__geraete__geraeteeigenschaften:
       type: object
       properties:
@@ -832,9 +688,6 @@ components:
             - 'SG4.IDE+24.SG8.SEQ+ZF7.SG10.CCI+++Z25.CAV+[MIW|MPW|MBW|MUW]'
             - 'SG4.IDE+24.SG8.SEQ+ZF8.SG10.CCI+++Z26.CAV+[GSM|ETH|PLC|PST|DSL|LTE]'
             - 'SG4.IDE+24.SG8.SEQ+ZF9.SG10.CCI+++Z27.CAV+[RSU|TSU]'
-      required:
-        - faktor
-        - geraetemerkmal
     PI_55060__stammdaten__ZAEHLER__zaehlwerke:
       type: object
       properties:
@@ -850,9 +703,6 @@ components:
           $ref: '../../../bo4e/fields/com/Zaehlwerk/wertegranularitaet.yaml#/components/schemas/wertegranularitaet'
           x-edifact-segment:
             - 'SG4.IDE+24.SG8.SEQ+ZF6.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]'
-      required:
-        - obisKennzahl
-        - wertegranularitaet
     PI_55060__transaktionsdaten:
       type: object
       properties:
@@ -917,7 +767,6 @@ components:
           x-edifact-segment:
             - SG2.NAD+MS
       required:
-        - ansprechpartner
         - rollencodenummer
         - rollencodetyp
     PI_55060__transaktionsdaten__absender__ansprechpartner:
@@ -935,10 +784,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55060__transaktionsdaten__absender__ansprechpartner__rufnummern'
-      required:
-        - eMailAdresse
-        - nachname
-        - rufnummern
     PI_55060__transaktionsdaten__absender__ansprechpartner__rufnummern:
       type: object
       properties:
@@ -950,9 +795,6 @@ components:
           $ref: '../../../bo4e/fields/com/Rufnummer/rufnummer.yaml#/components/schemas/rufnummer'
           x-edifact-segment:
             - 'SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]'
-      required:
-        - nummerntyp
-        - rufnummer
     PI_55060__transaktionsdaten__empfaenger:
       type: object
       properties:

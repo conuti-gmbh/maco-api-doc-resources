@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17134
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17134:
@@ -40,9 +40,6 @@ components:
       required:
       - REQUEST
       - ORDER
-      - MARKET_LOCATION
-      - METERING_LOCATION
-      - TRANCHE
     PI_17134__masterData__REQUEST:
       type: object
       properties:
@@ -74,7 +71,6 @@ components:
             $ref: '#/components/schemas/PI_17134__masterData__ORDER__positionData'
       required:
       - executionDate
-      - positionData
     PI_17134__masterData__ORDER__positionData:
       type: object
       properties:
@@ -88,9 +84,6 @@ components:
           - SG29.LIN++Z16
           - SG29.LIN++Z19
           - SG29.LIN++Z54
-      required:
-      - requestReason
-      - positionNumber
     PI_17134__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -110,10 +103,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17134__masterData__MARKET_LOCATION__meterRegisters'
-      required:
-      - marketLocationId
-      - marketRoles
-      - meterRegisters
     PI_17134__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -141,11 +130,6 @@ components:
           - SG2.NAD+DEB
           - SG2.NAD+SU
           - SG2.NAD+Z31
-      required:
-      - marketRole
-      - roleCodeNumber
-      - roleCodeType
-      - subContracted
     PI_17134__masterData__MARKET_LOCATION__meterRegisters:
       type: object
       properties:
@@ -159,10 +143,6 @@ components:
             $ref: '#/components/schemas/PI_17134__masterData__MARKET_LOCATION__meterRegisters__purposesOfUse'
         meteringTimes:
           $ref: '#/components/schemas/PI_17134__masterData__MARKET_LOCATION__meterRegisters__meteringTimes'
-      required:
-      - meteringProduct
-      - purposesOfUse
-      - meteringTimes
     PI_17134__masterData__MARKET_LOCATION__meterRegisters__purposesOfUse:
       type: object
       properties:
@@ -178,9 +158,6 @@ components:
           - SG29.LIN++Z54.SG30.CCI+ZA7.CAV
           - SG29.LIN++Z54.SG30.CCI+ZA8.CAV
           - SG29.LIN++Z54.SG30.CCI+ZA9.CAV
-      required:
-      - marketRole
-      - purpose
     PI_17134__masterData__MARKET_LOCATION__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -188,8 +165,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG29.LIN++Z54.SG30.CCI+[Z39|Z41]
-      required:
-      - meteringTimeDefinition
     PI_17134__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -201,9 +176,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17134__masterData__METERING_LOCATION__meterRegisters'
-      required:
-      - meteringLocationId
-      - meterRegisters
     PI_17134__masterData__METERING_LOCATION__meterRegisters:
       type: object
       properties:
@@ -213,9 +185,6 @@ components:
           - SG29.LIN++Z19.PIA+5
         meteringTimes:
           $ref: '#/components/schemas/PI_17134__masterData__METERING_LOCATION__meterRegisters__meteringTimes'
-      required:
-      - meteringProduct
-      - meteringTimes
     PI_17134__masterData__METERING_LOCATION__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -223,8 +192,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG29.LIN++Z19.SG30.CCI+[Z39|Z41]
-      required:
-      - meteringTimeDefinition
     PI_17134__masterData__TRANCHE:
       type: object
       properties:
@@ -248,11 +215,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17134__masterData__TRANCHE__meterRegisters'
-      required:
-      - trancheFormationSize
-      - marketRoles
-      - trancheId
-      - meterRegisters
     PI_17134__masterData__TRANCHE__allocationQuantity:
       type: object
       properties:
@@ -279,10 +241,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
           x-edifact-segment:
           - SG2.NAD+SU
-      required:
-      - marketRole
-      - roleCodeNumber
-      - roleCodeType
     PI_17134__masterData__TRANCHE__meterRegisters:
       type: object
       properties:
@@ -294,8 +252,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17134__masterData__TRANCHE__meterRegisters__purposesOfUse'
-      required:
-      - purposesOfUse
     PI_17134__masterData__TRANCHE__meterRegisters__purposesOfUse:
       type: object
       properties:
@@ -311,6 +267,3 @@ components:
           - SG29.LIN++Z16.SG30.CCI+ZA7.CAV
           - SG29.LIN++Z16.SG30.CCI+ZA8.CAV
           - SG29.LIN++Z16.SG30.CCI+ZA9.CAV
-      required:
-      - marketRole
-      - purpose

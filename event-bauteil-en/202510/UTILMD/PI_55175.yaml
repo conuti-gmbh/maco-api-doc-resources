@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55175
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55175:
@@ -46,12 +46,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55175__masterData__USAGE_PERIOD'
       required:
-      - LOCATION_BUNDLE
-      - MARKET_LOCATION
-      - METERING_LOCATION
-      - GRID_LOCATION
-      - CONTROLLABLE_RESOURCE
-      - TECHNICAL_RESOURCE
       - USAGE_PERIOD
     PI_55175__masterData__LOCATION_BUNDLE:
       type: object
@@ -79,13 +73,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55175__masterData__LOCATION_BUNDLE__assignmentObjectCode'
-      required:
-      - dataQuality
-      - validityPeriod
-      - locationBundleNumber
-      - locationBundleStructureId
-      - standardizedLocationBundleStructure
-      - assignmentObjectCode
     PI_55175__masterData__LOCATION_BUNDLE__validityPeriod:
       type: object
       properties:
@@ -94,8 +81,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z58
           - SG4.IDE+24.SG8.SEQ+Z78
-      required:
-      - periodId
     PI_55175__masterData__LOCATION_BUNDLE__assignmentObjectCode:
       type: object
       properties:
@@ -123,10 +108,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/upstreamLocationType.yaml#/components/schemas/upstreamLocationType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z58.RFF+[Z34|Z35]
-      required:
-      - objectCode
-      - referenceLocationId
-      - referenceLocationType
     PI_55175__masterData__LOCATION_BUNDLE__assignmentObjectCode__objectCode:
       type: object
       properties:
@@ -138,9 +119,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ObjectCode/objectCode.yaml#/components/schemas/objectCode
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z58.RFF+Z33
-      required:
-      - locationBundleNumber
-      - objectCode
     PI_55175__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -151,9 +129,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z16
           - SG4.IDE+24.SG5.LOC+Z22
-      required:
-      - validityPeriod
-      - marketLocationId
     PI_55175__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -162,8 +137,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z16
           - SG4.IDE+24.SG5.LOC+Z22
-      required:
-      - periodId
     PI_55175__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -173,9 +146,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MeteringLocation/meteringLocationId.yaml#/components/schemas/meteringLocationId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z17
-      required:
-      - validityPeriod
-      - meteringLocationId
     PI_55175__masterData__METERING_LOCATION__validityPeriod:
       type: object
       properties:
@@ -183,8 +153,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z17
-      required:
-      - periodId
     PI_55175__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -194,9 +162,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/GridLocation/gridLocationId.yaml#/components/schemas/gridLocationId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z18
-      required:
-      - validityPeriod
-      - gridLocationId
     PI_55175__masterData__GRID_LOCATION__validityPeriod:
       type: object
       properties:
@@ -204,8 +169,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z18
-      required:
-      - periodId
     PI_55175__masterData__CONTROLLABLE_RESOURCE:
       type: object
       properties:
@@ -215,9 +178,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ControllableResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z19
-      required:
-      - validityPeriod
-      - resourceId
     PI_55175__masterData__CONTROLLABLE_RESOURCE__validityPeriod:
       type: object
       properties:
@@ -225,8 +185,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z19
-      required:
-      - periodId
     PI_55175__masterData__TECHNICAL_RESOURCE:
       type: object
       properties:
@@ -236,9 +194,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/TechnicalResource/resourceId.yaml#/components/schemas/resourceId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z20
-      required:
-      - validityPeriod
-      - resourceId
     PI_55175__masterData__TECHNICAL_RESOURCE__validityPeriod:
       type: object
       properties:
@@ -246,8 +201,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/periodId.yaml#/components/schemas/periodId
           x-edifact-segment:
           - SG4.IDE+24.SG5.LOC+Z20
-      required:
-      - periodId
     PI_55175__masterData__USAGE_PERIOD:
       type: object
       properties:

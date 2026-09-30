@@ -1,0 +1,5 @@
+components:
+  schemas:
+    dailyAverageTemperature:
+      $ref: >-
+        ../../../com/DailyAverageTemperature.yaml#/components/schemas/DailyAverageTemperature

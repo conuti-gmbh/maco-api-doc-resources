@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_25001
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_25001:
@@ -26,7 +26,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_25001__masterData__USAGE_PERIOD'
       required:
-      - CALCULATION_FORMULA
       - USAGE_PERIOD
     PI_25001__masterData__CALCULATION_FORMULA:
       type: object
@@ -45,10 +44,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_25001__masterData__CALCULATION_FORMULA__calculationSteps'
-      required:
-      - validityPeriod
-      - calculationStepId
-      - calculationSteps
     PI_25001__masterData__CALCULATION_FORMULA__validityPeriod:
       type: object
       properties:
@@ -58,8 +53,6 @@ components:
           - SG5.IDE+24.SG8.SEQ+Z36.RFF+Z46
           - SG5.IDE+24.SG8.SEQ+Z37.RFF+Z46
           - SG5.IDE+24.STS+Z23
-      required:
-      - periodId
     PI_25001__masterData__CALCULATION_FORMULA__calculationSteps:
       type: object
       properties:
@@ -95,13 +88,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/CalculationStep/lossFactorTransformer.yaml#/components/schemas/lossFactorTransformer
           x-edifact-segment:
           - SG5.IDE+24.SG8.SEQ+Z37.SG9.CCI++Z16.CAV+Z28
-      required:
-      - allocationFactorEnergyQuantity
-      - energyFlowDirection
-      - operation
-      - calculationStepComponentId
-      - lossFactorLine
-      - lossFactorTransformer
     PI_25001__masterData__USAGE_PERIOD:
       type: object
       properties:

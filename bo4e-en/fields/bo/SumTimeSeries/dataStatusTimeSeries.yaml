@@ -1,0 +1,5 @@
+components:
+  schemas:
+    dataStatusTimeSeries:
+      $ref: >-
+        ../../../enum/DataStatusTimeSeries.yaml#/components/schemas/DataStatusTimeSeries

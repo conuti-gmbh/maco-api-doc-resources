@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55095
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55095:
@@ -61,11 +61,6 @@ components:
       - LOCATION_BUNDLE
       - MARKET_LOCATION
       - METERING_LOCATION
-      - GRID_LOCATION
-      - CONTROLLABLE_RESOURCE
-      - TECHNICAL_RESOURCE
-      - TRANCHE
-      - METER
     PI_55095__masterData__BALANCING:
       type: object
       properties:
@@ -86,10 +81,7 @@ components:
         temperatureWork:
           $ref: '#/components/schemas/PI_55095__masterData__BALANCING__temperatureWork'
       required:
-      - annualConsumptionForecast
-      - loadProfiles
       - forecastBasis
-      - temperatureWork
     PI_55095__masterData__BALANCING__annualConsumptionForecast:
       type: object
       properties:
@@ -101,9 +93,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+31
-      required:
-      - unit
-      - value
     PI_55095__masterData__BALANCING__loadProfiles:
       type: object
       properties:
@@ -137,14 +126,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZG1.SG10.CCI+Z04
           - SG4.IDE+24.SG8.SEQ+ZG2.SG10.CCI+++Z05
-      required:
-      - designation
-      - feedIn
-      - profileType
-      - profileFamily
-      - referenceProfileDesignation
-      - dailyParameters
-      - procedure
     PI_55095__masterData__BALANCING__loadProfiles__dailyParameters:
       type: object
       properties:
@@ -164,11 +145,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/DailyParameters/temperatureMeasuringPoint.yaml#/components/schemas/temperatureMeasuringPoint
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZG2.SG10.CCI+++[Z99|ZA0]
-      required:
-      - serviceProvider
-      - publisher
-      - climateZone
-      - temperatureMeasuringPoint
     PI_55095__masterData__BALANCING__temperatureWork:
       type: object
       properties:
@@ -180,9 +156,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Quantity/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z98.SG9.QTY+[265|Z08]
-      required:
-      - unit
-      - value
     PI_55095__masterData__LOCATION_BUNDLE:
       type: object
       properties:
@@ -203,10 +176,7 @@ components:
           items:
             $ref: '#/components/schemas/PI_55095__masterData__LOCATION_BUNDLE__assignmentObjectCode'
       required:
-      - locationBundleNumber
-      - locationBundleStructureId
       - standardizedLocationBundleStructure
-      - assignmentObjectCode
     PI_55095__masterData__LOCATION_BUNDLE__assignmentObjectCode:
       type: object
       properties:
@@ -234,10 +204,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AssignmentObjectCode/upstreamLocationType.yaml#/components/schemas/upstreamLocationType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZD6.RFF+[Z34|Z35]
-      required:
-      - objectCode
-      - referenceLocationId
-      - referenceLocationType
     PI_55095__masterData__LOCATION_BUNDLE__assignmentObjectCode__objectCode:
       type: object
       properties:
@@ -249,9 +215,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/ObjectCode/objectCode.yaml#/components/schemas/objectCode
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZD6.RFF+Z33
-      required:
-      - locationBundleNumber
-      - objectCode
     PI_55095__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -295,15 +258,10 @@ components:
             $ref: '#/components/schemas/PI_55095__masterData__MARKET_LOCATION__meterRegisters'
       required:
       - energyOrigin
-      - configurationProduct
-      - loadCurveDefinition
-      - locationAddress
       - marketLocationId
       - marketRoles
       - meteringTechnicalClassification
       - gridLevel
-      - redispatch
-      - meterRegisters
     PI_55095__masterData__MARKET_LOCATION__energyOrigin:
       type: object
       properties:
@@ -346,15 +304,6 @@ components:
           - SG4.IDE+24.SG12.NAD+Z63
         additionalInformation:
           $ref: '#/components/schemas/PI_55095__masterData__MARKET_LOCATION__locationAddress__additionalInformation'
-      required:
-      - houseNumber
-      - countryCode
-      - city
-      - district
-      - poBox
-      - postalCode
-      - street
-      - additionalInformation
     PI_55095__masterData__MARKET_LOCATION__locationAddress__additionalInformation:
       type: object
       properties:
@@ -378,12 +327,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AddressSupplementInformation/supplement5.yaml#/components/schemas/supplement5
           x-edifact-segment:
           - SG4.IDE+24.SG12.NAD+Z63
-      required:
-      - supplement1
-      - supplement2
-      - supplement3
-      - supplement4
-      - supplement5
     PI_55095__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -406,7 +349,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z98.SG10.CCI+++ZB3.CAV+Z91
       required:
-      - marketRole
       - meteringPointOperatorAttribute
       - roleCodeNumber
       - subContracted
@@ -421,9 +363,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeterRegister/valueGranularity.yaml#/components/schemas/valueGranularity
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZE3.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
-      required:
-      - obisCode
-      - valueGranularity
     PI_55095__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -437,7 +376,6 @@ components:
           - SG4.IDE+24.SG5.LOC+Z17
           - SG4.IDE+24.SG8.SEQ+ZF3.RFF+Z19
       required:
-      - marketRoles
       - meteringLocationId
     PI_55095__masterData__METERING_LOCATION__marketRoles:
       type: object
@@ -460,11 +398,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/subContracted.yaml#/components/schemas/subContracted
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF3.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
-      - subContracted
     PI_55095__masterData__GRID_LOCATION:
       type: object
       properties:
@@ -490,12 +423,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/GridLocation/controlChannel.yaml#/components/schemas/controlChannel
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+Z49
-      required:
-      - configurationProduct
-      - loadCurveDefinition
-      - marketRoles
-      - gridLocationId
-      - controlChannel
     PI_55095__masterData__GRID_LOCATION__marketRoles:
       type: object
       properties:
@@ -511,10 +438,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZD7.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
     PI_55095__masterData__CONTROLLABLE_RESOURCE:
       type: object
       properties:
@@ -538,12 +461,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+Z49.CAV+ZF2
         assignedDefinition:
           $ref: '#/components/schemas/PI_55095__masterData__CONTROLLABLE_RESOURCE__assignedDefinition'
-      required:
-      - configurationProduct
-      - marketRoles
-      - resourceId
-      - controlChannel
-      - assignedDefinition
     PI_55095__masterData__CONTROLLABLE_RESOURCE__marketRoles:
       type: object
       properties:
@@ -559,10 +476,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeNumber.yaml#/components/schemas/roleCodeNumber
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF1.SG10.CCI+++ZB3.CAV+Z91
-      required:
-      - marketRole
-      - meteringPointOperatorAttribute
-      - roleCodeNumber
     PI_55095__masterData__CONTROLLABLE_RESOURCE__assignedDefinition:
       type: object
       properties:
@@ -574,9 +487,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/AssignedDefinition/switchingTimeDefinition.yaml#/components/schemas/switchingTimeDefinition
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF2.SG10.CCI+[Z52|Z53]
-      required:
-      - loadCurveDefinition
-      - switchingTimeDefinition
     PI_55095__masterData__TECHNICAL_RESOURCE:
       type: object
       properties:
@@ -611,11 +521,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/TechnicalResource/storageCapacity.yaml#/components/schemas/storageCapacity
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF0.SG9.QTY+Z42
-      required:
-      - kind
-      - ratedPower
-      - resourceId
-      - storageCapacity
     PI_55095__masterData__TECHNICAL_RESOURCE__ratedPower:
       type: object
       properties:
@@ -627,9 +532,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/RatedPower/intake.yaml#/components/schemas/intake
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF0.SG9.QTY+Z43
-      required:
-      - levy
-      - intake
     PI_55095__masterData__TRANCHE:
       type: object
       properties:
@@ -643,9 +545,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55095__masterData__TRANCHE__meterRegisters'
-      required:
-      - trancheId
-      - meterRegisters
     PI_55095__masterData__TRANCHE__meterRegisters:
       type: object
       properties:
@@ -653,8 +552,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeterRegister/obisCode.yaml#/components/schemas/obisCode
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZE9.PIA+5
-      required:
-      - obisCode
     PI_55095__masterData__METER:
       type: object
       properties:
@@ -692,15 +589,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55095__masterData__METER__meterRegisters'
-      required:
-      - gateway
-      - devices
-      - meteringLocationId
-      - measurementValueCapture
-      - meterNumber
-      - meterType
-      - meterTypeSpecification
-      - meterRegisters
     PI_55095__masterData__METER__devices:
       type: object
       properties:
@@ -713,9 +601,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Device/deviceType.yaml#/components/schemas/deviceType
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF6.RFF+[MG|Z14]
-      required:
-      - deviceNumber
-      - deviceType
     PI_55095__masterData__METER__meterRegisters:
       type: object
       properties:
@@ -731,9 +616,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeterRegister/valueGranularity.yaml#/components/schemas/valueGranularity
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+ZF6.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
-      required:
-      - obisCode
-      - valueGranularity
     PI_55095__transactionData:
       type: object
       properties:
@@ -798,7 +680,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_55095__transactionData__sender__contactPerson:
@@ -816,10 +697,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55095__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_55095__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -831,9 +708,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_55095__transactionData__receiver:
       type: object
       properties:

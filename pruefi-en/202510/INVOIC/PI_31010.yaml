@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_31010
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_31010:
@@ -79,7 +79,6 @@ components:
           $ref: '#/components/schemas/PI_31010__masterData__INVOICE__toPay'
       required:
       - processingDate
-      - predecessorInvoiceDate
       - dueDate
       - totalGrossAmount
       - invoiceDate
@@ -87,9 +86,7 @@ components:
       - invoicePositions
       - invoiceStatus
       - invoiceType
-      - referencePredecessorInvoice
       - taxAmounts
-      - prepaid
       - toPay
     PI_31010__masterData__INVOICE__totalGrossAmount:
       type: object
@@ -196,8 +193,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/Amount/value.yaml#/components/schemas/value
           x-edifact-segment:
           - SG50.MOA+113
-      required:
-      - value
     PI_31010__masterData__INVOICE__toPay:
       type: object
       properties:
@@ -258,12 +253,9 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS.SG3.RFF+[VA|FC]
       required:
-      - contactPerson
       - name1
       - roleCodeNumber
       - roleCodeType
-      - taxNumber
-      - vatId
     PI_31010__transactionData__sender__contactPerson:
       type: object
       properties:
@@ -271,8 +263,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/ContactPerson/lastName.yaml#/components/schemas/lastName
           x-edifact-segment:
           - SG2.NAD+MS.SG5.CTA+IC
-      required:
-      - lastName
     PI_31010__transactionData__receiver:
       type: object
       properties:
@@ -300,5 +290,3 @@ components:
       - name1
       - roleCodeNumber
       - roleCodeType
-      - taxNumber
-      - vatId

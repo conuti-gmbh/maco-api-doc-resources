@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_55660
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_55660:
@@ -33,8 +33,6 @@ components:
           items:
             $ref: '#/components/schemas/PI_55660__masterData__USAGE_PERIOD'
       required:
-      - MARKET_LOCATION
-      - METERING_POINT_OPERATION_CONTRACT
       - USAGE_PERIOD
     PI_55660__masterData__MARKET_LOCATION:
       type: object
@@ -68,14 +66,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55660__masterData__MARKET_LOCATION__meterRegisters'
-      required:
-      - dataQuality
-      - validityPeriod
-      - configurationProduct
-      - loadCurveDefinition
-      - marketLocationId
-      - productDataRelevantRole
-      - meterRegisters
     PI_55660__masterData__MARKET_LOCATION__validityPeriod:
       type: object
       properties:
@@ -85,8 +75,6 @@ components:
           - SG4.IDE+24.SG6.RFF+Z50
           - SG4.IDE+24.SG8.SEQ+Z02
           - SG4.IDE+24.SG8.SEQ+Z59
-      required:
-      - periodId
     PI_55660__masterData__MARKET_LOCATION__meterRegisters:
       type: object
       properties:
@@ -104,11 +92,6 @@ components:
           - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZE4.CAV+[ZD9|ZE8|ZE9|ZB7]
         meteringTimes:
           $ref: '#/components/schemas/PI_55660__masterData__MARKET_LOCATION__meterRegisters__meteringTimes'
-      required:
-      - obisCode
-      - purposesOfUse
-      - valueGranularity
-      - meteringTimes
     PI_55660__masterData__MARKET_LOCATION__meterRegisters__purposesOfUse:
       type: object
       properties:
@@ -122,9 +105,6 @@ components:
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZA7.CAV
           - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+++ZA8.CAV
-      required:
-      - marketRole
-      - purpose
     PI_55660__masterData__MARKET_LOCATION__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -136,23 +116,16 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG4.IDE+24.SG8.SEQ+Z02.SG10.CCI+Z39
-      required:
-      - register
-      - meteringTimeDefinition
     PI_55660__masterData__METERING_POINT_OPERATION_CONTRACT:
       type: object
       properties:
         contractConditions:
           $ref: '#/components/schemas/PI_55660__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions'
-      required:
-      - contractConditions
     PI_55660__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions:
       type: object
       properties:
         plannedScheduledReading:
           $ref: '#/components/schemas/PI_55660__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions__plannedScheduledReading'
-      required:
-      - plannedScheduledReading
     PI_55660__masterData__METERING_POINT_OPERATION_CONTRACT__contractConditions__plannedScheduledReading:
       type: object
       properties:
@@ -160,8 +133,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/TimePeriod/readingPeriod.yaml#/components/schemas/readingPeriod
           x-edifact-segment:
           - SG4.IDE+24.SG6.RFF+Z50.DTM+752
-      required:
-      - readingPeriod
     PI_55660__masterData__USAGE_PERIOD:
       type: object
       properties:
@@ -249,7 +220,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_55660__transactionData__sender__contactPerson:
@@ -267,10 +237,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_55660__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_55660__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -282,9 +248,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG3.CTA.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_55660__transactionData__receiver:
       type: object
       properties:

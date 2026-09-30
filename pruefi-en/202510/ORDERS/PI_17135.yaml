@@ -2,9 +2,9 @@ openapi: 3.1.0
 info:
   title: PI_17135
   version: '202510'
-  x-bo4e-schema-version: 1.7.4
-  x-bo4e-schema-sha: 1732e948753541a9b641ca98f3d8ff189d994263
-  x-templater-sha: 392a2eb2993418f8a5be64578c22568416e2d551
+  x-bo4e-schema-version: 1.7.8
+  x-bo4e-schema-sha: a4f202d62930c69acd327622abf92da121d3a12e
+  x-templater-sha: 41b3eb8c66d69f8953cbfe2ce874d41618f10ca0
 components:
   schemas:
     PI_17135:
@@ -44,8 +44,6 @@ components:
       - REQUEST
       - ORDER
       - MARKET_LOCATION
-      - METERING_LOCATION
-      - TRANCHE
     PI_17135__masterData__REQUEST:
       type: object
       properties:
@@ -72,7 +70,6 @@ components:
             $ref: '#/components/schemas/PI_17135__masterData__ORDER__positionData'
       required:
       - executionDate
-      - positionData
     PI_17135__masterData__ORDER__positionData:
       type: object
       properties:
@@ -80,8 +77,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/OrderPosition/positionNumber.yaml#/components/schemas/positionNumber
           x-edifact-segment:
           - SG29.LIN++Z19
-      required:
-      - positionNumber
     PI_17135__masterData__MARKET_LOCATION:
       type: object
       properties:
@@ -99,7 +94,6 @@ components:
             $ref: '#/components/schemas/PI_17135__masterData__MARKET_LOCATION__marketRoles'
       required:
       - marketLocationId
-      - marketRoles
     PI_17135__masterData__MARKET_LOCATION__marketRoles:
       type: object
       properties:
@@ -123,11 +117,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+DEB
           - SG2.NAD+SU
-      required:
-      - marketRole
-      - roleCodeNumber
-      - roleCodeType
-      - subContracted
     PI_17135__masterData__METERING_LOCATION:
       type: object
       properties:
@@ -135,8 +124,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17135__masterData__METERING_LOCATION__meterRegisters'
-      required:
-      - meterRegisters
     PI_17135__masterData__METERING_LOCATION__meterRegisters:
       type: object
       properties:
@@ -146,9 +133,6 @@ components:
           - SG29.LIN++Z19.PIA+5
         meteringTimes:
           $ref: '#/components/schemas/PI_17135__masterData__METERING_LOCATION__meterRegisters__meteringTimes'
-      required:
-      - meteringProduct
-      - meteringTimes
     PI_17135__masterData__METERING_LOCATION__meterRegisters__meteringTimes:
       type: object
       properties:
@@ -156,8 +140,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/MeteringTimeRegister/meteringTimeDefinition.yaml#/components/schemas/meteringTimeDefinition
           x-edifact-segment:
           - SG29.LIN++Z19.SG30.CCI+[Z39|Z41]
-      required:
-      - meteringTimeDefinition
     PI_17135__masterData__TRANCHE:
       type: object
       properties:
@@ -170,9 +152,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+DP.SG3.RFF+Z20
           - SG2.NAD+SU.SG3.RFF+Z20
-      required:
-      - marketRoles
-      - trancheId
     PI_17135__masterData__TRANCHE__marketRoles:
       type: object
       properties:
@@ -188,10 +167,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
           x-edifact-segment:
           - SG2.NAD+SU
-      required:
-      - marketRole
-      - roleCodeNumber
-      - roleCodeType
     PI_17135__transactionData:
       type: object
       properties:
@@ -219,7 +194,6 @@ components:
           - SG1.RFF+Z13
       required:
       - sender
-      - involvedMarketPartner
       - documentNumber
       - receiver
       - messageDate
@@ -239,7 +213,6 @@ components:
           x-edifact-segment:
           - SG2.NAD+MS
       required:
-      - contactPerson
       - roleCodeNumber
       - roleCodeType
     PI_17135__transactionData__sender__contactPerson:
@@ -257,10 +230,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PI_17135__transactionData__sender__contactPerson__phoneNumbers'
-      required:
-      - eMailAddress
-      - lastName
-      - phoneNumbers
     PI_17135__transactionData__sender__contactPerson__phoneNumbers:
       type: object
       properties:
@@ -272,9 +241,6 @@ components:
           $ref: ../../../bo4e-en/fields/com/PhoneNumber/phoneNumber.yaml#/components/schemas/phoneNumber
           x-edifact-segment:
           - SG2.NAD+MS.SG5.CTA+IC.COM+[EM|FX|TE|AJ|AL]
-      required:
-      - numberType
-      - phoneNumber
     PI_17135__transactionData__involvedMarketPartner:
       type: object
       properties:
@@ -286,9 +252,6 @@ components:
           $ref: ../../../bo4e-en/fields/bo/MarketParticipant/roleCodeType.yaml#/components/schemas/roleCodeType
           x-edifact-segment:
           - SG2.NAD+VY
-      required:
-      - roleCodeNumber
-      - roleCodeType
     PI_17135__transactionData__receiver:
       type: object
       properties:
